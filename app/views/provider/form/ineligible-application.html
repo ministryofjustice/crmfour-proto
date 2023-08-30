@@ -1,0 +1,33 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  You cannot apply – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">You cannot apply</h1>
+      
+      <p>You cannot submit an application for prior authority if it is for less than £100.</p>
+
+        {{ govukButton({
+        text: "Continue",
+        href: "../crm-apps"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

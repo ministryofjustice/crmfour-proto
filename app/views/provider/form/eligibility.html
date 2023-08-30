@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+Is the authority more than or equal to £100? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">1. Check before you start</span>
+      
+      <form class="form" action="/eligibility-question" method="post">
+
+        {{ govukRadios({
+          name: "eligibility",
+          value: data['eligibility'],
+          fieldset: {
+            legend: {
+              text: "Is the total authority for which you are applying more than or equal to £100?
+              ",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes, it is more than or equal to £100"
+            },
+            {
+              value: "no",
+              text: "No, it is less than £100"
+            }
+          ]
+        }) }}
+
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/"
+  }) }}
+{% endblock %}
+
+{% block pageTitle %}
+  LAA Online Portal login – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">LAA Online Portal
+        </h1>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p>To sign in to the Online Portal please enter your username and password.</p>
+        <p>By logging into this Portal you accept the <a href="#" class="govuk-link--no-visited-state">Terms and Conditions</a>.</p>   
+        {{ govukInput({
+          label: {
+            text: 'Username:'
+          },
+          classes: "govuk-!-width-one-third",
+          id: "username",
+          name: "username",
+          autocomplete: "username"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: 'Password:'
+          },
+          classes: "govuk-!-width-one-third",
+          id: "password",
+          name: "password",
+          autocomplete: "password"
+        }) }}
+        {{ govukButton({
+          text: "Log in",
+          href: "laa-portal",
+          isStartButton: true
+        }) }}
+        <p><a href="#" class="govuk-link--no-visited-state">Forgotten your password?</a></p>
+      </div>
+      <div class="govuk-grid-column-one-third">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            <tr align="center">
+              <td><img src="/public/images/laa-update.png" width="300" ></td> 
+            </tr>
+          </tbody>
+        </table>     
+      </div>
+    </div>
+
+{% endblock %}

@@ -1,44 +1,172 @@
-
-{% extends "layout.html" %}
+{% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+  Home – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        The GOV.UK Prototype Kit
-        <span class="govuk-caption-xl">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
-
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
-
-      <h2 class="govuk-heading-m">About this page</h2>
-
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
-
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
-
-      <h2 class="govuk-heading-m">Examples and documentation</h2>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a href="/docs/tutorials-and-examples">Example pages and documentation</a>
-        </li>
-        <li>
-          <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
-        </li>
-      </ul>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">CRM 4
+        </h1>
+      </div>
     </div>
-  </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        </h1>
+        <p>This is the CRM 4 prototype for Providers and Caseworkers. This prototype is <strong>NOT</strong> fully functional
+        </p>
+        <p>Please <a href="/manage-prototype/clear-data" class="govuk-link--no-visited-state">clear data</a> to delete all stored data and re-set the prototype between journeys.</p>
+  
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">          
+            <ol class="app-task-list">
+              <li> 
+                <h2 class="app-task-list__section">
+                  <span class="app-task-list__section-number">1. </span> 
+                  Core functionality
+                </h2>
+                <ul class="app-task-list__items">
+                  <li class="app-task-list__item">
+                    <span class="app-task-list__task-name">TIX No.</span><br>
+                    <span class="app-task-list__task-name">
+                      <a href="/cookies" class="govuk-link--no-visited-state" aria-describedby="create-status">
+                        Cookies
+                      </a>
+                    </span>
+                    <span class="app-task-list__tag" id="create-status">In design</span>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">          
+            <ol class="app-task-list">
+              <li> 
+                <h2 class="app-task-list__section">
+                  <span class="app-task-list__section-number">2. </span> 
+                  Provider journeys
+                </h2>
+                <ul class="app-task-list__items">
+                  <li class="app-task-list__item">
+                    <span class="app-task-list__task-name">CRM4_001</span><br>
+                    <span class="app-task-list__task-name">
+                      <a href="provider/laa-login?first-use=yes" class="govuk-link--no-visited-state" aria-describedby="first-time">
+                        LAA Portal Login - first time user
+                       </a>
+                    </span>
+                    <span class="app-task-list__tag" id="first-time">In design</span>
+                    <br>
+                    <span class="app-task-list__task-name">
+                      <a href="provider/laa-login?first-use=no&claims-state=all" class="govuk-link--no-visited-state" aria-describedby="return-user">
+                        LAA Portal Login - return user
+                       </a>
+                    </span>
+                    <span class="app-task-list__tag" id="return-user">In design</span>
+                    <br>
+                  </li> 
+                  <li class="app-task-list__item">
+                    <span class="app-task-list__task-name">CRM4_002/003</span><br>
+                    <span class="app-task-list__task-name">
+                      <a href="provider/crm-apps?first-use=yes" class="govuk-link--no-visited-state" aria-describedby="empty-apps">
+                        Your applications - empty
+                       </a>
+                    </span>
+                    <span class="app-task-list__tag" id="empty-apps">In design</span>
+                    <br>
+                    <span class="app-task-list__task-name">
+                      <a href="provider/crm-apps?first-use=no&claims-state=saved" class="govuk-link--no-visited-state" aria-describedby="saved-app">
+                        Your applications - first claim saved
+                       </a>
+                    </span>
+                    <span class="app-task-list__tag" id="saved-app">In design</span>
+                    <br>
+                    <span class="app-task-list__task-name">
+                      <a href="provider/crm-apps?first-use=no&claims-state=all" class="govuk-link--no-visited-state" aria-describedby="all-states">
+                        Your applications - all states
+                       </a>
+                    </span>
+                    <span class="app-task-list__tag" id="all-states">In design</span>
+                    <br>
+                    <!--errors-->
+                    <br>
+                    <details class="govuk-details govuk-!-margin-0" data-module="govuk-details">
+                      <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                          Error pages
+                        </span>
+                      </summary>
+                      <div class="govuk-details__text">
+                        <a href="" class="govuk-link--no-visited-state" aria-describedby="reginterest-status">
+                          Error - a specific error case
+                        </a>
+                      </div>
+                    </details>
+                    <!---->
+                  </li> 
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">          
+            <ol class="app-task-list">
+              <li>
+                <h2 class="app-task-list__section">
+                  <span class="app-task-list__section-number">3. </span> 
+                  Caseworker journeys
+                </h2>
+                <ul class="app-task-list__items">
+                  <li class="app-task-list__item">
+                    <span class="app-task-list__task-name">TIX No.</span><br>
+                    <span class="app-task-list__task-name">
+                      <a href="" class="govuk-link--no-visited-state" aria-describedby="signin-status">
+                        Some story here
+                      </a>
+                    </span>
+                    <span class="app-task-list__tag" id="reginterest-direct-status">In design</span>
+                    <br>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+        <aside class="app-related-items" role="complementary">
+          <p>
+            <a class="govuk-link--no-visited-state" href="/trs-layout">Template with components</a>
+          </p>
+          <h2 class="govuk-heading-m" id="subsection-title">Provider key states</h2>
+          <nav role="navigation" aria-labelledby="subsection-title">
+            <ul class="govuk-list govuk-!-font-size-16">
+              <li>
+                <a href="" class="govuk-link--no-visited-state" aria-describedby="signin-status">
+                  Some story here
+                </a>
+              </li>  
+            </ul>
+          </nav>
+          <h2 class="govuk-heading-m" id="subsection-title">Caseworker key states</h2>
+          <nav role="navigation" aria-labelledby="subsection-title">
+            <ul class="govuk-list govuk-!-font-size-16">
+              <li>
+                <a href="" class="govuk-link--no-visited-state" aria-describedby="signin-status">
+                  Some story here
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+  
+      </div>
+    </div>
 
 {% endblock %}

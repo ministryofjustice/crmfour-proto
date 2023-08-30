@@ -8,4 +8,12 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 // Add your routes here
 
+router.post('/eligibility-question', function(request, response) {
 
+    var eligibility = request.session.data['eligibility']
+    if (eligibility == "yes"){
+        response.redirect("/provider/form/task-list?question1=complete")
+    } else {
+        response.redirect("/provider/form/ineligible-application")
+    }
+})
