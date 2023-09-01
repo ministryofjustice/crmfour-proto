@@ -1,0 +1,204 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Your details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl">2. About you</span>
+    <h1 class="govuk-heading-xl">Your details</h1>
+
+    <form class="form" action="task-list?question1-org=complete" method="post">
+        
+      {% call govukFieldset({
+        legend: {
+          text: "Firm details",
+          classes: "govuk-fieldset__legend--m"
+        }
+      }) %}
+
+        {{ govukInput({
+          label: {
+            text: "Firm name",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "org-name",
+          name: "org-name",
+          value: data['org-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Firm account number",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "org-acc",
+          name: "org-acc",
+          value: data['org-acc']
+        }) }}
+      
+        {{ govukInput({
+          label: {
+            text: "Address line 1",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "address-line-1",
+          name: "address-line-1",
+          autocomplete: "address-line1",
+          value: data['address-line-1']
+        }) }}
+      
+        {{ govukInput({
+          label: {
+            text: "Address line 2 (optional)",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "address-line-2",
+          name: "address-line-2",
+          autocomplete: "address-line2",
+          value: data['address-line-2']
+        }) }}
+      
+        {{ govukInput({
+          label: {
+            text: "Town or city",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-10",
+          id: "address-town",
+          name: "address-town",
+          autocomplete: "address-town",
+          value: data['address-town']
+        }) }}
+      
+        {{ govukInput({
+          label: {
+            text: "Postcode",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-10",
+          id: "address-postcode",
+          name: "address-postcode",
+          autocomplete: "postal-code",
+          value: data['address-postcode']
+        }) }}
+      
+      {% endcall %}
+
+      {% call govukFieldset({
+        legend: {
+          text: "Solicitor details",
+          classes: "govuk-fieldset__legend--m"
+        }
+      }) %}
+
+      <div id="sol-name-hint" class="govuk-hint">
+        Enter the details of the solicitor managing the case
+      </div>
+
+        {{ govukInput({
+          label: {
+            text: "Solicitor full name",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "sol-name",
+          name: "sol-name",
+          value: data['sol-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Solicitor reference number",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "For example, 2P341B"
+          },
+          classes: "govuk-input--width-10",
+          id: "sol-number",
+          name: "sol-number",
+          value: data['sol-number']
+        }) }}
+      
+      {% endcall %}
+
+      {% set altcontactHtml %}
+        {{ govukInput({
+          label: {
+            text: "Full name of alternative contact"
+          },
+          classes: "govuk-input--width-20",
+          id: "alt-contact-name",
+          name: "alt-contact-name",
+          value: data['alt-contact-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Email of alternative contact"
+          },
+          classes: "govuk-input--width-20",
+          id: "alt-contact-email",
+          name: "alt-contact-email",
+          autocomplete: "email",
+          value: data['alt-contact-email']
+          
+        }) }}
+
+      {% endset -%}
+
+      {{ govukRadios({
+        name: "alt-contact",
+        fieldset: {
+          legend: {
+            text: "Do you want to add alternative contact details?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "We'll user the contact details on your account if we need to ask you for more information to complete your claim. If you add alternative contact details we'll use those instead."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: checked("alt-contact", "yes"),
+            conditional: {
+              html: altcontactHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: checked("ralt-contact", "no")
+          }
+        ]
+      }) }}
+
+    
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -12,7 +12,7 @@ router.post('/question1-eligibility', function(request, response) {
 
     var eligibility = request.session.data['eligibility']
     if (eligibility == "yes"){
-        response.redirect("/provider/form/task-list?question1=complete")
+        response.redirect("/provider/form/question-ufn")
     } else {
         response.redirect("/provider/form/question1-ineligible")
     }
