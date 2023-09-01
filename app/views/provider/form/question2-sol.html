@@ -1,0 +1,121 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Solicester contact details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">2. About you</span>
+      <h1 class="govuk-heading-xl">Your details</h1>
+
+      <form class="form" action="task-list?question2-sol=complete" method="post">
+      
+        {{ govukInput({
+          label: {
+            text: "What is the URN?",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "The Unique Reference Number is an alphanumeric reference assigned to a case used within the Common Platform. It is a non-mandatory field, however where one is available it should be input here."
+          },
+          classes: "govuk-input--width-10",
+          id: "urn",
+          name: "urn",
+          value: data['urn']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Firm name",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "org-name",
+          name: "org-name",
+          value: data['org-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Firm account number...this is used in crm7 do we need?",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-10",
+          id: "org-acc",
+          name: "org-acc",
+          value: data['org-acc']
+        }) }}
+        
+        {% call govukFieldset({
+          legend: {
+            text: "Firm address",
+            classes: "govuk-fieldset__legend--m"
+          }
+        }) %}
+        
+          {{ govukInput({
+            label: {
+              text: "Address line 1"
+            },
+            classes: "govuk-input--width-20",
+            id: "address-line-1",
+            name: "address-line-1",
+            value: data['address-line1']
+          }) }}
+        
+          {{ govukInput({
+            label: {
+              text: "Address line 2 (optional)"
+            },
+            classes: "govuk-input--width-20",
+            id: "address-line-2",
+            name: "address-line-2",
+            autocomplete: "address-line2",
+            value: data['address-line2']
+          }) }}
+        
+          {{ govukInput({
+            label: {
+              text: "Town or city"
+            },
+            classes: "govuk-input--width-10",
+            id: "address-town",
+            name: "address-town",
+            autocomplete: "address-town",
+            value: data['address-town']
+          }) }}
+        
+          {{ govukInput({
+            label: {
+              text: "Postcode"
+            },
+            classes: "govuk-input--width-10",
+            id: "address-postcode",
+            name: "address-postcode",
+            autocomplete: "postal-code",
+            value: data['postal-code']
+          }) }}
+        
+        {% endcall %}
+      
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
