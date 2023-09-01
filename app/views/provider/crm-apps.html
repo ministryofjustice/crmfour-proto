@@ -26,7 +26,7 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        {% if data['first-use'] == "yes" or data['claims-state'] == "empty" %}
+        {% if data['first-use'] == "yes" or data['first-use'] == null or data['claims-state'] == "empty"  %}
           <p>You haven't claimed for anything yet. Press the big button to claim.</p>
           {{ govukButton({
             text: "Start a new application",
