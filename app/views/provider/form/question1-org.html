@@ -10,13 +10,18 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 {% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <span class="govuk-caption-xl">2. About you</span>
+    <span class="govuk-caption-xl">1. About you</span>
     <h1 class="govuk-heading-xl">Your details</h1>
 
     <form class="form" action="task-list?question1-org=complete" method="post">
@@ -186,15 +191,34 @@
           {
             value: "no",
             text: "No",
-            checked: checked("ralt-contact", "no")
+            checked: checked("alt-contact", "no")
           }
         ]
       }) }}
 
-    
-      {{ govukButton({
-        text: "Save and continue"
-      }) }}
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+      
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps?claims-state=saved"
+          }) }}
+
+          {% else %}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps?claims-state=all"
+          }) }}
+
+        {% endif %}
+      </div>
 
     </form>
 

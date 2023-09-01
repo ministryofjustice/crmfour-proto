@@ -26,7 +26,7 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        {% if data['first-use'] == "yes" or data['first-use'] == null or data['claims-state'] == "empty"  %}
+        {% if data['first-use'] !== "no" and data['claims-state'] == "empty"  %}
           <p>You haven't claimed for anything yet. Press the big button to claim.</p>
           {{ govukButton({
             text: "Start a new application",
@@ -36,7 +36,7 @@
 
           {% else %}
 
-          {% if data['first-use'] == "no" %}
+          
           {{ govukButton({
             text: "Start a new application",
             href: "/provider/form/question-eligibility",
@@ -56,7 +56,7 @@
 
                 {% if data['claims-state'] == "saved" %}
                   <tr class="govuk-table__row">
-                    <td class="govuk-table__cell"><a href="form/task-list?ufn=100323/342&laa-ref=LAA-1z5f7w" class="govuk-link--no-visited-state">100323/342</a></td>
+                    <td class="govuk-table__cell"><a href="form/task-list?question1-org=complete&ufn=100323/342&laa-ref=LAA-1z5f7w" class="govuk-link--no-visited-state">100323/342</a></td>
                     <td class="govuk-table__cell" data-sort-value="6961">6,961 meters</td>
                     <td class="govuk-table__cell">South America</td>
                     <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1897">5001234</td>
@@ -65,13 +65,13 @@
                   {% else %}
                   {% if data['claims-state'] == "all" %}
                     <tr class="govuk-table__row">
-                      <td class="govuk-table__cell"><a href="form/task-list?question1=complete&ufn=100323/342&laa-ref=LAA-1z5f7w" class="govuk-link--no-visited-state">100323/342</a></td>
+                      <td class="govuk-table__cell"><a href="form/task-list?question1-org=complete&ufn=100323/342&laa-ref=LAA-1z5f7w" class="govuk-link--no-visited-state">100323/342</a></td>
                       <td class="govuk-table__cell" data-sort-value="6961">6,961 meters</td>
                       <td class="govuk-table__cell">South America</td>
                       <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="1897">5001234</td>
                     </tr>
                     <tr class="govuk-table__row">
-                      <td class="govuk-table__cell"><a href="form/task-list?question2=complete&ufn=311222/002&laa-ref=LAA-9p4f0d" class="govuk-link--no-visited-state">311222/002</a></td>
+                      <td class="govuk-table__cell"><a href="form/task-list?question1-org=complete&ufn=311222/002&laa-ref=LAA-9p4f0d" class="govuk-link--no-visited-state">311222/002</a></td>
                       <td class="govuk-table__cell" data-sort-value="6194">6,194 meters</td>
                       <td class="govuk-table__cell">North America</td>
                       <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="5001235">5001235</td>
@@ -124,13 +124,13 @@
                       <td class="govuk-table__cell">Antarctica</td>
                       <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="5001243">5001243</td>
                     </tr>
-                  {% endif %} 
+                  {% endif %}  
                 {% endif %} 
 
               </tbody>
             </table>
 
-          {% endif %}  
+          
         {% endif %} 
 
         {% if data['claims-state'] == "all" %}
