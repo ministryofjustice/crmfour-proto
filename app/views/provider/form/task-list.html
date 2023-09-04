@@ -33,44 +33,46 @@
       
       <p class="govuk-body govuk-!-margin-bottom-7">If you leave this page before submitting, you can return later to complete the application.</p>
       <ol class="govuk-prototype-kit-task-list">
-        <!--Question 1-->
+
+        <!--Section 1 - About you-->
         <li>
           <h2 class="govuk-prototype-kit-task-list__section">
             <span class="govuk-prototype-kit-task-list__section-number">1. </span> About you
           </h2>
           <ul class="govuk-prototype-kit-task-list__items">
+
             <!--Question 1 - your details-->
             <li class="govuk-prototype-kit-task-list__item">
-              
               {% if data['question1-org'] == null or data['question1-org'] == "not-started" %}
                 <!--If question1-org has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question1-org?question1-org=in-progress" class="govuk-link--no-visited-state"  aria-describedby="company-information-status">
+                  <a href="question1-org?question1-org=in-progress" class="govuk-link--no-visited-state"  aria-describedby="company-status">
                     Your details
                   </a>
                 </span>
-                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="company-information-status">Not started</strong>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="company-status">Not started</strong>
                 {% else %}
                 <!--For all other states AND show visited link status-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question1-org" aria-describedby="company-information-status">
+                  <a href="question1-org" aria-describedby="company-status">
                     Your details
                   </a>
                 </span>
                 {% if data['question1-org'] =="complete" %}
                   <!--If question2-org is complete, show the status Complete-->
-                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="company-information-status">Complete</strong>
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="company-status">Complete</strong>
                   {% else %}
                   {% if data['question1-org'] =="in-progress" %}
                     <!--If question2-org is in-progress, show the status In-progress-->
-                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="company-information-status">In progress</strong>
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="company-status">In progress</strong>
                   {% endif %}
                 {% endif %}
               {% endif %}
             </li>
           </ul>
         </li>
-        <!--Question 2-->
+
+        <!--Section 2 - client dets-->
         <li>
           <h2 class="govuk-prototype-kit-task-list__section">
             <span class="govuk-prototype-kit-task-list__section-number">2. </span> About your client
@@ -81,54 +83,121 @@
               {% if data['question2-client'] == null or data['question2-client'] == "not-started" %}
                 <!--If question2-org has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question2-client?question2-client=in-progress" class="govuk-link--no-visited-state"  aria-describedby="company-information-status">
+                  <a href="question2-client?question2-client=in-progress" class="govuk-link--no-visited-state"  aria-describedby="client-status">
                     Client details
                   </a>
                 </span>
-                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="company-information-status">Not started</strong>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="client-status">Not started</strong>
                 {% else %}
                 <!--For all other states AND show visited link status-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question2-client" aria-describedby="company-information-status">
+                  <a href="question2-client" aria-describedby="client-status">
                     Client details
                   </a>
                 </span>
                 {% if data['question2-client'] =="complete" %}
                   <!--If question2-org is complete, show the status Complete-->
-                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="company-information-status">Complete</strong>
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="client-status">Complete</strong>
                   {% else %}
                   {% if data['question2-client'] =="in-progress" %}
                     <!--If question2-org is in-progress, show the status In-progress-->
-                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="company-information-status">In progress</strong>
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="client-status">In progress</strong>
                   {% endif %}
                 {% endif %}
               {% endif %}
             </li>
 
-            <!--Section 2 - question b-->
+            <!--Section 2 - Details of case-->
             <li class="govuk-prototype-kit-task-list__item">
-              {% if data['question2'] == null or data['question2'] == "not-started" %}
-                <!--If question2-org has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+              {% if data['question2-case'] == null or data['question2-case'] == "not-started" %}
+                <!--If question2-case has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question1-org?question1-org=in-progress" class="govuk-link--no-visited-state"  aria-describedby="company-information-status">
-                    Your details
+                  <a href="question2-case?question2-case=in-progress" class="govuk-link--no-visited-state"  aria-describedby="case-status">
+                    Case details
                   </a>
                 </span>
-                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="company-information-status">Not started</strong>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="case-status">Not started</strong>
                 {% else %}
                 <!--For all other states AND show visited link status-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question1-org" aria-describedby="company-information-status">
-                    Your details
+                  <a href="question2-case" aria-describedby="case-status">
+                    Case details
                   </a>
                 </span>
-                {% if data['question2'] =="complete" %}
-                  <!--If question2-org is complete, show the status Complete-->
-                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="company-information-status">Complete</strong>
+                {% if data['question2-case'] =="complete" %}
+                  <!--If question2-casa is complete, show the status Complete-->
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="case-status">Complete</strong>
                   {% else %}
-                  {% if data['question2'] =="in-progress" %}
-                    <!--If question2-org is in-progress, show the status In-progress-->
-                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="company-information-status">In progress</strong>
+                  {% if data['question2-case'] =="in-progress" %}
+                    <!--If question2-case is in-progress, show the status In-progress-->
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="case-status">In progress</strong>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </li>
+          </ul>
+        </li>
+
+        <!--Section 3 - Your request-->
+        <li>
+          <h2 class="govuk-prototype-kit-task-list__section">
+            <span class="govuk-prototype-kit-task-list__section-number">3. </span>About your request
+          </h2>
+          <ul class="govuk-prototype-kit-task-list__items">
+
+            <!--Section 3 - expenditure-->
+            <li class="govuk-prototype-kit-task-list__item">
+              {% if data['question3-expend'] == null or data['question3-expend'] == "not-started" %}
+                <!--If question3-expend has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-expend?question3-expend=in-progress" class="govuk-link--no-visited-state"  aria-describedby="expend-status">
+                    Expenditure
+                  </a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="expend-status">Not started</strong>
+                {% else %}
+                <!--For all other states AND show visited link status-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-expend" aria-describedby="expend-status">
+                    Expenditure
+                  </a>
+                </span>
+                {% if data['question3-expend'] =="complete" %}
+                  <!--If question3-expend is complete, show the status Complete-->
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="expend-status">Complete</strong>
+                  {% else %}
+                  {% if data['question3-expend'] =="in-progress" %}
+                    <!--If question3-expend is in-progress, show the status In-progress-->
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="expend-status">In progress</strong>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </li>
+
+             <!--Section 3 - expenditure-->
+             <li class="govuk-prototype-kit-task-list__item">
+              {% if data['question3-additional'] == null or data['question3-additional'] == "not-started" %}
+                <!--If question3-additional has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-additional?question3-additional=in-progress" class="govuk-link--no-visited-state"  aria-describedby="additional-status">
+                    Additional expenditure
+                  </a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="additional-status">Not started</strong>
+                {% else %}
+                <!--For all other states AND show visited link status-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-additional" aria-describedby="additional-status">
+                    Additional expenditure
+                  </a>
+                </span>
+                {% if data['question3-additional'] =="complete" %}
+                  <!--If question3-additional is complete, show the status Complete-->
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="additional-status">Complete</strong>
+                  {% else %}
+                  {% if data['question3-additional'] =="in-progress" %}
+                    <!--If question3-additional is in-progress, show the status In-progress-->
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="additional-status">In progress</strong>
                   {% endif %}
                 {% endif %}
               {% endif %}

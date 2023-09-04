@@ -1,0 +1,235 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Case details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">2. About your client</span>
+      <h1 class="govuk-heading-xl">Case details</h1>
+      
+      <form class="form" action="task-list?question2-case=complete" method="post">
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "detained",
+          fieldset: {
+            legend: {
+              text: "Is your client detained?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("detained", "yes")
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("detained", "no")
+            }
+          ]
+        }) }}
+
+        {{ govukSelect({
+          id: "court-type",
+          name: "court-type",
+          label: {
+            text: "Court type",
+            classes: "govuk-label--s"
+          },
+            items: [
+            {
+              text: "Please select"
+            },
+            {
+              value: "magistrates",
+              text: "Magistrates Court",
+              selected: checked("court-type", "magistrates")
+            },
+            {
+              value: "crown-not-central",
+              text: "Crown court (excluding Central Criminal Court)",
+              selected: checked("court-type", "crown-not-central")
+            },
+            {
+              value: "crown-central",
+              text: "Crown Court (Central Criminal Court)",
+              selected: checked("court-type", "crown-central")
+            }
+          ]
+        }) }}
+
+        {{ govukSelect({
+          id: "main-offence",
+          name: "main-offence",
+          label: {
+            text: "Main offence",
+            classes: "govuk-label--s"
+          },
+            items: [
+            {
+              text: "Please select"
+            },
+            {
+              value: "a",
+              text: "A",
+              selected: checked("main-offence", "a")
+            },
+            {
+              value: "b",
+              text: "B",
+              selected: checked("main-offence", "b")
+            },
+            {
+              value: "c",
+              text: "C",
+              selected: checked("main-offence", "c")
+            }
+          ]
+        }) }}
+
+        {{ govukSelect({
+          id: "plea",
+          name: "plea",
+          label: {
+            text: "Likely or actual plea",
+            classes: "govuk-label--s"
+          },
+            items: [
+            {
+              text: "Please select"
+            },
+            {
+              value: "guilty",
+              text: "Guilty",
+              selected: checked("plea", "guilty")
+            },
+            {
+              value: "not-guilty",
+              text: "Not guilty",
+              selected: checked("plea", "not-guilty")
+            },
+            {
+              value: "mixed",
+              text: "Mixed plea",
+              selected: checked("plea", "mixed")
+            },
+            {
+              value: "unknown",
+              text: "Unknown",
+              selected: checked("plea", "unknown")
+            }
+          ]
+        }) }}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hearing-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              <h1 class="govuk-fieldset__heading">
+                Date of next hearing
+              </h1>
+            </legend>
+            <div id="date-hearing-hint" class="govuk-hint">
+              For example, 27 3 2007
+            </div>
+            <div class="govuk-date-input" id="date-hearing">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-hearing-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-day" name="date-hearing-day" type="text" inputmode="numeric" value="{{data['date-hearing-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-hearing-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-month" name="date-hearing-month" type="text" inputmode="numeric" value="{{data['date-hearing-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-hearing-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-hearing-year" name="date-hearing-year" type="text" inputmode="numeric" value="{{data['date-hearing-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "poca",
+          fieldset: {
+            legend: {
+              text: "Is this case subject to POCA?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("poca", "yes")
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("poca", "no")
+            }
+          ]
+        }) }}      
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
