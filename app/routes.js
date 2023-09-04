@@ -8,6 +8,7 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 // Add your routes here
 
+//Eligibility
 router.post('/question1-eligibility', function(request, response) {
 
     var eligibility = request.session.data['eligibility']
@@ -15,5 +16,16 @@ router.post('/question1-eligibility', function(request, response) {
         response.redirect("/provider/form/question-ufn")
     } else {
         response.redirect("/provider/form/question1-ineligible")
+    }
+})
+
+//Additional expenditures (Section3)
+router.post('/question3-expend', function(request, response) {
+
+    var additional = request.session.data['add-expend-question']
+    if (additional == "yes"){
+        response.redirect("/provider/form/task-list?question3-expend=complete")
+    } else {
+        response.redirect("/provider/form/question3-additional")
     }
 })
