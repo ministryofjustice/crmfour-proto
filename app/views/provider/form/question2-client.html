@@ -87,31 +87,20 @@
           </fieldset>
         </div>
 
-        {{ govukInput({
-          label: {
-            text: "MAAT number",
-            classes: "govuk-label--s",
-            isPageHeading: true
-          },
-          classes: "govuk-input--width-10",
-          id: "maat",
-          name: "maat",
-          value: data['maat']
-        }) }}
-
-        {{ govukInput({
-          label: {
-            text: "URN",
-            classes: "govuk-label--s",
-            isPageHeading: true
-          },
-          classes: "govuk-input--width-10",
-          id: "maat",
-          name: "maat",
-          value: data['maat']
-        }) }}
-
         {% set prisonlawHtml %}
+
+          {{ govukInput({
+            label: {
+              text: "MAAT number",
+              classes: "govuk-label--s",
+              isPageHeading: true
+            },
+            classes: "govuk-input--width-10",
+            id: "maat",
+            name: "maat",
+            value: data['maat']
+          }) }}
+
           {{ govukInput({
             label: {
               text: "Rep order no. / case no.",
@@ -127,7 +116,7 @@
             <fieldset class="govuk-fieldset" role="group" aria-describedby="rep-order-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                 <h1 class="govuk-fieldset__heading">
-                  Client date of birth
+                  Rep order date
                 </h1>
               </legend>
               <div id="rep-order-hint" class="govuk-hint">
