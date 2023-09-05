@@ -1,0 +1,123 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Expert's contact details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">3. About your request</span>
+      
+      <form class="form" action="/question3-expend" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "Expert's contact details",
+            classes: "govuk-fieldset__legend--l",
+            pageHeading: true
+          }
+        }) %}
+        
+          {{ govukInput({
+            label: {
+              text: "Full name",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-name",
+            name: "expert-name",
+            value: data['expert-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Organisation",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-org-name",
+            name: "expert-org-name",
+            value: data['expert-org-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-10",
+            id: "expert-postcode",
+            name: "expert-postcode",
+            value: data['expert-postcode']
+          }) }}
+
+        {% endcall %}
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "existing-auth",
+          fieldset: {
+            legend: {
+              text: "Have you already been granted Prior Authority for this case under the same category of expenditure?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("existing-auth", "yes")
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("existing-auth", "no")
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
