@@ -25,7 +25,7 @@ router.post('/question1-eligibility', function(request, response) {
     if (eligibility == "yes"){
         response.redirect("/provider/form/question-ufn")
     } else {
-        response.redirect("/provider/form/question1-ineligible")
+        response.redirect("/provider/form/question-ineligible")
     }
 })
 
