@@ -12,17 +12,29 @@
             minLength: 1,
             selectElement: courtNameSelect
         })
-
     </script>
 
 {% endblock %}
+
 {% block content %}
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
             <h1 class="govuk-heading-xl">Hearing details</h1>
             <form class="form" action="defendant_details" method="post">
                 
-            
+                {# Number of court hearing #}
+                <div class="govuk-form-group">
+                    <h1 class="govuk-label govuk-label--s-wrapper">
+                        <label class="govuk-label govuk-label--s" for="hearing-details-number-of-court-hearing">
+                            How many court hearings were there for this case?
+                        </label>
+                    </h1>
+                    <div id="hearing-details-number-of-court-hearing-hint" class="govuk-hint">
+                        For example, 3
+                    </div>
+                    <input class="govuk-input govuk-input--width-10" id="hearing-details-number-of-court-hearing" name="hearing_details[number_of_court_hearing]" type="text" spellcheck="false" aria-describedby="hearing-details-number-of-court-hearing-hint" inputmode="numeric">
+                </div>
+
                 <div class="govuk-form-group">
                     <label class="govuk-label govuk-label--s" for="hearing-details-court">
                         In which court was the case heard at?
@@ -36,6 +48,7 @@
                         </select>
                     </div>
                 </div>
+                
                 <div class="govuk-form-group">
                     <p>Select with of the following apply to your case</p>
                     <div class="govuk-checkboxes" data-module="govuk-checkboxes">
