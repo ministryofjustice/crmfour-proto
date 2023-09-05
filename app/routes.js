@@ -5,8 +5,18 @@
 
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
+const formData = require('./data/form_data')
+
 
 // Add your routes here
+
+//Autocomplete example for bringing in select lists
+router.get('/provider/form/auto-complete-example', async (req, res, next) => {
+    let courtLists = formData['list_of_courts']
+    let hearingOutcomeLists = formData['hearing_outcome']
+    let matterTypeLists = formData['matter_type']
+    res.render('/provider/form/auto-complete-example', { courtLists: courtLists, hearingOutcomeLists: hearingOutcomeLists, matterTypeLists: matterTypeLists })
+  })
 
 //Eligibility
 router.post('/question1-eligibility', function(request, response) {
@@ -29,3 +39,5 @@ router.post('/question3-expend', function(request, response) {
         response.redirect("/provider/form/question3-additional")
     }
 })
+
+

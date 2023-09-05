@@ -1,0 +1,88 @@
+{% extends "layouts/main.html" %}
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+        var courtNameSelect = document.querySelector('#hearing-details-court')
+
+        accessibleAutocomplete.enhanceSelectElement({
+            confirmOnBlur: true,
+            autoSelect: true,
+            displayMenu: 'overlay',
+            minLength: 1,
+            selectElement: courtNameSelect
+        })
+
+    </script>
+
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <h1 class="govuk-heading-xl">Hearing details</h1>
+            <form class="form" action="defendant_details" method="post">
+                
+            
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--s" for="hearing-details-court">
+                        In which court was the case heard at?
+                    </label>
+                    <div class="govuk autocomplete-wrapper">
+                        <select class="govuk-select" name="hearing_details[court]" id="hearing-details-court">
+                            <option></option>
+                            {% for court in courtLists -%}
+                                <option>{{ court['name'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="govuk-form-group">
+                    <p>Select with of the following apply to your case</p>
+                    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="hearing-details-youth-court" name="hearing_details[is_youth_court]" type="checkbox" value="true">
+                            <label class="govuk-label govuk-label--s govuk-checkboxes__label" for="hearing-details-youth-court">
+                                The case was dealt at a youth court
+                            </label>
+                        </div>
+                        <div class="govuk-checkboxes__item">
+                            <input class="govuk-checkboxes__input" id="hearing-details-within-designated-area" name="hearing_details[within_designated_area]" type="checkbox" value="true">
+                            <label class="govuk-label govuk-label--s govuk-checkboxes__label" for="hearing-details-within-designated-area">
+                                The Magistrates court was in a designated area of my firm
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--s" for="hearing-details-outcome-of-hearing">
+                        What was the outcome of the hearing?
+                    </label>
+                    <select class="govuk-select"
+                            id="hearing-details-outcome-of-hearing"
+                            name="hearing_details[outcome_of_hearing]">
+                        {% for outcome in hearingOutcomeLists -%}
+                        <option value="{{outcome['code']}}">
+                            {{outcome['code']}} - {{outcome['description']}}
+                            </option>
+                        {%- endfor %}
+                    </select>
+                </div>
+                <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--s" for="hearing-details-matter-type">
+                        What was the matter type?
+                    </label>
+                    <select class="govuk-select"
+                            id="hearing-details-matter-type"
+                            name="hearing_details[matter_type]">
+                        {% for matter in matterTypeLists -%}
+                        <option value="{{matter['code']}}">
+                            {{matter['code']}} - {{matter['description']}}
+                            </option>
+                        {%- endfor %}
+                    </select>
+                </div>
+                <button class="govuk-button" data-module="govuk-button">Save and continue</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
