@@ -145,10 +145,10 @@
           </h2>
           <ul class="govuk-prototype-kit-task-list__items">
 
-            <!--Section 3 - expenditure-->
+            <!--Section 3 - expert contact details-->
             <li class="govuk-prototype-kit-task-list__item">
               {% if data['question3-expert'] == null or data['question3-expert'] == "not-started" %}
-                <!--If question3-expend has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+                <!--If question3-expert has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
                 <span class="govuk-prototype-kit-task-list__task-name">
                   <a href="question3-expert?question3-expert=in-progress" class="govuk-link--no-visited-state"  aria-describedby="expert-status">
                     Expert's contact details
@@ -162,42 +162,42 @@
                     Expert's contact details
                   </a>
                 </span>
-                {% if data['question3-expend'] =="complete" %}
-                  <!--If question3-expend is complete, show the status Complete-->
+                {% if data['question3-expert'] =="complete" %}
+                  <!--If question3-expert is complete, show the status Complete-->
                   <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="expend-expert">Complete</strong>
                   {% else %}
-                  {% if data['question3-expend'] =="in-progress" %}
-                    <!--If question3-expend is in-progress, show the status In-progress-->
+                  {% if data['question3-expert'] =="in-progress" %}
+                    <!--If question3-expert is in-progress, show the status In-progress-->
                     <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="expend-expert">In progress</strong>
                   {% endif %}
                 {% endif %}
               {% endif %}
             </li>
 
-             <!--Section 3 - expenditure-->
+             <!--Section 3 - quote-->
              <li class="govuk-prototype-kit-task-list__item">
-              {% if data['question3-additional'] == null or data['question3-additional'] == "not-started" %}
-                <!--If question3-additional has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+              {% if data['question3-quote'] == null or data['question3-quote'] == "not-started" %}
+                <!--If question3-quote has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question3-additional-q?question3-additional=in-progress" class="govuk-link--no-visited-state"  aria-describedby="additional-status">
-                    Additional expenditure
+                  <a href="question3-quote?question3-quote=in-progress" class="govuk-link--no-visited-state"  aria-describedby="quote-status">
+                    Quote details
                   </a>
                 </span>
-                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="additional-status">Not started</strong>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="quote-status">Not started</strong>
                 {% else %}
                 <!--For all other states AND show visited link status-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question3-additional-q" aria-describedby="additional-status">
-                    Additional expenditure
+                  <a href="question3-quote" aria-describedby="quote-status">
+                    Quote details
                   </a>
                 </span>
-                {% if data['question3-additional'] =="complete" %}
-                  <!--If question3-additional is complete, show the status Complete-->
-                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="additional-status">Complete</strong>
+                {% if data['question3-quote'] =="complete" %}
+                  <!--If question3-quote is complete, show the status Complete-->
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="quote-status">Complete</strong>
                   {% else %}
-                  {% if data['question3-additional'] =="in-progress" %}
-                    <!--If question3-additional is in-progress, show the status In-progress-->
-                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="additional-status">In progress</strong>
+                  {% if data['question3-quote'] =="in-progress" %}
+                    <!--If question3-quote is in-progress, show the status In-progress-->
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="quote-status">In progress</strong>
                   {% endif %}
                 {% endif %}
               {% endif %}
@@ -254,7 +254,7 @@
             <br>{{data['ufn'] or "100323/234234"}}
           </li>
           <li>
-            <strong>LAA Reference number</strong>   
+            <strong>LAA reference</strong>   
             <br>{{data['laa-ref'] or "LAA-5a7d3c"}}
           </li>
         </ul>
