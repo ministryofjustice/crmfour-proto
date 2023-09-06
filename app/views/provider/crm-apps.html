@@ -26,7 +26,7 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
-        {% if data['first-use'] !== "no" and data['claims-state'] == "empty"  %}
+        {% if data['first-use'] !== "no" and data['app-state'] == "empty"  %}
           <p>You have not yet started an application for prior authority. </p>
           {{ govukButton({
             text: "New application",
@@ -55,7 +55,7 @@
             
               <tbody class="govuk-table__body">
 
-                {% if data['claims-state'] == "saved" or data['claims-state'] == null %}
+                {% if data['app-state'] == "saved" or data['app-state'] == null %}
                   <tr class="govuk-table__row">
                     <td class="govuk-table__cell"><a href="form/task-list?question1-org=complete&ufn=100323/342&laa-ref=LAA-1z5f7w" class="govuk-link--no-visited-state" data-sort-value="100323342">100323/342</a></td>
                     <td class="govuk-table__cell">Unknown</td>
@@ -67,7 +67,7 @@
                   </tr>
 
                   {% else %}
-                  {% if data['claims-state'] == "all" %}
+                  {% if data['app-state'] == "all" %}
                     <tr class="govuk-table__row">
                       <td class="govuk-table__cell"><a href="form/task-list?question1-org=complete&ufn=311222/002&laa-ref=LAA-9p4f0d" class="govuk-link--no-visited-state" data-sort-value="311222002">311222/002</a></td>
                       <td class="govuk-table__cell">Unknown</td>
@@ -169,7 +169,7 @@
           
         {% endif %} 
 
-        {% if data['claims-state'] == "all" %}
+        {% if data['app-state'] == "all" %}
           {{ mojPagination({
             items: [{
               text: '1',

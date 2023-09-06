@@ -181,12 +181,12 @@
             text: "Save and continue"
           }) }}
 
-          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
         
             {{ govukButton({
               text: "Save and come back later",
               classes: "govuk-button--secondary",
-              href: "../crm-apps?claims-state=saved"
+              href: "../crm-apps?app-state=saved"
             }) }}
 
             {% else %}
@@ -194,7 +194,7 @@
             {{ govukButton({
               text: "Save and come back later",
               classes: "govuk-button--secondary",
-              href: "../crm-apps?claims-state=all"
+              href: "../crm-apps?app-state=all"
             }) }}
 
           {% endif %}
