@@ -44,8 +44,8 @@
               <p>Rejected</p>
               <p>21st August 2023</p>
               {% else %}
-              {% if data['app-task'] == "in-progress" %}
-                <p>In-progress</p>
+              {% if data['app-task'] == "draft" %}
+                <p>Draft</p>
                 <p>22nd August 2023</p>
               {% endif %}
             {% endif %}
@@ -117,7 +117,7 @@
         </dd>
       </div>   
     </dl>
-    {% if data['app-task'] == "in-progress" %}
+    {% if data['app-task'] == "draft" %}
     <div class="govuk-button-group">
       {{ govukButton({
         text: "Continue application",
