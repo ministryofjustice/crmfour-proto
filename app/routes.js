@@ -29,14 +29,14 @@ router.post('/question1-eligibility', function(request, response) {
     }
 })
 
-//Additional expenditures (Section3)
-router.post('/question3-expend', function(request, response) {
+//Alternative quotes questino (Section3)
+router.post('/question3-alt-quotes', function(request, response) {
 
-    var additional = request.session.data['add-expend-question']
-    if (additional == "yes"){
-        response.redirect("/provider/form/task-list?question3-expend=complete")
+    var altQuote = request.session.data['alt-quotes-q']
+    if (altQuote == "no"){
+        response.redirect("/provider/form/task-list?question3-alt-quotes=complete")
     } else {
-        response.redirect("/provider/form/question3-additional")
+        response.redirect("/provider/form/question3-alt-quote-details")
     }
 })
 

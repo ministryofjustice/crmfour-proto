@@ -1,0 +1,208 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Do you want add other expenditures? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">3. About your expenditure request </span>
+
+      <div data-module="moj-add-another">
+
+        <h1 class="govuk-heading-xl moj-add-another__heading" tabindex="-1">Add an alternative quote</h1>
+
+        <form method="post">
+        <form class="form" action="/question3-alt-quotes" method="post">
+
+          <p>Add up to 3 alternative quotes</p>
+
+          {% call govukFieldset({
+            classes: 'moj-add-another__item',
+            legend: {
+              text: 'Alternative quote',
+              classes: 'moj-add-another__title govuk-fieldset__legend--m',
+              isPageHeading: false
+            }
+          }) %}
+
+          {{ govukInput({
+            id: 'company[0][company_name]',
+            name: 'company[0][company_name]',
+            label: {
+              html: 'Company name',
+              classes: 'govuk-!-font-weight-bold'
+            },
+            attributes: {
+              'data-name': 'company[%index%][company_name]',
+              'data-id': 'company[%index%][company_name]'
+            }
+          }) }}
+
+          {{ govukInput({
+            id: 'expert[0][expert_name]',
+            name: 'expert[0][expert_name]',
+            label: {
+              html: 'Expert name',
+              classes: 'govuk-!-font-weight-bold'
+            },
+            attributes: {
+              'data-name': 'expert[%index%][expert_name]',
+              'data-id': 'expert[%index%][expert_name]'
+            }
+          }) }}
+
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "cost_basis",
+            fieldset: {
+              legend: {
+                text: "Cost basis",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "hourly",
+                text: "Hourly rate",
+                attributes: {
+                  'data-name': 'cost_basis[%index%][hourly]',
+                  'data-id': 'person[%index%][[hourly]'
+                }
+              },
+              {
+                value: "non-hourly",
+                text: "Non hourly rate",
+                attributes: {
+                  'data-name': 'cost_basis[%index%][non_hourly]',
+                  'data-id': 'cost_basis[%index%][[non_hourly]'
+                }
+              }
+            ]
+          }) }}
+
+          {{ govukTextarea({
+            name: "alt-quotes-desc",
+            id: "alt-quotes-desc",
+            label: {
+              text: "Describe the additional items needed"
+            }
+          }) }}
+
+          {{ govukInput({
+            id: "cost",
+            name: "cost",
+            label: {
+              text: "Additional item cost",
+              classes: "govuk-label--s"
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5"
+          }) }}
+
+
+          {{ govukDateInput({
+            id: "alt_hours",
+            fieldset: {
+              legend: {
+                text: "Travel hours",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                id: "alt_hours[0][travel][hours]",
+                name: "alt_hours[0][travel][hours]",
+                label: "Hours",
+                classes: "govuk-input--width-2",
+                attributes: {
+                  'data-name': 'alt_hours[%index%][travel][hours]',
+                  'data-id': 'alt_hours[%index%][travel][hours]'
+                }
+              },
+              {
+                id: "alt_hours[0][travel][min]",
+                name: "alt_hours[0][travel][min]",
+                label: "Minutes",
+                classes: "govuk-input--width-2",
+                attributes: {
+                  'data-name': 'alt_hours[%index%][travel][min]',
+                  'data-id': 'alt_hours[%index%][travel][min]'
+                }
+              }
+            ]
+          }) }}
+
+          {% endcall %}
+
+          <div class="moj-button-action">
+            {{ govukButton({
+              text: 'Add another person',
+              classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+            }) }}
+          </div>
+
+          <div class="moj-button-action">
+            {{ govukButton({
+              text: 'Submit'
+            }) }}
+          </div>
+
+        </form>
+
+      </div>
+
+        
+         
+
+         
+
+       
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

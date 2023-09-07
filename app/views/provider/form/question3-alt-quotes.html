@@ -1,0 +1,94 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Do you want add other expenditures? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">3. About your expenditure request </span>
+      
+      <form class="form" action="/question3-alt-quotes" method="post">
+
+        {% set noHtml %}
+          {{ govukTextarea({
+            name: "no-alt-quotes-info",
+            id: "no-alt-quotes-info",
+            label: {
+              text: "Provide details for why you did not get other quotes"
+            }
+          }) }}
+        {% endset -%}
+
+        {{ govukRadios({
+          name: "alt-quotes-q",
+          fieldset: {
+            legend: {
+              text: "Have you got other quotes?",
+              classes: "govuk-label--l",
+              isPageHeading: true
+            }
+          },
+          items: [
+          {
+            value: "no",
+            text: "No",
+            checked: checked("alt-quotes-q", "no"),
+            conditional: {
+              html: noHtml
+            }
+          },
+          {
+              value: "yes",
+              text: "Yes",
+              checked: checked("alt-quotes-q", "yes") 
+            }
+            
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

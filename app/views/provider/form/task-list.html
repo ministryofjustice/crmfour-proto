@@ -141,7 +141,7 @@
         <!--Section 3 - Your request-->
         <li>
           <h2 class="govuk-prototype-kit-task-list__section">
-            <span class="govuk-prototype-kit-task-list__section-number">3. </span>About your request
+            <span class="govuk-prototype-kit-task-list__section-number">3. </span>About your expenditure request
           </h2>
           <ul class="govuk-prototype-kit-task-list__items">
 
@@ -174,13 +174,13 @@
               {% endif %}
             </li>
 
-             <!--Section 3 - quote-->
-             <li class="govuk-prototype-kit-task-list__item">
+            <!--Section 3 - quote-->
+            <li class="govuk-prototype-kit-task-list__item">
               {% if data['question3-quote'] == null or data['question3-quote'] == "not-started" %}
                 <!--If question3-quote has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
                 <span class="govuk-prototype-kit-task-list__task-name">
                   <a href="question3-quote?question3-quote=in-progress" class="govuk-link--no-visited-state"  aria-describedby="quote-status">
-                    Quote details
+                    Expenditure quote
                   </a>
                 </span>
                 <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="quote-status">Not started</strong>
@@ -188,7 +188,7 @@
                 <!--For all other states AND show visited link status-->
                 <span class="govuk-prototype-kit-task-list__task-name">
                   <a href="question3-quote" aria-describedby="quote-status">
-                    Quote details
+                    Expenditure quote
                   </a>
                 </span>
                 {% if data['question3-quote'] =="complete" %}
@@ -198,6 +198,63 @@
                   {% if data['question3-quote'] =="in-progress" %}
                     <!--If question3-quote is in-progress, show the status In-progress-->
                     <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="quote-status">In progress</strong>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </li>
+            <!--Section 3 - alternative quotes -->
+            <li class="govuk-prototype-kit-task-list__item">
+              {% if data['question3-alt-quote'] == null or data['question3-alt-quote'] == "not-started" %}
+                <!--If question3-alt-quote has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-quotes?question3-alt-quote=in-progress" class="govuk-link--no-visited-state"  aria-describedby="alt-quote-status">
+                    Alternative quotes
+                  </a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="alt-quote-status">Not started</strong>
+                {% else %}
+                <!--For all other states AND show visited link status-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-alt-quotes" aria-describedby="alt-quote-status">
+                    Alternative quotes
+                  </a>
+                </span>
+                {% if data['question3-alt-quote'] =="complete" %}
+                  <!--If question3-quote is complete, show the status Complete-->
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="alt-quote-status">Complete</strong>
+                  {% else %}
+                  {% if data['question3-alt-quote'] =="in-progress" %}
+                    <!--If question3-quote is in-progress, show the status In-progress-->
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="alt-quote-status">In progress</strong>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </li>
+
+            <!--Section 3 - authority-->
+            <li class="govuk-prototype-kit-task-list__item">
+              {% if data['question3-authority'] == null or data['question3-authority'] == "not-started" %}
+                <!--If question3-quote has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-authority?question3-authority=in-progress" class="govuk-link--no-visited-state"  aria-describedby="authority-status">
+                    Authority justtification
+                  </a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="authority-status">Not started</strong>
+                {% else %}
+                <!--For all other states AND show visited link status-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-authority" aria-describedby="authority-status">
+                    Authority justtification
+                  </a>
+                </span>
+                {% if data['question3-quote'] =="complete" %}
+                  <!--If question3-quote is complete, show the status Complete-->
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="authority-status">Complete</strong>
+                  {% else %}
+                  {% if data['question3-quauthorityote'] =="in-progress" %}
+                    <!--If question3-quote is in-progress, show the status In-progress-->
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="authority-status">In progress</strong>
                   {% endif %}
                 {% endif %}
               {% endif %}
