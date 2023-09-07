@@ -33,21 +33,36 @@
         </dt>
         <dd class="govuk-summary-list__value">
           {% if data['app-task'] == "submitted" %}
-          <p>Submitted<br>12th July 2023<br>Awaiting LAA review
-          </p>
+          <p>Submitted<br>Awaiting LAA review</p>
+          <p>12th July 2023</p>
           {% else %}
-          {% if data['app-task'] == "assessed" %}
-            <p>Assessment complete<br>1st Sept 2023
-            </p>
-            <p>Caseworker recommendation:<br>
-              This is the result of the caseworkers review of the appication...format TBD
-            </p>
+          {% if data['app-task'] == "accepted" %}
+            <p>Accepted</p>
+            <p>1st Sept 2023</p>
+            {% else %}
+            {% if data['app-task'] == "rejected" %}
+              <p>Rejected</p>
+              <p>21st August 2023</p>
+              {% else %}
+              {% if data['app-task'] == "in-progress" %}
+                <p>In-progress</p>
+                <p>22nd August 2023</p>
+              {% endif %}
+            {% endif %}
           {% endif %}
         {% endif %} 
-        
         </dd>
       </div>
-
+      {% if data['app-task'] == "rejected" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Caseworker recommendation
+          </dt>
+          <dd class="govuk-summary-list__value">
+            This is the result of the caseworkers review of the application...format TBD
+          </dd>
+        </div>
+      {% endif %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Unique file reference
@@ -88,11 +103,6 @@
           <p>Some of the app details here</p>
         </dd>
       </div>
-
-      
-
-      
-     
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Documentation
@@ -107,6 +117,15 @@
         </dd>
       </div>   
     </dl>
+    {% if data['app-task'] == "in-progress" %}
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Continue application",
+        href: ""
+      }) }}    
+      <a class="govuk-link govuk-link--no-visited-state" href="">Delete</a>
+    </div>
+    {% endif %}
 </div>
 
   <div class="govuk-grid-column-one-third">
