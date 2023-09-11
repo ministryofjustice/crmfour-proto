@@ -25,13 +25,6 @@
     <h1 class="govuk-heading-xl">Your details</h1>
 
     <form class="form" action="task-list?question1-org=complete" method="post">
-        
-      {% call govukFieldset({
-        legend: {
-          text: "Contact details",
-          classes: "govuk-fieldset__legend--m"
-        }
-      }) %}
 
         {{ govukInput({
           label: {
@@ -46,23 +39,16 @@
 
         {{ govukInput({
           label: {
-            text: "Telephone number",
+            text: "Email address",
             classes: "govuk-label--s"
           },
-          id: "contact-number",
-          name: "contact-number",
-          type: "tel",
-          autocomplete: "tel",
-          classes: "govuk-input--width-20"
+          classes: "govuk-input--width-20",
+          id: "contact-email",
+          name: "contact-email",
+          autocomplete: "email",
+          value: data['contact-email']
+          
         }) }}
-      {% endcall %}
-
-      {% call govukFieldset({
-        legend: {
-          text: "Firm details",
-          classes: "govuk-fieldset__legend--m"
-        }
-      }) %}
 
         {{ govukInput({
           label: {
@@ -84,61 +70,7 @@
           id: "org-acc",
           name: "org-acc",
           value: data['org-acc']
-        }) }}
-      
-        {{ govukInput({
-          label: {
-            text: "Address line 1",
-            classes: "govuk-label--s"
-          },
-          classes: "govuk-input--width-20",
-          id: "address-line-1",
-          name: "address-line-1",
-          autocomplete: "address-line1",
-          value: data['address-line-1']
-        }) }}
-      
-        {{ govukInput({
-          label: {
-            text: "Address line 2 (optional)",
-            classes: "govuk-label--s"
-          },
-          classes: "govuk-input--width-20",
-          id: "address-line-2",
-          name: "address-line-2",
-          autocomplete: "address-line2",
-          value: data['address-line-2']
-        }) }}
-      
-        {{ govukInput({
-          label: {
-            text: "Town or city",
-            classes: "govuk-label--s"
-          },
-          classes: "govuk-input--width-10",
-          id: "address-town",
-          name: "address-town",
-          autocomplete: "address-town",
-          value: data['address-town']
-        }) }}
-      
-        {{ govukInput({
-          label: {
-            text: "Postcode",
-            classes: "govuk-label--s"
-          },
-          classes: "govuk-input--width-10",
-          id: "apostal-code",
-          name: "postal-code",
-          autocomplete: "postal-code",
-          value: data['postal-code']
-        }) }}
-      
-      {% endcall %}
-
-      
-
-      
+        }) }}      
 
       <div class="govuk-button-group">
         {{ govukButton({

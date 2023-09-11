@@ -21,14 +21,14 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-xl">3. About your request</span>
+      <span class="govuk-caption-xl">3. About your request </span>
       
-      <form class="form" action="/question3-expend" method="post">
+      <form class="form" action="task-list?question3-expert=complete" method="post">
 
         {% call govukFieldset({
           legend: {
             text: "Expert's contact details",
-            classes: "govuk-fieldset__legend--l",
+            classes: "govuk-fieldset__legend--xl",
             pageHeading: true
           }
         }) %}
@@ -68,40 +68,17 @@
 
         {% endcall %}
 
-        {{ govukRadios({
-          classes: "govuk-radios--inline",
-          name: "existing-auth",
-          fieldset: {
-            legend: {
-              text: "Have you already been granted Prior Authority for this case under the same category of expenditure?",
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes",
-              checked: checked("existing-auth", "yes")
-            },
-            {
-              value: "no",
-              text: "No",
-              checked: checked("existing-auth", "no")
-            }
-          ]
-        }) }}
-
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Save and continue"
           }) }}
 
-          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
         
             {{ govukButton({
               text: "Save and come back later",
               classes: "govuk-button--secondary",
-              href: "../crm-apps?claims-state=saved"
+              href: "../crm-apps?app-state=saved"
             }) }}
 
             {% else %}
@@ -109,7 +86,7 @@
             {{ govukButton({
               text: "Save and come back later",
               classes: "govuk-button--secondary",
-              href: "../crm-apps?claims-state=all"
+              href: "../crm-apps?app-state=all"
             }) }}
 
           {% endif %}
