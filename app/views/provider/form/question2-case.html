@@ -26,93 +26,159 @@
       
       <form class="form" action="task-list?question2-case=complete" method="post">
 
-        {{ govukRadios({
-          classes: "govuk-radios--inline",
-          name: "detained",
-          fieldset: {
-            legend: {
-              text: "Is your client detained?",
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes",
-              checked: checked("detained", "yes")
-            },
-            {
-              value: "no",
-              text: "No",
-              checked: checked("detained", "no")
-            }
-          ]
-        }) }}
+        {% if data['prison-law'] == "no" %}
 
-        {{ govukSelect({
-          id: "court-type",
-          name: "court-type",
-          label: {
-            text: "Court type",
-            classes: "govuk-label--s"
-          },
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "detained",
+            fieldset: {
+              legend: {
+                text: "Is your client detained?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
             items: [
-            {
-              text: "Please select"
-            },
-            {
-              value: "magistrates",
-              text: "Magistrates Court",
-              selected: checked("court-type", "magistrates")
-            },
-            {
-              value: "crown-not-central",
-              text: "Crown court (excluding Central Criminal Court)",
-              selected: checked("court-type", "crown-not-central")
-            },
-            {
-              value: "crown-central",
-              text: "Crown Court (Central Criminal Court)",
-              selected: checked("court-type", "crown-central")
-            }
-          ]
-        }) }}
+              {
+                value: "yes",
+                text: "Yes",
+                checked: checked("detained", "yes")
+              },
+              {
+                value: "no",
+                text: "No",
+                checked: checked("detained", "no")
+              }
+            ]
+          }) }}
 
-        {% include "includes/main-offence-list.html" %}
+          {{ govukInput({
+            label: {
+              text: "MAAT number",
+              classes: "govuk-label--s",
+              isPageHeading: true
+            },
+            classes: "govuk-input--width-10",
+            id: "maat",
+            name: "maat",
+            value: data['maat']
+          }) }}
 
-        {{ govukSelect({
-          id: "plea",
-          name: "plea",
-          label: {
-            text: "Likely or actual plea",
-            classes: "govuk-label--s"
-          },
-            items: [
-            {
-              text: "Please select"
+          {{ govukInput({
+            label: {
+              text: "Rep order no. / case no.",
+              classes: "govuk-label--s"
             },
-            {
-              value: "guilty",
-              text: "Guilty",
-              selected: checked("plea", "guilty")
+            classes: "govuk-input--width-20",
+            id: "rep-order",
+            name: "rep-order",
+            value: data['rep-order']
+          }) }}
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="rep-order-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                <h1 class="govuk-fieldset__heading">
+                  Rep order date
+                </h1>
+              </legend>
+              <div id="rep-order-hint" class="govuk-hint">
+                For example, 27 3 2007
+              </div>
+              <div class="govuk-date-input" id="crep-order">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="rep-order-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-day" name="rep-order-day" type="text" inputmode="numeric" value="{{data['rep-order-day']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="rep-order-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-month" name="rep-order-month" type="text" inputmode="numeric" value="{{data['rep-order-month']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="rep-order-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="rep-order-year" name="rep-order-year" type="text" inputmode="numeric" value="{{data['rep-order-year']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          {{ govukSelect({
+            id: "court-type",
+            name: "court-type",
+            label: {
+              text: "Court type",
+              classes: "govuk-label--s"
             },
-            {
-              value: "not-guilty",
-              text: "Not guilty",
-              selected: checked("plea", "not-guilty")
+              items: [
+              {
+                text: "Please select"
+              },
+              {
+                value: "magistrates",
+                text: "Magistrates Court",
+                selected: checked("court-type", "magistrates")
+              },
+              {
+                value: "crown-not-central",
+                text: "Crown court (excluding Central Criminal Court)",
+                selected: checked("court-type", "crown-not-central")
+              },
+              {
+                value: "crown-central",
+                text: "Crown Court (Central Criminal Court)",
+                selected: checked("court-type", "crown-central")
+              }
+            ]
+          }) }}
+
+          {% include "includes/main-offence-list.html" %}
+
+          {{ govukSelect({
+            id: "plea",
+            name: "plea",
+            label: {
+              text: "Likely or actual plea",
+              classes: "govuk-label--s"
             },
-            {
-              value: "mixed",
-              text: "Mixed plea",
-              selected: checked("plea", "mixed")
-            },
-            {
-              value: "unknown",
-              text: "Unknown",
-              selected: checked("plea", "unknown")
-            }
-          ]
-        }) }}
+              items: [
+              {
+                text: "Please select"
+              },
+              {
+                value: "guilty",
+                text: "Guilty",
+                selected: checked("plea", "guilty")
+              },
+              {
+                value: "not-guilty",
+                text: "Not guilty",
+                selected: checked("plea", "not-guilty")
+              },
+              {
+                value: "mixed",
+                text: "Mixed plea",
+                selected: checked("plea", "mixed")
+              },
+              {
+                value: "unknown",
+                text: "Unknown",
+                selected: checked("plea", "unknown")
+              }
+            ]
+          }) }}
+
+        {% endif %}
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hearing-hint">

@@ -24,7 +24,7 @@
       <span class="govuk-caption-xl">2. About your client</span>
       <h1 class="govuk-heading-xl">Client details</h1>
       
-      <form class="form" action="task-list?question2-client=complete" method="post">
+      <form class="form" action="question2-case-prison?question2-client=complete" method="post">
 
         {{ govukInput({
           label: {
@@ -86,97 +86,6 @@
             </div>
           </fieldset>
         </div>
-
-        {% set prisonlawHtml %}
-
-          {{ govukInput({
-            label: {
-              text: "MAAT number",
-              classes: "govuk-label--s",
-              isPageHeading: true
-            },
-            classes: "govuk-input--width-10",
-            id: "maat",
-            name: "maat",
-            value: data['maat']
-          }) }}
-
-          {{ govukInput({
-            label: {
-              text: "Rep order no. / case no.",
-              classes: "govuk-label--s"
-            },
-            classes: "govuk-input--width-20",
-            id: "rep-order",
-            name: "rep-order",
-            value: data['rep-order']
-          }) }}
-
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="rep-order-hint">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                <h1 class="govuk-fieldset__heading">
-                  Rep order date
-                </h1>
-              </legend>
-              <div id="rep-order-hint" class="govuk-hint">
-                For example, 27 3 2007
-              </div>
-              <div class="govuk-date-input" id="crep-order">
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="rep-order-day">
-                      Day
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-day" name="rep-order-day" type="text" inputmode="numeric" value="{{data['rep-order-day']}}">
-                  </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="rep-order-month">
-                      Month
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-month" name="rep-order-month" type="text" inputmode="numeric" value="{{data['rep-order-month']}}">
-                  </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="rep-order-year">
-                      Year
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="rep-order-year" name="rep-order-year" type="text" inputmode="numeric" value="{{data['rep-order-year']}}">
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-
-        {% endset -%}
-
-        {{ govukRadios({
-          name: "prison-law",
-          fieldset: {
-            legend: {
-              text: "Is this a Prison Law matter?",
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "yes",
-              text: "Yes",
-              checked: checked("prison-law", "yes")
-            },
-            {
-              value: "no",
-              text: "No",
-              checked: checked("prison-law", "no"),
-              conditional: {
-                html: prisonlawHtml
-              }
-            }
-          ]
-        }) }}
 
         <div class="govuk-button-group">
           {{ govukButton({

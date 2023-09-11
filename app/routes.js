@@ -29,7 +29,18 @@ router.post('/question1-eligibility', function(request, response) {
     }
 })
 
-//Alternative quotes questino (Section3)
+//Client details  - Prison Matter (Section2)
+router.post('/question2-case-prison', function(request, response) {
+
+    var prisonLaw = request.session.data['prison-law']
+    if (prisonLaw == "no"){
+        response.redirect("/provider/form/question2-case")
+    } else {
+        response.redirect("/provider/form/question2-case")
+    }
+})
+
+//Alternative quotes question (Section3)
 router.post('/question3-alt-quotes', function(request, response) {
 
     var altQuote = request.session.data['alt-quotes-q']

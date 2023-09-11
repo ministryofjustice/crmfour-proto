@@ -45,23 +45,14 @@
                 {{data['address-line-1']}}, {{data['address-line-2']}}, {{data['address-town']}}, {{data['postal-code']}}
               </dd>
             </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Solicitor details
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['sol-name']}}<br>
-                {{data['sol-number']}}
-              </dd>
-            </div>
             {% if data['alt-contact'] =="yes" %}
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Alternative contact
+                  Contact details
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['alt-contact-name']}}<br>
-                  {{data['alt-contact-email']}}
+                  {{data['contact-name']}}<br>
+                  {{data['contact-email']}}
                 </dd>
               </div>
             {% endif %}
@@ -123,24 +114,13 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Solicitor details
+            Contact details
           </dt>
           <dd class="govuk-summary-list__value">
-            {{data['sol-name']}}<br>
-            {{data['sol-number']}}
+            {{data['contact-name']}}<br>
+            {{data['contact-email']}}
           </dd>
         </div>
-        {% if data['alt-contact'] =="yes" %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Alternative contact
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['alt-contact-name']}}<br>
-              {{data['alt-contact-email']}}
-            </dd>
-          </div>
-          {% endif %}
         
       </dl>
       <h2 class="govuk-heading-m">Your details</h2>
@@ -169,18 +149,15 @@
             {{data['sol-number']}}
           </dd>
         </div>
-        {% if data['alt-contact'] =="yes" %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Alternative contact
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['alt-contact-name']}}<br>
-              {{data['alt-contact-email']}}
-            </dd>
-          </div>
-          {% endif %}
-        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Alternative contact
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['alt-contact-name']}}<br>
+            {{data['alt-contact-email']}}
+          </dd>
+        </div>
       </dl>
       
       

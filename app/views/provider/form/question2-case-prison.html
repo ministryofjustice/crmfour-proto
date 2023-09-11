@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Case details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">2. About your client</span>
+      <h1 class="govuk-heading-xl">Case details</h1>
+      
+      <form class="form" action="/question2-case-prison" method="post">
+
+        {{ govukRadios({
+          name: "prison-law",
+          fieldset: {
+            legend: {
+              text: "Is this a Prison Law matter?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("prison-law", "yes")
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("prison-law", "no")
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+        var offenceNameSelect = document.querySelector('#main-offence')
+
+        accessibleAutocomplete.enhanceSelectElement({
+            confirmOnBlur: false,
+            autoSelect: true,
+            displayMenu: 'overlay',
+            minLength: 1,
+            selectElement: offenceNameSelect,
+            showNoOptionsFound: false,
+            placeholder: 'Search for an offence or enter your own'
+        })
+    </script>
+
+{% endblock %}

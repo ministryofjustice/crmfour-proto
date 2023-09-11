@@ -28,6 +28,38 @@
         
       {% call govukFieldset({
         legend: {
+          text: "Contact details",
+          classes: "govuk-fieldset__legend--m"
+        }
+      }) %}
+
+        {{ govukInput({
+          label: {
+            text: "Full name",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "contact-name",
+          name: "contact-name",
+          value: data['contact-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Email address",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "contact-email",
+          name: "contact-email",
+          autocomplete: "email",
+          value: data['contact-email']
+          
+        }) }}
+      {% endcall %}
+
+      {% call govukFieldset({
+        legend: {
           text: "Firm details",
           classes: "govuk-fieldset__legend--m"
         }
@@ -104,6 +136,10 @@
         }) }}
       
       {% endcall %}
+
+      
+
+      
 
       <div class="govuk-button-group">
         {{ govukButton({
