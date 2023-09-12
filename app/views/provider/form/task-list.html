@@ -112,7 +112,7 @@
               {% if data['question2-case'] == null or data['question2-case'] == "not-started" %}
                 <!--If question2-case has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question2-case?question2-case=draft" class="govuk-link--no-visited-state"  aria-describedby="case-status">
+                  <a href="question2-case-prison?question2-case=draft" class="govuk-link--no-visited-state"  aria-describedby="case-status">
                     Case details
                   </a>
                 </span>
@@ -141,10 +141,37 @@
         <!--Section 3 - Your request-->
         <li>
           <h2 class="govuk-prototype-kit-task-list__section">
-            <span class="govuk-prototype-kit-task-list__section-number">3. </span>About your expenditure request
+            <span class="govuk-prototype-kit-task-list__section-number">3. </span>About your request
           </h2>
           <ul class="govuk-prototype-kit-task-list__items">
-
+            <!--Section 3 - why PA required?-->
+            <li class="govuk-prototype-kit-task-list__item">
+              {% if data['question3-why-pa'] == null or data['question3-why-pa'] == "not-started" %}
+                <!--If question3-expert has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-why-pa?question3-why-pa=draft" class="govuk-link--no-visited-state"  aria-describedby="why-status">
+                    Reason for prior authority
+                  </a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="why-status">Not started</strong>
+                {% else %}
+                <!--For all other states AND show visited link status-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-why-pa" aria-describedby="why-status">
+                    Reason for prior authority
+                  </a>
+                </span>
+                {% if data['question3-why-pa'] =="complete" %}
+                  <!--If question3-why-pa is complete, show the status Complete-->
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="why-expert">Complete</strong>
+                  {% else %}
+                  {% if data['question3-why-pa'] =="draft" %}
+                    <!--If question3-why-pa is draft, show the status Draft-->
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="why-expert">In progress</strong>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </li>
             <!--Section 3 - expert contact details-->
             <li class="govuk-prototype-kit-task-list__item">
               {% if data['question3-expert'] == null or data['question3-expert'] == "not-started" %}
@@ -226,35 +253,6 @@
                   {% if data['question3-alt-quote'] =="draft" %}
                     <!--If question3-quote is draft, show the status Draft-->
                     <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="alt-quote-status">In progress</strong>
-                  {% endif %}
-                {% endif %}
-              {% endif %}
-            </li>
-
-            <!--Section 3 - authority-->
-            <li class="govuk-prototype-kit-task-list__item">
-              {% if data['question3-authority'] == null or data['question3-authority'] == "not-started" %}
-                <!--If question3-quote has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
-                <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question3-authority?question3-authority=draft" class="govuk-link--no-visited-state"  aria-describedby="authority-status">
-                    Authority justtification
-                  </a>
-                </span>
-                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="authority-status">Not started</strong>
-                {% else %}
-                <!--For all other states AND show visited link status-->
-                <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question3-authority" aria-describedby="authority-status">
-                    Authority justtification
-                  </a>
-                </span>
-                {% if data['question3-quote'] =="complete" %}
-                  <!--If question3-quote is complete, show the status Complete-->
-                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="authority-status">Complete</strong>
-                  {% else %}
-                  {% if data['question3-quauthorityote'] =="draft" %}
-                    <!--If question3-quote is draft, show the status Draft-->
-                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="authority-status">In progress</strong>
                   {% endif %}
                 {% endif %}
               {% endif %}

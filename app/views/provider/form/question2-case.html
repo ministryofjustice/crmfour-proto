@@ -63,17 +63,6 @@
             value: data['maat']
           }) }}
 
-          {{ govukInput({
-            label: {
-              text: "Rep order no. / case no.",
-              classes: "govuk-label--s"
-            },
-            classes: "govuk-input--width-20",
-            id: "rep-order",
-            name: "rep-order",
-            value: data['rep-order']
-          }) }}
-
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group" aria-describedby="rep-order-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
@@ -113,34 +102,28 @@
             </fieldset>
           </div>
 
-          {{ govukSelect({
-            id: "court-type",
-            name: "court-type",
-            label: {
-              text: "Court type",
-              classes: "govuk-label--s"
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "poca",
+            fieldset: {
+              legend: {
+                text: "Is this case subject to POCA?",
+                classes: "govuk-fieldset__legend--s"
+              }
             },
-              items: [
+            items: [
               {
-                text: "Please select"
+                value: "yes",
+                text: "Yes",
+                checked: checked("poca", "yes")
               },
               {
-                value: "magistrates",
-                text: "Magistrates Court",
-                selected: checked("court-type", "magistrates")
-              },
-              {
-                value: "crown-not-central",
-                text: "Crown court (excluding Central Criminal Court)",
-                selected: checked("court-type", "crown-not-central")
-              },
-              {
-                value: "crown-central",
-                text: "Crown Court (Central Criminal Court)",
-                selected: checked("court-type", "crown-central")
+                value: "no",
+                text: "No",
+                checked: checked("poca", "no")
               }
             ]
-          }) }}
+          }) }}   
 
           {% include "includes/main-offence-list.html" %}
 
@@ -219,28 +202,100 @@
           </fieldset>
         </div>
 
-        {{ govukRadios({
-          classes: "govuk-radios--inline",
-          name: "poca",
-          fieldset: {
-            legend: {
-              text: "Is this case subject to POCA?",
-              classes: "govuk-fieldset__legend--s"
-            }
+        {{ govukSelect({
+          id: "court-type",
+          name: "court-type",
+          label: {
+            text: "Court type",
+            classes: "govuk-label--s"
           },
-          items: [
+            items: [
             {
-              value: "yes",
-              text: "Yes",
-              checked: checked("poca", "yes")
+              text: "Please select"
             },
             {
-              value: "no",
-              text: "No",
-              checked: checked("poca", "no")
+              value: "magistrates",
+              text: "Magistrates Court",
+              selected: checked("court-type", "magistrates")
+            },
+            {
+              value: "crown-not-central",
+              text: "Crown court (excluding Central Criminal Court)",
+              selected: checked("court-type", "crown-not-central")
+            },
+            {
+              value: "crown-central",
+              text: "Crown Court (Central Criminal Court)",
+              selected: checked("court-type", "crown-central")
             }
           ]
-        }) }}      
+        }) }}
+
+        <div id="div1" style="display:none;">
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "youth-court",
+            fieldset: {
+              legend: {
+                text: "Is this a Youth Court matter?",
+                classes: "govuk-fieldset__legend--s"                
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                checked: checked("youth-court", "yes")
+              },
+              {
+                value: "no",
+                text: "No",
+                checked: checked("youth-court", "no")
+              }
+            ]
+          }) }}
+        </div>
+
+       
+        <div id="div2" style="display:none;">
+
+          {% set noHtml %}
+            {{ govukTextarea({
+              name: "moreDetail",
+              id: "more-detail",
+              label: {
+                text: "Can you explain why you didn't access this service"
+              }
+            }) }}
+          {% endset %}
+
+          {{ govukRadios({
+            name: "psych-liason",
+            fieldset: {
+              legend: {
+                text: "Have you accessed the psychiatric liason service?",
+                classes: "govuk-fieldset__legend--s"                
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                checked: checked("psych-liason", "yes")
+              },
+              {
+                value: "no",
+                text: "No",
+                checked: checked("psych-liason", "no"),
+                conditional: {
+                  html: noHtml
+                }
+              }
+            ]
+          }) }}
+        </div>
+
+       
 
         <div class="govuk-button-group">
           {{ govukButton({
@@ -286,8 +341,39 @@
             minLength: 1,
             selectElement: offenceNameSelect,
             showNoOptionsFound: false,
-            placeholder: 'Search for an offence or enter your own'
+            placeholder: 'Search for an offence or enter your own',
+            
         })
+
+        const el = document.getElementById('court-type');
+        const div1 = document.getElementById('div1');
+        const div2 = document.getElementById('div2');
+        el.addEventListener('change', function handleChange(event) {
+          if (event.target.value === 'magistrates') {
+              div1.style.display = 'block';
+          } else {
+              div1.style.display = 'none';
+          };
+          if (event.target.value === 'crown-central') {
+              div2.style.display = 'block';
+          } else {
+              div2.style.display = 'none';
+          }
+         
+        });
+
+        window.onload = function(){  
+          if (el.value === 'magistrates') {
+              div1.style.display = 'block';
+          } else {
+              div1.style.display = 'none';
+          };
+          if (el.value === 'crown-central') {
+              div2.style.display = 'block';
+          } else {
+              div2.style.display = 'none';
+          }
+        }
     </script>
 
 {% endblock %}
