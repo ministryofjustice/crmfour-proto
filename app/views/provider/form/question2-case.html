@@ -101,29 +101,32 @@
               </div>
             </fieldset>
           </div>
+        {% endif %}
 
-          {{ govukRadios({
-            classes: "govuk-radios--inline",
-            name: "poca",
-            fieldset: {
-              legend: {
-                text: "Is this case subject to POCA?",
-                classes: "govuk-fieldset__legend--s"
-              }
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "poca",
+          fieldset: {
+            legend: {
+              text: "Is this case subject to POCA?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("poca", "yes")
             },
-            items: [
-              {
-                value: "yes",
-                text: "Yes",
-                checked: checked("poca", "yes")
-              },
-              {
-                value: "no",
-                text: "No",
-                checked: checked("poca", "no")
-              }
-            ]
-          }) }}   
+            {
+              value: "no",
+              text: "No",
+              checked: checked("poca", "no")
+            }
+          ]
+        }) }}  
+        
+        {% if data['prison-law'] == "no" %}
 
           {% include "includes/main-offence-list.html" %}
 
@@ -202,98 +205,102 @@
           </fieldset>
         </div>
 
-        {{ govukSelect({
-          id: "court-type",
-          name: "court-type",
-          label: {
-            text: "Court type",
-            classes: "govuk-label--s"
-          },
-            items: [
-            {
-              text: "Please select"
-            },
-            {
-              value: "magistrates",
-              text: "Magistrates Court",
-              selected: checked("court-type", "magistrates")
-            },
-            {
-              value: "crown-not-central",
-              text: "Crown court (excluding Central Criminal Court)",
-              selected: checked("court-type", "crown-not-central")
-            },
-            {
-              value: "crown-central",
-              text: "Crown Court (Central Criminal Court)",
-              selected: checked("court-type", "crown-central")
-            }
-          ]
-        }) }}
+        {% if data['prison-law'] == "no" %}
 
-        <div id="div1" style="display:none;">
-          {{ govukRadios({
-            classes: "govuk-radios--inline",
-            name: "youth-court",
-            fieldset: {
-              legend: {
-                text: "Is this a Youth Court matter?",
-                classes: "govuk-fieldset__legend--s"                
-              }
+
+          {{ govukSelect({
+            id: "court-type",
+            name: "court-type",
+            label: {
+              text: "Court type",
+              classes: "govuk-label--s"
             },
-            items: [
+              items: [
               {
-                value: "yes",
-                text: "Yes",
-                checked: checked("youth-court", "yes")
+                text: "Please select"
               },
               {
-                value: "no",
-                text: "No",
-                checked: checked("youth-court", "no")
+                value: "magistrates",
+                text: "Magistrates Court",
+                selected: checked("court-type", "magistrates")
+              },
+              {
+                value: "crown-not-central",
+                text: "Crown court (excluding Central Criminal Court)",
+                selected: checked("court-type", "crown-not-central")
+              },
+              {
+                value: "crown-central",
+                text: "Crown Court (Central Criminal Court)",
+                selected: checked("court-type", "crown-central")
               }
             ]
           }) }}
-        </div>
 
-       
-        <div id="div2" style="display:none;">
-
-          {% set noHtml %}
-            {{ govukTextarea({
-              name: "moreDetail",
-              id: "more-detail",
-              label: {
-                text: "Can you explain why you didn't access this service"
-              }
-            }) }}
-          {% endset %}
-
-          {{ govukRadios({
-            name: "psych-liason",
-            fieldset: {
-              legend: {
-                text: "Have you accessed the psychiatric liason service?",
-                classes: "govuk-fieldset__legend--s"                
-              }
-            },
-            items: [
-              {
-                value: "yes",
-                text: "Yes",
-                checked: checked("psych-liason", "yes")
-              },
-              {
-                value: "no",
-                text: "No",
-                checked: checked("psych-liason", "no"),
-                conditional: {
-                  html: noHtml
+          <div id="div1" style="display:none;">
+            {{ govukRadios({
+              classes: "govuk-radios--inline",
+              name: "youth-court",
+              fieldset: {
+                legend: {
+                  text: "Is this a Youth Court matter?",
+                  classes: "govuk-fieldset__legend--s"                
                 }
-              }
-            ]
-          }) }}
-        </div>
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "Yes",
+                  checked: checked("youth-court", "yes")
+                },
+                {
+                  value: "no",
+                  text: "No",
+                  checked: checked("youth-court", "no")
+                }
+              ]
+            }) }}
+          </div>
+
+        
+          <div id="div2" style="display:none;">
+
+            {% set noHtml %}
+              {{ govukTextarea({
+                name: "moreDetail",
+                id: "more-detail",
+                label: {
+                  text: "Can you explain why you didn't access this service"
+                }
+              }) }}
+            {% endset %}
+
+            {{ govukRadios({
+              name: "psych-liason",
+              fieldset: {
+                legend: {
+                  text: "Have you accessed the psychiatric liason service?",
+                  classes: "govuk-fieldset__legend--s"                
+                }
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "Yes",
+                  checked: checked("psych-liason", "yes")
+                },
+                {
+                  value: "no",
+                  text: "No",
+                  checked: checked("psych-liason", "no"),
+                  conditional: {
+                    html: noHtml
+                  }
+                }
+              ]
+            }) }}
+          </div>
+        {% endif %}
 
        
 
