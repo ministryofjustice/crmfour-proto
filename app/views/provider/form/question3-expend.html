@@ -1,0 +1,188 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Expert's contact details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">3. About your request </span>
+      <h1 class="govuk-heading-xl">Expenditure quote</h1>
+
+      
+      <form class="form" action="question3-expend-prep" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "Expert's contact details",
+            classes: "govuk-fieldset__legend--m"
+          }
+        }) %}
+        
+          {{ govukInput({
+            label: {
+              text: "Full name",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-name",
+            name: "expert-name",
+            value: data['expert-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Organisation",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-org-name",
+            name: "expert-org-name",
+            value: data['expert-org-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-10",
+            id: "expert-postcode",
+            name: "expert-postcode",
+            value: data['expert-postcode']
+          }) }}
+
+        {% endcall %}
+
+        {% include "includes/expenditure-list.html" %}
+
+        <div id="box1_wrapper" style="display:none;">
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "existing-auth",
+            fieldset: {
+              legend: {
+                text: "Have you already been granted Prior Authority for this case under the same category of expenditure?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                checked: checked("existing-auth", "yes")
+              },
+              {
+                value: "No",
+                text: "No",
+                checked: checked("existing-auth", "no")
+              }
+            ]
+          }) }}
+        </div>
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all"
+            }) }}
+
+          {% endif %}
+         
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+
+        
+
+
+      let selectElements = $('#expend-type')
+
+      selectElements.each(function (index) {
+        let selectElement = $(this)
+        if (selectElement.length) {
+          
+          accessibleAutocomplete.enhanceSelectElement({
+            defaultValue: '',
+            placeholder: 'Search for the expenditure or enter your own',
+            minLength: 1,
+            selectElement: selectElement[0],
+            onConfirm: function (data) {
+
+              //box1 - sets up box1
+              let box1_wrapper_id = 'box1_wrapper'
+              let box1_wrapper_element = $('#' + box1_wrapper_id)
+              let box1_selected_element = box1_wrapper_element.find('div.govuk-inset-text')
+
+              //box2 - sets up box2
+              let box2_wrapper_id = 'box2_wrapper'
+              let box2_wrapper_element = $('#' + box2_wrapper_id)
+              let box2_selected_element = box2_wrapper_element.find('div.govuk-inset-text')
+
+              if (data !== undefined) {
+                // We only want to hide if the variable is defined
+                if (data) {
+
+                  //box1 - displays box1
+                  box1_selected_element.html($('option:contains(' + data + ')').val())
+                  box1_wrapper_element.show()
+
+                  //box2 - displays box2
+                  box2_selected_element.html($('option:contains(' + data + ')').val())
+                  box2_wrapper_element.show()
+
+                } else {
+                  box1_wrapper_element.show()
+                  box2_wrapper_element.hide()
+                }
+              }
+            }
+          })
+        }
+
+      })
+    
+    </script>
+
+{% endblock %}

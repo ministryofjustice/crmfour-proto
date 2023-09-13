@@ -172,41 +172,13 @@
                 {% endif %}
               {% endif %}
             </li>
-            <!--Section 3 - expert contact details-->
-            <li class="govuk-prototype-kit-task-list__item">
-              {% if data['question3-expert'] == null or data['question3-expert'] == "not-started" %}
-                <!--If question3-expert has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
-                <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question3-expert?question3-expert=draft" class="govuk-link--no-visited-state"  aria-describedby="expert-status">
-                    Expert's contact details
-                  </a>
-                </span>
-                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="expert-status">Not started</strong>
-                {% else %}
-                <!--For all other states AND show visited link status-->
-                <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question3-expert" aria-describedby="expert-status">
-                    Expert's contact details
-                  </a>
-                </span>
-                {% if data['question3-expert'] =="complete" %}
-                  <!--If question3-expert is complete, show the status Complete-->
-                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="expend-expert">Complete</strong>
-                  {% else %}
-                  {% if data['question3-expert'] =="draft" %}
-                    <!--If question3-expert is draft, show the status Draft-->
-                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="expend-expert">In progress</strong>
-                  {% endif %}
-                {% endif %}
-              {% endif %}
-            </li>
 
             <!--Section 3 - quote-->
             <li class="govuk-prototype-kit-task-list__item">
-              {% if data['question3-quote'] == null or data['question3-quote'] == "not-started" %}
-                <!--If question3-quote has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+              {% if data['question3-expend'] == null or data['question3-expend'] == "not-started" %}
+                <!--If question3-expend has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question3-quote?question3-quote=draft" class="govuk-link--no-visited-state"  aria-describedby="quote-status">
+                  <a href="question3-expend?question3-expend=draft" class="govuk-link--no-visited-state"  aria-describedby="quote-status">
                     Expenditure quote
                   </a>
                 </span>
@@ -214,15 +186,15 @@
                 {% else %}
                 <!--For all other states AND show visited link status-->
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="question3-quote" aria-describedby="quote-status">
+                  <a href="question3-expend" aria-describedby="quote-status">
                     Expenditure quote
                   </a>
                 </span>
-                {% if data['question3-quote'] =="complete" %}
+                {% if data['question3-expend'] =="complete" %}
                   <!--If question3-quote is complete, show the status Complete-->
                   <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="quote-status">Complete</strong>
                   {% else %}
-                  {% if data['question3-quote'] =="draft" %}
+                  {% if data['question3-expend'] =="draft" %}
                     <!--If question3-quote is draft, show the status Draft-->
                     <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="quote-status">In progress</strong>
                   {% endif %}

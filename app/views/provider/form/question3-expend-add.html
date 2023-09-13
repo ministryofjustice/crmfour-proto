@@ -1,0 +1,234 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Quote details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">3. About your request </span>
+      <h1 class="govuk-heading-xl">Additonal cost</h1>
+      
+      <form class="form" action="question3-expend-add-summary" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "What is the addional cost?",
+            classes: "govuk-label--s"
+          },
+          id: "addCost",
+          name: "addCost"
+        }) }}
+        
+        {{ govukTextarea({
+          name: "whyAdd",
+          id: "whyAdd",
+          label: {
+            text: "Why is the addional cost required?",
+            classes: "govuk-label--s"
+          }
+        }) }}
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" >
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Quantity
+            </legend>
+            <div class="govuk-date-input" id="expend-travel">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="expend-travel-hours">
+                    Hours
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expend-travel-hours" name="expend-travel-hours" type="text" inputmode="numeric">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="expend-travel-mins">
+                    Minutes
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expend-travel-mins" name="expend-travel-mins" type="text" inputmode="numeric">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      
+        {{ govukInput({
+          id: "travel-rate",
+          name: "travel-rate",
+          label: {
+            text: "Travel hourly rate",
+            classes: "govuk-label--s"
+          },
+          prefix: {
+            text: "£"
+          },
+          classes: "govuk-input--width-5",
+          spellcheck: false
+        }) }}
+      
+        <h2 class="govuk-heading-m">
+          <span class="govuk-caption-m">Total travel costs</span>
+          £13.00
+        </h2>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+        var expendNameSelect = document.querySelector('#expend-type')
+
+        accessibleAutocomplete.enhanceSelectElement({
+            confirmOnBlur: false,
+            autoSelect: true,
+            displayMenu: 'overlay',
+            minLength: 1,
+            selectElement: expendNameSelect,
+            showNoOptionsFound: true,
+            showAllValues: true
+        })
+
+
+        let selectElements = $('#search-reg-org, .autocomplete-select')
+  let placeholder = 'Enter a registered company name or number'
+
+  selectElements.each(function (index) {
+    let selectElement = $(this)
+    if (selectElement.length) {
+      // AccessibleAutocomplete orignal
+      
+      accessibleAutocomplete.enhanceSelectElement({
+        defaultValue: '',
+        selectElement: selectElement[0],
+        onConfirm: function (data) {
+
+          // First we check if the selectElement has a particular wrapper linked to it
+
+          // Search for company in Companies House search - setting the div to show the option value
+          let company_wrapper_id = 'selected_expand_wrapper'
+          if (this.selectElement.hasAttribute('data-selected-company-wrapper-id')) {
+            company_wrapper_id = this.selectElement.getAttribute('data-selected-company-wrapper-id')
+          }
+          let company_wrapper_element = $('#' + company_wrapper_id)
+          let selected_company_element = company_wrapper_element.find('div.govuk-inset-text')
+
+          // Search for case/ commodity in Public files - setting the div to show the option value
+          let commodity_wrapper_id = 'selected_commodity_wrapper'
+          let commodity_wrapper_element = $('#' + commodity_wrapper_id)
+          let selected_commodity_element = commodity_wrapper_element.find('a#selected_commodity')
+
+          let commodity_li_id = "selected_commodity2"
+          let commodity_li_id_element = $('#' + commodity_li_id)
+          
+
+          // Search for org in caseworker  - setting the div to show the option value
+          let org_wrapper_id = 'selected_org_wrapper'
+          let org_wrapper_element = $('#' + org_wrapper_id)
+          let selected_org_element = org_wrapper_element.find('a#selected_org')
+
+          // Search for users in caseworker - setting the div for showing the option value
+          //let user_wrapper_id = 'selected_user_wrapper'
+          //let user_wrapper_element = $('#' + user_wrapper_id)
+          //let selected_user_element = user_wrapper_element.find("a#selected_user")
+
+          if (data !== undefined) {
+            // We only want to hide if the variable is defined
+            if (data) {
+
+              selected_company_element.html($('option:contains(' + data + ')').val())
+              company_wrapper_element.show()
+
+              selected_commodity_element.html($('option:contains(' + data + ')').val())
+              commodity_wrapper_element.show()
+
+              selected_org_element.html($('option:contains(' + data + ')').text())
+              org_wrapper_element.show()
+
+              //selected_user_element.html($('option:contains(' + data + ')').text())
+              //user_wrapper_element.show()  
+
+              //If the select has the ID data-go-to-url then go straight to a url when selecting an option
+              if (selectElement.attr('data-go-to-url')) {
+                var user_url = $('option:contains(' + data + ')').val()
+                window.location = user_url
+              }
+
+              // Org search: Change the href of the <a> in the div for showing the option value
+              if ($('#selected_org').length){
+                document.getElementById('selected_org').href = ($('option:contains(' + data + ')').val())
+              }
+
+              // Search for case/ commodity in Public files: if the option #single is selected then hide a specific <li>, else show it
+              if ($('#single:contains(' + data + ')').val()) {
+                commodity_li_id_element.hide()
+                
+              }
+                else {commodity_li_id_element.show()
+              }
+
+
+            } else {
+              company_wrapper_element.hide()
+              commodity_wrapper_element.hide()
+              
+              user_wrapper_element.hide()
+              org_wrapper_element.hide()
+            }
+          }
+        }
+      })
+    }
+
+  })
+    </script>
+
+{% endblock %}

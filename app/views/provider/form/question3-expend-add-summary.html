@@ -1,0 +1,212 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Expert's contact details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">3. About your request </span>
+      <h1 class="govuk-heading-xl">Additional items summary</h1>
+
+      <h2 class="govuk-heading-l">
+        <span class="govuk-caption-l">Additional items total cost</span>
+        £647.50
+      </h2>
+
+      
+      <form class="form" action="/question3-expend-add" method="post">
+
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">Additional cost 1</h2>
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> additional item 1</span>
+                </a>
+              </li>
+              <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">
+                Delete<span class="govuk-visually-hidden"> additional item 1</span>
+              </a>
+            </li>
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            <p><strong>Description: </strong>Hired a clean up team to cover up the crime</p>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Quantity</th>
+                  <th scope="col" class="govuk-table__header">Rate</th>
+                  <th scope="col" class="govuk-table__header">Total</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">56 hours 00 minutes</td>
+                  <td class="govuk-table__cell">£10.00 per hour</td>
+                  <td class="govuk-table__cell">£560.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">Additional cost 2</h2>
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">
+                  Change<span class="govuk-visually-hidden"> additional item 2</span>
+                </a>
+              </li>
+              <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">
+                Delete<span class="govuk-visually-hidden"> additional item 2</span>
+              </a>
+            </li>
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            <p><strong>Description: </strong>Hired a van</p>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Quantity</th>
+                  <th scope="col" class="govuk-table__header">Rate</th>
+                  <th scope="col" class="govuk-table__header">Total</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">3 hours 30 minutes</td>
+                  <td class="govuk-table__cell">£25.00 per hour</td>
+                  <td class="govuk-table__cell">£87.50</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "expend-add-other",
+          fieldset: {
+            legend: {
+              text: "Do you want to add another additional item?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all"
+            }) }}
+
+          {% endif %}
+         
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+
+        
+
+
+      let selectElements = $('#expend-type')
+
+      selectElements.each(function (index) {
+        let selectElement = $(this)
+        if (selectElement.length) {
+          
+          accessibleAutocomplete.enhanceSelectElement({
+            defaultValue: '',
+            placeholder: 'Search for the expenditure or enter your own',
+            minLength: 1,
+            selectElement: selectElement[0],
+            onConfirm: function (data) {
+
+              //box1 - sets up box1
+              let box1_wrapper_id = 'box1_wrapper'
+              let box1_wrapper_element = $('#' + box1_wrapper_id)
+              let box1_selected_element = box1_wrapper_element.find('div.govuk-inset-text')
+
+              //box2 - sets up box2
+              let box2_wrapper_id = 'box2_wrapper'
+              let box2_wrapper_element = $('#' + box2_wrapper_id)
+              let box2_selected_element = box2_wrapper_element.find('div.govuk-inset-text')
+
+              if (data !== undefined) {
+                // We only want to hide if the variable is defined
+                if (data) {
+
+                  //box1 - displays box1
+                  box1_selected_element.html($('option:contains(' + data + ')').val())
+                  box1_wrapper_element.show()
+
+                  //box2 - displays box2
+                  box2_selected_element.html($('option:contains(' + data + ')').val())
+                  box2_wrapper_element.show()
+
+                } else {
+                  box1_wrapper_element.show()
+                  box2_wrapper_element.hide()
+                }
+              }
+            }
+          })
+        }
+
+      })
+    
+    </script>
+
+{% endblock %}

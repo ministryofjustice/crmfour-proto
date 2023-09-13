@@ -1,0 +1,45 @@
+
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset" role="group" >
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+          Preparation time
+      </legend>
+      <div class="govuk-date-input" id="expend-prep">
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="expend-prep-hours">
+              Hours
+            </label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expend-prep-hours" name="expend-prep-hours" type="text" inputmode="numeric">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="expend-prep-mins">
+              Minutes
+            </label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expend-prep-mins" name="expend-prep-mins" type="text" inputmode="numeric">
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  {{ govukInput({
+    id: "prep-rate",
+    name: "prep-rate",
+    label: {
+      text: "What is the rate?",
+      classes: "govuk-label--s"
+    },
+    prefix: {
+      text: "£"
+    },
+    classes: "govuk-input--width-5",
+    spellcheck: false
+  }) }}
+
+  <h2 class="govuk-heading-m">
+    <span class="govuk-caption-m">Total cost</span>
+    £1356.00
+  </h2>

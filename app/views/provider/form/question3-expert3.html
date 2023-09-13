@@ -1,0 +1,272 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Expert's contact details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">3. About your request </span>
+      
+      <form class="form" action="task-list?question3-expert=complete" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "Expert's contact details",
+            classes: "govuk-fieldset__legend--xl",
+            pageHeading: true
+          }
+        }) %}
+        
+          {{ govukInput({
+            label: {
+              text: "Full name",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-name",
+            name: "expert-name",
+            value: data['expert-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Organisation",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-org-name",
+            name: "expert-org-name",
+            value: data['expert-org-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-10",
+            id: "expert-postcode",
+            name: "expert-postcode",
+            value: data['expert-postcode']
+          }) }}
+
+        {% endcall %}
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "existing-auth",
+          fieldset: {
+            legend: {
+              text: "Have you already been granted Prior Authority for this case under the same category of expenditure?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("existing-auth", "yes")
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("existing-auth", "no")
+            }
+          ]
+        }) }}
+
+        {% include "includes/expenditure-list.html" %}
+
+        <div id="box1" style="display:none;">
+          {{ govukInput({
+            label: {
+              text: "If Other, provide the type of expert or expertise",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-30",
+            id: "other-expert",
+            name: "other-expert",
+            value: data['other-expert']
+          }) }}
+
+        </div>
+
+        <div id="box2" style="display:none;">
+          <div class="govuk-inset-text" id="selected_company"></div>
+          {{data['expend-type']}} sdfsdf {{expend-type}}
+        </div>
+
+
+        <!--If the expend-type is a certain value show this question -->
+
+        {% if data['expend-type'] == "" %}
+          {{ govukInput({
+            label: {
+              text: "If Other, provide the type of expert or expertise",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-30",
+            id: "other-expert",
+            name: "other-expert",
+            value: data['other-expert']
+          }) }}
+        {% endif %}
+
+        {% if data['expend-type'] == "Psychiatric report (Prison Law)" %}
+
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "court-ordered",
+            fieldset: {
+              legend: {
+                text: "Was this report ordered by the court?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "yes",
+                text: "Yes",
+                checked: checked("court-ordered", "yes")
+              },
+              {
+                value: "no",
+                text: "No",
+                checked: checked("court-ordered", "no")
+              }
+            ]
+          }) }}
+        {% endif %}
+
+        <label for="select">Select:</label>
+        <select name="select" id="select">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+
+        </select>
+        <div id="div1" style="display:none;">div1</div>
+        <div id="div2" style="display:none;">div2</div>
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all"
+            }) }}
+
+          {% endif %}
+         
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+
+      const el = document.getElementById('select');
+      const div1 = document.getElementById('div1');
+      const div2 = document.getElementById('div2');
+      el.addEventListener('change', function handleChange(event) {
+         if (event.target.value === '1') {
+            div1.style.display = 'block';
+         } else {
+            div1.style.display = 'none';
+         };
+         if (event.target.value === '2') {
+            div2.style.display = 'block';
+         } else {
+            div2.style.display = 'none';
+         }
+      });
+
+
+
+
+
+
+     
+      var offenceNameSelect = document.querySelector('#expend-type')
+
+     
+          accessibleAutocomplete.enhanceSelectElement({
+            defaultValue: '',
+            placeholder: 'Search for the expenditure or enter your own',
+            minLength: 1,
+            selectElement: offenceNameSelect,
+            onConfirm: function (data) {
+
+              
+              let el = document.getElementById('expend-type');
+              let wrapper_id1 = 'box1'
+              let wrapper_id2 = 'box2'
+              let wrapper_element1 = $('#' + wrapper_id1)
+              let wrapper_element2 = $('#' + wrapper_id2)
+
+
+              if (data !== undefined) {
+                // We only want to hide if the variable is defined
+                if (data === '1') {
+                  wrapper_element1.show()
+                  wrapper_element2.hide()
+
+                } else {
+                  wrapper_element1.show()
+                  wrapper_element2.show()
+                }
+              }
+            }
+          })
+        
+
+
+
+      
+        
+
+
+
+    
+    </script>
+
+{% endblock %}
