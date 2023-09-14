@@ -345,17 +345,26 @@
     <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
 
     <script>
-        var offenceNameSelect = document.querySelector('#main-offence')
+        let selectElements = $('.autocomplete-select')
+        let placeholder = 'This is a default placeholder'
 
-        accessibleAutocomplete.enhanceSelectElement({
-            confirmOnBlur: false,
-            autoSelect: true,
-            displayMenu: 'overlay',
-            minLength: 1,
-            selectElement: offenceNameSelect,
-            showNoOptionsFound: false,
-            placeholder: 'Search for an offence or enter your own',
-            
+        selectElements.each(function (index) {
+          let selectElement = $(this)
+          if (selectElement.length) {
+            if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+
+            accessibleAutocomplete.enhanceSelectElement({
+              confirmOnBlur: false,
+              autoSelect: true,
+              displayMenu: 'overlay',
+              minLength: 1,
+              showNoOptionsFound: false,
+              placeholder: placeholder,
+              selectElement: selectElement[0],
+            })
+          }
         })
 
         const el = document.getElementById('court-type');
