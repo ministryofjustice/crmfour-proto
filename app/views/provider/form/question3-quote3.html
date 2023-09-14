@@ -1,0 +1,197 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Your quote – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">3. About your request </span>
+      <h1 class="govuk-heading-xl">Your quote</h1>
+
+      
+      <form class="form" action="question3-quote-prep" method="post">
+
+        {% call govukFieldset({
+          legend: {
+            text: "Expert's contact details",
+            classes: "govuk-fieldset__legend--m"
+          }
+        }) %}
+        
+          {{ govukInput({
+            label: {
+              text: "Full name",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-name",
+            name: "expert-name",
+            value: data['expert-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Organisation",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-org-name",
+            name: "expert-org-name",
+            value: data['expert-org-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-10",
+            id: "expert-postcode",
+            name: "expert-postcode",
+            value: data['expert-postcode']
+          }) }}
+
+        {% endcall %}
+
+        {% include "includes/service-list.html" %}
+
+        <div id="box1_wrapper" style="display:none;">
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "existing-auth",
+            fieldset: {
+              legend: {
+                text: "Have you already been granted Prior Authority in this case for the same type of service?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                checked: checked("existing-auth", "yes")
+              },
+              {
+                value: "No",
+                text: "No",
+                checked: checked("existing-auth", "no")
+              }
+            ]
+          }) }}
+
+          {% if data['service-type'] =="here" %}
+          <p>Show something here</p>
+          {% endif %}
+        </div>
+
+        <div id="box2_wrapper" style="display:none;">
+          <div class="govuk-inset-text" id="selected_company">Should show the select value here</div>
+          <p>Should show the select value here: {{service-type}}</p> 
+        </div>
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all"
+            }) }}
+
+          {% endif %}
+         
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+      let selectElements = $('.autocomplete-select')
+      let placeholder = 'This is a default placeholder'
+
+
+      selectElements.each(function (index) {
+        let selectElement = $(this)
+        if (selectElement.length) {
+          if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+          
+          accessibleAutocomplete.enhanceSelectElement({
+            defaultValue: '',
+            placeholder: placeholder,
+            minLength: 1,
+            selectElement: selectElement[0],
+            onConfirm: function (data) {
+
+              //box1 - sets up box1
+              let box1_wrapper_id = 'box1_wrapper'
+              let box1_wrapper_element = $('#' + box1_wrapper_id)
+              let box1_selected_element = box1_wrapper_element.find('div.govuk-inset-text')
+
+              //box2 - sets up box2
+              let box2_wrapper_id = 'box2_wrapper'
+              let box2_wrapper_element = $('#' + box2_wrapper_id)
+              let box2_selected_element = box2_wrapper_element.find('div.govuk-inset-text')
+
+              if (data !== undefined) {
+                if (data) {
+
+                  //box1 - displays box1
+                  box1_selected_element.html($('option:contains(' + data + ')').val())
+                  box1_wrapper_element.show()
+
+                  //box2 - displays box2
+                  box2_selected_element.html($('option:contains(' + data + ')').val())
+                  box2_wrapper_element.show()
+
+                } else {
+                  box1_wrapper_element.hide()
+                  box2_wrapper_element.hide()
+                }
+              }
+            }
+          })
+        }
+
+      })
+    
+    </script>
+
+{% endblock %}
