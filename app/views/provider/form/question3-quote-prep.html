@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Quote details – {{ serviceName }} – GOV.UK Prototype Kit
+  Service costs – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -22,55 +22,57 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About your request </span>
-      <h1 class="govuk-heading-xl">Preparation costs</h1>
+      <h1 class="govuk-heading-xl">Service costs</h1>
       
       <form class="form" action="question3-quote-travel" method="post">
 
+        {% if data['service-type'] !== null %}
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  Preparation time
+              </legend>
+              <div class="govuk-date-input" id="quote-prep">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="quote-prep-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quote-prep-hours" name="quote-prep-hours" type="text" inputmode="numeric">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="quote-prep-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quote-prep-mins" name="quote-prep-mins" type="text" inputmode="numeric">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+              
+          {{ govukInput({
+            id: "prep-rate",
+            name: "prep-rate",
+            label: {
+              text: "What is the rate?",
+              classes: "govuk-label--s"
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+          }) }}
+        
+          <h2 class="govuk-heading-m">
+            <span class="govuk-caption-m">Total preparation cost</span>
+            £1356.00
+          </h2>
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" >
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                Preparation time
-            </legend>
-            <div class="govuk-date-input" id="quote-prep">
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="quote-prep-hours">
-                    Hours
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quote-prep-hours" name="quote-prep-hours" type="text" inputmode="numeric">
-                </div>
-              </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="quote-prep-mins">
-                    Minutes
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quote-prep-mins" name="quote-prep-mins" type="text" inputmode="numeric">
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      
-        {{ govukInput({
-          id: "prep-rate",
-          name: "prep-rate",
-          label: {
-            text: "What is the rate?",
-            classes: "govuk-label--s"
-          },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
-        }) }}
-      
-        <h2 class="govuk-heading-m">
-          <span class="govuk-caption-m">Total preparation cost</span>
-          £1356.00
-        </h2>
+        {% endif %}
 
         <div class="govuk-button-group">
           {{ govukButton({
@@ -107,7 +109,7 @@
     <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
 
     <script>
-        var expendNameSelect = document.querySelector('#quote-type')
+        var expendNameSelect = document.querySelector('#service-type')
 
         accessibleAutocomplete.enhanceSelectElement({
             confirmOnBlur: false,

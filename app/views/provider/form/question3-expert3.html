@@ -109,13 +109,13 @@
 
         <div id="box2" style="display:none;">
           <div class="govuk-inset-text" id="selected_company"></div>
-          {{data['quote-type']}} sdfsdf {{quote-type}}
+          {{data['service-type']}} sdfsdf {{service-type}}
         </div>
 
 
-        <!--If the quote-type is a certain value show this question -->
+        <!--If the service-type is a certain value show this question -->
 
-        {% if data['quote-type'] == "" %}
+        {% if data['service-type'] == "" %}
           {{ govukInput({
             label: {
               text: "If Other, provide the type of expert or expertise",
@@ -128,7 +128,7 @@
           }) }}
         {% endif %}
 
-        {% if data['quote-type'] == "Psychiatric report (Prison Law)" %}
+        {% if data['service-type'] == "Psychiatric report (Prison Law)" %}
 
           {{ govukRadios({
             classes: "govuk-radios--inline",
@@ -226,7 +226,7 @@
 
 
      
-      var offenceNameSelect = document.querySelector('#quote-type')
+      var offenceNameSelect = document.querySelector('#service-type')
 
      
           accessibleAutocomplete.enhanceSelectElement({
@@ -237,7 +237,7 @@
             onConfirm: function (data) {
 
               
-              let el = document.getElementById('quote-type');
+              let el = document.getElementById('service-type');
               let wrapper_id1 = 'box1'
               let wrapper_id2 = 'box2'
               let wrapper_element1 = $('#' + wrapper_id1)
