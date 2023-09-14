@@ -94,6 +94,12 @@
               }
             ]
           }) }}
+
+        </div>
+
+        <div id="box2_wrapper" style="display:none;">
+          <div class="govuk-inset-text" id="selected_company">Should show the select value here</div>
+          <p>Should show the saved select value here: {{data['service-type']}}</p> 
         </div>
 
 
@@ -133,19 +139,20 @@
     <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
 
     <script>
+      let selectElements = $('.autocomplete-select')
+      let placeholder = 'This is a default placeholder'
 
-        
-
-
-      let selectElements = $('#service-type')
 
       selectElements.each(function (index) {
         let selectElement = $(this)
         if (selectElement.length) {
+          if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
           
           accessibleAutocomplete.enhanceSelectElement({
             defaultValue: '',
-            placeholder: 'Search for the service or enter your own',
+            placeholder: placeholder,
             minLength: 1,
             selectElement: selectElement[0],
             onConfirm: function (data) {
@@ -161,7 +168,6 @@
               let box2_selected_element = box2_wrapper_element.find('div.govuk-inset-text')
 
               if (data !== undefined) {
-                // We only want to hide if the variable is defined
                 if (data) {
 
                   //box1 - displays box1
@@ -173,7 +179,7 @@
                   box2_wrapper_element.show()
 
                 } else {
-                  box1_wrapper_element.show()
+                  box1_wrapper_element.hide()
                   box2_wrapper_element.hide()
                 }
               }
