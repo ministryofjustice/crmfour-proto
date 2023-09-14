@@ -22,31 +22,44 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About your request </span>
-      <h1 class="govuk-heading-xl">Preparation costs</h1>
+      <h1 class="govuk-heading-xl">Travel costs</h1>
       
-      <form class="form" action="question3-expend-travel" method="post">
+      <form class="form" action="question3-quote-add" method="post">
+
+        {% if data['detained'] == "yes" %}
+
+          {{ govukTextarea({
+            name: "whyTravel",
+            id: "whyTravel",
+            label: {
+              text: "Why are travel costs being incured if your client is not detained?",
+              classes: "govuk-label--s"
+            }
+          }) }}
+
+        {% endif %}
 
 
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group" >
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                Preparation time
+                Travel time
             </legend>
-            <div class="govuk-date-input" id="expend-prep">
+            <div class="govuk-date-input" id="quote-travel">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="expend-prep-hours">
+                  <label class="govuk-label govuk-date-input__label" for="quote-travel-hours">
                     Hours
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expend-prep-hours" name="expend-prep-hours" type="text" inputmode="numeric">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quote-travel-hours" name="quote-travel-hours" type="text" inputmode="numeric">
                 </div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="expend-prep-mins">
+                  <label class="govuk-label govuk-date-input__label" for="quote-travel-mins">
                     Minutes
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="expend-prep-mins" name="expend-prep-mins" type="text" inputmode="numeric">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quote-travel-mins" name="quote-travel-mins" type="text" inputmode="numeric">
                 </div>
               </div>
             </div>
@@ -54,10 +67,10 @@
         </div>
       
         {{ govukInput({
-          id: "prep-rate",
-          name: "prep-rate",
+          id: "travel-rate",
+          name: "travel-rate",
           label: {
-            text: "What is the rate?",
+            text: "Travel hourly rate",
             classes: "govuk-label--s"
           },
           prefix: {
@@ -68,8 +81,8 @@
         }) }}
       
         <h2 class="govuk-heading-m">
-          <span class="govuk-caption-m">Total preparation cost</span>
-          £1356.00
+          <span class="govuk-caption-m">Total travel costs</span>
+          £13.00
         </h2>
 
         <div class="govuk-button-group">
@@ -107,7 +120,7 @@
     <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
 
     <script>
-        var expendNameSelect = document.querySelector('#expend-type')
+        var expendNameSelect = document.querySelector('#quote-type')
 
         accessibleAutocomplete.enhanceSelectElement({
             confirmOnBlur: false,

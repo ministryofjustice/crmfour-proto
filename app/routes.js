@@ -52,13 +52,13 @@ router.post('/question3-alt-quotes', function(request, response) {
 })
 
 //Additional items summary (Section3)
-router.post('/question3-expend-add', function(request, response) {
+router.post('/question3-quote-add', function(request, response) {
 
-    var expendAdd = request.session.data['expend-add-other']
+    var expendAdd = request.session.data['quote-add-other']
     if (expendAdd == "No"){
-        response.redirect("/provider/form//question3-expend-summary")
+        response.redirect("/provider/form//question3-quote-summary")
     } else {
-        response.redirect("/provider/form/question3-expend-add")
+        response.redirect("/provider/form/question3-quote-add")
     }
 })
 
