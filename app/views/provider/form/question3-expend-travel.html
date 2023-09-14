@@ -26,14 +26,18 @@
       
       <form class="form" action="question3-expend-add" method="post">
 
-        {{ govukTextarea({
-          name: "whyTravel",
-          id: "whyTravel",
-          label: {
-            text: "Why are travel costs being incured if your client is not detained?",
-            classes: "govuk-label--s"
-          }
-        }) }}
+        {% if data['detained'] == "yes" %}
+
+          {{ govukTextarea({
+            name: "whyTravel",
+            id: "whyTravel",
+            label: {
+              text: "Why are travel costs being incured if your client is not detained?",
+              classes: "govuk-label--s"
+            }
+          }) }}
+
+        {% endif %}
 
 
         <div class="govuk-form-group">

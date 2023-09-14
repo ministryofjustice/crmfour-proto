@@ -28,8 +28,11 @@
 
         {% if data['prison-law'] == "no" %}
 
+        {% set prisonHtml %}
+          {% include "includes/prison-list.html" %}
+        {% endset %}
+
           {{ govukRadios({
-            classes: "govuk-radios--inline",
             name: "detained",
             fieldset: {
               legend: {
@@ -39,14 +42,17 @@
             },
             items: [
               {
-                value: "yes",
+                value: "Yes",
                 text: "Yes",
-                checked: checked("detained", "yes")
+                checked: checked("detained", "Yes")
               },
               {
-                value: "no",
+                value: "No",
                 text: "No",
-                checked: checked("detained", "no")
+                checked: checked("detained", "No"),
+                conditional: {
+                  html: prisonHtml
+                }
               }
             ]
           }) }}
