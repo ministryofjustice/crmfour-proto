@@ -76,22 +76,3 @@
   </div>
 
 {% endblock %}
-
-{% block pageScripts %}
-    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
-
-    <script>
-        var offenceNameSelect = document.querySelector('#main-offence')
-
-        accessibleAutocomplete.enhanceSelectElement({
-            confirmOnBlur: false,
-            autoSelect: true,
-            displayMenu: 'overlay',
-            minLength: 1,
-            selectElement: offenceNameSelect,
-            showNoOptionsFound: false,
-            placeholder: 'Search for an offence or enter your own'
-        })
-    </script>
-
-{% endblock %}
