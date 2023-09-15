@@ -58,7 +58,7 @@ router.post('/question3-quote-add', function(request, response) {
     if (expendAdd == "No"){
         response.redirect("/provider/form//question3-quote-summary")
     } else {
-        response.redirect("/provider/form/question3-quote-add")
+        response.redirect("/provider/form/question3-quote-add?add-cost=2&show-add=2")
     }
 })
 

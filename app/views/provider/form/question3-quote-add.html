@@ -18,217 +18,300 @@
 {% endblock %}
 
 {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl">3. About your request </span>
+    <h1 class="govuk-heading-xl">Additional cost</h1>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-xl">3. About your request </span>
-      <h1 class="govuk-heading-xl">Additonal cost</h1>
-      
+    {% if data['show-cost'] == "1" or data['add-cost'] !== "2"  %}
       <form class="form" action="question3-quote-add-summary" method="post">
-
         {{ govukInput({
           label: {
-            text: "What is the addional cost?",
+            text: "What is the additional cost?",
             classes: "govuk-label--s"
           },
-          id: "addCost",
-          name: "addCost"
+          id: "addCost1",
+          name: "addCost1",
+          value: data['addCost1']
         }) }}
         
         {{ govukTextarea({
-          name: "whyAdd",
-          id: "whyAdd",
           label: {
-            text: "Why is the addional cost required?",
+            text: "Why is the additional cost required?",
             classes: "govuk-label--s"
-          }
+          },
+            name: "whyAdd1",
+            id: "whyAdd1",
+            value: data['whyAdd1']
         }) }}
 
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h1 class="govuk-fieldset__heading">
+              Costs
+            </h1>
+          </legend>
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" >
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                Quantity
-            </legend>
-            <div class="govuk-date-input" id="quote-travel">
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="quote-travel-hours">
-                    Hours
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quote-travel-hours" name="quote-travel-hours" type="text" inputmode="numeric">
+          {% set hourlyHtml %}
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" role="group">
+                <legend class="govuk-fieldset__legend">
+                  Preparation time in hours
+                </legend>
+                <div class="govuk-date-input" id="prepTime1">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="prepTime1-hours">
+                        Hours
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="prepTime1-hours" name="prepTime1-hours" type="text" inputmode="numeric" value="{{data['prepTime1-hours']}}">
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="prepTime1-mins">
+                        Minutes
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="prepTime1-mins" name="prepTime1-mins" type="text" inputmode="numeric" value="{{data['prepTime1-mins']}}">
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="quote-travel-mins">
-                    Minutes
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quote-travel-mins" name="quote-travel-mins" type="text" inputmode="numeric">
-                </div>
+              </fieldset>
+            </div>
+
+            {{ govukInput({
+              id: "addHourlyRate1",
+              name: "addHourlyRate1",
+              value: data['addHourlyRate1'],
+              label: {
+                text: "What is the hourly rate?"
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+    
+          {% endset %}
+
+          {% set nonhourHtml %}
+            <div class="govuk-form-group">
+              <h1 class="govuk-label-wrapper">
+                <label class="govuk-label" for="addQuantity1">
+                  Quantity
+                </label>
+              </h1>
+              <div class="govuk-input__wrapper">
+                <input class="govuk-input govuk-input--width-5" id="addQuantity1" name="addQuantity1" type="text" spellcheck="false" value="{{data['addQuantity1']}}">
               </div>
             </div>
-          </fieldset>
-        </div>
-      
-        {{ govukInput({
-          id: "travel-rate",
-          name: "travel-rate",
-          label: {
-            text: "Travel hourly rate",
-            classes: "govuk-label--s"
-          },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
-        }) }}
-      
-        <h2 class="govuk-heading-m">
-          <span class="govuk-caption-m">Total travel costs</span>
-          £13.00
-        </h2>
+            
+            {{ govukInput({
+              id: "addNonhourRate1",
+              name: "addNonhourRate1",
+              value: data['addNonhourRate1'],
+              label: {
+                text: "Cost per item"
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+          {% endset %}
 
-        <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Save and continue"
+          {{ govukRadios({
+            name: "addChargeType1",
+            fieldset: {
+              legend: {
+                text: "What is your cost basis?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Charged by the hour",
+                text: "Charged by the hour",
+                checked: checked("addChargeType1", "Charged by the hour"),
+                conditional: {
+                  html: hourlyHtml
+                }
+              },
+              {
+                value: "Charged per item",
+                text: "Charged per item",
+                checked: checked("addChargeType1", "Charged per item"),
+                conditional: {
+                  html: nonhourHtml
+                }
+              }
+            ]
           }) }}
 
-          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
-        
-            {{ govukButton({
-              text: "Save and come back later",
-              classes: "govuk-button--secondary",
-              href: "../crm-apps?claims-state=saved"
+        </fieldset>
+
+        {% else %}
+        {% if data['add-cost'] == "2" or data['show-cost'] == "2"  %}
+          <form class="form" action="question3-quote-add-summary" method="post">
+            {{ govukInput({
+              label: {
+                text: "What is the additional cost?",
+                classes: "govuk-label--s"
+              },
+              id: "addCost2",
+              name: "addCost2",
+              value: data['addCost2']
             }) }}
-
-            {% else %}
-
-            {{ govukButton({
-              text: "Save and come back later",
-              classes: "govuk-button--secondary",
-              href: "../crm-apps?claims-state=all"
-            }) }}
-
-          {% endif %}
-        </div>
-
-      </form>
-
-    </div>
-  </div>
-
-{% endblock %}
-
-{% block pageScripts %}
-    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
-
-    <script>
-        var expendNameSelect = document.querySelector('#service-type')
-
-        accessibleAutocomplete.enhanceSelectElement({
-            confirmOnBlur: false,
-            autoSelect: true,
-            displayMenu: 'overlay',
-            minLength: 1,
-            selectElement: expendNameSelect,
-            showNoOptionsFound: true,
-            showAllValues: true
-        })
-
-
-        let selectElements = $('#search-reg-org, .autocomplete-select')
-  let placeholder = 'Enter a registered company name or number'
-
-  selectElements.each(function (index) {
-    let selectElement = $(this)
-    if (selectElement.length) {
-      // AccessibleAutocomplete orignal
-      
-      accessibleAutocomplete.enhanceSelectElement({
-        defaultValue: '',
-        selectElement: selectElement[0],
-        onConfirm: function (data) {
-
-          // First we check if the selectElement has a particular wrapper linked to it
-
-          // Search for company in Companies House search - setting the div to show the option value
-          let company_wrapper_id = 'selected_expand_wrapper'
-          if (this.selectElement.hasAttribute('data-selected-company-wrapper-id')) {
-            company_wrapper_id = this.selectElement.getAttribute('data-selected-company-wrapper-id')
-          }
-          let company_wrapper_element = $('#' + company_wrapper_id)
-          let selected_company_element = company_wrapper_element.find('div.govuk-inset-text')
-
-          // Search for case/ commodity in Public files - setting the div to show the option value
-          let commodity_wrapper_id = 'selected_commodity_wrapper'
-          let commodity_wrapper_element = $('#' + commodity_wrapper_id)
-          let selected_commodity_element = commodity_wrapper_element.find('a#selected_commodity')
-
-          let commodity_li_id = "selected_commodity2"
-          let commodity_li_id_element = $('#' + commodity_li_id)
           
+            {{ govukTextarea({
+              label: {
+                text: "Why is the additional cost required?",
+                classes: "govuk-label--s"
+              },
+                name: "whyAdd2",
+                id: "whyAdd2",
+                value: data['whyAdd2']
+            }) }}
 
-          // Search for org in caseworker  - setting the div to show the option value
-          let org_wrapper_id = 'selected_org_wrapper'
-          let org_wrapper_element = $('#' + org_wrapper_id)
-          let selected_org_element = org_wrapper_element.find('a#selected_org')
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h2 class="govuk-fieldset__heading">
+                  Costs
+                </h2>
+              </legend>
 
-          // Search for users in caseworker - setting the div for showing the option value
-          //let user_wrapper_id = 'selected_user_wrapper'
-          //let user_wrapper_element = $('#' + user_wrapper_id)
-          //let selected_user_element = user_wrapper_element.find("a#selected_user")
+              {% set hourlyHtml %}
+                <div class="govuk-form-group">
+                  <fieldset class="govuk-fieldset" role="group">
+                    <legend class="govuk-fieldset__legend">
+                      Preparation time in hours
+                    </legend>
+                    <div class="govuk-date-input" id="prepTime2">
+                      <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                          <label class="govuk-label govuk-date-input__label" for="prepTime2-hours">
+                            Hours
+                          </label>
+                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="prepTime2-hours" name="prepTime2-hours" type="text" inputmode="numeric" value="{{data['prepTime2-hours']}}">
+                        </div>
+                      </div>
+                      <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                          <label class="govuk-label govuk-date-input__label" for="prepTime2-mins">
+                            Minutes
+                          </label>
+                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="prepTime2-mins" name="prepTime2-mins" type="text" inputmode="numeric" value="{{data['prepTime2-mins']}}">
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
 
-          if (data !== undefined) {
-            // We only want to hide if the variable is defined
-            if (data) {
+                {{ govukInput({
+                  id: "addHourlyRate2",
+                  name: "addHourlyRate2",
+                  value: data['addHourlyRate2'],
+                  label: {
+                    text: "What is the hourly rate?"
+                  },
+                  prefix: {
+                    text: "£"
+                  },
+                  classes: "govuk-input--width-5",
+                  spellcheck: false
+                }) }}
+        
+              {% endset %}
 
-              selected_company_element.html($('option:contains(' + data + ')').val())
-              company_wrapper_element.show()
-
-              selected_commodity_element.html($('option:contains(' + data + ')').val())
-              commodity_wrapper_element.show()
-
-              selected_org_element.html($('option:contains(' + data + ')').text())
-              org_wrapper_element.show()
-
-              //selected_user_element.html($('option:contains(' + data + ')').text())
-              //user_wrapper_element.show()  
-
-              //If the select has the ID data-go-to-url then go straight to a url when selecting an option
-              if (selectElement.attr('data-go-to-url')) {
-                var user_url = $('option:contains(' + data + ')').val()
-                window.location = user_url
-              }
-
-              // Org search: Change the href of the <a> in the div for showing the option value
-              if ($('#selected_org').length){
-                document.getElementById('selected_org').href = ($('option:contains(' + data + ')').val())
-              }
-
-              // Search for case/ commodity in Public files: if the option #single is selected then hide a specific <li>, else show it
-              if ($('#single:contains(' + data + ')').val()) {
-                commodity_li_id_element.hide()
+              {% set nonhourHtml %}
+                <div class="govuk-form-group">
+                  <h2 class="govuk-label-wrapper">
+                    <label class="govuk-label" for="addQuantity2">
+                      Quantity
+                    </label>
+                  </h2>
+                  <div class="govuk-input__wrapper">
+                    <input class="govuk-input govuk-input--width-5" id="addQuantity2" name="addQuantity2" type="text" spellcheck="false" value="{{data['addQuantity2']}}">
+                  </div>
+                </div>
                 
-              }
-                else {commodity_li_id_element.show()
-              }
+                {{ govukInput({
+                  id: "addNonhourRate2",
+                  name: "addNonhourRate2",
+                  value: data['addNonhourRate2'],
+                  label: {
+                    text: "Cost per item"
+                  },
+                  prefix: {
+                    text: "£"
+                  },
+                  classes: "govuk-input--width-5",
+                  spellcheck: false
+                }) }}
+              {% endset %}
 
+              {{ govukRadios({
+                name: "addChargeType2",
+                fieldset: {
+                  legend: {
+                    text: "What is your cost basis?",
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                items: [
+                  {
+                    value: "Charged by the hour",
+                    text: "Charged by the hour",
+                    checked: checked("addChargeType2", "Charged by the hour"),
+                    conditional: {
+                      html: hourlyHtml
+                    }
+                  },
+                  {
+                    value: "Charged per item",
+                    text: "Charged per item",
+                    checked: checked("addChargeType2", "Charged per item"),
+                    conditional: {
+                      html: nonhourHtml
+                    }
+                  }
+                ]
+              }) }}
 
-            } else {
-              company_wrapper_element.hide()
-              commodity_wrapper_element.hide()
-              
-              user_wrapper_element.hide()
-              org_wrapper_element.hide()
-            }
-          }
-        }
-      })
-    }
+            </fieldset>
+        {% endif %}
+      {% endif %}
 
-  })
-    </script>
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+      
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps?claims-state=saved"
+          }) }}
+
+          {% else %}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps?claims-state=all"
+          }) }}
+
+        {% endif %}
+      </div>
+    
+    </form>
+
+  </div>
+</div>
+
 
 {% endblock %}

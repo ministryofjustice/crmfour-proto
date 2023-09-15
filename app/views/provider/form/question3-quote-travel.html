@@ -24,9 +24,9 @@
       <span class="govuk-caption-xl">3. About your request </span>
       <h1 class="govuk-heading-xl">Travel costs</h1>
       
-      <form class="form" action="question3-quote-add" method="post">
+      <form class="form" action="question3-quote-add?show-add=1" method="post">
 
-        {% if data['detained'] == "yes" %}
+        {% if data['detained'] !== "no" %}
 
           {{ govukTextarea({
             name: "whyTravel",

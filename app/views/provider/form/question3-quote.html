@@ -29,7 +29,7 @@
 
         {% call govukFieldset({
           legend: {
-            text: "Expert's contact details",
+            text: "Expert's details",
             classes: "govuk-fieldset__legend--m"
           }
         }) %}
@@ -70,37 +70,6 @@
         {% endcall %}
 
         {% include "includes/service-list.html" %}
-
-        <div id="box1_wrapper" style="display:none;">
-          {{ govukRadios({
-            classes: "govuk-radios--inline",
-            name: "existing-auth",
-            fieldset: {
-              legend: {
-                text: "Have you already been granted Prior Authority in this case for the same type of service?",
-                classes: "govuk-fieldset__legend--s"
-              }
-            },
-            items: [
-              {
-                value: "Yes",
-                text: "Yes",
-                checked: checked("existing-auth", "yes")
-              },
-              {
-                value: "No",
-                text: "No",
-                checked: checked("existing-auth", "no")
-              }
-            ]
-          }) }}
-
-        </div>
-
-        <div id="box2_wrapper" style="display:none;">
-          <div class="govuk-inset-text" id="selected_company">Should show the select value here</div>
-          <p>Should show the saved select value here: {{data['service-type']}}</p> 
-        </div>
 
 
         <div class="govuk-button-group">
@@ -155,35 +124,6 @@
             placeholder: placeholder,
             minLength: 1,
             selectElement: selectElement[0],
-            onConfirm: function (data) {
-
-              //box1 - sets up box1
-              let box1_wrapper_id = 'box1_wrapper'
-              let box1_wrapper_element = $('#' + box1_wrapper_id)
-              let box1_selected_element = box1_wrapper_element.find('div.govuk-inset-text')
-
-              //box2 - sets up box2
-              let box2_wrapper_id = 'box2_wrapper'
-              let box2_wrapper_element = $('#' + box2_wrapper_id)
-              let box2_selected_element = box2_wrapper_element.find('div.govuk-inset-text')
-
-              if (data !== undefined) {
-                if (data) {
-
-                  //box1 - displays box1
-                  box1_selected_element.html($('option:contains(' + data + ')').val())
-                  box1_wrapper_element.show()
-
-                  //box2 - displays box2
-                  box2_selected_element.html($('option:contains(' + data + ')').val())
-                  box2_wrapper_element.show()
-
-                } else {
-                  box1_wrapper_element.hide()
-                  box2_wrapper_element.hide()
-                }
-              }
-            }
           })
         }
 
