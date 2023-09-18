@@ -22,7 +22,7 @@ router.get('/provider/form/auto-complete-example', async (req, res, next) => {
 router.post('/question1-eligibility', function(request, response) {
 
     var eligibility = request.session.data['eligibility']
-    if (eligibility == "yes"){
+    if (eligibility == "no"){
         response.redirect("/provider/form/question-ufn")
     } else {
         response.redirect("/provider/form/question-ineligible")
