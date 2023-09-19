@@ -37,15 +37,15 @@
             },
             classes: "govuk-input--width-30",
             id: "other-expert",
-            name: "other-expert",
-            value: data['other-expert']
+            name: "otherExpert",
+            value: data['otherExpert']
           }) }}
 
         {% endif %}
 
         {{ govukRadios({
           classes: "govuk-radios--inline",
-          name: "existing-auth",
+          name: "existingAuth",
           fieldset: {
             legend: {
               text: "Have you already been granted Prior Authority in this case for the same type of disbursement?",
@@ -56,21 +56,20 @@
             {
               value: "Yes",
               text: "Yes",
-              checked: checked("existing-auth", "Yes")
+              checked: checked("existingAuth", "Yes")
             },
             {
               value: "No",
               text: "No",
-              checked: checked("existing-auth", "No")
+              checked: checked("existingAuth", "No")
             }
           ]
         }) }}
-
         
         {% if data['service-type'] == "Psychiatric report (Prison Law)" or data['service-type'] == "Psychological report (Prison Law)" or data['service-type'] == "Interpreter" %}
           {{ govukRadios({
             classes: "govuk-radios--inline",
-            name: "court-ordered",
+            name: "courtOrdered",
             fieldset: {
               legend: {
                 text: "Was this report ordered by the court?",
@@ -81,12 +80,12 @@
               {
                 value: "Yes",
                 text: "Yes",
-                checked: checked("court-ordered", "Yes")
+                checked: checked("courtOrdered", "Yes")
               },
               {
                 value: "No",
                 text: "No",
-                checked: checked("court-ordered", "No")
+                checked: checked("courtOrdered", "No")
               }
             ]
           }) }}
@@ -98,17 +97,17 @@
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h1 class="govuk-fieldset__heading">
-                Transcription costs
+                Costs
               </h1>
             </legend>
           
             <div class="govuk-form-group">
               <h1 class="govuk-label-wrapper">
-                <label class="govuk-label govuk-label--s" for="no-mins">
+                <label class="govuk-label govuk-label--s" for="transNoMins">
                   Number of minutes
                 </label>
               </h1>
-              <input class="govuk-input govuk-input--width-5" id="no-mins" name="no-mins" type="text" spellcheck="false" inputmode="numeric" value="no-mins">
+              <input class="govuk-input govuk-input--width-5" id="transNoMins" name="transNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['transNoMins']}}">
             </div>
 
             <div class="govuk-form-group">
@@ -119,7 +118,7 @@
               </h1>
               <div class="govuk-input__wrapper">
                 <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                <input class="govuk-input govuk-input--width-5" id="cost-per-min" name="cost-per-min" type="text" spellcheck="false" value="cost-per-min">
+                <input class="govuk-input govuk-input--width-5" id="transCostMin" name="transCostMin" type="text" spellcheck="false" value="{{data['transCostMin']}}">
               </div>
             </div>
           
@@ -135,7 +134,7 @@
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                 <h1 class="govuk-fieldset__heading">
-                  Transcription and translation costs
+                  Costs
                 </h1>
               </legend>
             
@@ -145,7 +144,7 @@
                     Number of minutes
                   </label>
                 </h1>
-                <input class="govuk-input govuk-input--width-5" id="no-mins" name="no-mins" type="text" spellcheck="false" inputmode="numeric" value="no-mins">
+                <input class="govuk-input govuk-input--width-5" id="transtransNoMins" name="transtransNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['transtransNoMins']}}">
               </div>
 
               <div class="govuk-form-group">
@@ -156,7 +155,7 @@
                 </h1>
                 <div class="govuk-input__wrapper">
                   <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                  <input class="govuk-input govuk-input--width-5" id="cost-per-min" name="cost-per-min" type="text" spellcheck="false" value="cost-per-min">
+                  <input class="govuk-input govuk-input--width-5" id="transtransCostMin" name="transtransCostMin" type="text" spellcheck="false" value="{{data['transtransCostMin']}}">
                 </div>
               </div>
             
@@ -172,28 +171,28 @@
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                   <h1 class="govuk-fieldset__heading">
-                    Translation costs
+                    Costs
                   </h1>
                 </legend>
               
                 <div class="govuk-form-group">
                   <h1 class="govuk-label-wrapper">
-                    <label class="govuk-label govuk-label--s" for="no-mins">
+                    <label class="govuk-label govuk-label--s" for="translatorWords">
                       Number of words
                     </label>
                   </h1>
-                  <input class="govuk-input govuk-input--width-5" id="no-mins" name="no-mins" type="text" spellcheck="false" inputmode="numeric" value="no-mins">
+                  <input class="govuk-input govuk-input--width-5" id="translatorWords" name="translatorWords" type="text" spellcheck="false" inputmode="numeric" value="{{data['translatorWords']}}">
                 </div>
 
                 <div class="govuk-form-group">
                   <h1 class="govuk-label-wrapper">
-                    <label class="govuk-label govuk-label--s" for="cost-per-word">
+                    <label class="govuk-label govuk-label--s" for="translatorCostWord">
                       What is the cost per word?
                     </label>
                   </h1>
                   <div class="govuk-input__wrapper">
                     <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                    <input class="govuk-input govuk-input--width-5" id="cost-per-word" name="cost-per-word" type="text" spellcheck="false" value="cost-per-word">
+                    <input class="govuk-input govuk-input--width-5" id="ctranslatorCostWord" name="translatorCostWord" type="text" spellcheck="false" value="{{data['translatorCostWord']}}">
                   </div>
                 </div>
               
@@ -209,28 +208,28 @@
                 <fieldset class="govuk-fieldset">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                     <h1 class="govuk-fieldset__heading">
-                      Photocopying costs
+                      Costs
                     </h1>
                   </legend>
                 
                   <div class="govuk-form-group">
                     <h1 class="govuk-label-wrapper">
-                      <label class="govuk-label govuk-label--s" for="no-page">
+                      <label class="govuk-label govuk-label--s" for="photoNoPages">
                         Number of pages
                       </label>
                     </h1>
-                    <input class="govuk-input govuk-input--width-5" id="no-page" name="no-page" type="text" spellcheck="false" inputmode="numeric" value="no-page">
+                    <input class="govuk-input govuk-input--width-5" id="photoNoPages" name="photoNoPages" type="text" spellcheck="false" inputmode="numeric" value="{{data['photoNoPages']}}">
                   </div>
 
                   <div class="govuk-form-group">
                     <h1 class="govuk-label-wrapper">
-                      <label class="govuk-label govuk-label--s" for="cost-per-page">
+                      <label class="govuk-label govuk-label--s" for="photoCostPage">
                         What is the cost per page?
                       </label>
                     </h1>
                     <div class="govuk-input__wrapper">
                       <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                      <input class="govuk-input govuk-input--width-5" id="cost-per-page" name="cost-per-page" type="text" spellcheck="false" value="cost-per-page">
+                      <input class="govuk-input govuk-input--width-5" id="photoCostPage" name="photoCostPage" type="text" spellcheck="false" value="{{data['photoCostPage']}}">
                     </div>
                   </div>
                 
@@ -246,7 +245,7 @@
                   <fieldset class="govuk-fieldset">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                       <h1 class="govuk-fieldset__heading">
-                        DNA report costs
+                        Costs
                       </h1>
                     </legend>
                 
@@ -258,7 +257,7 @@
                       </h1>
                       <div class="govuk-input__wrapper">
                         <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                        <input class="govuk-input govuk-input--width-5" id="cost-DNA" name="cost-DNA" type="text" spellcheck="false" value="cost-DNA">
+                        <input class="govuk-input govuk-input--width-5" id="costDNA" name="costDNA" type="text" spellcheck="false" value="{{data['costDNA']}}">
                       </div>
                     </div>
                   
@@ -282,23 +281,23 @@
                         <div class="govuk-form-group">
                           <fieldset class="govuk-fieldset" role="group" >
                             <legend class="govuk-fieldset__legend">
-                              Preparation time in hours
+                              Number of hours
                             </legend>
-                            <div class="govuk-date-input" id="quoteOther">
+                            <div class="govuk-date-input" id="otherNoHours">
                               <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
-                                  <label class="govuk-label govuk-date-input__label" for="quoteOther-hours">
+                                  <label class="govuk-label govuk-date-input__label" for="otherNoHours-hours">
                                     Hours
                                   </label>
-                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quoteOther-hours" name="quoteOther-hours" type="text" inputmode="numeric" checked="{{data['quoteOther-hours']}}">
+                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours-hours" name="otherNoHours-hours" type="text" inputmode="numeric" checked="{{data['otherNoHours-hours']}}">
                                 </div>
                               </div>
                               <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
-                                  <label class="govuk-label govuk-date-input__label" for="quoteOther-mins">
+                                  <label class="govuk-label govuk-date-input__label" for="otherNoHours-mins">
                                     Minutes
                                   </label>
-                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quoteOther-mins" name="quoteOther-mins" type="text" inputmode="numeric" checked="{{data['quoteOther-mins']}}">
+                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours-mins" name="otherNoHours-mins" type="text" inputmode="numeric" checked="{{data['otherNoHours-mins']}}">
                                 </div>
                               </div>
                             </div>
@@ -306,11 +305,11 @@
                         </div>
                     
                         {{ govukInput({
-                          id: "other-hourly-rate",
-                          name: "other-hourly-rate",
-                          value: data['other-hourly-rate'],
+                          id: "otherHourlyCost",
+                          name: "otherHourlyCost",
+                          value: data['otherHourlyCost'],
                           label: {
-                            text: "What is the hourly rate? "
+                            text: "What is the hourly cost? "
                           },
                           prefix: {
                             text: "£"
@@ -324,18 +323,18 @@
                         <div class="govuk-form-group">
                           <h1 class="govuk-label-wrapper">
                             <label class="govuk-label" for="nonhour-quantity">
-                              Quantity
+                              Number of items
                             </label>
                           </h1>
                           <div class="govuk-input__wrapper">
-                            <input class="govuk-input govuk-input--width-5" id="nonhour-quantity" name="nonhour-quantity" type="text" spellcheck="false" value="{{data['nonhour-quantity']}}">
+                            <input class="govuk-input govuk-input--width-5" id="otherNoItems" name="otherNoItems" type="text" spellcheck="false" value="{{data['otherNoItems']}}">
                           </div>
                         </div>
                     
                         {{ govukInput({
-                          id: "nonhour-rate",
-                          name: "nonhour-rate",
-                          value: data['nonhour-rate'],
+                          id: "otherItemsCost",
+                          name: "otherItemsCost",
+                          value: data['otherItemsCost'],
                           label: {
                             text: "Cost per item"
                           },
@@ -348,7 +347,7 @@
                       {% endset %}
 
                       {{ govukRadios({
-                        name: "chargeType",
+                        name: "otherChargeType",
                         fieldset: {
                           legend: {
                             text: "How are you being charged?",
@@ -359,7 +358,7 @@
                           {
                             value: "Charged by the hour",
                             text: "Charged by the hour",
-                            checked: checked("chargeType", "Charged by the hour"),
+                            checked: checked("otherChargeType", "Charged by the hour"),
                             conditional: {
                               html: hourlyHtml
                             }
@@ -367,7 +366,7 @@
                           {
                             value: "Charged per item",
                             text: "Charged per item",
-                            checked: checked("chargeType", "Charged per item"),
+                            checked: checked("otherChargeType", "Charged per item"),
                             conditional: {
                               html: nonhourHtml
                             }
@@ -386,30 +385,30 @@
                     <fieldset class="govuk-fieldset">
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                         <h1 class="govuk-fieldset__heading">
-                          Disbursement cost
+                          Costs
                         </h1>
                       </legend>
                     
                       <div class="govuk-form-group">
                         <fieldset class="govuk-fieldset" role="group" >
                           <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                              Preparation time in hours
+                              Number of hours
                           </legend>
-                          <div class="govuk-date-input" id="quote-prep">
+                          <div class="govuk-date-input" id="generalNoHours">
                             <div class="govuk-date-input__item">
                               <div class="govuk-form-group">
-                                <label class="govuk-label govuk-date-input__label" for="quote-prep-hours">
+                                <label class="govuk-label govuk-date-input__label" for="generalNoHours-hours">
                                   Hours
                                 </label>
-                                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quote-prep-hours" name="quote-prep-hours" type="text" inputmode="numeric" value="{{data['quote-prep-hours']}}">
+                                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="generalNoHours-hours" name="generalNoHours-hours" type="text" inputmode="numeric" value="{{data['generalNoHours-hours']}}">
                               </div>
                             </div>
                             <div class="govuk-date-input__item">
                               <div class="govuk-form-group">
-                                <label class="govuk-label govuk-date-input__label" for="quote-prep-mins">
+                                <label class="govuk-label govuk-date-input__label" for="generalNoHours-mins">
                                   Minutes
                                 </label>
-                                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quote-prep-mins" name="quote-prep-mins" type="text" inputmode="numeric" value="{{data['quote-prep-mins']}}">
+                                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="generalNoHours-mins" name="generalNoHours-mins" type="text" inputmode="numeric" value="{{data['generalNoHours-mins']}}">
                               </div>
                             </div>
                           </div>
@@ -418,13 +417,13 @@
                           
                       <div class="govuk-form-group">
                         <h1 class="govuk-label-wrapper">
-                          <label class="govuk-label govuk-label--s" for="prep-rate">
-                            What is the hourly rate?
+                          <label class="govuk-label govuk-label--s" for="generalCost">
+                            What is the hourly cost?
                           </label>
                         </h1>
                         <div class="govuk-input__wrapper">
                           <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                          <input class="govuk-input govuk-input--width-5" id="prep-rate" name="prep-rate" type="text" spellcheck="false" value="{{data['prep-rate']}}">
+                          <input class="govuk-input govuk-input--width-5" id="generalCost" name="generalCost" type="text" spellcheck="false" value="{{data['generalCost']}}">
                         </div>
                       </div>
 

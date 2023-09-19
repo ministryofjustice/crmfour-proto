@@ -59,7 +59,7 @@ router.post('/question3-quote-add', function(request, response) {
 
     var quoteAddOther = request.session.data['quoteAddOther']
     if (quoteAddOther == "No"){
-        response.redirect("/provider/form/question3-quote-summary2")
+        response.redirect("/provider/form/question3-quote-summary")
     } 
     if (quoteAddOther == "Yes"){
         response.redirect("/provider/form/question3-quote-add?add-cost=2&show-add=2")
