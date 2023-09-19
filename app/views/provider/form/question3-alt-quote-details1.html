@@ -1,0 +1,239 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Add an alternative quote – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">3. About your request </span>
+
+      <div data-module="moj-add-another">
+
+        <h1 class="govuk-heading-xl moj-add-another__heading" tabindex="-1">Add an alternative quote</h1>
+
+        <form method="post">
+        <form class="form" action="/question3-alt-quotes" method="post">
+
+          <p>Add up to 3 alternative quotes</p>
+
+          {% call govukFieldset({
+            classes: 'moj-add-another__item',
+            legend: {
+              text: 'Alternative quote',
+              classes: 'moj-add-another__title govuk-fieldset__legend--l',
+              isPageHeading: false
+            }
+          }) %}
+
+          {{ govukInput({
+            id: 'quote[0][company_name]',
+            name: 'quote[0][company_name]',
+            label: {
+              html: 'Company name',
+              classes: 'govuk-fieldset__legend--s'
+            },
+            attributes: {
+              'data-name': 'quote[%index%][company_name]',
+              'data-id': 'quote[%index%][company_name]'
+            }
+          }) }}
+
+          {{ govukInput({
+            id: 'quote[0][expert_name]',
+            name: 'quote[0][expert_name]',
+            label: {
+              html: 'Expert name',
+              classes: 'govuk-fieldset__legend--s'
+            },
+            attributes: {
+              'data-name': 'quote[%index%][expert_name]',
+              'data-id': 'quote[%index%][expert_name]'
+            }
+          }) }}
+
+          {% call govukFieldset({
+            legend: {
+              text: "Items requested",
+              classes: "govuk-fieldset__legend--m"
+            }
+          }) %}
+
+            {{ govukTextarea({
+              name: "quote[0][alt-quotes-desc]",
+              id: "quote[0][alt-quotes-desc]",
+              label: {
+                text: "What items are needed"
+              },
+              attributes: {
+                'data-name': 'quote[%index%][alt-quotes-desc]',
+                'data-id': 'quote[%index%][alt-quotes-desc]'
+              }
+            }) }}
+
+            {{ govukRadios({
+              classes: "govuk-radios--inline",
+              name: "cost_basis",
+              fieldset: {
+                legend: {
+                  text: "Cost basis for these items",
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "hourly",
+                  text: "Hourly rate",
+                  attributes: {
+                    'data-name': 'quote[%index%][hourly]',
+                    'data-id': 'person[%index%][[hourly]'
+                  }
+                },
+                {
+                  value: "non-hourly",
+                  text: "Non hourly rate",
+                  attributes: {
+                    'data-name': 'quote[%index%][non_hourly]',
+                    'data-id': 'quote[%index%][[non_hourly]'
+                  }
+                }
+              ]
+            }) }}
+
+            {{ govukInput({
+              id: "quote[0][item_cost]",
+              name: "quote[0][item_cost]",
+              label: {
+                text: "Total items cost",
+                classes: "govuk-label--s"
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5"
+            }) }}
+
+          {% endcall %}
+
+          {% call govukFieldset({
+            classes: 'moj-add-another__item',
+            legend: {
+              text: 'Travel quote',
+              classes: 'moj-add-another__title govuk-fieldset__legend--m',
+              isPageHeading: false
+            }
+          }) %}
+
+            {{ govukDateInput({
+              id: "alt-travel-hours",
+              fieldset: {
+                legend: {
+                  text: "Travel hours",
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  id: "quote[0][travel][hours]",
+                  name: "quote[0][travel][hours]",
+                  label: "Hours",
+                  classes: "govuk-input--width-2",
+                  attributes: {
+                    'data-name': 'quote[%index%][travel][hours]',
+                    'data-id': 'quote[%index%][travel][hours]'
+                  }
+                },
+                {
+                  id: "quote[0][travel][min]",
+                  name: "quote[0][travel][min]",
+                  label: "Minutes",
+                  classes: "govuk-input--width-2",
+                  attributes: {
+                    'data-name': 'quote[%index%][travel][min]',
+                    'data-id': 'quote[%index%][travel][min]'
+                  }
+                }
+              ]
+            }) }}
+
+            {{ govukInput({
+              id: "travel-cost",
+              name: "travel-cost",
+              label: {
+                text: "Additional item cost",
+                classes: "govuk-label--s"
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5"
+            }) }}
+
+            {% endcall %}
+          {% endcall %}
+
+
+          
+
+          <div class="moj-button-action">
+            {{ govukButton({
+              text: 'Add another person',
+              classes: 'govuk-button--secondary moj-add-another__add-button govuk-!-margin-bottom-4'
+            }) }}
+          </div>
+
+          <div class="moj-button-action">
+            {{ govukButton({
+              text: 'Submit'
+            }) }}
+          </div>
+
+        </form>
+
+      </div>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
