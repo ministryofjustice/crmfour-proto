@@ -23,9 +23,14 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About your request </span>
       <h1 class="govuk-heading-xl">Disbursement details</h1>
-      <p class="govuk-body-l">Disbursement: <strong>{{data['service-type']}}</strong></p>
+      <p class="govuk-body-l">{{data['service-type']}}</p>
 
-      
+      {% if data['changeQuote'] =="change" %}
+        <form class="form" action="question3-quote-summary" method="post">
+        {% else %}
+        <form class="form" action="question3-quote-travel-q" method="post">
+      {% endif %}
+
       <form class="form" action="question3-quote-travel-q" method="post">
 
         {% if data['service-type'] == "Other" %}
@@ -441,9 +446,17 @@
 
         
         <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Save and continue"
-          }) }}
+          {% if data['changeQuote'] =="change" %}
+            {{ govukButton({
+              text: "Update"
+            }) }}
+            
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and continue"
+            }) }}
+          {% endif %}
 
           {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
         

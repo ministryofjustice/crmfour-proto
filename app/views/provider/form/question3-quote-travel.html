@@ -23,8 +23,11 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About your request </span>
       <h1 class="govuk-heading-xl">Travel costs</h1>
-      
-      <form class="form" action="question3-quote-add-q?addTravel=Yes&show-add=1" method="post">
+      {% if data['changeTravel'] =="change" %}
+        <form class="form" action="question3-quote-summary?addTravel=Yes" method="post">
+        {% else %}
+        <form class="form" action="question3-quote-add-q?addTravel=Yes&show-add=1" method="post">
+      {% endif %}
 
         {% if data['detained'] !== "no" %}
 
@@ -88,9 +91,18 @@
         </h2>
 
         <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Save and continue"
-          }) }}
+
+          {% if data['changeTravel'] =="change" %}
+            {{ govukButton({
+              text: "Update"
+            }) }}
+            
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and continue"
+            }) }}
+          {% endif %}
 
           {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
         

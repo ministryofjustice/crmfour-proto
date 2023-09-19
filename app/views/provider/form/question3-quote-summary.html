@@ -30,15 +30,19 @@
       </h2>
 
       
-      <form class="form" action="task-list?question3-quote=complete" method="post">
+      <form class="form" action="/question3-quote-add" method="post">
 
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
             <h2 class="govuk-summary-card__title">Your quote </h2>
             <ul class="govuk-summary-card__actions">
-              <li class="govuk-summary-card__action"> <a class="govuk-link" href="question3-quote.html">
-                  Change<span class="govuk-visually-hidden"> disbursement details</span>
-                </a>
+              <li class="govuk-summary-card__action">
+                <!--For the proto make links show as not yet selected until the user does the action-->
+                {% if data['changeQuote'] == "change" %}
+                  <a class="govuk-link" href="question3-quote?quote=change">Change<span class="govuk-visually-hidden"> disbursement details</span></a>
+                  {% else %}
+                  <a class="govuk-link--no-visited-state" href="question3-quote?changeQuote=change">Change<span class="govuk-visually-hidden"> disbursement details</span></a>
+                {% endif %} 
               </li>
             </ul>
           </div>
@@ -232,24 +236,41 @@
           </div>
         </div>
 
+        <!--Travel-->
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
             <h2 class="govuk-summary-card__title">Travel cost</h2>
             <ul class="govuk-summary-card__actions">
-              <li class="govuk-summary-card__action"> <a class="govuk-link" href="question3-quote-travel">
-                  Change<span class="govuk-visually-hidden"> travel costs</span>
-                </a>
-              </li>
-              {% if data['addTravel'] =="Yes" %}
-                <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">
-                  Delete<span class="govuk-visually-hidden"> travel costs</span>
-                  </a>
+              {% if data['addTravel'] !=="Yes" %}
+                <li class="govuk-summary-card__action"> 
+                  <a class="govuk-link--no-visited-state" href="question3-quote-travel?changeTravel=change">Change <span class="govuk-visually-hidden"> travel costs</span></a>
                 </li>
-                {% endif %}
+                {% else %}
+                {% if data['addTravel'] =="Yes" %}
+                  <li class="govuk-summary-card__action"> 
+                    <!--For the proto make links show as not yet selected until the user does the action-->
+                    {% if data['changeTravel'] == "change" %}
+                      <a class="govuk-link" href="question3-quote-travel?changeTravel=change">Change<span class="govuk-visually-hidden"> additional item</span></a>
+                      {% else %}
+                      <a class="govuk-link--no-visited-state" href="question3-quote-travel?addAdd=Yes&addCost=1&changeTravel=change">Change<span class="govuk-visually-hidden"> additional item</a>
+                    {% endif %} 
+                  </li>
+                {% endif %} 
+              {% endif %} 
+              {% if data['addTravel'] =="Yes" %}
+                <li class="govuk-summary-card__action">
+                  <!--For the proto make links show as not selected until the user does the action-->
+                  {% if data['deleteTravel'] == "delete" %}
+                    <a class="govuk-link" href="question3-travel-delete?deleteTravel=delete">
+                    Delete<span class="govuk-visually-hidden"> travel</span></a>
+                    {% else %}
+                    <a class="govuk-link--no-visited-state" href="question3-travel-delete?deleteTravel=delete">Delete<span class="govuk-visually-hidden"> travel</a>
+                  {% endif %}
+                </li>
+              {% endif %}
             </ul>
           </div>
           <div class="govuk-summary-card__content">
-
             {% if data['addTravel'] =="Yes" %}
               <table class="govuk-table">
                 <thead class="govuk-table__head">
@@ -273,31 +294,53 @@
           </div>
         </div>
 
+        <!--Additional cost 1-->
+        {% if data['addAdd'] !=="Yes" %}
+        <!--Empty Additional-->
           <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
               <h2 class="govuk-summary-card__title">Additional cost</h2>
               <ul class="govuk-summary-card__actions">
-                <li class="govuk-summary-card__action"> <a class="govuk-link" href="question3-quote-add?show-cost=1">
-                    Change<span class="govuk-visually-hidden"> additional item</span>
-                  </a>
+                <li class="govuk-summary-card__action">                   
+                  <a class="govuk-link--no-visited-state" href="question3-quote-add?addAdd=Yes&addCost=1&changeAdd1=change">Change<span class="govuk-visually-hidden"> additional item</a>
                 </li>
-                {% if data['addAdd'] =="Yes" %}
-                  <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">
-                    Delete<span class="govuk-visually-hidden"> additional item</span>
-                    </a>
-                  </li>
-                {% endif %}
               </ul>
             </div>
             <div class="govuk-summary-card__content">
-              {% if data['addAdd'] =="Yes" %}
+              <p>No additional costs added</p>
+            </div>
+          </div>
+          {% else %}
+          <!--Addition cost 1 added-->
+          <div class="govuk-summary-card">
+            <div class="govuk-summary-card__title-wrapper">
+              <h2 class="govuk-summary-card__title">Additional cost</h2>
+              <ul class="govuk-summary-card__actions">
+                <li class="govuk-summary-card__action">
+                  <!--For the proto make links show as not yet selected until the user does the action-->
+                  {% if data['changeAdd1'] == "change" %}
+                    <a class="govuk-link" href="question3-quote-add?addAdd=Yes&addCost=1&changeAdd1=change">
+                    Change<span class="govuk-visually-hidden"> additional item</span></a>
+                    {% else %}
+                    <a class="govuk-link--no-visited-state" href="question3-quote-add?addAdd=Yes&addCost=1&changeAdd1=change">Change<span class="govuk-visually-hidden"> additional item</a>
+                  {% endif %} 
+                </li>
+                <li class="govuk-summary-card__action">
+                  <!--For the proto make links show as not selected until the user does the action-->
+                  {% if data['deleteAdd1'] == "delete" %}
+                    <a class="govuk-link" href="question3-quote-delete?addShow=1&deleteAdd1=delete">
+                    Delete<span class="govuk-visually-hidden"> additional item</span></a>
+                    {% else %}
+                    <a class="govuk-link--no-visited-state" href="question3-quote-delete?addShow=1&deleteAdd1=delete">Delete<span class="govuk-visually-hidden"> additional item</a>
+                  {% endif %}
+                </li>
+              </ul>
+            </div>
+            <div class="govuk-summary-card__content">
                 <p><strong>Description: </strong>{{data['addCost1']}}</p>
                 <p><strong>Why required: </strong>{{data['whyAdd1']}}</p>
                 <p><strong>Cost basis: </strong>{{data['addChargeType1']}}</p>
-                {% else %}
-                <p>No additional costs added</p>
-              {% endif %}
-              {% if data['addAdd'] =="Yes" and data['addChargeType1'] == "Charged by the hour" %}
+              {% if data['addChargeType1'] == "Charged by the hour" %}
                 <table class="govuk-table">
                   <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
@@ -315,41 +358,51 @@
                   </tbody>
                 </table>
                 {% else %}
-                {% if data['addAdd'] =="Yes" and data['addChargeType1'] == "Charged per item" %}
-                  <table class="govuk-table">
-                    <thead class="govuk-table__head">
-                      <tr class="govuk-table__row">
-                        <th scope="col" class="govuk-table__header">Quantity</th>
-                        <th scope="col" class="govuk-table__header">Rate</th>
-                        <th scope="col" class="govuk-table__header">Total</th>
-                      </tr>
-                    </thead>
-                    <tbody class="govuk-table__body">
-                      <tr class="govuk-table__row">
-                        <td class="govuk-table__cell">{{data['addQuantity1']}}</td>
-                        <td class="govuk-table__cell">£{{data['addNonhourRate1']}}</td>
-                        <td class="govuk-table__cell">£0.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                {% endif %}
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Quantity</th>
+                      <th scope="col" class="govuk-table__header">Rate</th>
+                      <th scope="col" class="govuk-table__header">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">{{data['addQuantity1']}}</td>
+                      <td class="govuk-table__cell">£{{data['addNonhourRate1']}}</td>
+                      <td class="govuk-table__cell">£0.00</td>
+                    </tr>
+                  </tbody>
+                </table>
               {% endif %}
             </div>
           </div>
-        
-          {% if data['addAdd'] =="Yes" and data['add-cost'] =="2" %}
+        {% endif %}
+
+        {% if data['addAdd'] =="Yes" %}
+          {% if data['addCost'] =="2" %}
             <div class="govuk-summary-card">
               <div class="govuk-summary-card__title-wrapper">
                 <h2 class="govuk-summary-card__title">Additional cost</h2>
                 <ul class="govuk-summary-card__actions">
-                  <li class="govuk-summary-card__action"> <a class="govuk-link" href="question3-quote-add?show-cost=2">
-                      Change<span class="govuk-visually-hidden"> additional item</span>
-                    </a>
+                  <li class="govuk-summary-card__action">
+                    <!--For the proto make links show as not yet selected until the user does the action-->
+                    {% if data['changeAdd2'] == "change" %}
+                      <a class="govuk-link" href="question3-quote-add?addAdd=Yes&addCost=2&changeAdd2=change">
+                      Change<span class="govuk-visually-hidden"> additional item</span></a>
+                      {% else %}
+                      <a class="govuk-link--no-visited-state" href="question3-quote-add?addAdd=Yes&addCost=2&changeAdd2=change">Change<span class="govuk-visually-hidden"> additional item</a>
+                    {% endif %} 
                   </li>
-                  <li class="govuk-summary-card__action"> <a class="govuk-link" href="#">
-                    Delete<span class="govuk-visually-hidden"> additional item</span>
-                  </a>
-                </li>
+                  <li class="govuk-summary-card__action">
+                    <!--For the proto make links show as not selected until the user does the action-->
+                    {% if data['deleteAdd2'] == "delete" %}
+                      <a class="govuk-link" href="question3-quote-delete?addShow=2&deleteAdd2=delete">
+                      Delete<span class="govuk-visually-hidden"> additional item</span></a>
+                      {% else %}
+                      <a class="govuk-link--no-visited-state" href="question3-quote-delete?addShow=2&deleteAdd2=delete">Delete<span class="govuk-visually-hidden"> additional item</a>
+                    {% endif %}
+                  </li>
                 </ul>
               </div>
               <div class="govuk-summary-card__content">
@@ -395,6 +448,28 @@
               </div>
             </div>
           {% endif %}
+
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "quoteAddOther",
+            fieldset: {
+              legend: {
+                text: "Do you want to add an additional cost?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+        {% endif %}
    
         <div class="govuk-button-group">
           {{ govukButton({
@@ -425,63 +500,5 @@
 
     </div>
   </div>
-
-{% endblock %}
-
-{% block pageScripts %}
-    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
-
-    <script>
-
-        
-
-
-      let selectElements = $('#service-type')
-
-      selectElements.each(function (index) {
-        let selectElement = $(this)
-        if (selectElement.length) {
-          
-          accessibleAutocomplete.enhanceSelectElement({
-            defaultValue: '',
-            placeholder: 'Search for the expenditure or enter your own',
-            minLength: 1,
-            selectElement: selectElement[0],
-            onConfirm: function (data) {
-
-              //box1 - sets up box1
-              let box1_wrapper_id = 'box1_wrapper'
-              let box1_wrapper_element = $('#' + box1_wrapper_id)
-              let box1_selected_element = box1_wrapper_element.find('div.govuk-inset-text')
-
-              //box2 - sets up box2
-              let box2_wrapper_id = 'box2_wrapper'
-              let box2_wrapper_element = $('#' + box2_wrapper_id)
-              let box2_selected_element = box2_wrapper_element.find('div.govuk-inset-text')
-
-              if (data !== undefined) {
-                // We only want to hide if the variable is defined
-                if (data) {
-
-                  //box1 - displays box1
-                  box1_selected_element.html($('option:contains(' + data + ')').val())
-                  box1_wrapper_element.show()
-
-                  //box2 - displays box2
-                  box2_selected_element.html($('option:contains(' + data + ')').val())
-                  box2_wrapper_element.show()
-
-                } else {
-                  box1_wrapper_element.show()
-                  box2_wrapper_element.hide()
-                }
-              }
-            }
-          })
-        }
-
-      })
-    
-    </script>
 
 {% endblock %}

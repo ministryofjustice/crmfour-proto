@@ -47,10 +47,10 @@ router.post('/question3-add-add', function(request, response) {
 
     var addAdd = request.session.data['addAdd']
     if (addAdd == "No"){
-        response.redirect("/provider/form/question3-quote-summary")
+        response.redirect("/provider/form/question3-quote-summary?addAdd=No")
     } 
     if (addAdd == "Yes"){
-        response.redirect("/provider/form/question3-quote-add")
+        response.redirect("/provider/form/question3-quote-add?addAdd=Yes&addCost=1")
     }
 })
 
@@ -59,10 +59,10 @@ router.post('/question3-quote-add', function(request, response) {
 
     var quoteAddOther = request.session.data['quoteAddOther']
     if (quoteAddOther == "No"){
-        response.redirect("/provider/form/question3-quote-summary")
+        response.redirect("/provider/form/task-list?question3-quote=complete")
     } 
     if (quoteAddOther == "Yes"){
-        response.redirect("/provider/form/question3-quote-add?add-cost=2&show-add=2")
+        response.redirect("/provider/form/question3-quote-add?addCost=2&addShow=2")
     }
 })
 
@@ -70,7 +70,7 @@ router.post('/question3-quote-add', function(request, response) {
 router.post('/question3-alt-quotes', function(request, response) {
 
     var altQuote = request.session.data['alt-quotes-q']
-    if (altQuote == "no"){
+    if (altQuote == "No"){
         response.redirect("/provider/form/task-list?question3-alt-quotes=complete")
     } else {
         response.redirect("/provider/form/question3-alt-quote-details")
