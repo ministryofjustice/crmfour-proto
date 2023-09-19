@@ -23,7 +23,7 @@
     <span class="govuk-caption-xl">3. About your request </span>
     <h1 class="govuk-heading-xl">Additional cost</h1>
 
-    <form class="form" action="question3-quote-add-summary" method="post">
+    <form class="form" action="question3-quote-add-summary?addAdd=Yes" method="post">
 
       {% if data['show-cost'] == "1" or data['add-cost'] !== "2"  %}
 
@@ -61,7 +61,7 @@
             <div class="govuk-form-group">
               <fieldset class="govuk-fieldset" role="group">
                 <legend class="govuk-fieldset__legend">
-                  Preparation time in hours
+                  Number of hours
                 </legend>
                 <div class="govuk-date-input" id="prepTime1">
                   <div class="govuk-date-input__item">
@@ -89,7 +89,7 @@
               name: "addHourlyRate1",
               value: data['addHourlyRate1'],
               label: {
-                text: "What is the hourly rate?"
+                text: "What is the hourly cost?"
               },
               prefix: {
                 text: "£"
@@ -104,7 +104,7 @@
             <div class="govuk-form-group">
               <h1 class="govuk-label-wrapper">
                 <label class="govuk-label" for="addQuantity1">
-                  Quantity
+                  Number of items
                 </label>
               </h1>
               <div class="govuk-input__wrapper">
