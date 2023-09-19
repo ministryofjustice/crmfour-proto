@@ -22,21 +22,47 @@ router.get('/provider/form/auto-complete-example', async (req, res, next) => {
 router.post('/question1-eligibility', function(request, response) {
 
     var eligibility = request.session.data['eligibility']
-    if (eligibility == "no"){
+    if (eligibility == "No"){
         response.redirect("/provider/form/question-ufn")
-    } else {
-        response.redirect("/provider/form/question-ineligible")
+    } 
+    if (eligibility == "Yes"){
+        response.redirect("provider/form/question-ineligible")
     }
 })
 
-//Client details  - Prison Matter (Section2)
-router.post('/question2-case-prison', function(request, response) {
+//Add travel costs? (Section3)
+router.post('/question3-add-travel', function(request, response) {
 
-    var prisonLaw = request.session.data['prison-law']
-    if (prisonLaw == "no"){
-        response.redirect("/provider/form/question2-case")
-    } else {
-        response.redirect("/provider/form/question2-case")
+    var travelAdd = request.session.data['addTravel']
+    if (travelAdd == "No"){
+        response.redirect("/provider/form/question3-quote-add-q")
+    } 
+    if (travelAdd == "Yes"){
+        response.redirect("/provider/form/question3-quote-travel")
+    }
+})
+
+//Add Additional costs? (Section3)
+router.post('/question3-add-add', function(request, response) {
+
+    var addAdd = request.session.data['addAdd']
+    if (addAdd == "No"){
+        response.redirect("/provider/form/question3-quote-summary")
+    } 
+    if (addAdd == "Yes"){
+        response.redirect("/provider/form/question3-quote-add")
+    }
+})
+
+//Additional items summary (Section3)
+router.post('/question3-quote-add', function(request, response) {
+
+    var quoteAddOther = request.session.data['quoteAddOther']
+    if (quoteAddOther == "No"){
+        response.redirect("/provider/form/question3-quote-summary2")
+    } 
+    if (quoteAddOther == "Yes"){
+        response.redirect("/provider/form/question3-quote-add?add-cost=2&show-add=2")
     }
 })
 
@@ -51,15 +77,6 @@ router.post('/question3-alt-quotes', function(request, response) {
     }
 })
 
-//Additional items summary (Section3)
-router.post('/question3-quote-add', function(request, response) {
 
-    var expendAdd = request.session.data['quote-add-other']
-    if (expendAdd == "No"){
-        response.redirect("/provider/form//question3-quote-summary")
-    } else {
-        response.redirect("/provider/form/question3-quote-add?add-cost=2&show-add=2")
-    }
-})
 
 
