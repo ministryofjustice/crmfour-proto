@@ -23,12 +23,17 @@
     <span class="govuk-caption-xl">3. About your request </span>
     <h1 class="govuk-heading-xl">Additional cost</h1>
 
-    {% if data['show-cost'] == "1" or data['add-cost'] !== "2"  %}
-      <form class="form" action="question3-quote-add-summary" method="post">
+    <form class="form" action="question3-quote-add-summary" method="post">
+
+      {% if data['show-cost'] == "1" or data['add-cost'] !== "2"  %}
+
         {{ govukInput({
           label: {
             text: "What is the additional cost?",
             classes: "govuk-label--s"
+          },
+          hint: {
+            text: "Only add one type of cost. Further costs can be added later."
           },
           id: "addCost1",
           name: "addCost1",
@@ -151,14 +156,20 @@
           }) }}
 
         </fieldset>
+        <h2 class="govuk-heading-m">
+          <span class="govuk-caption-m">Total costs</span>
+          £0.00
+        </h2>
 
         {% else %}
         {% if data['add-cost'] == "2" or data['show-cost'] == "2"  %}
-          <form class="form" action="question3-quote-add-summary" method="post">
             {{ govukInput({
               label: {
                 text: "What is the additional cost?",
                 classes: "govuk-label--s"
+              },
+              hint: {
+                text: "Only add one type of cost. Further costs can be added later."
               },
               id: "addCost2",
               name: "addCost2",
@@ -281,6 +292,10 @@
               }) }}
 
             </fieldset>
+            <h2 class="govuk-heading-m">
+              <span class="govuk-caption-m">Total travel costs</span>
+              £0.00
+            </h2>
         {% endif %}
       {% endif %}
 
@@ -309,7 +324,6 @@
       </div>
     
     </form>
-
   </div>
 </div>
 

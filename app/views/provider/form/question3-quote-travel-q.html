@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Travel costs – {{ serviceName }} – GOV.UK Prototype Kit
+  Do you want to add travel costs? – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -22,70 +22,30 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About your request </span>
-      <h1 class="govuk-heading-xl">Travel costs</h1>
       
-      <form class="form" action="question3-quote-add-q?show-add=1" method="post">
+      <form class="form" action="/question3-add-travel" method="post">
 
-        {% if data['detained'] !== "no" %}
-
-          {{ govukTextarea({
-            name: "whyTravel",
-            id: "whyTravel",
-            value: data['whyTravel'],
-            label: {
-              text: "Why are travel costs being incured if your client is not detained?",
-              classes: "govuk-label--s"
+        {{ govukRadios({
+          name: "addTravel",
+          value: data['addTravel'],
+          fieldset: {
+            legend: {
+              text: "Do you want to add travel costs?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
             }
-          }) }}
-
-        {% endif %}
-
-
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" >
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                Travel time
-            </legend>
-            <div class="govuk-date-input" id="quoteTravel">
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="quoteTravel-hours">
-                    Hours
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quoteTravel-hours" name="quoteTravel-hours" type="text" inputmode="numeric" value="{{data['quoteTravel-hours']}}">
-                </div>
-              </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="quoteTravel-mins">
-                    Minutes
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quoteTravel-mins" name="quoteTravel-mins" type="text" inputmode="numeric" value="{{data['quoteTravel-mins']}}">
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      
-        {{ govukInput({
-          id: "travelRate",
-          name: "travelRate",
-          value: data['travelRate'],
-          label: {
-            text: "Travel hourly rate",
-            classes: "govuk-label--s"
           },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
+          items: [
+            {
+              value: "Yes",
+              text: "Yes"
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
         }) }}
-      
-        <h2 class="govuk-heading-m">
-          <span class="govuk-caption-m">Total travel costs</span>
-          £0.00
-        </h2>
 
         <div class="govuk-button-group">
           {{ govukButton({
