@@ -219,12 +219,40 @@
                   </a>
                 </span>
                 {% if data['question3-alt-quote'] =="complete" %}
-                  <!--If question3-quote is complete, show the status Complete-->
+                  <!--If question3-alt-quote is complete, show the status Complete-->
                   <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="alt-quote-status">Complete</strong>
                   {% else %}
                   {% if data['question3-alt-quote'] =="draft" %}
-                    <!--If question3-quote is draft, show the status Draft-->
+                    <!--If question3-alt-quote is draft, show the status Draft-->
                     <strong class="govuk-tag govuk-tag--blue govuk-prototype-kit-task-list__tag" id="alt-quote-status">In progress</strong>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </li>
+             <!--Section 3 - additional information -->
+             <li class="govuk-prototype-kit-task-list__item">
+              {% if data['question3-add-info'] == null or data['question3-add-info'] == "not-started" %}
+                <!--If question3-add-info has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-add-info?question3-add-info=draft" class="govuk-link--no-visited-state"  aria-describedby="add-info-status">
+                    Additional information
+                  </a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="add-info-status">Not started</strong>
+                {% else %}
+                <!--For all other states AND show visited link status-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question3-add-info" aria-describedby="add-info-status">
+                    Additional information
+                  </a>
+                </span>
+                {% if data['question3-add-info'] =="complete" %}
+                  <!--If question3-add-info is complete, show the status Complete-->
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="add-info-status">Complete</strong>
+                  {% else %}
+                  {% if data['question3-add-info'] =="draft" %}
+                    <!--If question3-add-info is draft, show the status Draft-->
+                    <strong class="govuk-tag govuk-tag--blue govuk-prototype-kit-task-list__tag" id="alt-add-info">In progress</strong>
                   {% endif %}
                 {% endif %}
               {% endif %}
