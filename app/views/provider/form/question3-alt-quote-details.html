@@ -25,7 +25,7 @@
 
       <h1 class="govuk-heading-xl moj-add-another__heading" tabindex="-1">Add an alternative quote</h1>
 
-      <form class="form" action="/question3-alt-quotes" method="post">
+      <form class="form" action="question3-alt-quote-summary" method="post">
 
         {% if data['addAltQuote'] == "1" or data['showAltQuote'] == "1"  %}
 
@@ -188,11 +188,6 @@
                 ]
               }) }}
 
-            <h2 class="govuk-heading-m">
-              <span class="govuk-caption-m">Total costs</span>
-              £0.00
-            </h2>
-
           {% endcall %}
 
           {% call govukFieldset({
@@ -242,12 +237,13 @@
               classes: "govuk-input--width-5",
               spellcheck: false
             }) }}
-        
-            <h2 class="govuk-heading-m">
-              <span class="govuk-caption-m">Total travel costs</span>
-              £0.00
-            </h2>    
+         
           {% endcall %}  
+
+          <h2 class="govuk-heading-l">
+            <span class="govuk-caption-l">Total cost for the quote</span>
+            £0.00
+          </h2>
 
           {% else %}
           {% if data['addAltQuote'] == "2" or data['showAltQuote'] == "2"  %}
@@ -412,11 +408,6 @@
 
             {% endcall %}
 
-            <h2 class="govuk-heading-m">
-              <span class="govuk-caption-m">Total costs</span>
-              £0.00
-            </h2>
-
             {% call govukFieldset({
               legend: { 
                 text: "Travel costs",
@@ -465,11 +456,12 @@
                 spellcheck: false
               }) }}
           
-              <h2 class="govuk-heading-m">
-                <span class="govuk-caption-m">Total travel costs</span>
-                £0.00
-              </h2>    
+              
             {% endcall %} 
+            <h2 class="govuk-heading-l">
+              <span class="govuk-caption-l">Total cost for the quote</span>
+              £0.00
+            </h2>    
 
           {% endif %}
         {% endif %}
