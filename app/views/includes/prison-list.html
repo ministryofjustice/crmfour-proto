@@ -1,8 +1,11 @@
 <div class="govuk-form-group">
- <label class="govuk-heading-s" for="prisons">
+  <label class="govuk-heading-s" for="prisons">
     Where is your client detained?
- </label>
- <select class="govuk-select autocomplete-select" id="prisons" name="prisons" autocomplete-placeholder="Search by prison name">
+  </label>
+  <div id="prison-hint" class="govuk-hint">
+    Enter the name of prison, or select one from the suggestions that appear when you start to enter the name.
+  </div>
+ <select class="govuk-select autocomplete-select" id="prisons" name="prisons" aria-describedby="prison-hint">
    <option></option> 
    <option {{ "selected" if data["prisons"] == "Acklington" }} value="Acklington">Acklington</option>
    <option {{ "selected" if data["prisons"] == "Albany" }} value="Albany">Albany</option>

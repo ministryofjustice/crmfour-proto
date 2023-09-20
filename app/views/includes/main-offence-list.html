@@ -2,7 +2,10 @@
   <label class="govuk-heading-s" for="main-offence">
     What was the main offence?
   </label>
-  <select class="govuk-select autocomplete-select" id="main-offence" name="main-offence" autocomplete-placeholder="Search for an offence or enter your own">
+  <div id="offence-hint" class="govuk-hint">
+    Enter the name of an offence, or select one from the suggestions that appear when you start to enter the name.
+  </div>
+  <select class="govuk-select autocomplete-select" id="main-offence" name="main-offence" aria-describedby="offence-hint">
     <option {{ "selected" if data["main-offence"] == "0" }} value=""></option>
     <option {{ "selected" if data["main-offence"] == "1" }} value="1">Offences against the person</option>
     <option {{ "selected" if data["main-offence"] == "2" }} value="2">Homicide and related grave offences</option>
