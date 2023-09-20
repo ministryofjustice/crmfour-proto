@@ -24,7 +24,11 @@
       <span class="govuk-caption-xl">2. About the case</span>
       <h1 class="govuk-heading-xl">Case details</h1>
       
-      <form class="form" action="question2-case-hearing" method="post">
+      {% if data['prisonLaw'] == "Yes" %}
+        <form class="form" action="task-list?question2-case=complete" method="post">
+        {% else %}
+        <form class="form" action="question2-case-hearing" method="post">
+      {% endif %}
 
       {% if data['prisonLaw'] == "No" %}
 
