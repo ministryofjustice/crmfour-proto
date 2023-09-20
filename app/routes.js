@@ -30,6 +30,17 @@ router.post('/question1-eligibility', function(request, response) {
     }
 })
 
+//Prison law matter (Section 2)
+router.post('/question2-case-hearing', function(request, response) {
+
+    var courtType = request.session.data['courtType']
+    if (courtType == "Crown court (excluding Central Criminal Court)"){
+        response.redirect("provider/form/task-list?question3-case=complete")
+    } else {
+        response.redirect("/provider/form/question2-case-hearing-extra")
+    }
+})
+
 //Add travel costs? (Section3)
 router.post('/question3-add-travel', function(request, response) {
 

@@ -21,12 +21,65 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-xl">2. About your client</span>
+      <span class="govuk-caption-xl">2. About the case</span>
       <h1 class="govuk-heading-xl">Case details</h1>
       
-      <form class="form" action="task-list?question2-case=complete" method="post">
+      <form class="form" action="question2-case-hearing" method="post">
 
-        {% if data['prison-law'] == "No" %}
+      {% if data['prisonLaw'] == "No" %}
+
+        {% include "includes/main-offence-list.html" %}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="rep-order-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              <h1 class="govuk-fieldset__heading">
+                Date of representation order
+              </h1>
+            </legend>
+            <div id="rep-order-hint" class="govuk-hint">
+              For example, 27 3 2007
+            </div>
+            <div class="govuk-date-input" id="crep-order">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rep-order-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-day" name="rep-order-day" type="text" inputmode="numeric" value="{{data['rep-order-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rep-order-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-month" name="rep-order-month" type="text" inputmode="numeric" value="{{data['rep-order-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rep-order-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="rep-order-year" name="rep-order-year" type="text" inputmode="numeric" value="{{data['rep-order-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukInput({
+          label: {
+            text: "MAAT number",
+            classes: "govuk-label--s",
+            isPageHeading: true
+          },
+          classes: "govuk-input--width-10",
+          id: "maat",
+          name: "maat",
+          value: data['maat']
+        }) }}
 
         {% set prisonHtml %}
           {% include "includes/prison-list.html" %}
@@ -41,72 +94,22 @@
               }
             },
             items: [
-              {
-                value: "No",
-                text: "No",
-                checked: checked("detained", "No")
-              },
-              {
-                value: "Yes",
-                text: "Yes",
-                checked: checked("detained", "Yes"),
-                conditional: {
-                  html: prisonHtml
-                }
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("detained", "Yes"),
+              conditional: {
+                html: prisonHtml
               }
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("detained", "No")
+            }
             ]
           }) }}
-
-          {{ govukInput({
-            label: {
-              text: "MAAT number",
-              classes: "govuk-label--s",
-              isPageHeading: true
-            },
-            classes: "govuk-input--width-10",
-            id: "maat",
-            name: "maat",
-            value: data['maat']
-          }) }}
-
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="rep-order-hint">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                <h1 class="govuk-fieldset__heading">
-                  Rep order date
-                </h1>
-              </legend>
-              <div id="rep-order-hint" class="govuk-hint">
-                For example, 27 3 2007
-              </div>
-              <div class="govuk-date-input" id="crep-order">
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="rep-order-day">
-                      Day
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-day" name="rep-order-day" type="text" inputmode="numeric" value="{{data['rep-order-day']}}">
-                  </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="rep-order-month">
-                      Month
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-month" name="rep-order-month" type="text" inputmode="numeric" value="{{data['rep-order-month']}}">
-                  </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="rep-order-year">
-                      Year
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="rep-order-year" name="rep-order-year" type="text" inputmode="numeric" value="{{data['rep-order-year']}}">
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-          </div>
+         
         {% endif %}
 
         {{ govukRadios({
@@ -129,184 +132,48 @@
               checked: checked("poca", "No")
             }
           ]
-        }) }}  
-        
-        {% if data['prison-law'] == "No" %}
+        }) }}    
 
-          {% include "includes/main-offence-list.html" %}
-
-          {{ govukSelect({
-            id: "plea",
-            name: "plea",
-            label: {
-              text: "Likely or actual plea",
-              classes: "govuk-label--s"
-            },
-              items: [
-              {
-                text: "Please select"
-              },
-              {
-                value: "guilty",
-                text: "Guilty",
-                selected: checked("plea", "guilty")
-              },
-              {
-                value: "not-guilty",
-                text: "Not guilty",
-                selected: checked("plea", "not-guilty")
-              },
-              {
-                value: "mixed",
-                text: "Mixed plea",
-                selected: checked("plea", "mixed")
-              },
-              {
-                value: "unknown",
-                text: "Unknown",
-                selected: checked("plea", "unknown")
-              }
-            ]
-          }) }}
-
-        {% endif %}
-
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hearing-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-              <h1 class="govuk-fieldset__heading">
-                Date of next hearing
-              </h1>
-            </legend>
-            <div id="date-hearing-hint" class="govuk-hint">
-              For example, 27 3 2007
-            </div>
-            <div class="govuk-date-input" id="date-hearing">
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="date-hearing-day">
-                    Day
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-day" name="date-hearing-day" type="text" inputmode="numeric" value="{{data['date-hearing-day']}}">
+        {% if data['prisonLaw'] == "Yes" %}
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hearing-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                <h1 class="govuk-fieldset__heading">
+                  Date of next hearing
+                </h1>
+              </legend>
+              <div id="date-hearing-hint" class="govuk-hint">
+                For example, 27 3 2007
+              </div>
+              <div class="govuk-date-input" id="date-hearing">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-hearing-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-day" name="date-hearing-day" type="text" inputmode="numeric" value="{{data['date-hearing-day']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-hearing-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-month" name="date-hearing-month" type="text" inputmode="numeric" value="{{data['date-hearing-month']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-hearing-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-hearing-year" name="date-hearing-year" type="text" inputmode="numeric" value="{{data['date-hearing-year']}}">
+                  </div>
                 </div>
               </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="date-hearing-month">
-                    Month
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-month" name="date-hearing-month" type="text" inputmode="numeric" value="{{data['date-hearing-month']}}">
-                </div>
-              </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="date-hearing-year">
-                    Year
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-hearing-year" name="date-hearing-year" type="text" inputmode="numeric" value="{{data['date-hearing-year']}}">
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-
-        {% if data['prison-law'] == "No" %}
-
-
-          {{ govukSelect({
-            id: "court-type",
-            name: "court-type",
-            label: {
-              text: "Court type",
-              classes: "govuk-label--s"
-            },
-              items: [
-              {
-                text: "Please select"
-              },
-              {
-                value: "magistrates",
-                text: "Magistrates Court",
-                selected: checked("court-type", "magistrates")
-              },
-              {
-                value: "crown-not-central",
-                text: "Crown court (excluding Central Criminal Court)",
-                selected: checked("court-type", "crown-not-central")
-              },
-              {
-                value: "crown-central",
-                text: "Crown Court (Central Criminal Court)",
-                selected: checked("court-type", "crown-central")
-              }
-            ]
-          }) }}
-
-          <div id="div1" style="display:none;">
-            {{ govukRadios({
-              name: "youth-court",
-              fieldset: {
-                legend: {
-                  text: "Is this a Youth Court matter?",
-                  classes: "govuk-fieldset__legend--s"                
-                }
-              },
-              items: [
-                {
-                  value: "Yes",
-                  text: "Yes",
-                  checked: checked("youth-court", "Yes")
-                },
-                {
-                  value: "No",
-                  text: "No",
-                  checked: checked("youth-court", "No")
-                }
-              ]
-            }) }}
-          </div>
-
-        
-          <div id="div2" style="display:none;">
-
-            {% set noHtml %}
-              {{ govukTextarea({
-                name: "moreDetail",
-                id: "more-detail",
-                label: {
-                  text: "Can you explain why you didn't access this service"
-                }
-              }) }}
-            {% endset %}
-
-            {{ govukRadios({
-              name: "psych-liason",
-              fieldset: {
-                legend: {
-                  text: "Have you accessed the psychiatric liason service?",
-                  classes: "govuk-fieldset__legend--s"                
-                }
-              },
-              items: [
-                {
-                  value: "Yes",
-                  text: "Yes",
-                  checked: checked("psych-liason", "Yes")
-                },
-                {
-                  value: "No",
-                  text: "No",
-                  checked: checked("psych-liason", "No"),
-                  conditional: {
-                    html: noHtml
-                  }
-                }
-              ]
-            }) }}
+            </fieldset>
           </div>
         {% endif %}
-
-       
 
         <div class="govuk-button-group">
           {{ govukButton({
@@ -344,7 +211,7 @@
 
     <script>
         let selectElements = $('.autocomplete-select')
-        let placeholder = 'This is a default placeholder'
+        let placeholder = ''
 
         selectElements.each(function (index) {
           let selectElement = $(this)
@@ -365,35 +232,36 @@
           }
         })
 
-        const el = document.getElementById('court-type');
-        const div1 = document.getElementById('div1');
-        const div2 = document.getElementById('div2');
-        el.addEventListener('change', function handleChange(event) {
-          if (event.target.value === 'magistrates') {
-              div1.style.display = 'block';
+        $(function() {
+        $("input[name='courtType']").click(function() {
+          if ($("#courtType").is(":checked")) {
+            $("#div1").show();
           } else {
-              div1.style.display = 'none';
-          };
-          if (event.target.value === 'crown-central') {
-              div2.style.display = 'block';
-          } else {
-              div2.style.display = 'none';
+            $("#div1").hide();
           }
-         
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
         });
+      });
 
-        window.onload = function(){  
-          if (el.value === 'magistrates') {
-              div1.style.display = 'block';
+      window.onload = function(){  
+        if ($("#courtType").is(":checked")) {
+            $("#div1").show();
           } else {
-              div1.style.display = 'none';
-          };
-          if (el.value === 'crown-central') {
-              div2.style.display = 'block';
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
           } else {
-              div2.style.display = 'none';
+            $("#div2").hide();
           }
         }
+
+       
+         
     </script>
 
 {% endblock %}

@@ -1,0 +1,121 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Type of court – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">2. About the case</span>
+      
+      <form class="form" action="question2-case" method="post">      
+
+        {% if data['courtType'] == "Magistrates Court" %}
+          {{ govukRadios({
+            name: "youth-court",
+            fieldset: {
+              legend: {
+                text: "Is this a youth court matter?",
+                classes: "govuk-fieldset__legend--xl",
+                isHeading: true                
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                checked: checked("youth-court", "Yes")
+              },
+              {
+                value: "No",
+                text: "No",
+                checked: checked("youth-court", "No")
+              }
+            ]
+          }) }}
+
+          {% else %}
+
+          {% set noHtml %}
+            {{ govukTextarea({
+              name: "moreDetail",
+              id: "more-detail",
+              label: {
+                text: "Explain why you did not access this service"
+              }
+            }) }}
+          {% endset %}
+
+          {{ govukRadios({
+            name: "psych-liason",
+            fieldset: {
+              legend: {
+                text: "Have you accessed the psychiatric liason service?",
+                classes: "govuk-fieldset__legend--xl",
+                isHeading: true              
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                checked: checked("psych-liason", "Yes")
+              },
+              {
+                value: "No",
+                text: "No",
+                checked: checked("psych-liason", "No"),
+                conditional: {
+                  html: noHtml
+                }
+              }
+            ]
+          }) }}
+
+        {% endif %}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
