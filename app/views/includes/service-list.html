@@ -2,7 +2,10 @@
   <label class="govuk-heading-m" for="service-type">
     Type of disbursement
   </label>
-  <select class="govuk-select autocomplete-select" id="service-type" name="service-type" autocomplete-placeholder="Search for the type of disbursement or enter your own">
+  <div id="service-hint" class="govuk-hint">
+    Select the type of disbursement from the suggestions that appear when you start to enter the name, or select Other if it is not listed.
+  </div>
+  <select class="govuk-select autocomplete-select" id="service-type" name="service-type" aria-describedby="service-hint">
     <option></option>
     <option value="A&amp;E Consultant" {{ "selected" if data["service-type"] == "A&amp;E Consultant" }}>A&amp;E Consultant</option>
     <option value="Accident Reconstruction" {{ "selected" if data["service-type"] == "Accident Reconstruction" }}>Accident Reconstruction</option>
