@@ -23,11 +23,11 @@
     <span class="govuk-caption-xl">3. About your request </span>
     <h1 class="govuk-heading-xl">Additional cost</h1>
 
-    <form class="form" action="question3-quote-summary" method="post">
+    <form class="form" action="question3-quote-add-summary" method="post">
       
 
 
-      {% if data['addCost'] == "1" or data['addShow'] == "1"  %}
+      {% if data['addCost'] == "1" %}
 
         {{ govukInput({
           label: {
@@ -164,7 +164,7 @@
         </h2>
 
         {% else %}
-        {% if data['addCost'] == "2" or data['addShow'] == "2"  %}
+        {% if data['addCost'] == "2" %}
             {{ govukInput({
               label: {
                 text: "What is the additional cost?",
@@ -302,17 +302,10 @@
       {% endif %}
 
       <div class="govuk-button-group">
-        {% if data['changeAdd1'] =="change" or data['changeAdd2'] =="change"  %}
-            {{ govukButton({
-              text: "Update"
-            }) }}
-            
-            {% else %}
-
-            {{ govukButton({
-              text: "Save and continue"
-            }) }}
-          {% endif %}
+    
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
 
         {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
       

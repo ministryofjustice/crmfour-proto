@@ -53,7 +53,7 @@
                   Expert details
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['expert-name']}}<br>
+                  {{data['expert-name']}}, 
                   {{data['expert-org-name']}}, 
                   {{data['expert-postcode']}}
                 </dd>
@@ -238,109 +238,38 @@
 
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
-            <h2 class="govuk-summary-card__title">Travel cost</h2>
-            <ul class="govuk-summary-card__actions">
-              {% if data['addTravel'] !=="Yes" %}
-                <li class="govuk-summary-card__action"> 
-                  <a class="govuk-link--no-visited-state" href="question3-quote-travel?changeTravel=change">Change <span class="govuk-visually-hidden"> travel costs</span></a>
-                </li>
-                {% else %}
-                {% if data['addTravel'] =="Yes" %}
-                  <li class="govuk-summary-card__action"> 
-                    <!--For the proto make links show as not yet selected until the user does the action-->
-                    {% if data['changeTravel'] == "change" %}
-                      <a class="govuk-link" href="question3-quote-travel?changeTravel=change">Change<span class="govuk-visually-hidden"> additional item</span></a>
-                      {% else %}
-                      <a class="govuk-link--no-visited-state" href="question3-quote-travel?addAdd=Yes&addCost=1&changeTravel=change">Change<span class="govuk-visually-hidden"> additional item</a>
-                    {% endif %} 
-                  </li>
-                {% endif %} 
-              {% endif %} 
-              {% if data['addTravel'] =="Yes" %}
-                <li class="govuk-summary-card__action">
-                  <!--For the proto make links show as not selected until the user does the action-->
-                  {% if data['deleteTravel'] == "delete" %}
-                    <a class="govuk-link" href="question3-travel-delete?deleteTravel=delete">
-                    Delete<span class="govuk-visually-hidden"> travel</span></a>
-                    {% else %}
-                    <a class="govuk-link--no-visited-state" href="question3-travel-delete?deleteTravel=delete">Delete<span class="govuk-visually-hidden"> travel</a>
-                  {% endif %}
-                </li>
-              {% endif %}
-            </ul>
+            <h2 class="govuk-summary-card__title">Other costs</h2>
           </div>
           <div class="govuk-summary-card__content">
-            {% if data['addTravel'] =="Yes" %}
-              <table class="govuk-table">
-                <thead class="govuk-table__head">
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Cost</th>
+                  <th scope="col" class="govuk-table__header">Total</th>
+                  <th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Action</span></th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                {% if data['addTravel'] == "Yes" %}
                   <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Travel time</th>
-                    <th scope="col" class="govuk-table__header">Hourly rate</th>
-                    <th scope="col" class="govuk-table__header">Total</th>
-                  </tr>
-                </thead>
-                <tbody class="govuk-table__body">
-                  <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{data['quoteTravel-hours']}} hours {{data['quoteTravel-mins']}} minutes</td>
-                    <td class="govuk-table__cell">£{{data['travelRate']}} per hour</td>
-                    <td class="govuk-table__cell">£0.00</td>
-                  </tr>
-                </tbody>
-              </table>
-              {% else %}
-              <p>No travel costs added</p>
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="govuk-summary-card">
-          <div class="govuk-summary-card__title-wrapper">
-            <h2 class="govuk-summary-card__title">Additional items</h2>
-            <ul class="govuk-summary-card__actions">
-              {% if data['addAdd'] !=="Yes" %}
-                <li class="govuk-summary-card__action"> 
-                  <a class="govuk-link--no-visited-state" href="question3-quote-add?addAdd=Yes&addCost=1&changeAdd=none">Change <span class="govuk-visually-hidden"> travel costs</span></a>
-                </li>
-                {% else %}
-                {% if data['addAdd'] =="Yes" %}
-                  <li class="govuk-summary-card__action"> 
-                    <!--For the proto make links show as not yet selected until the user does the action-->
-                    {% if data['changeAdd1'] == "change" %}
-                    <a class="govuk-link" href="question3-quote-add-summary?addAdd=Yes&changeAdd=change">
-                    Change<span class="govuk-visually-hidden"> additional item</span></a>
-                    {% else %}
-                    <a class="govuk-link--no-visited-state" href="question3-quote-add-summary?addAdd=Yes&changeAdd=change">Change<span class="govuk-visually-hidden"> additional item</a>
-                  {% endif %} 
-                  </li>
-                {% endif %} 
-              {% endif %} 
-            </ul>
-          </div>
-          <div class="govuk-summary-card__content">
-            {% if data['addAdd'] =="Yes" %}
-              <table class="govuk-table">
-                <thead class="govuk-table__head">
-                  <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Cost</th>
-                    <th scope="col" class="govuk-table__header">Total</th>
-                  </tr>
-                </thead>
-                <tbody class="govuk-table__body">
-                  <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{data['addCost1']}}</td>
+                    <td class="govuk-table__cell govuk-table__header">Travel</td>
                     <td class="govuk-table__cell">£5.00</td>
+                    <td class="govuk-table__cell"><a class="govuk-link" href="question3-quote-travel-q.html">
+                      Change<span class="govuk-visually-hidden"> expenditure details</span>
+                    </a></td>
                   </tr>
-                  {% if data['addCost'] == "2" %}
-                    <tr class="govuk-table__row">
-                      <td class="govuk-table__cell">{{data['addCost2']}}</td>
-                      <td class="govuk-table__cell">£25.00</td>
-                    </tr>
-                  {% endif %}
-                </tbody>
-              </table>
-              {% else %}
-              <p>No additional costs added</p>
-            {% endif %}
+                {% endif %}
+                {% if data['addTravel'] == "Yes" %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell govuk-table__header">Additional items</td>
+                    <td class="govuk-table__cell">£5.00</td>
+                    <td class="govuk-table__cell"><a class="govuk-link" href="question3-quote-add-summary">
+                      Change<span class="govuk-visually-hidden"> additional items</span>
+                    </a></td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
           </div>
         </div>
    
