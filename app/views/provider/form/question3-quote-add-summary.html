@@ -57,14 +57,37 @@
             </ul>
           </div>
           <div class="govuk-summary-card__content">
-              <p><strong>Description: </strong>{{data['addCost1']}}</p>
-              <p><strong>Why required: </strong>{{data['whyAdd1']}}</p>
-              <p><strong>Cost basis: </strong>{{data['addChargeType1']}}</p>
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Description
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['addCost1']}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why required
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['whyAdd1']}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Cost basis
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['addChargeType1']}}
+                </dd>
+              </div>
+            </dl>
             {% if data['addChargeType1'] == "Charged by the hour" %}
               <table class="govuk-table">
                 <thead class="govuk-table__head">
                   <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Preparation time</th>
+                    <th scope="col" class="govuk-table__header">Number of hours</th>
                     <th scope="col" class="govuk-table__header">Rate per hour</th>
                     <th scope="col" class="govuk-table__header">Total</th>
                   </tr>
@@ -124,15 +147,37 @@
               </ul>
             </div>
             <div class="govuk-summary-card__content">
-              <p><strong>Description: </strong>{{data['addCost2']}}</p>
-              <p><strong>Why required: </strong>{{data['whyAdd2']}}</p>
-              <p><strong>Cost basis: </strong>{{data['addChargeType2']}}</p>
-
+              <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Description
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['addCost2']}}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Why required
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['whyAdd2']}}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Cost basis
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['addChargeType2']}}
+                  </dd>
+                </div>
+              </dl>
               {% if data['addChargeType2'] == "Charged by the hour" %}
                 <table class="govuk-table">
                   <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
-                      <th scope="col" class="govuk-table__header">Preparation time</th>
+                      <th scope="col" class="govuk-table__header">Number of hours</th>
                       <th scope="col" class="govuk-table__header">Rate per hour</th>
                       <th scope="col" class="govuk-table__header">Total</th>
                     </tr>
