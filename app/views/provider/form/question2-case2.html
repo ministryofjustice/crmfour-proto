@@ -1,0 +1,335 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Case details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">2. About the case</span>
+      <h1 class="govuk-heading-xl">Case details</h1>
+      
+      <form class="form" action="task-list?question2-case=complete" method="post">
+
+      {% if data['prisonLaw'] == "No" %}
+
+        {% include "includes/main-offence-list.html" %}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="rep-order-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              <h1 class="govuk-fieldset__heading">
+                Date of representation order
+              </h1>
+            </legend>
+            <div id="rep-order-hint" class="govuk-hint">
+              For example, 27 3 2007
+            </div>
+            <div class="govuk-date-input" id="crep-order">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rep-order-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-day" name="rep-order-day" type="text" inputmode="numeric" value="{{data['rep-order-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rep-order-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-month" name="rep-order-month" type="text" inputmode="numeric" value="{{data['rep-order-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rep-order-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="rep-order-year" name="rep-order-year" type="text" inputmode="numeric" value="{{data['rep-order-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukInput({
+          label: {
+            text: "MAAT number",
+            classes: "govuk-label--s",
+            isPageHeading: true
+          },
+          classes: "govuk-input--width-10",
+          id: "maat",
+          name: "maat",
+          value: data['maat']
+        }) }}
+
+        {% set prisonHtml %}
+          {% include "includes/prison-list.html" %}
+        {% endset %}
+
+          {{ govukRadios({
+            name: "detained",
+            fieldset: {
+              legend: {
+                text: "Is your client detained?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("detained", "Yes"),
+              conditional: {
+                html: prisonHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("detained", "No")
+            }
+            ]
+          }) }}
+         
+        {% endif %}
+
+        {{ govukRadios({
+          name: "poca",
+          fieldset: {
+            legend: {
+              text: "Is this case subject to POCA (Proceeds of Crime Act 2002)?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("poca", "Yes")
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("poca", "No")
+            }
+          ]
+        }) }}  
+        
+        {% if data['prisonLaw'] == "No" %}
+
+       
+        {% endif %}
+
+       
+
+        {% if data['prisonLaw'] == "No" %}
+
+        {{ govukRadios({
+          name: "courtType",
+          fieldset: {
+            legend: {
+              text: "Court type",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+          {
+            value: "Magistrates Court",
+            text: "Magistrates Court",
+            checked: checked("courtType", "Magistrates Court")
+          },
+          {
+            value: "Crown court (excluding Central Criminal Court)",
+            text: "Crown court (excluding Central Criminal Court)",
+            checked: checked("courtType", "Crown court (excluding Central Criminal Court)")
+          },
+          {
+            value: "Crown Court (Central Criminal Court)",
+            text: "Crown Court (Central Criminal Court)",
+            checked: checked("courtType", "Crown Court (Central Criminal Court)")
+          }
+          ]
+        }) }}
+
+        {{ govukRadios({
+          name: "plea",
+          fieldset: {
+            legend: {
+              text: "Likely or actual plea",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+          {
+            value: "Guilty",
+            text: "Guilty",
+            checked: checked("plea", "Guilty")
+          },
+          {
+            value: "Not guilty",
+            text: "Not guilty",
+            checked: checked("plea", "Not guilty")
+          },
+          {
+            value: "Mixed plea",
+            text: "Mixed plea",
+            checked: checked("plea", "Mixed plea")
+          },
+          {
+            value: "Unknown",
+            text: "Unknown",
+            checked: checked("plea", "Unknown")
+          }
+          ]
+        }) }}
+
+        {% endif %}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hearing-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              <h1 class="govuk-fieldset__heading">
+                Date of next hearing
+              </h1>
+            </legend>
+            <div id="date-hearing-hint" class="govuk-hint">
+              For example, 27 3 2007
+            </div>
+            <div class="govuk-date-input" id="date-hearing">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-hearing-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-day" name="date-hearing-day" type="text" inputmode="numeric" value="{{data['date-hearing-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-hearing-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-month" name="date-hearing-month" type="text" inputmode="numeric" value="{{data['date-hearing-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-hearing-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-hearing-year" name="date-hearing-year" type="text" inputmode="numeric" value="{{data['date-hearing-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+        let selectElements = $('.autocomplete-select')
+        let placeholder = ''
+
+        selectElements.each(function (index) {
+          let selectElement = $(this)
+          if (selectElement.length) {
+            if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+
+            accessibleAutocomplete.enhanceSelectElement({
+              confirmOnBlur: false,
+              autoSelect: true,
+              displayMenu: 'overlay',
+              minLength: 1,
+              showNoOptionsFound: false,
+              placeholder: placeholder,
+              selectElement: selectElement[0],
+            })
+          }
+        })
+
+        $(function() {
+        $("input[name='courtType']").click(function() {
+          if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        });
+      });
+
+      window.onload = function(){  
+        if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        }
+
+       
+         
+    </script>
+
+{% endblock %}
