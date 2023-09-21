@@ -27,7 +27,6 @@
 
         {{ govukRadios({
           name: "addAdd",
-          value: data['addAdd'],
           fieldset: {
             legend: {
               text: "Do you want to add additional costs?",
@@ -38,11 +37,13 @@
           items: [
             {
               value: "Yes",
-              text: "Yes"
+              text: "Yes",
+              checked: checked("addAdd", "Yes")
             },
             {
               value: "No",
-              text: "No"
+              text: "No",
+              checked: checked("addAdd", "No")
             }
           ]
         }) }}

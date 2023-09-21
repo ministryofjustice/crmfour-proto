@@ -27,7 +27,6 @@
 
         {{ govukRadios({
           name: "addTravel",
-          value: data['addTravel'],
           fieldset: {
             legend: {
               text: "Do you want to add travel costs?",
@@ -38,11 +37,13 @@
           items: [
             {
               value: "Yes",
-              text: "Yes"
+              text: "Yes",
+              checked: checked("addTravel", "Yes")
             },
             {
               value: "No",
-              text: "No"
+              text: "No",
+              checked: checked("addTravel", "No")
             }
           ]
         }) }}
