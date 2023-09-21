@@ -23,13 +23,15 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About your request </span>
 
-      <h1 class="govuk-heading-xl moj-add-another__heading" tabindex="-1">Add an alternative quote</h1>
+      <h1 class="govuk-heading-xl" tabindex="-1">Add alternative quotes</h1>
+      <p>You can add up to 3 alternative quotes. We only need to see the top line info and travel detials or something.</p>
+
 
       <form class="form" action="question3-alt-quote-summary" method="post">
+        <h2 class="govuk-heading-l">Alternative quote</h2>
 
-        {% if data['addAltQuote'] == "1" or data['showAltQuote'] == "1"  %}
+        {% if data['addAltQuote'] == "1" %}
 
-          <p>Add up to 3 alternative quotes</p>
 
           {% call govukFieldset({
             legend: {
@@ -75,14 +77,14 @@
 
           {% call govukFieldset({
             legend: { 
-              text: "Enter details of this disbursement",
+              text: "Disbursement details",
               classes: "govuk-fieldset__legend--m"
             }
           }) %}
 
             {{ govukTextarea({
               label: {
-                text: "Describe the disbursement required",
+                text: "Describe the disbursement costs required",
                 classes: "govuk-label--s"
               },
                 name: "disburseAltQuote1",
