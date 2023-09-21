@@ -1,20 +1,5 @@
 {% extends "layouts/main.html" %}
-{% block pageScripts %}
-    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
 
-    <script>
-        var courtNameSelect = document.querySelector('#hearing-details-court')
-
-        accessibleAutocomplete.enhanceSelectElement({
-            confirmOnBlur: true,
-            autoSelect: true,
-            displayMenu: 'overlay',
-            minLength: 1,
-            selectElement: courtNameSelect
-        })
-    </script>
-
-{% endblock %}
 
 {% block content %}
     <div class="govuk-grid-row">
@@ -32,6 +17,7 @@
                     <div id="hearing-details-number-of-court-hearing-hint" class="govuk-hint">
                         For example, 3
                     </div>
+
                     <input class="govuk-input govuk-input--width-10" id="hearing-details-number-of-court-hearing" name="hearing_details[number_of_court_hearing]" type="text" spellcheck="false" aria-describedby="hearing-details-number-of-court-hearing-hint" inputmode="numeric">
                 </div>
 
@@ -91,11 +77,69 @@
                         <option value="{{matter['code']}}">
                             {{matter['code']}} - {{matter['description']}}
                             </option>
-                        {%- endfor %}
+                        {% endfor %}
                     </select>
                 </div>
+
+
+
+
+
                 <button class="govuk-button" data-module="govuk-button">Save and continue</button>
             </form>
         </div>
     </div>
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+
+    <script>
+        var courtNameSelect = document.querySelector('#hearing-details-court')
+
+        accessibleAutocomplete.enhanceSelectElement({
+            confirmOnBlur: true,
+            autoSelect: true,
+            displayMenu: 'overlay',
+            minLength: 1,
+            selectElement: courtNameSelect
+        })
+    </script>
+
+    <script>
+       
+
+        $(function() {
+        $("input[name='courtType']").click(function() {
+          if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        });
+      });
+
+      window.onload = function(){  
+        if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        }
+
+       
+         
+    </script>
+
 {% endblock %}
