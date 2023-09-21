@@ -84,7 +84,7 @@ router.post('/question3-alt-quotes', function(request, response) {
     if (altQuote == "No"){
         response.redirect("/provider/form/task-list?question3-alt-quotes=complete")
     } else {
-        response.redirect("/provider/form/question3-alt-quote-details?altQuote=1")
+        response.redirect("/provider/form/question3-alt-quote-details?addAltQuote=1")
     }
 })
 
