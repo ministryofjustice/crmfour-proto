@@ -1,0 +1,203 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Travel costs – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">3. About your request </span>
+      <h1 class="govuk-heading-xl">Travel costs</h1>
+     
+        <form class="form" action="question3-alt-quote-summary" method="post">
+
+        {% if data['addAltQuote'] == "1" %}
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  Travel time
+              </legend>
+              <div class="govuk-date-input" id="altTravel1">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="altTravel1-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="altTravel1-hours" name="altTravel1-hours" type="text" inputmode="numeric" value="{{data['altTravel1-hours']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="altTravel1-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="altTravel1-mins" name="altTravel1-mins" type="text" inputmode="numeric" value="{{data['altTravel1-mins']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          {{ govukInput({
+            id: "altTravelRate1",
+            name: "altTravelRate1",
+            value: data['altTravelRate1'],
+            label: {
+              text: "Travel hourly rate",
+              classes: "govuk-label--s"
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+          }) }}
+
+          {% else %}
+          {% if data['addAltQuote'] == "2" %}
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" role="group" >
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                    Travel time
+                </legend>
+                <div class="govuk-date-input" id="altTravel2">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="altTravel12-hours">
+                        Hours
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="altTravel2-hours" name="altTravel2-hours" type="text" inputmode="numeric" value="{{data['altTravel2-hours']}}">
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="altTravel-mins">
+                        Minutes
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="altTravel2-mins" name="altTravel2-mins" type="text" inputmode="numeric" value="{{data['altTravel2-mins']}}">
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            {{ govukInput({
+              id: "altTravelRate2",
+              name: "altTravelRate2",
+              value: data['altTravelRate2'],
+              label: {
+                text: "Travel hourly rate",
+                classes: "govuk-label--s"
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            {% else %}
+            {% if data['addAltQuote'] == "3" %}
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" role="group" >
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                      Travel time
+                  </legend>
+                  <div class="govuk-date-input" id="altTravel3">
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="altTravel3-hours">
+                          Hours
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="altTravel3-hours" name="altTravel3-hours" type="text" inputmode="numeric" value="{{data['altTravel3-hours']}}">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="altTravel-mins">
+                          Minutes
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="altTravel3-mins" name="altTravel3-mins" type="text" inputmode="numeric" value="{{data['altTravel3-mins']}}">
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              {{ govukInput({
+                id: "altTravelRate3",
+                name: "altTravelRate3",
+                value: data['altTravelRate3'],
+                label: {
+                  text: "Travel hourly rate",
+                  classes: "govuk-label--s"
+                },
+                prefix: {
+                  text: "£"
+                },
+                classes: "govuk-input--width-5",
+                spellcheck: false
+              }) }}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      
+        <h2 class="govuk-heading-m">
+          <span class="govuk-caption-m">Total travel costs</span>
+          £0.00
+        </h2>
+
+        <div class="govuk-button-group">
+
+          {% if data['changeTravel'] =="change" %}
+            {{ govukButton({
+              text: "Update"
+            }) }}
+            
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and continue"
+            }) }}
+          {% endif %}
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=saved"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

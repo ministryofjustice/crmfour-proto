@@ -23,7 +23,7 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About your request </span>
       
-      <form class="form" action="/question3-alt-quotes" method="post">
+      <form class="form" action="/question3-alt-quotes-q" method="post">
 
         {% set noHtml %}
           {{ govukTextarea({
@@ -36,7 +36,7 @@
         {% endset -%}
 
         {{ govukRadios({
-          name: "alt-quotes-q",
+          name: "altQuotesQ",
           fieldset: {
             legend: {
               text: "Have you got other quotes?",
@@ -46,17 +46,17 @@
           },
           items: [
           {
-            value: "no",
+            value: "No",
             text: "No",
-            checked: checked("alt-quotes-q", "no"),
+            checked: checked("altQuotesQ", "No"),
             conditional: {
               html: noHtml
             }
           },
           {
-              value: "yes",
+              value: "Yes",
               text: "Yes",
-              checked: checked("alt-quotes-q", "yes") 
+              checked: checked("altQuotesQ", "Yes") 
             }
             
           ]
