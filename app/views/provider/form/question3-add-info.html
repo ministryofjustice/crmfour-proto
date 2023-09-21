@@ -23,7 +23,7 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About your request </span>
       
-      <form class="form" action="task-list?question3-add-info=complete" method="post">
+      <form class="form" action="/question3-add-info" method="post">
 
         {{ govukTextarea({
           name: "why-pa",
@@ -37,31 +37,34 @@
             text: "Add any additional information pertinent to this application. You can attach copies of any supporting documentation later. "
           }
         }) }}
-        
+
+        {{ govukRadios({
+          name: "haveYouCompletedThisSection",
+          fieldset: {
+            legend: {
+              text: "Have you completed this section?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes, I’ve completed this section"
+            },
+            {
+              value: "No",
+              text: "No, I’ll come back to it later"
+            }
+          ]
+        }) }}
+
         
 
         <div class="govuk-button-group">
           {{ govukButton({
-            text: "Save and continue"
+            text: "Continue"
           }) }}
-
-          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
-        
-            {{ govukButton({
-              text: "Save and come back later",
-              classes: "govuk-button--secondary",
-              href: "../crm-apps?app-state=saved"
-            }) }}
-
-            {% else %}
-
-            {{ govukButton({
-              text: "Save and come back later",
-              classes: "govuk-button--secondary",
-              href: "../crm-apps?app-state=all"
-            }) }}
-
-          {% endif %}
         </div>
 
       </form>

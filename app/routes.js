@@ -88,6 +88,18 @@ router.post('/question3-alt-quotes', function(request, response) {
     }
 })
 
+//Additional information (Section3)
+router.post('/question3-add-info', function(request, response) {
+
+    var haveYouCompletedThisSection = request.session.data['haveYouCompletedThisSection']
+    if (haveYouCompletedThisSection == "No"){
+        response.redirect("/provider/form/task-list?question3-add-info=draft")
+    } 
+    if (haveYouCompletedThisSection == "Yes"){
+        response.redirect("/provider/form/task-list?question3-add-info=complete")
+    }
+})
+
 
 
 
