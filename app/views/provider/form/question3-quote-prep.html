@@ -117,7 +117,7 @@
 
             <div class="govuk-form-group">
               <h1 class="govuk-label-wrapper">
-                <label class="govuk-label govuk-label--s" for="cost-per-min">
+                <label class="govuk-label govuk-label--s" for="transCostMin">
                   What is the cost per minute?
                 </label>
               </h1>
@@ -127,10 +127,15 @@
               </div>
             </div>
           
-            <h2 class="govuk-heading-m">
-              <span class="govuk-caption-l">Total cost</span>
-              £0.00
+            <input type="hidden" id="actualTransTotal" name="actualTransTotal" value="{{data['actualTransTotal']}}" />
+                    
+            <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Update calculation</button>
+
+            <h2 class="govuk-heading-l">
+              <span class="govuk-caption-l">Total cost</span> £
+              <span id="showTransTotal">0</span>.00
             </h2>
+
           </fieldset>
 
           {% else %}
@@ -164,10 +169,15 @@
                 </div>
               </div>
             
-              <h2 class="govuk-heading-m">
-                <span class="govuk-caption-l">Total cost</span>
-                £0.00
-              </h2>
+              <input type="hidden" id="actualTransTransTotal" name="actualTransTransTotal" value="{{data['actualTransTransTotal']}}" />
+                    
+                <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransTransCost()">Update calculation</button>
+
+                <h2 class="govuk-heading-l">
+                  <span class="govuk-caption-l">Total cost</span> £
+                  <span id="showTransTransTotal">0</span>.00
+                </h2>
+
             </fieldset>
 
             {% else %}
@@ -197,14 +207,19 @@
                   </h1>
                   <div class="govuk-input__wrapper">
                     <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                    <input class="govuk-input govuk-input--width-5" id="ctranslatorCostWord" name="translatorCostWord" type="text" spellcheck="false" value="{{data['translatorCostWord']}}">
+                    <input class="govuk-input govuk-input--width-5" id="translatorCostWord" name="translatorCostWord" type="text" spellcheck="false" value="{{data['translatorCostWord']}}">
                   </div>
                 </div>
               
-                <h2 class="govuk-heading-m">
-                  <span class="govuk-caption-l">Total cost</span>
-                  £1356.00
+                <input type="hidden" id="actualTranslatorTotal" name="actualTranslatorTotal" value="{{data['actualTranslatorTotal']}}" />
+                    
+                <button class="govuk-button govuk-button--secondary" type="button" onclick="calTranslatorCost()">Update calculation</button>
+
+                <h2 class="govuk-heading-l">
+                  <span class="govuk-caption-l">Total cost</span> £
+                  <span id="showTranslatorTotal">0</span>.00
                 </h2>
+
               </fieldset>
 
               {% else %}
@@ -238,16 +253,22 @@
                     </div>
                   </div>
                 
-                  <h2 class="govuk-heading-m">
-                    <span class="govuk-caption-l">Total cost</span>
-                    £0.00
+                  <input type="hidden" id="actualPhotoTotal" name="actualPhotoTotal" value="{{data['actualPhotoTotal']}}" />
+                    
+                  <button class="govuk-button govuk-button--secondary" type="button" onclick="calPhotoCost()">Update calculation</button>
+
+                  <h2 class="govuk-heading-l">
+                    <span class="govuk-caption-l">Total cost</span> £
+                    <span id="showPhotoTotal">0</span>.00
                   </h2>
+
                 </fieldset>
 
                 {% else %}
                 {% if data['service-type'] == "DNA report" %}
                   <!--DNA-->
                   <fieldset class="govuk-fieldset">
+
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
                       <h1 class="govuk-fieldset__heading">
                         Cost
@@ -256,20 +277,16 @@
                 
                     <div class="govuk-form-group">
                       <h1 class="govuk-label-wrapper">
-                        <label class="govuk-label govuk-label--s" for="cost-DNA">
+                        <label class="govuk-label govuk-label--s" for="costDNA">
                           What is the total cost of the report?
                         </label>
                       </h1>
                       <div class="govuk-input__wrapper">
                         <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                        <input class="govuk-input govuk-input--width-5" id="costDNA" name="costDNA" type="text" spellcheck="false" value="{{data['costDNA']}}">
+                        <input class="govuk-input govuk-input--width-5" id="DNACost" name="DNACost" type="text" spellcheck="false" value="{{data['DNACost']}}">
                       </div>
                     </div>
-                  
-                    <h2 class="govuk-heading-m">
-                      <span class="govuk-caption-l">Total cost</span>
-                      £0.00
-                    </h2>
+
                   </fieldset>
 
                   {% else %}
@@ -310,9 +327,9 @@
                         </div>
                     
                         {{ govukInput({
-                          id: "otherHourlyCost",
-                          name: "otherHourlyCost",
-                          value: data['otherHourlyCost'],
+                          id: "otherCostTime",
+                          name: "otherCostTime",
+                          value: data['otherCostTime'],
                           label: {
                             text: "What is the hourly cost? "
                           },
@@ -327,7 +344,7 @@
                       {% set nonhourHtml %}
                         <div class="govuk-form-group">
                           <h1 class="govuk-label-wrapper">
-                            <label class="govuk-label" for="nonhour-quantity">
+                            <label class="govuk-label" for="otherNoItems">
                               Number of items
                             </label>
                           </h1>
@@ -378,11 +395,16 @@
                           }
                         ]
                       }) }}
+
+                    <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
                     
-                      <h2 class="govuk-heading-m">
-                        <span class="govuk-caption-l">Total cost</span>
-                        0.00
-                      </h2>
+                    <button class="govuk-button govuk-button--secondary" type="button" onclick="calOtherCost()">Update calculation</button>
+
+                    <h2 class="govuk-heading-l">
+                      <span class="govuk-caption-l">Total cost</span> £
+                      <span id="showOtherTotal">0</span>.00
+                    </h2>
+
                     </fieldset>
 
                     {% else %}
@@ -432,9 +454,16 @@
                         </div>
                       </div>
 
+                      <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">
+                        Update calculation
+                      </button>
+
+                      <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
+
                       <h2 class="govuk-heading-l">
-                        <span class="govuk-caption-l">Total cost</span>
-                        £0.00</h2>
+                        <span class="govuk-caption-l">Total cost</span> £
+                        <span id="showGeneralTotal">0</span>.00
+                      </h2>
 
                     </fieldset>
                   {% endif %}
@@ -482,4 +511,8 @@
     </div>
   </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
 {% endblock %}

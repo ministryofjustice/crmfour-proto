@@ -65,21 +65,21 @@
                 <legend class="govuk-fieldset__legend">
                   Number of hours
                 </legend>
-                <div class="govuk-date-input" id="prepTime1">
+                <div class="govuk-date-input" id="addTime1">
                   <div class="govuk-date-input__item">
                     <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="prepTime1-hours">
+                      <label class="govuk-label govuk-date-input__label" for="addTime1-hours">
                         Hours
                       </label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="prepTime1-hours" name="prepTime1-hours" type="text" inputmode="numeric" value="{{data['prepTime1-hours']}}">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-hours" name="addTime1-hours" type="text" inputmode="numeric" value="{{data['addTime1-hours']}}">
                     </div>
                   </div>
                   <div class="govuk-date-input__item">
                     <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="prepTime1-mins">
+                      <label class="govuk-label govuk-date-input__label" for="addTime1-mins">
                         Minutes
                       </label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="prepTime1-mins" name="prepTime1-mins" type="text" inputmode="numeric" value="{{data['prepTime1-mins']}}">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-mins" name="addTime1-mins" type="text" inputmode="numeric" value="{{data['addTime1-mins']}}">
                     </div>
                   </div>
                 </div>
@@ -87,9 +87,9 @@
             </div>
 
             {{ govukInput({
-              id: "addHourlyRate1",
-              name: "addHourlyRate1",
-              value: data['addHourlyRate1'],
+              id: "addCostTime1",
+              name: "addCostTime1",
+              value: data['addCostTime1'],
               label: {
                 text: "What is the hourly cost?"
               },
@@ -158,9 +158,15 @@
           }) }}
 
         </fieldset>
-        <h2 class="govuk-heading-m">
-          <span class="govuk-caption-l">Total costs</span>
-          £0.00
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd1Cost()">
+          Update calculation
+        </button>
+
+        <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total']}}" />
+
+        <h2 class="govuk-heading-l">
+          <span class="govuk-caption-l">Total cost</span> £
+          <span id="showAdd1Total">0</span>.00
         </h2>
 
         {% else %}
@@ -201,21 +207,21 @@
                     <legend class="govuk-fieldset__legend">
                       Number of hours
                     </legend>
-                    <div class="govuk-date-input" id="prepTime2">
+                    <div class="govuk-date-input" id="addTime2">
                       <div class="govuk-date-input__item">
                         <div class="govuk-form-group">
-                          <label class="govuk-label govuk-date-input__label" for="prepTime2-hours">
+                          <label class="govuk-label govuk-date-input__label" for="addTime2-hours">
                             Hours
                           </label>
-                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="prepTime2-hours" name="prepTime2-hours" type="text" inputmode="numeric" value="{{data['prepTime2-hours']}}">
+                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime2-hours" name="addTime2-hours" type="text" inputmode="numeric" value="{{data['addTime2-hours']}}">
                         </div>
                       </div>
                       <div class="govuk-date-input__item">
                         <div class="govuk-form-group">
-                          <label class="govuk-label govuk-date-input__label" for="prepTime2-mins">
+                          <label class="govuk-label govuk-date-input__label" for="addTime2-mins">
                             Minutes
                           </label>
-                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="prepTime2-mins" name="prepTime2-mins" type="text" inputmode="numeric" value="{{data['prepTime2-mins']}}">
+                          <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime2-mins" name="addTime2-mins" type="text" inputmode="numeric" value="{{data['addTime2-mins']}}">
                         </div>
                       </div>
                     </div>
@@ -223,9 +229,9 @@
                 </div>
 
                 {{ govukInput({
-                  id: "addHourlyRate2",
-                  name: "addHourlyRate2",
-                  value: data['addHourlyRate2'],
+                  id: "addCostTime2",
+                  name: "addCostTime2",
+                  value: data['addCostTime2'],
                   label: {
                     text: "What is the hourly rate?"
                   },
@@ -294,9 +300,15 @@
               }) }}
 
             </fieldset>
-            <h2 class="govuk-heading-m">
-              <span class="govuk-caption-l">Total travel costs</span>
-              £0.00
+            <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd2Cost()">
+              Update calculation
+            </button>
+    
+            <input type="hidden" id="actualAdd2Total" name="actualAdd2Total" value="{{data['actualAdd2Total']}}" />
+    
+            <h2 class="govuk-heading-l">
+              <span class="govuk-caption-l">Total cost</span> £
+              <span id="showAdd2Total">0</span>.00
             </h2>
         {% endif %}
       {% endif %}
@@ -331,4 +343,8 @@
 </div>
 
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
 {% endblock %}

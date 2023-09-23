@@ -74,14 +74,6 @@
                   {{data['whyAdd1']}}
                 </dd>
               </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Cost basis
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['addChargeType1']}}
-                </dd>
-              </div>
             </dl>
             {% if data['addChargeType1'] == "Charged by the hour" %}
               <table class="govuk-table">
@@ -94,9 +86,9 @@
                 </thead>
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{data['prepTime1-hours']}} hours {{data['prepTime1-mins']}} minutes</td>
+                    <td class="govuk-table__cell">{{data['addTime1-hours']}} hours {{data['addTime1-mins']}} minutes</td>
                     <td class="govuk-table__cell">£{{data['addHourlyRate1']}} per hour</td>
-                    <td class="govuk-table__cell">£0.00</td>
+                    <td class="govuk-table__cell">£{{data['actualAdd1Total']}}.00</td>
                   </tr>
                 </tbody>
               </table>
@@ -164,14 +156,6 @@
                     {{data['whyAdd2']}}
                   </dd>
                 </div>
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Cost basis
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    {{data['addChargeType2']}}
-                  </dd>
-                </div>
               </dl>
               {% if data['addChargeType2'] == "Charged by the hour" %}
                 <table class="govuk-table">
@@ -184,9 +168,9 @@
                   </thead>
                   <tbody class="govuk-table__body">
                     <tr class="govuk-table__row">
-                      <td class="govuk-table__cell">{{data['prepTime2-hours']}} hours {{data['prepTime2-mins']}} minutes</td>
-                      <td class="govuk-table__cell">£{{data['addHourlyRate2']}} per hour</td>
-                      <td class="govuk-table__cell">£0.00</td>
+                      <td class="govuk-table__cell">{{data['addTime2-hours']}} hours {{data['addTime2-mins']}} minutes</td>
+                      <td class="govuk-table__cell">£{{data['addCostTime2']}} per hour</td>
+                      <td class="govuk-table__cell">£{{data['actualAdd2Total']}}.00</td>
                     </tr>
                   </tbody>
                 </table>

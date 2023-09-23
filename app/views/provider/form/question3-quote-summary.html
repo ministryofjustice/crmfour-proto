@@ -23,10 +23,22 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About your request </span>
       <h1 class="govuk-heading-xl">Disbursement summary</h1>
+      
+      <input id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal']}}" />
+      <input id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total']}}" />
+      <input id="actualAdd2Total" name="actualAdd2Total" value="{{data['actualAdd2Total']}}" />
+      <input id="actualTransTotal" name="actualTransTotal" value="{{data['actualTransTotal']}}" />
+      <input id="actualTransTransTotal" name="actualTransTransTotal" value="{{data['actualTransTransTotal']}}" />
+      <input id="actualTranslatorTotal" name="actualTranslatorTotal" value="{{data['actualTranslatorTotal']}}" />
+      <input id="actualPhotoTotal" name="actualPhotoTotal" value="{{data['actualPhotoTotal']}}" />
+      <input id="DNACost" name="DNACost" value="{{data['DNACost']}}" />
+      <input id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
+      <input id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
+
 
       <h2 class="govuk-heading-l">
-        <span class="govuk-caption-l">Total cost</span>
-        £1356.00
+        <span class="govuk-caption-l">Total cost</span> £
+        <span id="showdistTotalCost">0</span>.00
       </h2>
 
       
@@ -95,7 +107,7 @@
                     Cost of report
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['costDNA']}}
+                    £{{data['DNACost']}}.00
                   </dd>
                 </div>
               {% endif %}
@@ -115,7 +127,7 @@
                   <tr class="govuk-table__row">
                     <td class="govuk-table__cell">{{data['transNoMins']}} minutes</td>
                     <td class="govuk-table__cell">£{{data['transCostMin']}} per minute</td>
-                    <td class="govuk-table__cell">£0.00</td>
+                    <td class="govuk-table__cell">£{{data['actualTransTotal']}}.00</td>
                   </tr>
                 </tbody>
               </table> 
@@ -133,7 +145,7 @@
                     <tr class="govuk-table__row">
                       <td class="govuk-table__cell">{{data['transtransNoMins']}} minutes</td>
                       <td class="govuk-table__cell">£{{data['transtransCostMin']}} per minute</td>
-                      <td class="govuk-table__cell">£0.00</td>
+                      <td class="govuk-table__cell">£{{data['actualTransTransTotal']}}.00</td>
                     </tr>
                   </tbody>
                 </table>
@@ -151,7 +163,7 @@
                       <tr class="govuk-table__row">
                         <td class="govuk-table__cell">{{data['translatorWords']}} words</td>
                         <td class="govuk-table__cell">£{{data['translatorCostWord']}} per word</td>
-                        <td class="govuk-table__cell">£0.00</td>
+                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal']}}.00</td>
                       </tr>
                     </tbody>
                   </table>
@@ -169,7 +181,7 @@
                         <tr class="govuk-table__row">
                           <td class="govuk-table__cell">{{data['photoNoPages']}} pages</td>
                           <td class="govuk-table__cell">£{{data['photoCostPage']}} per page</td>
-                          <td class="govuk-table__cell">£0.00</td>
+                          <td class="govuk-table__cell">£{{data['actualPhotoTotal']}}.00</td>
                         </tr>
                       </tbody>
                     </table>
@@ -186,13 +198,13 @@
                         <tbody class="govuk-table__body">
                           <tr class="govuk-table__row">
                             <td class="govuk-table__cell">{{data['otherNoHours-hours']}} hours {{data['otherNoHours-mins']}}</td>
-                            <td class="govuk-table__cell">£{{data['otherHourlyCost']}} per hour</td>
-                            <td class="govuk-table__cell">£0.00</td>
+                            <td class="govuk-table__cell">£{{data['otherCost']}} per hour</td>
+                            <td class="govuk-table__cell">£{{data['actualOtherTotal']}}.00</td>
                           </tr>
                         </tbody>
                       </table> 
                       {% else %}
-                      {% if data['service-type'] == "Other" and  data['otherChargeType'] =="Charged per item"%} 
+                      {% if data['service-type'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
                         <table class="govuk-table">
                           <thead class="govuk-table__head">
                             <tr class="govuk-table__row">
@@ -205,28 +217,30 @@
                             <tr class="govuk-table__row">
                               <td class="govuk-table__cell">{{data['otherNoItems']}} items</td>
                               <td class="govuk-table__cell">£{{data['otherItemsCost']}} per item</td>
-                              <td class="govuk-table__cell">£0.00</td>
+                              <td class="govuk-table__cell">£{{data['actualOtherTotal']}}.00</td>
                             </tr>
                           </tbody>
                         </table> 
                         {% else %}
-                        <!--All other disbursement types-->
-                        <table class="govuk-table">
-                          <thead class="govuk-table__head">
-                            <tr class="govuk-table__row">
-                              <th scope="col" class="govuk-table__header">Number of hours</th>
-                              <th scope="col" class="govuk-table__header">Cost per hour</th>
-                              <th scope="col" class="govuk-table__header">Total</th>
-                            </tr>
-                          </thead>
-                          <tbody class="govuk-table__body">
-                            <tr class="govuk-table__row">
-                              <td class="govuk-table__cell">{{data['generalNoHours-hours']}} hours {{data['generalNoHours-mins']}} minutes</td>
-                              <td class="govuk-table__cell">£{{data['generalCost']}} per hour</td>
-                              <td class="govuk-table__cell">£0.00</td>
-                            </tr>
-                          </tbody>
-                        </table> 
+                        {% if data['service-type'] !== "DNA report" %}
+                          <!--All other disbursement types-->
+                          <table class="govuk-table">
+                            <thead class="govuk-table__head">
+                              <tr class="govuk-table__row">
+                                <th scope="col" class="govuk-table__header">Number of hours</th>
+                                <th scope="col" class="govuk-table__header">Cost per hour</th>
+                                <th scope="col" class="govuk-table__header">Total</th>
+                              </tr>
+                            </thead>
+                            <tbody class="govuk-table__body">
+                              <tr class="govuk-table__row">
+                                <td class="govuk-table__cell">{{data['generalNoHours-hours']}} hours {{data['generalNoHours-mins']}} minutes</td>
+                                <td class="govuk-table__cell">£{{data['generalCost']}} per hour</td>
+                                <td class="govuk-table__cell">£{{data['actualGeneralTotal']}}.00</td>
+                              </tr>
+                            </tbody>
+                          </table> 
+                        {% endif %}
                       {% endif %}
                     {% endif %}
                   {% endif %}
@@ -281,9 +295,9 @@
                 </thead>
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{data['quoteTravel-hours']}} hours {{data['quoteTravel-mins']}} minutes</td>
-                    <td class="govuk-table__cell">£{{data['travelRate']}} per hour</td>
-                    <td class="govuk-table__cell">£0.00</td>
+                    <td class="govuk-table__cell">{{data['travelTime-hours']}} hours {{data['travelTime-mins']}} minutes</td>
+                    <td class="govuk-table__cell">£{{data['travelCostTime']}} per hour</td>
+                    <td class="govuk-table__cell">£{{data['actualTravelTotal']}}.00</td>
                   </tr>
                 </tbody>
               </table>
@@ -299,7 +313,7 @@
             <ul class="govuk-summary-card__actions">
               {% if data['addAdd'] !=="Yes" %}
                 <li class="govuk-summary-card__action"> 
-                  <a class="govuk-link--no-visited-state" href="question3-quote-add?addAdd=Yes&addCost=1&changeAdd=none">Change <span class="govuk-visually-hidden"> travel costs</span></a>
+                  <a class="govuk-link--no-visited-state" href="question3-quote-add?addAdd=Yes&addCost=1&changeAdd=none">Change <span class="govuk-visually-hidden"> additional item</span></a>
                 </li>
                 {% else %}
                 {% if data['addAdd'] =="Yes" %}
@@ -328,12 +342,12 @@
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
                     <td class="govuk-table__cell">{{data['addCost1']}}</td>
-                    <td class="govuk-table__cell">£5.00</td>
+                    <td class="govuk-table__cell">£{{data['actualAdd1Total']}}.00</td>
                   </tr>
                   {% if data['addCost'] == "2" %}
                     <tr class="govuk-table__row">
                       <td class="govuk-table__cell">{{data['addCost2']}}</td>
-                      <td class="govuk-table__cell">£25.00</td>
+                      <td class="govuk-table__cell">£{{data['actualAdd2Total']}}.00</td>
                     </tr>
                   {% endif %}
                 </tbody>
@@ -381,54 +395,21 @@
 
     <script>
 
-        
+      window.onload = function(){    
+      var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
+      var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
+      var actualAdd2Total = parseInt(document.getElementById("actualAdd2Total").value) | 0
+      var actualTransTransTotal = parseInt(document.getElementById("actualTransTransTotal").value) | 0
+      var actualTranslatorTotal = parseInt(document.getElementById("actualTranslatorTotal").value) | 0
+      var actualPhotoTotal = parseInt(document.getElementById("actualPhotoTotal").value) | 0
+      var DNACost = parseInt(document.getElementById("DNACost").value) | 0
+      var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
+      var actualOtherTotal = parseInt(document.getElementById("actualOtherTotal").value) | 0
+   
+      distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTransTotal + actualTranslatorTotal + actualPhotoTotal + DNACost + actualGeneralTotal + actualOtherTotal;
+      document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+    }
 
-
-      let selectElements = $('#service-type')
-
-      selectElements.each(function (index) {
-        let selectElement = $(this)
-        if (selectElement.length) {
-          
-          accessibleAutocomplete.enhanceSelectElement({
-            defaultValue: '',
-            placeholder: 'Search for the expenditure or enter your own',
-            minLength: 1,
-            selectElement: selectElement[0],
-            onConfirm: function (data) {
-
-              //box1 - sets up box1
-              let box1_wrapper_id = 'box1_wrapper'
-              let box1_wrapper_element = $('#' + box1_wrapper_id)
-              let box1_selected_element = box1_wrapper_element.find('div.govuk-inset-text')
-
-              //box2 - sets up box2
-              let box2_wrapper_id = 'box2_wrapper'
-              let box2_wrapper_element = $('#' + box2_wrapper_id)
-              let box2_selected_element = box2_wrapper_element.find('div.govuk-inset-text')
-
-              if (data !== undefined) {
-                // We only want to hide if the variable is defined
-                if (data) {
-
-                  //box1 - displays box1
-                  box1_selected_element.html($('option:contains(' + data + ')').val())
-                  box1_wrapper_element.show()
-
-                  //box2 - displays box2
-                  box2_selected_element.html($('option:contains(' + data + ')').val())
-                  box2_wrapper_element.show()
-
-                } else {
-                  box1_wrapper_element.show()
-                  box2_wrapper_element.hide()
-                }
-              }
-            }
-          })
-        }
-
-      })
     
     </script>
 

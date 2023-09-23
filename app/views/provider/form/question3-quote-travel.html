@@ -49,21 +49,21 @@
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                 Travel time
             </legend>
-            <div class="govuk-date-input" id="quoteTravel">
+            <div class="govuk-date-input" id="travelTime">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="quoteTravel-hours">
+                  <label class="govuk-label govuk-date-input__label" for="travelTime-hours">
                     Hours
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quoteTravel-hours" name="quoteTravel-hours" type="text" inputmode="numeric" value="{{data['quoteTravel-hours']}}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-hours" name="travelTime-hours" type="text" inputmode="numeric" value="{{data['travelTime-hours']}}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="quoteTravel-mins">
+                  <label class="govuk-label govuk-date-input__label" for="travelTime-mins">
                     Minutes
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="quoteTravel-mins" name="quoteTravel-mins" type="text" inputmode="numeric" value="{{data['quoteTravel-mins']}}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-mins" name="travelTime-mins" type="text" inputmode="numeric" value="{{data['travelTime-mins']}}">
                 </div>
               </div>
             </div>
@@ -71,11 +71,11 @@
         </div>
       
         {{ govukInput({
-          id: "travelRate",
-          name: "travelRate",
-          value: data['travelRate'],
+          id: "travelCostTime",
+          name: "travelCostTime",
+          value: data['travelCostTime'],
           label: {
-            text: "Travel hourly rate",
+            text: "Hourly rate",
             classes: "govuk-label--s"
           },
           prefix: {
@@ -85,9 +85,13 @@
           spellcheck: false
         }) }}
       
+        <input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal']}}" />
+                    
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calTravelCost()">Update calculation</button>
+
         <h2 class="govuk-heading-l">
-          <span class="govuk-caption-l">Total travel costs</span>
-          £0.00
+          <span class="govuk-caption-l">Total cost</span> £
+          <span id="showTravelTotal">0</span>.00
         </h2>
 
         <div class="govuk-button-group">
@@ -128,4 +132,8 @@
     </div>
   </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
 {% endblock %}
