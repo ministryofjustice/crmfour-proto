@@ -66,14 +66,14 @@
                   Disbursement type
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['service-type']}}
-                  {% if data['service-type'] == "Other" %}
+                  {{data['serviceType']}}
+                  {% if data['serviceType'] == "Other" %}
                     <br>
                     {{data['otherExpert']}}
                   {% endif %}
                 </dd>
               </div>
-               {% if data['service-type'] == "Psychiatric report (Prison Law)" or data['service-type'] == "Psychological report (Prison Law)" or data['service-type'] == "Interpreter" %}
+               {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
                     Ordered by court
@@ -92,7 +92,7 @@
                 </dd>
               </div>
               <!--If type is DNA show costs here-->
-              {% if data['service-type'] == "DNA report" %}
+              {% if data['serviceType'] == "DNA report" %}
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
                     Cost of report
@@ -105,7 +105,7 @@
             </dl>
 
             <!--Tables for disbursements-->
-            {% if data['service-type'] == "Transcription" %}
+            {% if data['serviceType'] == "Transcription" %}
               <table class="govuk-table">
                 <thead class="govuk-table__head">
                   <tr class="govuk-table__row">
@@ -123,7 +123,7 @@
                 </tbody>
               </table> 
               {% else %}
-              {% if data['service-type'] == "Translation and Transcription" %}
+              {% if data['serviceType'] == "Translation and Transcription" %}
                 <table class="govuk-table">
                   <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
@@ -141,7 +141,7 @@
                   </tbody>
                 </table>
                 {% else %}
-                {% if data['service-type'] == "Translator" %} 
+                {% if data['serviceType'] == "Translator" %} 
                   <table class="govuk-table">
                     <thead class="govuk-table__head">
                       <tr class="govuk-table__row">
@@ -159,7 +159,7 @@
                     </tbody>
                   </table>
                   {% else %}
-                  {% if data['service-type'] == "Photocopying" %} 
+                  {% if data['serviceType'] == "Photocopying" %} 
                     <table class="govuk-table">
                       <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
@@ -177,7 +177,7 @@
                       </tbody>
                     </table>
                     {% else %}
-                    {% if data['service-type'] == "Other" and  data['otherChargeType'] =="Charged by the hour"%} 
+                    {% if data['serviceType'] == "Other" and  data['otherChargeType'] =="Charged by the hour"%} 
                       <table class="govuk-table">
                         <thead class="govuk-table__head">
                           <tr class="govuk-table__row">
@@ -195,7 +195,7 @@
                         </tbody>
                       </table> 
                       {% else %}
-                      {% if data['service-type'] == "Other" and  data['otherChargeType'] =="Charged per item"%} 
+                      {% if data['serviceType'] == "Other" and  data['otherChargeType'] =="Charged per item"%} 
                         <table class="govuk-table">
                           <thead class="govuk-table__head">
                             <tr class="govuk-table__row">

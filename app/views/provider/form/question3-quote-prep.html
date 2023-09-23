@@ -23,7 +23,7 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About your request </span>
       <h1 class="govuk-heading-xl">Disbursement details</h1>
-      <p class="govuk-body-l">{{data['service-type']}}</p>
+      <p class="govuk-body-l">{{data['serviceType']}}</p>
 
       {% if data['changeQuote'] =="change" %}
         <form class="form" action="question3-quote-summary" method="post">
@@ -33,7 +33,7 @@
 
       <form class="form" action="question3-quote-travel-q" method="post">
 
-        {% if data['service-type'] == "Other" %}
+        {% if data['serviceType'] == "Other" %}
 
           {{ govukInput({
             label: {
@@ -71,7 +71,7 @@
           ]
         }) }}
         
-        {% if data['service-type'] == "Psychiatric report (Prison Law)" or data['service-type'] == "Psychological report (Prison Law)" or data['service-type'] == "Interpreter" %}
+        {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
           {{ govukRadios({
             classes: "govuk-radios--inline",
             name: "courtOrdered",
@@ -96,7 +96,7 @@
           }) }}
         {% endif %}
 
-        {% if data['service-type'] == "Transcription" %}
+        {% if data['serviceType'] == "Transcription" %}
 
           <!--Transcription-->
           <fieldset class="govuk-fieldset">
@@ -139,7 +139,7 @@
           </fieldset>
 
           {% else %}
-          {% if data['service-type'] == "Translation and Transcription" %}
+          {% if data['serviceType'] == "Translation and Transcription" %}
             <!--Transcription & translation-->
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -181,7 +181,7 @@
             </fieldset>
 
             {% else %}
-            {% if data['service-type'] == "Translator" %}
+            {% if data['serviceType'] == "Translator" %}
               <!--Translator-->
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -223,7 +223,7 @@
               </fieldset>
 
               {% else %}
-              {% if data['service-type'] == "Photocopying" %}
+              {% if data['serviceType'] == "Photocopying" %}
                 <!--Photocopying-->
                 <fieldset class="govuk-fieldset">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
@@ -265,7 +265,7 @@
                 </fieldset>
 
                 {% else %}
-                {% if data['service-type'] == "DNA report" %}
+                {% if data['serviceType'] == "DNA report" %}
                   <!--DNA-->
                   <fieldset class="govuk-fieldset">
 
@@ -290,7 +290,7 @@
                   </fieldset>
 
                   {% else %}
-                  {% if data['service-type'] == "Other" %}
+                  {% if data['serviceType'] == "Other" %}
                     <!--Other-->
                     <fieldset class="govuk-fieldset">
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
