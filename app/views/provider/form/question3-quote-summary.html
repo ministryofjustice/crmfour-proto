@@ -24,17 +24,17 @@
       <span class="govuk-caption-xl">3. About your request </span>
       <h1 class="govuk-heading-xl">Disbursement summary</h1>
       
-      <input id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal']}}" />
-      <input id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total']}}" />
-      <input id="actualAdd2Total" name="actualAdd2Total" value="{{data['actualAdd2Total']}}" />
-      <input id="actualTransTotal" name="actualTransTotal" value="{{data['actualTransTotal']}}" />
-      <input id="actualTransTransTotal" name="actualTransTransTotal" value="{{data['actualTransTransTotal']}}" />
-      <input id="actualTranslatorTotal" name="actualTranslatorTotal" value="{{data['actualTranslatorTotal']}}" />
-      <input id="actualPhotoTotal" name="actualPhotoTotal" value="{{data['actualPhotoTotal']}}" />
-      <input id="DNACost" name="DNACost" value="{{data['DNACost']}}" />
-      <input id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
-      <input id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
-      <input id="serviceType" name="serviceType" value="{{data['serviceType']}}" />
+      <input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal']}}" />
+      <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total']}}" />
+      <input type="hidden" id="actualAdd2Total" name="actualAdd2Total" value="{{data['actualAdd2Total']}}" />
+      <input type="hidden" id="actualTransTotal" name="actualTransTotal" value="{{data['actualTransTotal']}}" />
+      <input type="hidden" id="actualTransTransTotal" name="actualTransTransTotal" value="{{data['actualTransTransTotal']}}" />
+      <input type="hidden" id="actualTranslatorTotal" name="actualTranslatorTotal" value="{{data['actualTranslatorTotal']}}" />
+      <input type="hidden" id="actualPhotoTotal" name="actualPhotoTotal" value="{{data['actualPhotoTotal']}}" />
+      <input type="hidden" id="DNACost" name="DNACost" value="{{data['DNACost']}}" />
+      <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
+      <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
+      <input type="hidden" id="serviceType" name="serviceType" value="{{data['serviceType']}}" />
 
       <h2 class="govuk-heading-l">
         <span class="govuk-caption-l">Total cost</span> £
@@ -403,6 +403,7 @@
       var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
       var actualAdd2Total = parseInt(document.getElementById("actualAdd2Total").value) | 0
       var actualTransTransTotal = parseInt(document.getElementById("actualTransTransTotal").value) | 0
+      var actualTransTotal = parseInt(document.getElementById("actualTransTotal").value) | 0
       var actualTranslatorTotal = parseInt(document.getElementById("actualTranslatorTotal").value) | 0
       var actualPhotoTotal = parseInt(document.getElementById("actualPhotoTotal").value) | 0
       var DNACost = parseInt(document.getElementById("DNACost").value) | 0
@@ -410,13 +411,32 @@
       var actualOtherTotal = parseInt(document.getElementById("actualOtherTotal").value) | 0
       var serviceType1 = document.getElementById("serviceType").value
 
-      if (serviceType1 === "Accident Reconstruction"){   
-        
-        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualGeneralTotal;
-
+      if (serviceType1 === "Other"){   
+        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualOtherTotal;
         document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
-        
-        console.log(serviceType1);
+      } else
+      if (serviceType1 === "Photocopying"){   
+        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualPhotoTotal;
+        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+      } else
+      if (serviceType1 === "Transcription"){   
+        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTotal;
+        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+      } else
+      if (serviceType1 === "Translation and Transcription"){   
+        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTransTotal;
+        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+      } else
+      if (serviceType1 === "Translator"){   
+        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTranslatorTotal;
+        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+      } else
+      if (serviceType1 === "DNA report"){   
+        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + DNACost;
+        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+      }else {   
+        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualGeneralTotal;
+        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
       }
 
       
