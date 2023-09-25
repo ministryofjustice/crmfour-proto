@@ -156,6 +156,46 @@ function calAlt3Cost() {
   document.getElementById("actualAlt3Total").value = Alt3Cost;
 }
 
+function calAltTravel1Cost() {
+
+  var altTravel1CostTime = parseInt(document.getElementById("altTravel1Cost").value)
+  var altTravel1Hours = parseInt(document.getElementById("altTravel1-hours").value)
+  var alt1travelMins = parseInt(document.getElementById("altTravel1-mins").value),
+
+  alttravel1MinsHours = alt1travelMins / 60;
+  alttravel1Time = alttravel1MinsHours + altTravel1Hours;
+  alttravel1Cost = altTravel1CostTime * alttravel1Time;
+  document.getElementById("showAltTravel1Total").innerHTML = alttravel1Cost;
+  document.getElementById("actualAltTravel1Total").value = alttravel1Cost;
+}
+
+function calAltTravel2Cost() {
+
+  var altTravel2CostTime = parseInt(document.getElementById("altTravel2Cost").value)
+  var altTravel2Hours = parseInt(document.getElementById("altTravel2-hours").value)
+  var alt2travelMins = parseInt(document.getElementById("altTravel2-mins").value),
+
+  alttravel2MinsHours = alt2travelMins / 60;
+  alttravel2Time = alttravel2MinsHours + altTravel2Hours;
+  alttravel2Cost = altTravel2CostTime * alttravel2Time;
+  document.getElementById("showAltTravel2Total").innerHTML = alttravel2Cost;
+  document.getElementById("actualAltTravel2Total").value = alttravel2Cost;
+}
+
+function calAltTravel3Cost() {
+
+  var altTravel3CostTime = parseInt(document.getElementById("altTravel3Cost").value)
+  var altTravel3Hours = parseInt(document.getElementById("altTravel3-hours").value)
+  var alt3travelMins = parseInt(document.getElementById("altTravel3-mins").value),
+
+  alttravel3MinsHours = alt3travelMins / 60;
+  alttravel3Time = alttravel3MinsHours + altTravel3Hours;
+  alttravel3Cost = altTravel3CostTime * alttravel3Time;
+  document.getElementById("showAltTravel3Total").innerHTML = alttravel3Cost;
+  document.getElementById("actualAltTravel3Total").value = alttravel3Cost;
+}
+
+
 
 
 

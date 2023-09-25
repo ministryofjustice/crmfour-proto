@@ -55,9 +55,9 @@
           </div>
 
           {{ govukInput({
-            id: "altTravelRate1",
-            name: "altTravelRate1",
-            value: data['altTravelRate1'],
+            id: "altTravel1Cost",
+            name: "altTravel1Cost",
+            value: data['altTravel1Cost'],
             label: {
               text: "Travel hourly rate",
               classes: "govuk-label--s"
@@ -69,6 +69,15 @@
             spellcheck: false
           }) }}
 
+          <input type="hidden" id="actualAltTravel1Total" name="actualAltTravel1Total" value="{{data['actualAltTravel1Total']}}" />
+                      
+          <button class="govuk-button govuk-button--secondary" type="button" onclick="calAltTravel1Cost()">Update calculation</button>
+
+          <h2 class="govuk-heading-l">
+            <span class="govuk-caption-l">Total cost1</span> £
+            <span id="showAltTravel1Total">0</span>.00
+          </h2>
+
           {% else %}
           {% if data['addAltQuote'] == "2" %}
             <div class="govuk-form-group">
@@ -79,7 +88,7 @@
                 <div class="govuk-date-input" id="altTravel2">
                   <div class="govuk-date-input__item">
                     <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="altTravel12-hours">
+                      <label class="govuk-label govuk-date-input__label" for="altTravel2-hours">
                         Hours
                       </label>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="altTravel2-hours" name="altTravel2-hours" type="text" inputmode="numeric" value="{{data['altTravel2-hours']}}">
@@ -87,7 +96,7 @@
                   </div>
                   <div class="govuk-date-input__item">
                     <div class="govuk-form-group">
-                      <label class="govuk-label govuk-date-input__label" for="altTravel-mins">
+                      <label class="govuk-label govuk-date-input__label" for="altTravel2-mins">
                         Minutes
                       </label>
                       <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="altTravel2-mins" name="altTravel2-mins" type="text" inputmode="numeric" value="{{data['altTravel2-mins']}}">
@@ -97,9 +106,9 @@
               </fieldset>
             </div>
             {{ govukInput({
-              id: "altTravelRate2",
-              name: "altTravelRate2",
-              value: data['altTravelRate2'],
+              id: "altTravel2Cost",
+              name: "altTravel2Cost",
+              value: data['altTravel2Cost'],
               label: {
                 text: "Travel hourly rate",
                 classes: "govuk-label--s"
@@ -110,6 +119,15 @@
               classes: "govuk-input--width-5",
               spellcheck: false
             }) }}
+
+            <input type="hidden" id="actualAltTravel2Total" name="actualAltTravel2Total" value="{{data['actualAltTravel2Total']}}" />
+                      
+            <button class="govuk-button govuk-button--secondary" type="button" onclick="calAltTravel2Cost()">Update calculation</button>
+
+            <h2 class="govuk-heading-l">
+              <span class="govuk-caption-l">Total cost</span> £
+              <span id="showAltTravel2Total">0</span>.00
+            </h2>
 
             {% else %}
             {% if data['addAltQuote'] == "3" %}
@@ -140,9 +158,9 @@
               </div>
 
               {{ govukInput({
-                id: "altTravelRate3",
-                name: "altTravelRate3",
-                value: data['altTravelRate3'],
+                id: "altTravel3Cost",
+                name: "altTravel3Cost",
+                value: data['altTravel3Cost'],
                 label: {
                   text: "Travel hourly rate",
                   classes: "govuk-label--s"
@@ -156,11 +174,16 @@
             {% endif %}
           {% endif %}
         {% endif %}
-      
-        <h2 class="govuk-heading-m">
-          <span class="govuk-caption-m">Total travel costs</span>
-          £0.00
+
+        <input type="hidden" id="actualAltTravel3Total" name="actualAltTravel3Total" value="{{data['actualAltTravel3Total']}}" />
+                      
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calAltTravel3Cost()">Update calculation3</button>
+
+        <h2 class="govuk-heading-l">
+          <span class="govuk-caption-l">Total cost</span> £
+          <span id="showAltTravel3Total">0</span>.00
         </h2>
+      
 
         <div class="govuk-button-group">
 
@@ -200,4 +223,8 @@
     </div>
   </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
 {% endblock %}

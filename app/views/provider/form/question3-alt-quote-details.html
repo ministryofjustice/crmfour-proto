@@ -25,6 +25,8 @@
 
       <h1 class="govuk-heading-xl" tabindex="-1">Add alternative quotes</h1>
       <p>You can add up to 3 alternative quotes. We only need to see the top line info and travel detials or something.</p>
+        
+        
       {% if data['addAltQuote'] == "1" %}
         <form class="form" action="/question3-alt-travel-q1" method="post">
         {% else %}
@@ -39,9 +41,9 @@
 
         <h2 class="govuk-heading-l">Alternative quote</h2>
 
-        <!--Alt quote 1-->
-
         {% if data['addAltQuote'] == "1" %}
+
+          <!--Alt quote 1-->
 
           {% call govukFieldset({
             legend: {
@@ -55,7 +57,6 @@
                 text: "Full name",
                 classes: "govuk-label--s"
               },
-              classes: "govuk-input--width-20",
               id: "expertNameAlt1",
               name: "expertNameAlt1",
               value: data['expertNameAlt1']
@@ -66,7 +67,6 @@
                 text: "Organisation",
                 classes: "govuk-label--s"
               },
-              classes: "govuk-input--width-20",
               id: "expertOrgAlt1",
               name: "expertOrgAlt1",
               value: data['expertOrgAlt1']
@@ -208,8 +208,8 @@
             Update calculation
           </button>
   
-          <input type="hidden" id="actualAlt1Total" name="actualAdd1Total" value="{{data['actualAlt1Total']}}" />
-  
+          <input type="hidden" id="actualAlt1Total" name="actualAlt1Total" value="{{data['actualAlt1Total']}}" />
+
           <h2 class="govuk-heading-l">
             <span class="govuk-caption-l">Total cost</span> £
             <span id="showAlt1Total">0</span>.00
@@ -217,6 +217,48 @@
 
           {% else %}
           {% if data['addAltQuote'] == "2" or data['showAltQuote'] == "2"  %}
+
+          <!--Alt quote 2-->
+
+            {% call govukFieldset({
+              legend: {
+                text: "Expert's details",
+                classes: "govuk-fieldset__legend--m"
+              }
+            }) %}
+            
+              {{ govukInput({
+                label: {
+                  text: "Full name",
+                  classes: "govuk-label--s"
+                },
+                id: "expertNameAlt2",
+                name: "expertNameAlt2",
+                value: data['expertNameAlt2']
+              }) }}
+
+              {{ govukInput({
+                label: {
+                  text: "Organisation",
+                  classes: "govuk-label--s"
+                },
+                id: "expertOrgAlt2",
+                name: "expertOrgAlt2",
+                value: data['expertOrgAlt2']
+              }) }}
+
+              {{ govukInput({
+                label: {
+                  text: "Postcode",
+                  classes: "govuk-label--s"
+                },
+                classes: "govuk-input--width-10",
+                id: "expertPostcodeAlt2",
+                name: "expertPostcodeAlt2",
+                value: data['expertPostcodeAlt2']
+              }) }}
+
+            {% endcall %}
 
             <!--Disbursement 2 details -->
 
@@ -347,14 +389,52 @@
               <span class="govuk-caption-l">Total cost</span> £
               <span id="showAlt2Total">0</span>.00
             </h2>
-
-
-
-
-
-            
+           
             {% else %}
             {% if data['addAltQuote'] == "3" or data['showAltQuote'] == "3"  %}
+
+              <!--Alt quote 3-->
+
+              {% call govukFieldset({
+                legend: {
+                  text: "Expert's details",
+                  classes: "govuk-fieldset__legend--m"
+                }
+              }) %}
+              
+                {{ govukInput({
+                  label: {
+                    text: "Full name",
+                    classes: "govuk-label--s"
+                  },
+                  id: "expertNameAlt3",
+                  name: "expertNameAlt3",
+                  value: data['expertNameAlt3']
+                }) }}
+
+                {{ govukInput({
+                  label: {
+                    text: "Organisation",
+                    classes: "govuk-label--s"
+                  },
+                  id: "expertOrgAlt3",
+                  name: "expertOrgAlt3",
+                  value: data['expertOrgAlt3']
+                }) }}
+
+                {{ govukInput({
+                  label: {
+                    text: "Postcode",
+                    classes: "govuk-label--s"
+                  },
+                  classes: "govuk-input--width-10",
+                  id: "expertPostcodeAlt3",
+                  name: "expertPostcodeAlt3",
+                  value: data['expertPostcodeAlt3']
+                }) }}
+
+              {% endcall %}
+            
 
               <!--Disbursement 3 details -->
 
