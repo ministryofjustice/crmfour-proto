@@ -104,14 +104,14 @@
       <!--Case and hearing-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Client</h2>
+          <h2 class="govuk-summary-card__title">Case and hearing details</h2>
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeClient'] == "change" %}
-                <a class="govuk-link" href="question2-client?changeClient=change">Change<span class="govuk-visually-hidden"> client details</span></a>
+              {% if data['changeCase'] == "change" %}
+                <a class="govuk-link" href="question2-case-prison?changeCase=change">Change<span class="govuk-visually-hidden"> case details</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="question2-client?changeClient=change">Change<span class="govuk-visually-hidden"> client details</span></a>
+                <a class="govuk-link--no-visited-state" href="question2-case-prison?changeCase=change">Change<span class="govuk-visually-hidden"> case details</span></a>
               {% endif %} 
             </li>
           </ul>
@@ -120,20 +120,79 @@
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Client name
+                Prison law
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['client-first--name']}} {{data['client-last--name']}}<br>
+                {{data['prisonLaw']}}
               </dd>
             </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Date of birth
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['client-dob-day']}} {{data['client-dob-month']}} {{data['client-dob-year']}}
-              </dd>
-            </div>
+            
+            {% if data['prisonLaw'] == "Yes" %}
+              <!--If YES to Prison Law--->
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Subject to POCA
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['poca']}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Date of next hearing
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['date-hearing-day']}} {{data['date-hearing-month']}} {{data['date-hearing-year']}}
+                </dd>
+              </div>
+
+              {% else %}
+              <!--If prison law is NO-->
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Main offence
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['main-offence']}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Date of representation order
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['rep-order-day']}} {{data['rep-order-month']}} {{data['rep-order-year']}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  MAAT number
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['maat']}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Client detained
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['detained']}}
+                  {% if data['detained'] == "Yes"%}
+                    <br>{{data['prisons']}}
+                  {% endif %}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Subject to POCA
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['poca']}}
+                </dd>
+              </div>
+              
+            {% endif %}
           </dl>
         </div>
       </div>
