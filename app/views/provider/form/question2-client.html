@@ -23,9 +23,12 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">2. About the case</span>
       <h1 class="govuk-heading-xl">Client details</h1>
-      
-      <form class="form" action="task-list?question2-client=complete" method="post">
-
+      {% if data['changeClient'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form class="form" action="task-list?question2-client=complete" method="post">
+      {% endif %}
+        
         {{ govukInput({
           label: {
             text: "First name",
@@ -90,8 +93,7 @@
         <div class="govuk-button-group">
           {% if data['changeClient'] =="change" %}
               {{ govukButton({
-                text: "Update",
-                href: "check-answers"
+                text: "Update"
               }) }}
               
               {% else %}
