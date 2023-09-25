@@ -44,7 +44,7 @@
             <div id="rep-order-hint" class="govuk-hint">
               For example, 27 3 2007
             </div>
-            <div class="govuk-date-input" id="crep-order">
+            <div class="govuk-date-input" id="rep-order">
               <div class="govuk-date-input__item">
                 <div class="govuk-form-group">
                   <label class="govuk-label govuk-date-input__label" for="rep-order-day">
@@ -180,16 +180,25 @@
         {% endif %}
 
         <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Save and continue"
-          }) }}
+          {% if data['changeCase'] =="change" %}
+              {{ govukButton({
+                text: "Update",
+                href: "check-answers"
+              }) }}
+              
+              {% else %}
 
-          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+              {{ govukButton({
+                text: "Save and continue"
+              }) }}
+            {% endif %}
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
         
             {{ govukButton({
               text: "Save and come back later",
               classes: "govuk-button--secondary",
-              href: "../crm-apps?app-state=saved"
+              href: "../crm-apps?claims-state=saved"
             }) }}
 
             {% else %}
@@ -197,7 +206,7 @@
             {{ govukButton({
               text: "Save and come back later",
               classes: "govuk-button--secondary",
-              href: "../crm-apps?app-state=all#manage-drafts"
+              href: "../crm-apps?claims-state=all"
             }) }}
 
           {% endif %}
