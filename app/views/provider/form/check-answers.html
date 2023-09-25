@@ -21,15 +21,21 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Check your answers before sending your application</h1>
-      <!--Your details-->
+      <h1 class="govuk-heading-xl">Check your answers</h1>
+      <!--Basic info-->
+      <h2 class="govuk-heading-l">About you</h2>
+
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Your details</h2>
+          <h3 class="govuk-summary-card__title">Your details</h3>
           <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action"> <a class="govuk-link" href="question1-org">
-                Change<span class="govuk-visually-hidden"> your details</span>
-              </a>
+            <li class="govuk-summary-card__action">
+              <!--For the proto make links show as not yet selected until the user does the action-->
+              {% if data['changeOrg'] == "change" %}
+                <a class="govuk-link" href="question1-org?changeOrg=change">Change<span class="govuk-visually-hidden"> your details</span></a>
+                {% else %}
+                <a class="govuk-link--no-visited-state" href="question1-org?changeOrg=change">Change<span class="govuk-visually-hidden"> your details</span></a>
+              {% endif %} 
             </li>
           </ul>
         </div>
@@ -37,29 +43,428 @@
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
+                Contact details
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['contact-name']}}<br>
+                {{data['contact-email']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
                 Firm details
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['org-name']}}<br>
-                {{data['org-acc']}}<br>
-                {{data['address-line-1']}}, {{data['address-line-2']}}, {{data['address-town']}}, {{data['postal-code']}}
+                {{data['org-name']}}<br> 
+                {{data['org-acc']}}
               </dd>
             </div>
-            {% if data['alt-contact'] =="yes" %}
+          </dl>
+        </div>
+      </div>
+      <h2 class="govuk-heading-l">About the case </h2>
+
+      <!--Your details-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Client details</h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <!--For the proto make links show as not yet selected until the user does the action-->
+              {% if data['changeClient'] == "change" %}
+                <a class="govuk-link" href="question2-client?changeClient=change">Change<span class="govuk-visually-hidden"> client details</span></a>
+                {% else %}
+                <a class="govuk-link--no-visited-state" href="question2-client?changeClient=change">Change<span class="govuk-visually-hidden"> client details</span></a>
+              {% endif %} 
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Client name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['client-first--name']}} {{data['client-last--name']}}<br>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of birth
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['client-dob-day']}} {{data['client-dob-month']}} {{data['client-dob-year']}}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <!--Case and hearing-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Client</h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <!--For the proto make links show as not yet selected until the user does the action-->
+              {% if data['changeClient'] == "change" %}
+                <a class="govuk-link" href="question2-client?changeClient=change">Change<span class="govuk-visually-hidden"> client details</span></a>
+                {% else %}
+                <a class="govuk-link--no-visited-state" href="question2-client?changeClient=change">Change<span class="govuk-visually-hidden"> client details</span></a>
+              {% endif %} 
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Client name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['client-first--name']}} {{data['client-last--name']}}<br>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of birth
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['client-dob-day']}} {{data['client-dob-month']}} {{data['client-dob-year']}}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <!--The client-->
+      <!--The case-->
+
+      <!--About your request-->
+      <h2 class="govuk-heading-l">About yuor request</h2>
+
+      <!--Your quote-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Your quote </h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <!--For the proto make links show as not yet selected until the user does the action-->
+              {% if data['changeQuote'] == "change" %}
+                <a class="govuk-link" href="question3-quote?changeQuote=change">Change<span class="govuk-visually-hidden"> disbursement details</span></a>
+                {% else %}
+                <a class="govuk-link--no-visited-state" href="question3-quote?changeQuote=change">Change<span class="govuk-visually-hidden"> disbursement details</span></a>
+              {% endif %} 
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Expert details
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['expert-name']}}<br>
+                {{data['expert-org-name']}}, 
+                {{data['expert-postcode']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Disbursement type
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['serviceType']}}
+                {% if data['serviceType'] == "Other" %}
+                  <br>
+                  {{data['otherExpert']}}
+                {% endif %}
+              </dd>
+            </div>
+             {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Contact details
+                  Ordered by court
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['contact-name']}}<br>
-                  {{data['contact-email']}}
+                  {{data['courtOrdered']}}
+                </dd>
+              </div>
+            {% endif %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Existing prior authority granted
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['existingAuth']}}
+              </dd>
+            </div>
+            <!--If type is DNA show costs here-->
+            {% if data['serviceType'] == "DNA report" %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Cost of report
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  £{{data['DNACost']}}.00
                 </dd>
               </div>
             {% endif %}
           </dl>
+
+          <!--Tables for disbursements-->
+          {% if data['serviceType'] == "Transcription" %}
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Number of minutes</th>
+                  <th scope="col" class="govuk-table__header">Cost per minute</th>
+                  <th scope="col" class="govuk-table__header">Total</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">{{data['transNoMins']}} minutes</td>
+                  <td class="govuk-table__cell">£{{data['transCostMin']}} per minute</td>
+                  <td class="govuk-table__cell">£{{data['actualTransTotal']}}.00</td>
+                </tr>
+              </tbody>
+            </table> 
+            {% else %}
+            {% if data['serviceType'] == "Translation and Transcription" %}
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Number of minutes</th>
+                    <th scope="col" class="govuk-table__header">Cost per minute</th>
+                    <th scope="col" class="govuk-table__header">Total</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">{{data['transtransNoMins']}} minutes</td>
+                    <td class="govuk-table__cell">£{{data['transtransCostMin']}} per minute</td>
+                    <td class="govuk-table__cell">£{{data['actualTransTransTotal']}}.00</td>
+                  </tr>
+                </tbody>
+              </table>
+              {% else %}
+              {% if data['serviceType'] == "Translator" %} 
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Number of words</th>
+                      <th scope="col" class="govuk-table__header">Cost per word</th>
+                      <th scope="col" class="govuk-table__header">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">{{data['translatorWords']}} words</td>
+                      <td class="govuk-table__cell">£{{data['translatorCostWord']}} per word</td>
+                      <td class="govuk-table__cell">£{{data['actualTranslatorTotal']}}.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+                {% else %}
+                {% if data['serviceType'] == "Photocopying" %} 
+                  <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                      <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Number of pages</th>
+                        <th scope="col" class="govuk-table__header">Cost per page</th>
+                        <th scope="col" class="govuk-table__header">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">{{data['photoNoPages']}} pages</td>
+                        <td class="govuk-table__cell">£{{data['photoCostPage']}} per page</td>
+                        <td class="govuk-table__cell">£{{data['actualPhotoTotal']}}.00</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  {% else %}
+                  {% if data['serviceType'] == "Other" and  data['otherChargeType'] =="Charged by the hour"%} 
+                    <table class="govuk-table">
+                      <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                          <th scope="col" class="govuk-table__header">Number of hours</th>
+                          <th scope="col" class="govuk-table__header">Cost per hour</th>
+                          <th scope="col" class="govuk-table__header">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                          <td class="govuk-table__cell">{{data['otherNoHours-hours']}} hours {{data['otherNoHours-mins']}}</td>
+                          <td class="govuk-table__cell">£{{data['otherCost']}} per hour</td>
+                          <td class="govuk-table__cell">£{{data['actualOtherTotal']}}.00</td>
+                        </tr>
+                      </tbody>
+                    </table> 
+                    {% else %}
+                    {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
+                      <table class="govuk-table">
+                        <thead class="govuk-table__head">
+                          <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">Number of items</th>
+                            <th scope="col" class="govuk-table__header">Cost per item</th>
+                            <th scope="col" class="govuk-table__header">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody class="govuk-table__body">
+                          <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">{{data['otherNoItems']}} items</td>
+                            <td class="govuk-table__cell">£{{data['otherItemsCost']}} per item</td>
+                            <td class="govuk-table__cell">£{{data['actualOtherTotal']}}.00</td>
+                          </tr>
+                        </tbody>
+                      </table> 
+                      {% else %}
+                      {% if data['serviceType'] !== "DNA report" %}
+                        <!--All other disbursement types-->
+                        <table class="govuk-table">
+                          <thead class="govuk-table__head">
+                            <tr class="govuk-table__row">
+                              <th scope="col" class="govuk-table__header">Number of hours</th>
+                              <th scope="col" class="govuk-table__header">Cost per hour</th>
+                              <th scope="col" class="govuk-table__header">Total</th>
+                            </tr>
+                          </thead>
+                          <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                              <td class="govuk-table__cell">{{data['generalNoHours-hours']}} hours {{data['generalNoHours-mins']}} minutes</td>
+                              <td class="govuk-table__cell">£{{data['generalCost']}} per hour</td>
+                              <td class="govuk-table__cell">£{{data['actualGeneralTotal']}}.00</td>
+                            </tr>
+                          </tbody>
+                        </table> 
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
         </div>
       </div>
-      <!--Your client-->
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Travel cost</h2>
+          <ul class="govuk-summary-card__actions">
+            {% if data['addTravel'] !=="Yes" %}
+              <li class="govuk-summary-card__action"> 
+                <a class="govuk-link--no-visited-state" href="question3-quote-travel?changeTravel=change">Change <span class="govuk-visually-hidden"> travel costs</span></a>
+              </li>
+              {% else %}
+              {% if data['addTravel'] =="Yes" %}
+                <li class="govuk-summary-card__action"> 
+                  <!--For the proto make links show as not yet selected until the user does the action-->
+                  {% if data['changeTravel'] == "change" %}
+                    <a class="govuk-link" href="question3-quote-travel?changeTravel=change">Change<span class="govuk-visually-hidden"> additional item</span></a>
+                    {% else %}
+                    <a class="govuk-link--no-visited-state" href="question3-quote-travel?addAdd=Yes&addCost=1&changeTravel=change">Change<span class="govuk-visually-hidden"> additional item</a>
+                  {% endif %} 
+                </li>
+              {% endif %} 
+            {% endif %} 
+            {% if data['addTravel'] =="Yes" %}
+              <li class="govuk-summary-card__action">
+                <!--For the proto make links show as not selected until the user does the action-->
+                {% if data['deleteTravel'] == "delete" %}
+                  <a class="govuk-link" href="question3-travel-delete?deleteTravel=delete">
+                  Delete<span class="govuk-visually-hidden"> travel</span></a>
+                  {% else %}
+                  <a class="govuk-link--no-visited-state" href="question3-travel-delete?deleteTravel=delete">Delete<span class="govuk-visually-hidden"> travel</a>
+                {% endif %}
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          {% if data['addTravel'] =="Yes" %}
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Travel time</th>
+                  <th scope="col" class="govuk-table__header">Hourly rate</th>
+                  <th scope="col" class="govuk-table__header">Total</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">{{data['travelTime-hours']}} hours {{data['travelTime-mins']}} minutes</td>
+                  <td class="govuk-table__cell">£{{data['travelCostTime']}} per hour</td>
+                  <td class="govuk-table__cell">£{{data['actualTravelTotal']}}.00</td>
+                </tr>
+              </tbody>
+            </table>
+            {% else %}
+            <p>No travel costs added</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Additional items</h2>
+          <ul class="govuk-summary-card__actions">
+            {% if data['addAdd'] !=="Yes" %}
+              <li class="govuk-summary-card__action"> 
+                <a class="govuk-link--no-visited-state" href="question3-quote-add?addAdd=Yes&addCost=1&changeAdd=none">Change <span class="govuk-visually-hidden"> additional item</span></a>
+              </li>
+              {% else %}
+              {% if data['addAdd'] =="Yes" %}
+                <li class="govuk-summary-card__action"> 
+                  <!--For the proto make links show as not yet selected until the user does the action-->
+                  {% if data['changeAdd1'] == "change" %}
+                  <a class="govuk-link" href="question3-quote-add-summary?addAdd=Yes&changeAdd=change">
+                  Change<span class="govuk-visually-hidden"> additional item</span></a>
+                  {% else %}
+                  <a class="govuk-link--no-visited-state" href="question3-quote-add-summary?addAdd=Yes&changeAdd=change">Change<span class="govuk-visually-hidden"> additional item</a>
+                {% endif %} 
+                </li>
+              {% endif %} 
+            {% endif %} 
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          {% if data['addAdd'] =="Yes" %}
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Cost</th>
+                  <th scope="col" class="govuk-table__header">Total</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">{{data['addCost1']}}</td>
+                  <td class="govuk-table__cell">£{{data['actualAdd1Total']}}.00</td>
+                </tr>
+                {% if data['addCost'] == "2" %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">{{data['addCost2']}}</td>
+                    <td class="govuk-table__cell">£{{data['actualAdd2Total']}}.00</td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+            {% else %}
+            <p>No additional costs added</p>
+          {% endif %}
+        </div>
+      </div>
+
+
+
+
+
+
+
+     
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">University of Bristol</h2>

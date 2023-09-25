@@ -88,16 +88,25 @@
         </div>
 
         <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Save and continue"
-          }) }}
+          {% if data['changeClient'] =="change" %}
+              {{ govukButton({
+                text: "Update",
+                href: "check-answers"
+              }) }}
+              
+              {% else %}
 
-          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+              {{ govukButton({
+                text: "Save and continue"
+              }) }}
+            {% endif %}
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
         
             {{ govukButton({
               text: "Save and come back later",
               classes: "govuk-button--secondary",
-              href: "../crm-apps?app-state=saved"
+              href: "../crm-apps?claims-state=saved"
             }) }}
 
             {% else %}
@@ -105,7 +114,7 @@
             {{ govukButton({
               text: "Save and come back later",
               classes: "govuk-button--secondary",
-              href: "../crm-apps?app-state=all#manage-drafts"
+              href: "../crm-apps?claims-state=all"
             }) }}
 
           {% endif %}

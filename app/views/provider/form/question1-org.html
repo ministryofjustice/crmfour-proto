@@ -75,29 +75,38 @@
           value: data['org-acc']
         }) }}      
 
-      <div class="govuk-button-group">
-        {{ govukButton({
-          text: "Save and continue"
-        }) }}
+        <div class="govuk-button-group">
+          {% if data['changeOrg'] =="change" %}
+              {{ govukButton({
+                text: "Update",
+                href: "check-answers"
+              }) }}
+              
+              {% else %}
 
-        {% if data['app-state'] =="empty" or data['app-state'] ==null %}
-      
-          {{ govukButton({
-            text: "Save and come back later",
-            classes: "govuk-button--secondary",
-            href: "../crm-apps?app-state=saved"
-          }) }}
+              {{ govukButton({
+                text: "Save and continue"
+              }) }}
+            {% endif %}
 
-          {% else %}
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=saved"
+            }) }}
 
-          {{ govukButton({
-            text: "Save and come back later",
-            classes: "govuk-button--secondary",
-            href: "../crm-apps?app-state=all#manage-drafts"
-          }) }}
+            {% else %}
 
-        {% endif %}
-      </div>
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
 
     </form>
 
