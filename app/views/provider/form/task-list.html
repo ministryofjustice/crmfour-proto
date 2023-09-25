@@ -266,33 +266,33 @@
             <span class="govuk-prototype-kit-task-list__section-number">3. </span> Apply
           </h2>
           <ul class="govuk-prototype-kit-task-list__items">
-            {% if data['question1'] != "complete" %}
+            {% if data['question1-org'] != "complete" %}
               <!--If the first question is not complete, all of the other questions are the status Cannot start-->
               <li class="govuk-prototype-kit-task-list__item">
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  Submit and pay
+                  Submit application
                 </span>
-                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="submit-pay-status">Cannot start yet</strong>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="submit-status">Cannot start yet</strong>
               </li>
 
               {% else %}
 
               <li class="govuk-prototype-kit-task-list__item">
                 <span class="govuk-prototype-kit-task-list__task-name">
-                  <a href="check-answers" aria-describedby="contact-details-status">
-                    Submit and pay
+                  <a href="check-answers" aria-describedby="submit-status">
+                    Submit application
                   </a>
                 </span>
                 {% if data[''] =="complete" %}
                   <!--If question2-org is complete, show the status Complete-->
-                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="company-information-status">Complete</strong>
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="submit-status">Complete</strong>
                   {% else %}
                   {% if data[''] =="draft" %}
                     <!--If question2-org is draft, show the status Draft-->
-                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="company-information-status">In progress</strong>
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="submit-status">In progress</strong>
                     {% else %}
                     <!--If question2-org is not complete or draft, show the status Not started-->
-                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="company-information-status">Not started</strong>
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="submit-status">Not started</strong>
                   {% endif %}
                 {% endif %}
               </li>
