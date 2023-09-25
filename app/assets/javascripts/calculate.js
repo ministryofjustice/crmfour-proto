@@ -91,6 +91,19 @@ function calAdd1Cost() {
   document.getElementById("actualAdd1Total").value = Add1Cost;
 }
 
+function calAlt1Cost() {
+
+  var altCostTime1 = parseInt(document.getElementById("altCostTime1").value)
+  var altHours1 = parseInt(document.getElementById("altTime1-hours").value)
+  var altMins1 = parseInt(document.getElementById("altTime1-mins").value),
+
+  altminsHours1 = altMins1 / 60;
+  altTotalTime1 = altminsHours1 + altHours1;
+  Alt1Cost = altCostTime1 * altTotalTime1;
+  document.getElementById("showAlt1Total").innerHTML = Alt1Cost;
+  document.getElementById("actualAlt1Total").value = Alt1Cost;
+}
+
 function calAdd2Cost() {
   let Add2Cost = 0
   var addCostTime2 = parseInt(document.getElementById("addCostTime2").value)
@@ -102,6 +115,45 @@ function calAdd2Cost() {
   Add2Cost = addCostTime2 * addTotalTime2;
   document.getElementById("showAdd2Total").innerHTML = Add2Cost;
   document.getElementById("actualAdd2Total").value = Add2Cost;
+}
+
+function calAlt1Cost() {
+
+  var altCostTime1 = parseInt(document.getElementById("altCostTime1").value)
+  var altHours1 = parseInt(document.getElementById("altTime1-hours").value)
+  var altMins1 = parseInt(document.getElementById("altTime1-mins").value),
+
+  altminsHours1 = altMins1 / 60;
+  altTotalTime1 = altminsHours1 + altHours1;
+  Alt1Cost = altCostTime1 * altTotalTime1;
+  document.getElementById("showAlt1Total").innerHTML = Alt1Cost;
+  document.getElementById("actualAlt1Total").value = Alt1Cost;
+}
+
+function calAlt2Cost() {
+
+  var altCostTime2 = parseInt(document.getElementById("altCostTime2").value)
+  var altHours2 = parseInt(document.getElementById("altTime2-hours").value)
+  var altMins2 = parseInt(document.getElementById("altTime2-mins").value),
+
+  altminsHours2 = altMins2 / 60;
+  altTotalTime2 = altminsHours2 + altHours2;
+  Alt2Cost = altCostTime2 * altTotalTime2;
+  document.getElementById("showAlt2Total").innerHTML = Alt2Cost;
+  document.getElementById("actualAlt2Total").value = Alt2Cost;
+}
+
+function calAlt3Cost() {
+
+  var altCostTime3 = parseInt(document.getElementById("altCostTime3").value)
+  var altHours3 = parseInt(document.getElementById("altTime3-hours").value)
+  var altMins3 = parseInt(document.getElementById("altTime3-mins").value),
+
+  altminsHours3 = altMins3 / 60;
+  altTotalTime3 = altminsHours3 + altHours3;
+  Alt3Cost = altCostTime3 * altTotalTime3;
+  document.getElementById("showAlt3Total").innerHTML = Alt3Cost;
+  document.getElementById("actualAlt3Total").value = Alt3Cost;
 }
 
 
