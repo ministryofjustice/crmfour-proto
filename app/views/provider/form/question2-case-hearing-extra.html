@@ -22,12 +22,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">2. About the case</span>
+      {% if data['changeCase'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form class="form" action="task-list?question2-case=complete" method="post">      
+      {% endif %}
       
-      <form class="form" action="task-list?question2-case=complete" method="post">      
 
         {% if data['courtType'] == "Magistrates' court" %}
           {{ govukRadios({
-            name: "youth-court",
+            name: "youthCourt",
             fieldset: {
               legend: {
                 text: "Is this a youth court matter?",
@@ -39,12 +43,12 @@
               {
                 value: "Yes",
                 text: "Yes",
-                checked: checked("youth-court", "Yes")
+                checked: checked("youthCourt", "Yes")
               },
               {
                 value: "No",
                 text: "No",
-                checked: checked("youth-court", "No")
+                checked: checked("youthCourt", "No")
               }
             ]
           }) }}
@@ -53,9 +57,9 @@
 
           {% set noHtml %}
             {{ govukTextarea({
-              name: "moreDetail",
-              id: "moreDetail",
-              value: data['moreDetail'],
+              name: "psychmoreDetail",
+              id: "psychmoreDetail",
+              value: data['psychmoreDetail'],
               label: {
                 text: "Explain why you did not access this service"
               }

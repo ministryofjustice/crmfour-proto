@@ -101,10 +101,10 @@
         </div>
       </div>
 
-      <!--Case and hearing-->
+      <!--Case details earing-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Case and hearing details</h2>
+          <h2 class="govuk-summary-card__title">Case details</h2>
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
@@ -191,11 +191,85 @@
                   {{data['poca']}}
                 </dd>
               </div>
-              
             {% endif %}
           </dl>
         </div>
       </div>
+      <!--Hearing details-->
+      {% if data['prisonLaw'] == "No" %}
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">Hearing details</h2>
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action">
+                <!--For the proto make links show as not yet selected until the user does the action-->
+                {% if data['changeHearing'] == "change" %}
+                  <a class="govuk-link" href="question2-case-hearing?changeHearing=change">Change<span class="govuk-visually-hidden"> hearing details</span></a>
+                  {% else %}
+                  <a class="govuk-link--no-visited-state" href="question2-case-hearing?changeHearing=change">Change<span class="govuk-visually-hidden"> hearing details</span></a>
+                {% endif %} 
+              </li>
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Date of next hearing
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['date-hearing-day']}} {{data['date-hearing-month']}} {{data['date-hearing-year']}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                   Likely or actual plea 
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['plea']}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Court type
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['courtType']}}
+                </dd>
+              </div>
+              {% if data['courtType'] == "Magistrates' court" %}}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Youth court matter
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['youthCourt']}}
+                  </dd>
+                </div>
+                {% else %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Psychiatric liaison service accessed
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['psychLiaison']}}
+                  </dd>
+                </div>
+                {% if data['psychLiaison'] == "No" %}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Why not?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{data['psychmoreDetail']}}
+                    </dd>
+                  </div>
+                {% endif %}
+              {% endif %}
+            </div>
+          </dl>
+        </div>
+      {% endif %}
       <!--The client-->
       <!--The case-->
 
