@@ -277,23 +277,26 @@
                   </dd>
                 </div>
                 {% else %}
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Psychiatric liaison service accessed
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    {{data['psychLiaison']}}
-                  </dd>
-                </div>
-                {% if data['psychLiaison'] == "No" %}
+                {% if data['courtType'] == "Central Criminal Court" %}
                   <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                      Why not?
+                      Psychiatric liaison service accessed
                     </dt>
                     <dd class="govuk-summary-list__value">
-                      {{data['psychmoreDetail']}}
+                      {{data['psychLiaison']}}
                     </dd>
                   </div>
+                  {% if data['psychLiaison'] == "No" %}
+                    <div class="govuk-summary-list__row">
+                      <dt class="govuk-summary-list__key">
+                        Why not?
+                      </dt>
+                      <dd class="govuk-summary-list__value">
+                        {{data['psychmoreDetail']}}
+                      </dd>
+                    </div>
+                    {% else %}
+                  {% endif %}
                 {% endif %}
               {% endif %}
             </div>
@@ -461,7 +464,7 @@
               {% endif %}
               {% if data['addAdd'] == "Yes" %}
                 <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">Additional items</td>
+                  <td class="govuk-table__cell">Additional</td>
                   <td class="govuk-table__cell">£{{data['actualAdd2Total']}}.00</td>
                 </tr>
               {% endif %}

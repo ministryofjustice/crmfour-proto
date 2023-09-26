@@ -35,7 +35,7 @@ router.post('/question2-case-hearing', function(request, response) {
 
     var courtType = request.session.data['courtType']
     if (courtType == "Crown Court (excluding Central Criminal Court)"){
-        response.redirect("provider/form/task-list?question3-case=complete")
+        response.redirect("provider/form/task-list?question2-case=complete")
     } else {
         response.redirect("/provider/form/question2-case-hearing-extra")
     }

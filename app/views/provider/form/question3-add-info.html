@@ -22,7 +22,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About the request </span>
-      {% if data['question3-add-info'] !== "complete" or data['changeAddInfo'] == "change" %}
+      {% if data['question3-add-info'] == "complete" or data['changeAddInfo'] == "change" %}
         <form class="form" action="check-answers" method="post">
         {% else %}
         <form action="/question3-add-info" method="post" >
