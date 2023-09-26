@@ -84,27 +84,35 @@
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Quote upload
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    myquote1.pdf
-                  </dd>
-                </div>
-              <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Quote description
+                  Description
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['alt1Descript']}}
+                  {{data['disburseAltQuote1']}}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Total cost
+                  Disbursement costs
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    £{{data['alt1TotalCost']}}
+                  {% if data['altChargeType1'] == "Charged by the hour" %}
+                    £{{data['actualAlt1Total']}}.00
+                    {% else %}
+                    £0.00
+                  {% endif %}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Travel costs
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['altTravelQ1'] == "Yes" %}
+                    £{{data['actualAltTravel1Total']}}.00
+                    {% else %}
+                    No travel costs
+                  {% endif %}
                 </dd>
               </div>
             </dl>
@@ -150,26 +158,34 @@
                 </div>
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
-                    Quote upload
+                    Description
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    myquote2.pdf
+                    {{data['disburseAltQuote2']}}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
-                    Quote description
+                    Disbursement costs
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['alt2Descript']}}
+                    {% if data['altChargeType2'] == "Charged by the hour" %}
+                      £{{data['actualAlt2Total']}}.00
+                      {% else %}
+                      £0.00
+                    {% endif %}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
-                    Total cost
+                    Travel costs
                   </dt>
                   <dd class="govuk-summary-list__value">
-                      £{{data['alt2TotalCost']}}
+                    {% if data['altTravelQ2'] == "Yes" %}
+                      £{{data['actualAltTravel2Total']}}.00
+                      {% else %}
+                      No travel costs
+                    {% endif %}
                   </dd>
                 </div>
               </dl>
@@ -216,26 +232,34 @@
                 </div>
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
-                    Quote upload
+                    Description
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    myquote3.pdf
+                    {{data['disburseAltQuote3']}}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
-                    Quote description
+                    Disbursement costs
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['alt1Descript']}}
+                    {% if data['altChargeType3'] == "Charged by the hour" %}
+                      £{{data['actualAlt3Total']}}.00
+                      {% else %}
+                      £0.00
+                    {% endif %}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
-                    Total cost
+                    Travel costs
                   </dt>
                   <dd class="govuk-summary-list__value">
-                      £{{data['alt1TotalCost']}}
+                    {% if data['altTravelQ3'] == "Yes" %}
+                      £{{data['actualAltTravel3Total']}}.00
+                      {% else %}
+                      No travel costs
+                    {% endif %}
                   </dd>
                 </div>
               </dl>
