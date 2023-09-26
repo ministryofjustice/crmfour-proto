@@ -131,7 +131,7 @@ router.post('/question3-alt-quote-summary2', function(request, response) {
         response.redirect("/provider/form/task-list?question3-alt-quote=complete")
     } 
     if (quoteAddAltOther2 == "Yes"){
-        response.redirect("/provider/form/question3-alt-quote-details?addAlt=yes&altShow=2&addAltQuote=2")
+        response.redirect("/provider/form/question3-alt-quote-details?addAlt=yes&addAltQuote=2&showAltQuote=2")
     }
 })
 
@@ -143,7 +143,7 @@ router.post('/question3-alt-quote-summary3', function(request, response) {
         response.redirect("/provider/form/task-list?question3-alt-quote=complete")
     } 
     if (quoteAddAltOther3 == "Yes"){
-        response.redirect("/provider/form/question3-alt-quote-details?addAlt=yes&altShow=3&addAltQuote=3")
+        response.redirect("/provider/form/question3-alt-quote-details?addAlt=yes&addAltQuote=3&showAltQuote=3")
     }
 })
 
