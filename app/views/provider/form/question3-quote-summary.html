@@ -21,8 +21,8 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-xl">3. About your request </span>
-      <h1 class="govuk-heading-xl">Disbursement summary</h1>
+      <span class="govuk-caption-xl">3. About the request </span>
+      <h1 class="govuk-heading-xl">Quote summary</h1>
       
       <input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal']}}" />
       <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total']}}" />
@@ -35,9 +35,11 @@
       <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
       <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
       <input type="hidden" id="serviceType" name="serviceType" value="{{data['serviceType']}}" />
+      <input type="hidden" id="actualdistTotalCost" name="actualdistTotalCost" value="{{data['showdistTotalCost']}}" />
+
 
       <h2 class="govuk-heading-l">
-        <span class="govuk-caption-l">Total cost</span> £
+        <span class="govuk-caption-l">Quote total cost</span> £
         <span id="showdistTotalCost">0</span>.00
       </h2>
 
@@ -46,11 +48,15 @@
         {% else %}
         <form class="form" action="task-list?question3-quote=complete" method="post">
           {% endif %}
+
+
+
+
       
 
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
-            <h2 class="govuk-summary-card__title">Your quote </h2>
+            <h2 class="govuk-summary-card__title">Service costs</h2>
             <ul class="govuk-summary-card__actions">
               <li class="govuk-summary-card__action">
                 <!--For the proto make links show as not yet selected until the user does the action-->
@@ -76,7 +82,7 @@
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Disbursement type
+                  Service type
                 </dt>
                 <dd class="govuk-summary-list__value">
                   {{data['serviceType']}}
@@ -256,7 +262,7 @@
 
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
-            <h2 class="govuk-summary-card__title">Travel cost</h2>
+            <h2 class="govuk-summary-card__title">Travel costs</h2>
             <ul class="govuk-summary-card__actions">
               {% if data['addTravel'] !=="Yes" %}
                 <li class="govuk-summary-card__action"> 
@@ -313,7 +319,7 @@
 
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
-            <h2 class="govuk-summary-card__title">Additional items</h2>
+            <h2 class="govuk-summary-card__title">Additional costs</h2>
             <ul class="govuk-summary-card__actions">
               {% if data['addAdd'] !=="Yes" %}
                 <li class="govuk-summary-card__action"> 
@@ -363,6 +369,7 @@
         </div>
    
         <div class="govuk-button-group">
+
           {{ govukButton({
             text: "Save and continue"
           }) }}
@@ -397,7 +404,6 @@
 {% endblock %}
 
 {% block pageScripts %}
-    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
 
     <script>
 
@@ -414,32 +420,40 @@
       var actualOtherTotal = parseInt(document.getElementById("actualOtherTotal").value) | 0
       var serviceType1 = document.getElementById("serviceType").value
 
+
       if (serviceType1 === "Other"){   
         distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualOtherTotal;
         document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        document.getElementById("actualdistTotalCost").value = distTotalCost;
       } else
       if (serviceType1 === "Photocopying"){   
         distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualPhotoTotal;
         document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        document.getElementById("actualdistTotalCost").value = distTotalCost;
       } else
       if (serviceType1 === "Transcription"){   
         distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTotal;
         document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        document.getElementById("actualdistTotalCost").value = distTotalCost;
       } else
       if (serviceType1 === "Translation and Transcription"){   
         distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTransTotal;
         document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        document.getElementById("actualdistTotalCost").value = distTotalCost;
       } else
       if (serviceType1 === "Translator"){   
         distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTranslatorTotal;
         document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        document.getElementById("actualdistTotalCost").value = distTotalCost;
       } else
       if (serviceType1 === "DNA report"){   
         distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + dnaCost;
         document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
-      }else {   
+        document.getElementById("actualdistTotalCost").value = distTotalCost;
+      } else {   
         distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualGeneralTotal;
         document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        document.getElementById("actualdistTotalCost").value = distTotalCost;
       }
     }
 
