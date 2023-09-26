@@ -23,11 +23,11 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About the request </span>
 
-      <form action="/question3-add-info" method="post" enctype="multipart/form-data">
+      <form action="/question3-add-info" method="post" >
 
         {{ govukTextarea({
-          name: "why-pa",
-          id: "why-pa",
+          name: "addInfo",
+          id: "addInfo",
           label: {
             text: "Additional information (optional)",
             classes: "govuk-label--xl",
@@ -76,11 +76,13 @@
           items: [
             {
               value: "Yes",
-              text: "Yes, I’ve completed this section"
+              text: "Yes, I’ve completed this section",
+              checked: checked("haveYouCompletedThisSection", "Yes")
             },
             {
               value: "No",
-              text: "No, I’ll come back to it later"
+              text: "No, I’ll come back to it later",
+              checked: checked("haveYouCompletedThisSection", "No")
             }
           ]
         }) }}
