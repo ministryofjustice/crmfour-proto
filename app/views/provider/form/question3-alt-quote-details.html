@@ -34,6 +34,19 @@
 
         {% if data['addAltQuote'] == "1" %}
 
+          {{ govukFileUpload({
+            id: "alt1Upload",
+            name: "alt1Upload",
+            isPageHeading: true,
+            label: {
+              text: "Upload quote (optional)",
+              classes: 'govuk-label--s'
+            },
+            hint: {
+              text: 'You can upload your quote as a scanned copy or photo of the original'
+            }
+          }) }}
+
           <!--Alt quote 1-->
 
           {% call govukFieldset({
@@ -85,19 +98,6 @@
             }
           }) %}
 
-            {{ govukFileUpload({
-              id: "alt1Upload",
-              name: "alt1Upload",
-              isPageHeading: true,
-              label: {
-                text: "Upload quote (optional)",
-                classes: 'govuk-label--s'
-              },
-              hint: {
-                text: 'You can upload your quote as a scanned copy or photo of the original'
-              }
-            }) }}
-
             {{ govukTextarea({
               label: {
                 text: "What is included in the quote costs?",
@@ -133,6 +133,19 @@
           {% if data['addAltQuote'] == "2" or data['showAltQuote'] == "2"  %}
 
             <!--Alt quote 2-->
+
+            {{ govukFileUpload({
+              id: "alt2Upload",
+              name: "alt2Upload",
+              isPageHeading: true,
+              label: {
+                text: "Upload quote (optional)",
+                classes: 'govuk-label--s'
+              },
+              hint: {
+                text: 'You can upload your quote as a scanned copy or photo of the original'
+              }
+            }) }}
 
             {% call govukFieldset({
               legend: {
@@ -183,19 +196,6 @@
               }
             }) %}
 
-              {{ govukFileUpload({
-                id: "alt2Upload",
-                name: "alt2Upload",
-                isPageHeading: true,
-                label: {
-                  text: "Upload quote (optional)",
-                  classes: 'govuk-label--s'
-                },
-                hint: {
-                  text: 'You can upload your quote as a scanned copy or photo of the original'
-                }
-              }) }}
-
               {{ govukTextarea({
                 label: {
                   text: "What is included in the quote costs?",
@@ -232,6 +232,19 @@
             {% if data['addAltQuote'] == "3" or data['showAltQuote'] == "3"  %}
 
               <!--Alt quote 3-->
+
+              {{ govukFileUpload({
+                id: "alt3Upload",
+                name: "alt3Upload",
+                isPageHeading: true,
+                label: {
+                  text: "Upload quote (optional)",
+                  classes: 'govuk-label--s'
+                },
+                hint: {
+                  text: 'You can upload your quote as a scanned copy or photo of the original'
+                }
+              }) }}
 
               {% call govukFieldset({
                 legend: {
@@ -274,7 +287,7 @@
               {% endcall %}
             
 
-              <!--Disbursement 3 details -->
+              <!--Quote 3 details -->
 
               {% call govukFieldset({
                 legend: { 
@@ -282,19 +295,6 @@
                   classes: "govuk-fieldset__legend--m"
                 }
               }) %}
-
-                {{ govukFileUpload({
-                  id: "alt3Upload",
-                  name: "alt3Upload",
-                  isPageHeading: true,
-                  label: {
-                    text: "Upload quote (optional)",
-                    classes: 'govuk-label--s'
-                  },
-                  hint: {
-                    text: 'You can upload your quote as a scanned copy or photo of the original'
-                  }
-                }) }}
 
                 {{ govukTextarea({
                   label: {
@@ -362,8 +362,4 @@
     </div>
   </div>
 
-{% endblock %}
-
-{% block pageScripts %}
-  <script src="/public/javascripts/calculate.js"></script>
 {% endblock %}
