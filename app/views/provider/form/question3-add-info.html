@@ -22,8 +22,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About the request </span>
-
-      <form action="/question3-add-info" method="post" >
+      {% if data['question3-add-info'] !== "complete" or data['changeAddInfo'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form action="/question3-add-info" method="post" >
+      {% endif %}
 
         {{ govukTextarea({
           name: "addInfo",
@@ -63,29 +66,32 @@
           </div>
         </div>
 
+        {% if data['question3-add-info'] == "complete" or data['changeAddInfo'] =="change" %}
 
-        {{ govukRadios({
-          name: "haveYouCompletedThisSection",
-          fieldset: {
-            legend: {
-              text: "Have you completed this section?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--m"
-            }
-          },
-          items: [
-            {
-              value: "Yes",
-              text: "Yes, I’ve completed this section",
-              checked: checked("haveYouCompletedThisSection", "Yes")
+          {% else %}
+          {{ govukRadios({
+            name: "haveYouCompletedThisSection",
+            fieldset: {
+              legend: {
+                text: "Have you completed this section?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
             },
-            {
-              value: "No",
-              text: "No, I’ll come back to it later",
-              checked: checked("haveYouCompletedThisSection", "No")
-            }
-          ]
-        }) }}
+            items: [
+              {
+                value: "Yes",
+                text: "Yes, I’ve completed this section",
+                checked: checked("haveYouCompletedThisSection", "Yes")
+              },
+              {
+                value: "No",
+                text: "No, I’ll come back to it later",
+                checked: checked("haveYouCompletedThisSection", "No")
+              }
+            ]
+          }) }}
+        {% endif %}
 
         
 

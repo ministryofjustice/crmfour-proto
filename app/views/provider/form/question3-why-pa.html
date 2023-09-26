@@ -22,12 +22,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About the request </span>
-      
-      <form class="form" action="task-list?question3-why-pa=complete" method="post">
 
+      {% if data['changeWhyPA'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form class="form" action="task-list?question3-why-pa=complete" method="post">
+      {% endif %}
+      
         {{ govukTextarea({
           name: "why-pa",
           id: "why-pa",
+          value: data['why-pa'],
           label: {
             text: "Why is prior authority required?",
             classes: "govuk-label--xl",

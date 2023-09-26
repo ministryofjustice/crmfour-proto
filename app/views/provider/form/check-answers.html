@@ -300,29 +300,74 @@
           </dl>
         </div>
       {% endif %}
-      <!--The client-->
-      <!--The case-->
+ 
 
       <!--About the request-->
       <h2 class="govuk-heading-l">About the request</h2>
 
-      <!--Your quote-->
+      <!---Why PA required-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Your quote</h2>
+          <h2 class="govuk-summary-card__title"> Reason for prior authority</h2>
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeQuote'] == "change" %}
-                <a class="govuk-link" href="question3-quote-summary?changeQuote=change">Change<span class="govuk-visually-hidden"> disbursement details</span></a>
+              {% if data['changeWhyPA'] == "change" %}
+                <a class="govuk-link" href="question3-why-pa?changeWhyPA=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-quote-summary?changeQuote=change">Change<span class="govuk-visually-hidden"> disbursement details</span></a>
+                <a class="govuk-link--no-visited-state" href="question3-why-pa?changeWhyPA=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
               {% endif %} 
             </li>
           </ul>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Why prior authority is required
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['why-pa']}}<br>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Supplementary documents
+              </dt>
+              <dd class="govuk-summary-list__value">
+                whyPADocs1.pdf<br>
+                whyPADocs2.pdf
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
+
+      <!--Primary quote-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Primary quote</h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <!--For the proto make links show as not yet selected until the user does the action-->
+              {% if data['changeQuote'] == "change" %}
+                <a class="govuk-link" href="question3-quote-summary?changeQuote=change">Change<span class="govuk-visually-hidden"> primary quote details</span></a>
+                {% else %}
+                <a class="govuk-link--no-visited-state" href="question3-quote-summary?changeQuote=change">Change<span class="govuk-visually-hidden"> primary quote details</span></a>
+              {% endif %} 
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Quote upload
+              </dt>
+              <dd class="govuk-summary-list__value">
+                myquote1.pdf
+              </dd>
+            </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Expert details
@@ -335,7 +380,7 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Disbursement type
+                Service required
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['serviceType']}}
@@ -427,7 +472,108 @@
                 </tr>
             </tbody>
           </table>         
-          
+        </div>
+      </div>
+
+      <!--Alt quotes-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Alternative quotes</h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <!--For the proto make links show as not yet selected until the user does the action-->
+              {% if data['changeAltQuote'] == "change" %}
+                <a class="govuk-link" href="question3-alt-quote-summary?changeAltQuote=change">Change<span class="govuk-visually-hidden"> alternative quote details</span></a>
+                {% else %}
+                <a class="govuk-link--no-visited-state" href="question3-alt-quote-summary?changeAltQuote=change">Change<span class="govuk-visually-hidden"> alternative quote details</span></a>
+              {% endif %} 
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          {% if data['altQuotesQ'] =="No" %}
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Reason for no alternative quotes
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['no-alt-quotes-info']}}<br>
+                </dd>
+              </div>
+            </dl>   
+            {% else %}
+            {% if data['altQuotesQ'] =="Yes" %}
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Quote</th>
+                    <th scope="col" class="govuk-table__header">Total</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <!--Alternative quote 1-->
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Alternative quote 1</td>
+                    <td class="govuk-table__cell">£{{data['alt1TotalCost']}}.00</td>
+                  </tr>
+                  {% if data['addAltQuote'] =="2" or data['addAltQuote'] =="3" or data['showAltQuote'] =="2" %}
+                    <!--Alternative quote 2-->
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">Alternative quote 2</td>
+                      <td class="govuk-table__cell">£{{data['alt2TotalCost']}}.00</td>
+                    </tr>
+                  {% endif %}
+                  {% if data['addAltQuote'] =="3" or data['showAltQuote'] =="3" %}
+                    <!--Alternative quote 3-->
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">Alternative quote 3</td>
+                      <td class="govuk-table__cell">£{{data['alt3TotalCost']}}.00</td>
+                    </tr>
+                  {% endif %}
+                </tr>
+                </tbody>
+              </table>  
+            {% endif %}
+          {% endif %}        
+        </div>
+      </div>
+
+      <!---Why PA required-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Additional information</h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <!--For the proto make links show as not yet selected until the user does the action-->
+              {% if data['changeAddInfo'] == "change" %}
+                <a class="govuk-link" href="question3-add-info?changeAddInfo=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
+                {% else %}
+                <a class="govuk-link--no-visited-state" href="question3-add-info?changeAddInfo=change">Change<span class="govuk-visually-hidden"> primary quote details</span></a>
+              {% endif %} 
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Additional information
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['addInfo']}}<br>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Supplementary documents
+              </dt>
+              <dd class="govuk-summary-list__value">
+                addInfoDocs1.pdf<br>
+                addInfoDocs2.pdf
+              </dd>
+            </div>
+          </dl>       
         </div>
       </div>
 

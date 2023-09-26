@@ -22,13 +22,19 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">3. About the request </span>
+
+      {% if data['changeNoAlts'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form class="form" action="/question3-alt-quotes-q" method="post">
+      {% endif %}
       
-      <form class="form" action="/question3-alt-quotes-q" method="post">
 
         {% set noHtml %}
           {{ govukTextarea({
             name: "no-alt-quotes-info",
             id: "no-alt-quotes-info",
+            value: data['no-alt-quotes-info'],
             label: {
               text: "Provide details for why you did not get other quotes"
             }
