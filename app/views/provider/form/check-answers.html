@@ -22,9 +22,47 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Check your answers</h1>
-      <!--Basic info-->
-      <h2 class="govuk-heading-l">About you</h2>
+    </div>
+  </div>
 
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Application details</h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Unique file reference
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['ufn'] or "100323/234234"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                LAA reference
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['laa-ref'] or "LAA-5a7d3c"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Prison Law
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['prisonLaw'] | default("No")}}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      
+      <h2 class="govuk-heading-l">About you</h2>
+      <!--About you-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">Your details</h3>
@@ -62,9 +100,9 @@
           </dl>
         </div>
       </div>
-      <h2 class="govuk-heading-l">About the case </h2>
 
-      <!--Your details-->
+      <h2 class="govuk-heading-l">About the case </h2>
+      <!--Client details-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">Client details</h2>
@@ -118,14 +156,6 @@
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Prison law
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['prisonLaw']}}
-              </dd>
-            </div>
             
             {% if data['prisonLaw'] == "Yes" %}
               <!--If YES to Prison Law--->
@@ -196,7 +226,7 @@
         </div>
       </div>
       <!--Hearing details-->
-      {% if data['prisonLaw'] == "No" %}
+      {% if data['prisonLaw'] == "No" or data['prisonLaw'] == null %}
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
             <h2 class="govuk-summary-card__title">Hearing details</h2>
@@ -237,7 +267,7 @@
                   {{data['courtType']}}
                 </dd>
               </div>
-              {% if data['courtType'] == "Magistrates' court" %}}
+              {% if data['courtType'] == "Magistrates' court" %}
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
                     Youth court matter
@@ -273,13 +303,13 @@
       <!--The client-->
       <!--The case-->
 
-      <!--About your request-->
-      <h2 class="govuk-heading-l">About your request</h2>
+      <!--About the request-->
+      <h2 class="govuk-heading-l">About the request</h2>
 
       <!--Your quote-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Disbursement summary</h2>
+          <h2 class="govuk-summary-card__title">Your quote</h2>
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
@@ -335,7 +365,6 @@
             </div>
           </dl>
 
-
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -345,7 +374,7 @@
             </thead>
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Disbursement</td>
+                <td class="govuk-table__cell">Service</td>
                 <!--Disbursements cost-->
                 {% if data['serviceType'] == "DNA report" %}
                   <td class="govuk-table__cell">£{{data['dnaCost']}}.00</td>
@@ -394,11 +423,10 @@
                </tr>
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell govuk-table__header">Total cost</td>
-                  <td class="govuk-table__cell"><strong>£{{data['actualDistCost']}}.00</strong></td>
+                  <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost']}}.00</strong></td>
                 </tr>
             </tbody>
-          </table>
-          
+          </table>         
           
         </div>
       </div>
