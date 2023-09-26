@@ -21,11 +21,23 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-xl">3. About your request </span>
-      <h1 class="govuk-heading-xl">Your quote</h1>
+      <span class="govuk-caption-xl">3. About the request </span>
+      <h1 class="govuk-heading-xl">Primary quote</h1>
 
       
       <form class="form" action="question3-quote-prep" method="post">
+        {{ govukFileUpload({
+          id: "quote1Upload",
+          name: "quote1Upload",
+          isPageHeading: true,
+          label: {
+            text: "Upload the quote",
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            text: 'You can upload your quote as a scanned copy or photo of the original'
+          }
+        }) }}
 
         {% call govukFieldset({
           legend: {
