@@ -19,36 +19,13 @@
         <p>This is the CRM 4 prototype for Providers and Caseworkers. This prototype is <strong>NOT</strong> fully functional
         </p>
         <p>Please <a href="/manage-prototype/clear-data" class="govuk-link--no-visited-state">clear data</a> to delete all stored data and re-set the prototype between journeys.</p>
-  
+
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">          
             <ol class="app-task-list">
               <li> 
                 <h2 class="app-task-list__section">
                   <span class="app-task-list__section-number">1. </span> 
-                  Core functionality
-                </h2>
-                <ul class="app-task-list__items">
-                  <li class="app-task-list__item">
-                    <span class="app-task-list__task-name">TIX No.</span><br>
-                    <span class="app-task-list__task-name">
-                      <a href="/cookies" class="govuk-link--no-visited-state" aria-describedby="create-status">
-                        Cookies
-                      </a>
-                    </span>
-                    <span class="app-task-list__tag" id="create-status">In design</span>
-                  </li>
-                </ul>
-              </li>
-            </ol>
-          </div>
-        </div>
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-two-thirds">          
-            <ol class="app-task-list">
-              <li> 
-                <h2 class="app-task-list__section">
-                  <span class="app-task-list__section-number">2. </span> 
                   Provider journeys
                 </h2>
                 <ul class="app-task-list__items">
@@ -119,12 +96,30 @@
                     <span class="app-task-list__tag" id="all-states">In design</span>
                     <br>
                     <span class="app-task-list__task-name">
-                      <a href="provider/form/task-list?first-use=no&app-state=all" class="govuk-link--no-visited-state" aria-describedby="tasklist">
-                        Task list
+                      <a href="provider/form/task-list?first-use=no&app-state=all&question1-org=notStarted&question2-client=notStarted&question2-case=notStarted&prisonLaw=No" class="govuk-link--no-visited-state" aria-describedby="tasklist">
+                        Task list - nothing started, Prison Law no
                        </a>
                     </span>
                     <span class="app-task-list__tag" id="all-states">In design</span>
                     <br>
+                    <span class="app-task-list__task-name">
+                      <a href="provider/form/task-list?first-use=no&app-state=all&question1-org=complete&question2-client=complete&question2-case=complete&question3-why-pa=complete&question3-quote=notStarted&question3-alt-quote=complete&question3-add-info=notStarted&prisonLaw=Yes" class="govuk-link--no-visited-state" aria-describedby="tasklist">
+                        Task list - many started, Prison Law: Yes
+                       </a>
+                    </span>
+                    <span class="app-task-list__tag" id="all-states">In design</span>
+                    <br>
+                    <span class="app-task-list__task-name">
+                      <a href="provider/form/task-list?first-use=no&app-state=all&question1-org=complete&question2-client=complete&question2-case=complete&question3-why-pa=complete&question3-quote=complete&question3-alt-quote=complete&question3-add-info=complete" class="govuk-link--no-visited-state" aria-describedby="tasklist">
+                        Task list - ready to submit
+                       </a>
+                    </span>
+                    <span class="app-task-list__tag" id="all-states">In design</span>
+                  </li> 
+
+                  <!--Your details-->
+                  <li class="app-task-list__item">
+                    <span class="app-task-list__task-name">4. Your details</span><br>
                     <span class="app-task-list__task-name">
                       <a href="provider/form/question1-org?first-use=no&app-state=all&question1-org=draft" class="govuk-link--no-visited-state" aria-describedby="tasklist">
                         Your details
@@ -132,8 +127,10 @@
                     </span>
                     <span class="app-task-list__tag" id="all-states">In design</span>
                   </li> 
+
+                  <!--Case details-->
                   <li class="app-task-list__item">
-                    <span class="app-task-list__task-name">4. Case details</span><br>
+                    <span class="app-task-list__task-name">5. Case details</span><br>
                     <span class="app-task-list__task-name">
                       <a href="provider/form/question2-client?first-use=no&app-state=all&question2-client=draft" class="govuk-link--no-visited-state" aria-describedby="tasklist">
                         Client details
@@ -149,8 +146,10 @@
                     <span class="app-task-list__tag" id="all-states">In design</span>
                     <br>
                   </li> 
+
+                  <!--The request-->
                   <li class="app-task-list__item">
-                    <span class="app-task-list__task-name">5. Disbursement details</span><br>
+                    <span class="app-task-list__task-name">5. Provider request</span><br>
                     <span class="app-task-list__task-name">
                       <a href="provider/form/question3-why-pa?first-use=no&app-state=all&question3-why-pa=draft" class="govuk-link--no-visited-state" aria-describedby="tasklist">
                         Reason for prior authority
@@ -180,11 +179,48 @@
                     <span class="app-task-list__tag" id="all-states">In design</span>
                     <br>
                   </li> 
+
+                   <!--Check Answers-->
+                   <li class="app-task-list__item">
+                    <span class="app-task-list__task-name">6. Check answers</span><br>
+                    <span class="app-task-list__task-name">
+                      <a href="provider/form/check-answers?first-use=no&app-state=all&check-answers=draft" class="govuk-link--no-visited-state" aria-describedby="tasklist">
+                        Check answers
+                       </a>
+                    </span>
+                    <span class="app-task-list__tag" id="all-states">In design</span>
+                  </li> 
+
                 </ul>
               </li>
             </ol>
           </div>
         </div>
+
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">          
+            <ol class="app-task-list">
+              <li> 
+                <h2 class="app-task-list__section">
+                  <span class="app-task-list__section-number">2. </span> 
+                  Core functionality
+                </h2>
+                <ul class="app-task-list__items">
+                  <li class="app-task-list__item">
+                    <span class="app-task-list__task-name">TIX No.</span><br>
+                    <span class="app-task-list__task-name">
+                      <a href="/cookies" class="govuk-link--no-visited-state" aria-describedby="create-status">
+                        Cookies
+                      </a>
+                    </span>
+                    <span class="app-task-list__tag" id="create-status">In design</span>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">          
             <ol class="app-task-list">
