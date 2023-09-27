@@ -24,10 +24,21 @@
       <span class="govuk-caption-xl">2. About the case</span>
       <h1 class="govuk-heading-xl">Case details</h1>
       
+      <!--Is it Prison law? Is it a Check asnswers update?-->
       {% if data['prisonLaw'] == "Yes" %}
-        <form class="form" action="task-list?question2-case=complete" method="post">
+        {% if data['changeCase'] == "change" %}
+          <form class="form" action="check-answers" method="post">
+          {% else %}
+          <form class="form" action="task-list?question2-case=complete" method="post">
+        {% endif %}
         {% else %}
-        <form class="form" action="question2-case-hearing" method="post">
+        {% if data['prisonLaw'] == "No" %}
+          {% if data['changeCase'] == "change" %}
+            <form class="form" action="check-answers" method="post">
+            {% else %}
+            <form class="form" action="question2-case-hearing" method="post">
+          {% endif %}
+        {% endif %}
       {% endif %}
 
       {% if data['prisonLaw'] == "No" or data['prisonLaw'] == null %}
@@ -113,37 +124,39 @@
             }
             ]
           }) }}
+
+          {{ govukRadios({
+            name: "poca",
+            fieldset: {
+              legend: {
+                text: "Is this case subject to POCA (Proceeds of Crime Act 2002)?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                checked: checked("poca", "Yes")
+              },
+              {
+                value: "No",
+                text: "No",
+                checked: checked("poca", "No")
+              }
+            ]
+          }) }}  
          
         {% endif %}
 
-        {{ govukRadios({
-          name: "poca",
-          fieldset: {
-            legend: {
-              text: "Is this case subject to POCA (Proceeds of Crime Act 2002)?",
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "Yes",
-              text: "Yes",
-              checked: checked("poca", "Yes")
-            },
-            {
-              value: "No",
-              text: "No",
-              checked: checked("poca", "No")
-            }
-          ]
-        }) }}    
+         
 
         {% if data['prisonLaw'] == "Yes" %}
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hearing-hint">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
                 <h1 class="govuk-fieldset__heading">
-                  Date of next hearing
+                  Date of next hearing (otional)
                 </h1>
               </legend>
               <div id="date-hearing-hint" class="govuk-hint">
@@ -177,7 +190,35 @@
               </div>
             </fieldset>
           </div>
+
+          {% if data['question3-case'] == "complete" or data['changeCase'] =="change" %}
+
+            {% else %}
+            {{ govukRadios({
+              name: "haveYouCompletedHearing",
+              fieldset: {
+                legend: {
+                  text: "Have you completed this section?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes, I’ve completed this section",
+                  checked: checked("haveYouCompletedHearing", "Yes")
+                },
+                {
+                  value: "No",
+                  text: "No, I’ll come back to it later",
+                  checked: checked("haveYouCompletedHearing", "No")
+                }
+              ]
+            }) }}
+          {% endif %}
         {% endif %}
+
 
         <div class="govuk-button-group">
 
