@@ -79,7 +79,7 @@ function calTransCost() {
 }
 
 function calAdd1Cost() {
-
+  let Add1Cost = 0
   var addCostTime1 = parseInt(document.getElementById("addCostTime1").value)
   var addHours1 = parseInt(document.getElementById("addTime1-hours").value)
   var addMins1 = parseInt(document.getElementById("addTime1-mins").value),
@@ -89,19 +89,6 @@ function calAdd1Cost() {
   Add1Cost = addCostTime1 * addTotalTime1;
   document.getElementById("showAdd1Total").innerHTML = Add1Cost;
   document.getElementById("actualAdd1Total").value = Add1Cost;
-}
-
-function calAlt1Cost() {
-
-  var altCostTime1 = parseInt(document.getElementById("altCostTime1").value)
-  var altHours1 = parseInt(document.getElementById("altTime1-hours").value)
-  var altMins1 = parseInt(document.getElementById("altTime1-mins").value),
-
-  altminsHours1 = altMins1 / 60;
-  altTotalTime1 = altminsHours1 + altHours1;
-  Alt1Cost = altCostTime1 * altTotalTime1;
-  document.getElementById("showAlt1Total").innerHTML = Alt1Cost;
-  document.getElementById("actualAlt1Total").value = Alt1Cost;
 }
 
 function calAdd2Cost() {
@@ -115,6 +102,11 @@ function calAdd2Cost() {
   Add2Cost = addCostTime2 * addTotalTime2;
   document.getElementById("showAdd2Total").innerHTML = Add2Cost;
   document.getElementById("actualAdd2Total").value = Add2Cost;
+}
+
+function calAddTotal() {
+  addTotalCost = Add1Cost + Add2Cost;  
+  document.getElementById("actualAddTotalCost").value = addTotalCost;
 }
 
 function calAlt1Cost() {
