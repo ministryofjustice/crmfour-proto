@@ -377,25 +377,29 @@
                         },
                         items: [
                           {
-                            value: "Charged by the hour",
-                            text: "Charged by the hour",
-                            checked: checked("otherChargeType", "Charged by the hour"),
-                            conditional: {
-                              html: hourlyHtml
-                            }
-                          },
-                          {
                             value: "Charged per item",
                             text: "Charged per item",
                             checked: checked("otherChargeType", "Charged per item"),
                             conditional: {
                               html: nonhourHtml
                             }
+                          },
+                          {
+                            value: "Charged by the hour",
+                            text: "Charged by the hour",
+                            checked: checked("otherChargeType", "Charged by the hour"),
+                            conditional: {
+                              html: hourlyHtml
+                            }
                           }
                         ]
                       }) }}
 
+                    {{data['otherChargeType']}}sdfsdfs
+
+
                     <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
+                    
                     
                     <button class="govuk-button govuk-button--secondary" type="button" onclick="calOtherCost()">Update calculation</button>
 

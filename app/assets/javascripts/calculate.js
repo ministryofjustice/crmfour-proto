@@ -16,13 +16,25 @@ function calOtherCost() {
 
   var otherCostTime = parseInt(document.getElementById("otherCostTime").value)
   var numberHours = parseInt(document.getElementById("otherNoHours-hours").value)
-  var numberMins = parseInt(document.getElementById("otherNoHours-mins").value),
+  var numberMins = parseInt(document.getElementById("otherNoHours-mins").value)
 
-  minsHours = numberMins / 60;
-  totalTime = minsHours + numberHours;
-  otherCost = otherCostTime * totalTime;
-  document.getElementById("showOtherTotal").innerHTML = otherCost;
-  document.getElementById("actualOtherTotal").value = otherCost;
+  var otherNoItems = parseInt(document.getElementById("otherNoItems").value)
+  var otherItemsCost = parseInt(document.getElementById("otherItemsCost").value)
+
+
+  if (otherChargeType == "Charged by the hour"){
+    minsHours = numberMins / 60;
+    totalTime = minsHours + numberHours;
+    otherCost = otherCostTime * totalTime;
+    document.getElementById("showOtherTotal").innerHTML = otherCost;
+    document.getElementById("actualOtherTotal").value = otherCost;
+
+  } else {
+    otherCost = otherNoItems * otherItemsCost;
+    document.getElementById("showOtherTotal").innerHTML = otherCost;
+    document.getElementById("actualOtherTotal").value = otherCost;
+
+  }
 }
 
 function calPhotoCost() {
@@ -82,27 +94,46 @@ function calAdd1Cost() {
   let Add1Cost = 0
   var addCostTime1 = parseInt(document.getElementById("addCostTime1").value)
   var addHours1 = parseInt(document.getElementById("addTime1-hours").value)
-  var addMins1 = parseInt(document.getElementById("addTime1-mins").value),
+  var addMins1 = parseInt(document.getElementById("addTime1-mins").value)
 
-  addminsHours1 = addMins1 / 60;
-  addTotalTime1 = addminsHours1 + addHours1;
-  Add1Cost = addCostTime1 * addTotalTime1;
-  document.getElementById("showAdd1Total").innerHTML = Add1Cost;
-  document.getElementById("actualAdd1Total").value = Add1Cost;
+  var addQuantity1 = parseInt(document.getElementById("addQuantity1").value)
+  var addNonhourRate1 = parseInt(document.getElementById("addNonhourRate1").value)
+
+  if (addChargeType1 == "Charged by the hour"){
+    addminsHours1 = addMins1 / 60;
+    addTotalTime1 = addminsHours1 + addHours1;
+    Add1Cost = addCostTime1 * addTotalTime1;
+    document.getElementById("showAdd1Total").innerHTML = Add1Cost;
+    document.getElementById("actualAdd1Total").value = Add1Cost;
+  } else {
+    Add1Cost = addQuantity1 * addNonhourRate1;
+    document.getElementById("showAdd1Total").innerHTML = Add1Cost;
+    document.getElementById("actualAdd1Total").value = Add1Cost;
+  }
 }
 
 function calAdd2Cost() {
   let Add2Cost = 0
   var addCostTime2 = parseInt(document.getElementById("addCostTime2").value)
   var addHours2 = parseInt(document.getElementById("addTime2-hours").value)
-  var addMins2 = parseInt(document.getElementById("addTime2-mins").value),
+  var addMins2 = parseInt(document.getElementById("addTime2-mins").value)
 
-  addminsHours2 = addMins2 / 60;
-  addTotalTime2 = addminsHours2 + addHours2;
-  Add2Cost = addCostTime2 * addTotalTime2;
-  document.getElementById("showAdd2Total").innerHTML = Add2Cost;
-  document.getElementById("actualAdd2Total").value = Add2Cost;
+  var addQuantity2 = parseInt(document.getElementById("addQuantity2").value)
+  var addNonhourRate2 = parseInt(document.getElementById("addNonhourRate2").value)
+
+  if (addChargeType2 == "Charged by the hour"){
+    addminsHours2 = addMins2 / 60;
+    addTotalTime2 = addminsHours2 + addHours2;
+    Add2Cost = addCostTime2 * addTotalTime2;
+    document.getElementById("showAdd2Total").innerHTML = Add2Cost;
+    document.getElementById("actualAdd2Total").value = Add2Cost;
+  } else {
+    Add2Cost = addQuantity2 * addNonhourRate2;
+    document.getElementById("showAdd2Total").innerHTML = Add2Cost;
+    document.getElementById("actualAdd2Total").value = Add2Cost;
+  } 
 }
+
 
 function calAddTotal() {
   addTotalCost = Add1Cost + Add2Cost;  
