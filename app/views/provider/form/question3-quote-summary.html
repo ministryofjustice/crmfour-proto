@@ -61,7 +61,7 @@
                 {% if data['changeQuote'] == "change" %}
                   <a class="govuk-link" href="question3-quote?changeQuote=change">Change<span class="govuk-visually-hidden"> service costs </span></a>
                   {% else %}
-                  <a class="govuk-link--no-visited-state" href="question3-quote?changeQuote=change">Change<span class="govuk-visually-hidden"> service costs </span></a>
+                  <a class="govuk-link--no-visited-state" href="question3-quote?changeQuote=change&add">Change<span class="govuk-visually-hidden"> service costs </span></a>
                 {% endif %} 
               </li>
             </ul>
@@ -339,7 +339,7 @@
                     <a class="govuk-link" href="question3-quote-add-summary?addAdd=Yes&changeAdd=change">
                     Change<span class="govuk-visually-hidden"> additional item</span></a>
                     {% else %}
-                    <a class="govuk-link--no-visited-state" href="question3-quote-add-summary?addAdd=Yes&changeAdd=change">Change<span class="govuk-visually-hidden"> additional item</a>
+                    <a class="govuk-link--no-visited-state" href="question3-quote-add?addAdd=Yes&addCost=1&changeAdd=change">Change<span class="govuk-visually-hidden"> additional item</a>
                   {% endif %} 
                   </li>
                 {% endif %} 
@@ -417,7 +417,6 @@
 
     <script>
 
-      primaryTotals = function(){  
         var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
         var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
         var actualAdd2Total = parseInt(document.getElementById("actualAdd2Total").value) | 0
@@ -429,6 +428,9 @@
         var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
         var actualOtherTotal = parseInt(document.getElementById("actualOtherTotal").value) | 0
         var serviceType1 = document.getElementById("serviceType").value
+
+      primaryTotals = function(){  
+        
 
         if (serviceType1 === "Other"){   
           distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualOtherTotal;
@@ -471,20 +473,7 @@
       }
 
       window.onload = function(){  
-        var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
-        var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
-        var actualAdd2Total = parseInt(document.getElementById("actualAdd2Total").value) | 0
-        var actualTransTransTotal = parseInt(document.getElementById("actualTransTransTotal").value) | 0
-        var actualTransTotal = parseInt(document.getElementById("actualTransTotal").value) | 0
-        var actualTranslatorTotal = parseInt(document.getElementById("actualTranslatorTotal").value) | 0
-        var actualPhotoTotal = parseInt(document.getElementById("actualPhotoTotal").value) | 0
-        var dnaCost = parseInt(document.getElementById("dnaCost").value) | 0
-        var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
-        var actualOtherTotal = parseInt(document.getElementById("actualOtherTotal").value) | 0
-        var serviceType1 = document.getElementById("serviceType").value
-
         
-
 
         if (serviceType1 === "Other"){   
           distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualOtherTotal;
