@@ -31,7 +31,7 @@
 
         {{ govukInput({
           label: {
-            text: "What is the additional cost?",
+            text: "What is the additional cost for?",
             classes: "govuk-label--s"
           },
           hint: {
@@ -139,19 +139,19 @@
             },
             items: [
               {
-                value: "Charged by the hour",
-                text: "Charged by the hour",
-                checked: checked("addChargeType1", "Charged by the hour"),
-                conditional: {
-                  html: hourlyHtml
-                }
-              },
-              {
                 value: "Charged per item",
                 text: "Charged per item",
                 checked: checked("addChargeType1", "Charged per item"),
                 conditional: {
                   html: nonhourHtml
+                }
+              },
+              {
+                value: "Charged by the hour",
+                text: "Charged by the hour",
+                checked: checked("addChargeType1", "Charged by the hour"),
+                conditional: {
+                  html: hourlyHtml
                 }
               }
             ]
@@ -173,7 +173,7 @@
         {% if data['addCost'] == "2" %}
             {{ govukInput({
               label: {
-                text: "What is the additional cost?",
+                text: "What is the additional cost for?",
                 classes: "govuk-label--s"
               },
               hint: {
@@ -281,19 +281,19 @@
                 },
                 items: [
                   {
-                    value: "Charged by the hour",
-                    text: "Charged by the hour",
-                    checked: checked("addChargeType2", "Charged by the hour"),
-                    conditional: {
-                      html: hourlyHtml
-                    }
-                  },
-                  {
                     value: "Charged per item",
                     text: "Charged per item",
                     checked: checked("addChargeType2", "Charged per item"),
                     conditional: {
                       html: nonhourHtml
+                    }
+                  },
+                  {
+                    value: "Charged by the hour",
+                    text: "Charged by the hour",
+                    checked: checked("addChargeType2", "Charged by the hour"),
+                    conditional: {
+                      html: hourlyHtml
                     }
                   }
                 ]
