@@ -35,19 +35,22 @@
       <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
       <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
       <input type="hidden" id="serviceType" name="serviceType" value="{{data['serviceType']}}" />
-      <input type="hidden" id="actualdistTotalCost" name="actualdistTotalCost" value="{{data['showdistTotalCost']}}" />
+   
 
 
       <h2 class="govuk-heading-l">
         <span class="govuk-caption-l">Quote total cost</span> £
-        <span id="showdistTotalCost">0</span>.00
+        <span id="showdistTotalCost">0</span>.00 
       </h2>
 
       {% if data['changeQuote'] == "change" %}
-        <form class="form" action="check-answers" method="post">
+        <form class="form" action="check-answers" onclick="primaryTotals()" method="post">
         {% else %}
         <form class="form" action="task-list?question3-quote=complete" method="post">
       {% endif %}
+
+        <input type="hidden" id="actualdistTotalCost" name="actualdistTotalCost" value="{{data['actualdistTotalCost']}}" />
+        <input type="hidden" id="actualaddFinalTotal" name="actualaddFinalTotal" value="{{data['actualaddFinalTotal']}}" />
 
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
@@ -126,7 +129,7 @@
               {% endif %}
             </dl>
 
-            <!--Tables for disbursements-->
+            <!--Tables for services-->
             {% if data['serviceType'] == "Transcription" %}
               <table class="govuk-table">
                 <thead class="govuk-table__head">
@@ -236,7 +239,7 @@
                         </table> 
                         {% else %}
                         {% if data['serviceType'] !== "DNA report" %}
-                          <!--All other disbursement types-->
+                          <!--All other service types-->
                           <table class="govuk-table">
                             <thead class="govuk-table__head">
                               <tr class="govuk-table__row">
@@ -360,9 +363,13 @@
                   {% if data['addCost'] == "2" %}
                     <tr class="govuk-table__row">
                       <td class="govuk-table__cell">{{data['addCost2']}}</td>
-                      <td class="govuk-table__cell">£{{data['actualAdd2Total']}}.00</td>
+                      <td class="govuk-table__cell">£{{data['actualAdd2Total']}}.00 </td>
                     </tr>
                   {% endif %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell govuk-table__header">Total</td>
+                    <td class="govuk-table__cell govuk-table__header"><span id="showaddFinalTotal">0</span>.00 </td>
+                  </tr>
                 </tbody>
               </table>
               {% else %}
@@ -410,55 +417,118 @@
 
     <script>
 
-      window.onload = function(){  
-      var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
-      var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
-      var actualAdd2Total = parseInt(document.getElementById("actualAdd2Total").value) | 0
-      var actualTransTransTotal = parseInt(document.getElementById("actualTransTransTotal").value) | 0
-      var actualTransTotal = parseInt(document.getElementById("actualTransTotal").value) | 0
-      var actualTranslatorTotal = parseInt(document.getElementById("actualTranslatorTotal").value) | 0
-      var actualPhotoTotal = parseInt(document.getElementById("actualPhotoTotal").value) | 0
-      var dnaCost = parseInt(document.getElementById("dnaCost").value) | 0
-      var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
-      var actualOtherTotal = parseInt(document.getElementById("actualOtherTotal").value) | 0
-      var serviceType1 = document.getElementById("serviceType").value
+      primaryTotals = function(){  
+        var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
+        var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
+        var actualAdd2Total = parseInt(document.getElementById("actualAdd2Total").value) | 0
+        var actualTransTransTotal = parseInt(document.getElementById("actualTransTransTotal").value) | 0
+        var actualTransTotal = parseInt(document.getElementById("actualTransTotal").value) | 0
+        var actualTranslatorTotal = parseInt(document.getElementById("actualTranslatorTotal").value) | 0
+        var actualPhotoTotal = parseInt(document.getElementById("actualPhotoTotal").value) | 0
+        var dnaCost = parseInt(document.getElementById("dnaCost").value) | 0
+        var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
+        var actualOtherTotal = parseInt(document.getElementById("actualOtherTotal").value) | 0
+        var serviceType1 = document.getElementById("serviceType").value
 
-
-      if (serviceType1 === "Other"){   
-        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualOtherTotal;
-        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
-        document.getElementById("actualdistTotalCost").value = distTotalCost;
-      } else
-      if (serviceType1 === "Photocopying"){   
-        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualPhotoTotal;
-        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
-        document.getElementById("actualdistTotalCost").value = distTotalCost;
-      } else
-      if (serviceType1 === "Transcription"){   
-        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTotal;
-        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
-        document.getElementById("actualdistTotalCost").value = distTotalCost;
-      } else
-      if (serviceType1 === "Translation and transcription"){   
-        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTransTotal;
-        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
-        document.getElementById("actualdistTotalCost").value = distTotalCost;
-      } else
-      if (serviceType1 === "Translator"){   
-        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTranslatorTotal;
-        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
-        document.getElementById("actualdistTotalCost").value = distTotalCost;
-      } else
-      if (serviceType1 === "DNA report"){   
-        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + dnaCost;
-        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
-        document.getElementById("actualdistTotalCost").value = distTotalCost;
-      } else {   
-        distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualGeneralTotal;
-        document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
-        document.getElementById("actualdistTotalCost").value = distTotalCost;
+        if (serviceType1 === "Other"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualOtherTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Photocopying"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualPhotoTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Transcription"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Translation and transcription"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTransTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Translator"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTranslatorTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "DNA report"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + dnaCost;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else {
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualGeneralTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        }
+        
+        addFinalTotal = actualAdd1Total + actualAdd2Total; 
+        document.getElementById("showaddFinalTotal").innerHTML = addFinalTotal;    
+        document.getElementById("actualaddFinalTotal").value = addFinalTotal;
       }
-    }
+
+      window.onload = function(){  
+        var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
+        var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
+        var actualAdd2Total = parseInt(document.getElementById("actualAdd2Total").value) | 0
+        var actualTransTransTotal = parseInt(document.getElementById("actualTransTransTotal").value) | 0
+        var actualTransTotal = parseInt(document.getElementById("actualTransTotal").value) | 0
+        var actualTranslatorTotal = parseInt(document.getElementById("actualTranslatorTotal").value) | 0
+        var actualPhotoTotal = parseInt(document.getElementById("actualPhotoTotal").value) | 0
+        var dnaCost = parseInt(document.getElementById("dnaCost").value) | 0
+        var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
+        var actualOtherTotal = parseInt(document.getElementById("actualOtherTotal").value) | 0
+        var serviceType1 = document.getElementById("serviceType").value
+
+        
+
+
+        if (serviceType1 === "Other"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualOtherTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Photocopying"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualPhotoTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Transcription"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Translation and transcription"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTransTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Translator"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTranslatorTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "DNA report"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + dnaCost;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else {
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualGeneralTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        }
+        
+        addFinalTotal = actualAdd1Total + actualAdd2Total; 
+        document.getElementById("showaddFinalTotal").innerHTML = addFinalTotal;    
+        document.getElementById("actualaddFinalTotal").value = addFinalTotal;
+      }
+
+        
+
+
 
    
     
