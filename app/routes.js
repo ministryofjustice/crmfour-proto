@@ -126,11 +126,11 @@ router.post('/question3-alt-travel-q3', function(request, response) {
 //Alternative quotes add 2nd quote (Section3)
 router.post('/question3-alt-quote-summary2', function(request, response) {
 
-    var quoteAddAltOther2 = request.session.data['altAddQuote1']
-    if (quoteAddAltOther2 == "No"){
+    var altAddQuote1 = request.session.data['altAddQuote1']
+    if (altAddQuote1 == "No"){
         response.redirect("/provider/form/task-list?question3-alt-quote=complete")
     } 
-    if (quoteAddAltOther2 == "Yes"){
+    if (altAddQuote1 == "Yes"){
         response.redirect("/provider/form/question3-alt-quote-details?addAlt=yes&addAltQuote=2&showAltQuote=2")
     }
 })
@@ -138,11 +138,11 @@ router.post('/question3-alt-quote-summary2', function(request, response) {
 //Alternative quotes add 3rd quote (Section3)
 router.post('/question3-alt-quote-summary3', function(request, response) {
 
-    var quoteAddAltOther3 = request.session.data['altAddQuote2']
-    if (quoteAddAltOther3 == "No"){
+    var altAddQuote2 = request.session.data['altAddQuote2']
+    if (altAddQuote2 == "No"){
         response.redirect("/provider/form/task-list?question3-alt-quote=complete")
     } 
-    if (quoteAddAltOther3 == "Yes"){
+    if (altAddQuote2 == "Yes"){
         response.redirect("/provider/form/question3-alt-quote-details?addAlt=yes&addAltQuote=3&showAltQuote=3")
     }
 })
