@@ -35,10 +35,10 @@
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Unique file reference
+                Prison Law
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['ufn'] or "100323/234234"}}
+                {{data['prisonLaw'] | default("No")}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -51,10 +51,21 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Prison Law
+                Unique file number
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['prisonLaw'] | default("No")}}
+                {{data['ufn'] or "100323/234234"}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                {% if data['ufnChange'] == "change" %}
+                  <a class="govuk-link" href="question-ufn?ufnChange=change">
+                    Change<span class="govuk-visually-hidden"> unique file number</span>
+                  </a>
+                  {% else %}
+                    <a class="govuk-link--no-visited-state" href="question-ufn?ufnChange=change">
+                      Change<span class="govuk-visually-hidden"> unique file number</span>
+                    </a>
+                {% endif %} 
               </dd>
             </div>
           </dl>
