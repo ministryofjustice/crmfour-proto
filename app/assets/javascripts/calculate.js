@@ -21,19 +21,17 @@ function calOtherCost() {
   var otherNoItems = parseInt(document.getElementById("otherNoItems").value)
   var otherItemsCost = parseInt(document.getElementById("otherItemsCost").value)
 
+  if (otherChargeType === "Charged per item"){
+    otherCost1 = otherNoItems * otherItemsCost;
+    document.getElementById("showOtherTotal").innerHTML = otherCost1;
+    document.getElementById("actualOtherTotal").value = otherCost1;
 
-  if (otherChargeType == "Charged by the hour"){
+  } else {
     minsHours = numberMins / 60;
     totalTime = minsHours + numberHours;
     otherCost = otherCostTime * totalTime;
     document.getElementById("showOtherTotal").innerHTML = otherCost;
     document.getElementById("actualOtherTotal").value = otherCost;
-
-  } else {
-    otherCost = otherNoItems * otherItemsCost;
-    document.getElementById("showOtherTotal").innerHTML = otherCost;
-    document.getElementById("actualOtherTotal").value = otherCost;
-
   }
 }
 
