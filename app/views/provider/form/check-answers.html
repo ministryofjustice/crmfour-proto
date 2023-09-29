@@ -583,8 +583,33 @@
 
       
       <h2 class="govuk-heading-m">Now send your application</h2>
-      <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
-      <form action="/form-handler" method="post" novalidate>
+      <form action="application-submitted" method="post" novalidate>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="VAT" name="VAT" type="checkbox" value="VAT">
+                <label class="govuk-label govuk-checkboxes__label" for="VAT">
+                  I confirm that all costs are exclusive of VAT
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="VAT" name="VAT" type="checkbox" value="VAT">
+                <label class="govuk-label govuk-checkboxes__label" for="VAT">
+                  I confirm that  that the total amount disclosed for this authority (including both preparation and travel rates)does not include any travel expenditure that is not included within the hourly rate (such as milage, parking, travel fares etc)
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
         <input type="hidden" name="answers-checked" value="true">
         <button class="govuk-button" data-module="govuk-button">
           Accept and send
