@@ -57,12 +57,12 @@
                 {{data['ufn'] or "100323/234234"}}
               </dd>
               <dd class="govuk-summary-list__actions">
-                {% if data['ufnChange'] == "change" %}
-                  <a class="govuk-link" href="question-ufn?ufnChange=change">
+                {% if data['changeUFN'] == "change" %}
+                  <a class="govuk-link" href="question-ufn?changeUFN=change">
                     Change<span class="govuk-visually-hidden"> unique file number</span>
                   </a>
                   {% else %}
-                    <a class="govuk-link--no-visited-state" href="question-ufn?ufnChange=change">
+                    <a class="govuk-link--no-visited-state" href="question-ufn?changeUFN=change">
                       Change<span class="govuk-visually-hidden"> unique file number</span>
                     </a>
                 {% endif %} 
@@ -95,8 +95,8 @@
                 Contact details
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['contact-name']}}<br>
-                {{data['contact-email']}}
+                {{data['contact-name'] | default('Jim Bowen')}}<br>
+                {{data['contact-email'] | default('Jim@Bowen.com')}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -104,8 +104,8 @@
                 Firm details
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['org-name']}}<br> 
-                {{data['org-acc']}}
+                {{data['org-name'] | default('Laywers Inc')}}<br> 
+                {{data['org-acc'] | default('1A3B23E4')}}
               </dd>
             </div>
           </dl>
@@ -135,7 +135,7 @@
                 Client name
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['client-first--name']}} {{data['client-last--name']}}<br>
+                {{data['client-first--name'] | default('Roger')}} {{data['client-last--name'] | default('Blackbeard')}}<br>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -143,7 +143,7 @@
                 Date of birth
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['client-dob-day']}} {{data['client-dob-month']}} {{data['client-dob-year']}}
+                {{data['client-dob-day']| default('10')}} {{data['client-dob-month']| default('May')}} {{data['client-dob-year']| default('2001')}}
               </dd>
             </div>
           </dl>
@@ -175,7 +175,7 @@
                   Subject to POCA
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['poca']}}
+                  {{data['poca'] | default('Yes')}}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -183,7 +183,7 @@
                   Date of next hearing
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['date-hearing-day']}} {{data['date-hearing-month']}} {{data['date-hearing-year']}}
+                  {{data['date-hearing-day'] | default('23')}} {{data['date-hearing-month'] | default('September')}} {{data['date-hearing-year'] | default('2024')}}
                 </dd>
               </div>
 
@@ -194,7 +194,7 @@
                   Main offence
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['main-offence']}}
+                  {{data['main-offence'] | default('Anti-social behaviour orders (for applications made prior to 23rd March 2015)')}}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -202,7 +202,7 @@
                   Date of representation order
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['rep-order-day']}} {{data['rep-order-month']}} {{data['rep-order-year']}}
+                  {{data['rep-order-day'] | default('19')}} {{data['rep-order-month'] | default('April')}} {{data['rep-order-year'] | default('2023')}}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -210,7 +210,7 @@
                   MAAT number
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['maat']}}
+                  {{data['maat'] | default('12345678')}}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -218,9 +218,9 @@
                   Client detained
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['detained']}}
+                  {{data['detained'] | default('Yes')}}
                   {% if data['detained'] == "Yes"%}
-                    <br>{{data['prisons']}}
+                    <br>{{data['prisons'] | default('Belmarsh')}}
                   {% endif %}
                 </dd>
               </div>
@@ -229,7 +229,7 @@
                   Subject to POCA
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['poca']}}
+                  {{data['poca'] | default('Yes')}}
                 </dd>
               </div>
             {% endif %}
@@ -259,7 +259,7 @@
                   Date of next hearing
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['date-hearing-day']}} {{data['date-hearing-month']}} {{data['date-hearing-year']}}
+                  {{data['date-hearing-day'] | default('12')}} {{data['date-hearing-month'] | default('July')}} {{data['date-hearing-year'] | default('2024')}}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -267,7 +267,7 @@
                    Likely or actual plea 
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['plea']}}
+                  {{data['plea'] | default('Not guilty')}}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -275,7 +275,7 @@
                     Court type
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['courtType']}}
+                  {{data['courtType'] | default("Crown Court (excluding Central Criminal Court")}}
                 </dd>
               </div>
               {% if data['courtType'] == "Magistrates' court" %}
@@ -341,7 +341,7 @@
                 Why prior authority is required
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['why-pa']}}<br>
+                {{data['why-pa'] | default('My client needs to get a DNA test')}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -387,9 +387,9 @@
                 Expert details
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['expert-name']}}<br>
-                {{data['expert-org-name']}}, 
-                {{data['expert-postcode']}}
+                {{data['expert-name'] | default('Joanna White')}}<br>
+                {{data['expert-org-name'] | default('DNA Plc')}}, 
+                {{data['expert-postcode'] | default('E1 3RD')}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -397,7 +397,7 @@
                 Service required
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['serviceType']}}
+                {{data['serviceType'] | default('DNA report')}}
                 {% if data['serviceType'] == "Other" %}
                   <br>
                   {{data['otherExpert']}}
@@ -410,7 +410,7 @@
                   Ordered by court
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['courtOrdered']}}
+                  {{data['courtOrdered'] | default('Yes')}}
                 </dd>
               </div>
             {% endif %}
@@ -419,7 +419,7 @@
                 Existing prior authority granted
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['existingAuth']}}
+                {{data['existingAuth'] | default('No')}}
               </dd>
             </div>
           </dl>
@@ -436,28 +436,28 @@
                 <td class="govuk-table__cell">Service</td>
                 <!--Disbursements cost-->
                 {% if data['serviceType'] == "DNA report" %}
-                  <td class="govuk-table__cell">£{{data['dnaCost']}}.00</td>
+                  <td class="govuk-table__cell">£{{data['dnaCost'] | default('120')}}.00</td>
                   {% else %}
                   {% if data['serviceType'] == "Transcription" %}
-                    <td class="govuk-table__cell">£{{data['actualTransTotal']}}.00</td>
+                    <td class="govuk-table__cell">£{{data['actualTransTotal'] | default('120')}}.00</td>
                     {% else %}
                     {% if data['serviceType'] == "Translation and transcription" %}
-                      <td class="govuk-table__cell">£{{data['actualTransTransTotal']}}.00</td>
+                      <td class="govuk-table__cell">£{{data['actualTransTransTotal'] | default('120')}}.00</td>
                       {% else %}
                       {% if data['serviceType'] == "Translator" %} 
-                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal']}}.00</td>
+                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] | default('120')}}.00</td>
                         {% else %}
                         {% if data['serviceType'] == "Photocopying" %} 
-                          <td class="govuk-table__cell">£{{data['actualPhotoTotal']}}.00</td>
+                          <td class="govuk-table__cell">£{{data['actualPhotoTotal'] | default('120')}}.00</td>
                           {% else %}
-                          {% if data['serviceType'] == "Other" and  data['otherChargeType'] =="Charged by the hour"%} 
-                            <td class="govuk-table__cell">£{{data['actualOtherTotal']}}.00</td>
+                          {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
+                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] | default('120')}}.00</td>
                             {% else %}
                             {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
-                              <td class="govuk-table__cell">£{{data['actualOtherTotal']}}.00</td>
+                              <td class="govuk-table__cell">£{{data['actualOtherTotal'] | default('120')}}.00</td>
                               {% else %}
                               {% if data['serviceType'] !== "DNA report" %}
-                                <td class="govuk-table__cell">£{{data['actualGeneralTotal']}}.00</td>
+                                <td class="govuk-table__cell">£{{data['actualGeneralTotal'] | default('120')}}.00</td>
                               {% endif %}
                             {% endif %}
                           {% endif %}
@@ -470,20 +470,19 @@
               {% if data['addTravel'] == "Yes" %}
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Travel</td>
-                  <td class="govuk-table__cell">£{{data['actualTravelTotal']}}.00</td>
+                  <td class="govuk-table__cell">£{{data['actualTravelTotal'] | default('120')}}.00</td>
                 </tr>
               {% endif %}
               {% if data['addAdd'] == "Yes" %}
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Additional</td>
-                  <td class="govuk-table__cell">£{{data['actualaddFinalTotal']}}.00
-                  </td>
+                  <td class="govuk-table__cell">£{{data['actualaddFinalTotal'] | default('120')}}.00</td>
                 </tr>
               {% endif %}
                </tr>
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell govuk-table__header">Total cost</td>
-                  <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost']}}.00</strong></td>
+                  <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] | default('360')}}.00</strong></td>
                 </tr>
             </tbody>
           </table>         
@@ -513,12 +512,12 @@
                   Reason for no alternative quotes
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['no-alt-quotes-info']}}<br>
+                  {{data['no-alt-quotes-info'] | default('There are no other experts in the country that can do this')}}<br>
                 </dd>
               </div>
             </dl>   
             {% else %}
-            {% if data['altQuotesQ'] =="Yes" %}
+            {% if data['altQuotesQ'] =="Yes" or data['altQuotesQ'] == null%}
               <table class="govuk-table">
                 <thead class="govuk-table__head">
                   <tr class="govuk-table__row">
@@ -526,24 +525,24 @@
                     <th scope="col" class="govuk-table__header">Total</th>
                   </tr>
                 </thead>
-                <tbody class="govuk-table__body">
+                <tbody class="govuk-table__body"> 
                   <!--Alternative quote 1-->
                   <tr class="govuk-table__row">
                     <td class="govuk-table__cell">Alternative quote 1</td>
-                    <td class="govuk-table__cell">£{{data['alt1TotalCost']}}.00</td>
+                    <td class="govuk-table__cell">£{{data['alt1TotalCost'] | default('360')}}.00</td>
                   </tr>
                   {% if data['addAltQuote'] =="2" or data['addAltQuote'] =="3" or data['showAltQuote'] =="2" %}
                     <!--Alternative quote 2-->
                     <tr class="govuk-table__row">
                       <td class="govuk-table__cell">Alternative quote 2</td>
-                      <td class="govuk-table__cell">£{{data['alt2TotalCost']}}.00</td>
+                      <td class="govuk-table__cell">£{{data['alt2TotalCost'] | default('370')}}.00</td>
                     </tr>
                   {% endif %}
                   {% if data['addAltQuote'] =="3" or data['showAltQuote'] =="3" %}
                     <!--Alternative quote 3-->
                     <tr class="govuk-table__row">
                       <td class="govuk-table__cell">Alternative quote 3</td>
-                      <td class="govuk-table__cell">£{{data['alt3TotalCost']}}.00</td>
+                      <td class="govuk-table__cell">£{{data['alt3TotalCost'] | default('355')}}.00</td>
                     </tr>
                   {% endif %}
                 </tr>
@@ -554,7 +553,7 @@
         </div>
       </div>
 
-      <!---Why PA required-->
+      <!---Add Info-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">Additional information</h2>
@@ -576,7 +575,7 @@
                 Additional information
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['addInfo']}}<br>
+                {{data['addInfo'] | default('Attached details of previous search for this type of expert')}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">

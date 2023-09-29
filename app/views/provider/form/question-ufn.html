@@ -22,7 +22,11 @@ What is your unique reference number? – {{ serviceName }} – GOV.UK Prototype
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="task-list?laa-ref=LAA-5a7d3c&app-state=saved" method="post">
+      {% if data['changeUFN'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form class="form" action="task-list?laa-ref=LAA-5a7d3c&app-state=saved&question-ufn=complete" method="post">
+      {% endif %}
 
         {{ govukInput({
           label: {

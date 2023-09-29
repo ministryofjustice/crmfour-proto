@@ -32,7 +32,27 @@
     <div class="govuk-grid-column-two-thirds">
       
       <p class="govuk-body govuk-!-margin-bottom-7">If you leave this page before submitting, you can return later to complete the application.</p>
+
       <ol class="govuk-prototype-kit-task-list">
+        <!--Section 0 - UFN-->
+        <li>
+          <h2 class="govuk-prototype-kit-task-list__section">
+            Application details
+          </h2>
+          <ul class="govuk-prototype-kit-task-list__items">
+            <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-prototype-kit-task-list__task-name">
+                <a href="question-ufn?question-ufn=Complete" class="govuk-link--no-visited-state"  aria-describedby="ufn-status">
+                  Unique file number
+                </a>
+              </span>
+              {% if data['question-ufn'] =="complete" %}
+                <!--If question2-org is complete, show the status Complete-->
+                <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="ufn-status">Complete</strong>
+              {% endif %}
+          </li>
+          </ul>
+        </li>
 
         <!--Section 1 - About you-->
         <li>
