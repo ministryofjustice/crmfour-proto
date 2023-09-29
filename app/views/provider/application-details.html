@@ -47,13 +47,23 @@
               {% if data['app-task'] == "draft" %}
                 <p>Draft</p>
                 <p>22nd August 2023</p>
+                {% else %}
+                {% if data['app-task'] == "review" %}
+                  <p>Needs reviewing</p>
+                  <p>22nd August 2023</p>
+                  {% else %}
+                  {% if data['app-task'] == "onhold" %}
+                    <p>Application on-hold</p>
+                    <p>22nd August 2023</p>
+                  {% endif %}
+                {% endif %}
               {% endif %}
             {% endif %}
           {% endif %}
         {% endif %} 
         </dd>
       </div>
-      {% if data['app-task'] == "rejected" %}
+      {% if data['app-task'] !== "granted" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Caseworker recommendation
@@ -65,10 +75,10 @@
       {% endif %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Unique file number
+          Prison Law
         </dt>
         <dd class="govuk-summary-list__value">
-          {{data['ufn'] or "100323/234234"}}
+          {{data['prisonLaw'] or "No"}}
         </dd>
       </div>
       <div class="govuk-summary-list__row">
@@ -81,59 +91,33 @@
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Application fields TBD
+          Unique file number
         </dt>
         <dd class="govuk-summary-list__value">
-          <p>Some of the app details here</p>
+          {{data['ufn'] or "100323/234234"}}
         </dd>
       </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Application fields TBD
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <p>Some of the app details here</p>
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Application fields TBD
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <p>Some of the app details here</p>
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Documentation
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <!--if it is a complete app show doc details-->
-            <ul class="govuk-list">
-              <li><a href="#">confidentialdocument1.docx</a></li>
-              <li><a href="#">confidentialdocument2.docx</a></li>
-              <li><a href="#">confidentialdocument3.docx</a></li>
-            </ul>
-        </dd>
-      </div>   
     </dl>
     {% if data['app-task'] == "draft" %}
-    <div class="govuk-button-group">
-      {{ govukButton({
-        text: "Continue application",
-        href: "form/task-list?question1-org=complete"
-      }) }}    
-      <a class="govuk-link govuk-link--no-visited-state" href="">Delete</a>
-    </div>
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue application",
+          href: "form/task-list?question1-org=complete"
+        }) }}    
+        <a class="govuk-link govuk-link--no-visited-state" href="">Delete</a>
+      </div>
+      {% else %}
+      {% if data['app-task'] == "review" %}
+        {{ govukButton({
+          text: "Review"
+        }) }}
+      {% endif %}
     {% endif %}
 </div>
 
   <div class="govuk-grid-column-one-third">
     <aside class="app-related-items" role="complementary">
       <ul class="govuk-list govuk-!-font-size-16">
-        <li>
-          <a class="govuk-link--no-visited-state" href="" target="_blank">Some guidance for what to do (opens in a new window or tab)</a>
-        </li>
         <li>
           <br>
           <strong>Email the LAA case team</strong><br> 
