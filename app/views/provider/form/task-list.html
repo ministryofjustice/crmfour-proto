@@ -41,16 +41,24 @@
           </h2>
           <ul class="govuk-prototype-kit-task-list__items">
             <li class="govuk-prototype-kit-task-list__item">
-              <span class="govuk-prototype-kit-task-list__task-name">
-                <a href="question-ufn?question-ufn=Complete" class="govuk-link--no-visited-state"  aria-describedby="ufn-status">
-                  Unique file number
-                </a>
-              </span>
+              {% if data['question-ufn'] =="complete" %}
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question-ufn?question-ufn=complete" class="govuk-link"  aria-describedby="ufn-status">
+                    Unique file number
+                  </a>
+                </span>
+                {% else %}
+                 <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="question-ufn?question-ufn=complete" class="govuk-link--no-visited-state"  aria-describedby="ufn-status">
+                    Unique file number
+                  </a>
+                </span>
+              {% endif %}
               {% if data['question-ufn'] =="complete" %}
                 <!--If question2-org is complete, show the status Complete-->
                 <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="ufn-status">Complete</strong>
               {% endif %}
-          </li>
+            </li>
           </ul>
         </li>
 

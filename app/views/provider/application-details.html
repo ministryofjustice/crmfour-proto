@@ -63,7 +63,7 @@
         {% endif %} 
         </dd>
       </div>
-      {% if data['app-task'] !== "granted" %}
+      {% if data['app-task'] !== "granted" and data['app-task'] !== "draft" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Caseworker recommendation
@@ -102,7 +102,7 @@
       <div class="govuk-button-group">
         {{ govukButton({
           text: "Continue application",
-          href: "form/task-list?question1-org=complete"
+          href: "form/task-list?question1-org=complete&question-ufn=complete"
         }) }}    
         <a class="govuk-link govuk-link--no-visited-state" href="">Delete</a>
       </div>
