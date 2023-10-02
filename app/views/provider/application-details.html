@@ -63,15 +63,26 @@
         {% endif %} 
         </dd>
       </div>
-      {% if data['app-task'] !== "granted" and data['app-task'] !== "draft" %}
+      {% if data['app-task'] == "onhold" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Caseworker recommendation
+            Caseworker response
           </dt>
           <dd class="govuk-summary-list__value">
-            This is the result of the caseworkers review of the application...format TBD
+            Your application has been refered to the ICA.
           </dd>
         </div>
+        {% else %}
+        {% if data['app-task'] !== "granted" and data['app-task'] !== "draft" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Caseworker response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              This is the result of the caseworkers review of the application...format TBD
+            </dd>
+          </div>
+        {% endif %}
       {% endif %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
