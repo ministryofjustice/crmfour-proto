@@ -73,9 +73,9 @@
                   Expert details
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['expert-name']}}<br>
-                  {{data['expert-org-name']}}, 
-                  {{data['expert-postcode']}}
+                  {{data['expert-name'] or "Indra Tolbort"}}<br>
+                  {{data['expert-org-name'] or "Tolbort Borts"}}, 
+                  {{data['expert-postcode'] or "E2"}}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -83,7 +83,7 @@
                   Service required 
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['serviceType']}}
+                  {{data['serviceType'] or "DNA report"}}
                   {% if data['serviceType'] == "Other" %}
                     <br>
                     {{data['otherExpert']}}
@@ -104,7 +104,7 @@
                     Ordered by court
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['courtOrdered']}}
+                    {{data['courtOrdered'] or "Yes"}}
                   </dd>
                 </div>
               {% endif %}
@@ -113,7 +113,7 @@
                   Existing prior authority granted
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['existingAuth']}}
+                  {{data['existingAuth'] or "No"}}
                 </dd>
               </div>
               <!--If type is DNA show costs here-->
@@ -123,7 +123,7 @@
                     Cost of report
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    £{{data['dnaCost']}}.00
+                    £{{data['dnaCost'] or "450"}}.00
                   </dd>
                 </div>
               {% endif %}
@@ -141,9 +141,9 @@
                 </thead>
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{data['transNoMins']}} minutes</td>
-                    <td class="govuk-table__cell">£{{data['transCostMin']}} per minute</td>
-                    <td class="govuk-table__cell">£{{data['actualTransTotal']}}.00</td>
+                    <td class="govuk-table__cell">{{data['transNoMins'] or "20"}} minutes</td>
+                    <td class="govuk-table__cell">£{{data['transCostMin'] or "20"}} per minute</td>
+                    <td class="govuk-table__cell">£{{data['actualTransTotal'] or "400"}}.00</td>
                   </tr>
                 </tbody>
               </table> 
@@ -159,9 +159,9 @@
                   </thead>
                   <tbody class="govuk-table__body">
                     <tr class="govuk-table__row">
-                      <td class="govuk-table__cell">{{data['transtransNoMins']}} minutes</td>
-                      <td class="govuk-table__cell">£{{data['transtransCostMin']}} per minute</td>
-                      <td class="govuk-table__cell">£{{data['actualTransTransTotal']}}.00</td>
+                      <td class="govuk-table__cell">{{data['transtransNoMins'] or "20"}} minutes</td>
+                      <td class="govuk-table__cell">£{{data['transtransCostMin'] or "20"}} per minute</td>
+                      <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "400"}}.00</td>
                     </tr>
                   </tbody>
                 </table>
@@ -177,9 +177,9 @@
                     </thead>
                     <tbody class="govuk-table__body">
                       <tr class="govuk-table__row">
-                        <td class="govuk-table__cell">{{data['translatorWords']}} words</td>
-                        <td class="govuk-table__cell">£{{data['translatorCostWord']}} per word</td>
-                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal']}}.00</td>
+                        <td class="govuk-table__cell">{{data['translatorWords'] or "20"}} words</td>
+                        <td class="govuk-table__cell">£{{data['translatorCostWord'] or "20"}} per word</td>
+                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "400"}}.00</td>
                       </tr>
                     </tbody>
                   </table>
@@ -195,9 +195,9 @@
                       </thead>
                       <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
-                          <td class="govuk-table__cell">{{data['photoNoPages']}} pages</td>
-                          <td class="govuk-table__cell">£{{data['photoCostPage']}} per page</td>
-                          <td class="govuk-table__cell">£{{data['actualPhotoTotal']}}.00</td>
+                          <td class="govuk-table__cell">{{data['photoNoPages'] or "20"}} pages</td>
+                          <td class="govuk-table__cell">£{{data['photoCostPage'] or "20"}} per page</td>
+                          <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "400"}}.00</td>
                         </tr>
                       </tbody>
                     </table>
@@ -213,9 +213,9 @@
                         </thead>
                         <tbody class="govuk-table__body">
                           <tr class="govuk-table__row">
-                            <td class="govuk-table__cell">{{data['otherNoHours-hours']}} hours {{data['otherNoHours-mins']}}</td>
-                            <td class="govuk-table__cell">£{{data['otherCost']}} per hour</td>
-                            <td class="govuk-table__cell">£{{data['actualOtherTotal']}}.00</td>
+                            <td class="govuk-table__cell">{{data['otherNoHours-hours'] or "2"}} hours {{data['otherNoHours-mins'] or "00"}}</td>
+                            <td class="govuk-table__cell">£{{data['otherCost'] or "200"}} per hour</td>
+                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400"}}.00</td>
                           </tr>
                         </tbody>
                       </table> 
@@ -231,9 +231,9 @@
                           </thead>
                           <tbody class="govuk-table__body">
                             <tr class="govuk-table__row">
-                              <td class="govuk-table__cell">{{data['otherNoItems']}} items</td>
-                              <td class="govuk-table__cell">£{{data['otherItemsCost']}} per item</td>
-                              <td class="govuk-table__cell">£{{data['actualOtherTotal']}}.00</td>
+                              <td class="govuk-table__cell">{{data['otherNoItems'] or "1"}} items</td>
+                              <td class="govuk-table__cell">£{{data['otherItemsCost'] or "450"}} per item</td>
+                              <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "450"}}.00</td>
                             </tr>
                           </tbody>
                         </table> 
@@ -250,9 +250,9 @@
                             </thead>
                             <tbody class="govuk-table__body">
                               <tr class="govuk-table__row">
-                                <td class="govuk-table__cell">{{data['generalNoHours-hours']}} hours {{data['generalNoHours-mins']}} minutes</td>
-                                <td class="govuk-table__cell">£{{data['generalCost']}} per hour</td>
-                                <td class="govuk-table__cell">£{{data['actualGeneralTotal']}}.00</td>
+                                <td class="govuk-table__cell">{{data['generalNoHours-hours'] or "2"}} hours {{data['generalNoHours-mins'] or "00"}} minutes</td>
+                                <td class="govuk-table__cell">£{{data['generalCost'] or "250"}} per hour</td>
+                                <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "500"}}.00</td>
                               </tr>
                             </tbody>
                           </table> 
