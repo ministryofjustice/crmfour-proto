@@ -319,44 +319,6 @@
       <!--About the request-->
       <h2 class="govuk-heading-l">About the request</h2>
 
-      <!---Why PA required-->
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title"> Reason for prior authority</h2>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeWhyPA'] == "change" %}
-                <a class="govuk-link" href="question3-why-pa?changeWhyPA=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-why-pa?changeWhyPA=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
-              {% endif %} 
-            </li>
-          </ul>
-        </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Why prior authority is required
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['why-pa'] | default('My client needs to get a DNA test')}}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Supplementary documents
-              </dt>
-              <dd class="govuk-summary-list__value">
-                whyPADocs1.pdf<br>
-                whyPADocs2.pdf
-              </dd>
-            </div>
-          </dl>       
-        </div>
-      </div>
-
       <!--Primary quote-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -374,14 +336,6 @@
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Quote upload
-              </dt>
-              <dd class="govuk-summary-list__value">
-                myquote1.pdf
-              </dd>
-            </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Expert details
@@ -402,6 +356,14 @@
                   <br>
                   {{data['otherExpert']}}
                 {% endif %}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Quote upload
+              </dt>
+              <dd class="govuk-summary-list__value">
+                myquote1.pdf
               </dd>
             </div>
              {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
@@ -553,17 +515,17 @@
         </div>
       </div>
 
-      <!---Add Info-->
+      <!---Why PA required-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Additional information</h2>
+          <h2 class="govuk-summary-card__title"> Reason for prior authority</h2>
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeAddInfo'] == "change" %}
-                <a class="govuk-link" href="question3-add-info?changeAddInfo=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
+              {% if data['changeWhyPA'] == "change" %}
+                <a class="govuk-link" href="question3-why-pa?changeWhyPA=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-add-info?changeAddInfo=change">Change<span class="govuk-visually-hidden"> primary quote details</span></a>
+                <a class="govuk-link--no-visited-state" href="question3-why-pa?changeWhyPA=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
               {% endif %} 
             </li>
           </ul>
@@ -572,10 +534,10 @@
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Additional information
+                Why prior authority is required
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['addInfo'] | default('Attached details of previous search for this type of expert')}}
+                {{data['why-pa'] | default('My client needs to get a DNA test')}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -583,8 +545,8 @@
                 Supplementary documents
               </dt>
               <dd class="govuk-summary-list__value">
-                addInfoDocs1.pdf<br>
-                addInfoDocs2.pdf
+                whyPADocs1.pdf<br>
+                whyPADocs2.pdf
               </dd>
             </div>
           </dl>       
