@@ -26,18 +26,6 @@
 
       
       <form class="form" action="question3-quote-prep" method="post">
-        {{ govukFileUpload({
-          id: "quote1Upload",
-          name: "quote1Upload",
-          isPageHeading: true,
-          label: {
-            text: "Upload the quote",
-            classes: 'govuk-label--m'
-          },
-          hint: {
-            text: 'The maximum file size of the quote is 7MB. Files must be a DOC, DOCX, RTF, ODT, JPG, BMP, PNG, TIF or PDF.'
-          }
-        }) }}
 
         {% call govukFieldset({
           legend: {
@@ -80,6 +68,19 @@
         {% endcall %}
 
         {% include "includes/service-list.html" %}
+
+        {{ govukFileUpload({
+          id: "quote1Upload",
+          name: "quote1Upload",
+          isPageHeading: true,
+          label: {
+            text: "Upload the quote",
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            text: 'The maximum file size of the quote is 70MB. Files must be a DOC, DOCX, XLSX, XLS, RTF, ODT, JPG, BMP, PNG, TIF or PDF.'
+          }
+        }) }}
 
 
         <div class="govuk-button-group">
