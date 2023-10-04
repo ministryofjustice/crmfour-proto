@@ -26,13 +26,12 @@
       <h1 class="govuk-heading-xl">Add alternative quotes</h1>
       <p>You can add up to 3 alternative quotes.</p>
         
-        
-      <form class="form" action="question3-alt-quote-summary" method="post">
-       
+      {% if data['addAltQuote'] == "1" or data['showAltQuote'] == "1" %}
 
-        <h2 class="govuk-heading-l">Alternative quote</h2>
+        <form class="form" action="question3-alt-quote-summary" onclick="calalt1TotalCost" method="post">
+          <input type="hidden" id="alt1TotalCost" name="alt1TotalCost" value="{{data['alt1TotalCost']}}" />
 
-        {% if data['addAltQuote'] == "1" or data['showAltQuote'] == "1" %}
+          <h2 class="govuk-heading-l">Alternative quote</h2>
 
           <!--Alt quote 1-->
 
@@ -489,7 +488,7 @@
                       <label class="govuk-label govuk-date-input__label" for="alt1travelTime-mins">
                         Minutes
                       </label>
-                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="alt1travelTime-mins" name="alt1travelTime1Travel-mins" type="text" inputmode="numeric" value="{{data['alt1travelTime-mins']}}">
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="alt1travelTime-mins" name="alt1travelTime-mins" type="text" inputmode="numeric" value="{{data['alt1travelTime-mins']}}">
                     </div>
                   </div>
                 </div>
@@ -559,15 +558,16 @@
 
           </fieldset>
 
-          {% else %}
-          {% if data['addAltQuote'] == "2" or data['showAltQuote'] == "2"  %}
+        {% else %}
 
-            <!--Alt quote 2-->
-            <!--Alt quote 2-->
-            <!--Alt quote 2-->
-            <!--Alt quote 2-->
-            <!--Alt quote 2-->
+        <!--Alt quote 2-->
+        <!--Alt quote 2-->
+        <!--Alt quote 2-->
+        <!--Alt quote 2-->
 
+        {% if data['addAltQuote'] == "2" or data['showAltQuote'] == "2"  %}
+          <form class="form" action="question3-alt-quote-summary" onclick="calalt2TotalCost" method="post">
+            <h2 class="govuk-heading-l">Alternative quote</h2>
 
             {% call govukFieldset({
               legend: {
@@ -1091,16 +1091,19 @@
               }) }}
 
             </fieldset>
-
            
-            {% else %}
-            {% if data['addAltQuote'] == "3" or data['showAltQuote'] == "3"  %}
+          {% else %}
 
-              <!--Alt quote 3-->
-              <!--Alt quote 3-->
-              <!--Alt quote 3-->
-              <!--Alt quote 3-->
-              <!--Alt quote 3-->
+          <!--Alt quote 3-->
+          <!--Alt quote 3-->
+          <!--Alt quote 3-->
+          <!--Alt quote 3-->
+          <!--Alt quote 3-->
+
+          {% if data['addAltQuote'] == "3" or data['showAltQuote'] == "3"  %}
+
+            <form class="form" action="question3-alt-quote-summary" onclick="calalt2TotalCost" method="post">
+              <h2 class="govuk-heading-l">Alternative quote</h2>
 
               {% call govukFieldset({
                 legend: {
@@ -1761,7 +1764,7 @@
 
     // Alt 2
 
-        function calalt2GeneralCost() {
+    function calalt2GeneralCost() {
 
       var alt2generalCost = parseInt(document.getElementById("alt2generalCost").value)
       var alt2numberHours = parseInt(document.getElementById("alt2generalNoHours-hours").value)
@@ -1852,9 +1855,14 @@
       document.getElementById("actualalt2TravelTotal").value = alt2travelCost;
     }
 
+     function calalt2TotalCost() {
+     }
+
+    // Alt3
+    // Alt3
     // Alt3
 
-        function calalt3GeneralCost() {
+    function calalt3GeneralCost() {
 
       var alt3generalCost = parseInt(document.getElementById("alt3generalCost").value)
       var alt3numberHours = parseInt(document.getElementById("alt3generalNoHours-hours").value)
@@ -1943,6 +1951,9 @@
       alt3travelCost = alt3travelCostTime * alt3travelTime;
       document.getElementById("showalt3TravelTotal").innerHTML = alt3travelCost;
       document.getElementById("actualalt3TravelTotal").value = alt3travelCost;
+    }
+
+    function calalt2TotalCost() {
     }
 
 
