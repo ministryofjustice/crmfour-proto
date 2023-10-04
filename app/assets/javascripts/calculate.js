@@ -12,6 +12,19 @@ function calGeneralCost() {
   document.getElementById("actualGeneralTotal").value = timeCost;
 }
 
+function calalt1GeneralCost() {
+
+  var alt1generalCost = parseInt(document.getElementById("alt1generalCost").value)
+  var alt1numberHours = parseInt(document.getElementById("alt1generalNoHours-hours").value)
+  var alt1numberMins = parseInt(document.getElementById("alt1generalNoHours-mins").value),
+
+  alt1minsHours = alt1numberMins / 60;
+  alt1totalTime = alt1minsHours + alt1numberHours;
+  alt1timeCost = alt1generalCost * alt1totalTime;
+  document.getElementById("showalt1GeneralTotal").innerHTML = alt1timeCost;
+  document.getElementById("actualalt1GeneralTotal").value = alt1timeCost;
+}
+
 function calOtherCost() {
 
   var otherCostTime = parseInt(document.getElementById("otherCostTime").value)
@@ -21,19 +34,19 @@ function calOtherCost() {
   var otherNoItems = parseInt(document.getElementById("otherNoItems").value)
   var otherItemsCost = parseInt(document.getElementById("otherItemsCost").value)
 
-  if (otherChargeType === "Charged per item"){
-    otherCost1 = otherNoItems * otherItemsCost;
-    document.getElementById("showOtherTotal").innerHTML = otherCost1;
-    document.getElementById("actualOtherTotal").value = otherCost1;
-
-  } else {
+  if (otherChargeType === "Charged by the hour"){
     minsHours = numberMins / 60;
     totalTime = minsHours + numberHours;
     otherCost = otherCostTime * totalTime;
     document.getElementById("showOtherTotal").innerHTML = otherCost;
     document.getElementById("actualOtherTotal").value = otherCost;
+
+    } else {
+      otherCost1 = otherNoItems * otherItemsCost;
+      document.getElementById("showOtherTotal").innerHTML = otherCost1;
+      document.getElementById("actualOtherTotal").value = otherCost1;
+    }
   }
-}
 
 function calPhotoCost() {
 
@@ -65,6 +78,16 @@ function calTransTransCost() {
   document.getElementById("actualTransTransTotal").value = transtransCost;
 }
 
+function calTransCost() {
+
+  var transNoMins = parseInt(document.getElementById("transNoMins").value)
+  var transCostMin = parseInt(document.getElementById("transCostMin").value)
+
+  transCost = transNoMins * transCostMin;
+  document.getElementById("showTransTotal").innerHTML = transCost;
+  document.getElementById("actualTransTotal").value = transCost;
+}
+
 function calTravelCost() {
 
   var travelCostTime = parseInt(document.getElementById("travelCostTime").value)
@@ -76,16 +99,6 @@ function calTravelCost() {
   travelCost = travelCostTime * travelTime;
   document.getElementById("showTravelTotal").innerHTML = travelCost;
   document.getElementById("actualTravelTotal").value = travelCost;
-}
-
-function calTransCost() {
-
-  var transNoMins = parseInt(document.getElementById("transNoMins").value)
-  var transCostMin = parseInt(document.getElementById("transCostMin").value)
-
-  transCost = transNoMins * transCostMin;
-  document.getElementById("showTransTotal").innerHTML = transCost;
-  document.getElementById("actualTransTotal").value = transCost;
 }
 
 function calAdd1Cost() {

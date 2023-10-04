@@ -45,6 +45,17 @@
         {% endif %}
       {% endif %}
 
+      <input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualalt1TravelTotal']}}" />
+      <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualalt1AddTotal']}}" />
+      <input type="hidden" id="actualTransTotal" name="actualTransTotal" value="{{data['actualalt1TransTotal']}}" />
+      <input type="hidden" id="actualTransTransTotal" name="actualTransTransTotal" value="{{data['actualalt1TransTransTotal']}}" />
+      <input type="hidden" id="actualTranslatorTotal" name="actualTranslatorTotal" value="{{data['actualalt1TranslatorTotal']}}" />
+      <input type="hidden" id="actualPhotoTotal" name="actualPhotoTotal" value="{{data['actualalt1PhotoTotal']}}" />
+      <input type="hidden" id="dnaCost" name="dnaCost" value="{{data['alt1dnaCost']}}" />
+      <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualalt1GeneralTotal']}}" />
+      <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualalt1OtherTotal']}}" />
+
+
 
         <!--Alternative quote 1-->
         <div class="govuk-summary-card">
@@ -75,6 +86,16 @@
             <dl class="govuk-summary-list govuk-!-margin-bottom-6">
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
+                  Expert details
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['alt1ExpertName'] or "Jame Jones"}}<br>
+                  {{data['alt1ExpertOrg'] or "Jones Law"}}, 
+                  {{data['alt1ExpertPostcode'] or "E1"}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
                   Quote upload
                 </dt>
                 <dd class="govuk-summary-list__value">
@@ -83,12 +104,34 @@
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Expert details
+                  Service cost
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['alt1ExpertName']}}<br>
-                  {{data['alt1expertOrg']}}, 
-                  {{data['alt1ExpertPostcode']}}
+                  {% if data['serviceType'] == "Transcription" %}
+                    £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                    {% else %}
+                    {% if data['serviceType'] == "Translation and transcription" %}
+                      £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translator" %}
+                        £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Photocopying" %}
+                          £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                          {% else %}
+                          {% if data['serviceType'] == "DNA report" %}
+                            £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                            {% else %}
+                            {% if data['serviceType'] == "Other" %}
+                              £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                              {% else %}
+                              £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -96,7 +139,7 @@
                   Travel
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['alt1TravelCost']}}
+                  £{{data['actualalt1TravelTotal'] or "200"}}.00
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -104,7 +147,7 @@
                   Additional items
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['alt1Descript']}}
+                  £{{data['alt1AddCost'] or "420"}}.00
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -112,13 +155,19 @@
                   Total cost
                 </dt>
                 <dd class="govuk-summary-list__value">
-                    £{{data['actualAlt1Cost']}}
+                    £{{data['alt1TotalCost'] or "1000"}}.00
                 </dd>
               </div>
             </dl>
           </div>
         </div>
         <!--Alternative quote 2-->
+        <!--Alternative quote 2-->
+        <!--Alternative quote 2-->
+        <!--Alternative quote 2-->
+        <!--Alternative quote 2-->
+        <!--Alternative quote 2-->
+
         {% if data['addAltQuote'] =="2" or data['addAltQuote'] =="3" or data['showAltQuote'] =="2" %}
           <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
@@ -148,6 +197,16 @@
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
+                    Expert details
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['alt2ExpertName'] or "Belinda Cartright"}}<br>
+                    {{data['alt2ExpertOrg'] or "Cartright Ltd"}}, 
+                    {{data['alt2ExpertPostcode'] or "E2"}}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
                     Quote upload
                   </dt>
                   <dd class="govuk-summary-list__value">
@@ -156,12 +215,34 @@
                 </div>
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
-                    Expert details
+                    Service cost
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['alt2ExpertName']}}<br>
-                    {{data['alt2ExpertOrg']}}, 
-                    {{data['alt2ExpertPostcode']}}
+                    {% if data['serviceType'] == "Transcription" %}
+                      £{{data['alt2actualTransTotalCost'] or "320"}}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translation and transcription" %}
+                        £{{data['alt2actualTransTotalCost'] or "320"}}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Translator" %}
+                          £{{data['alt2actualTransTotalCost'] or "320"}}.00
+                          {% else %}
+                          {% if data['serviceType'] == "Photocopying" %}
+                            £{{data['alt2actualTransTotalCost'] or "320"}}.00
+                            {% else %}
+                            {% if data['serviceType'] == "DNA report" %}
+                              £{{data['alt2actualTransTotalCost'] or "320"}}.00
+                              {% else %}
+                              {% if data['serviceType'] == "Other" %}
+                                £{{data['alt2actualTransTotalCost'] or "320"}}.00
+                                {% else %}
+                                £{{data['alt2actualTransTotalCost'] or "320"}}.00
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -169,7 +250,7 @@
                     Travel
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['alt2TravelCost']}}
+                    £{{data['actualalt2TravelTotal'] or "250"}}.00
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -177,7 +258,7 @@
                     Additional items
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['alt2Descript']}}
+                    £{{data['alt2AddCost'] or "700"}}.00
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -185,14 +266,16 @@
                     Total cost
                   </dt>
                   <dd class="govuk-summary-list__value">
-                      £{{data['alt2TotalCost']}}
+                      £{{data['alt2TotalCost'] or "1270"}}.00
                   </dd>
                 </div>
               </dl>
             </div>
           </div>
         {% endif %}
+
          <!--Alternative quote 3-->
+
         {% if data['addAltQuote'] =="3" or data['showAltQuote'] =="3" %}
           <div class="govuk-summary-card">
             <div class="govuk-summary-card__title-wrapper">
@@ -222,6 +305,16 @@
               <dl class="govuk-summary-list govuk-!-margin-bottom-6">
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
+                    Expert details
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['alt3ExpertName'] or "Roger Monied"}}<br>
+                    {{data['alt3ExpertOrg'] or "Moniedboy Ltd"}}, 
+                    {{data['alt3ExpertPostcode'] or "WC1"}}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
                     Quote upload
                   </dt>
                   <dd class="govuk-summary-list__value">
@@ -230,12 +323,34 @@
                 </div>
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
-                    Expert details
+                    Service cost
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['alt3ExpertName']}}<br>
-                    {{data['alt3ExpertOrg']}}, 
-                    {{data['alt3ExpertPostcode']}}
+                    {% if data['serviceType'] == "Transcription" %}
+                      £{{data['alt3actualTransTotalCost'] or "650"}}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translation and transcription" %}
+                        £{{data['alt3actualTransTotalCost'] or "650"}}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Translator" %}
+                          £{{data['alt3actualTransTotalCost'] or "650"}}.00
+                          {% else %}
+                          {% if data['serviceType'] == "Photocopying" %}
+                            £{{data['alt3actualTransTotalCost'] or "650"}}.00
+                            {% else %}
+                            {% if data['serviceType'] == "DNA report" %}
+                              £{{data['alt3actualTransTotalCost'] or "650"}}.00
+                              {% else %}
+                              {% if data['serviceType'] == "Other" %}
+                                £{{data['alt3actualTransTotalCost'] or "650"}}.00
+                                {% else %}
+                                £{{data['alt3actualTransTotalCost'] or "650"}}.00
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -243,7 +358,7 @@
                     Travel
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['alt3TravelCost']}}
+                    £{{data['actualalt3TravelTotal'] or "450"}}.00
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -251,7 +366,7 @@
                     Additional items
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['alt3Descript']}}
+                    £{{data['alt3AddCost'] or "800"}}.00
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -259,7 +374,7 @@
                     Total cost
                   </dt>
                   <dd class="govuk-summary-list__value">
-                      £{{data['alt3TotalCost']}}
+                      £{{data['alt3TotalCost'] or "3170"}}.00
                   </dd>
                 </div>
               </dl>
