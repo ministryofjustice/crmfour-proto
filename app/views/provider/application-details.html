@@ -26,105 +26,289 @@
       Application details
     </h1>
 
-    <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Status
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {% if data['app-task'] == "submitted" %}
-          <p>Submitted<br>Awaiting LAA review</p>
-          <p>12th July 2023</p>
-          {% else %}
-          {% if data['app-task'] == "granted" %}
-            <p>Granted</p>
-            <p>1st Sept 2023</p>
-            {% else %}
-            {% if data['app-task'] == "rejected" %}
-              <p>Rejected</p>
-              <p>21st August 2023</p>
-              {% else %}
-              {% if data['app-task'] == "draft" %}
-                <p>Draft</p>
-                <p>22nd August 2023</p>
+     <div class="govuk-summary-card">
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['app-task'] == "submitted" %}
+                <p>Submitted<br>Awaiting LAA review</p>
+                <p>12th July 2023</p>
                 {% else %}
-                {% if data['app-task'] == "review" %}
-                  <p>Needs reviewing</p>
-                  <p>22nd August 2023</p>
+                {% if data['app-task'] == "granted" %}
+                  <p><strong class="govuk-tag govuk-tag--green">
+                      Granted in full
+                    </strong></p>
+                  <p>1st Sept 2023</p>
                   {% else %}
-                  {% if data['app-task'] == "onhold" %}
-                    <p>Application on-hold</p>
-                    <p>22nd August 2023</p>
+                  {% if data['app-task'] == "rejected" %}
+                    <p><strong class="govuk-tag govuk-tag--red">Rejected in full</strong></p>
+                    <p>21st August 2023</p>
+                    {% else %}
+                    {% if data['app-task'] == "draft" %}
+                      <p>Draft</p>
+                      <p>22nd August 2023</p>
+                      {% else %}
+                      {% if data['app-task'] == "review" %}
+                        <p><strong class="govuk-tag govuk-tag--yellow">
+                        Review - incomplete application
+                        </strong></p>
+                        <p>22nd August 2023</p>
+                        {% else %}
+                        {% if data['app-task'] == "onhold" %}
+                          <p><strong class="govuk-tag govuk-tag--blue">
+                            Application on-hold</strong></p>
+                          <p>22nd August 2023</p>
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %} 
+            </dd>
+          </div>
+          {% if data['app-task'] == "onhold" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Caseworker response
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Your application has been refered to the ICA.
+              </dd>
+            </div>
+            {% else %}
+            {% if data['app-task'] !== "granted" and data['app-task'] !== "submitted" %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Caseworker response
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  This is the result of the caseworkers review of the application...format TBD<br><br>
+                  {% if data['app-task'] == "review" %}
+                    {{ govukButton({
+                      text: "Review application"
+                    }) }}
+                  {% endif %}
+                </dd>
+              </div>
+            {% endif %}
+          {% endif %}
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Application details</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              LAA reference
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['laa-ref'] or "LAA-5a7d3c"}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Unique file number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['ufn'] or "100323/234234"}}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <!--Case details-->
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Client and case overview</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Client name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['client-first--name'] | default('Roger')}} {{data['client-last--name'] | default('Blackbeard')}}<br>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of birth
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['client-dob-day']| default('10')}} {{data['client-dob-month']| default('May')}} {{data['client-dob-year']| default('2001')}}
+            </dd>
+          </div>
+          
+          {% if data['prisonLaw'] == "Yes" %}
+            <!--If YES to Prison Law--->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Subject to POCA
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['poca'] | default('Yes')}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of next hearing
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['date-hearing-day'] | default('23')}} {{data['date-hearing-month'] | default('September')}} {{data['date-hearing-year'] | default('2024')}}
+              </dd>
+            </div>
+
+            {% else %}
+            <!--If prison law is NO-->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Main offence
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['main-offence'] | default('Anti-social behaviour orders (for applications made prior to 23rd March 2015)')}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of representation order
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['rep-order-day'] | default('19')}} {{data['rep-order-month'] | default('April')}} {{data['rep-order-year'] | default('2023')}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                MAAT number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['maat'] | default('12345678')}}
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+      </div>
+    </div>
+
+    <!--Primary quote-->
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Quote</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Expert details
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['expert-name'] | default('Joanna White')}}<br>
+              {{data['expert-org-name'] | default('DNA Plc')}}, 
+              {{data['expert-postcode'] | default('E1 3RD')}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Service required
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['serviceType'] | default('DNA report')}}
+              {% if data['serviceType'] == "Other" %}
+                <br>
+                {{data['otherExpert']}}
+              {% endif %}
+            </dd>
+          </div>
+            {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Ordered by court
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['courtOrdered'] | default('Yes')}}
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Costs</th>
+              <th scope="col" class="govuk-table__header">Total</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Service</td>
+              <!--Service cost-->
+              {% if data['serviceType'] == "DNA report" %}
+                <td class="govuk-table__cell">£{{data['dnaCost'] | default('120')}}.00</td>
+                {% else %}
+                {% if data['serviceType'] == "Transcription" %}
+                  <td class="govuk-table__cell">£{{data['actualTransTotal'] | default('120')}}.00</td>
+                  {% else %}
+                  {% if data['serviceType'] == "Translation and transcription" %}
+                    <td class="govuk-table__cell">£{{data['actualTransTransTotal'] | default('120')}}.00</td>
+                    {% else %}
+                    {% if data['serviceType'] == "Translator" %} 
+                      <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] | default('120')}}.00</td>
+                      {% else %}
+                      {% if data['serviceType'] == "Photocopying" %} 
+                        <td class="govuk-table__cell">£{{data['actualPhotoTotal'] | default('120')}}.00</td>
+                        {% else %}
+                        {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
+                          <td class="govuk-table__cell">£{{data['actualOtherTotal'] | default('120')}}.00</td>
+                          {% else %}
+                          {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
+                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] | default('120')}}.00</td>
+                            {% else %}
+                            {% if data['serviceType'] !== "DNA report" %}
+                              <td class="govuk-table__cell">£{{data['actualGeneralTotal'] | default('120')}}.00</td>
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
                   {% endif %}
                 {% endif %}
               {% endif %}
+            </tr>
+            {% if data['addTravel'] == "Yes" %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Travel</td>
+                <td class="govuk-table__cell">£{{data['actualTravelTotal'] | default('120')}}.00</td>
+              </tr>
             {% endif %}
-          {% endif %}
-        {% endif %} 
-        </dd>
+            {% if data['addAdd'] == "Yes" %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Additional</td>
+                <td class="govuk-table__cell">£{{data['actualaddFinalTotal'] | default('120')}}.00</td>
+              </tr>
+            {% endif %}
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell govuk-table__header">Total cost</td>
+                <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] | default('360')}}.00</strong></td>
+              </tr>
+          </tbody>
+        </table>         
       </div>
-      {% if data['app-task'] == "onhold" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Caseworker response
-          </dt>
-          <dd class="govuk-summary-list__value">
-            Your application has been refered to the ICA.
-          </dd>
-        </div>
-        {% else %}
-        {% if data['app-task'] == "review" %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Caseworker response
-            </dt>
-            <dd class="govuk-summary-list__value">
-              This is the result of the caseworkers review of the application...format TBD
-            </dd>
-          </div>
-        {% endif %}
-      {% endif %}
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Prison Law
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{data['prisonLaw'] or "No"}}
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          LAA reference
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{data['laa-ref'] or "LAA-5a7d3c"}}
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Unique file number
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{data['ufn'] or "100323/234234"}}
-        </dd>
-      </div>
-    </dl>
-    {% if data['app-task'] == "draft" %}
-      <div class="govuk-button-group">
-        {{ govukButton({
-          text: "Continue application",
-          href: "form/task-list?question1-org=complete&question-ufn=complete"
-        }) }}    
-        <a class="govuk-link govuk-link--no-visited-state" href="">Delete</a>
-      </div>
-      {% else %}
-      {% if data['app-task'] == "review" %}
-        {{ govukButton({
-          text: "Review"
-        }) }}
-      {% endif %}
-    {% endif %}
-</div>
+    </div>
+    {{ govukButton({
+      text: "Print"
+    }) }}
+  </div>
 
   <div class="govuk-grid-column-one-third">
     <aside class="app-related-items" role="complementary">
