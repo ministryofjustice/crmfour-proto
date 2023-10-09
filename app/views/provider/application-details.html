@@ -70,44 +70,60 @@
               {% endif %} 
             </dd>
           </div>
-          {% if data['app-task'] == "referred" %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Caseworker response
-              </dt>
-              <dd class="govuk-summary-list__value">
-                Your application has been refered to the ICA.
-              </dd>
-            </div>
-            {% else %}
-            {% if data['app-task'] == "partgranted" %}
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Caseworker response
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  Costs will be paid up to: £300
-                  <br><br>
-                </dd>
-              </div>
-              {% else %}
-              {% if data['app-task'] !== "granted" and data['app-task'] !== "submitted" %}
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    Caseworker response
-                  </dt>
-                  <dd class="govuk-summary-list__value">
-                    This is the result of the caseworkers review of the application...format TBD<br><br>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Caseworker response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['app-task'] == "granted" %}
+                <ul class="govuk-list">
+                  <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                </ul>
+                <p>Your application has been fully granted.</p>
+                {% else %}
+                {% if data['app-task'] == "referred" %}
+                  <ul class="govuk-list">
+                    <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                  </ul>
+                  <p>Your application has been refered to the ICA.</p>
+                  {% else %}
+                  {% if data['app-task'] == "partgranted" %}
+                    <ul class="govuk-list">
+                      <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                      <li>£300 has been granted</li>
+                    </ul>
+                    <p>This is the result of the caseworkers review of the application...format TBD</p>
+                    {% else %}
                     {% if data['app-task'] == "review" %}
+                      <ul class="govuk-list">
+                        <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                      </ul>
+                      <p>Your application needs to be reviewed.</p>
+                      <p>This is the result of the caseworkers review of the application...format TBD</p>
                       {{ govukButton({
                         text: "Review application"
                       }) }}
+                      {% else %}
+                      {% if data['app-task'] == "submitted" %}
+                        <ul class="govuk-list">
+                          <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                        </ul>
+                        <p>Waiting to be assessed.</p>
+                        {% else %}
+                        {% if data['app-task'] == "rejected" %}
+                          <ul class="govuk-list">
+                            <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                          </ul>
+                          <p>Your application has been fully rejected.</p>
+                          <p> This is the result of the caseworkers review of the application...format TBD</p>
+                        {% endif %}
+                      {% endif %}
                     {% endif %}
-                  </dd>
-                </div>
+                  {% endif %}
+                {% endif %}
               {% endif %}
-            {% endif %}
-          {% endif %}
+            </dd>
+          </div>
         </dl>
       </div>
     </div>
