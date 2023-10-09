@@ -35,33 +35,33 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {% if data['app-task'] == "submitted" %}
-                <p>Submitted<br>Awaiting LAA review</p>
+                <p><strong class="govuk-tag govuk-tag--green">Submitted</strong><br>Awaiting LAA review</p>
                 <p>12th July 2023</p>
                 {% else %}
                 {% if data['app-task'] == "granted" %}
-                  <p><strong class="govuk-tag govuk-tag--green">
-                      Granted in full
-                    </strong></p>
+                  <p><strong class="govuk-tag govuk-tag--green">Granted</strong></p>
                   <p>1st Sept 2023</p>
                   {% else %}
                   {% if data['app-task'] == "rejected" %}
-                    <p><strong class="govuk-tag govuk-tag--red">Rejected in full</strong></p>
+                    <p><strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
                     <p>21st August 2023</p>
                     {% else %}
                     {% if data['app-task'] == "draft" %}
-                      <p>Draft</p>
+                      <p><strong class="govuk-tag">Draft</strong></p>
                       <p>22nd August 2023</p>
                       {% else %}
                       {% if data['app-task'] == "review" %}
-                        <p><strong class="govuk-tag govuk-tag--yellow">
-                        Review - incomplete application
-                        </strong></p>
+                        <p><strong class="govuk-tag govuk-tag--yellow">Review</strong></p>
                         <p>22nd August 2023</p>
                         {% else %}
-                        {% if data['app-task'] == "onhold" %}
-                          <p><strong class="govuk-tag govuk-tag--blue">
-                            Application on-hold</strong></p>
+                        {% if data['app-task'] == "referred" %}
+                          <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
                           <p>22nd August 2023</p>
+                          {% else %}
+                          {% if data['app-task'] == "partgranted" %}
+                            <p><strong class="govuk-tag govuk-tag--green">Part granted</strong></p>
+                            <p>22nd August 2023</p>
+                          {% endif %}
                         {% endif %}
                       {% endif %}
                     {% endif %}
@@ -70,7 +70,7 @@
               {% endif %} 
             </dd>
           </div>
-          {% if data['app-task'] == "onhold" %}
+          {% if data['app-task'] == "referred" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Caseworker response
@@ -80,20 +80,32 @@
               </dd>
             </div>
             {% else %}
-            {% if data['app-task'] !== "granted" and data['app-task'] !== "submitted" %}
+            {% if data['app-task'] == "partgranted" %}
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Caseworker response
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  This is the result of the caseworkers review of the application...format TBD<br><br>
-                  {% if data['app-task'] == "review" %}
-                    {{ govukButton({
-                      text: "Review application"
-                    }) }}
-                  {% endif %}
+                  Costs will be paid up to: £300
+                  <br><br>
                 </dd>
               </div>
+              {% else %}
+              {% if data['app-task'] !== "granted" and data['app-task'] !== "submitted" %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Caseworker response
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    This is the result of the caseworkers review of the application...format TBD<br><br>
+                    {% if data['app-task'] == "review" %}
+                      {{ govukButton({
+                        text: "Review application"
+                      }) }}
+                    {% endif %}
+                  </dd>
+                </div>
+              {% endif %}
             {% endif %}
           {% endif %}
         </dl>

@@ -10,12 +10,6 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-
-  {{ govukBackLink({
-    text: "Back to Your applications",
-    href: "../crm-apps"
-  }) }}
-
 {% endblock %}
 
 {% block content %}
@@ -358,6 +352,11 @@
           </ul>
         </li>
       </ol>
+      {{ govukButton({
+        text: "Back to your applications",
+        classes: "govuk-button--secondary",
+        href: "../crm-apps"
+      }) }}
     </div>
     <div class="govuk-grid-column-one-third">
       <aside class="app-related-items" role="complementary">
