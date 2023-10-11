@@ -36,7 +36,22 @@
       <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
       <input type="hidden" id="serviceType" name="serviceType" value="{{data['serviceType']}}" />
    
-
+      {% if data['addTravel'] =="no" %}
+        <div class="govuk-notification-banner-green" role="region"
+          aria-labelledby="govuk-notification-banner-title"
+          data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              The travel cost was deleted
+            </p>
+          </div>
+        </div>
+      {% endif %}
 
       <h2 class="govuk-heading-l">
         <span class="govuk-caption-l">Quote total cost</span> £
@@ -290,10 +305,10 @@
                 <li class="govuk-summary-card__action">
                   <!--For the proto make links show as not selected until the user does the action-->
                   {% if data['deleteTravel'] == "delete" %}
-                    <a class="govuk-link" href="question3-travel-delete?deleteTravel=delete">
+                    <a class="govuk-link" href="question3-quote-travel-delete?deleteTravel=yes">
                     Delete<span class="govuk-visually-hidden"> travel</span></a>
                     {% else %}
-                    <a class="govuk-link--no-visited-state" href="question3-travel-delete?deleteTravel=delete">Delete<span class="govuk-visually-hidden"> travel</a>
+                    <a class="govuk-link--no-visited-state" href="question3-quote-travel-delete?deleteTravel=yes">Delete<span class="govuk-visually-hidden"> travel</a>
                   {% endif %}
                 </li>
               {% endif %}
