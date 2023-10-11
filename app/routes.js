@@ -66,7 +66,19 @@ router.post('/question3-add-add', function(request, response) {
 })
 
 //Additional items summary (Section3)
-router.post('/question3-quote-add-summary', function(request, response) {
+router.post('/question3-quote-add-summary0', function(request, response) {
+
+    var quoteAddOther = request.session.data['quoteAddOther']
+    if (quoteAddOther == "No"){
+        response.redirect("/provider/form/question3-quote-summary")
+    } 
+    if (quoteAddOther == "Yes"){
+        response.redirect("/provider/form/question3-quote-add?addCost=1&addShow=1")
+    }
+})
+
+//Additional items summary (Section3)
+router.post('/question3-quote-add-summary1', function(request, response) {
 
     var quoteAddOther = request.session.data['quoteAddOther']
     if (quoteAddOther == "No"){

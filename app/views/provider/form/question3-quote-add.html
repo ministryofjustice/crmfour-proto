@@ -23,9 +23,9 @@
     <span class="govuk-caption-xl">3. About the request </span>
     <h1 class="govuk-heading-xl">Additional cost</h1>
 
-    <form class="form" action="question3-quote-add-summary" method="post">
-
-      {% if data['addCost'] == "1" %}
+    
+    {% if data['addCost'] == "1" %}
+      <form class="form" action="question3-quote-add-summary?showDelete=no&deleteAdd1=0" method="post">
 
         {{ govukInput({
           label: {
@@ -176,6 +176,8 @@
 
         {% else %}
         {% if data['addCost'] == "2" %}
+          <form class="form" action="question3-quote-add-summary?showDelete=no&deleteAdd2=0" method="post">
+
             {{ govukInput({
               label: {
                 text: "What is the additional cost for?",
