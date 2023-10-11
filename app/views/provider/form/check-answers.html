@@ -135,7 +135,7 @@
                 Client name
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['client-first--name'] | default('Roger')}} {{data['client-last--name'] | default('Blackbeard')}}<br>
+                {{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}<br>
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -143,7 +143,7 @@
                 Date of birth
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['client-dob-day']| default('10')}} {{data['client-dob-month']| default('May')}} {{data['client-dob-year']| default('2001')}}
+                {{data['client-dob-day'] or "10" }} {{data['client-dob-month'] or "May" }} {{data['client-dob-year'] or "2001" }}
               </dd>
             </div>
           </dl>
@@ -444,7 +444,7 @@
                </tr>
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell govuk-table__header">Total cost</td>
-                  <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "120" }}.00</strong></td>
+                  <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "120"}}.00</strong></td>
                 </tr>
             </tbody>
           </table>         
