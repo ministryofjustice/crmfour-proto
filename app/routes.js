@@ -73,7 +73,7 @@ router.post('/question3-quote-add-summary0', function(request, response) {
         response.redirect("/provider/form/question3-quote-summary")
     } 
     if (quoteAddOther == "Yes"){
-        response.redirect("/provider/form/question3-quote-add?addCost=1&addShow=1")
+        response.redirect("/provider/form/question3-quote-add?addCost=1&addShow=")
     }
 })
 

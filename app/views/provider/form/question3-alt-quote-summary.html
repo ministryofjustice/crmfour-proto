@@ -21,6 +21,24 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {% if data['showAltDelete'] =="yes" %}
+        <div class="govuk-notification-banner-green" role="region"
+          aria-labelledby="govuk-notification-banner-title"
+          data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              The alternative quote was deleted
+            </p>
+          </div>
+        </div>
+      {% endif %}
+
       <span class="govuk-caption-xl">3. About the request </span>
       {% if data['addAltQuote'] =="3" %}
         <h1 class="govuk-heading-xl">You've added 3 alternative quotes</h1>
@@ -28,8 +46,12 @@
         {% if data['addAltQuote'] =="2" %}
           <h1 class="govuk-heading-xl">You've added 2 alternative quotes</h1>
           {% else %}
-          <h1 class="govuk-heading-xl">You've added 1 alternative quote</h1>
+          {% if data['addAltQuote'] =="1" %}
+            <h1 class="govuk-heading-xl">You've added 1 alternative quote</h1>
+            {% else %}
+            <h1 class="govuk-heading-xl">You've added no alternative quotes</h1>
         {% endif %}
+      {% endif %}
       {% endif %}
 
       {% if data['addAltQuote'] == "3" and data['changeAltQuote'] !== "change" %} 
@@ -38,11 +60,13 @@
         {% if data['addAltQuote'] == "3" and data['changeAltQuote'] == "change" %} 
           <form class="form" action="check-answers" method="post">
           {% else %}
-          {% if data['addAltQuote'] == "1" %}
-            <form class="form" action="/question3-alt-quote-summary2" method="post">
+          {% if data['addAltQuote'] == "2" %}
+            <form class="form" action="/question3-alt-quote-summary3" method="post">
             {% else %}
-            {% if data['addAltQuote'] == "2" %}
-              <form class="form" action="/question3-alt-quote-summary3" method="post">
+            {% if data['addAltQuote'] == "1" %}
+              <form class="form" action="/question3-alt-quote-summary2" method="post">
+              {% else %}
+              <form class="form" action="/question3-alt-quotes-q" method="post">
             {% endif %}
           {% endif %}
         {% endif %}
@@ -63,109 +87,112 @@
 
 
         <!--Alternative quote 1-->
-        <div class="govuk-summary-card">
-          <div class="govuk-summary-card__title-wrapper">
-            <h2 class="govuk-summary-card__title">Alternative quote</h2>
-            <ul class="govuk-summary-card__actions">
-              <li class="govuk-summary-card__action">
-                <!--For the proto make links show as not yet selected until the user does the action-->
-                {% if data['changeAlt1'] == "change" %}
-                  <a class="govuk-link" href="question3-alt-quote-details?addAlt=Yes&showAltQuote=1&changeAlt1=change">
-                  Change<span class="govuk-visually-hidden"> additional item</span></a>
-                  {% else %}
-                  <a class="govuk-link--no-visited-state" href="question3-alt-quote-details?addAlt=Yes&showAltQuote=1&changeAlt1=change">Change<span class="govuk-visually-hidden"> additional item</a>
-                {% endif %} 
-              </li>
-              <li class="govuk-summary-card__action">
-                <!--For the proto make links show as not selected until the user does the action-->
-                {% if data['deleteAlt1'] == "delete" %}
-                  <a class="govuk-link" href="question3-alt-quote-delete?altShow=1&deleteAlt1=delete">
-                  Delete<span class="govuk-visually-hidden"> additional item</span></a>
-                  {% else %}
-                  <a class="govuk-link--no-visited-state" href="question3-alt-quote-delete?altShow=1&deleteAlt1=delete">Delete<span class="govuk-visually-hidden"> additional item</a>
-                {% endif %}
-              </li>
-            </ul>
-          </div>
-          <div class="govuk-summary-card__content">
-            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Expert details
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['alt1ExpertName'] or "Jame Jones"}}<br>
-                  {{data['alt1ExpertOrg'] or "Jones Law"}}, 
-                  {{data['alt1ExpertPostcode'] or "E1"}}
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Quote upload
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  myquote1.pdf
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Service cost
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {% if data['serviceType'] == "Transcription" %}
-                    £{{data['alt1actualTransTotalCost'] or "360"}}.00
+        {% if data['deleteAlt1'] == "1" %}
+        {% else %}
+          <div class="govuk-summary-card">
+            <div class="govuk-summary-card__title-wrapper">
+              <h2 class="govuk-summary-card__title">Alternative quote</h2>
+              <ul class="govuk-summary-card__actions">
+                <li class="govuk-summary-card__action">
+                  <!--For the proto make links show as not yet selected until the user does the action-->
+                  {% if data['changeAlt1'] == "change" %}
+                    <a class="govuk-link" href="question3-alt-quote-details?addAlt=Yes&showAltQuote=1&changeAlt1=change">
+                    Change<span class="govuk-visually-hidden"> additional item</span></a>
                     {% else %}
-                    {% if data['serviceType'] == "Translation and transcription" %}
+                    <a class="govuk-link--no-visited-state" href="question3-alt-quote-details?addAlt=Yes&showAltQuote=1&changeAlt1=change">Change<span class="govuk-visually-hidden"> additional item</a>
+                  {% endif %} 
+                </li>
+                <li class="govuk-summary-card__action">
+                  <!--For the proto make links show as not selected until the user does the action-->
+                  {% if data['deleteAlt1'] == "delete" %}
+                    <a class="govuk-link" href="question3-alt-quote-delete?altShow=1&deleteAlt1=delete">
+                    Delete<span class="govuk-visually-hidden"> additional item</span></a>
+                    {% else %}
+                    <a class="govuk-link--no-visited-state" href="question3-alt-quote-delete?altShow=1&deleteAlt1=delete">Delete<span class="govuk-visually-hidden"> additional item</a>
+                  {% endif %}
+                </li>
+              </ul>
+            </div>
+            <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Expert details
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['alt1ExpertName'] or "Jame Jones"}}<br>
+                    {{data['alt1ExpertOrg'] or "Jones Law"}}, 
+                    {{data['alt1ExpertPostcode'] or "E1"}}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Quote upload
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    myquote1.pdf
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Service cost
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {% if data['serviceType'] == "Transcription" %}
                       £{{data['alt1actualTransTotalCost'] or "360"}}.00
                       {% else %}
-                      {% if data['serviceType'] == "Translator" %}
+                      {% if data['serviceType'] == "Translation and transcription" %}
                         £{{data['alt1actualTransTotalCost'] or "360"}}.00
                         {% else %}
-                        {% if data['serviceType'] == "Photocopying" %}
+                        {% if data['serviceType'] == "Translator" %}
                           £{{data['alt1actualTransTotalCost'] or "360"}}.00
                           {% else %}
-                          {% if data['serviceType'] == "DNA report" %}
+                          {% if data['serviceType'] == "Photocopying" %}
                             £{{data['alt1actualTransTotalCost'] or "360"}}.00
                             {% else %}
-                            {% if data['serviceType'] == "Other" %}
+                            {% if data['serviceType'] == "DNA report" %}
                               £{{data['alt1actualTransTotalCost'] or "360"}}.00
                               {% else %}
-                              £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                              {% if data['serviceType'] == "Other" %}
+                                £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                                {% else %}
+                                £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                              {% endif %}
                             {% endif %}
                           {% endif %}
                         {% endif %}
                       {% endif %}
                     {% endif %}
-                  {% endif %}
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Travel
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  £{{data['actualalt1TravelTotal'] or "200"}}.00
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Additional items
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  £{{data['alt1AddCost'] or "420"}}.00
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Total cost
-                </dt>
-                <dd class="govuk-summary-list__value">
-                    £{{data['actualalt1TotalCost'] or "1000"}}.00
-                </dd>
-              </div>
-            </dl>
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Travel
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £{{data['actualalt1TravelTotal'] or "200"}}.00
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Additional items
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £{{data['alt1AddCost'] or "420"}}.00
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Total cost
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                      £{{data['actualalt1TotalCost'] or "1000"}}.00
+                  </dd>
+                </div>
+              </dl>
+            </div>
           </div>
-        </div>
+        {% endif %}
         <!--Alternative quote 2-->
         <!--Alternative quote 2-->
         <!--Alternative quote 2-->
@@ -190,7 +217,7 @@
                 <li class="govuk-summary-card__action">
                   <!--For the proto make links show as not selected until the user does the action-->
                   {% if data['deleteAlt1'] == "delete" %}
-                    <a class="govuk-link" href="question3-alt-quote-delete?altShow=2&deleteAlt2=delete">
+                    <a class="govuk-link" href="question3-alt-quote-delete?altShow=2&deleteAlt1=delete">
                     Delete<span class="govuk-visually-hidden"> additional item</span></a>
                     {% else %}
                     <a class="govuk-link--no-visited-state" href="question3-alt-quote-delete?altShow=2&deleteAlt1=delete">Delete<span class="govuk-visually-hidden"> additional item</a>
@@ -387,7 +414,7 @@
           </div>
         {% endif %}
         
-        {% if data['addAltQuote'] == "1" or data['addAltQuote'] == null %}
+        {% if data['addAltQuote'] == "1" or data['addAltQuote'] == "0" or data['addAltQuote'] == null %}
           {{ govukRadios({
             classes: "govuk-radios--inline",
             name: "altAddQuote1",

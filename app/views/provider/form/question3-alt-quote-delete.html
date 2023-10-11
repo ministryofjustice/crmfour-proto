@@ -1,0 +1,129 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Are you sure you want to delete this additional cost? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Are you sure you want to delete this additional quote?</h1>
+
+       <!--Alternative quote 1-->
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">Alternative quote</h2>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Expert details
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['alt1ExpertName'] or "Jame Jones"}}<br>
+                  {{data['alt1ExpertOrg'] or "Jones Law"}}, 
+                  {{data['alt1ExpertPostcode'] or "E1"}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Quote upload
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  myquote1.pdf
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Service cost
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['serviceType'] == "Transcription" %}
+                    £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                    {% else %}
+                    {% if data['serviceType'] == "Translation and transcription" %}
+                      £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translator" %}
+                        £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Photocopying" %}
+                          £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                          {% else %}
+                          {% if data['serviceType'] == "DNA report" %}
+                            £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                            {% else %}
+                            {% if data['serviceType'] == "Other" %}
+                              £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                              {% else %}
+                              £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Travel
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  £{{data['actualalt1TravelTotal'] or "200"}}.00
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Additional items
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  £{{data['alt1AddCost'] or "420"}}.00
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Total cost
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    £{{data['actualalt1TotalCost'] or "1000"}}.00
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="govuk-button-group">
+
+            {{ govukButton({
+              text: "Yes, delete it",
+              classes: "govuk-button--warning",
+              href: "question3-alt-quote-summary?deleteAlt1=1&showAltDelete=yes&addAltQuote=0"
+            }) }}
+
+
+          {{ govukButton({
+            text: "No, do not delete it",
+            href: "question3-quote-add-summary"
+          }) }}
+
+        </div>
+    </div>
+  </div>
+
+{% endblock %}
