@@ -5,7 +5,12 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Type of court – {{ serviceName }} – GOV.UK Prototype Kit
+
+  {% if data['courtType'] == "Magistrates' court" %}
+    Is this a youth court matter? – {{ serviceName }} – GOV.UK Prototype Kit
+    {% else %}
+    Have you accessed the psychiatric liaison service? – {{ serviceName }} – GOV.UK Prototype Kit
+    {% endif %}
 {% endblock %}
 
 {% block beforeContent %}
