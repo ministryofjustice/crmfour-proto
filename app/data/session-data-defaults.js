@@ -2,8 +2,10 @@ module.exports = {
 
   // Insert values here
 
+  "serviceName1": "Assess prior authority to incur disbursements",
+
   //Key default values to set up proto
-  "who-signin": "provider",
+  "who-signin": "provider1",
 
   //Key users
 
@@ -20,6 +22,11 @@ module.exports = {
   "caseworker2": "Johanna Justice",
   "caseworker2-permiss": "User",
 
-  "prisonLaw": "No"
+  "caseworker3": "Ishmale Hussein",
+  "caseworker3-permiss": "User",
+
+  "prisonLaw": "No",
+
+  "cwAppState": "all",
 
 }
