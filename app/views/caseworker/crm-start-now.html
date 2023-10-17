@@ -1,12 +1,14 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-  {% include "includes/header.html"%}
+  {% include "includes/header-cw.html"%}
 {% endblock %}
 
 {% block pageTitle %}
-  Prior authority Start Now – {{ serviceName }} - GOV.UK
+  Prior authority Start Now – {{data['serviceName1'] }} - GOV.UK
 {% endblock %}
+
+{% set bodyClasses = 'caseworker-width caseworker-pink' %}
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
@@ -16,21 +18,20 @@
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-xl">{{ serviceName }}
+        <h1 class="govuk-heading-xl">{{data['serviceName1'] }}
         </h1>
       </div>
     </div>
 
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <p>You can only use this service to apply for prior authority to incur disbursements in criminal cases in relation to magistrates, crown and prison law work.</p>
-        <p>You do not need to apply for prior authority to incur disbursements if is less than £500 for a Prison Law case or £100 for all other cases .</p>
-        <h2 class="govuk-heading-m">To apply for something else, go to:</h2>
-        <p><a href="">Apply for an extension to the upper limit, previously CRM5</a></p>
+        <p>Use this service to assess applications for prior authority to incur disbursements in criminal cases in relation to magistrates, crown and prison law work.</p>
+        <p>Only caseworkers who have received an email invitation will have access. </p>
+        <p>If you do not have access, you should continue using <a href="">eForms</a>.</p>
 
         {{ govukButton({
           text: "Start now",
-          href: "/provider/crm-apps",
+          href: "/caseworker/crm-assess",
           isStartButton: true
         }) }}
        
