@@ -87,7 +87,7 @@
                     Description
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['addCost1']}}
+                    {{data['addCost1'] or "Waiting time"}}
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -95,28 +95,11 @@
                     Why required
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['whyAdd1']}}
+                    {{data['whyAdd1'] or "Waited for client to be released from custody"}}
                   </dd>
                 </div>
               </dl>
-              {% if data['addChargeType1'] == "Charged by the hour" %}
-                <table class="govuk-table">
-                  <thead class="govuk-table__head">
-                    <tr class="govuk-table__row">
-                      <th scope="col" class="govuk-table__header">Time</th>
-                      <th scope="col" class="govuk-table__header">Rate per hour</th>
-                      <th scope="col" class="govuk-table__header">Total</th>
-                    </tr>
-                  </thead>
-                  <tbody class="govuk-table__body">
-                    <tr class="govuk-table__row">
-                      <td class="govuk-table__cell">{{data['addTime1-hours']}} hours {{data['addTime1-mins']}} minutes</td>
-                      <td class="govuk-table__cell">£{{data['addCostTime1']}} per hour</td>
-                      <td class="govuk-table__cell">£{{data['actualAdd1Total']}}.00</td>
-                    </tr>
-                  </tbody>
-                </table>
-                {% else %}
+              {% if data['addChargeType1'] == "Charged per item " %}
                 <table class="govuk-table">
                   <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
@@ -130,6 +113,23 @@
                       <td class="govuk-table__cell">{{data['addQuantity1']}}</td>
                       <td class="govuk-table__cell">£{{data['addNonhourRate1']}}</td>
                       <td class="govuk-table__cell">£{{data['actualAdd1Total']}}.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+                {% else %}
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Time</th>
+                      <th scope="col" class="govuk-table__header">Rate per hour</th>
+                      <th scope="col" class="govuk-table__header">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">{{data['addTime1-hours'] or "3"}} hours {{data['addTime1-mins']}} minutes</td>
+                      <td class="govuk-table__cell">£{{data['addCostTime1'] or "40"}} per hour</td>
+                      <td class="govuk-table__cell">£{{data['actualAdd1Total'] or "120"}}.00</td>
                     </tr>
                   </tbody>
                 </table>
@@ -172,7 +172,7 @@
                       Description
                     </dt>
                     <dd class="govuk-summary-list__value">
-                      {{data['addCost2']}}
+                      {{data['addCost2'] or "Hotel"}}
                     </dd>
                   </div>
                   <div class="govuk-summary-list__row">
@@ -180,7 +180,7 @@
                       Why required
                     </dt>
                     <dd class="govuk-summary-list__value">
-                      {{data['whyAdd2']}}
+                      {{data['whyAdd2'] or "Overnight costs"}}
                     </dd>
                   </div>
                 </dl>
@@ -195,9 +195,9 @@
                     </thead>
                     <tbody class="govuk-table__body">
                       <tr class="govuk-table__row">
-                        <td class="govuk-table__cell">{{data['addTime2-hours']}} hours {{data['addTime2-mins']}} minutes</td>
-                        <td class="govuk-table__cell">£{{data['addCostTime2']}} per hour</td>
-                        <td class="govuk-table__cell">£{{data['actualAdd2Total']}}.00</td>
+                        <td class="govuk-table__cell">{{data['addTime2-hours'] or "3"}} hours {{data['addTime2-mins'] or "0"}} minutes</td>
+                        <td class="govuk-table__cell">£{{data['addCostTime2'] or "40"}} per hour</td>
+                        <td class="govuk-table__cell">£{{data['actualAdd2Total'] or "120"}}.00</td>
                       </tr>
                     </tbody>
                   </table>
@@ -212,9 +212,9 @@
                     </thead>
                     <tbody class="govuk-table__body">
                       <tr class="govuk-table__row">
-                        <td class="govuk-table__cell">{{data['addQuantity2']}}</td>
-                        <td class="govuk-table__cell">£{{data['addNonhourRate2']}}</td>
-                        <td class="govuk-table__cell">£{{data['actualAdd2Total']}}.00</td>
+                        <td class="govuk-table__cell">{{data['addQuantity2'] or "1"}}</td>
+                        <td class="govuk-table__cell">£{{data['addNonhourRate2'] or "120"}}</td>
+                        <td class="govuk-table__cell">£{{data['actualAdd2Total'] or "120"}}.00</td>
                       </tr>
                     </tbody>
                   </table>

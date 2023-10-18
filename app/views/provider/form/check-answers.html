@@ -398,28 +398,28 @@
                 <td class="govuk-table__cell">Service</td>
                 <!--Service cost-->
                 {% if data['serviceType'] == "DNA report" %}
-                  <td class="govuk-table__cell">£{{data['dnaCost'] or "120" }}.00</td>
+                  <td class="govuk-table__cell">£{{data['dnaCost'] or "400" }}.00</td>
                   {% else %}
                   {% if data['serviceType'] == "Transcription" %}
-                    <td class="govuk-table__cell">£{{data['actualTransTotal'] or "120" }}.00</td>
+                    <td class="govuk-table__cell">£{{data['actualTransTotal'] or "400" }}.00</td>
                     {% else %}
                     {% if data['serviceType'] == "Translation and transcription" %}
-                      <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "120" }}.00</td>
+                      <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "400" }}.00</td>
                       {% else %}
                       {% if data['serviceType'] == "Translator" %} 
-                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "120" }}.00</td>
+                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "400" }}.00</td>
                         {% else %}
                         {% if data['serviceType'] == "Photocopying" %} 
-                          <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "120" }}.00</td>
+                          <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "400" }}.00</td>
                           {% else %}
                           {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
-                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "120" }}.00</td>
+                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400" }}.00</td>
                             {% else %}
                             {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
-                              <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "120" }}.00</td>
+                              <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400" }}.00</td>
                               {% else %}
                               {% if data['serviceType'] !== "DNA report" %}
-                                <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "120" }}.00</td>
+                                <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "400" }}.00</td>
                               {% endif %}
                             {% endif %}
                           {% endif %}
@@ -429,13 +429,15 @@
                   {% endif %}
                 {% endif %}
               </tr>
-              {% if data['addTravel'] == "Yes" %}
+              {% if data['addTravel'] == "No" %}
+                {% else %}
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Travel</td>
                   <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120" }}.00</td>
                 </tr>
               {% endif %}
-              {% if data['addAdd'] == "Yes" %}
+              {% if data['addAdd'] == "No" %}
+                {% else %}
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Additional</td>
                   <td class="govuk-table__cell">£{{data['actualaddFinalTotal'] or "120" }}.00</td>
@@ -444,7 +446,7 @@
                </tr>
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell govuk-table__header">Total cost</td>
-                  <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "120"}}.00</strong></td>
+                  <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "640"}}.00</strong></td>
                 </tr>
             </tbody>
           </table>         
