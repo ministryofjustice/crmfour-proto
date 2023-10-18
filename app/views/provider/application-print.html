@@ -1,7 +1,6 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-  {% include "includes/header.html"%}
 {% endblock %}
 
 
@@ -10,8 +9,6 @@
 {% endblock %}
 
 {% block beforeContent %}
-  {% include "includes/banner.html"%}
-
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
@@ -83,7 +80,6 @@
                   <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
                 </ul>
                 <p>The application has been fully granted.</p>
-                <p>View <a href="application-print">printatable version of the application</a></p>
                 {% else %}
                 {% if data['app-task'] == "referred" %}
                   <ul class="govuk-list">
@@ -118,7 +114,7 @@
                           <ul class="govuk-list">
                             <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
                           </ul>
-                          <p>Thes application has been fully rejected.</p>
+                          <p>The application has been fully rejected.</p>
                           <p> This is the result of the caseworkers review of the application...format TBD</p>
                         {% endif %}
                       {% endif %}
@@ -568,18 +564,6 @@
       </div>
     </div>
 
-  </div>
-
-  <div class="govuk-grid-column-one-third">
-    <aside class="app-related-items" role="complementary">
-      <ul class="govuk-list govuk-!-font-size-16">
-        <li>
-          <br>
-          <strong>Email the LAA case team</strong><br> 
-          <a class="govuk-link govuk-link--no-visited-state" href="mailto:prior-auth@laa.gov.uk">prior-auth@laa.gov.uk</a>
-        </li>
-      </ul>
-    </aside>
   </div>
 </div>
 {% endblock %}
