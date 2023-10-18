@@ -2,21 +2,6 @@
 
 {% block header %}
   {% include "includes/header-cw.html"%}
-  
-  {{ mojPrimaryNavigation({
-    label: 'Primary navigation',
-    items: [
-      {
-        text: 'Open applications',
-        href: '/caseworker/crm-assess-open'
-      },
-      {
-        text: 'Closed applications',
-        href: '/caseworker/crm-assess-closed',
-        active: true
-      }
-    ]
-  }) }}
 {% endblock %}
 
 {% block pageTitle %}
@@ -38,26 +23,42 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <strong class="govuk-tag">New</strong><br><br>
       <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
       <h1 class="govuk-heading-xl">{{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}</h1>
-      <p><span class="govuk-!-font-size-27">£{{data['actualdistTotalCost'] or "120"}}.00
-        <br>High risk </span><a href="">Change risk</a></p>
+      <strong class="govuk-tag">New</strong><br><br>
+      <p><span class="govuk-!-font-size-27">£{{data['actualdistTotalCost'] or "120"}}.00</p>
       <p><span class="govuk-body-l"><strong>Assigned to:</strong> {{data['caseworker1']}}</span>
         <br><span class="govuk-body-l"><strong>Date received:</strong> 17th October 2023</span></p>
 
+    </div>
 
-      {{ mojSubNavigation({
+    <div class="govuk-grid-column-one-third">
+      <aside class="app-related-items" role="complementary">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li>
+            <br>
+            <strong>Related applications</strong><br> 
+            <a class="govuk-link govuk-link--no-visited-state">{{data['laa-ref'] or "LAA-5a7d3c"}} - John Stevens</a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+       {{ mojSubNavigation({
         label: 'Sub navigation',
         items: [{
-          text: 'Nav item 1',
-          href: '#1',
+          text: 'Application overview',
+          href: 'application-details',
           active: true
         }, {
-          text: 'Nav item 2',
-          href: '#2'
+          text: 'Review and adjust',
+          href: 'application-details-quote'
         }, {
-          text: 'Nav item 3',
+          text: 'Application history',
           href: '#3'
         }]
       }) }}
@@ -95,53 +96,13 @@
               <dd class="govuk-summary-list__actions">
                 {% if data['changeUFN'] == "change" %}
                   <a class="govuk-link" href="question-ufn?changeUFN=change">
-                    Change<span class="govuk-visually-hidden"> unique file number</span>
+                    Review<span class="govuk-visually-hidden"> unique file number</span>
                   </a>
                   {% else %}
                     <a class="govuk-link--no-visited-state" href="question-ufn?changeUFN=change">
-                      Change<span class="govuk-visually-hidden"> unique file number</span>
+                      Review<span class="govuk-visually-hidden"> unique file number</span>
                     </a>
                 {% endif %} 
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-      
-      <h2 class="govuk-heading-m">About you</h2>
-      <!--About you-->
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title">Your details</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeOrg'] == "change" %}
-                <a class="govuk-link" href="question1-org?changeOrg=change">Change<span class="govuk-visually-hidden"> your details</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="question1-org?changeOrg=change">Change<span class="govuk-visually-hidden"> your details</span></a>
-              {% endif %} 
-            </li>
-          </ul>
-        </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Contact details
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['contact-name'] or "Jim Bowen" }}<br>
-                {{data['contact-email'] or "Jim@Bowen.com" }}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Firm details
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['org-name'] or "Laywers Inc" }}<br> 
-                {{data['org-acc'] or "1A3B23E4" }}
               </dd>
             </div>
           </dl>
@@ -157,9 +118,9 @@
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
               {% if data['changeClient'] == "change" %}
-                <a class="govuk-link" href="question2-client?changeClient=change">Change<span class="govuk-visually-hidden"> client details</span></a>
+                <a class="govuk-link" href="question2-client?changeClient=change">Review<span class="govuk-visually-hidden"> client details</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="question2-client?changeClient=change">Change<span class="govuk-visually-hidden"> client details</span></a>
+                <a class="govuk-link--no-visited-state" href="question2-client?changeClient=change">Review<span class="govuk-visually-hidden"> client details</span></a>
               {% endif %} 
             </li>
           </ul>
@@ -194,9 +155,9 @@
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
               {% if data['changeCase'] == "change" %}
-                <a class="govuk-link" href="question2-case?changeCase=change">Change<span class="govuk-visually-hidden"> case details</span></a>
+                <a class="govuk-link" href="question2-case?changeCase=change">Review<span class="govuk-visually-hidden"> case details</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="question2-case?changeCase=change">Change<span class="govuk-visually-hidden"> case details</span></a>
+                <a class="govuk-link--no-visited-state" href="question2-case?changeCase=change">Review<span class="govuk-visually-hidden"> case details</span></a>
               {% endif %} 
             </li>
           </ul>
@@ -281,9 +242,9 @@
               <li class="govuk-summary-card__action">
                 <!--For the proto make links show as not yet selected until the user does the action-->
                 {% if data['changeHearing'] == "change" %}
-                  <a class="govuk-link" href="question2-case-hearing?changeHearing=change">Change<span class="govuk-visually-hidden"> hearing details</span></a>
+                  <a class="govuk-link" href="question2-case-hearing?changeHearing=change">Review<span class="govuk-visually-hidden"> hearing details</span></a>
                   {% else %}
-                  <a class="govuk-link--no-visited-state" href="question2-case-hearing?changeHearing=change">Change<span class="govuk-visually-hidden"> hearing details</span></a>
+                  <a class="govuk-link--no-visited-state" href="question2-case-hearing?changeHearing=change">Review<span class="govuk-visually-hidden"> hearing details</span></a>
                 {% endif %} 
               </li>
             </ul>
@@ -362,9 +323,9 @@
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
               {% if data['changeQuote'] == "change" %}
-                <a class="govuk-link" href="question3-quote-summary?changeQuote=change">Change<span class="govuk-visually-hidden"> primary quote details</span></a>
+                <a class="govuk-link" href="question3-quote-summary?changeQuote=change">Review and adjust<span class="govuk-visually-hidden"> primary quote details</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-quote-summary?changeQuote=change">Change<span class="govuk-visually-hidden"> primary quote details</span></a>
+                <a class="govuk-link--no-visited-state" href="question3-quote-summary?changeQuote=change">Review and adjust<span class="govuk-visually-hidden"> primary quote details</span></a>
               {% endif %} 
             </li>
           </ul>
@@ -398,7 +359,7 @@
                 Quote upload
               </dt>
               <dd class="govuk-summary-list__value">
-                myquote1.pdf
+                <a href="">myquote1.pdf</a>
               </dd>
             </div>
              {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
@@ -450,7 +411,7 @@
                           {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
                             <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "120" }}.00</td>
                             {% else %}
-                            {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
+                            {% if data['serviceType'] != "Other" and data['otherChargeType'] =="Charged per item"%} 
                               <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "120" }}.00</td>
                               {% else %}
                               {% if data['serviceType'] !== "DNA report" %}
@@ -494,9 +455,9 @@
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
               {% if data['changeAltQuote'] == "change" %}
-                <a class="govuk-link" href="question3-alt-quote-summary?changeAltQuote=change">Change<span class="govuk-visually-hidden"> alternative quote details</span></a>
+                <a class="govuk-link" href="question3-alt-quote-summary?changeAltQuote=change">Review<span class="govuk-visually-hidden"> alternative quote details</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-alt-quote-summary?changeAltQuote=change">Change<span class="govuk-visually-hidden"> alternative quote details</span></a>
+                <a class="govuk-link--no-visited-state" href="question3-alt-quote-summary?changeAltQuote=change">Review<span class="govuk-visually-hidden"> alternative quote details</span></a>
               {% endif %} 
             </li>
           </ul>
@@ -558,9 +519,9 @@
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
               {% if data['changeWhyPA'] == "change" %}
-                <a class="govuk-link" href="question3-why-pa?changeWhyPA=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
+                <a class="govuk-link" href="question3-why-pa?changeWhyPA=change">Review<span class="govuk-visually-hidden"> reason for prior authority</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-why-pa?changeWhyPA=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
+                <a class="govuk-link--no-visited-state" href="question3-why-pa?changeWhyPA=change">Review<span class="govuk-visually-hidden"> reason for prior authority</span></a>
               {% endif %} 
             </li>
           </ul>
@@ -580,25 +541,54 @@
                 Supplementary documents
               </dt>
               <dd class="govuk-summary-list__value">
-                whyPADocs1.pdf<br>
-                whyPADocs2.pdf
+                <a href="">whyPADocs1.pdf</a><br>
+                <a href="">whyPADocs2.pdf</a>
               </dd>
             </div>
           </dl>       
         </div>
       </div>
-    </div>
 
-    <div class="govuk-grid-column-one-third">
-      <aside class="app-related-items" role="complementary">
-        <ul class="govuk-list govuk-!-font-size-16">
-          <li>
-            <br>
-            <strong>Related applications</strong><br> 
-            <a class="govuk-link govuk-link--no-visited-state">{{data['laa-ref'] or "LAA-5a7d3c"}} - John Stevens</a>
-          </li>
-        </ul>
-      </aside>
+       <h2 class="govuk-heading-m">About the solicistor</h2>
+      <!--About you-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Solicistor details</h3>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <!--For the proto make links show as not yet selected until the user does the action-->
+              {% if data['changeOrg'] == "change" %}
+                <a class="govuk-link" href="question1-org?changeOrg=change">Review<span class="govuk-visually-hidden"> your details</span></a>
+                {% else %}
+                <a class="govuk-link--no-visited-state" href="question1-org?changeOrg=change">Review<span class="govuk-visually-hidden"> your details</span></a>
+              {% endif %} 
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Contact details
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['contact-name'] or "Jim Bowen" }}<br>
+                {{data['contact-email'] or "Jim@Bowen.com" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Firm details
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['org-name'] or "Laywers Inc" }}<br> 
+                {{data['org-acc'] or "1A3B23E4" }}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
     </div>
   </div>
 
