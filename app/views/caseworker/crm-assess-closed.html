@@ -1,35 +1,33 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-  {% include "includes/header-cw2.html"%}
-  {{ mojPrimaryNavigation({
-    label: 'Primary navigation',
-    items: [
-      {
-        text: 'Your applications',
-        href: 'crm-assess'
-      },
-      {
-        text: 'Open applications',
-        href: 'crm-assess-open'
-      },
-      {
-        text: 'Closed applications',
-        href: 'crm-assess-closed',
-        active: true
-      }
-    ]
-  }) }}
+  {% include "includes/header.html"%}  
 {% endblock %}
 
 {% block pageTitle %}
   All closed applications – {{data['serviceName1'] }} - GOV.UK
 {% endblock %}
 
-{% set bodyClasses = 'caseworker-width caseworker-pink' %}
+{% set bodyClasses = 'caseworker-width' %}
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
+  
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open'
+      },
+      {
+        text: 'Closed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: true
+      }
+    ]
+  }) }}
+  
 {% endblock %}
 
 {% block content %}
@@ -38,7 +36,7 @@
   <div class="govuk-grid-column-two-thirds">
     
     <h1 class="govuk-heading-xl">
-      All closed applications
+      Closed applications
     </h1>
   </div>
 </div>
