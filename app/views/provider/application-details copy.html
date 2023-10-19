@@ -4,8 +4,9 @@
   {% include "includes/header.html"%}
 {% endblock %}
 
+
 {% block pageTitle %}
-  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+  Your applications – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -13,81 +14,160 @@
 
   {{ govukBackLink({
     text: "Back",
-    href: "javascript: history.back()"
+    href: "javascript:window.history.back()"
   }) }}
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Check your answers</h1>
-    </div>
-  </div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">
+      Application details
+    </h1>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <div class="govuk-summary-card">
-
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Application details</h2>
-        </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Prison Law
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['prisonLaw'] | default("No")}}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                LAA reference
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['laa-ref'] or "LAA-5a7d3c"}}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Unique file number
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['ufn'] or "100323/234234"}}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                {% if data['changeUFN'] == "change" %}
-                  <a class="govuk-link" href="question-ufn?changeUFN=change">
-                    Change<span class="govuk-visually-hidden"> unique file number</span>
-                  </a>
-                  {% else %}
-                    <a class="govuk-link--no-visited-state" href="question-ufn?changeUFN=change">
-                      Change<span class="govuk-visually-hidden"> unique file number</span>
-                    </a>
-                {% endif %} 
-              </dd>
-            </div>
-          </dl>
-        </div>
+     <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Application status</h2>
       </div>
-      
-      <h2 class="govuk-heading-m">About you</h2>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['app-task'] == "submitted" %}
+                <p><strong class="govuk-tag govuk-tag--green">Submitted</strong><br>Awaiting LAA review</p>
+                <p>12th July 2023</p>
+                {% else %}
+                {% if data['app-task'] == "granted" %}
+                  <p><strong class="govuk-tag govuk-tag--green">Granted</strong></p>
+                  <p>1st Sept 2023</p>
+                  {% else %}
+                  {% if data['app-task'] == "rejected" %}
+                    <p><strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
+                    <p>21st August 2023</p>
+                    {% else %}
+                    {% if data['app-task'] == "draft" %}
+                      <p><strong class="govuk-tag">Draft</strong></p>
+                      <p>22nd August 2023</p>
+                      {% else %}
+                      {% if data['app-task'] == "review" %}
+                        <p><strong class="govuk-tag govuk-tag--yellow">Review</strong></p>
+                        <p>22nd August 2023</p>
+                        {% else %}
+                        {% if data['app-task'] == "referred" %}
+                          <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
+                          <p>22nd August 2023</p>
+                          {% else %}
+                          {% if data['app-task'] == "partgranted" %}
+                            <p><strong class="govuk-tag govuk-tag--green">Part granted</strong></p>
+                            <p>22nd August 2023</p>
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %} 
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Caseworker response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['app-task'] == "granted" %}
+                <ul class="govuk-list">
+                  <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                </ul>
+                <p>Your application has been fully granted.</p>
+                <p>View <a href="">printatable version of the application</a></p>
+                {{ govukButton({
+                    text: "Print application status",
+                    classes: "govuk-button--secondary",
+                    href: "application-print"
+                  }) }}
+                {% else %}
+                {% if data['app-task'] == "referred" %}
+                  <ul class="govuk-list">
+                    <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                  </ul>
+                  <p>Your application has been refered to the ICA.</p>
+                  {% else %}
+                  {% if data['app-task'] == "partgranted" %}
+                    <ul class="govuk-list">
+                      <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                      <li>£300 has been granted</li>
+                    </ul>
+                    <p>This is the result of the caseworkers review of the application...format TBD</p>
+                    {% else %}
+                    {% if data['app-task'] == "review" %}
+                      <ul class="govuk-list">
+                        <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                      </ul>
+                      <p>Your application needs to be reviewed.</p>
+                      <p>This is the result of the caseworkers review of the application...format TBD</p>
+                      {{ govukButton({
+                        text: "Review application"
+                      }) }}
+                      {% else %}
+                      {% if data['app-task'] == "submitted" %}
+                        <ul class="govuk-list">
+                          <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                        </ul>
+                        <p>Waiting to be assessed.</p>
+                        {% else %}
+                        {% if data['app-task'] == "rejected" %}
+                          <ul class="govuk-list">
+                            <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                          </ul>
+                          <p>Your application has been fully rejected.</p>
+                          <p> This is the result of the caseworkers review of the application...format TBD</p>
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Application reference</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              LAA reference
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['laa-ref'] or "LAA-5a7d3c"}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Unique file number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['ufn'] or "100323/234234"}}
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <h2 class="govuk-heading-m">About you</h2>
       <!--About you-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">Your details</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeOrg'] == "change" %}
-                <a class="govuk-link" href="question1-org?changeOrg=change">Change<span class="govuk-visually-hidden"> your details</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="question1-org?changeOrg=change">Change<span class="govuk-visually-hidden"> your details</span></a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
@@ -118,16 +198,6 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">Client details</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeClient'] == "change" %}
-                <a class="govuk-link" href="question2-client?changeClient=change">Change<span class="govuk-visually-hidden"> client details</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="question2-client?changeClient=change">Change<span class="govuk-visually-hidden"> client details</span></a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
@@ -155,16 +225,6 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">Case details</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeCase'] == "change" %}
-                <a class="govuk-link" href="question2-case?changeCase=change">Change<span class="govuk-visually-hidden"> case details</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="question2-case?changeCase=change">Change<span class="govuk-visually-hidden"> case details</span></a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
@@ -242,16 +302,6 @@
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
             <h3 class="govuk-summary-card__title">Hearing details</h3>
-            <ul class="govuk-summary-card__actions">
-              <li class="govuk-summary-card__action">
-                <!--For the proto make links show as not yet selected until the user does the action-->
-                {% if data['changeHearing'] == "change" %}
-                  <a class="govuk-link" href="question2-case-hearing?changeHearing=change">Change<span class="govuk-visually-hidden"> hearing details</span></a>
-                  {% else %}
-                  <a class="govuk-link--no-visited-state" href="question2-case-hearing?changeHearing=change">Change<span class="govuk-visually-hidden"> hearing details</span></a>
-                {% endif %} 
-              </li>
-            </ul>
           </div>
           <div class="govuk-summary-card__content">
             <dl class="govuk-summary-list">
@@ -323,16 +373,6 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">Primary quote</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeQuote'] == "change" %}
-                <a class="govuk-link" href="question3-quote-summary?changeQuote=change">Change<span class="govuk-visually-hidden"> primary quote details</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-quote-summary?changeQuote=change">Change<span class="govuk-visually-hidden"> primary quote details</span></a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -384,19 +424,7 @@
                 {{data['existingAuth'] or "No"}}
               </dd>
             </div>
-            {% if data['detained'] == "Yes" or data['prisonLaw'] == "Yes" %}
-              {% else %}
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Why travel costs if not detained?
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['whyTravel'] or "The expert lives in Ireland"}}
-                </dd>
-              </div>
-            {% endif %}
           </dl>
-
 
           <table class="govuk-table">
             <thead class="govuk-table__head">
@@ -410,28 +438,28 @@
                 <td class="govuk-table__cell">Service</td>
                 <!--Service cost-->
                 {% if data['serviceType'] == "DNA report" %}
-                  <td class="govuk-table__cell">£{{data['dnaCost'] or "400" }}.00</td>
+                  <td class="govuk-table__cell">£{{data['dnaCost'] or "120" }}.00</td>
                   {% else %}
                   {% if data['serviceType'] == "Transcription" %}
-                    <td class="govuk-table__cell">£{{data['actualTransTotal'] or "400" }}.00</td>
+                    <td class="govuk-table__cell">£{{data['actualTransTotal'] or "120" }}.00</td>
                     {% else %}
                     {% if data['serviceType'] == "Translation and transcription" %}
-                      <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "400" }}.00</td>
+                      <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "120" }}.00</td>
                       {% else %}
                       {% if data['serviceType'] == "Translator" %} 
-                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "400" }}.00</td>
+                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "120" }}.00</td>
                         {% else %}
                         {% if data['serviceType'] == "Photocopying" %} 
-                          <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "400" }}.00</td>
+                          <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "120" }}.00</td>
                           {% else %}
                           {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
-                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400" }}.00</td>
+                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "120" }}.00</td>
                             {% else %}
                             {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
-                              <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400" }}.00</td>
+                              <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "120" }}.00</td>
                               {% else %}
                               {% if data['serviceType'] !== "DNA report" %}
-                                <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "400" }}.00</td>
+                                <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "120" }}.00</td>
                               {% endif %}
                             {% endif %}
                           {% endif %}
@@ -441,15 +469,13 @@
                   {% endif %}
                 {% endif %}
               </tr>
-              {% if data['addTravel'] == "No" %}
-                {% else %}
+              {% if data['addTravel'] == "Yes" %}
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Travel</td>
                   <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120" }}.00</td>
                 </tr>
               {% endif %}
-              {% if data['addAdd'] == "No" %}
-                {% else %}
+              {% if data['addAdd'] == "Yes" %}
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Additional</td>
                   <td class="govuk-table__cell">£{{data['actualaddFinalTotal'] or "120" }}.00</td>
@@ -458,7 +484,7 @@
                </tr>
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell govuk-table__header">Total cost</td>
-                  <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "640"}}.00</strong></td>
+                  <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "120"}}.00</strong></td>
                 </tr>
             </tbody>
           </table>         
@@ -469,16 +495,6 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">Alternative quotes</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeAltQuote'] == "change" %}
-                <a class="govuk-link" href="question3-alt-quote-summary?changeAltQuote=change">Change<span class="govuk-visually-hidden"> alternative quote details</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-alt-quote-summary?changeAltQuote=change">Change<span class="govuk-visually-hidden"> alternative quote details</span></a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
           {% if data['altQuotesQ'] =="No" %}
@@ -533,16 +549,6 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title"> Reason for prior authority</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeWhyPA'] == "change" %}
-                <a class="govuk-link" href="question3-why-pa?changeWhyPA=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-why-pa?changeWhyPA=change">Change<span class="govuk-visually-hidden"> reason for prior authority</span></a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -567,47 +573,208 @@
         </div>
       </div>
 
-      
-      <h2 class="govuk-heading-m">Now send your application</h2>
-      <form action="application-submitted" method="post" novalidate>
 
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-visually-hidden">
-              VAT costs confirmation
-            </legend>
-            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="VAT" name="VAT" type="checkbox" value="VAT">
-                <label class="govuk-label govuk-checkboxes__label" for="VAT">
-                  I confirm that all costs are exclusive of VAT
-                </label>
-              </div>
+    <!--Case details-->
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Client and case overview</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Client name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['client-first--name'] | default('Roger')}} {{data['client-last--name'] | default('Blackbeard')}}<br>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Date of birth
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['client-dob-day']| default('10')}} {{data['client-dob-month']| default('May')}} {{data['client-dob-year']| default('2001')}}
+            </dd>
+          </div>
+          
+          {% if data['prisonLaw'] == "Yes" %}
+            <!--If YES to Prison Law--->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Subject to POCA
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['poca'] | default('Yes')}}
+              </dd>
             </div>
-          </fieldset>
-        </div>
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset">
-            <legend class="govuk-visually-hidden">
-              Travel costs confirmation
-            </legend>
-            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="travel" name="travel" type="checkbox" value="travel">
-                <label class="govuk-label govuk-checkboxes__label" for="travel">
-                  I confirm that any travel expenditure (such as mileage, parking and travel fares) is included as additional items in the primary quote, and is not included as part of any hourly rate
-                </label>
-              </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of next hearing
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['date-hearing-day'] | default('23')}} {{data['date-hearing-month'] | default('September')}} {{data['date-hearing-year'] | default('2024')}}
+              </dd>
             </div>
-          </fieldset>
-        </div>
-        <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
-        <input type="hidden" name="answers-checked" value="true">
-        <button class="govuk-button" data-module="govuk-button">
-          Accept and send
-        </button>
-      </form>
+
+            {% else %}
+            <!--If prison law is NO-->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Main offence
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['main-offence'] | default('Anti-social behaviour orders (for applications made prior to 23rd March 2015)')}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of representation order
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['rep-order-day'] | default('19')}} {{data['rep-order-month'] | default('April')}} {{data['rep-order-year'] | default('2023')}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                MAAT number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['maat'] | default('12345678')}}
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+      </div>
+    </div>
+
+    <!--Primary quote-->
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Quote</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Expert details
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['expert-name'] | default('Joanna White')}}<br>
+              {{data['expert-org-name'] | default('DNA Plc')}}, 
+              {{data['expert-postcode'] | default('E1 3RD')}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Service required
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['serviceType'] | default('DNA report')}}
+              {% if data['serviceType'] == "Other" %}
+                <br>
+                {{data['otherExpert'] or "Driving instructor" }}
+              {% endif %}
+            </dd>
+          </div>
+            {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Ordered by court
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['courtOrdered'] | default('Yes')}}
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Costs</th>
+              <th scope="col" class="govuk-table__header">Total</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Service</td>
+              <!--Service cost-->
+              {% if data['serviceType'] == "DNA report" %}
+                <td class="govuk-table__cell">£{{data['dnaCost'] | default('120')}}.00</td>
+                {% else %}
+                {% if data['serviceType'] == "Transcription" %}
+                  <td class="govuk-table__cell">£{{data['actualTransTotal'] | default('120')}}.00</td>
+                  {% else %}
+                  {% if data['serviceType'] == "Translation and transcription" %}
+                    <td class="govuk-table__cell">£{{data['actualTransTransTotal'] | default('120')}}.00</td>
+                    {% else %}
+                    {% if data['serviceType'] == "Translator" %} 
+                      <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] | default('120')}}.00</td>
+                      {% else %}
+                      {% if data['serviceType'] == "Photocopying" %} 
+                        <td class="govuk-table__cell">£{{data['actualPhotoTotal'] | default('120')}}.00</td>
+                        {% else %}
+                        {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
+                          <td class="govuk-table__cell">£{{data['actualOtherTotal'] | default('120')}}.00</td>
+                          {% else %}
+                          {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
+                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] | default('120')}}.00</td>
+                            {% else %}
+                            {% if data['serviceType'] !== "DNA report" %}
+                              <td class="govuk-table__cell">£{{data['actualGeneralTotal'] | default('120')}}.00</td>
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </tr>
+            {% if data['addTravel'] == "Yes" %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Travel</td>
+                <td class="govuk-table__cell">£{{data['actualTravelTotal'] | default('120')}}.00</td>
+              </tr>
+            {% endif %}
+            {% if data['addAdd'] == "Yes" %}
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Additional</td>
+                <td class="govuk-table__cell">£{{data['actualaddFinalTotal'] | default('120')}}.00</td>
+              </tr>
+            {% endif %}
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell govuk-table__header">Total cost</td>
+                <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] | default('360')}}.00</strong></td>
+              </tr>
+          </tbody>
+        </table>         
+      </div>
     </div>
   </div>
 
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <ul class="govuk-list govuk-!-font-size-16">
+        <li>
+          <br>
+          <strong>Email the LAA case team</strong><br> 
+          <a class="govuk-link govuk-link--no-visited-state" href="mailto:prior-auth@laa.gov.uk">prior-auth@laa.gov.uk</a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    const date = new Date();
+    const formattedDate = date.toLocaleDateString('en-GB', {
+      day: '2-digit', month: 'short', year: 'numeric'
+    }).replace(/ /g, ' ');
+    document.getElementById("date").innerHTML = formattedDate;
+  </script>
 {% endblock %}

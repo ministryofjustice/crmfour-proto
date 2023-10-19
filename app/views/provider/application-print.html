@@ -352,10 +352,10 @@
               Service required
             </dt>
             <dd class="govuk-summary-list__value">
-              {{data['serviceType'] or "DNA report"}}
               {% if data['serviceType'] == "Other" %}
-                <br>
-                {{data['otherExpert']}}
+                {{data['otherExpert'] or "Driving instructor" }}
+                {% else %}
+                {{data['serviceType'] or "Doctor (GP)"}}
               {% endif %}
             </dd>
           </div>

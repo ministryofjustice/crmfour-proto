@@ -99,10 +99,10 @@
                   Service required 
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['serviceType'] or "DNA report"}}
                   {% if data['serviceType'] == "Other" %}
-                    <br>
-                    {{data['otherExpert']}}
+                    {{data['otherExpert'] or "Driving instructor" }}
+                    {% else %}
+                    {{data['serviceType'] or "Doctor (GP)"}}
                   {% endif %}
                 </dd>
               </div>
@@ -326,6 +326,19 @@
             {% if data['addTravel'] =="No" %}
              <p>No travel costs added</p>
               {% else %}
+              {% if data['detained'] == "Yes" or data['prisonLaw'] == "Yes" %}
+                {% else %}
+                <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Why travel costs if not detained?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{data['whyTravel'] or "The expert lives in Ireland"}}
+                    </dd>
+                  </div>
+                </dl>
+              {% endif %}
               <table class="govuk-table">
                 <thead class="govuk-table__head">
                   <tr class="govuk-table__row">

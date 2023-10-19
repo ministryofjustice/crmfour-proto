@@ -27,6 +27,6 @@ module.exports = {
 
   "prisonLaw": "No",
 
-  "cwAppState": "all",
+  "cwAppSatus": "New",
 
 }
