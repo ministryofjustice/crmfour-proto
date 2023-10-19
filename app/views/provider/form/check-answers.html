@@ -151,7 +151,7 @@
         </div>
       </div>
 
-      <!--Case details earing-->
+      <!--Case details-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">Case details</h3>
@@ -187,7 +187,6 @@
                   {{data['date-hearing-day'] or "23" }} {{data['date-hearing-month'] or "September" }} {{data['date-hearing-year'] or "2024" }}
                 </dd>
               </div>
-
               {% else %}
               <!--If prison law is NO-->
               <div class="govuk-summary-list__row">
@@ -219,10 +218,10 @@
                   Client detained
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['detained'] == "No" %}
-                    Not detained
-                    {% else %}
+                  {% if data['detained'] == "Yes" %}
                     {{data['prisons'] or "Belmarsh" }}
+                    {% else %}
+                    No
                   {% endif %}
                 </dd>
               </div>
@@ -238,6 +237,7 @@
           </dl>
         </div>
       </div>
+
       <!--Hearing details-->
       {% if data['prisonLaw'] == "No" or data['prisonLaw'] == null %}
         <div class="govuk-summary-card">
@@ -399,7 +399,6 @@
               </div>
             {% endif %}
           </dl>
-
 
           <table class="govuk-table">
             <thead class="govuk-table__head">
