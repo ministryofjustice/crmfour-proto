@@ -25,7 +25,38 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
       <h1 class="govuk-heading-xl">{{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}</h1>
-      <strong class="govuk-tag">New</strong><br><br>
+      {% if data['cwAppSatus'] == "New" or data['cwAppSatus'] == null %}
+        <strong class="govuk-tag">New</strong>
+        {% else %}
+        {% if data['cwAppSatus'] == "In progress" %}
+          <strong class="govuk-tag">In progress</strong>
+          {% else %}
+          {% if data['cwAppSatus'] == "Granted" %}
+            <strong class="govuk-tag">Granted</strong>
+            {% else %}
+            {% if data['cwAppSatus'] == "Rejected" %}
+              <strong class="govuk-tag">Rejected</strong>
+              {% else %}
+              {% if data['cwAppSatus'] == "Review" %}
+                <strong class="govuk-tag">Provider review</strong>
+                {% else %}
+                {% if data['cwAppSatus'] == "Appealed" %}
+                  <strong class="govuk-tag">Appealed</strong>
+                  {% else %}
+                  {% if data['cwAppSatus'] == "Amended" %}
+                    <strong class="govuk-tag">Amended</strong>
+                    {% else %}
+                    {% if data['cwAppSatus'] == "Referred" %}
+                      <strong class="govuk-tag">Referred</strong>
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+      <br><br>
       <p><span class="govuk-!-font-size-27">£{{data['actualdistTotalCost'] or "120"}}.00</p>
       <p><span class="govuk-body-l"><strong>Assigned to:</strong> {{data['caseworker1']}}</span>
         <br><span class="govuk-body-l"><strong>Date received:</strong> 17th October 2023</span></p>
@@ -99,10 +130,10 @@
                 Service required
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['serviceType'] or "DNA report"}}
                 {% if data['serviceType'] == "Other" %}
-                  <br>
-                  {{data['otherExpert']}}
+                  {{data['otherExpert'] or "Driving instructor" }}
+                  {% else %}
+                  {{data['serviceType'] or "Doctor (GP)"}}
                 {% endif %}
               </dd>
             </div>
@@ -138,7 +169,7 @@
         </div>
       </div>
 
-      <h3 class="govuk-heading-m">{{data['serviceType']}} cost</h3>
+      <h3 class="govuk-heading-m">{{data['serviceType'] or "Doctor (GP)"}} cost</h3>
 
       {% if data['serviceType'] == "Transcription" %}
         <table class="govuk-table">
