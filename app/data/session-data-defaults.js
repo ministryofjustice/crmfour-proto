@@ -25,8 +25,6 @@ module.exports = {
   "caseworker3": "Ishmale Hussein",
   "caseworker3-permiss": "User",
 
-  "prisonLaw": "No",
-
   "cwAppSatus": "New",
 
 }
