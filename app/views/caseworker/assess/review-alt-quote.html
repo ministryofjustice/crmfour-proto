@@ -1,0 +1,128 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Review - Alternative quotes – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+      <h1 class="govuk-heading-xl">{{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}</h1>
+
+      {% if data['changeAltQuote'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form class="form" action="application-details?review-alt-quote-summary=complete" method="post">
+      {% endif %}
+      
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Alternative quotes</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          {% if data['altQuotesQ'] =="No" %}
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Reason for no alternative quotes
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['no-alt-quotes-info'] | default('There are no other experts in the country that can do this')}}<br>
+                </dd>
+              </div>
+            </dl>   
+            {% else %}
+            {% if data['altQuotesQ'] =="Yes" or data['altQuotesQ'] == null%}
+              <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Quote 1
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['alt1ExpertName'] or "Jame Jones"}}<br>
+                    <a href="">myquote1.pdf</a> <br>
+                    £{{data['actualalt1TotalCost'] | default('1000')}}.00
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Quote 2
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['alt2ExpertName'] or "Belinda Cartright"}}<br>
+                    <a href="">myquote2.pdf</a><br>
+                    £{{data['actualalt2TotalCost'] | default('1270')}}.00
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Quote 3
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['alt3ExpertName'] or "Roger Monied"}}<br>
+                    <a href="">myquote3.pdf</a><br>
+                    £{{data['actualalt3TotalCost'] | default('3170')}}.00
+                  </dd>
+                </div>
+              </dl>   
+              
+            {% endif %}
+          {% endif %}        
+        </div>
+      </div>
+
+      {{ govukTextarea({
+        name: "cwAltQuoteSummary",
+        id: "cwAltQuoteSummary",
+        value: data['cwAltQuoteSummary'],
+        label: {
+          text: "Caseworker comments",
+          classes: "govuk-label--m",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Summarise the actions the provider needs to take."
+        }
+      }) }}      
+        
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save"
+          }) }}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    if (typeof MOJFrontend.MultiFileUpload !== "undefined") {
+      new MOJFrontend.MultiFileUpload({
+        container: $(".moj-multi-file-upload"),
+        uploadUrl: "/ajax-upload",
+        deleteUrl: "/ajax-delete",
+      });
+    }
+
+  </script>
+{% endblock %}
