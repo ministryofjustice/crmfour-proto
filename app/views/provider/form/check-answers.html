@@ -312,8 +312,8 @@
                   {% endif %}
                 {% endif %}
               {% endif %}
-            </div>
-          </dl>
+            </dl>
+          </div>
         </div>
       {% endif %}
 
@@ -443,20 +443,24 @@
                   {% endif %}
                 {% endif %}
               </tr>
-              {% if data['addTravel'] == "No" %}
-                {% else %}
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">Travel</td>
+              
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Travel</td>
+                {% if data['addTravel'] == "No" %}
+                  <td class="govuk-table__cell">£0.00</td>
+                  {% else %}
                   <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120" }}.00</td>
-                </tr>
-              {% endif %}
-              {% if data['addAdd'] == "No" %}
-                {% else %}
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">Additional</td>
+                {% endif %}
+              </tr>
+
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Additional</td>
+                {% if data['addAdd'] == "No" %}
+                  <td class="govuk-table__cell">£0.00</td>
+                  {% else %}
                   <td class="govuk-table__cell">£{{data['actualaddFinalTotal'] or "120" }}.00</td>
+                   {% endif %}
                 </tr>
-              {% endif %}
                </tr>
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell govuk-table__header">Total cost</td>
@@ -504,7 +508,7 @@
                   <dd class="govuk-summary-list__value">
                     {{data['alt1ExpertName'] or "Jame Jones"}}<br>
                     myquote1.pdf<br>
-                    £{{data['actualalt1TotalCost'] | default('1000')}}.00
+                    £{{data['actualalt1TotalCost'] | default('760')}}.00
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -514,7 +518,7 @@
                   <dd class="govuk-summary-list__value">
                     {{data['alt2ExpertName'] or "Belinda Cartright"}}<br>
                     myquote2.pdf<br>
-                    £{{data['actualalt2TotalCost'] | default('1270')}}.00
+                    £{{data['actualalt2TotalCost'] | default('825')}}.00
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -524,7 +528,7 @@
                   <dd class="govuk-summary-list__value">
                     {{data['alt3ExpertName'] or "Roger Monied"}}<br>
                     myquote3.pdf<br>
-                    £{{data['actualalt3TotalCost'] | default('3170')}}.00
+                    £{{data['actualalt3TotalCost'] | default('780')}}.00
                   </dd>
                 </div>
               </dl>   
