@@ -49,22 +49,17 @@
                     <p><strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
                     <p>21st August 2023</p>
                     {% else %}
-                    {% if data['app-task'] == "draft" %}
-                      <p><strong class="govuk-tag">Draft</strong></p>
+                    {% if data['app-task'] == "review" %}
+                      <p><strong class="govuk-tag govuk-tag--yellow">Review</strong></p>
                       <p>22nd August 2023</p>
                       {% else %}
-                      {% if data['app-task'] == "review" %}
-                        <p><strong class="govuk-tag govuk-tag--yellow">Review</strong></p>
+                      {% if data['app-task'] == "referred" %}
+                        <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
                         <p>22nd August 2023</p>
                         {% else %}
-                        {% if data['app-task'] == "referred" %}
-                          <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
+                        {% if data['app-task'] == "partgranted" %}
+                          <p><strong class="govuk-tag govuk-tag--green">Part granted</strong></p>
                           <p>22nd August 2023</p>
-                          {% else %}
-                          {% if data['app-task'] == "partgranted" %}
-                            <p><strong class="govuk-tag govuk-tag--green">Part granted</strong></p>
-                            <p>22nd August 2023</p>
-                          {% endif %}
                         {% endif %}
                       {% endif %}
                     {% endif %}
@@ -102,10 +97,10 @@
                       <ul class="govuk-list">
                         <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
                       </ul>
-                      <p>The application needs to be reviewed.</p>
-                      <p>This is the result of the caseworkers review of the application...format TBD</p>
+                      <p>The caseworker needs more information to complete the assessment of this application. Review and re-submit the required information.</p>
+                      
                       {{ govukButton({
-                        text: "Review application"
+                        text: "Review and re-submit application"
                       }) }}
                       {% else %}
                       {% if data['app-task'] == "submitted" %}
@@ -118,8 +113,12 @@
                           <ul class="govuk-list">
                             <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
                           </ul>
-                          <p>Thes application has been fully rejected.</p>
-                          <p> This is the result of the caseworkers review of the application...format TBD</p>
+                          <p>This application has been fully rejected and cannot be appealed.</p>
+                          <p>Reasons for rejected:</p>
+                          <ul class="govuk-list">
+                            <li>This is reason 1</li>
+                            <li>This is reason 2</li>
+                          </ul>
                         {% endif %}
                       {% endif %}
                     {% endif %}
@@ -193,7 +192,6 @@
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
-          
           {% if data['prisonLaw'] == "Yes" %}
             <!--If YES to Prison Law--->
             <div class="govuk-summary-list__row">
@@ -212,7 +210,6 @@
                 {{data['date-hearing-day'] or "23" }} {{data['date-hearing-month'] or "September" }} {{data['date-hearing-year'] or "2024" }}
               </dd>
             </div>
-
             {% else %}
             <!--If prison law is NO-->
             <div class="govuk-summary-list__row">
@@ -244,9 +241,10 @@
                 Client detained
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['detained'] or "Yes" }}
                 {% if data['detained'] == "Yes" %}
-                  <br>{{data['prisons'] or "Belmarsh" }}
+                  {{data['prisons'] or "Belmarsh" }}
+                  {% else %}
+                  No
                 {% endif %}
               </dd>
             </div>
@@ -291,7 +289,7 @@
                   Court type
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['courtType'] or "Crown Court (excluding Central Criminal Court)" }}
+                {{data['courtType'] or "Central Criminal Court" }}
               </dd>
             </div>
             {% if data['courtType'] == "Magistrates' court" %}
@@ -304,16 +302,17 @@
                 </dd>
               </div>
               {% else %}
-              {% if data['courtType'] == "Central Criminal Court" %}
+              {% if data['courtType'] == null %}
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
                     Psychiatric liaison service accessed
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['psychLiaison'] or "Yes"}}
+                    {{data['psychLiaison'] or "No"}}
                   </dd>
                 </div>
-                {% if data['psychLiaison'] == "No" %}
+                {% if data['psychLiaison'] == "Yes" %}
+                  {% else %}
                   <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
                       Why not?
@@ -322,12 +321,11 @@
                       {{data['psychmoreDetail'] or "Not required" }}
                     </dd>
                   </div>
-                  {% else %}
                 {% endif %}
               {% endif %}
             {% endif %}
-          </div>
-        </dl>
+          </dl>
+        </div>
       </div>
     {% endif %}
 
@@ -356,7 +354,7 @@
               Service required
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['serviceType'] == "Other" %}
+                {% if data['serviceType'] == "Other" %}
                 {{data['otherExpert'] or "Driving instructor" }}
                 {% else %}
                 {{data['serviceType'] or "Interpreter"}}
@@ -368,10 +366,10 @@
               Quote upload
             </dt>
             <dd class="govuk-summary-list__value">
-              <a href="">myquote1.pdf</a>
+              myquote1.pdf
             </dd>
           </div>
-            {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
+            {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" or  data['serviceType'] == null %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Ordered by court
@@ -380,6 +378,8 @@
                 {{data['courtOrdered'] or "Yes" }}
               </dd>
             </div>
+            {% else %}
+            
           {% endif %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -389,6 +389,17 @@
               {{data['existingAuth'] or "No"}}
             </dd>
           </div>
+          {% if data['detained'] == "Yes" or data['prisonLaw'] == "Yes" %}
+            {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Why travel costs required
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['whyTravel'] or "The expert lives in Ireland"}}
+              </dd>
+            </div>
+          {% endif %}
         </dl>
 
         <table class="govuk-table">
@@ -403,28 +414,28 @@
               <td class="govuk-table__cell">Service</td>
               <!--Service cost-->
               {% if data['serviceType'] == "DNA report" %}
-                <td class="govuk-table__cell">£{{data['dnaCost'] or "120" }}.00</td>
+                <td class="govuk-table__cell">£{{data['dnaCost'] or "400" }}.00</td>
                 {% else %}
                 {% if data['serviceType'] == "Transcription" %}
-                  <td class="govuk-table__cell">£{{data['actualTransTotal'] or "120" }}.00</td>
+                  <td class="govuk-table__cell">£{{data['actualTransTotal'] or "400" }}.00</td>
                   {% else %}
                   {% if data['serviceType'] == "Translation and transcription" %}
-                    <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "120" }}.00</td>
+                    <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "400" }}.00</td>
                     {% else %}
                     {% if data['serviceType'] == "Translator" %} 
-                      <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "120" }}.00</td>
+                      <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "400" }}.00</td>
                       {% else %}
                       {% if data['serviceType'] == "Photocopying" %} 
-                        <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "120" }}.00</td>
+                        <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "400" }}.00</td>
                         {% else %}
                         {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
-                          <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "120" }}.00</td>
+                          <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400" }}.00</td>
                           {% else %}
                           {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
-                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "120" }}.00</td>
+                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400" }}.00</td>
                             {% else %}
                             {% if data['serviceType'] !== "DNA report" %}
-                              <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "120" }}.00</td>
+                              <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "400" }}.00</td>
                             {% endif %}
                           {% endif %}
                         {% endif %}
@@ -434,25 +445,299 @@
                 {% endif %}
               {% endif %}
             </tr>
-            {% if data['addTravel'] == "Yes" %}
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Travel</td>
+            
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Travel</td>
+              {% if data['addTravel'] == "No" %}
+                <td class="govuk-table__cell">£0.00</td>
+                {% else %}
                 <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120" }}.00</td>
-              </tr>
-            {% endif %}
-            {% if data['addAdd'] == "Yes" %}
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Additional</td>
+              {% endif %}
+            </tr>
+
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Additional</td>
+              {% if data['addAdd'] == "No" %}
+                <td class="govuk-table__cell">£0.00</td>
+                {% else %}
                 <td class="govuk-table__cell">£{{data['actualaddFinalTotal'] or "120" }}.00</td>
+                  {% endif %}
               </tr>
-            {% endif %}
               </tr>
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell govuk-table__header">Total cost</td>
-                <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "120"}}.00</strong></td>
+                <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "640"}}.00</strong></td>
               </tr>
           </tbody>
         </table>         
+      </div>
+    </div>
+
+     <!--Alt quotes-->
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Alternative quote</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Expert details
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['alt1ExpertName'] or "Jame Jones"}}<br>
+              {{data['alt1ExpertOrg'] or "Jones Law"}}, 
+              {{data['alt1ExpertPostcode'] or "E1"}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Quote upload
+            </dt>
+            <dd class="govuk-summary-list__value">
+              myquote1.pdf
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Additional items
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['alt1Descript'] or "None"}}
+            </dd>
+          </div>
+        </dl>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Costs</th>
+              <th scope="col" class="govuk-table__header">Total</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Service</td>
+              <td class="govuk-table__cell">
+                <!--Service cost-->
+                {% if data['serviceType'] == "Transcription" %}
+                    £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                    {% else %}
+                    {% if data['serviceType'] == "Translation and transcription" %}
+                      £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translator" %}
+                        £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Photocopying" %}
+                          £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                          {% else %}
+                          {% if data['serviceType'] == "DNA report" %}
+                            £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                            {% else %}
+                            {% if data['serviceType'] == "Other" %}
+                              £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                              {% else %}
+                              £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Travel</td>
+              <td class="govuk-table__cell">£{{data['actualalt1TravelTotal'] or "0"}}.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Additional</td>
+              <td class="govuk-table__cell">£{{data['alt1AddCost'] or "0"}}.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-table__header">Total cost</td>
+              <td class="govuk-table__cell"><strong>£{{data['actualalt1TotalCost'] or "760"}}.00</strong></td>
+            </tr>          
+        </tbody>
+        </table>  
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Alternative quote</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Expert details
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['alt2ExpertName'] or "Belinda Cartright"}}<br>
+              {{data['alt2ExpertOrg'] or "Cartright Ltd"}}, 
+              {{data['alt2ExpertPostcode'] or "E2"}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Quote upload
+            </dt>
+            <dd class="govuk-summary-list__value">
+              myquote2.pdf
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Additional items
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['alt2Descript'] or "None"}}
+            </dd>
+          </div>
+        </dl>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Costs</th>
+              <th scope="col" class="govuk-table__header">Total</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Service</td>
+              <td class="govuk-table__cell">
+                <!--Service cost-->
+                {% if data['serviceType'] == "Transcription" %}
+                    £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                    {% else %}
+                    {% if data['serviceType'] == "Translation and transcription" %}
+                      £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translator" %}
+                        £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Photocopying" %}
+                          £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                          {% else %}
+                          {% if data['serviceType'] == "DNA report" %}
+                            £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                            {% else %}
+                            {% if data['serviceType'] == "Other" %}
+                              £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                              {% else %}
+                              £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Travel</td>
+              <td class="govuk-table__cell">£{{data['actualalt2TravelTotal'] or "0"}}.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Additional</td>
+              <td class="govuk-table__cell">£{{data['alt2AddCost'] or "0"}}.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-table__header">Total cost</td>
+              <td class="govuk-table__cell"><strong>£{{data['actualalt2TotalCost'] or "825"}}.00</strong></td>
+            </tr>
+          </tbody>
+        </table>  
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Alternative quote</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Expert details
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['alt3ExpertName'] or "Roger Monied"}}<br>
+              {{data['alt3ExpertOrg'] or "Moniedboy Ltd"}}, 
+              {{data['alt3ExpertPostcode'] or "WC1"}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Quote upload
+            </dt>
+            <dd class="govuk-summary-list__value">
+              myquote3.pdf
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Additional items
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['alt3Descript'] or "None"}}
+            </dd>
+          </div>
+        </dl>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Costs</th>
+              <th scope="col" class="govuk-table__header">Total</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Service</td>
+              <td class="govuk-table__cell">
+                <!--Service cost-->
+                {% if data['serviceType'] == "Transcription" %}
+                    £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                    {% else %}
+                    {% if data['serviceType'] == "Translation and transcription" %}
+                      £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translator" %}
+                        £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Photocopying" %}
+                          £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                          {% else %}
+                          {% if data['serviceType'] == "DNA report" %}
+                            £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                            {% else %}
+                            {% if data['serviceType'] == "Other" %}
+                              £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                              {% else %}
+                              £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Travel</td>
+              <td class="govuk-table__cell">£{{data['actualalt3TravelTotal'] or "0"}}.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Additional</td>
+              <td class="govuk-table__cell">£{{data['alt3AddCost'] or "0"}}.00</td>
+            </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell govuk-table__header">Total cost</td>
+                <td class="govuk-table__cell"><strong>£{{data['actualalt3TotalCost'] or "780"}}.00</strong></td>
+              </tr>
+          </tbody>
+        </table>  
       </div>
     </div>
 
@@ -481,60 +766,6 @@
             </dd>
           </div>
         </dl>       
-      </div>
-    </div>
-
-    <!--Alt quotes-->
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title">Alternative quotes</h3>
-      </div>
-      <div class="govuk-summary-card__content">
-        {% if data['altQuotesQ'] =="No" %}
-          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Reason for no alternative quotes
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['no-alt-quotes-info'] | default('There are no other experts in the country that can do this')}}<br>
-              </dd>
-            </div>
-          </dl>   
-          {% else %}
-          {% if data['altQuotesQ'] =="Yes" or data['altQuotesQ'] == null%}
-            <table class="govuk-table">
-              <thead class="govuk-table__head">
-                <tr class="govuk-table__row">
-                  <th scope="col" class="govuk-table__header">Quote</th>
-                  <th scope="col" class="govuk-table__header">Total</th>
-                </tr>
-              </thead>
-              <tbody class="govuk-table__body"> 
-                <!--Alternative quote 1-->
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">{{data['alt1ExpertName'] or "Jame Jones"}}</td>
-                  <td class="govuk-table__cell">£{{data['actualalt1TotalCost'] | default('1000')}}.00</td>
-                </tr>
-                {% if data['addAltQuote'] =="2" or data['addAltQuote'] =="3" or data['showAltQuote'] =="2" %}
-                  <!--Alternative quote 2-->
-                  <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{data['alt2ExpertName'] or "Belinda Cartright"}}</td>
-                    <td class="govuk-table__cell">£{{data['actualalt2TotalCost'] or "1270"}}.00</td>
-                  </tr>
-                {% endif %}
-                {% if data['addAltQuote'] =="3" or data['showAltQuote'] =="3" %}
-                  <!--Alternative quote 3-->
-                  <tr class="govuk-table__row">
-                    <td class="govuk-table__cell"> {{data['alt3ExpertName'] or "Roger Monied"}}</td>
-                    <td class="govuk-table__cell">£{{data['actualalt3TotalCost'] or "3170"}}.00</td>
-                  </tr>
-                {% endif %}
-              </tr>
-              </tbody>
-            </table>  
-          {% endif %}
-        {% endif %}        
       </div>
     </div>
 
