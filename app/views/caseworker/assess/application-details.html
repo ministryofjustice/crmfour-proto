@@ -156,10 +156,10 @@
           </ul>
         </div>
         <div class="govuk-summary-card__content">
-           {% if data['cwClient'] == null %}
+          {% if data['fieldClient'] == null or data['fieldClient'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
-              {{data['cwClient']}}
+              {{data['fieldClient']}} <br>
             </div>
           {% endif %}
           <dl class="govuk-summary-list">
@@ -372,9 +372,9 @@
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
               {% if data['changeQuote'] == "change" %}
-                <a class="govuk-link" href="question3-quote-summary?changeQuote=change">Review and adjust<span class="govuk-visually-hidden"> primary quote details</span></a>
+                <a class="govuk-link" href="application-details-quote?changeQuote=change">Review and adjust<span class="govuk-visually-hidden"> primary quote details</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-quote-summary?changeQuote=change">Review and adjust<span class="govuk-visually-hidden"> primary quote details</span></a>
+                <a class="govuk-link--no-visited-state" href="application-details-quote?changeQuote=change">Review and adjust<span class="govuk-visually-hidden"> primary quote details</span></a>
               {% endif %} 
             </li>
           </ul>
@@ -529,6 +529,14 @@
           </ul>
         </div>
         <div class="govuk-summary-card__content">
+          {% if data['changeTypeAltQuote1'] == null %}
+            {% else %}
+            <div class="govuk-inset-text">
+              {{data['fieldAltQuote1']}} <br>
+              {{data['infoAltQuote1']}}<br>
+              {{data['docAltQuote1']}}
+            </div>
+          {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
