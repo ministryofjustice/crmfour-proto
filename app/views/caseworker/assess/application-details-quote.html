@@ -59,7 +59,8 @@
       <br><br>
       <p><span class="govuk-!-font-size-27">£{{data['actualdistTotalCost'] or "120"}}.00</p>
       <p><span class="govuk-body-l"><strong>Assigned to:</strong> {{data['caseworker1']}}</span>
-        <br><span class="govuk-body-l"><strong>Date received:</strong> 17th October 2023</span></p>
+        <br><span class="govuk-body-l"><strong>Date received:</strong> 17th October 2023</span>
+      </p>
     </div>
     <div class="govuk-grid-column-one-third">
       <aside class="app-related-items" role="complementary">
@@ -102,18 +103,8 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">Primary quote</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeQuote'] == "change" %}
-                <a class="govuk-link" href="question3-quote-summary?changeQuote=change">Review and adjust<span class="govuk-visually-hidden"> primary quote details</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-quote-summary?changeQuote=change">Review and adjust<span class="govuk-visually-hidden"> primary quote details</span></a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
-        <div class="govuk-summary-card__content">
+         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -130,7 +121,7 @@
                 Service required
               </dt>
               <dd class="govuk-summary-list__value">
-                {% if data['serviceType'] == "Other" %}
+                 {% if data['serviceType'] == "Other" %}
                   {{data['otherExpert'] or "Driving instructor" }}
                   {% else %}
                   {{data['serviceType'] or "Interpreter"}}
@@ -145,7 +136,7 @@
                 <a href="">myquote1.pdf</a>
               </dd>
             </div>
-             {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
+             {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" or  data['serviceType'] == null %}
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Ordered by court
@@ -154,6 +145,8 @@
                   {{data['courtOrdered'] or "Yes" }}
                 </dd>
               </div>
+             {% else %}
+             
             {% endif %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -163,9 +156,18 @@
                 {{data['existingAuth'] or "No"}}
               </dd>
             </div>
-          </dl>
-
-               
+            {% if data['detained'] == "Yes" or data['prisonLaw'] == "Yes" %}
+              {% else %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why travel costs are required 
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['whyTravel'] or "The expert lives in Ireland"}}
+                </dd>
+              </div>
+            {% endif %}
+          </dl>        
         </div>
       </div>
 
@@ -393,10 +395,6 @@
                 <td class="govuk-table__cell"><a href="">Adjust</a></td>
               </tr>
             {% endif %}
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell govuk-table__header">Total</td>
-              <td class="govuk-table__cell govuk-table__header">£<span id="showaddFinalTotal">0</span>.00 </td>
-            </tr>
           </tbody>
         </table>        
       {% endif %}

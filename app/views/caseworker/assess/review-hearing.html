@@ -30,93 +30,101 @@
         <form class="form" action="application-details?review-solicitor=complete" method="post">
       {% endif %}
       
-      {% if data['prisonLaw'] == "No" or data['prisonLaw'] == null %}
-        <div class="govuk-summary-card">
-          <div class="govuk-summary-card__title-wrapper">
-            <h3 class="govuk-summary-card__title">Hearing details</h3>
-          </div>
-          <div class="govuk-summary-card__content">
-            <dl class="govuk-summary-list">
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Date of next hearing
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['date-hearing-day'] or "12"}} {{data['date-hearing-month'] or "July"}} {{data['date-hearing-year'] or "2024"}}
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                   Likely or actual plea 
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['plea'] or "Not guilty" }}
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                    Court type
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['courtType'] or "Central Criminal Court" }}
-                </dd>
-              </div>
-              {% if data['courtType'] == "Magistrates' court" %}
+        {% if data['prisonLaw'] == "No" or data['prisonLaw'] == null %}
+          <div class="govuk-summary-card">
+            <div class="govuk-summary-card__title-wrapper">
+              <h3 class="govuk-summary-card__title">Hearing details</h3>
+            </div>
+            <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
                 <div class="govuk-summary-list__row">
                   <dt class="govuk-summary-list__key">
-                    Youth court matter
+                    Date of next hearing
                   </dt>
                   <dd class="govuk-summary-list__value">
-                    {{data['youthCourt'] or "No"}}
+                    {{data['date-hearing-day'] or "12"}} {{data['date-hearing-month'] or "July"}} {{data['date-hearing-year'] or "2024"}}
                   </dd>
                 </div>
-                {% else %}
-                {% if data['courtType'] == null %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Likely or actual plea 
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['plea'] or "Not guilty" }}
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                      Court type
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['courtType'] or "Central Criminal Court" }}
+                  </dd>
+                </div>
+                {% if data['courtType'] == "Magistrates' court" %}
                   <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
-                      Psychiatric liaison service accessed
+                      Youth court matter
                     </dt>
                     <dd class="govuk-summary-list__value">
-                      {{data['psychLiaison'] or "No"}}
+                      {{data['youthCourt'] or "No"}}
                     </dd>
                   </div>
-                  {% if data['psychLiaison'] == "Yes" %}
-                    {% else %}
+                  {% else %}
+                  {% if data['courtType'] == null %}
                     <div class="govuk-summary-list__row">
                       <dt class="govuk-summary-list__key">
-                        Why not?
+                        Psychiatric liaison service accessed
                       </dt>
                       <dd class="govuk-summary-list__value">
-                        {{data['psychmoreDetail'] or "Not required" }}
+                        {{data['psychLiaison'] or "No"}}
                       </dd>
                     </div>
+                    {% if data['psychLiaison'] == "Yes" %}
+                      {% else %}
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Why not?
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          {{data['psychmoreDetail'] or "Not required" }}
+                        </dd>
+                      </div>
+                    {% endif %}
                   {% endif %}
                 {% endif %}
-              {% endif %}
-            </div>
-          </dl>
-        </div>
-      {% endif %}
+              </div>
+            </dl>
+          </div>
+        {% endif %}
 
-      {{ govukTextarea({
-        name: "cwHearing",
-        id: "cwHearing",
-        value: data['cwHearing'],
-        label: {
-          text: "Caseworker comments",
-          classes: "govuk-label--m",
-          isPageHeading: true
-        },
-        hint: {
-          text: "Summarise the actions the provider needs to take."
-        }
-      }) }}      
+        {{ govukTextarea({
+          name: "fieldHearing",
+          id: "fieldHearing",
+          value: data['fieldHearing'],
+          label: {
+            text: "Incorrect information",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Summarise the actions the provider needs to take."
+          }
+        }) }}      
         
-
-        <div class="govuk-button-group">
+       <div class="govuk-button-group">
           {{ govukButton({
-            text: "Save"
+            text: "Save comment"
           }) }}
+
+          {% if data['fieldHearing'] == "" or data['fieldHearing'] == null %}
+            {% else %}
+              {{ govukButton({
+                text: "Delete comment",
+                classes: "govuk-button--warning",
+                href: "review-hearing-delete"
+              }) }}
+          {% endif %}
         </div>
 
       </form>

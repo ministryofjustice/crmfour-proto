@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Are you sure you want to delete this comment? – {{ serviceName }} – GOV.UK Prototype Kit
+  Are you sure you want to delete these comments? – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,22 +16,24 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Are you sure you want to delete this comment?</h1>
+      <h1 class="govuk-heading-xl">Are you sure you want to delete these comments?</h1>
 
       <div class="govuk-inset-text">
-        {{data['fieldClient']}} <br>
+        {{data['fieldAltQuote1']}} <br>
+        {{data['infoAltQuote1']}}<br>
+        {{data['docAltQuote1']}}
       </div>
 
       <div class="govuk-button-group">
         {{ govukButton({
           text: "Yes, delete it",
           classes: "govuk-button--warning",
-          href: "application-details?fieldClient="
+          href: "application-details?reviewAltQuote1="
         }) }}
 
         {{ govukButton({
           text: "No, do not delete it",
-          href: "review-client"
+          href: "review-alt-quote"
         }) }}
       </div>
 

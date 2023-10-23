@@ -30,56 +30,108 @@
         <form class="form" action="application-details?review-why-pa=complete" method="post">
       {% endif %}
       
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title"> Reason for prior authority</h3>
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h3 class="govuk-summary-card__title"> Reason for prior authority</h3>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Why prior authority is required
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['why-pa'] | default('My client needs an interpreter')}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Supplementary documents
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <a href="">whyPADocs1.pdf</a><br>
+                  <a href="">whyPADocs2.pdf</a>
+                </dd>
+              </div>
+            </dl>       
+          </div>
         </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Why prior authority is required
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['why-pa'] | default('My client needs an interpreter')}}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Supplementary documents
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <a href="">whyPADocs1.pdf</a><br>
-                <a href="">whyPADocs2.pdf</a>
-              </dd>
-            </div>
-          </dl>       
-        </div>
-      </div>
 
-      {{ govukTextarea({
-        name: "cwWhyPa",
-        id: "cwWhyPa",
-        value: data['cwWhyPa'],
-        label: {
-          text: "Caseworker comments",
-          classes: "govuk-label--m",
-          isPageHeading: true
-        },
-        hint: {
-          text: "Summarise the actions the provider needs to take."
-        }
-      }) }}      
+        {% set infoHtml %}
+          {{ govukTextarea({
+            name: "infoWhyPA",
+            id: "infoWhyPA",
+            value: data['infoWhyPA'],
+            label: {
+              text: "Caseworker comments"
+            },
+            hint: {
+              text: "Summarise the actions the provider needs to take."
+            }
+          }) }}    
+        {% endset %}
+
+        {% set docHtml %}
+          {{ govukTextarea({
+            name: "docWhyPA",
+            id: "docWhyPA",
+            value: data['docWhyPA'],
+            label: {
+              text: "Caseworker comments"
+            },
+            hint: {
+              text: "Summarise the actions the provider needs to take."
+            }
+          }) }}    
+        {% endset %}
+
+        {{ govukCheckboxes({
+          name: "checkWhyPA",
+          fieldset: {
+            legend: {
+              text: "What is the issue?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: "Select all that apply."
+          },
+          items: [
+            {
+              value: "More information required",
+              text: "More information required",
+              checked: checked("checkWhyPA", "More information required"),
+              conditional: {
+                html: infoHtml
+              }
+            },
+            {
+              value: "Documentation required",
+              text: "Documentation required",
+              checked: checked("checkWhyPA", "Documentation required"),
+              conditional: {
+                html: docHtml
+              }
+            }
+          ]
+        }) }}  
         
-
         <div class="govuk-button-group">
           {{ govukButton({
-            text: "Save"
+            text: "Save comment"
           }) }}
+
+          {% if data['reviewWhyPA'] == "" or data['reviewWhyPA'] == null %}
+            {% else %}
+              {{ govukButton({
+                text: "Delete comment",
+                classes: "govuk-button--warning",
+                href: "review-why-pa-delete?"
+              }) }}
+          {% endif %}
         </div>
-
+        
       </form>
-
     </div>
   </div>
 
