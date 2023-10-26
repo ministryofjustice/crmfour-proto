@@ -88,6 +88,15 @@ function calTransCost() {
   document.getElementById("actualTransTotal").value = transCost;
 }
 
+function calDNACost() {
+
+  var dnaCost = parseInt(document.getElementById("dnaCost").value)
+
+  dnaCost = dnaCost;
+  document.getElementById("showDNATotal").innerHTML = dnaCost;
+  document.getElementById("actualDNATotal").value = dnaCost;
+}
+
 function calTravelCost() {
 
   var travelCostTime = parseInt(document.getElementById("travelCostTime").value)
