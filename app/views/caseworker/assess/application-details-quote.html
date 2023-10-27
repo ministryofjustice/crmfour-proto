@@ -429,10 +429,12 @@
       {% if data['addAdd'] =="No" %}
         <p>No additional costs added</p>
         {% else %}
+
+        <h4 class="govuk-heading-s">{{data['addCost1'] or "Waiting time"}}</h4>
+        <p>{{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}</p>
         <table class="govuk-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Cost</th>
               <th scope="col" class="govuk-table__header">Time</th>
               <th scope="col" class="govuk-table__header">Rate per hour</th>
               <th scope="col" class="govuk-table__header">Provider requested</th>
@@ -442,7 +444,6 @@
           </thead>
           <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell">{{data['addCost1'] or "Waiting time"}}</td>
               <td class="govuk-table__cell">{{data['addTime2-hours'] or "3"}} hours {{data['addTime2-mins'] or "0"}} minutes</td>
               <td class="govuk-table__cell">£{{data['addCostTime2'] or "40"}} per hour</td>
               <td class="govuk-table__cell">£120.00</td>
@@ -453,20 +454,36 @@
               {% endif %}
               <td class="govuk-table__cell"><a href="">Change</a></td>
             </tr>
-            {% if data['addCost'] == "2" %}
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{data['addCost2'] or "Hotel"}}</td>
-                <td class="govuk-table__cell">£120.00</td>
-                {% if data['actualAdd2Total'] == null %}
-                  <td class="govuk-table__cell"></td>
-                  {% else %}
-                  <td class="govuk-table__cell">£{{data['actualAdd2Total'] or ""}}.00</td>
-                {% endif %}
-                <td class="govuk-table__cell"><a href="">Change</a></td>
-              </tr>
-            {% endif %}
           </tbody>
-        </table>        
+        </table>    
+
+        <h4 class="govuk-heading-s">{{data['addCost2'] or "Hotel"}}</h4>
+        <p>{{data['whyAdd2'] or "The expert traveled from Ireland and was unable to return the same day."}}</p>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Number of items</th>
+              <th scope="col" class="govuk-table__header">Cost per item</th>
+              <th scope="col" class="govuk-table__header">Provider requested</th>
+              <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+              <th scope="col" class="govuk-table__header">Action</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">{{data['addQuantity2'] or "1"}}</td>
+              <td class="govuk-table__cell">£{{data['addNonhourRate2'] or "120"}}.00</td>
+              <td class="govuk-table__cell">£120.00</td>
+              {% if data['actualAdd2Total'] == null %}
+                <td class="govuk-table__cell"></td>
+                {% else %}
+                <td class="govuk-table__cell">£{{data['actualAdd2Total'] or ""}}.00</td>
+              {% endif %}
+              <td class="govuk-table__cell"><a href="">Change</a></td>
+            </tr>
+          </tbody>
+        </table>            
       {% endif %}
 
 
