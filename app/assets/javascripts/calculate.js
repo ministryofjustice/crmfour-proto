@@ -27,6 +27,8 @@ function calalt1GeneralCost() {
 
 function calOtherCost() {
 
+  var otherChargeType = parseInt(document.getElementById("otherChargeType").value)
+
   var otherCostTime = parseInt(document.getElementById("otherCostTime").value)
   var numberHours = parseInt(document.getElementById("otherNoHours-hours").value)
   var numberMins = parseInt(document.getElementById("otherNoHours-mins").value)
@@ -42,9 +44,9 @@ function calOtherCost() {
     document.getElementById("actualOtherTotal").value = otherCost;
 
     } else {
-      otherCost1 = otherNoItems * otherItemsCost;
-      document.getElementById("showOtherTotal").innerHTML = otherCost1;
-      document.getElementById("actualOtherTotal").value = otherCost1;
+      otherCost = otherNoItems * otherItemsCost;
+      document.getElementById("showOtherTotal").innerHTML = otherCost;
+      document.getElementById("actualOtherTotal").value = otherCost;
     }
   }
 
