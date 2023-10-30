@@ -125,11 +125,11 @@
               </dd>
               <dd class="govuk-summary-list__actions">
                 {% if data['changeUFN'] == "change" %}
-                  <a class="govuk-link" href="question-ufn?changeUFN=change">
+                  <a class="govuk-link" href="review-ufn?changeUFN=change">
                     Review<span class="govuk-visually-hidden"> unique file number</span>
                   </a>
                   {% else %}
-                    <a class="govuk-link--no-visited-state" href="question-ufn?changeUFN=change">
+                    <a class="govuk-link--no-visited-state" href="review-ufn?changeUFN=change">
                       Review<span class="govuk-visually-hidden"> unique file number</span>
                     </a>
                 {% endif %} 
@@ -915,6 +915,23 @@
             </div>
           </dl>
         </div>
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Make a decision"
+        }) }}
+
+        {{ govukButton({
+          text: "Send back to provider",
+          classes: "govuk-button--warning"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "../crm-assess"
+        }) }}
       </div>
 
     </div>
