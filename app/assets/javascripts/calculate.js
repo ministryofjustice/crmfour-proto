@@ -162,6 +162,19 @@ function calAddTotal() {
   document.getElementById("actualAddTotalCost").value = addTotalCost;
 }
 
+function calAdd1CWCost() {
+  let Add1Cost = 0
+  var addCostTime1 = parseInt(document.getElementById("addCostTime1").value)
+  var addHours1 = parseInt(document.getElementById("addTime1-hours").value)
+  var addMins1 = parseInt(document.getElementById("addTime1-mins").value)
+
+  addminsHours1 = addMins1 / 60;
+  addTotalTime1 = addminsHours1 + addHours1;
+  Add1Cost = addCostTime1 * addTotalTime1;
+  document.getElementById("showAdd1Total").innerHTML = Add1Cost;
+  document.getElementById("actualAdd1Total").value = Add1Cost;
+}
+
 function calAlt1Cost() {
 
   var altCostTime1 = parseInt(document.getElementById("altCostTime1").value)

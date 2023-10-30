@@ -1,0 +1,149 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Service cost – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Adjust cost</h1>
+
+      <!--{% if data['changeQuote'] =="change" %}
+        <form class="form" action="question3-quote-summary" method="post">
+        {% else %}
+        <form class="form" action="question3-quote-travel-q" method="post">
+      {% endif %} 
+      -->
+
+      <form class="form" action="application-details-quote" method="post">
+
+        <h2 class="govuk-heading-l">Additional costs</h2>
+        <h3 class="govuk-heading-m">Provider submission</h3>
+        <h4 class="govuk-heading-s">{{data['addCost1'] or "Waiting time"}}</h4>
+        <p>{{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}</p>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Time</th>
+              <th scope="col" class="govuk-table__header">Rate per hour</th>
+              <th scope="col" class="govuk-table__header">Total</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">{{data['addTime2-hours'] or "4"}} hours {{data['addTime2-mins'] or "00"}} minutes</td>
+              <td class="govuk-table__cell">£{{data['addCostTime2'] or "30"}} per hour</td>
+              <td class="govuk-table__cell">£120.00</td>
+            </tr>
+          </tbody>
+        </table>          
+
+        <h3 class="govuk-heading-m">LAA adjustments</h3>
+
+        <!--Additonal cost 1-->
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group">
+          <legend class="govuk-fieldset__legend">
+            Time
+          </legend>
+          <div class="govuk-date-input" id="addTime1">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="addTime1-hours">
+                  Hours
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-hours" name="addTime1-hours" type="text" inputmode="numeric" value="{{data['addTime1-hours'] or "4"}}">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="addTime1-mins">
+                  Minutes
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-mins" name="addTime1-mins" type="text" inputmode="numeric" value="{{data['addTime1-mins'] or "00"}}">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      {{ govukInput({
+        id: "addCostTime1",
+        name: "addCostTime1",
+        value: data['addCostTime1'] or "30",
+        label: {
+          text: "What is the hourly cost?"
+        },
+        prefix: {
+          text: "£"
+        },
+        classes: "govuk-input--width-5",
+        spellcheck: false
+      }) }}
+      
+        <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total'] or "120"}}">                        
+                
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd1CWCost()">Calculate my changes</button>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Provider requested</th>
+              <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">120.00</td>
+              <td class="govuk-table__cell"><span id="showAdd1Total">120</span>.00</td>
+            </tr>
+          </tbody>
+        </table> 
+
+        {{ govukTextarea({
+          name: "addCost1Adjust",
+          value: data['addCost1Adjust'],
+          id: "addCost1Adjust",
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example, why you made adjustments to the items, cost or time. We'll share this explanation with the provider."
+          }
+        }) }}
+
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save changes"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-details-quote">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}

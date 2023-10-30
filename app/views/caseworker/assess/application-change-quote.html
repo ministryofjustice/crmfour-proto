@@ -538,7 +538,7 @@
                       <tbody class="govuk-table__body">
                         <tr class="govuk-table__row">
                           <td class="govuk-table__cell">£400.00</td>
-                          <td class="govuk-table__cell"><span id="showGeneralTotal">400</span>.00</td>
+                          <td class="govuk-table__cell">£<span id="showGeneralTotal">400</span>.00</td>
                         </tr>
                       </tbody>
                     </table> 
@@ -552,6 +552,7 @@
 
         {{ govukTextarea({
           name: "serviceAdjust",
+          value: data['serviceAdjust'],
           id: "serviceAdjust",
           label: {
             text: "Explain your decision",
@@ -559,7 +560,7 @@
             isPageHeading: true
           },
           hint: {
-            text: "For example, why you made adjustments to the work type rate, or changed the time spent. We'll share this explanation with the provider."
+            text: "For example, why you made adjustments to the service costs, or changed the time spent. We'll share this explanation with the provider."
           }
         }) }}
 
