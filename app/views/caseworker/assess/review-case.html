@@ -121,17 +121,19 @@
         
         <div class="govuk-button-group">
           {{ govukButton({
-            text: "Save comment"
+            text: "Save comments"
           }) }}
 
           {% if data['fieldCase'] == "" or data['fieldCase'] == null %}
             {% else %}
               {{ govukButton({
-                text: "Delete comment",
-                classes: "govuk-button--warning",
+                text: "Delete comments",
+                classes: "govuk-button--secondary",
                 href: "review-case-delete?"
               }) }}
           {% endif %}
+
+          <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
         </div>
 
       </form>

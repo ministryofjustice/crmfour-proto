@@ -204,17 +204,19 @@
 
           <div class="govuk-button-group">
             {{ govukButton({
-              text: "Save comment"
+              text: "Save comments"
             }) }}
 
-            {% if data['fieldClient'] == "" or data['fieldClient'] == null %}
+            {% if data['reviewAltQuote1'] == "" or data['reviewAltQuote1'] == null %}
               {% else %}
                 {{ govukButton({
-                  text: "Delete comment",
-                  classes: "govuk-button--warning",
+                  text: "Delete comments",
+                  classes: "govuk-button--secondary",
                   href: "review-alt-quote-delete?"
                 }) }}
             {% endif %}
+
+            <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
           </div>
         {% endif %}
 
@@ -410,17 +412,4 @@
     </div>
   </div>
 
-{% endblock %}
-
-{% block pageScripts %}
-  <script>
-    if (typeof MOJFrontend.MultiFileUpload !== "undefined") {
-      new MOJFrontend.MultiFileUpload({
-        container: $(".moj-multi-file-upload"),
-        uploadUrl: "/ajax-upload",
-        deleteUrl: "/ajax-delete",
-      });
-    }
-
-  </script>
 {% endblock %}

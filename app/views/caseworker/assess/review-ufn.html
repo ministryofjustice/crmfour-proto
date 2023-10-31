@@ -27,29 +27,21 @@
       {% if data['changeClient'] == "change" %}
         <form class="form" action="check-answers" method="post">
         {% else %}
-        <form class="form" action="application-details?review-client=complete" method="post">
+        <form class="form" action="application-details?review-ufn=complete" method="post">
       {% endif %}
       
         <div class="govuk-summary-card">
           <div class="govuk-summary-card__title-wrapper">
-            <h3 class="govuk-summary-card__title">Client details</h3>
+            <h2 class="govuk-summary-card__title">Application details</h2>
           </div>
           <div class="govuk-summary-card__content">
             <dl class="govuk-summary-list">
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Client name
+                  Unique file number
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}<br>
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Date of birth
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['client-dob-day'] or "10" }} {{data['client-dob-month'] or "May" }} {{data['client-dob-year'] or "2001" }}
+                  {{data['ufn'] or "100323/234234"}}
                 </dd>
               </div>
             </dl>
@@ -57,9 +49,9 @@
         </div>
 
         {{ govukTextarea({
-          name: "fieldClient",
-          id: "fieldClient",
-          value: data['fieldClient'],
+          name: "fieldUFN",
+          id: "fieldUFN",
+          value: data['fieldUFN'],
           label: {
             text: "Incorrect information",
             classes: "govuk-label--s"
@@ -71,17 +63,18 @@
     
         <div class="govuk-button-group">
           {{ govukButton({
-            text: "Save comment"
+            text: "Save comments"
           }) }}
 
-          {% if data['fieldClient'] == "" or data['fieldClient'] == null %}
+          {% if data['fieldUFN'] == "" or data['fieldUFN'] == null %}
             {% else %}
               {{ govukButton({
-                text: "Delete comment",
-                classes: "govuk-button--warning",
-                href: "review-client-delete?"
+                text: "Delete comments",
+                classes: "govuk-button--secondary",
+                href: "review-ufn-delete?"
               }) }}
           {% endif %}
+          <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
         </div>
 
       </form>

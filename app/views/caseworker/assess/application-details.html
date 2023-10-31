@@ -23,8 +23,8 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
-      <h1 class="govuk-heading-xl">{{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}</h1>
+      <span class="govuk-caption-xl">{{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}</span>
+      <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
       {% if data['cwAppSatus'] == "New" or data['cwAppSatus'] == null %}
         <strong class="govuk-tag">New</strong>
         {% else %}
@@ -93,12 +93,19 @@
         }]
       }) }}
 
+      <!--App dets-->
       <div class="govuk-summary-card">
-
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">Application details</h2>
         </div>
         <div class="govuk-summary-card__content">
+          {% if data['fieldUFN'] == null or data['fieldUFN'] == "" %}
+            {% else %}
+            <div class="govuk-inset-text">
+              <strong>Incorrect information:</strong><br>
+              {{data['fieldUFN']}} <br>
+            </div>
+          {% endif %}
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -160,6 +167,7 @@
           {% if data['fieldClient'] == null or data['fieldClient'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
+              <strong>Incorrect information:</strong><br>
               {{data['fieldClient']}} <br>
             </div>
           {% endif %}
@@ -203,6 +211,7 @@
            {% if data['fieldCase'] == null or data['fieldCase'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
+              <strong>Incorrect information:</strong><br>
               {{data['fieldCase']}}
             </div>
           {% endif %}
@@ -298,6 +307,7 @@
             {% if data['fieldHearing'] == null or data['fieldHearing'] == "" %}
               {% else %}
               <div class="govuk-inset-text">
+                <strong>Incorrect information:</strong><br>
                 {{data['fieldHearing']}}
               </div>
             {% endif %}
@@ -535,9 +545,20 @@
           {% if data['reviewAltQuote1'] == null or data['reviewAltQuote1'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
-              {{data['fieldAltQuote1']}} <br>
-              {{data['infoAltQuote1']}}<br>
-              {{data['docAltQuote1']}}
+              {% if data['reviewAltQuote1'] | includes('Incorrect information') %}
+                <strong>Incorrect information:</strong><br>
+                {{data['fieldAltQuote1']}} <br><br>
+              {% endif %}
+
+              {% if data['reviewAltQuote1'] | includes('More information required') %}
+                <strong>More information required:</strong><br>
+                {{data['infoAltQuote1']}} <br><br>
+              {% endif %}
+
+              {% if data['reviewAltQuote1'] | includes('Documentation required') %}
+                <strong>Documentation required:</strong> <br>
+                {{data['docAltQuote1']}}
+              {% endif %}
             </div>
           {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -632,10 +653,10 @@
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
               {% if data['reviewAlt2'] == "reivew" %}
-                <a class="govuk-link" href="review-alt-quote?addAlt=Yes&showAltQuote=2&reviewAlt2=review">
+                <a class="govuk-link" href="?addAlt=Yes&showAltQuote=2&reviewAlt2=review">
                 Review<span class="govuk-visually-hidden"> additional item</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="review-alt-quote?addAlt=Yes&showAltQuote=2&reviewAlt2=review">Review<span class="govuk-visually-hidden"> additional item</a>
+                <a class="govuk-link--no-visited-state" href="?addAlt=Yes&showAltQuote=2&reviewAlt2=review">Review<span class="govuk-visually-hidden"> additional item</a>
               {% endif %} 
             </li>
           </ul>
@@ -733,10 +754,10 @@
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
               {% if data['reviewAlt3'] == "review" %}
-                <a class="govuk-link" href="review-alt-quote?addAlt=Yes&showAltQuote=3&reviewAlt3=review">
+                <a class="govuk-link" href="?addAlt=Yes&showAltQuote=3&reviewAlt3=review">
                 Review<span class="govuk-visually-hidden"> additional item</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="review-alt-quote?addAlt=Yes&showAltQuote=3&reviewAlt3=review">Review<span class="govuk-visually-hidden"> additional item</a>
+                <a class="govuk-link--no-visited-state" href="?addAlt=Yes&showAltQuote=3&reviewAlt3=review">Review<span class="govuk-visually-hidden"> additional item</a>
               {% endif %} 
             </li>
           </ul>
@@ -845,8 +866,14 @@
           {% if data['checkWhyPA'] == null or data['checkWhyPA'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
-              {{data['infoWhyPA']}}<br>
-              {{data['docWhyPA']}}
+              {% if data['checkWhyPA'] | includes('More information required') %}
+                <strong>More information required:</strong><br>
+                {{data['infoWhyPA']}} <br><br>
+              {% endif %}
+              {% if data['checkWhyPA'] | includes('Documentation required') %}
+                <strong>Documentation required:</strong><br>
+                {{data['docWhyPA']}} <br><br>
+              {% endif %}
             </div>
           {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -888,10 +915,11 @@
           </ul>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['fieldSol'] == null or data['fieldSol'] == "" %}
+          {% if data['fieldSolicitor'] == null or data['fieldSolicitor'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
-              {{data['fieldSol']}}
+              <strong>Incorrect information:</strong><br>
+              {{data['fieldSolicitor']}}
             </div>
           {% endif %}
           <dl class="govuk-summary-list">
@@ -930,7 +958,7 @@
         {{ govukButton({
           text: "Save and come back later",
           classes: "govuk-button--secondary",
-          href: "../crm-assess"
+          href: "../crm-assess?cwAppState=all"
         }) }}
       </div>
 
