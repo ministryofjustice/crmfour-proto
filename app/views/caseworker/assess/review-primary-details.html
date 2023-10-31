@@ -1,0 +1,206 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Review primary quote information – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+      <h1 class="govuk-heading-xl">Review primary quote information</h1>
+
+      {% if data['changePrimary'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form class="form" action="application-details?review-primary=complete" method="post">
+      {% endif %}
+      
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h3 class="govuk-summary-card__title">Primary quote</h3>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Expert details
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['expert-name'] or "Joanna White" }}<br>
+                  {{data['expert-org-name'] or "DNA Plc" }}, 
+                  {{data['expert-postcode'] or "E1 3RD" }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Service required
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['serviceType'] == "Other" %}
+                    Other: {{data['otherExpert'] or "Driving instructor" }}
+                    {% else %}
+                    {{data['serviceType'] or "Interpreter"}}
+                  {% endif %}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Quote upload
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <a href="">myquote1.pdf</a>
+                </dd>
+              </div>
+              {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" or  data['serviceType'] == null %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Ordered by court
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['courtOrdered'] or "Yes" }}
+                  </dd>
+                </div>
+              {% else %}
+              
+              {% endif %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Existing prior authority granted
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['existingAuth'] or "No"}}
+                </dd>
+              </div>
+              {% if data['detained'] == "Yes" or data['prisonLaw'] == "Yes" %}
+                {% else %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Why travel costs are required 
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['whyTravel'] or "The expert lives in Ireland"}}
+                  </dd>
+                </div>
+              {% endif %}
+            </dl>       
+          </div>
+        </div>
+
+        {% set fieldHtml %}
+            {{ govukTextarea({
+              name: "fieldQuote",
+              id: "fieldQuote",
+              value: data['fieldQuote'],
+              label: {
+                text: "Caseworker comments"
+              },
+              hint: {
+                text: "Summarise the actions the provider needs to take."
+              }
+            }) }}    
+          {% endset %}
+
+          {% set infoHtml %}
+            {{ govukTextarea({
+              name: "infoQuote",
+              id: "infoQuote",
+              value: data['infoQuote'],
+              label: {
+                text: "Caseworker comments"
+              },
+              hint: {
+                text: "Summarise the actions the provider needs to take."
+              }
+            }) }}    
+          {% endset %}
+
+          {% set docHtml %}
+            {{ govukTextarea({
+              name: "docQuote",
+              id: "docQuote",
+              value: data['docQuote'],
+              label: {
+                text: "Caseworker comments"
+              },
+              hint: {
+                text: "Summarise the actions the provider needs to take."
+              }
+            }) }}    
+          {% endset %}
+
+          {{ govukCheckboxes({
+            name: "reviewQuote",
+            fieldset: {
+              legend: {
+                text: "What is the issue?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            hint: {
+              text: "Select all that apply."
+            },
+            items: [
+              {
+                value: "Incorrect information",
+                text: "Incorrect information",
+                checked: checked("reviewQuote", "Incorrect information"),
+                conditional: {
+                  html: fieldHtml
+                }
+              },
+              {
+                value: "More information required",
+                text: "More information required",
+                checked: checked("reviewQuote", "More information required"),
+                conditional: {
+                  html: infoHtml
+                }
+              },
+              {
+                value: "Documentation required",
+                text: "Documentation required",
+                checked: checked("reviewQuote", "Documentation required"),
+                conditional: {
+                  html: docHtml
+                }
+              }
+            ]
+          }) }}    
+    
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save comments"
+          }) }}
+
+          {% if data['reviewQuote'] == "" or data['reviewQuote'] == null %}
+            {% else %}
+              {{ govukButton({
+                text: "Delete comments",
+                classes: "govuk-button--secondary",
+                href: "review-primary-details-delete?"
+              }) }}
+          {% endif %}
+
+          <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

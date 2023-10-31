@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Are you sure you want to delete these comments? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Are you sure you want to delete these comments?</h1>
+
+      <div class="govuk-inset-text">
+        {% if data['reviewQuote'] | includes('Incorrect information') %}
+          <strong>Incorrect information:</strong><br>
+          {{data['fieldQuote']}} <br><br>
+        {% endif %}
+
+        {% if data['reviewQuote'] | includes('More information required') %}
+          <strong>More information required:</strong><br>
+          {{data['infoQuote']}} <br><br>
+        {% endif %}
+
+        {% if data['reviewQuote'] | includes('Documentation required') %}
+          <strong>Documentation required:</strong> <br>
+          {{data['docQuote']}}
+        {% endif %}
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Yes, delete it",
+          classes: "govuk-button--warning",
+          href: "application-details?reviewQuote=&fieldQuote=&infoQuote&docQuote="
+        }) }}
+
+        {{ govukButton({
+          text: "No, do not delete it",
+          classes: "govuk-button--secondary",
+          href: "review-alt-quote"
+        }) }}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
