@@ -13,9 +13,25 @@
 {% block beforeContent %}
   {% include "includes/banner.html"%}
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript: history.back()"
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Closed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
   }) }}
 {% endblock %}
 
@@ -57,7 +73,7 @@
         {% endif %}
       {% endif %}
       <br><br>
-      <p><span class="govuk-!-font-size-27"><strong>Provider requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00</p>
+      <p><span class="govuk-!-font-size-27">£{{data['actualdistTotalCost'] or "640"}}.00</p>
       <p><span class="govuk-body-l"><strong>Assigned to:</strong> {{data['caseworker1']}}</span>
         <br><span class="govuk-body-l"><strong>Date received:</strong> 17th October 2023</span></p>
     </div>
@@ -952,14 +968,22 @@
 
         {{ govukButton({
           text: "Send back to provider",
-          classes: "govuk-button--warning"
+          classes: "govuk-button--secondary"
         }) }}
 
         {{ govukButton({
-          text: "Save and come back later",
+          text: "Send for review",
           classes: "govuk-button--secondary",
-          href: "../crm-assess?cwAppState=all"
+          href: ""
         }) }}
+
+         {{ govukButton({
+          text: "Save as draft",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+
+        <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
       </div>
 
     </div>
