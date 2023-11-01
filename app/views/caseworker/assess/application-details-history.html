@@ -1,0 +1,175 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Application history – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+   {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Closed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">{{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}</span>
+      <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
+      {% if data['cwAppSatus'] == "New" or data['cwAppSatus'] == null %}
+        <strong class="govuk-tag">New</strong>
+        {% else %}
+        {% if data['cwAppSatus'] == "In progress" %}
+          <strong class="govuk-tag">In progress</strong>
+          {% else %}
+          {% if data['cwAppSatus'] == "Granted" %}
+            <strong class="govuk-tag">Granted</strong>
+            {% else %}
+            {% if data['cwAppSatus'] == "Rejected" %}
+              <strong class="govuk-tag">Rejected</strong>
+              {% else %}
+              {% if data['cwAppSatus'] == "Review" %}
+                <strong class="govuk-tag">Provider review</strong>
+                {% else %}
+                {% if data['cwAppSatus'] == "Appealed" %}
+                  <strong class="govuk-tag">Appealed</strong>
+                  {% else %}
+                  {% if data['cwAppSatus'] == "Amended" %}
+                    <strong class="govuk-tag">Amended</strong>
+                    {% else %}
+                    {% if data['cwAppSatus'] == "Referred" %}
+                      <strong class="govuk-tag">Referred</strong>
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+      <br><br>
+      <p><span class="govuk-!-font-size-27">£{{data['actualdistTotalCost'] or "640"}}.00</p>
+      <p><span class="govuk-body-l"><strong>Assigned to:</strong> {{data['caseworker1']}}</span>
+        <br><span class="govuk-body-l"><strong>Date received:</strong> 17th October 2023</span>
+      </p>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <aside class="app-related-items" role="complementary">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li>
+            <br>
+            <strong>Related applications</strong><br> 
+            <a class="govuk-link govuk-link--no-visited-state">{{data['laa-ref'] or "LAA-5a7d3c"}} - John Stevens</a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+       {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Application overview',
+          href: 'application-details',
+          active: false
+        }, {
+          text: 'Review and adjust',
+          href: 'application-details-quote',
+          active: false
+        }, {
+          text: 'Application history',
+          href: 'application-details-history',
+          active: true
+        }]
+      }) }}
+
+      <h3 class="govuk-heading-m">Application history</h3>
+
+      <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">When</th>
+                <th scope="col" class="govuk-table__header">Who</th>
+                <th scope="col" class="govuk-table__header">What</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Something</td>
+                <td class="govuk-table__cell">Something</td>
+                <td class="govuk-table__cell">Something</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Something</td>
+                <td class="govuk-table__cell">Something</td>
+                <td class="govuk-table__cell">Something</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Something</td>
+                <td class="govuk-table__cell">Something</td>
+                <td class="govuk-table__cell">Something</td>
+              </tr>
+            </tbody>
+          </table>     
+
+
+
+
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Make a decision"
+        }) }}
+
+        {{ govukButton({
+          text: "Send back to provider",
+          classes: "govuk-button--secondary"
+        }) }}
+
+        {{ govukButton({
+          text: "Request review",
+          classes: "govuk-button--secondary"
+        }) }}
+
+        {{ govukButton({
+          text: "Save draft",
+          classes: "govuk-button--secondary",
+          href: "../crm-assess?cwAppState=all"
+        }) }}
+      </div>
+
+
+      
+
+    </div>
+  </div>
+
+{% endblock %}
