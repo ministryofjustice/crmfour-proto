@@ -11,10 +11,26 @@
 {% block beforeContent %}
   {% include "includes/banner.html"%}
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Closed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }
 {% endblock %}
 
 {% block content %}

@@ -10,18 +10,34 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Closed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
   }) }}
+
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Adjust addtional costs</h1>
+      <h1 class="govuk-heading-xl">Adjust additional costs</h1>
 
       <!--{% if data['changeQuote'] =="change" %}
         <form class="form" action="question3-quote-summary" method="post">
