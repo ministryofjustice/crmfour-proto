@@ -21,7 +21,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Adjust cost</h1>
+      <h1 class="govuk-heading-xl">Adjust {{data['serviceType'] or "Interpreter"}} cost</h1>
 
       <!--{% if data['changeQuote'] =="change" %}
         <form class="form" action="question3-quote-summary" method="post">
@@ -32,8 +32,7 @@
 
       <form class="form" action="application-details-quote" method="post">
 
-        <h2 class="govuk-heading-l">{{data['serviceType'] or "Interpreter"}}</h2>
-        <h3 class="govuk-heading-m">Provider submission</h3>
+        <h2 class="govuk-heading-l">Provider submission</h2>
         {% if data['serviceType'] == "Other" %}
           <p>Other: {{data['otherExpert'] or "Driving instructor"}}</p>
         {% endif %}
@@ -190,7 +189,7 @@
           {% endif %}
         {% endif %}
 
-        <h3 class="govuk-heading-m">LAA adjustments</h3>
+        <h2 class="govuk-heading-l">LAA adjustments</h2>
         {% if data['serviceType'] == "Transcription" %}
 
           <!--Transcription-->
