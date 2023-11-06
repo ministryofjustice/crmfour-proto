@@ -39,7 +39,7 @@
                 Prison Law
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['prisonLaw'] | default("No")}}
+                {{data['prisonLaw'] or "No"}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -494,7 +494,7 @@
                   Reason for no alternative quotes
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['no-alt-quotes-info'] | default('There are no other experts in the country that can do this')}}<br>
+                  {{data['no-alt-quotes-info'] or "There are no other experts in the country that can do this" }}<br>
                 </dd>
               </div>
             </dl>   
@@ -508,7 +508,7 @@
                   <dd class="govuk-summary-list__value">
                     {{data['alt1ExpertName'] or "Jame Jones"}}<br>
                     myquote1.pdf<br>
-                    £{{data['actualalt1TotalCost'] | default('760')}}.00
+                    £{{data['actualalt1TotalCost'] or "760" }}.00
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -518,7 +518,7 @@
                   <dd class="govuk-summary-list__value">
                     {{data['alt2ExpertName'] or "Belinda Cartright"}}<br>
                     myquote2.pdf<br>
-                    £{{data['actualalt2TotalCost'] | default('825')}}.00
+                    £{{data['actualalt2TotalCost'] or ('825')}}.00
                   </dd>
                 </div>
                 <div class="govuk-summary-list__row">
@@ -528,7 +528,7 @@
                   <dd class="govuk-summary-list__value">
                     {{data['alt3ExpertName'] or "Roger Monied"}}<br>
                     myquote3.pdf<br>
-                    £{{data['actualalt3TotalCost'] | default('780')}}.00
+                    £{{data['actualalt3TotalCost'] or "780"}}.00
                   </dd>
                 </div>
               </dl>   
@@ -560,7 +560,7 @@
                 Why prior authority is required
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['why-pa'] | default('My client needs an interpreter')}}
+                {{data['why-pa'] or "My client needs an interpreter" }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">

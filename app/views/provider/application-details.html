@@ -66,6 +66,7 @@
                   {% endif %}
                 {% endif %}
               {% endif %} 
+              <button class="govuk-button govuk-button--secondary" data-module="govuk-button" onclick="window.print()">Print this application</button>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -75,27 +76,26 @@
             <dd class="govuk-summary-list__value">
               {% if data['app-task'] == "granted" %}
                 <ul class="govuk-list">
-                  <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                  <li>£{{data['actualdistTotalCost'] or ('360')}}.00 requested</li>
                 </ul>
                 <p>The application has been fully granted.</p>
-                <p>View <a href="application-print">printatable version of the application</a></p>
                 {% else %}
                 {% if data['app-task'] == "referred" %}
                   <ul class="govuk-list">
-                    <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                    <li>£{{data['actualdistTotalCost'] or ('360')}}.00 requested</li>
                   </ul>
                   <p>The application has been refered to the ICA.</p>
                   {% else %}
                   {% if data['app-task'] == "partgranted" %}
                     <ul class="govuk-list">
-                      <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
-                      <li>£300 has been granted</li>
+                      <li>£{{data['actualdistTotalCost'] or ('360')}}.00 requested</li>
+                      <li>£300.00 has been granted</li>
                     </ul>
                     <p>This is the result of the caseworkers review of the application...format TBD</p>
                     {% else %}
                     {% if data['app-task'] == "review" %}
                       <ul class="govuk-list">
-                        <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                        <li>£{{data['actualdistTotalCost'] or ('360')}}.00 requested</li>
                       </ul>
                       <p>The caseworker needs more information to complete the assessment of this application. Review and re-submit the required information.</p>
                       
@@ -105,13 +105,13 @@
                       {% else %}
                       {% if data['app-task'] == "submitted" %}
                         <ul class="govuk-list">
-                          <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                          <li>£{{data['actualdistTotalCost'] or ('360')}}.00 requested</li>
                         </ul>
                         <p>Waiting to be assessed.</p>
                         {% else %}
                         {% if data['app-task'] == "rejected" %}
                           <ul class="govuk-list">
-                            <li>£{{data['actualdistTotalCost'] | default('360')}}.00 requested</li>
+                            <li>£{{data['actualdistTotalCost'] or ('360')}}.00 requested</li>
                           </ul>
                           <p>This application has been fully rejected and cannot be appealed.</p>
                           <p>Reasons for rejected:</p>
@@ -753,7 +753,7 @@
               Why prior authority is required
             </dt>
             <dd class="govuk-summary-list__value">
-              {{data['why-pa'] | default('My client needs an interpreter')}}
+              {{data['why-pa'] or ('My client needs an interpreter')}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
