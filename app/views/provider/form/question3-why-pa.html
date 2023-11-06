@@ -27,21 +27,29 @@
         <form class="form" action="check-answers" method="post">
         {% else %}
         <form class="form" action="task-list?question3-why-pa=complete" method="post">
-      {% endif %}
-      
-        {{ govukTextarea({
-          name: "why-pa",
-          id: "why-pa",
-          value: data['why-pa'],
-          label: {
-            text: "Why is prior authority required?",
-            classes: "govuk-label--xl",
-            isPageHeading: true
-          },
-          hint: {
-            text: "Give a summary of why you are requesting this authority, including details of the prosecution case and the defence or mitigation."
-          }
-        }) }}
+      {% endif %}       
+
+        <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="2000">
+          <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+              <label class="govuk-label govuk-label--l" for="why-pa">
+                Why is prior authority required?
+              </label>
+            </h1>
+            <div id="why-pa-hint" class="govuk-hint">
+              <p>Provide a summary of:</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li>Why you are requesting this authority</li>
+                <li>Details of the prosecution case</li>
+                <li>The defence or mitigation</li>
+              </ul>
+            </div>
+            <textarea class="govuk-textarea govuk-js-character-count" id="why-pa" name="why-pa" rows="16" aria-describedby="why-pa-info why-pa-hint"></textarea>
+          </div>
+          <div id="why-pa-info" class="govuk-hint govuk-character-count__message">
+            You can enter up to 2000 characters
+          </div>
+        </div>
 
         <div class="moj-multi-file-upload">
           <div class="moj-multi-file__uploaded-files ">
