@@ -41,28 +41,28 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">{{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}</span>
       <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
-      {% if data['cwAppSatus'] == "New" or data['cwAppSatus'] == null %}
+      {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
         <strong class="govuk-tag">New</strong>
         {% else %}
-        {% if data['cwAppSatus'] == "In progress" %}
+        {% if data['cwAppStatus'] == "In progress" %}
           <strong class="govuk-tag">In progress</strong>
           {% else %}
-          {% if data['cwAppSatus'] == "Granted" %}
+          {% if data['cwAppStatus'] == "Granted" %}
             <strong class="govuk-tag">Granted</strong>
             {% else %}
-            {% if data['cwAppSatus'] == "Rejected" %}
+            {% if data['cwAppStatus'] == "Rejected" %}
               <strong class="govuk-tag">Rejected</strong>
               {% else %}
-              {% if data['cwAppSatus'] == "Review" %}
+              {% if data['cwAppStatus'] == "Review" %}
                 <strong class="govuk-tag">Provider review</strong>
                 {% else %}
-                {% if data['cwAppSatus'] == "Appealed" %}
+                {% if data['cwAppStatus'] == "Appealed" %}
                   <strong class="govuk-tag">Appealed</strong>
                   {% else %}
-                  {% if data['cwAppSatus'] == "Amended" %}
+                  {% if data['cwAppStatus'] == "Amended" %}
                     <strong class="govuk-tag">Amended</strong>
                     {% else %}
-                    {% if data['cwAppSatus'] == "Referred" %}
+                    {% if data['cwAppStatus'] == "Referred" %}
                       <strong class="govuk-tag">Referred</strong>
                     {% endif %}
                   {% endif %}
