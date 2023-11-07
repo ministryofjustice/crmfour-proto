@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Application history – {{ serviceName }} – GOV.UK Prototype Kit
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Application history – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% set bodyClasses = 'caseworker-width' %}
@@ -27,7 +27,7 @@
         active: false
       },
       {
-        text: 'Closed applications',
+        text: 'Assessed applications',
         href: '/caseworker/crm-assess-closed',
         active: false
       }
@@ -155,7 +155,7 @@
         }) }}
 
         {{ govukButton({
-          text: "Request review",
+          text: "Request external review ",
           classes: "govuk-button--secondary"
         }) }}
 
