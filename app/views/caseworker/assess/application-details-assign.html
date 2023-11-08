@@ -1,0 +1,37 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Are you sure you want assign this application to yourself? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Are you sure you want assign this application to yourself?</h1>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Yes, assign application",
+          href: "application-details?appAssigned=yes&cwAppStatus=In progress"
+        }) }}
+
+        {{ govukButton({
+          text: "No, do not assign",
+          classes: "govuk-button--secondary",
+          href: "application-details-readonly"
+        }) }}
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}
