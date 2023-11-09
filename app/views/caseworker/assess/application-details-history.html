@@ -77,24 +77,8 @@
       <p><span class="govuk-body-l"><strong>Assigned to:</strong> {{data['caseworker1']}}</span>
         <br><span class="govuk-body-l"><strong>Date received:</strong> 17th October 2023</span>
       </p>
-    </div>
-    <div class="govuk-grid-column-one-third">
-      <aside class="app-related-items" role="complementary">
-        <ul class="govuk-list govuk-!-font-size-16">
-          <li>
-            <br>
-            <strong>Related applications</strong><br> 
-            <a class="govuk-link govuk-link--no-visited-state">{{data['laa-ref'] or "LAA-5a7d3c"}} - John Stevens</a>
-          </li>
-        </ul>
-      </aside>
-    </div>
-  </div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-
-       {{ mojSubNavigation({
+      {{ mojSubNavigation({
         label: 'Sub navigation',
         items: [{
           text: 'Application overview',
@@ -114,34 +98,31 @@
       <h3 class="govuk-heading-m">Application history</h3>
 
       <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">When</th>
-                <th scope="col" class="govuk-table__header">Who</th>
-                <th scope="col" class="govuk-table__header">What</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Something</td>
-                <td class="govuk-table__cell">Something</td>
-                <td class="govuk-table__cell">Something</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Something</td>
-                <td class="govuk-table__cell">Something</td>
-                <td class="govuk-table__cell">Something</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Something</td>
-                <td class="govuk-table__cell">Something</td>
-                <td class="govuk-table__cell">Something</td>
-              </tr>
-            </tbody>
-          </table>     
-
-
-
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">When</th>
+            <th scope="col" class="govuk-table__header">Who</th>
+            <th scope="col" class="govuk-table__header">What</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Something</td>
+            <td class="govuk-table__cell">Something</td>
+            <td class="govuk-table__cell">Something</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Something</td>
+            <td class="govuk-table__cell">Something</td>
+            <td class="govuk-table__cell">Something</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Something</td>
+            <td class="govuk-table__cell">Something</td>
+            <td class="govuk-table__cell">Something</td>
+          </tr>
+        </tbody>
+      </table>     
 
 
       <div class="govuk-button-group">
@@ -166,10 +147,30 @@
         }) }}
       </div>
 
-
-      
-
     </div>
+
+    <div class="govuk-grid-column-one-third">
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-s" id="subsection-title">Related applications</h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-2c5g2d">LAA-2c5g2d</a><br>
+              {{data['serviceType'] or "Interpreter"}}</p>
+            </li> 
+            <li>
+              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-7c5g1e">LAA-7c5g1e</a><br>
+              {{data['serviceType'] or "Interpreter"}}</p>
+            </li> 
+            <li>
+              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-5a7d3c">LAA-5a7d3c</a><br>
+              {{data['serviceType'] or "Transcription & translation"}}</p>
+            </li> 
+          </ul>
+        </nav>
+      </aside>
+    </div>
+
   </div>
 
 {% endblock %}
