@@ -31,6 +31,7 @@
     {% endif %}
   {% endif %}
 {% endif %}
+<strong class="govuk-tag govuk-tag--grey">Read only</strong>
 <br><br>
 <p><span class="govuk-!-font-size-27">
   {% if data['cwAppStatus'] == "Part granted" %}
@@ -46,4 +47,14 @@
 </p>      
 <p><span class="govuk-body-l"><strong>Assigned to:</strong> {{data['caseworker1']}}</span>
   <br><span class="govuk-body-l"><strong>Date received:</strong> 17th October 2023</span>
+  {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" %}
+    <br><span class="govuk-body-l"><strong>Date assessed:</strong> 21st October 2023</span>
+  {% endif %}
 </p>
+{% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" %}
+  {% else %}
+  {{ govukButton({
+    text: "Assign application to me",
+    href: "application-details-assign"
+  }) }}
+{% endif %}
