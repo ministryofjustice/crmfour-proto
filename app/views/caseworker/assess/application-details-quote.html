@@ -73,7 +73,13 @@
         {% endif %}
       {% endif %}
       <br><br>
-      <p><span class="govuk-!-font-size-27">£{{data['actualdistTotalCost'] or "640"}}.00</p>
+      <p><span class="govuk-!-font-size-27">£{{data['actualdistTotalCost'] or "640"}}.00<br>
+        {% if data['serviceType'] == "Other" %}
+          Other: {{data['otherExpert'] or "Driving instructor" }}
+          {% else %}
+          {{data['serviceType'] or "Interpreter"}}
+        {% endif %}
+      </p>      
       <p><span class="govuk-body-l"><strong>Assigned to:</strong> {{data['caseworker1']}}</span>
         <br><span class="govuk-body-l"><strong>Date received:</strong> 17th October 2023</span>
       </p>
@@ -520,16 +526,16 @@
         <nav role="navigation" aria-labelledby="subsection-title">
           <ul class="govuk-list govuk-!-font-size-16">
             <li>
-              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-2c5g2d&client-first--name=Bobby&client-last--name=Wolf">LAA-2c5g2d</a><br>
-              {{data['serviceType'] or "Interpreter"}}</p>
+              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-2c5g2d&serviceType=Transcription & translation">LAA-2c5g2d</a><br>
+              Transcription & translation</p>
             </li> 
             <li>
-              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-7c5g1e&client-first--name=Nicole&client-last--name=Pupper">LAA-7c5g1e</a><br>
-              {{data['serviceType'] or "Interpreter"}}</p>
+              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-7c5g1e&serviceType=DNA Report">LAA-7c5g1e</a><br>
+              DNA Report</p>
             </li> 
             <li>
-              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-5a7d3c&client-first--name=Jonah&client-last--name=Bouteille">LAA-5a7d3c</a><br>
-              {{data['serviceType'] or "Transcription & translation"}}</p>
+              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-5a7d3c&serviceType=Cell phone site analysis">LAA-5a7d3c</a><br>
+              Cell phone site analysis </p>
             </li> 
           </ul>
         </nav>
