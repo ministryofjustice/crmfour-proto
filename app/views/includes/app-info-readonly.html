@@ -35,10 +35,15 @@
 <br><br>
 <p><span class="govuk-!-font-size-27">
   {% if data['cwAppStatus'] == "Part granted" %}
-    £520.00<br>
+    £520.00
     {% else %}
-    £{{data['actualdistTotalCost'] or "640"}}.00<br>
+    {% if data['cwAppStatus'] == "Rejected" %}
+      £N/A
+      {% else %}
+      £{{data['actualdistTotalCost'] or "640"}}.00<br>
+    {% endif %}
   {% endif %}
+  <br>
   {% if data['serviceType'] == "Other" %}
     Other: {{data['otherExpert'] or "Driving instructor" }}
     {% else %}
