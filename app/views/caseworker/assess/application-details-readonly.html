@@ -39,6 +39,9 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      
+      <span class="govuk-caption-xl">{{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}</span>
+      <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
       {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
         <strong class="govuk-tag">New</strong>
         {% else %}
@@ -72,8 +75,6 @@
       {% endif %}
       <strong class="govuk-tag govuk-tag--grey">Read only</strong>
       <br><br><br>
-      <span class="govuk-caption-xl">{{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}</span>
-      <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
       <p><span class="govuk-!-font-size-27">£{{data['actualdistTotalCost'] or "640"}}.00</p>
       <p><span class="govuk-body-l"><strong>Assigned to:</strong> 
         {% if data['cwAppStatus'] == "New" and data['appAssigned'] !== "yes" %}
@@ -879,23 +880,22 @@
     <div class="govuk-grid-column-one-third">
       <aside class="app-related-items" role="complementary">
         <h2 class="govuk-heading-s" id="subsection-title">Related applications</h2>
-       
         <nav role="navigation" aria-labelledby="subsection-title">
-        <ul class="govuk-list govuk-!-font-size-16">
-          <li>
-            <p><a class="govuk-link govuk-link--no-visited-state" href="">LAA-2c5g2d</a><br>
-            {{data['serviceType'] or "Interpreter"}}</p>
-          </li> 
-          <li>
-            <p><a class="govuk-link govuk-link--no-visited-state" href="">LAA-7c5g1e</a><br>
-            {{data['serviceType'] or "Interpreter"}}</p>
-          </li> 
-          <li>
-            <p><a class="govuk-link govuk-link--no-visited-state" href="">LAA-5a7d3c</a><br>
-            {{data['serviceType'] or "Transcription & translation"}}</p>
-          </li> 
-        </ul>
-      </nav>
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-2c5g2d&client-first--name=Bobby&client-last--name=Wolf">LAA-2c5g2d</a><br>
+              {{data['serviceType'] or "Interpreter"}}</p>
+            </li> 
+            <li>
+              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-7c5g1e&client-first--name=Nicole&client-last--name=Pupper">LAA-7c5g1e</a><br>
+              {{data['serviceType'] or "Interpreter"}}</p>
+            </li> 
+            <li>
+              <p><a class="govuk-link govuk-link--no-visited-state" href="application-details-readonly?laa-ref=LAA-5a7d3c&client-first--name=Jonah&client-last--name=Bouteille">LAA-5a7d3c</a><br>
+              {{data['serviceType'] or "Transcription & translation"}}</p>
+            </li> 
+          </ul>
+        </nav>
       </aside>
     </div>
   </div>
