@@ -115,7 +115,81 @@
               {% endif %}
             </dl>    
 
-            <p><a href="application-details-quote">Review and adjust quote figures</a></p>   
+            <details class="govuk-details" data-module="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  Provide requested costs
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Costs</th>
+                      <th scope="col" class="govuk-table__header">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">Service</td>
+                      <!--Service cost-->
+                      {% if data['serviceType'] == "DNA report" %}
+                        <td class="govuk-table__cell">£{{data['dnaCost'] or "400" }}.00</td>
+                        {% else %}
+                        {% if data['serviceType'] == "Transcription" %}
+                          <td class="govuk-table__cell">£{{data['actualTransTotal'] or "400" }}.00</td>
+                          {% else %}
+                          {% if data['serviceType'] == "Translation and transcription" %}
+                            <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "400" }}.00</td>
+                            {% else %}
+                            {% if data['serviceType'] == "Translator" %} 
+                              <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "400" }}.00</td>
+                              {% else %}
+                              {% if data['serviceType'] == "Photocopying" %} 
+                                <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "400" }}.00</td>
+                                {% else %}
+                                {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
+                                  <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400" }}.00</td>
+                                  {% else %}
+                                  {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
+                                    <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400" }}.00</td>
+                                    {% else %}
+                                    {% if data['serviceType'] !== "DNA report" %}
+                                      <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "400" }}.00</td>
+                                    {% endif %}
+                                  {% endif %}
+                                {% endif %}
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    </tr>
+                    {% if data['addTravel'] == "No" %}
+                      {% else %}
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Travel</td>
+                        <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120" }}.00</td>
+                      </tr>
+                    {% endif %}
+                    {% if data['addAdd'] == "No" %}
+                      {% else %}
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Additional</td>
+                        <td class="govuk-table__cell">£{{data['actualaddFinalTotal'] or "120" }}.00</td>
+                      </tr>
+                    {% endif %}
+                    </tr>
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell govuk-table__header">Total cost</td>
+                        <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "640"}}.00</strong></td>
+                      </tr>
+                  </tbody>
+                </table> 
+              </div>
+            </details>
+
+            <p><a href="application-details-quote">Review and adjust detailed figures</a></p>   
           </div>
         </div>
 
