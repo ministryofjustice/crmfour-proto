@@ -323,24 +323,27 @@
         href: "../crm-apps"
       }) }}
     </div>
+
     <div class="govuk-grid-column-one-third">
       <aside class="app-related-items" role="complementary">
-        <ul class="govuk-list govuk-!-font-size-16">
-          <li>
-            <strong>Unique file number</strong>   
-            <br>{{data['ufn'] or "100323/234234"}}
-          </li>
-          <li>
-            <strong>LAA reference</strong>   
-            <br>{{data['laa-ref'] or "LAA-5a7d3c"}}
-          </li>
-          <li>
-            <strong>Under Prison Law</strong>   
-            <br>{{data['prisonLaw'] or "No"}}
-          </li>
-        </ul>
+        <h2 class="govuk-heading-s" id="subsection-title">Application reference</h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <strong>Unique file number</strong>   
+              <br>{{data['ufn'] or "100323/234234"}}
+            </li>
+            <li>
+              <strong>LAA reference</strong>   
+              <br>{{data['laa-ref'] or "LAA-5a7d3c"}}
+            </li>
+            <li>
+              <strong>Under Prison Law</strong>   
+              <br>{{data['prisonLaw'] or "No"}}
+            </li>
+          </ul>
+        </nav>
       </aside>
     </div>
   </div>
-
 {% endblock %}
