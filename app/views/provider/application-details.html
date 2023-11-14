@@ -24,7 +24,7 @@
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-xl">
       Application details
-    </h1>
+    </h1>      
 
      <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
@@ -81,8 +81,8 @@
                   {% endif %}
                 {% endif %}
               {% endif %} 
-              <br>
-              <button class="govuk-button govuk-button--secondary" data-module="govuk-button" onclick="window.print()">Print this application</button>
+              <!---<br>
+              <button class="govuk-button govuk-button--secondary" data-module="govuk-button" onclick="window.print()">Print this application</button>-->
             </dd>
           </div>
           {% if data['app-task'] == "Submitted" %}
@@ -99,17 +99,35 @@
                     <p>The application has been refered to the ICA.</p>
                     {% else %}
                     {% if data['app-task'] == "Part granted" %}
-                      <p>This application was part granted due to disallowed travel costs. Refer to relevant section. </p>
+                      <p>This application was part granted due to disallowed travel costs. </p>
+                      <div class="govuk-error-summary__body">
+                          <ul class="govuk-list govuk-list--bullet">
+                            <li>
+                              <a href="#review-quote" class="govuk-link--no-visited-state">Review Primary quote comments</a>
+                            </li>
+                          </ul>
+                        </div>
+                        <button class="govuk-button" href="appeal-offline" data-module="govuk-button">
+                          Appeal this decision
+                        </button>
                       {% else %}
                       {% if data['app-task'] == "Review" %}
                         <p>The caseworker needs more information to complete the assessment of this application. Review and re-submit the required information.</p>
-                        
+                         <!--<ul class="govuk-list govuk-list--bullet">
+                            <li>
+                              <a href="#review-altquote1" class="govuk-link--no-visited-state">Review Alternative quote 1 comments</a>
+                            </li>
+                          </ul>-->
                         {{ govukButton({
-                          text: "Review and re-submit application"
+                          text: "Review and re-submit application",
+                          href: "form/task-list-review"
                         }) }}
                         {% else %}
                         {% if data['app-task'] == "Rejected" %}
                           <p> This application has been fully rejected as the correct form has not been used. Please use CRM5.</p>
+                          <button class="govuk-button" href="appeal-offline" data-module="govuk-button">
+                            Appeal this decision
+                          </button>
                         {% endif %}
                       {% endif %}
                     {% endif %}
@@ -148,7 +166,7 @@
       </div>
     </div>
 
-    <h2 class="govuk-heading-m">About the case </h2>
+    <h2 class="govuk-heading-m">About the case</h2>
     <!--Client details-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
@@ -324,9 +342,9 @@
     <h2 class="govuk-heading-m">About the request</h2>
 
     <!--Primary quote-->
-    <div class="govuk-summary-card">
+    <div class="govuk-summary-card" aria-describedby="review-quote">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title">Primary quote</h3>
+        <h3 class="govuk-summary-card__title" id="review-quote">Primary quote</h3>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -747,12 +765,21 @@
       </div>
     </div>
 
-     <!--Alt quotes-->
-    <div class="govuk-summary-card">
+     <!--Alt quotes1-->
+    <div class="govuk-summary-card" aria-describedby="review-altquote1">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Alternative quote</h2>
+        <h2 class="govuk-summary-card__title" id="review-altquote1">Alternative quote 1</h2>
       </div>
       <div class="govuk-summary-card__content">
+        {% if data['app-task'] == "Review" %}
+          <div class="govuk-inset-text">
+            <strong>More information required:</strong><br>
+            Why are the travel cost significantly smaller compared to the primary quote costs? <br><br>
+
+            <strong>Documentation required:</strong> <br>
+            Please attach a detailed quote.
+          </div>
+        {% endif %}
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -837,9 +864,10 @@
       </div>
     </div>
 
+    <!--Alt quote2-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Alternative quote</h2>
+        <h2 class="govuk-summary-card__title">Alternative quote 2</h2>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -925,10 +953,10 @@
         </table>  
       </div>
     </div>
-
+    <!--Alt quote3-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Alternative quote</h2>
+        <h2 class="govuk-summary-card__title">Alternative quote 3</h2>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -972,30 +1000,30 @@
               <td class="govuk-table__cell">
                 <!--Service cost-->
                 {% if data['serviceType'] == "Transcription" %}
+                  £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                  {% else %}
+                  {% if data['serviceType'] == "Translation and transcription" %}
                     £{{data['alt3actualTransTotalCost'] or "780"}}.00
                     {% else %}
-                    {% if data['serviceType'] == "Translation and transcription" %}
+                    {% if data['serviceType'] == "Translator" %}
                       £{{data['alt3actualTransTotalCost'] or "780"}}.00
                       {% else %}
-                      {% if data['serviceType'] == "Translator" %}
+                      {% if data['serviceType'] == "Photocopying" %}
                         £{{data['alt3actualTransTotalCost'] or "780"}}.00
                         {% else %}
-                        {% if data['serviceType'] == "Photocopying" %}
+                        {% if data['serviceType'] == "DNA report" %}
                           £{{data['alt3actualTransTotalCost'] or "780"}}.00
                           {% else %}
-                          {% if data['serviceType'] == "DNA report" %}
+                          {% if data['serviceType'] == "Other" %}
                             £{{data['alt3actualTransTotalCost'] or "780"}}.00
                             {% else %}
-                            {% if data['serviceType'] == "Other" %}
-                              £{{data['alt3actualTransTotalCost'] or "780"}}.00
-                              {% else %}
-                              £{{data['alt3actualTransTotalCost'] or "780"}}.00
-                            {% endif %}
+                            £{{data['alt3actualTransTotalCost'] or "780"}}.00
                           {% endif %}
                         {% endif %}
                       {% endif %}
                     {% endif %}
                   {% endif %}
+                {% endif %}
               </td>
             </tr>
             <tr class="govuk-table__row">
