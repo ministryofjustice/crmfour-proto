@@ -59,7 +59,7 @@
                     <p>£0.00 allowed</p>
                     {% else %}
                     {% if data['app-task'] == "Review" %}
-                      <p><strong class="govuk-tag govuk-tag--yellow">Review</strong></p>
+                      <p><strong class="govuk-tag govuk-tag--yellow">Further information required</strong></p>
                       <p>22nd August 2023</p>
                       <br>
                       <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
@@ -113,15 +113,18 @@
                         </button>
                       {% else %}
                       {% if data['app-task'] == "Review" %}
-                        <p>The caseworker needs more information to complete the assessment of this application. Review and re-submit the required information.</p>
-                         <!--<ul class="govuk-list govuk-list--bullet">
+                        <p>The caseworker needs further information to complete the assessment of this application. Review what is required.</p>
+                          <ul class="govuk-list govuk-list--bullet">
+                            <li>
+                              <a href="#review-quote" class="govuk-link--no-visited-state">Review Primary quote comments</a>
+                            </li>
                             <li>
                               <a href="#review-altquote1" class="govuk-link--no-visited-state">Review Alternative quote 1 comments</a>
                             </li>
-                          </ul>-->
+                          </ul>
                         {{ govukButton({
-                          text: "Review and re-submit application",
-                          href: "form/task-list-review"
+                          text: "Provide further information",
+                          href: "application-review"
                         }) }}
                         {% else %}
                         {% if data['app-task'] == "Rejected" %}
@@ -348,6 +351,16 @@
         <h3 class="govuk-summary-card__title" id="review-quote">Primary quote</h3>
       </div>
       <div class="govuk-summary-card__content">
+        {% if data['app-task'] == "Review" %}
+          <div class="govuk-inset-text">
+            <strong>Documentation required:</strong> <br>
+            The attached quote does not match with the data enterered. Please attach the correct quote
+          </div>
+          {{ govukButton({
+            text: "Provide further information",
+            href: "application-review?"
+          }) }}
+        {% endif %}
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -400,6 +413,7 @@
             </dd>
           </div>
         </dl>
+
         <h4 class="govuk-heading-s">{{data['serviceType'] or "Interpreter"}} cost</h4>
 
         {% if data['serviceType'] == "Transcription" %}
@@ -642,127 +656,125 @@
 
         <h4 class="govuk-heading-s">Travel cost</h4>
 
-      {% if data['addTravel'] =="No" %}
-        <p>No travel costs added</p>
-        {% else %}
-        {% if data['app-task'] == "Part granted" %}
-          <div class="govuk-inset-text">
-            Travel for expert not permitted under these circumstances.         
-          </div>
+        {% if data['addTravel'] =="No" %}
+          <p>No travel costs added</p>
           {% else %}
-          {% if data['app-task'] == "Granted" %}
+          {% if data['app-task'] == "Part granted" %}
+            <div class="govuk-inset-text">
+              Travel for expert not permitted under these circumstances.         
+            </div>
+            {% else %}
+            {% if data['app-task'] == "Granted" %}
+            {% endif %}
           {% endif %}
+
+          <p>{{data['whyTravel'] or "The expert lives in Ireland"}}</p>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Travel time</th>
+                <th scope="col" class="govuk-table__header">Hourly cost</th>
+                <th scope="col" class="govuk-table__header">Provider requested</th>
+                <th scope="col" class="govuk-table__header">LAA allowed</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">{{data['travelTime-hours'] or "3"}} hours {{data['travelTime-mins'] or "00"}} minutes</td>
+                <td class="govuk-table__cell">£{{data['travelCostTime'] or "40"}}.00 per hour</td>
+                <td class="govuk-table__cell">£120.00</td>
+                <td class="govuk-table__cell">
+                  {% if data['app-task'] == "Part granted" %}
+                    £0:00
+                    {% else %}
+                    {% if data['app-task'] == "Granted" %}
+                      £120:00
+                      {% else %}
+                      {% if data['app-task'] == "Rejected" %}
+                        N/A
+                        {% else %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         {% endif %}
 
-        <p>{{data['whyTravel'] or "The expert lives in Ireland"}}</p>
-
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Travel time</th>
-              <th scope="col" class="govuk-table__header">Hourly cost</th>
-              <th scope="col" class="govuk-table__header">Provider requested</th>
-              <th scope="col" class="govuk-table__header">LAA allowed</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">{{data['travelTime-hours'] or "3"}} hours {{data['travelTime-mins'] or "00"}} minutes</td>
-              <td class="govuk-table__cell">£{{data['travelCostTime'] or "40"}}.00 per hour</td>
-              <td class="govuk-table__cell">£120.00</td>
-              <td class="govuk-table__cell">
-                {% if data['app-task'] == "Part granted" %}
-                  £0:00
-                  {% else %}
-                  {% if data['app-task'] == "Granted" %}
-                    £120:00
+        <h4 class="govuk-heading-s">Additional costs</h4>
+        {% if data['addAdd'] =="No" %}
+          <p>No additional costs added</p>
+          {% else %}
+          <h5 class="govuk-heading-s">{{data['addCost1'] or "Waiting time"}}</h5>
+          {% if data['addCost1Adjust'] == null %}
+            {% else %}
+            <div class="govuk-inset-text">
+              {{data['addCost1Adjust']}}
+            </div>
+          {% endif %}
+          <p>{{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}</p>
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Time</th>
+                <th scope="col" class="govuk-table__header">Rate per hour</th>
+                <th scope="col" class="govuk-table__header">Provider requested</th>
+                <th scope="col" class="govuk-table__header">LAA allowed</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">{{data['addTime2-hours'] or "4"}} hours {{data['addTime2-mins'] or "00"}} minutes</td>
+                <td class="govuk-table__cell">£{{data['addCostTime2'] or "30"}} per hour</td>
+                <td class="govuk-table__cell">£120.00</td>
+                <td class="govuk-table__cell">
+                  {% if data['app-task'] == "Granted" or data['app-task'] == "Part granted"  %}
+                    £120.00
                     {% else %}
                     {% if data['app-task'] == "Rejected" %}
                       N/A
                       {% else %}
                     {% endif %}
                   {% endif %}
-                {% endif %}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      {% endif %}
+                </td>
+              </tr>
+            </tbody>
+          </table>    
 
-      <h4 class="govuk-heading-s">Additional costs</h4>
-      {% if data['addAdd'] =="No" %}
-        <p>No additional costs added</p>
-        {% else %}
+          <h5 class="govuk-heading-s">{{data['addCost2'] or "Hotel"}}</h5>
+          <p>{{data['whyAdd2'] or "The expert traveled from Ireland and was unable to return the same day."}}</p>
 
-        <h5 class="govuk-heading-s">{{data['addCost1'] or "Waiting time"}}</h5>
-        {% if data['addCost1Adjust'] == null %}
-          {% else %}
-          <div class="govuk-inset-text">
-            {{data['addCost1Adjust']}}
-          </div>
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Number of items</th>
+                <th scope="col" class="govuk-table__header">Cost per item</th>
+                <th scope="col" class="govuk-table__header">Provider requested</th>
+                <th scope="col" class="govuk-table__header">LAA allowed</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">{{data['addQuantity2'] or "1"}}</td>
+                <td class="govuk-table__cell">£{{data['addNonhourRate2'] or "120"}}.00</td>
+                <td class="govuk-table__cell">£120.00</td>
+                <td class="govuk-table__cell">
+                  {% if data['app-task'] == "Granted" or data['app-task'] == "Part granted"  %}
+                    £120.00
+                    {% else %}
+                    {% if data['app-task'] == "Rejected" %}
+                      N/A
+                      {% else %}
+                    {% endif %}
+                  {% endif %}
+                </td>
+              </tr>
+            </tbody>
+          </table>            
         {% endif %}
-        <p>{{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}</p>
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Time</th>
-              <th scope="col" class="govuk-table__header">Rate per hour</th>
-              <th scope="col" class="govuk-table__header">Provider requested</th>
-              <th scope="col" class="govuk-table__header">LAA allowed</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">{{data['addTime2-hours'] or "4"}} hours {{data['addTime2-mins'] or "00"}} minutes</td>
-              <td class="govuk-table__cell">£{{data['addCostTime2'] or "30"}} per hour</td>
-              <td class="govuk-table__cell">£120.00</td>
-              <td class="govuk-table__cell">
-                {% if data['app-task'] == "Granted" or data['app-task'] == "Part granted"  %}
-                  £120.00
-                  {% else %}
-                  {% if data['app-task'] == "Rejected" %}
-                    N/A
-                    {% else %}
-                  {% endif %}
-                {% endif %}
-              </td>
-            </tr>
-          </tbody>
-        </table>    
 
-        <h5 class="govuk-heading-s">{{data['addCost2'] or "Hotel"}}</h5>
-        <p>{{data['whyAdd2'] or "The expert traveled from Ireland and was unable to return the same day."}}</p>
-
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Number of items</th>
-              <th scope="col" class="govuk-table__header">Cost per item</th>
-              <th scope="col" class="govuk-table__header">Provider requested</th>
-              <th scope="col" class="govuk-table__header">LAA allowed</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">{{data['addQuantity2'] or "1"}}</td>
-              <td class="govuk-table__cell">£{{data['addNonhourRate2'] or "120"}}.00</td>
-              <td class="govuk-table__cell">£120.00</td>
-              <td class="govuk-table__cell">
-                {% if data['app-task'] == "Granted" or data['app-task'] == "Part granted"  %}
-                  £120.00
-                  {% else %}
-                  {% if data['app-task'] == "Rejected" %}
-                    N/A
-                    {% else %}
-                  {% endif %}
-                {% endif %}
-              </td>
-            </tr>
-          </tbody>
-        </table>            
-      {% endif %}
-
-       
       </div>
     </div>
 
@@ -774,12 +786,16 @@
       <div class="govuk-summary-card__content">
         {% if data['app-task'] == "Review" %}
           <div class="govuk-inset-text">
-            <strong>More information required:</strong><br>
+            <strong>Further information required:</strong><br>
             Why are the travel cost significantly smaller compared to the primary quote costs? <br><br>
 
             <strong>Documentation required:</strong> <br>
             Please attach a detailed quote.
           </div>
+          {{ govukButton({
+            text: "Provide further information",
+            href: "application-review"
+          }) }}
         {% endif %}
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
           <div class="govuk-summary-list__row">
