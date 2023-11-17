@@ -1,28 +1,26 @@
 <span class="govuk-caption-xl">{{data['client-first--name'] or "Roger" }} {{data['client-last--name'] or "Blackbeard" }}</span>
 <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
 {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
-  <strong class="govuk-tag">New</strong>
   {% else %}
   {% if data['cwAppStatus'] == "In progress" %}
-    <strong class="govuk-tag govuk-tag--blue">In progress</strong>
     {% else %}
     {% if data['cwAppStatus'] == "Granted" %}
-      <strong class="govuk-tag govuk-tag--green">Granted</strong>
+      <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
       {% else %}
       {% if data['cwAppStatus'] == "Rejected" %}
-        <strong class="govuk-tag govuk-tag--red">Rejected</strong>
+        <strong class="govuk-tag govuk-tag--red">Rejected</strong><br><br>
         {% else %}
-        {% if data['cwAppStatus'] == "Provider review" %}
-          <strong class="govuk-tag govuk-tag--yellow">Provider review</strong>
+        {% if data['cwAppStatus'] == "Review" %}
+          <strong class="govuk-tag govuk-tag--yellow">Further information required</strong><br><br>
           {% else %}
           {% if data['cwAppStatus'] == "Part granted" %}
-            <strong class="govuk-tag govuk-tag--green">Part granted</strong>
+            <strong class="govuk-tag govuk-tag--green">Part granted</strong><br><br>
             {% else %}
             {% if data['cwAppStatus'] == "Amended" %}
-              <strong class="govuk-tag govuk-tag--green">Amended</strong>
+              <strong class="govuk-tag">Amended</strong><br><br>
               {% else %}
               {% if data['cwAppStatus'] == "Referred" %}
-                <strong class="govuk-tag govuk-tag--yellow">Referred</strong>
+                <strong class="govuk-tag govuk-tag--yellow">Referred</strong><br><br>
               {% endif %}
             {% endif %}
           {% endif %}
@@ -31,19 +29,31 @@
     {% endif %}
   {% endif %}
 {% endif %}
-<br><br>
-<p><span class="govuk-!-font-size-27">
+
+<p>
+  <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00<br>
   {% if data['cwAppStatus'] == "Part granted" %}
-    £520.00<br>
+    <span class="govuk-body-l"><strong>Allowed: </strong>£520.00
     {% else %}
-    £{{data['actualdistTotalCost'] or "640"}}.00<br>
+    {% if data['cwAppStatus'] == "Granted" %}
+      <span class="govuk-body-l"><strong>Allowed: </strong>£{{data['actualdistTotalCost'] or "640"}}.00
+      {% else %}
+      {% if data['cwAppStatus'] == "Rejected" %}
+        <span class="govuk-body-l"><strong>Allowed: </strong>N/A
+      {% endif %}
+    {% endif %}
   {% endif %}
-  {% if data['serviceType'] == "Other" %}
-    Other: {{data['otherExpert'] or "Driving instructor" }}
-    {% else %}
-    {{data['serviceType'] or "Interpreter"}}
+</p> 
+<p><span class="govuk-body-m"><strong>Assigned to:</strong> {{data['caseworker1']}}</span>
+  <br><span class="govuk-body-m"><strong>Date received:</strong> 17th October 2023</span>
+  {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" %}
+    <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21st October 2023</span>
   {% endif %}
-</p>      
-<p><span class="govuk-body-l"><strong>Assigned to:</strong> {{data['caseworker1']}}</span>
-  <br><span class="govuk-body-l"><strong>Date received:</strong> 17th October 2023</span>
 </p>
+{% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" %}
+  {% else %}
+  {{ govukButton({
+    text: "Assign application to me",
+    href: "application-details-assign"
+  }) }}
+{% endif %}
