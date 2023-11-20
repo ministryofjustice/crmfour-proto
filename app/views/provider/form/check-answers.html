@@ -359,6 +359,16 @@
                 {% endif %}
               </dd>
             </div>
+            {% if data['serviceType'] == "Pathologist's report" %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Post mortem
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['postMortem'] or "Yes"}}
+                </dd>
+              </div>
+            {% endif %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Quote upload

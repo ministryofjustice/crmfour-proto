@@ -71,6 +71,7 @@
         }) }}
         
         {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
+
           {{ govukRadios({
             classes: "govuk-radios--inline",
             name: "courtOrdered",
@@ -93,6 +94,32 @@
               }
             ]
           }) }}
+
+          {% else %} 
+          {% if data['serviceType'] == "Pathologist's report" %}
+            {{ govukRadios({
+              classes: "govuk-radios--inline",
+              name: "postMortem",
+              fieldset: {
+                legend: {
+                  text: "Is this related to a post mortem?",
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes",
+                  checked: checked("postMortem", "Yes")
+                },
+                {
+                  value: "No",
+                  text: "No",
+                  checked: checked("postMortem", "No")
+                }
+              ]
+            }) }}
+          {% endif %}
         {% endif %}
 
         {% if data['serviceType'] == "Transcription" %}
