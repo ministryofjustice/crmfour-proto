@@ -62,13 +62,6 @@
           <h2 class="govuk-summary-card__title">Application details</h2>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['fieldUFN'] == null or data['fieldUFN'] == "" %}
-            {% else %}
-            <div class="govuk-inset-text">
-              <strong>Incorrect information:</strong><br>
-              {{data['fieldUFN']}} <br>
-            </div>
-          {% endif %}
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -84,17 +77,6 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['ufn'] or "100323/234234"}}
-              </dd>
-              <dd class="govuk-summary-list__actions">
-                {% if data['changeUFN'] == "change" %}
-                  <a class="govuk-link" href="review-ufn?changeUFN=change">
-                    Review<span class="govuk-visually-hidden"> unique file number</span>
-                  </a>
-                  {% else %}
-                    <a class="govuk-link--no-visited-state" href="review-ufn?changeUFN=change">
-                      Review<span class="govuk-visually-hidden"> unique file number</span>
-                    </a>
-                {% endif %} 
               </dd>
             </div>
             <div class="govuk-summary-list__row">
