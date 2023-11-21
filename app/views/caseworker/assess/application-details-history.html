@@ -64,26 +64,37 @@
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">When</th>
-            <th scope="col" class="govuk-table__header">Who</th>
-            <th scope="col" class="govuk-table__header">What</th>
+            <th scope="col" class="govuk-table__header">Date</th>
+            <th scope="col" class="govuk-table__header">Caseworker</th>
+            <th scope="col" class="govuk-table__header">Update</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Something</td>
-            <td class="govuk-table__cell">Something</td>
-            <td class="govuk-table__cell">Something</td>
+            <td class="govuk-table__cell">Monday <br>7 Mar 2023 <br>01:47pm</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell"><strong>Referred</strong><br>Provider is requesting a service that we do not have costs for.</td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Something</td>
-            <td class="govuk-table__cell">Something</td>
-            <td class="govuk-table__cell">Something</td>
+            <td class="govuk-table__cell">Friday <br>7 Mar 2023 <br>01:43pm</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell"><strong>Assigned to {{data['caseworker1']}}</strong></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Something</td>
-            <td class="govuk-table__cell">Something</td>
-            <td class="govuk-table__cell">Something</td>
+            <td class="govuk-table__cell">Friday 7 Mar 2023 <br>11:02am</td>
+            <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+            <td class="govuk-table__cell"><strong>Unassigned by {{data['caseworker2']}}</strong><br>Unable to assess as the application is Prison Law
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Friday <br>7 Mar 2023 <br>11:01am</td>
+            <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+            <td class="govuk-table__cell"><strong>Assigned to {{data['caseworker2']}}</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Friday <br>5 Mar 2023 <br>09:00</td>
+            <td class="govuk-table__cell">N/A</td>
+            <td class="govuk-table__cell"><strong>Received</strong></td>
           </tr>
         </tbody>
       </table>     
@@ -100,7 +111,7 @@
         }) }}
 
         {{ govukButton({
-          text: "Request external review ",
+          text: "Refer application",
           classes: "govuk-button--secondary"
         }) }}
 
