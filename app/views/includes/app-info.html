@@ -60,11 +60,3 @@
     <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21st October 2023</span>
   {% endif %}
 </p>
-
-{% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" or data ['cwAppStatus'] == "In progress" %}
-  {% else %}
-  {{ govukButton({
-    text: "Assign application to me",
-    href: "application-details-assign"
-  }) }}
-{% endif %}
