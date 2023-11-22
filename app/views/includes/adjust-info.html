@@ -1,0 +1,42 @@
+<!--Key info-->
+<div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">Key information</h2>
+  </div>
+  <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Amount requested
+        </dt>
+        <dd class="govuk-summary-list__value">
+          £{{data['actualdistTotalCost'] or "640"}}.00
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Main offence
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['main-offence'] or "Anti-social behaviour orders (for applications made prior to 23rd March 2015)" }}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Representation order date
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['rep-order-day'] or "19" }} {{data['rep-order-month'] or "April" }} {{data['rep-order-year'] or "2023" }}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Expert postcode
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['expert-postcode'] or "E1 3RD" }}
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
