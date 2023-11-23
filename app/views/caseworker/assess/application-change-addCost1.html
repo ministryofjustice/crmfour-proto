@@ -38,6 +38,8 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Adjust additional costs</h1>
+      {% include "includes/adjust-info.html"%}
+
 
       <!--{% if data['changeQuote'] =="change" %}
         <form class="form" action="question3-quote-summary" method="post">
@@ -50,7 +52,7 @@
 
         <h2 class="govuk-heading-l">Provider submission</h2>
         <h3 class="govuk-heading-m">{{data['addCost1'] or "Waiting time"}}</h3>
-        <p>{{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}</p>
+        <p>Provider information: "{{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
 
         <table class="govuk-table">
           <thead class="govuk-table__head">
@@ -72,45 +74,45 @@
         <h2 class="govuk-heading-l">LAA adjustments</h2>
 
         <!--Additonal cost 1-->
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" role="group">
-          <legend class="govuk-fieldset__legend">
-            Time
-          </legend>
-          <div class="govuk-date-input" id="addTime1">
-            <div class="govuk-date-input__item">
-              <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="addTime1-hours">
-                  Hours
-                </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-hours" name="addTime1-hours" type="text" inputmode="numeric" value="{{data['addTime1-hours'] or "4"}}">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group">
+            <legend class="govuk-fieldset__legend">
+              Time
+            </legend>
+            <div class="govuk-date-input" id="addTime1">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="addTime1-hours">
+                    Hours
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-hours" name="addTime1-hours" type="text" inputmode="numeric" value="{{data['addTime1-hours'] or "4"}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="addTime1-mins">
+                    Minutes
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-mins" name="addTime1-mins" type="text" inputmode="numeric" value="{{data['addTime1-mins'] or "00"}}">
+                </div>
               </div>
             </div>
-            <div class="govuk-date-input__item">
-              <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="addTime1-mins">
-                  Minutes
-                </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-mins" name="addTime1-mins" type="text" inputmode="numeric" value="{{data['addTime1-mins'] or "00"}}">
-              </div>
-            </div>
-          </div>
-        </fieldset>
-      </div>
+          </fieldset>
+        </div>
 
-      {{ govukInput({
-        id: "addCostTime1",
-        name: "addCostTime1",
-        value: data['addCostTime1'] or "30",
-        label: {
-          text: "What is the hourly cost?"
-        },
-        prefix: {
-          text: "£"
-        },
-        classes: "govuk-input--width-5",
-        spellcheck: false
-      }) }}
+        {{ govukInput({
+          id: "addCostTime1",
+          name: "addCostTime1",
+          value: data['addCostTime1'] or "30",
+          label: {
+            text: "What is the hourly cost?"
+          },
+          prefix: {
+            text: "£"
+          },
+          classes: "govuk-input--width-5",
+          spellcheck: false
+        }) }}
       
         <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total'] or "120"}}">                        
                 
@@ -138,7 +140,7 @@
           label: {
             text: "Explain your decision",
             classes: "govuk-label--s",
-            isPageHeading: true
+            isPageHeading: false
           },
           hint: {
             text: "For example, why you made adjustments to the items, cost or time. We'll share this explanation with the provider."
