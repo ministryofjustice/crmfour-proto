@@ -38,6 +38,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Adjust travel cost</h1>
+      {% include "includes/adjust-info.html"%}
 
       <!--{% if data['changeQuote'] =="change" %}
         <form class="form" action="question3-quote-summary" method="post">
@@ -48,8 +49,8 @@
 
       <form class="form" action="application-details-quote" method="post">
 
-        <h2 class="govuk-heading-l">Provider submission</h2>
-        <p>{{data['whyTravel'] or "The expert lives in Ireland"}}</p>
+        <h2 class="govuk-heading-m">Provider submission</h2>
+        <p>Provider information: "{{data['whyTravel'] or "The expert lives in Ireland"}}"</p>
 
         <table class="govuk-table">
           <thead class="govuk-table__head">
@@ -69,7 +70,7 @@
         </table>
        
 
-        <h2 class="govuk-heading-l">LAA adjustments</h2>
+        <h2 class="govuk-heading-m">LAA adjustments</h2>
 
         <!--Travel-->
         <div class="govuk-form-group">
@@ -120,20 +121,10 @@
                 
         <button class="govuk-button govuk-button--secondary" type="button" onclick="calTravelCost()">Calculate my changes</button>
 
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Provider requested</th>
-              <th scope="col" class="govuk-table__header">Caseworker allowed</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">£120.00</td>
-              <td class="govuk-table__cell"><span id="showTravelTotal">120</span>.00</td>
-            </tr>
-          </tbody>
-        </table> 
+        <h2 class="govuk-heading-l">
+          <span class="govuk-caption-m">Adjusted cost</span> £
+          <span id="showTravelTotal">0</span>.00
+        </h2>
 
         {{ govukTextarea({
           name: "travelAdjust",
@@ -142,7 +133,7 @@
           label: {
             text: "Explain your decision",
             classes: "govuk-label--s",
-            isPageHeading: true
+            isPageHeading: false
           },
           hint: {
             text: "For example, why you made adjustments to the travel cost or time. We'll share this explanation with the provider."
