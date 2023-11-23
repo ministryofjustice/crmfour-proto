@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Confirm referral – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+   {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Assessed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+      <h1 class="govuk-heading-xl">Refer application to ICA</h1>
+
+      <form class="form" action="application-details-readonly?cwAppStatus=Referred" method="post">
+
+        {{ govukTextarea({
+          name: "referralConfirm",
+          value: data['referralConfirm'],
+          id: "referralConfirm",
+          label: {
+            text: "Explain your decision to refer this application to the ICA",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "For example, why the current rates cannot be applied to requested service"
+          }
+        }) }}    
+      
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Submit decision"
+          }) }}
+         <a class="govuk-link" href="application-details">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

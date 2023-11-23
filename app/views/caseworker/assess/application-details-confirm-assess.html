@@ -1,0 +1,124 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Confirm referral – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+   {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Assessed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+      <h1 class="govuk-heading-xl">Make a decision</h1>
+
+      <form class="form" action="application-details-readonly" method="post">
+
+        {% set partGrantedHtml %}
+          {{ govukTextarea({
+            name: "partConfirm",
+            id: "partConfirm",
+            label: {
+              text: "Provide an overview of your decision to part grant this application",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example, that certain costs were not allowed"
+            }
+          }) }}    
+        {% endset %}
+
+         {% set rejectedHtml %}
+          {{ govukTextarea({
+            name: "rejectedConfirm",
+            id: "rejectedConfirm",
+            label: {
+              text: "Provide detailed reasons for rejecting this application",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example, that the wrong form was used"
+            }
+          }) }}    
+        {% endset %}
+
+        {{ govukRadios({
+          name: "cwAppStatus",
+          fieldset: {
+            legend: {
+              text: "What is the outcome of your assessment?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: "This informatin will be sent to the provider."
+          },
+          items: [
+            {
+              value: "Granted",
+              text: "Granted",
+              checked: checked("cwAppStatus", "Granted")
+            },
+            {
+              value: "Part granted",
+              text: "Part granted",
+              checked: checked("cwAppStatus", "Part granted"),
+              conditional: {
+                html: partGrantedHtml
+              }
+            },
+            {
+              value: "Rejected",
+              text: "Rejected",
+              checked: checked("cwAppStatus", "Rejected"),
+              conditional: {
+                html: rejectedHtml
+              }
+            }
+          ]
+        }) }}
+      
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Submit decision"
+          }) }}
+         <a class="govuk-link" href="application-details">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
