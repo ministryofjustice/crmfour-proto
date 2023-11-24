@@ -92,9 +92,10 @@ function calTransCost() {
 
 function calDNACost() {
 
-  var dnaCost = parseInt(document.getElementById("dnaCost").value)
+  var dnaNoReport = parseInt(document.getElementById("dnaNoReport").value)
+  var dnaReportCost = parseInt(document.getElementById("dnaReportCost").value)
 
-  dnaCost = dnaCost;
+  dnaCost = dnaReportCost * dnaNoReport;
   document.getElementById("showDNATotal").innerHTML = dnaCost;
   document.getElementById("actualDNATotal").value = dnaCost;
 }
