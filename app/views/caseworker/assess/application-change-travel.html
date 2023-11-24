@@ -38,39 +38,9 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Adjust travel cost</h1>
-      {% include "includes/adjust-info.html"%}
 
-      <!--{% if data['changeQuote'] =="change" %}
-        <form class="form" action="question3-quote-summary" method="post">
-        {% else %}
-        <form class="form" action="question3-quote-travel-q" method="post">
-      {% endif %} 
-      -->
-
-      <form class="form" action="application-details-quote" method="post">
-
-        <h2 class="govuk-heading-m">Provider submission</h2>
-        <p>Provider information: "{{data['whyTravel'] or "The expert lives in Ireland"}}"</p>
-
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Travel time</th>
-              <th scope="col" class="govuk-table__header">Hourly cost</th>
-              <th scope="col" class="govuk-table__header">Total</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">{{data['travelTime-hours'] or "3"}} hours {{data['travelTime-mins'] or "00"}} minutes</td>
-              <td class="govuk-table__cell">£{{data['travelCostTime'] or "40"}}.00 per hour</td>
-              <td class="govuk-table__cell">£120.00</td>
-            </tr>
-          </tbody>
-        </table>
-       
-
-        <h2 class="govuk-heading-m">LAA adjustments</h2>
+      <form class="form" action="application-details-quote" method="post">      
+        <p>Adjust the providers costs by changing the existing values.</p>
 
         <!--Travel-->
         <div class="govuk-form-group">
@@ -145,7 +115,7 @@
           {{ govukButton({
             text: "Save changes"
           }) }}
-          <a class="govuk-link govuk-link--no-visited-state" href="application-details-quote">Cancel</a>
+          <a class="govuk-link govuk-link--no-visited-state" href="application-details-adjust">Cancel</a>
         </div>
 
       </form>
