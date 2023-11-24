@@ -6,7 +6,7 @@
 
 
 {% block pageTitle %}
-  All open applications – {{data['serviceName1'] }} - GOV.UK
+  Referred applications – {{data['serviceName1'] }} - GOV.UK
 {% endblock %}
 
 {% set bodyClasses = 'caseworker-width' %}
@@ -25,12 +25,12 @@
       {
         text: 'Open applications',
         href: '/caseworker/crm-assess-open',
-        active: true
+        active: false
       },
       {
         text: 'Referred applications',
         href: '/caseworker/crm-assess-referred',
-        active: false
+        active: true
       },
       {
         text: 'Assessed applications',
@@ -47,7 +47,7 @@
 <div class="govuk-grid-row"> 
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">
-      Open applications
+      Referred applications
     </h1>
   </div>
 </div>
@@ -63,7 +63,6 @@
           <th scope="col" class="govuk-table__header" aria-sort="none">Caseworker</th>
           <th scope="col" class="govuk-table__header" aria-sort="none">Received</th>
           <th scope="col" class="govuk-table__header" aria-sort="descending">Updated</th>
-          <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">                
@@ -74,7 +73,6 @@
           <td class="govuk-table__cell">{{data['caseworker3']}}</td>
           <td class="govuk-table__cell" data-sort-value="230801">1st Aug 2023</td>
           <td class="govuk-table__cell" data-sort-value="230901">1st Sept 2023</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag">In progress</strong></td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-9p4f0e&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="9p4f0e">LAA-9p4f0e</a></td>
@@ -83,7 +81,6 @@
           <td class="govuk-table__cell">{{data['caseworker3']}}</td>
           <td class="govuk-table__cell" data-sort-value="230721">21st July 2023</td>
           <td class="govuk-table__cell" data-sort-value="230821">21st Aug 2023</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag">In progress</strong></td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-6p4f0r&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
@@ -92,7 +89,6 @@
           <td class="govuk-table__cell">{{data['caseworker1']}}</td>
           <td class="govuk-table__cell" data-sort-value="230913">13th Sept 2023</td>
           <td class="govuk-table__cell" data-sort-value="231013">13th Oct 2023</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag">New</strong></td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-8p3h0e&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
@@ -101,7 +97,6 @@
           <td class="govuk-table__cell">{{data['caseworker1']}}</td>
           <td class="govuk-table__cell" data-sort-value="230703">3rd July 2023</td>
           <td class="govuk-table__cell" data-sort-value="230803">3rd Aug 2023</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag">In progress</strong></td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=Amended" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>
@@ -110,8 +105,6 @@
           <td class="govuk-table__cell">{{data['caseworker1']}}</td>
           <td class="govuk-table__cell" data-sort-value="230801">1st Aug 2023</td>
           <td class="govuk-table__cell" data-sort-value="230901">1st Sept 2023</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Returned</strong></td>
-        </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-2d9t4j&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
           <td class="govuk-table__cell">Boss Lawyers Inc</td>
@@ -119,7 +112,6 @@
           <td class="govuk-table__cell">{{data['caseworker1']}}</td>
           <td class="govuk-table__cell" data-sort-value="230801">14th Sept 2023</td>
           <td class="govuk-table__cell" data-sort-value="230901">14th Sept 2023</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag">New</strong></td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>  
@@ -128,7 +120,6 @@
           <td class="govuk-table__cell">{{data['caseworker3']}}</td>
           <td class="govuk-table__cell" data-sort-value="230902">2nd Sept 2023</td>
           <td class="govuk-table__cell" data-sort-value="230902">2nd Sept 2023</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag">New</strong></td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-6j4k6k&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="6j4k6k">LAA-6j4k6k</a></td>
@@ -137,56 +128,10 @@
           <td class="govuk-table__cell">{{data['caseworker3']}}</td>
           <td class="govuk-table__cell" data-sort-value="230631">31st June 2023</td>
           <td class="govuk-table__cell" data-sort-value="230731">31st July 2023</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag">In progress</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-7j8s9s&cwAppStatus=Review" class="govuk-link--no-visited-state" data-sort-value="7j8s9s">LAA-7j8s9s</a></td>
-          <td class="govuk-table__cell">Music Solicitors</td>
-          <td class="govuk-table__cell">Alecia Pink</td>
-          <td class="govuk-table__cell">{{data['caseworker2']}}</td>
-          <td class="govuk-table__cell" data-sort-value="230410">10th Apr 2023</td>
-          <td class="govuk-table__cell" data-sort-value="230510">10th May 2023</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Further information required</strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-4m4m4m&cwAppStatus=Referred" class="govuk-link--no-visited-state" data-sort-value="4m4m4m">LAA-4m4m4m</a></td>
-          <td class="govuk-table__cell">Griffins Grifting Grifters Law</td>
-          <td class="govuk-table__cell">Simone Gutter</td>
-          <td class="govuk-table__cell">{{data['caseworker2']}}</td>
-          <td class="govuk-table__cell" data-sort-value="230321">21st Mar 2023</td>
-          <td class="govuk-table__cell" data-sort-value="230421">21st Apr 2023</td>
-          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Further information required</strong></td>
         </tr>
       </body>
     </table>      
-    {{ mojPagination({
-      items: [{
-        text: '1',
-        href: '/page=1',
-        selected: true
-      }, {
-        text: '2',
-        href: '/page=2',
-        selected: false
-      }, {
-        text: '3',
-        href: '/page=3'
-      }, {
-        type: 'dots'
-      }, {
-        text: '5',
-        href: '/page=5'
-      }],
-      results: {
-        count: 6,
-        from: 1,
-        to: 5,
-        text: 'pages'
-      },
-      next: {
-        text: 'Next'
-      }
-    }) }}   
+   
   </div>
   <div class="govuk-grid-column-one-third">
       
