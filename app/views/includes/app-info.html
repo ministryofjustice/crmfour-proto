@@ -3,6 +3,7 @@
 {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
   {% else %}
   {% if data['cwAppStatus'] == "In progress" %}
+    <strong class="govuk-tag">In progress</strong><br><br>
     {% else %}
     {% if data['cwAppStatus'] == "Granted" %}
       <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
@@ -17,7 +18,7 @@
             <strong class="govuk-tag govuk-tag--green">Part granted</strong><br><br>
             {% else %}
             {% if data['cwAppStatus'] == "Amended" %}
-              <strong class="govuk-tag">Amended</strong><br><br>
+              <strong class="govuk-tag govuk-tag--yellow">Returned</strong><br><br>
               {% else %}
               {% if data['cwAppStatus'] == "Referred" %}
                 <strong class="govuk-tag govuk-tag--yellow">Referred</strong><br><br>
