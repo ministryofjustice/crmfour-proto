@@ -126,7 +126,6 @@
             </tr>
           </tbody>
         </table>
-        <p><a href="application-change-service">Adjust service costs</a></p>
 
         {% else %}
         {% if data['serviceType'] == "Translation and transcription" %}
@@ -168,7 +167,6 @@
               </tr>
             </tbody>
           </table>
-          <p><a href="application-change-service">Adjust service costs</a></p>
 
           {% else %}
           {% if data['serviceType'] == "Translator" %} 
@@ -210,7 +208,6 @@
                 </tr>
               </tbody>
             </table>
-            <p><a href="application-change-service">Adjust service costs</a></p>
 
             {% else %}
             {% if data['serviceType'] == "Photocopying" %} 
@@ -252,7 +249,6 @@
                   </tr>
                 </tbody>
               </table>
-              <p><a href="application-change-service">Adjust service costs</a></p>
 
               {% else %}
               {% if data['serviceType'] == "Other" and  data['otherChargeType'] =="Charged by the hour"%} 
@@ -294,7 +290,6 @@
                     </tr>
                   </tbody>
                 </table>
-                <p><a href="application-change-service">Adjust service costs</a></p>
 
                 {% else %}
                 {% if data['serviceType'] == "Other"%} 
@@ -337,7 +332,6 @@
                       </tr>
                     </tbody>
                   </table>
-                  <p><a href="application-change-service">Adjust service costs</a></p>
 
                   {% else %}
                   {% if data['serviceType'] == "DNA report" %}
@@ -380,7 +374,6 @@
                         </tr>
                       </tbody>
                     </table>
-                    <p><a href="application-change-service">Adjust service costs</a></p>
                     
                     {% else %}
                     <!--All other service types-->
@@ -422,7 +415,6 @@
                         </tr>
                       </tbody>
                     </table>
-                    <p><a href="application-change-service">Adjust service costs</a></p>
 
                   {% endif %}
                 {% endif %}
@@ -431,6 +423,13 @@
           {% endif %}
         {% endif %}
       {% endif %}
+      <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Adjust service costs",
+            href: "application-change-service"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-details-reject">Deny service cost</a>
+        </div>
 
       <h4 class="govuk-heading-m">Travel cost</h4>
 
@@ -485,8 +484,13 @@
             </tr>
           </tbody>
         </table>
-        <p><a href="application-change-travel">Adjust travel costs</a></p>
-        <p><a href="application-change-remove">Deny travel costs</a></p>
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Adjust travel costs",
+            href: "applications-change-travel"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-details-reject-travel">Deny travel cost</a>
+        </div>
 
       {% endif %}
 
@@ -541,7 +545,7 @@
             </tr>
           </tbody>
         </table>
-        <p><a href="application-change-addCost1">Adjust additional cost</a></p>
+        <p><a href="application-change-additionalCost1">Adjust additional cost</a></p>
         <p><a href="application-change-remove">Deny additional cost</a></p>
 
 
