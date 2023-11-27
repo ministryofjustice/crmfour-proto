@@ -1,9 +1,6 @@
-<span class="govuk-caption-xl">Crime Busters Legal</span>
-<h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
 {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
   {% else %}
   {% if data['cwAppStatus'] == "In progress" %}
-    <strong class="govuk-tag">In progress</strong><br><br>
     {% else %}
     {% if data['cwAppStatus'] == "Granted" %}
       <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
@@ -30,6 +27,9 @@
     {% endif %}
   {% endif %}
 {% endif %}
+
+<span class="govuk-caption-xl">Crime Busters Legal</span>
+<h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
 
 <p>
   <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00<br>
