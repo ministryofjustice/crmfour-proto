@@ -5,34 +5,41 @@
 {% endblock %}
 
 {% block pageTitle %}
-  {{data['laa-ref'] or "LAA-5a7d3c"}} - Service cost – {{ serviceName }} – GOV.UK Prototype Kit
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Adjust service cost – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-{{ mojPrimaryNavigation({
-  label: 'Primary navigation',
-  items: [
-    {
-      text: 'Your applications',
-      href: '/caseworker/crm-assess',
-      active: false
-    },
-    {
-      text: 'Open applications',
-      href: '/caseworker/crm-assess-open',
-      active: false
-    },
-    {
-      text: 'Referred applications',
-      href: '/caseworker/crm-assess-referred',
-      active: false
-    },
-    {
-      text: 'Assessed applications',
-      href: '/caseworker/crm-assess-closed',
-      active: false
-    }
-  ]
-}) }}
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Referred applications',
+        href: '/caseworker/crm-assess-referred',
+        active: false
+      },
+      {
+        text: 'Assessed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }}
+
+{% endblock %}
 
 {% block content %}
 
@@ -41,7 +48,7 @@
       <h1 class="govuk-heading-xl">Adjust {{data['serviceType'] or "Interpreter"}} cost</h1>
 
       <form class="form" action="application-details-quote" method="post">
-        <p>Adjust the providers costs by changing the existing values.</p>
+        <p>Adjust the providers' costs by changing the values.</p>
 
         {% if data['serviceType'] == "Transcription" %}
 
@@ -75,7 +82,6 @@
           {% else %}
           {% if data['serviceType'] == "Translation and transcription" %}
             <!--Transcription & translation-->
-           
             <div class="govuk-form-group">
               <label class="govuk-label govuk-label--s" for="transtransNoMins">
                 Number of minutes
@@ -117,12 +123,9 @@
                 <label class="govuk-label govuk-label--s" for="translatorCostWord">
                   Cost per word
                 </label>
-                <div id="translatorCostWord-hint" class="govuk-hint">
-                  Costs should be exclusive of VAT 
-                </div>
                 <div class="govuk-input__wrapper">
                   <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                  <input class="govuk-input govuk-input--width-5" id="translatorCostWord" name="translatorCostWord" type="text" spellcheck="false" value="{{data['translatorCostWord'] or "20"}}" aria-describedby="translatorCostWord-hint">
+                  <input class="govuk-input govuk-input--width-5" id="translatorCostWord" name="translatorCostWord" type="text" spellcheck="false" value="{{data['translatorCostWord'] or "20"}}">
                 </div>
               </div>
               
@@ -134,7 +137,6 @@
                 <span class="govuk-caption-m">Adjusted cost</span> £
                 <span id="showTranslatorTotal">0</span>.00
               </h2>
-
 
               {% else %}
               {% if data['serviceType'] == "Photocopying" %}
@@ -185,7 +187,7 @@
                     </label>
                     <div class="govuk-input__wrapper">
                       <div class="govuk-input__prefix" aria-hidden="true">£</div>
-                      <input class="govuk-input govuk-input--width-5" id="dnaReportCost" name="dnaReportCost" type="text" spellcheck="false" value="{{data['dnaReportCost'] or "400"}}" aria-describedby="dnaReportCost-hint">
+                      <input class="govuk-input govuk-input--width-5" id="dnaReportCost" name="dnaReportCost" type="text" spellcheck="false" value="{{data['dnaReportCost'] or "400"}}">
                     </div>
                   </div>
 
@@ -197,7 +199,6 @@
                     <span class="govuk-caption-m">Adjusted cost</span> £
                     <span id="showDNATotal">0</span>.00
                   </h2>
-
 
                   {% else %}
                   {% if data['serviceType'] == "Other" %}
@@ -288,7 +289,7 @@
                     <div class="govuk-form-group">
                       <fieldset class="govuk-fieldset" role="group" >
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                            Change time (optional)
+                            Time
                         </legend>
                         <div class="govuk-date-input" id="generalNoHours">
                           <div class="govuk-date-input__item">
@@ -313,7 +314,7 @@
                           
                     <div class="govuk-form-group">
                       <label class="govuk-label govuk-label--s" for="generalCost">
-                        Change hourly cost (optional)
+                        Hourly cost
                       </label>
                       <div class="govuk-input__wrapper">
                         <div class="govuk-input__prefix" aria-hidden="true">£</div>
