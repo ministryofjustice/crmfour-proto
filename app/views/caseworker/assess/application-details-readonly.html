@@ -453,67 +453,42 @@
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
                 <th scope="col" class="govuk-table__header">Cost type</th>
-                <th scope="col" class="govuk-table__header">Primary quote</th>
+                <th scope="col" class="govuk-table__header">Amount</th>
+                <th scope="col" class="govuk-table__header">Requested</th>
+                <th scope="col" class="govuk-table__header">Total</th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Service</td>
-                <!--Service cost-->
-                {% if data['serviceType'] == "DNA report" %}
-                  <td class="govuk-table__cell">£{{data['dnaCost'] or "400" }}.00</td>
-                  {% else %}
-                  {% if data['serviceType'] == "Transcription" %}
-                    <td class="govuk-table__cell">£{{data['actualTransTotal'] or "400" }}.00</td>
-                    {% else %}
-                    {% if data['serviceType'] == "Translation and transcription" %}
-                      <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "400" }}.00</td>
-                      {% else %}
-                      {% if data['serviceType'] == "Translator" %} 
-                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "400" }}.00</td>
-                        {% else %}
-                        {% if data['serviceType'] == "Photocopying" %} 
-                          <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "400" }}.00</td>
-                          {% else %}
-                          {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
-                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400" }}.00</td>
-                            {% else %}
-                            {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
-                              <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400" }}.00</td>
-                              {% else %}
-                              {% if data['serviceType'] !== "DNA report" %}
-                                <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "400" }}.00</td>
-                              {% endif %}
-                            {% endif %}
-                          {% endif %}
-                        {% endif %}
-                      {% endif %}
-                    {% endif %}
-                  {% endif %}
-                {% endif %}
-              </tr>
-              {% if data['addTravel'] == "No" %}
-                {% else %}
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">Travel</td>
-                  <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120" }}.00</td>
-                </tr>
-              {% endif %}
-              {% if data['addAdd'] == "No" %}
-                {% else %}
-                <tr class="govuk-table__row">
-                  <td class="govuk-table__cell">Additional</td>
-                  <td class="govuk-table__cell">£{{data['actualaddFinalTotal'] or "120" }}.00</td>
-                </tr>
-              {% endif %}
+                <td class="govuk-table__cell">2 hours 00 minutes</td>
+                <td class="govuk-table__cell">£200.00</td>
+                <td class="govuk-table__cell">£400.00</td>
+
               </tr>
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell govuk-table__header">Total cost</td>
-                <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "640"}}.00</strong></td>
+                <td class="govuk-table__cell">Travel</td>
+                <td class="govuk-table__cell">3 hours 00 minutes</td>
+                <td class="govuk-table__cell">£40.00</td>
+                <td class="govuk-table__cell">£120.00</td>
+
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Additional cost 1</td>
+                <td class="govuk-table__cell">1 hours 00 minutes</td>
+                <td class="govuk-table__cell">£60.00</td>
+                <td class="govuk-table__cell">£60.00</td>
+
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Additional cost 2</td>
+                <td class="govuk-table__cell">1 item</td>
+                <td class="govuk-table__cell">£600</td>
+                <td class="govuk-table__cell">£60.00</td>
               </tr>
             </tbody>
           </table> 
-          <p><a href="application-details-adjust-readonly">Review detailed figures</a></p>   
+          <p><a href="application-details-adjust-readonly">Review and adjust figures</a></p>   
         </div>
       </div>
 
