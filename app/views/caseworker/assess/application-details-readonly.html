@@ -44,7 +44,7 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
       
       {% include "includes/app-info-readonly.html"%}
 
@@ -52,44 +52,55 @@
         label: 'Sub navigation',
         items: [{
           text: 'Application overview',
-          href: 'application-details-readonly',
+          href: 'application-details',
           active: true
-        }, {
+        }, 
+        {
           text: 'Review and adjust',
-          href: 'application-details-adjust-readonly',
+          href: 'application-details-adjust',
           active: false
-        },{
+        }, 
+        {
+          text: 'Related applications',
+          href: 'application-details-related',
+          active: false
+        }, 
+        {
           text: 'Application history',
-          href: 'application-details-history-readonly',
+          href: 'application-details-history',
           active: false
         }]
       }) }}
 
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
       {% if data['cwAppStatus'] == "Part granted"%}
         <div class="govuk-inset-text">
-          {% if data['cwAppStatus'] !== null %}
-            {{data['partConfirm']}}
-            {% else %}
+          {% if data['confirmAppStatus'] !== "Part granted" %}
             This application was part granted due to disallowed travel costs. Refer to the Primary Quote section for more details.
+            {% else %}
+            {{data['partConfirm']}}
           {% endif %}
-          
         </div>
         {% else %}
         {% if data['cwAppStatus'] == "Rejected"%}
           <div class="govuk-inset-text">
-            {% if data['cwAppStatus'] !== null %}
-              {{data['rejectedConfirm']}}
-              {% else %}
-              This application has been rejected as the correct form has not been used. Please use CRM5.            
+           {% if data['confirmAppStatus'] !== "Rejected" %}
+               This application has been rejected as the correct form has not been used. Please use CRM5.
+            {% else %}
+              {{data['rejectedConfirm']}}          
             {% endif %}
           </div>
            {% else %}
           {% if data['cwAppStatus'] == "Referred"%}
             <div class="govuk-inset-text">
-              {% if data['cwAppStatus'] !== null %}
-                {{data['referralConfirm']}}
-                {% else %}
+              {% if data['referredConfirm'] == null %}
                 Referred to ICA due to questions over the expert used and rates requested by provider.
+                {% else %}
+                {{data['referredConfirm']}}
               {% endif %}
             </div>
           {% endif %}
@@ -993,9 +1004,6 @@
       </div>
 
     </div>
-          
-    {% include "includes/app-related.html"%}
-
   </div>
  </div>
 

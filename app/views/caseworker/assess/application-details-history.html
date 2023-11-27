@@ -44,9 +44,8 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      
-     {% include "includes/app-info.html"%}
+    <div class="govuk-grid-column-full">
+      {% include "includes/app-info.html"%}
 
       {{ mojSubNavigation({
         label: 'Sub navigation',
@@ -54,16 +53,29 @@
           text: 'Application overview',
           href: 'application-details',
           active: false
-        }, {
+        },  
+        {
           text: 'Review and adjust',
           href: 'application-details-adjust',
           active: false
-        }, {
+        }, 
+        {
+          text: 'Related applications',
+          href: 'application-details-related',
+          active: false
+        },
+        {
           text: 'Application history',
           href: 'application-details-history',
           active: true
         }]
       }) }}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       <h3 class="govuk-heading-m">Application history</h3>
 
@@ -169,7 +181,6 @@
 
     </div>
 
-   {% include "includes/app-related.html"%}
 
   </div>
 
