@@ -16,20 +16,30 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Are you sure you want assign this application to yourself?</h1>
+      <h1 class="govuk-heading-xl">Assign application</h1>
+      <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress" method="post">
 
-      <div class="govuk-button-group">
-        {{ govukButton({
-          text: "Yes, assign application",
-          href: "application-details?appAssigned=yes"
-        }) }}
+        {{ govukTextarea({
+            name: "assignConfirm",
+            id: "assignConfirm",
+            label: {
+              text: "Explain why you assigning this application to yourself",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example, that this application was requested by a magistrate"
+            }
+          }) }} 
 
-        {{ govukButton({
-          text: "No, do not assign",
-          classes: "govuk-button--secondary",
-          href: "application-details-readonly"
-        }) }}
-      </div>
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Assign application"
+          }) }}
+
+        <a class="govuk-link govuk-link--no-visited-state" href="application-details">Cancel</a>
+        </div>
+      </form>
 
     </div>
   </div>
