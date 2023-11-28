@@ -25,14 +25,14 @@
       <h1 class="govuk-heading-xl">Case details</h1>
       
       <!--Is it Prison law? Is it a Check asnswers update?-->
-      {% if data['prisonLaw'] == "Yes" or data['prisonLaw'] == null %}
+      {% if data['prisonLaw'] == "Yes" %}
         {% if data['changeCase'] == "change" %}
           <form class="form" action="check-answers" method="post">
           {% else %}
           <form class="form" action="task-list?question2-case=complete" method="post">
         {% endif %}
         {% else %}
-        {% if data['prisonLaw'] == "No" %}
+        {% if data['prisonLaw'] == "No" or data['prisonLaw'] == null %}
           {% if data['changeCase'] == "change" %}
             <form class="form" action="check-answers" method="post">
             {% else %}

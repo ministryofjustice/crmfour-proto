@@ -78,7 +78,7 @@
 
       {% include "includes/adjust-info.html"%}
 
-      <h4 class="govuk-heading-m">{{data['serviceType'] or "Interpreter"}} cost</h4>
+      <h4 class="govuk-heading-m" id="serviceID">{{data['serviceType'] or "Interpreter"}} cost</h4>
 
       {% if data['serviceAdjust'] == null %}
         {% else %}
@@ -426,12 +426,13 @@
       <div class="govuk-button-group">
           {{ govukButton({
             text: "Adjust service costs",
-            href: "application-change-service"
+            href: "application-change-service",
+            classes: "govuk-button--secondary"
           }) }}
-          <a class="govuk-link govuk-link--no-visited-state" href="application-details-reject">Deny service cost</a>
+          <a class="govuk-link govuk-link--no-visited-state" href="application-adjust-reject">Reject service cost</a>
         </div>
 
-      <h4 class="govuk-heading-m">Travel cost</h4>
+      <h4 class="govuk-heading-m" id="travelID">Travel cost</h4>
 
       {% if data['addTravel'] =="No" %}
         <p>No travel costs added</p>
@@ -487,9 +488,10 @@
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Adjust travel costs",
-            href: "applications-change-travel"
+            href: "application-change-travel",
+            classes: "govuk-button--secondary"
           }) }}
-          <a class="govuk-link govuk-link--no-visited-state" href="application-details-reject-travel">Deny travel cost</a>
+          <a class="govuk-link govuk-link--no-visited-state" href="application-adjust-refuse-travel">Refuse travel cost</a>
         </div>
 
       {% endif %}
@@ -499,7 +501,7 @@
         <p>No additional costs added</p>
         {% else %}
 
-        <h4 class="govuk-heading-m">Additional cost 1</h4>
+        <h4 class="govuk-heading-m" id="additional1ID">Additional cost 1</h4>
         {% if data['addCost1Adjust'] == null %}
           {% else %}
           <div class="govuk-inset-text">
@@ -507,6 +509,7 @@
           </div>
         {% endif %}
         <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
+
         <table class="govuk-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -545,11 +548,18 @@
             </tr>
           </tbody>
         </table>
-        <p><a href="application-change-additionalCost1">Adjust additional cost</a></p>
-        <p><a href="application-change-remove">Deny additional cost</a></p>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Adjust additional cost",
+            href: "application-change-additionalCost1",
+            classes: "govuk-button--secondary"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-adjust-refuse-additional">Refuse additional cost</a>
+        </div>
 
 
-        <h4 class="govuk-heading-m">Additional cost 2</h4>
+        <h4 class="govuk-heading-m" id="additional2ID">Additional cost 2</h4>
         <p>Cost description: "{{data['addCost2'] or "Hotel"}} - {{data['whyAdd2'] or "The expert traveled from Ireland and was unable to return the same day."}}"</p>
 
         <table class="govuk-table">
@@ -590,8 +600,14 @@
             </tr>
           </tbody>
         </table>
-        <p><a href="application-change-addCost2">Adjust additional cost</a></p>
-        <p><a href="application-change-remove">Deny additional cost</a></p>
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Adjust additional cost",
+            href: "application-change-additionalCost2",
+            classes: "govuk-button--secondary"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-adjust-refuse-additional">Refuse additional cost</a>
+        </div>
         <br>       
       {% endif %}
 

@@ -1,0 +1,94 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Refuse additional cost – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Referred applications',
+        href: '/caseworker/crm-assess-referred',
+        active: false
+      },
+      {
+        text: 'Assessed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Refuse travel cost</h1>
+
+      <form class="form" action="application-details-adjust?addTime1-hours=0&addTime1-mins=0&addCostTime1=0&actualAdd1Total=0" method="post">      
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            This will zero the additional cost for: {{data['addCost1'] or "Waiting time"}}
+          </strong>
+        </div>
+
+        <h2 class="govuk-heading-l">
+          <span class="govuk-caption-m">Adjusted cost</span> £
+          0</span>.00
+        </h2>
+
+        {{ govukTextarea({
+          name: "addCost1Adjust",
+          value: data['addCost1Adjust'],
+          id: "addCost1Adjust",
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "For example, why you made adjustments to the cost or time. We'll share this explanation with the provider."
+          }
+        }) }}
+
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save changes"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-details-adjust">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}

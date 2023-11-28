@@ -47,7 +47,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Adjust {{data['serviceType'] or "Interpreter"}} cost</h1>
 
-      <form class="form" action="application-details-quote" method="post">
+      <form class="form" action="application-details-adjust#serviceID" method="post">
         <p>Adjust the providers' costs by changing the values.</p>
 
         {% if data['serviceType'] == "Transcription" %}
@@ -348,7 +348,7 @@
             isPageHeading: false
           },
           hint: {
-            text: "For example, why you made adjustments to the service costs, or changed the time spent. We'll share this explanation with the provider."
+            text: "For example, why you made adjustments to the cost or time. We'll share this explanation with the provider."
           }
         }) }}
 

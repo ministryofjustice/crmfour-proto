@@ -1,0 +1,84 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Reject application – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Referred applications',
+        href: '/caseworker/crm-assess-referred',
+        active: false
+      },
+      {
+        text: 'Assessed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+      <h1 class="govuk-heading-xl">Reject application</h1>
+
+      <form class="form" action="application-details-readonly?confirmAppStatus=Rejected&cwAppStatus=Rejected" method="post">
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            By rejecting the service costs you are rejecting the entire application.
+          </strong>
+        </div>
+
+          {{ govukTextarea({
+            name: "rejectedConfirm",
+            id: "rejectedConfirm",
+            label: {
+              text: "Provide detailed reasons for rejecting this application",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example, that the wrong form was used"
+            }
+          }) }}    
+
+      
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Submit decision"
+          }) }}
+         <a class="govuk-link" href="application-details">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

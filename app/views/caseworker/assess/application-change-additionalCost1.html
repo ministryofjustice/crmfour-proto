@@ -47,14 +47,14 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Adjust additional cost</h1>
 
-      <form class="form" action="application-details-quote" method="post">      
+      <form class="form" action="application-details-adjust#additional1ID" method="post">      
         <p>Adjust the providers' costs by changing the values.</p>
 
-        <!--Travel-->
+        <!--Additonal cost 1-->
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" >
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                Time
+          <fieldset class="govuk-fieldset" role="group">
+            <legend class="govuk-fieldset__legend">
+              Time
             </legend>
             <div class="govuk-date-input" id="addTime1">
               <div class="govuk-date-input__item">
@@ -70,48 +70,48 @@
                   <label class="govuk-label govuk-date-input__label" for="addTime1-mins">
                     Minutes
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-mins" name="addTime1-mins" type="text" inputmode="numeric" value="{{data['addTime1-mins'] or '00'}}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-mins" name="addTime1-mins" type="text" inputmode="numeric" value="{{data['addTime1-mins'] or "00"}}">
                 </div>
               </div>
             </div>
           </fieldset>
         </div>
-      
+
         {{ govukInput({
           id: "addCostTime1",
           name: "addCostTime1",
-          value: data['addCostTime1'] or "40",
+          value: data['addCostTime1'] or "30",
           label: {
-            text: "Hourly cost",
-            classes: "govuk-label--s"
+            text: "What is the hourly cost?"
           },
           prefix: {
             text: "£"
-          }
+          },
           classes: "govuk-input--width-5",
           spellcheck: false
         }) }}
       
-        <input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal'] or "120"}}">                        
+        <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total'] or "120"}}">                        
                 
-        <button class="govuk-button govuk-button--secondary" type="button" onclick="calTravelCost()">Calculate my changes</button>
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd1CWCost()">Calculate my changes</button>
+      
 
         <h2 class="govuk-heading-l">
           <span class="govuk-caption-m">Adjusted cost</span> £
-          <span id="showTravelTotal">0</span>.00
+          <span id="showAdd1Total">0</span>.00
         </h2>
 
         {{ govukTextarea({
-          name: "travelAdjust",
-          value: data['travelAdjust'],
-          id: "travelAdjust",
+          name: "addCost1Adjust",
+          value: data['addCost1Adjust'],
+          id: "addCost1Adjust",
           label: {
             text: "Explain your decision",
             classes: "govuk-label--s",
             isPageHeading: false
           },
           hint: {
-            text: "For example, why you made adjustments to the travel cost or time. We'll share this explanation with the provider."
+            text: "For example, why you made adjustments to the cost or time. We'll share this explanation with the provider."
           }
         }) }}
 
