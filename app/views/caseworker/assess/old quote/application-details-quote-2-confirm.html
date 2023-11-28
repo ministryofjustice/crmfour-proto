@@ -1,0 +1,131 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Review and adjust quote – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Referred applications',
+        href: '/caseworker/crm-assess-referred',
+        active: false
+      },
+      {
+        text: 'Assessed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }} 
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">Crime Busters Legal</span>
+      <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
+
+      <form class="form" action="question3-alt-quote-summary" method="post">
+        <!--Service costs-->
+        <h2 class="govuk-heading-l">Confirm adjustments</h2>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Cost type</th>
+              <th scope="col" class="govuk-table__header">Provider requested</th>
+              <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Service</td>
+              <td class="govuk-table__cell">£400.00</td>
+              <td class="govuk-table__cell"><span id="showTransTotal">400</span>.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Travel</td>
+              <td class="govuk-table__cell">£400.00</td>
+              <td class="govuk-table__cell"><span id="showTransTotal">400</span>.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Waiting time</td>
+              <td class="govuk-table__cell">£400.00</td>
+              <td class="govuk-table__cell"><span id="showTransTotal">400</span>.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Hotel</td>
+              <td class="govuk-table__cell">£400.00</td>
+              <td class="govuk-table__cell"><span id="showTransTotal">400</span>.00</td>
+            </tr>
+          </tbody>
+        </table> 
+
+        {{ govukTextarea({
+          name: "serviceAdjust",
+          value: data['serviceAdjust'],
+          id: "serviceAdjust",
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "For example, why you made adjustments to the service costs, or changed the time spent. We'll share this explanation with the provider."
+          }
+        }) }}    
+      
+        <div class="govuk-button-group">
+
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+       
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=draft"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

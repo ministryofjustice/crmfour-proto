@@ -1,0 +1,609 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Review and adjust quote – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Referred applications',
+        href: '/caseworker/crm-assess-referred',
+        active: false
+      },
+      {
+        text: 'Assessed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl">Crime Busters Legal</span>
+    <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
+    {% include "includes/adjust-info.html"%}
+
+      <form class="form" action="application-details-adjust-2-confirm" method="post">
+        <!--Service costs-->
+        <h2 class="govuk-heading-l">{{data['serviceType'] or "Interpreter"}} cost adjustments</h2>
+        
+        {% if data['serviceType'] == "Transcription" %}
+          <!--Transcription-->
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="transNoMins">
+              Change number of minutes (optional)
+            </label>
+            <input class="govuk-input govuk-input--width-5" id="transNoMins" name="transNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['transNoMins'] or "20"}}">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="transCostMin">
+              Change cost per minute (optional)
+            </label>
+            <div class="govuk-input__wrapper">
+              <div class="govuk-input__prefix" aria-hidden="true">£</div>
+              <input class="govuk-input govuk-input--width-5" id="transCostMin" name="transCostMin" type="text" spellcheck="false" value="{{data['transCostMin'] or "20"}}" aria-describedby="transCostMin-hint">
+            </div>
+          </div>
+        
+          <input type="hidden" id="actualTransTotal" name="actualTransTotal" value="{{data['actualTransTotal'] or "20"}}" />
+                  
+          <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Calculate my changes</button>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Provider requested</th>
+                <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">£400.00</td>
+                <td class="govuk-table__cell"><span id="showTransTotal">400</span>.00</td>
+              </tr>
+            </tbody>
+          </table> 
+
+          {% else %}
+          {% if data['serviceType'] == "Translation and transcription" %}
+            <!--Transcription & translation-->
+           
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--s" for="transtransNoMins">
+                Change number of minutes (optional)
+              </label>
+              <input class="govuk-input govuk-input--width-5" id="transtransNoMins" name="transtransNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['transtransNoMins'] or "20"}}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--s" for="transtransCostMin">
+                Change cost per minute (optional)
+              </label>
+              <div class="govuk-input__wrapper">
+                <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                <input class="govuk-input govuk-input--width-5" id="transtransCostMin" name="transtransCostMin" type="text" spellcheck="false" value="{{data['transtransCostMin']}}" aria-describedby="transtransCostMin-hint">
+              </div>
+            </div>
+          
+            <input type="hidden" id="actualTransTransTotal" name="actualTransTransTotal" value="{{data['actualTransTransTotal'] or "20"}}" />
+                  
+            <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransTransCost()">Calculate my changes</button>
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Provider requested</th>
+                  <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">£400.00</td>
+                  <td class="govuk-table__cell"><span id="showTransTransTotal">400</span>.00</td>
+                </tr>
+              </tbody>
+            </table> 
+
+            {% else %}
+            {% if data['serviceType'] == "Translator" %}
+              <!--Translator-->
+              
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--s" for="translatorWords">
+                  Change number of words (optional)
+                </label>
+                <input class="govuk-input govuk-input--width-5" id="translatorWords" name="translatorWords" type="text" spellcheck="false" inputmode="numeric" value="{{data['translatorWords'] or "20"}}">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--s" for="translatorCostWord">
+                  Change cost per word (optional)
+                </label>
+                <div id="translatorCostWord-hint" class="govuk-hint">
+                  Costs should be exclusive of VAT 
+                </div>
+                <div class="govuk-input__wrapper">
+                  <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                  <input class="govuk-input govuk-input--width-5" id="translatorCostWord" name="translatorCostWord" type="text" spellcheck="false" value="{{data['translatorCostWord']}}" aria-describedby="translatorCostWord-hint">
+                </div>
+              </div>
+              
+              <input type="hidden" id="actualTranslatorTotal" name="actualTranslatorTotal" value="{{data['actualTranslatorTotal'] or "20"}}" />
+                    
+              <button class="govuk-button govuk-button--secondary" type="button" onclick="calTranslatorCost()">Calculate my changes</button>
+
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Provider requested</th>
+                    <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">£400.00</td>
+                    <td class="govuk-table__cell"><span id="showTranslatorTotal">400</span>.00</td>
+                  </tr>
+                </tbody>
+              </table> 
+
+              {% else %}
+              {% if data['serviceType'] == "Photocopying" %}
+                <!--Photocopying-->
+                
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-label--s" for="photoNoPages">
+                    Change number of pages (optional)
+                  </label>
+                  <input class="govuk-input govuk-input--width-5" id="photoNoPages" name="photoNoPages" type="text" spellcheck="false" inputmode="numeric" value="{{data['photoNoPages'] or "200"}}">
+                </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-label--s" for="photoCostPage">
+                    Change cost per page (optional)
+                  </label>
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                    <input class="govuk-input govuk-input--width-5" id="photoCostPage" name="photoCostPage" type="text" spellcheck="false" value="{{data['photoCostPage']}}" aria-describedby="photoCostPage-hint">
+                  </div>
+                </div>
+              
+                <input type="hidden" id="actualPhotoTotal" name="actualPhotoTotal" value="{{data['actualPhotoTotal'] or "2"}}" />
+                  
+                <button class="govuk-button govuk-button--secondary" type="button" onclick="calPhotoCost()">Update calculation</button>
+
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Provider requested</th>
+                      <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">£400.00</td>
+                      <td class="govuk-table__cell"><span id="showPhotoTotal">400</span>.00</td>
+                    </tr>
+                  </tbody>
+                </table> 
+
+                {% else %}
+                {% if data['serviceType'] == "DNA report" %}
+                  <!--DNA-->
+                
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--s" for="dnaCost">
+                      Change the total cost of the report (optional)
+                    </label>
+                    <div class="govuk-input__wrapper">
+                      <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                      <input class="govuk-input govuk-input--width-5" id="dnaCost" name="dnaCost" type="text" spellcheck="false" value="{{data['dnaCost']}}" aria-describedby="dnaCost-hint">
+                    </div>
+                  </div>
+
+                   <input type="hidden" id="actualDNATotal" name="actualDNATotal" value="{{data['actualDNATotal'] or "400"}}" />
+                  
+                  <button class="govuk-button govuk-button--secondary" type="button" onclick="calDNACost()">Calculate my changes</button>
+
+                  <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                      <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Provider requested</th>
+                        <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+                      </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">£400.00</td>
+                        <td class="govuk-table__cell"><span id="showDNATotal">400</span>.00</td>
+                      </tr>
+                    </tbody>
+                  </table> 
+
+                  {% else %}
+                  {% if data['serviceType'] == "Other" %}
+                    <!--Other-->
+
+                    {% if data['otherChargeType'] == "Charged by the hour" %}
+
+                        <div class="govuk-form-group">
+                          <fieldset class="govuk-fieldset" role="group" >
+                            <legend class="govuk-fieldset__legend govuk-label--s">
+                              Time
+                            </legend>
+                            <div class="govuk-date-input" id="otherNoHours">
+                              <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                  <label class="govuk-label govuk-date-input__label" for="otherNoHours-hours">
+                                    Hours
+                                  </label>
+                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours-hours" name="otherNoHours-hours" type="text" inputmode="numeric" value="{{data['otherNoHours-hours'] or "2"}}">
+                                </div>
+                              </div>
+                              <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                  <label class="govuk-label govuk-date-input__label" for="otherNoHours-mins">
+                                    Minutes
+                                  </label>
+                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours-mins" name="otherNoHours-mins" type="text" inputmode="numeric" value="{{data['otherNoHours-mins'] or "00"}}">
+                                </div>
+                              </div>
+                            </div>
+                          </fieldset>
+                        </div>
+                    
+                        {{ govukInput({
+                          id: "otherCostTime",
+                          name: "otherCostTime",
+                          value: data['otherCostTime'] or "200",
+                          label: {
+                            text: "What is the hourly cost?",
+                            classes: "govuk-label--s"
+                          },
+                          hint: {
+                            text: "Costs should be exclusive of VAT "
+                          },
+                          prefix: {
+                            text: "£"
+                          },
+                          classes: "govuk-input--width-5",
+                          spellcheck: false
+                        }) }}
+
+                        {% else %}
+
+                        <div class="govuk-form-group">
+                          <label class="govuk-label govuk-label--s" for="otherNoItems">
+                            Number of items
+                          </label>
+                          <div class="govuk-input__wrapper">
+                            <input class="govuk-input govuk-input--width-5" id="otherNoItems" name="otherNoItems" type="text" spellcheck="false" value="{{data['otherNoItems'] or "1"}}">
+                          </div>
+                        </div>
+                  
+                        {{ govukInput({
+                          id: "otherItemsCost",
+                          name: "otherItemsCost",
+                          value: data['otherItemsCost'] or "200",
+                          label: {
+                            text: "What is the cost per item?",
+                            classes: "govuk-label--s"
+                          },
+                          hint: {
+                            text: "Costs should be exclusive of VAT "
+                          },
+                          prefix: {
+                            text: "£"
+                          },
+                          classes: "govuk-input--width-5",
+                          spellcheck: false
+                        }) }}
+
+                      {% endif %}
+
+                    <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
+                      
+                    <button class="govuk-button govuk-button--secondary" type="button" onclick="calOtherCost()">Calculate my updates</button>
+
+                    <table class="govuk-table">
+                      <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                          <th scope="col" class="govuk-table__header">Provider requested</th>
+                          <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+                        </tr>
+                      </thead>
+                      <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                          <td class="govuk-table__cell">£400.00</td>
+                          <td class="govuk-table__cell"><span id="showOtherTotal">400</span>.00</td>
+                        </tr>
+                      </tbody>
+                    </table> 
+
+                    {% else %}
+                    <!--General-->                    
+                    <div class="govuk-form-group">
+                      <fieldset class="govuk-fieldset" role="group" >
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                            Change time (optional)
+                        </legend>
+                        <div class="govuk-date-input" id="generalNoHours">
+                          <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label govuk-date-input__label" for="generalNoHours-hours">
+                                Hours
+                              </label>
+                              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="generalNoHours-hours" name="generalNoHours-hours" type="text" inputmode="numeric" value="{{data['generalNoHours-hours'] or "2"}}">
+                            </div>
+                          </div>
+                          <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label govuk-date-input__label" for="generalNoHours-mins">
+                                Minutes
+                              </label>
+                              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="generalNoHours-mins" name="generalNoHours-mins" type="text" inputmode="numeric" value="{{data['generalNoHours-mins'] or "00"}}">
+                            </div>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                          
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-label--s" for="generalCost">
+                        Change hourly cost (optional)
+                      </label>
+                      <div class="govuk-input__wrapper">
+                        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                        <input class="govuk-input govuk-input--width-5" id="generalCost" name="generalCost" type="text" spellcheck="false" value="{{data['generalCost'] or "200"}}" aria-describedby="generalCost-hint">
+                      </div>
+                    </div>
+
+                    <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">Calculate my updates</button>
+
+                    <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
+
+                    <h3 class="govuk-heading-l">
+                      <span class="govuk-caption-m">Adjusted cost</span> £
+                      <span id="showGeneralTotal">0</span>.00
+                    </h3>
+
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}          
+
+        <h2 class="govuk-heading-l">Travel cost adjustments</h2>
+
+        <!--Travel-->
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" >
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Travel time
+            </legend>
+            <div class="govuk-date-input" id="travelTime">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="travelTime-hours">
+                    Hours
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-hours" name="travelTime-hours" type="text" inputmode="numeric" value="{{data['travelTime-hours'] or "3"}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="travelTime-mins">
+                    Minutes
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-mins" name="travelTime-mins" type="text" inputmode="numeric" value="{{data['travelTime-mins'] or '00'}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      
+        {{ govukInput({
+          id: "travelCostTime",
+          name: "travelCostTime",
+          value: data['travelCostTime'] or "40",
+          label: {
+            text: "Hourly cost",
+            classes: "govuk-label--s"
+          },
+          prefix: {
+            text: "£"
+          },
+          hint: {
+            text: "Costs should be exclusive of VAT "
+          },
+          classes: "govuk-input--width-5",
+          spellcheck: false
+        }) }}
+      
+        <input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal'] or "120"}}">                        
+                
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calTravelCost()">Calculate my changes</button>
+
+        <h2 class="govuk-heading-l">
+          <span class="govuk-caption-m">Adjusted cost</span> £
+          <span id="showTravelTotal">0</span>.00
+        </h2>
+
+
+        <!--Additional-->
+        <h2 class="govuk-heading-l">Additional costs adjustments</h2>
+
+        <!--Additional 1-->
+        <h3 class="govuk-heading-m">{{data['addCost1'] or "Waiting time"}}</h3>
+        <p>{{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}</p>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group">
+            <legend class="govuk-fieldset__legend govuk-label--s">
+              Time
+            </legend>
+            <div class="govuk-date-input" id="addTime1">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="addTime1-hours">
+                    Hours
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-hours" name="addTime1-hours" type="text" inputmode="numeric" value="{{data['addTime1-hours'] or "4"}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="addTime1-mins">
+                    Minutes
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-mins" name="addTime1-mins" type="text" inputmode="numeric" value="{{data['addTime1-mins'] or "00"}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukInput({
+          id: "addCostTime1",
+          name: "addCostTime1",
+          value: data['addCostTime1'] or "30",
+          label: {
+            text: "What is the hourly cost?",
+            classes: "govuk-label--s"
+          },
+          prefix: {
+            text: "£"
+          },
+          classes: "govuk-input--width-5",
+          spellcheck: false
+        }) }}
+      
+        <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total'] or "120"}}">                        
+                
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd1CWCost()">Calculate my changes</button>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Provider requested</th>
+              <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">120.00</td>
+              <td class="govuk-table__cell"><span id="showAdd1Total">120</span>.00</td>
+            </tr>
+          </tbody>
+        </table> 
+
+        <!--Additional 2-->
+        <h3 class="govuk-heading-m">{{data['addCost1'] or "Hotel"}}</h3>
+        <p>{{data['whyAdd1'] or "The expert traveled from Ireland and was unable to return the same day."}}</p>
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s" for="addQuantity1">
+            Number of items
+          </label>
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-5" id="addQuantity1" name="addQuantity1" type="text" spellcheck="false" value="{{data['addQuantity1']}}">
+          </div>
+        </div>
+            
+        {{ govukInput({
+          id: "addNonhourRate1",
+          name: "addNonhourRate1",
+          value: data['addNonhourRate1'],
+          label: {
+            text: "What is the cost per item?",
+            classes: "govuk-label--s"
+          },
+          prefix: {
+            text: "£"
+          },
+          hint: {
+            text: "Costs should be exclusive of VAT "
+          },
+          classes: "govuk-input--width-5",
+          spellcheck: false
+        }) }}
+  
+        <input type="hidden" id="actualAdd2Total" name="actualAdd2Total" value="{{data['actualAdd2Total'] or "120"}}">                        
+                
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd2CWCost()">Calculate my changes</button>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Provider requested</th>
+              <th scope="col" class="govuk-table__header">Caseworker allowed</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">120.00</td>
+              <td class="govuk-table__cell"><span id="showAdd2Total">120</span>.00</td>
+            </tr>
+          </tbody>
+        </table> 
+      
+        <div class="govuk-button-group">
+
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+       
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=draft"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}

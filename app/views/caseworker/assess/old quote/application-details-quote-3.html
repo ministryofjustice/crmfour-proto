@@ -1,0 +1,178 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Review and adjust quote – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Referred applications',
+        href: '/caseworker/crm-assess-referred',
+        active: false
+      },
+      {
+        text: 'Assessed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">Crime Busters Legal</span>
+      <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
+
+      <form class="form" action="question3-alt-quote-summary" method="post">
+        <!--Service costs-->
+        <h2 class="govuk-heading-l">Confirm adjustments</h2>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Cost type</th>
+              <th scope="col" class="govuk-table__header">Amount</th>
+              <th scope="col" class="govuk-table__header">Cost</th>
+              <th scope="col" class="govuk-table__header">Total</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Service</td>
+              <td class="govuk-table__cell">2 hour 00</td>
+              <td class="govuk-table__cell">£30 per hour</td>
+              <td class="govuk-table__cell">£400.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Travel</td>
+              <td class="govuk-table__cell">1 hour 10</td>
+              <td class="govuk-table__cell">£12 per hour</td>
+              <td class="govuk-table__cell">12.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Waiting time</td>
+              <td class="govuk-table__cell">3 hour 00</td>
+              <td class="govuk-table__cell">£100 per hour</td>
+              <td class="govuk-table__cell">£300.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Hotel</td>
+              <td class="govuk-table__cell">1</td>
+              <td class="govuk-table__cell">£350 per item</td>
+              <td class="govuk-table__cell">£350.00</td>
+            </tr>
+          </tbody>
+        </table> 
+
+        {% set noHtml %}
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              {{data['serviceType']}}
+            </legend>
+    
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--s" for="transNoMins">
+                Number of minutes
+              </label>
+              <input class="govuk-input govuk-input--width-5" id="transNoMins" name="transNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['transNoMins']}}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--s" for="transCostMin">
+                What is the cost per minute?
+              </label>
+              <div id="transCostMin-hint" class="govuk-hint">
+                Costs should be exclusive of VAT 
+              </div>
+              <div class="govuk-input__wrapper">
+                <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                <input class="govuk-input govuk-input--width-5" id="transCostMin" name="transCostMin" type="text" spellcheck="false" value="{{data['transCostMin']}}" aria-describedby="transCostMin-hint">
+              </div>
+            </div>
+        {% endset -%}
+
+        {{ govukRadios({
+          name: "altQuotesQ",
+          fieldset: {
+            legend: {
+              text: "Adjust service cost",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            }
+          },
+          items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: checked("altQuotesQ", "Yes"),
+            conditional: {
+              html: noHtml
+            }
+          },
+          {
+              value: "No",
+              text: "No",
+              checked: checked("altQuotesQ", "No") 
+            }
+            
+          ]
+        }) }}
+
+       
+      
+        <div class="govuk-button-group">
+
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+       
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=draft"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
