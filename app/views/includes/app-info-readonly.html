@@ -19,6 +19,10 @@
               {% else %}
               {% if data['cwAppStatus'] == "Referred" %}
                 <strong class="govuk-tag govuk-tag--yellow">Referred</strong><br><br>
+                {% else %}
+                {% if data['cwAppStatus'] == "Auto granted" %}
+                  <strong class="govuk-tag govuk-tag--green">Auto granted</strong><br><br>
+                {% endif %}
               {% endif %}
             {% endif %}
           {% endif %}
@@ -34,7 +38,7 @@
   {% if data['cwAppStatus'] == "Part granted" %}
     <span class="govuk-body-l"><strong>Allowed: </strong>£520.00
     {% else %}
-    {% if data['cwAppStatus'] == "Granted" %}
+    {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}
       <span class="govuk-body-l"><strong>Allowed: </strong>£{{data['actualdistTotalCost'] or "640"}}.00
       {% else %}
       {% if data['cwAppStatus'] == "Rejected" %}
@@ -55,7 +59,7 @@
 </p>
 <p>
   <span class="govuk-body-m"><strong>Date received:</strong> 17th October 2023</span>
-  {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" %}
+  {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Auto granted" %}
     <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21st October 2023</span>
     {% else %}
     {% if data['cwAppStatus'] == "Referred" %}
