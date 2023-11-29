@@ -45,7 +45,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-        {% include "includes/app-info.html"%}
+      {% include "includes/app-info.html"%}
 
       {{ mojSubNavigation({
         label: 'Sub navigation',
@@ -75,6 +75,8 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+        
+        {% include "includes/app-status.html"%}
 
       <!--App dets-->
       <div class="govuk-summary-card">
@@ -347,7 +349,7 @@
       <!--Primary quote-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title">Primary quote</h3>
+          <h3 class="govuk-summary-card__title" id="review-quote">Primary quote</h3>
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
@@ -360,20 +362,20 @@
           </ul>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['reviewQuote'] == null or data['reviewQuote'] == "" %}
+          {% if data['checkPrimary'] == null or data['checkPrimary'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
-              {% if data['reviewQuote'] | includes('Incorrect information') %}
+              {% if data['checkPrimary'] | includes('Incorrect information') %}
                 <strong>Incorrect information:</strong><br>
                 {{data['fieldQuote']}} <br><br>
               {% endif %}
 
-              {% if data['reviewQuote'] | includes('Further information required') %}
+              {% if data['checkPrimary'] | includes('Further information required') %}
                 <strong>Further information required:</strong><br>
                 {{data['infoQuote']}} <br><br>
               {% endif %}
 
-              {% if data['reviewQuote'] | includes('Documentation required') %}
+              {% if data['checkPrimary'] | includes('Documentation required') %}
                 <strong>Documentation required:</strong> <br>
                 {{data['docQuote']}}
               {% endif %}
@@ -501,34 +503,34 @@
       <!--Alt1-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Alternative quote 1</h2>
+          <h2 class="govuk-summary-card__title" id="review-altquote1">Alternative quote 1</h2>
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['reviewAlt1'] == "review" %}
-                <a class="govuk-link" href="review-alt-quote?addAlt=Yes&showAltQuote=1&reviewAlt1=review">
+              {% if data['reviewAltQuote1'] == "review" %}
+                <a class="govuk-link" href="review-alt-quote?addAlt=Yes&showAltQuote=1&reviewAltQuote1=review">
                 Review<span class="govuk-visually-hidden"> additional item</span></a>
                 {% else %}
-                <a class="govuk-link--no-visited-state" href="review-alt-quote?addAlt=Yes&showAltQuote=1&reviewAlt1=review">Review<span class="govuk-visually-hidden"> additional item</a>
+                <a class="govuk-link--no-visited-state" href="review-alt-quote?addAlt=Yes&showAltQuote=1&reviewAltQuote1=review">Review<span class="govuk-visually-hidden"> additional item</a>
               {% endif %} 
             </li>
           </ul>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['reviewAltQuote1'] == null or data['reviewAltQuote1'] == "" %}
+          {% if data['checkAltQuote1'] == null or data['checkAltQuote1'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
-              {% if data['reviewAltQuote1'] | includes('Incorrect information') %}
+              {% if data['checkAltQuote1'] | includes('Incorrect information') %}
                 <strong>Incorrect information:</strong><br>
                 {{data['fieldAltQuote1']}} <br><br>
               {% endif %}
 
-              {% if data['reviewAltQuote1'] | includes('Further information required') %}
+              {% if data['checkAltQuote1'] | includes('Further information required') %}
                 <strong>Further information required:</strong><br>
                 {{data['infoAltQuote1']}} <br><br>
               {% endif %}
 
-              {% if data['reviewAltQuote1'] | includes('Documentation required') %}
+              {% if data['checkAltQuote1'] | includes('Documentation required') %}
                 <strong>Documentation required:</strong> <br>
                 {{data['docAltQuote1']}}
               {% endif %}
@@ -935,7 +937,7 @@
       <!---Why PA required-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title"> Reason for prior authority</h3>
+          <h3 class="govuk-summary-card__title" id="review-whypa"> Reason for prior authority</h3>
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
