@@ -19,17 +19,17 @@
       <h1 class="govuk-heading-xl">Are you sure you want to delete these comments?</h1>
 
       <div class="govuk-inset-text">
-        {% if data['reviewQuote'] | includes('Incorrect information') %}
+        {% if data['checkPrimary'] | includes('Incorrect information') %}
           <strong>Incorrect information:</strong><br>
           {{data['fieldQuote']}} <br><br>
         {% endif %}
 
-        {% if data['reviewQuote'] | includes('Further information required') %}
+        {% if data['checkPrimary'] | includes('Further information required') %}
           <strong>Further information required:</strong><br>
           {{data['infoQuote']}} <br><br>
         {% endif %}
 
-        {% if data['reviewQuote'] | includes('Documentation required') %}
+        {% if data['checkPrimary'] | includes('Documentation required') %}
           <strong>Documentation required:</strong> <br>
           {{data['docQuote']}}
         {% endif %}
@@ -39,7 +39,7 @@
         {{ govukButton({
           text: "Yes, delete it",
           classes: "govuk-button--warning",
-          href: "application-details?reviewQuote=&fieldQuote=&infoQuote&docQuote="
+          href: "application-details?reviewPrimary=delete&checkPrimary=&fieldQuote=&infoQuote&docQuote="
         }) }}
 
         {{ govukButton({

@@ -49,7 +49,7 @@
       {% if data['changeAltQuote'] == "change" %}
         <form class="form" action="check-answers" method="post">
         {% else %}
-        <form class="form" action="application-details?review-alt-quote-summary=complete" method="post">
+        <form class="form" action="application-details?reviewAltQuote1=complete" method="post">
       {% endif %}
       
         <!--Alternative quote 1-->
@@ -224,7 +224,7 @@
           {% endset %}
 
           {{ govukCheckboxes({
-            name: "reviewAltQuote1",
+            name: "checkAltQuote1",
             fieldset: {
               legend: {
                 text: "What is the issue?",
@@ -238,7 +238,7 @@
               {
                 value: "Further information required",
                 text: "Further information required",
-                checked: checked("reviewAltQuote1", "Further information required"),
+                checked: checked("checkAltQuote1", "Further information required"),
                 conditional: {
                   html: infoHtml
                 }
@@ -246,7 +246,7 @@
               {
                 value: "Documentation required",
                 text: "Documentation required",
-                checked: checked("reviewAltQuote1", "Documentation required"),
+                checked: checked("checkAltQuote1", "Documentation required"),
                 conditional: {
                   html: docHtml
                 }
@@ -259,7 +259,7 @@
               text: "Save comments"
             }) }}
 
-            {% if data['reviewAltQuote1'] == "" or data['reviewAltQuote1'] == null %}
+            {% if data['checkAltQuote1'] == "" or data['checkAltQuote1'] == null %}
               {% else %}
                 {{ govukButton({
                   text: "Delete comments",
