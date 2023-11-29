@@ -79,7 +79,7 @@
         {% endset %}
 
         {{ govukRadios({
-          name: "confirmAppStatus",
+          name: "cwAppStatus",
           fieldset: {
             legend: {
               text: "What is the outcome of your assessment?",
@@ -94,12 +94,12 @@
             {
               value: "Granted",
               text: "Granted",
-              checked: checked("confirmAppStatus", "Granted")
+              checked: checked("cwAppStatus", "Granted")
             },
             {
               value: "Part granted",
               text: "Part granted",
-              checked: checked("confirmAppStatus", "Part granted"),
+              checked: checked("cwAppStatus", "Part granted"),
               conditional: {
                 html: partGrantedHtml
               }
@@ -107,7 +107,7 @@
             {
               value: "Rejected",
               text: "Rejected",
-              checked: checked("confirmAppStatus", "Rejected"),
+              checked: checked("cwAppStatus", "Rejected"),
               conditional: {
                 html: rejectedHtml
               }
