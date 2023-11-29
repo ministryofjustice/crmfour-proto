@@ -27,10 +27,8 @@
     {% endif %}
   {% endif %}
 {% endif %}
-
 <span class="govuk-caption-xl">Crime Busters Legal</span>
 <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
-
 <p>
   <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00<br>
   {% if data['cwAppStatus'] == "Part granted" %}
@@ -40,7 +38,7 @@
       <span class="govuk-body-l"><strong>Allowed: </strong>£{{data['actualdistTotalCost'] or "640"}}.00
       {% else %}
       {% if data['cwAppStatus'] == "Rejected" %}
-        <span class="govuk-body-l"><strong>Allowed: </strong>0.00
+        <span class="govuk-body-l"><strong>Allowed: </strong>£0.00
       {% endif %}
     {% endif %}
   {% endif %}
@@ -59,5 +57,17 @@
   <span class="govuk-body-m"><strong>Date received:</strong> 17th October 2023</span>
   {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" %}
     <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21st October 2023</span>
+    {% else %}
+    {% if data['cwAppStatus'] == "Referred" %}
+      <br><span class="govuk-body-m"><strong>Date referred:</strong> 21st October 2023</span>
+      {% else %}
+      {% if data['cwAppStatus'] == "Review" %}
+        <br><span class="govuk-body-m"><strong>Date sent to provider:</strong> 21st October 2023</span>
+        {% else %}
+        {% if data['cwAppStatus'] == "Returned" %}
+          <br><span class="govuk-body-m"><strong>Date amended:</strong> 21st October 2023</span>
+        {% endif %}
+      {% endif %}
+    {% endif %}
   {% endif %}
 </p>
