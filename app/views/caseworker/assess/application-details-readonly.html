@@ -356,12 +356,7 @@
         <div class="govuk-summary-card__content">
           {% if data['cwAppStatus'] == "Review" %}
             <div class="govuk-inset-text">
-              <strong>More information needed:</strong><br>
-              {% if data['reviewPrimary'] == "complete" %}
-                {{data['infoQuote']}} 
-                {% else %}
-                Please explain the travel requirement more fully.
-              {% endif %}
+              {{data['checkPrimary']}}
             </div>
           {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -533,20 +528,7 @@
           {% if data['checkAltQuote1'] == null or data['checkAltQuote1'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
-              {% if data['checkAltQuote1'] | includes('Incorrect information') %}
-                <strong>Incorrect information:</strong><br>
-                {{data['fieldAltQuote1']}} <br><br>
-              {% endif %}
-
-              {% if data['checkAltQuote1'] | includes('More information needed') %}
-                <strong>More information needed:</strong><br>
-                {{data['infoAltQuote1']}} <br><br>
-              {% endif %}
-
-              {% if data['checkAltQuote1'] | includes('Documentation needed') %}
-                <strong>Documentation needed:</strong> <br>
-                {{data['docAltQuote1']}}
-              {% endif %}
+              {{data['checkAltQuote1']}}
             </div>
           {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -945,14 +927,7 @@
           {% if data['checkWhyPA'] == null or data['checkWhyPA'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
-              {% if data['checkWhyPA'] | includes('More information needed') %}
-                <strong>More information needed:</strong><br>
-                {{data['infoWhyPA']}} <br><br>
-              {% endif %}
-              {% if data['checkWhyPA'] | includes('Documentation needed') %}
-                <strong>Documentation needed:</strong><br>
-                {{data['docWhyPA']}} <br><br>
-              {% endif %}
+              {{data['checkWhyPA']}}
             </div>
           {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
