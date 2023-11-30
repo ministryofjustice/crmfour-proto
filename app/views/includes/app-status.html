@@ -28,40 +28,51 @@
           <p>{{data['referredConfirm']}}</p>
         {% endif %}
       </div>
-     {% else %}
-     {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "Review"%}
-        {% if data['reviewPrimary'] == "complete" or data['reviewAltQuote1'] == "complete" or data['reviewWhyPA'] == "complete" %}
-          <div class="govuk-inset-text">
-            <p><strong>Request more information from provider</strong></p>
+      {% else %}
+      {% if data['cwAppStatus'] == "Amended" %}
+        <div class="govuk-inset-text">
+          <p><strong>Further information from provider</strong></p>
             <ul class="govuk-list">
-              {% if data['reviewPrimary'] == "complete" %}
-                <li>
-                  <a href="#review-quote" class="govuk-link--no-visited-state">Primary quote comments</a>
-                </li>
-              {% endif %}
-              {% if data['reviewAltQuote1'] == "complete" %}
-                <li>
-                  <a href="#review-altquote1" class="govuk-link--no-visited-state">Alternative quote 1 comments</a>
-                </li>
-              {% endif %}
-              {% if data['reviewWhyPA'] == "complete" %}
-                <li>
-                  <a href="#review-whypa" class="govuk-link--no-visited-state">Reason for prior authority comments</a>
-                </li>
-              {% endif %}
+              <li>
+                <a href="#review-quote" class="govuk-link--no-visited-state">Primary quote information</a>
+              </li>
             </ul>
-          </div>
-          {% else %}
-          {% if data['cwAppStatus'] == "Review"%}
-            {% if data['reviewPrimary'] !== "complete" or data['reviewAltQuote1'] !== "complete" or data['reviewWhyPA'] !== "complete" %}
-              <div class="govuk-inset-text">
-                <p><strong>Further information required</strong></p>
-                <ul class="govuk-list">
+        </div>
+        {% else %}
+        {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "Review"%}
+          {% if data['reviewPrimary'] == "complete" or data['reviewAltQuote1'] == "complete" or data['reviewWhyPA'] == "complete" %}
+            <div class="govuk-inset-text">
+              <p><strong>Further information required</strong></p>
+              <ul class="govuk-list">
+                {% if data['reviewPrimary'] == "complete" %}
                   <li>
                     <a href="#review-quote" class="govuk-link--no-visited-state">Primary quote comments</a>
                   </li>
-                </ul>
-              </div>
+                {% endif %}
+                {% if data['reviewAltQuote1'] == "complete" %}
+                  <li>
+                    <a href="#review-altquote1" class="govuk-link--no-visited-state">Alternative quote 1 comments</a>
+                  </li>
+                {% endif %}
+                {% if data['reviewWhyPA'] == "complete" %}
+                  <li>
+                    <a href="#review-whypa" class="govuk-link--no-visited-state">Reason for prior authority comments</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+            {% else %}
+            {% if data['cwAppStatus'] == "Review"%}
+              {% if data['reviewPrimary'] !== "complete" or data['reviewAltQuote1'] !== "complete" or data['reviewWhyPA'] !== "complete" %}
+                <div class="govuk-inset-text">
+                  <p><strong>Further information required</strong></p>
+                  <ul class="govuk-list">
+                    <li>
+                      <a href="#review-quote" class="govuk-link--no-visited-state">Primary quote comments</a>
+                    </li>
+                  </ul>
+                </div>
+              {% endif %}
             {% endif %}
           {% endif %}
         {% endif %}

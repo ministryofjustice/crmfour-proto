@@ -39,12 +39,13 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-     {% include "includes/app-info.html"%}
+      
+     {% include "includes/app-info-readonly.html"%}
 
       {{ mojSubNavigation({
         label: 'Sub navigation',
         items: [{
-          text: 'Application overview',
+          text: 'Overview',
           href: 'application-details-readonly',
           active: false
         }, 
@@ -64,6 +65,8 @@
           active: false
         }]
       }) }}
+
+      <h2 class="govuk-heading-m">Related applications</h2>
 
       <table class="govuk-table" data-module="moj-sortable-table">
         <thead class="govuk-table__head">

@@ -43,13 +43,13 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      {% include "includes/app-info.html"%}
+    <div class="govuk-grid-column-full"> 
+      {% include "includes/app-info-readonly.html"%}
 
       {{ mojSubNavigation({
         label: 'Sub navigation',
         items: [{
-          text: 'Application overview',
+          text: 'Overview',
           href: 'application-details-readonly',
           active: false
         },  
@@ -75,6 +75,8 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m">Adjustments</h2>
 
       {% include "includes/adjust-info.html"%}
 
