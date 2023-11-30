@@ -354,7 +354,8 @@
           <h3 class="govuk-summary-card__title" id="review-quote">Primary quote</h3>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['cwAppStatus'] == "Review" %}
+          {% if data['checkPrimary'] == null or data['checkPrimary'] == "" %}
+            {% else %}
             <div class="govuk-inset-text">
               {{data['checkPrimary']}}
             </div>
