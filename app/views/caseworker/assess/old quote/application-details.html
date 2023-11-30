@@ -367,7 +367,20 @@
           {% if data['checkPrimary'] == null or data['checkPrimary'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
-              {{data['checkPrimary']}}
+              {% if data['checkPrimary'] | includes('Incorrect information') %}
+                <strong>Incorrect information:</strong><br>
+                {{data['fieldQuote']}} <br><br>
+              {% endif %}
+
+              {% if data['checkPrimary'] | includes('More information needed') %}
+                <strong>More information needed:</strong><br>
+                {{data['infoQuote']}} <br><br>
+              {% endif %}
+
+              {% if data['checkPrimary'] | includes('Documentation needed') %}
+                <strong>Documentation needed:</strong> <br>
+                {{data['docQuote']}}
+              {% endif %}
             </div>
           {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">

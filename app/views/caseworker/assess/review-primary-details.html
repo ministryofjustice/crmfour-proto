@@ -124,77 +124,17 @@
           </div>
         </div>
 
-        {% set fieldHtml %}
-          {{ govukTextarea({
-            name: "fieldQuote",
-            id: "fieldQuote",
-            value: data['fieldQuote'],
-            label: {
-              text: "Caseworker comments"
-            },
-            hint: {
-              text: "Summarise the actions the provider needs to take."
-            }
-          }) }}    
-        {% endset %}
-
-        {% set infoHtml %}
-          {{ govukTextarea({
-            name: "infoQuote",
-            id: "infoQuote",
-            value: data['infoQuote'],
-            label: {
-              text: "Caseworker comments"
-            },
-            hint: {
-              text: "Summarise the actions the provider needs to take."
-            }
-          }) }}    
-        {% endset %}
-
-        {% set docHtml %}
-          {{ govukTextarea({
-            name: "docQuote",
-            id: "docQuote",
-            value: data['docQuote'],
-            label: {
-              text: "Caseworker comments"
-            },
-            hint: {
-              text: "Summarise the actions the provider needs to take."
-            }
-          }) }}    
-        {% endset %}
-
-        {{ govukCheckboxes({
+       {{ govukTextarea({
           name: "checkPrimary",
-          fieldset: {
-            legend: {
-              text: "What is the issue?",
-              classes: "govuk-fieldset__legend--s"
-            }
+          id: "checkPrimary",
+          value: data['checkPrimary'],
+          label: {
+            text: "What further information do you need from the provider?",
+            classes: "govuk-label--s"
           },
           hint: {
-            text: "Select all that apply."
-          },
-          items: [
-            {
-              value: "More information needed",
-              text: "More information needed",
-              checked: checked("checkPrimary", "More information needed"),
-              conditional: {
-                html: infoHtml
-              }
-            },
-            {
-              value: "Documentation needed",
-              text: "Documentation needed",
-              checked: checked("checkPrimary", "Documentation needed"),
-              conditional: {
-                html: docHtml
-              }
-            }
-          ]
+            text: "Summarise the actions the provider needs to take."
+          }
         }) }}    
     
         <div class="govuk-button-group">
