@@ -365,7 +365,7 @@
         <div class="govuk-summary-card__content">
           {% if data['cwAppStatus'] == "Review" %}
             <div class="govuk-inset-text">
-              <strong>Further information required:</strong><br>
+              <strong>More information needed:</strong><br>
               {% if data['reviewPrimary'] == "complete" %}
                 {{data['infoQuote']}} 
                 {% else %}
@@ -517,13 +517,13 @@
                 {{data['fieldAltQuote1']}} <br><br>
               {% endif %}
 
-              {% if data['checkAltQuote1'] | includes('Further information required') %}
-                <strong>Further information required:</strong><br>
+              {% if data['checkAltQuote1'] | includes('More information needed') %}
+                <strong>More information needed:</strong><br>
                 {{data['infoAltQuote1']}} <br><br>
               {% endif %}
 
-              {% if data['checkAltQuote1'] | includes('Documentation required') %}
-                <strong>Documentation required:</strong> <br>
+              {% if data['checkAltQuote1'] | includes('Documentation needed') %}
+                <strong>Documentation needed:</strong> <br>
                 {{data['docAltQuote1']}}
               {% endif %}
             </div>
@@ -945,12 +945,12 @@
           {% if data['checkWhyPA'] == null or data['checkWhyPA'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
-              {% if data['checkWhyPA'] | includes('Further information required') %}
-                <strong>Further information required:</strong><br>
+              {% if data['checkWhyPA'] | includes('More information needed') %}
+                <strong>More information needed:</strong><br>
                 {{data['infoWhyPA']}} <br><br>
               {% endif %}
-              {% if data['checkWhyPA'] | includes('Documentation required') %}
-                <strong>Documentation required:</strong><br>
+              {% if data['checkWhyPA'] | includes('Documentation needed') %}
+                <strong>Documentation needed:</strong><br>
                 {{data['docWhyPA']}} <br><br>
               {% endif %}
             </div>
