@@ -1,0 +1,164 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  More information progress – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Your request progress
+      </h1>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <p class="govuk-body govuk-!-margin-bottom-7">If you leave this page before submitting, you can return later to complete the application.</p>
+
+      <ol class="govuk-prototype-kit-task-list">
+
+        <!--Section 3 - Your request-->
+        <li>
+          <h2 class="govuk-prototype-kit-task-list__section">
+            <span class="govuk-prototype-kit-task-list__section-number">1. </span>Further information request
+          </h2>
+          <ul class="govuk-prototype-kit-task-list__items">
+            
+            <!--Section 3 - quote-->
+            <li class="govuk-prototype-kit-task-list__item">
+              {% if data['more-primary'] == null or data['more-primary'] == "" %}
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="more-primary?more-primary=notStarted" class="govuk-link--no-visited-state"  aria-describedby="quote-status">
+                    Primary quote
+                  </a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="quote-status">Not started</strong>
+                {% else %}
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="more-primary" aria-describedby="quote-status">
+                    Primary quote
+                  </a>
+                </span>
+                {% if data['more-primary'] =="complete" %}
+                  <!--If question3-quote is complete, show the status Complete-->
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="quote-status">Complete</strong>
+                {% endif %}
+              {% endif %}
+            </li>
+            <!--Section 3 - alternative quotes -->
+            <li class="govuk-prototype-kit-task-list__item">
+              {% if data['more-alt1'] == null or data['more-alt1'] == "" %}
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="more-alt1?more-alt1=notStarted" class="govuk-link--no-visited-state"  aria-describedby="alt-quote-status">
+                    Alternative quote 1
+                  </a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="alt-quote-status">Not started</strong>
+                {% else %}
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="more-alt1" aria-describedby="alt-quote-status">
+                    Alternative quote 13w
+                  </a>
+                </span>
+                {% if data['more-alt1'] =="complete" %}
+                  <!--If question3-alt-quote is complete, show the status Complete-->
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="alt-quote-status">Complete</strong>
+                {% endif %}
+              {% endif %}
+            </li>
+            <!--Section 3 - why pa -->
+            <li class="govuk-prototype-kit-task-list__item">
+              {% if data['more-whypa'] == null or data['more-whypa'] == "notStarted" %}
+                <!--If question3-alt-quote has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="more-whypa?more-whypa=notStarted" class="govuk-link--no-visited-state"  aria-describedby="whypa-status">
+                     Reason for prior authority
+                  </a>
+                </span>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="whypa-status">Not started</strong>
+                {% else %}
+                <!--For all other states AND show visited link status-->
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  <a href="more-whypa" aria-describedby="whypa-status">
+                     Reason for prior authority
+                  </a>
+                </span>
+                {% if data['more-whypa'] =="complete" %}
+                  <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="whypa-status">Complete</strong>
+                {% endif %}
+              {% endif %}
+            </li>
+
+          </ul>
+        </li>
+        <!--Question 3-->
+        <li>
+          <h2 class="govuk-prototype-kit-task-list__section">
+            <span class="govuk-prototype-kit-task-list__section-number">2. </span> Submit
+          </h2>
+          <ul class="govuk-prototype-kit-task-list__items">
+            {% if data['more-whypa'] !== "complete" or data['more-primary'] !== "complete" or data['more-alt1'] !== "complete" %}
+              <!--If the first question is not complete, all of the other questions are the status Cannot start-->
+              <li class="govuk-prototype-kit-task-list__item">
+                <span class="govuk-prototype-kit-task-list__task-name">
+                  Submit further information
+                </span>
+                <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="submit-status">Cannot start yet</strong>
+              </li>
+              {% else %}
+              {% if data['submit'] == null or data['submit'] == "notStarted" %}
+                <li class="govuk-prototype-kit-task-list__item">
+                  <span class="govuk-prototype-kit-task-list__task-name">
+                    <a href="check-answers?submit=notStarted" aria-describedby="submit-status">
+                      Submit further information
+                    </a>
+                  </span>
+                  <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="submit-status">Not started</strong>
+                </li>
+              {% endif %}
+            {% endif %}
+          </ul>
+        </li>
+      </ol>
+      {{ govukButton({
+        text: "Back to your applications",
+        classes: "govuk-button--secondary",
+        href: "../crm-apps"
+      }) }}
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <aside class="app-related-items" role="complementary">
+        <h2 class="govuk-heading-s" id="subsection-title">Application reference</h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <strong>Unique file number</strong>   
+              <br>{{data['ufn'] or "100323/234234"}}
+            </li>
+            <li>
+              <strong>LAA reference</strong>   
+              <br>{{data['laa-ref'] or "LAA-5a7d3c"}}
+            </li>
+            <li>
+              <strong>Under Prison Law</strong>   
+              <br>{{data['prisonLaw'] or "No"}}
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </div>
+  </div>
+{% endblock %}

@@ -26,7 +26,7 @@
       Application details
     </h1>      
 
-     <div class="govuk-summary-card">
+    <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h2 class="govuk-summary-card__title">Application status</h2>
       </div>
@@ -353,13 +353,14 @@
       <div class="govuk-summary-card__content">
         {% if data['app-task'] == "Review" %}
           <div class="govuk-inset-text">
-            <strong>Documentation needed:</strong> <br>
-            The attached quote does not match with the data enterered. Please attach the correct quote
+            <p><strong>Further information requested:</strong> <br>
+            The attached quote does not match with the data enterered. Please attach the correct quote</p>
+            {{ govukButton({
+              text: "Provide further information",
+              href: "more-info/application-review"
+            }) }}
           </div>
-          {{ govukButton({
-            text: "Provide further information",
-            href: "application-review?"
-          }) }}
+         
         {% endif %}
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
           <div class="govuk-summary-list__row">
@@ -795,16 +796,13 @@
       <div class="govuk-summary-card__content">
         {% if data['app-task'] == "Review" %}
           <div class="govuk-inset-text">
-            <strong>Further information required:</strong><br>
-            LAA comment: Why are the travel cost significantly smaller compared to the primary quote costs? <br><br>
-
-            <strong>Documentation needed:</strong> <br>
-            Please attach a detailed quote.
+            <p><strong>Further information required:</strong><br>
+            Why are the travel cost significantly smaller compared to the primary quote costs? Please attach a detailed quote.</p>
+            {{ govukButton({
+              text: "Provide further information",
+              href: "more-info/application-review"
+            }) }}
           </div>
-          {{ govukButton({
-            text: "Provide further information",
-            href: "application-review"
-          }) }}
         {% endif %}
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
           <div class="govuk-summary-list__row">
@@ -1075,6 +1073,16 @@
         <h3 class="govuk-summary-card__title"> Reason for prior authority</h3>
       </div>
       <div class="govuk-summary-card__content">
+        {% if data['app-task'] == "Review" %}
+          <div class="govuk-inset-text">
+            <p><strong>Further information required:</strong><br>
+            Description of case is missing details of mitigation</p>
+            {{ govukButton({
+              text: "Provide further information",
+              href: "more-info/application-review"
+            }) }}
+          </div>
+        {% endif %}
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
