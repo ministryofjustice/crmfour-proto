@@ -353,13 +353,7 @@
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title" id="review-quote">Primary quote</h3>
         </div>
-        <div class="govuk-summary-card__content">
-          {% if data['checkPrimary'] == null or data['checkPrimary'] == "" %}
-            {% else %}
-            <div class="govuk-inset-text">
-              {{data['checkPrimary']}}
-            </div>
-          {% endif %}
+        <div class="govuk-summary-card__content">          
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -476,46 +470,17 @@
 
           <p><a href="application-details-adjust">Review and adjust figures</a></p>
 
-          {% if data['cwAppStatus'] == "Amended" %}
-            <h4 class="govuk-heading-m" id="review-quote">Further information from provider 
-            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Caseworker comments
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  I need some things please<br>
-                  And this download
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Provider response
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  Here's some thing<br>
-                  <a href="">And this download</a>
-                </dd>
-              </div>
-            </dl>
-           
-
-
-
-
-
-            <h4 class="govuk-heading-m" id="review-quote">Further information from provider 
-              (12th Nov 2023)</h4>  
-            <p>Documentation needed<br>
-              The attached quote does not match with the data enterered. Please attach the correct quote</p>
-            <p>Provider response:<br>
-            <a href="">myquote1.pdf</a>
-            </p>
-            <p>More information needed:<br>
-              LAA comment: Why are the travel cost significantly smaller compared to the primary quote costs?</p>
-            <p>Documentation needed:<br>
-                Please attach a detailed quote. </p>  
-          {% endif %} 
+          {% if data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Amended" %}
+            <h3 class="govuk-heading-s">Further information requested</h3>
+            <div class="govuk-inset-text">
+              {% if data['cwAppStatus'] == "Amended" %}
+                <p><strong>Provider comment (15th Nov 2023):</strong><br>
+                  See the attached document. <a href="">quoteversion2.pdf</a></p>
+              {% endif %}
+              <p><strong>LAA comment (12th Nov 2023):</strong><br>
+              {{data['checkPrimary'] or "The attached quote does not match with the data enterered. Please attach the correct quote"}}</p>
+            </div>
+          {% endif %}
         </div>
       </div>
 
@@ -526,12 +491,6 @@
           <h2 class="govuk-summary-card__title" id="review-altquote1">Alternative quote 1</h2>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['checkAltQuote1'] == null or data['checkAltQuote1'] == "" %}
-            {% else %}
-            <div class="govuk-inset-text">
-              {{data['checkAltQuote1']}}
-            </div>
-          {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -650,7 +609,20 @@
                 <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "640"}}.00</strong></td>
               </tr>          
             </tbody>
-          </table>  
+          </table>
+          {% if data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Amended" %}
+            {% if data['reviewAltQuote1'] == "complete" %}
+            <h3 class="govuk-heading-s">Further information requested</h3>
+              <div class="govuk-inset-text">
+                {% if data['cwAppStatus'] == "Amended" %}
+                  <p><strong>Provider comment (15th Nov 2023):</strong><br>
+                    The expert is not coming from outside of London but they are not as experienced.</p>
+                {% endif %}
+                <p><strong>LAA comment (12th Nov 2023):</strong><br>
+                {{data['checkAltQuote1'] or "Why are the travel cost significantly smaller compared to the primary quote costs? Please attach a detailed quote."}}</p>
+              </div>
+            {% endif %}
+          {% endif %}  
         </div>
       </div>
 
@@ -785,17 +757,6 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">Alternative quote 3</h2>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['reviewAlt3'] == "review" %}
-                <a class="govuk-link" href="?addAlt=Yes&showAltQuote=3&reviewAlt3=review">
-                Review<span class="govuk-visually-hidden"> additional item</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="?addAlt=Yes&showAltQuote=3&reviewAlt3=review">Review<span class="govuk-visually-hidden"> additional item</a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -925,12 +886,6 @@
           <h3 class="govuk-summary-card__title" id="review-whypa"> Reason for prior authority</h3>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['checkWhyPA'] == null or data['checkWhyPA'] == "" %}
-            {% else %}
-            <div class="govuk-inset-text">
-              {{data['checkWhyPA']}}
-            </div>
-          {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -949,7 +904,20 @@
                 <a href="">whyPADocs2.pdf</a>
               </dd>
             </div>
-          </dl>       
+          </dl>   
+          <h3 class="govuk-heading-s">Further information requested</h3>
+          {% if data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Amended" %}
+            {% if data['reviewWhyPA'] == "complete" %}
+              <div class="govuk-inset-text">
+                {% if data['cwAppStatus'] == "Amended" %}
+                  <p><strong>Provider comment (15th Nov 2023):</strong><br>
+                    Currently there is no mitigation that is available</p>
+                {% endif %}
+                <p><strong>LAA comment (12th Nov 2023):</strong><br>
+                {{data['checkWhyPA'] or "Description of case is missing details of mitigatione"}}</p>
+              </div>
+            {% endif %}
+          {% endif %}    
         </div>
       </div>
 

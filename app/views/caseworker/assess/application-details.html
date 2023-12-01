@@ -364,12 +364,6 @@
           </ul>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['checkPrimary'] == null or data['checkPrimary'] == "" %}
-            {% else %}
-            <div class="govuk-inset-text">
-              {{data['checkPrimary']}}
-            </div>
-          {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -485,6 +479,16 @@
           </table> 
 
           <p><a href="application-details-adjust">Review and adjust figures</a></p>   
+
+          {% if data['checkPrimary'] == null or data['checkPrimary'] == "" %}
+            {% else %}
+            <h3 class="govuk-heading-s">Further information requested</h3>
+            <div class="govuk-inset-text">
+              <p><strong>LAA comment (12th Nov 2023):</strong><br>
+              {{data['checkPrimary'] or "The attached quote does not match with the data enterered. Please attach the correct quote"}}</p>
+            </div>
+          {% endif %}
+
         </div>
       </div>
 
@@ -506,12 +510,6 @@
           </ul>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['checkAltQuote1'] == null or data['checkAltQuote1'] == "" %}
-            {% else %}
-            <div class="govuk-inset-text">
-              {{data['checkAltQuote1']}}
-            </div>
-          {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -630,7 +628,16 @@
                 <td class="govuk-table__cell"><strong>£{{data['actualdistTotalCost'] or "640"}}.00</strong></td>
               </tr>          
             </tbody>
-          </table>  
+          </table>
+          
+          {% if data['checkAltQuote1'] == null or data['checkAltQuote1'] == "" %}
+            {% else %}
+            <h3 class="govuk-heading-s">Further information requested</h3>
+            <div class="govuk-inset-text">
+              <p><strong>LAA comment (12th Nov 2023):</strong><br>
+              {{data['checkAltQuote1'] or "Why are the travel cost significantly smaller compared to the primary quote costs? Please attach a detailed quote."}}</p>
+            </div>
+          {% endif %}    
         </div>
       </div>
 
@@ -926,12 +933,6 @@
           </ul>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['checkWhyPA'] == null or data['checkWhyPA'] == "" %}
-            {% else %}
-           <div class="govuk-inset-text">
-              {{data['checkWhyPA']}}
-            </div>
-          {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -950,7 +951,16 @@
                 <a href="">whyPADocs2.pdf</a>
               </dd>
             </div>
-          </dl>       
+          </dl>    
+
+          {% if data['checkWhyPA'] == null or data['checkWhyPA'] == "" %}
+            {% else %}
+            <h3 class="govuk-heading-s">Further information requested</h3>
+            <div class="govuk-inset-text">
+              <p><strong>LAA comment (12th Nov 2023):</strong><br>
+              {{data['checkWhyPA'] or "Description of case is missing details of mitigatione"}}</p>
+            </div>
+          {% endif %}   
         </div>
       </div>
 
