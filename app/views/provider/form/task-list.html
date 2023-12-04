@@ -205,35 +205,36 @@
             </li>
             <!--Section 3 - alternative quotes -->
             <li class="govuk-prototype-kit-task-list__item">
-              {% if data['question2-case'] != "complete" and data['question2-hearing'] != "complete" %}
+              {% if data['question3-quote'] != "complete"  %}
                 <!--If the case question are not complete, all of the other questions are the status Cannot start-->
                 <span class="govuk-prototype-kit-task-list__task-name">
                   Alternative quotes
                 </span>
                 <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="alt-quote-status">Cannot start yet</strong>
                 {% else %}
-                {% if data['question3-alt-quote'] == null or data['question3-alt-quote'] == "notStarted" %}
-                  <!--If question3-alt-quote has not been started show the status Not started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
-                  <span class="govuk-prototype-kit-task-list__task-name">
-                    <a href="question3-alt-quotes-q?question3-alt-quote=notStarted?serviceType=Other" class="govuk-link--no-visited-state"  aria-describedby="alt-quote-status">
-                      Alternative quotes
-                    </a>
-                  </span>
-                  <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="alt-quote-status">Not started</strong>
-                  {% else %}
-                  <!--For all other states AND show visited link status-->
-                  <span class="govuk-prototype-kit-task-list__task-name">
-                    <a href="question3-alt-quotes-q" aria-describedby="alt-quote-status">
-                      Alternative quotes
-                    </a>
-                  </span>
-                  {% if data['question3-alt-quote'] =="complete" %}
-                    <!--If question3-alt-quote is complete, show the status Complete-->
-                    <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="alt-quote-status">Complete</strong>
+                {% if data['question3-quote'] == "complete" %}
+                  {% if data['question3-alt-quote'] != "complete" and data['question3-alt-quote'] != "notStarted" %}
+                    <span class="govuk-prototype-kit-task-list__task-name">
+                      <a href="question3-alt-quotes-q?question3-alt-quote=notStarted?serviceType=Other" class="govuk-link--no-visited-state"  aria-describedby="alt-quote-status">
+                        Alternative quotes
+                      </a>
+                    </span>
+                    <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="alt-quote-status">Not started</strong>
                     {% else %}
-                    {% if data['question3-alt-quote'] =="draft" %}
-                      <!--If question3-alt-quote is draft, show the status Draft-->
-                      <strong class="govuk-tag govuk-tag--blue govuk-prototype-kit-task-list__tag" id="alt-quote-status">In progress</strong>
+                    <!--For all other states AND show visited link status-->
+                    <span class="govuk-prototype-kit-task-list__task-name">
+                      <a href="question3-alt-quotes-q" aria-describedby="alt-quote-status">
+                        Alternative quotes
+                      </a>
+                    </span>
+                    {% if data['question3-alt-quote'] =="complete" %}
+                      <!--If question3-alt-quote is complete, show the status Complete-->
+                      <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="alt-quote-status">Complete</strong>
+                      {% else %}
+                      {% if data['question3-alt-quote'] =="draft" %}
+                        <!--If question3-alt-quote is draft, show the status Draft-->
+                        <strong class="govuk-tag govuk-tag--blue govuk-prototype-kit-task-list__tag" id="alt-quote-status">In progress</strong>
+                      {% endif %}
                     {% endif %}
                   {% endif %}
                 {% endif %}
