@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Are you sure you want unassign this application? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Unassign application</h1>
+      <form class="form" action="application-details-readonly?appAssigned=no&cwAppStatus=New" method="post">
+
+        {{ govukTextarea({
+            name: "unassignConfirm",
+            id: "unassignConfirm",
+            label: {
+              text: "Explain why you unassigning this application",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example, that this application was requested by a magistrate"
+            }
+          }) }} 
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Unassign application"
+          }) }}
+
+        <a class="govuk-link govuk-link--no-visited-state" href="application-details">Cancel</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
