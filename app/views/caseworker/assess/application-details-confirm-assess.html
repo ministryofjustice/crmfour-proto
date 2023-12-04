@@ -55,11 +55,8 @@
             name: "partConfirm",
             id: "partConfirm",
             label: {
-              text: "Provide an overview of your decision to part grant this application",
+              text: "Provide an overview of your decision (optional)",
               isPageHeading: false
-            },
-            hint: {
-              text: "For example, that certain costs were not allowed"
             }
           }) }}    
         {% endset %}
@@ -88,7 +85,7 @@
             }
           },
           hint: {
-            text: "This informatin will be sent to the provider."
+            text: "Your decision and any relevant information will be sent to the provider."
           },
           items: [
             {
@@ -99,10 +96,7 @@
             {
               value: "Part granted",
               text: "Part granted",
-              checked: checked("cwAppStatus", "Part granted"),
-              conditional: {
-                html: partGrantedHtml
-              }
+              checked: checked("cwAppStatus", "Part granted")
             },
             {
               value: "Rejected",
