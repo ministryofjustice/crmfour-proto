@@ -12,6 +12,32 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
+   {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: false
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Referred applications',
+        href: '/caseworker/crm-assess-referred',
+        active: false
+      },
+      {
+        text: 'Assessed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }}
+{% endblock %}
 
 {% block content %}
 
@@ -29,7 +55,6 @@
           {{ govukButton({
             text: "Return to application"
           }) }}
-         <a class="govuk-link" href="application-details">Cancel</a>
         </div>
 
       </form>

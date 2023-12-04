@@ -106,7 +106,7 @@
               LAA Decision
             </dt>
               <dd class="govuk-summary-list__value">
-              {{data['cwAPPStatus'] or "Rejected"}}
+              {{data['cwAppStatus'] or "Granted"}}
             </dd>
           </div>
         </dl>
@@ -115,9 +115,10 @@
   
       <div class="govuk-button-group">
         {{ govukButton({
-          text: "Return to your applications",
-          href: "../crm-assess"
+          text: "Assess next application",
+          href: "application-details?cwAppStatus=In progress&reviewPrimary=&reviewAltQuote1=&reviewWhyPA"
         }) }}
+        <a class="govuk-link" href="../crm-assess">Return to your applications</a>
       </div>
 
     </div>
