@@ -260,17 +260,15 @@
             <tbody class="govuk-table__body">    
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">
-                  {% if data['app-task'] == "Submitted"%}
-                  <a href="application-details-sub?question1-org=complete&ufn=230323/314&laa-ref=LAA-4f6e2b&app-task=Submitted" class="govuk-link--no-visited-state" data-sort-value="230323314">230323/314</a>
-                  {% else %}
                   {% if data['app-task'] == "Re-submitted1"%}
                     <a href="application-details-sub-mvp?question1-org=complete&ufn=230323/314&laa-ref=LAA-4f6e2b&app-task=Re-submitted1" class="govuk-link--no-visited-state" data-sort-value="230323314">230323/314</a>
                     {% else %}
                     {% if data['app-task'] == "Re-submitted2"%}
                       <a href="application-details-sub-mvp?question1-org=complete&ufn=230323/314&laa-ref=LAA-4f6e2b&app-task=Re-submitted2" class="govuk-link--no-visited-state" data-sort-value="230323314">230323/314</a>
+                      {% else%}
+                      <a href="application-details-sub?question1-org=complete&ufn=230323/314&laa-ref=LAA-4f6e2b&app-task=Submitted" class="govuk-link--no-visited-state" data-sort-value="230323314">230323/314</a>
                     {% endif %}
                   {% endif %}
-                {% endif %}
                 </td>
                 <td class="govuk-table__cell">Roger Blackbeard</td>
                 <td class="govuk-table__cell" data-sort-value="230712">12th July 2023</td>
