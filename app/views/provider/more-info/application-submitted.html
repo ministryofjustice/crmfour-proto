@@ -11,11 +11,8 @@
 
       <div class="govuk-panel govuk-panel--confirmation">
           <h1 class="govuk-panel__title">
-            Application complete
+            Further information submitted
           </h1>
-          <div class="govuk-panel__body">
-            Your LAA reference number<br><strong>{{data['laa-ref'] or "LAA-5a7d3c"}}</strong>
-          </div>
         </div>
 
       <p>We have sent you a confirmation email.</p>
@@ -38,11 +35,17 @@
       <p>If needed you can view all of your submitted applications and print them.</p>
 
        <div class="govuk-button-group">
-          {{ govukButton({
-            text: "View my applications",
-            href: "../crm-apps?app-state=all"
-
-          }) }}
+          {% if data['app-task'] == "Re-submitted1"%}
+            {{ govukButton({
+              text: "View my applications",
+              href: "../crm-apps?app-state=all&app-task=Re-submitted1#manage-submitted"
+            }) }}
+            {% else %}
+            {{ govukButton({
+              text: "View my applications",
+              href: "../crm-apps?app-state=all&app-task=Re-submitted2#manage-submitted"
+            }) }}
+          {% endif %}
         
           {{ govukButton({
             text: "Start new application",

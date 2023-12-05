@@ -1,0 +1,120 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Your applications – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+    <h1 class="govuk-heading-xl">
+      Provide further information
+    </h1>
+    <p>Further information is required by the LAA to be able to assess your application.</p>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Primary quote requested information
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p>The attached quote does not match with the data enterered. Please attach the correct quote</p>
+      </div>
+    </details>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Alternative quote 1 requested information
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p>Why are the travel cost significantly smaller compared to the primary quote costs?</p>
+        <p>Please attach a detailed quote.</p>
+      </div>
+    </details>
+
+    {{ govukTextarea({
+      name: "moreDetail",
+      id: "more-detail",
+      label: {
+        text: "Information required",
+        classes: "govuk-label--s",
+        isPageHeading: false
+      },
+      hint: {
+        text: "Provide information as requested the LAA"
+      }
+    }) }}
+
+    <div class="moj-multi-file-upload">
+      <div class="moj-multi-file__uploaded-files">
+        <h2 class="govuk-heading-s">Documentation needed</h2>
+        <p>Provide documentation as requested by the LAA.</p>
+        <p>The maximum file size is 70MB. Files must be a DOC, DOCX, XLSX, XLS, RTF, ODT, JPG, BMP, PNG, TIF or PDF.</p>
+        <div class="govuk-summary-list moj-multi-file-upload__list">
+        </div>
+      </div>
+      <div class="moj-multi-file-upload__upload">
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s" for="documents">
+            Upload files
+          </label>
+          <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple="">
+        </div>
+        <button class="govuk-button govuk-button--secondary moj-multi-file-upload__button" data-module="govuk-button">
+          Upload file
+        </button>
+      </div>
+    </div>
+
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+
+      {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+    
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "../crm-apps?app-state=draft"
+        }) }}
+
+        {% else %}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "../crm-apps?app-state=all#manage-drafts"
+        }) }}
+
+      {% endif %}
+    </div>
+  </div>
+  
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    if (typeof MOJFrontend.MultiFileUpload !== "undefined") {
+      new MOJFrontend.MultiFileUpload({
+        container: $(".moj-multi-file-upload"),
+        uploadUrl: "/ajax-upload",
+        deleteUrl: "/ajax-delete",
+      });
+    }
+
+  </script>
+{% endblock %}

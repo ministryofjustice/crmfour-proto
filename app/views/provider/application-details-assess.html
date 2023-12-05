@@ -24,8 +24,9 @@
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-xl">
       Application details
-    </h1>      
+    </h1>  
 
+    <!--App status-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h2 class="govuk-summary-card__title">Application status</h2>
@@ -37,7 +38,7 @@
               Status
             </dt>
             <dd class="govuk-summary-list__value">
-              {% if data['app-task'] == "Submitted" %}
+              {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
                 <p><strong class="govuk-tag govuk-tag--green">Submitted</strong></p>
                 <p>12th July 2023</p>
                 <p>Awaiting LAA review</p>
@@ -58,25 +59,18 @@
                     <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                     <p>£0.00 allowed</p>
                     {% else %}
-                    {% if data['app-task'] == "Review" %}
-                      <p><strong class="govuk-tag govuk-tag--yellow">Further information requested</strong></p>
+                    {% if data['app-task'] == "Referred" %}
+                      <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
                       <p>22nd August 2023</p>
                       <br>
                       <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                       {% else %}
-                      {% if data['app-task'] == "Referred" %}
-                        <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
+                      {% if data['app-task'] == "Part granted" %}
+                        <p><strong class="govuk-tag govuk-tag--green">Part granted</strong></p>
                         <p>22nd August 2023</p>
                         <br>
                         <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                        {% else %}
-                        {% if data['app-task'] == "Part granted" %}
-                          <p><strong class="govuk-tag govuk-tag--green">Part granted</strong></p>
-                          <p>22nd August 2023</p>
-                          <br>
-                          <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                          <p>£520.00 allowed</p>
-                        {% endif %}
+                        <p>£520.00 allowed</p>
                       {% endif %}
                     {% endif %}
                   {% endif %}
@@ -112,27 +106,11 @@
                           Appeal this decision
                         </button>
                       {% else %}
-                      {% if data['app-task'] == "Review" %}
-                        <p>The caseworker needs further information to complete the assessment of this application. Review what is required.</p>
-                          <ul class="govuk-list">
-                            <li>
-                              <a href="#review-quote" class="govuk-link--no-visited-state">Review Primary quote comments</a>
-                            </li>
-                            <li>
-                              <a href="#review-altquote1" class="govuk-link--no-visited-state">Review Alternative quote 1 comments</a>
-                            </li>
-                          </ul>
-                        {{ govukButton({
-                          text: "Provide further information",
-                          href: "application-review"
-                        }) }}
-                        {% else %}
-                        {% if data['app-task'] == "Rejected" %}
-                          <p> This application has been fully rejected as the correct form has not been used. Please use CRM5.</p>
-                          <button class="govuk-button" href="appeal-offline" data-module="govuk-button">
-                            Appeal this decision
-                          </button>
-                        {% endif %}
+                      {% if data['app-task'] == "Rejected" %}
+                        <p> This application has been fully rejected as the correct form has not been used. Please use CRM5.</p>
+                        <button class="govuk-button" href="appeal-offline" data-module="govuk-button">
+                          Appeal this decision
+                        </button>
                       {% endif %}
                     {% endif %}
                   {% endif %}
@@ -144,6 +122,7 @@
       </div>
     </div>
 
+    <!--App ref-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h2 class="govuk-summary-card__title">Application reference</h2>
@@ -171,6 +150,7 @@
     </div>
 
     <h2 class="govuk-heading-m">About the case</h2>
+
     <!--Client details-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
@@ -197,7 +177,6 @@
         </dl>
       </div>
     </div>
-
     <!--Case details-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
@@ -351,17 +330,6 @@
         <h3 class="govuk-summary-card__title" id="review-quote">Primary quote</h3>
       </div>
       <div class="govuk-summary-card__content">
-        {% if data['app-task'] == "Review" %}
-          <div class="govuk-inset-text">
-            <p><strong>LAA comment (12th Novc 2023):</strong><br>
-            The attached quote does not match with the data enterered. Please attach the correct quote</p>
-            {{ govukButton({
-              text: "Provide further information",
-              href: "more-info/application-review"
-            }) }}
-          </div>
-         
-        {% endif %}
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -426,7 +394,6 @@
         </dl>
 
         <h4 class="govuk-heading-s">{{data['serviceType'] or "Interpreter"}} cost</h4>
-
         {% if data['serviceType'] == "Transcription" %}
           <table class="govuk-table">
             <thead class="govuk-table__head">
@@ -667,7 +634,6 @@
         {% endif %}
 
         <h4 class="govuk-heading-s" id="review-travel">Travel cost</h4>
-
         {% if data['addTravel'] =="No" %}
           <p>No travel costs added</p>
           {% else %}
@@ -784,7 +750,6 @@
             </tbody>
           </table>            
         {% endif %}
-
       </div>
     </div>
 
@@ -794,16 +759,6 @@
         <h2 class="govuk-summary-card__title" id="review-altquote1">Alternative quote 1</h2>
       </div>
       <div class="govuk-summary-card__content">
-        {% if data['app-task'] == "Review" %}
-          <div class="govuk-inset-text">
-            <p><strong>LAA comment (12th Novc 2023):</strong><br>
-            Why are the travel cost significantly smaller compared to the primary quote costs? Please attach a detailed quote.</p>
-            {{ govukButton({
-              text: "Provide further information",
-              href: "more-info/application-review"
-            }) }}
-          </div>
-        {% endif %}
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -1070,19 +1025,9 @@
     <!---Why PA required-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title"> Reason for prior authority</h3>
+        <h3 class="govuk-summary-card__title">Reason for prior authority</h3>
       </div>
       <div class="govuk-summary-card__content">
-        {% if data['app-task'] == "Review" %}
-          <div class="govuk-inset-text">
-            <p><strong>LAA comment (12th Novc 2023):</strong><br>
-            Description of case is missing details of mitigation</p>
-            {{ govukButton({
-              text: "Provide further information",
-              href: "more-info/application-review"
-            }) }}
-          </div>
-        {% endif %}
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">

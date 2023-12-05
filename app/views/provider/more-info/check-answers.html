@@ -28,108 +28,39 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <!--About the request-->
-      <h2 class="govuk-heading-m">About the request</h2>
-
-      <!--Primary quote-->
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title">Primary quote</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['changeQuote'] == "change" %}
-                <a class="govuk-link" href="question3-quote-summary?changeQuote=change">Change<span class="govuk-visually-hidden"> primary quote details</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="question3-quote-summary?changeQuote=change">Change<span class="govuk-visually-hidden"> primary quote details</span></a>
-              {% endif %} 
-            </li>
-          </ul>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Primary quote
+          </dt>
+            <dd class="govuk-summary-list__value">
+            {{data['morePrimary'] or "The expert came from Ireland and was unable to return in one day"}}
+          </dd>
         </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Expert details
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['expert-name'] or "Joanna White" }}<br>
-                {{data['expert-org-name'] or "DNA Plc" }}, 
-                {{data['expert-postcode'] or "E1 3RD" }}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Service required
-              </dt>
-              <dd class="govuk-summary-list__value">
-                 {% if data['serviceType'] == "Other" %}
-                  {{data['otherExpert'] or "Driving instructor" }}
-                  {% else %}
-                  {{data['serviceType'] or "Interpreter"}}
-                {% endif %}
-              </dd>
-            </div>
-            {% if data['serviceType'] == "Pathologist's report" %}
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Post-mortem
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['postMortem'] or "Yes"}}
-                </dd>
-              </div>
-            {% endif %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Quote upload
-              </dt>
-              <dd class="govuk-summary-list__value">
-                myquote1.pdf
-              </dd>
-            </div>
-             {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" or  data['serviceType'] == null %}
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Ordered by court
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['courtOrdered'] or "Yes" }}
-                </dd>
-              </div>
-             {% else %}
-             
-            {% endif %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Existing prior authority granted
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['existingAuth'] or "No"}}
-              </dd>
-            </div>
-            {% if data['detained'] == "Yes" or data['prisonLaw'] == "Yes" %}
-              {% else %}
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Why travel costs are required 
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['whyTravel'] or "The expert lives in Ireland"}}
-                </dd>
-              </div>
-            {% endif %}
-          </dl>
-
-           
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Alternative quote 1
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['moreAlt1'] or "They were based in London already"}}<br>
+            <a href="">doc.pdf</a>
+          </dd>
         </div>
-      </div>
+    
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+              Reason for prior authority
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['morePA'] or "See attached doc"}}<br>
+            <a href="">mitigation.pdf</a>
+          </dd>
+        </div>
+      </dl>
       
-      <h2 class="govuk-heading-m">Now send your application</h2>
+      <h2 class="govuk-heading-m">Now send your further information</h2>
       <form action="application-submitted" method="post" novalidate>
-
-
-        <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+        <p class="govuk-body">By submitting this information you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
         <input type="hidden" name="answers-checked" value="true">
         <button class="govuk-button" data-module="govuk-button">
           Accept and send
