@@ -45,28 +45,28 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      {% include "includes/app-info.html"%}
+      {% include "includes/app-info-readonly.html"%}
 
       {{ mojSubNavigation({
         label: 'Sub navigation',
         items: [{
           text: 'Overview',
-          href: 'application-details',
+          href: 'application-details-readonly',
           active: true
         }, 
         {
-          text: 'Adust quote',
-          href: 'application-details-adjust',
+          text: 'Adjustments',
+          href: 'application-details-adjust-readonly',
           active: false
         }, 
         {
           text: 'Related applications',
-          href: 'application-details-related',
+          href: 'application-details-related-readonly',
           active: false
         }, 
         {
           text: 'Application history',
-          href: 'application-details-history',
+          href: 'application-details-history-readonly',
           active: false
         }]
       }) }}
@@ -354,6 +354,12 @@
           <h3 class="govuk-summary-card__title" id="review-quote">Primary quote</h3>
         </div>
         <div class="govuk-summary-card__content">
+          {% if data['cwAppStatus'] == "Review" %}
+            <div class="govuk-inset-text">
+              <p><strong>Further information requested (12th Nov 2023):</strong><br></p>
+              <p>{{data['checkPrimary'] or "The attached quote does not match with the data enterered. Please attach the correct quote"}}</p>
+            </div>
+          {% endif %}          
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -468,8 +474,23 @@
             </tbody>
           </table> 
 
-          <p><a href="application-details-adjust">Adust quote figures</a></p>   
-
+          <p><a href="application-details-adjust">Adust quote figures</a></p>
+          {% if data['cwAppStatus'] =="Amended" %}
+            <h3 class="govuk-heading-s">Further information from provider</h3>
+            <table class="govuk-table">
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Submitted 12th Nov 2023</th>
+                  <td class="govuk-table__cell">This is the further further information that the provider added to their application. It comes in one big text block because we cannot easily change how it looks when coming from a textfield. <a href="">newdocument.pdf</a></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Submitted 10th Nov 2023</th>
+                  <td class="govuk-table__cell"> This is earlier further information that the provider added to their application. It comes in one big text block because we cannot easily change how it looks when coming from a textfield.
+                    <a href="">newdocument.pdf</a></a></td>
+                </tr>
+              </tbody>
+            </table>
+          {% endif %}
         </div>
       </div>
 
@@ -480,6 +501,12 @@
           <h2 class="govuk-summary-card__title" id="review-altquote1">Alternative quote 1</h2>
         </div>
         <div class="govuk-summary-card__content">
+          {% if data['cwAppStatus'] == "" %}
+            <div class="govuk-inset-text">
+            <p><strong>LAA comment (12th Nov 2023):</strong><br>
+            {{data['checkAltQuote1'] or "Why are the travel cost significantly smaller compared to the primary quote costs? Please attach a detailed quote."}}</p>
+          </div>
+          {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -862,6 +889,12 @@
           <h3 class="govuk-summary-card__title" id="review-whypa"> Reason for prior authority</h3>
         </div>
         <div class="govuk-summary-card__content">
+          {% if data['cwAppStatus'] == "" %}
+            <div class="govuk-inset-text">
+              <p><strong>LAA comment (12th Nov 2023):</strong><br>
+              {{data['checkWhyPA'] or "Description of case is missing details of mitigatione"}}</p>
+            </div>
+          {% endif %}
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -880,7 +913,8 @@
                 <a href="">whyPADocs2.pdf</a>
               </dd>
             </div>
-          </dl>    
+          </dl>   
+          <h3 class="govuk-heading-s">Further information</h3>
         </div>
       </div>
 
@@ -932,8 +966,6 @@
         </div>
       </div>
       
-      {% include "includes/application-buttons.html"%}
-
     </div>
   </div>
 
