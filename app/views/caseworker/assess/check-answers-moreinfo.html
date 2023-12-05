@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  {{data['laa-ref'] or "LAA-5a7d3c"}} - Send to provider – {{ serviceName }} – GOV.UK Prototype Kit
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Further information required – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% set bodyClasses = 'caseworker-width' %}
@@ -45,9 +45,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-xl">Send to provider</h1>
+      <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+      <h1 class="govuk-heading-xl">Request more information from the provider</h1>
 
-      <form class="form" action="decision-sent?cwAppStatus=Review" method="post">
+      <form class="form" action="application-details-readonly?cwAppStatus=Review" method="post">
         <p>Please review and confirm the further information you require from the provider.</p>
 
         <dl class="govuk-summary-list">
