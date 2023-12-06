@@ -469,18 +469,6 @@
           </table> 
 
           <p><a href="application-details-adjust">Adust quote figures</a></p>
-
-          {% if data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Amended" %}
-            <h3 class="govuk-heading-s">Further information</h3>
-            <div class="govuk-inset-text">
-              {% if data['cwAppStatus'] == "Amended" %}
-                <p><strong>Provider comment (15th Nov 2023):</strong><br>
-                  See the attached document. <a href="">quoteversion2.pdf</a></p>
-              {% endif %}
-              <p><strong>LAA comment (12th Nov 2023):</strong><br>
-              {{data['checkPrimary'] or "The attached quote does not match with the data enterered. Please attach the correct quote"}}</p>
-            </div>
-          {% endif %}
         </div>
       </div>
 
@@ -610,19 +598,6 @@
               </tr>          
             </tbody>
           </table>
-          {% if data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Amended" %}
-            {% if data['reviewAltQuote1'] == "complete" %}
-            <h3 class="govuk-heading-s">Further information</h3>
-              <div class="govuk-inset-text">
-                {% if data['cwAppStatus'] == "Amended" %}
-                  <p><strong>Provider comment (15th Nov 2023):</strong><br>
-                    The expert is not coming from outside of London but they are not as experienced.</p>
-                {% endif %}
-                <p><strong>LAA comment (12th Nov 2023):</strong><br>
-                {{data['checkAltQuote1'] or "Why are the travel cost significantly smaller compared to the primary quote costs? Please attach a detailed quote."}}</p>
-              </div>
-            {% endif %}
-          {% endif %}  
         </div>
       </div>
 
@@ -906,18 +881,6 @@
             </div>
           </dl>   
           <h3 class="govuk-heading-s">Further information</h3>
-          {% if data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Amended" %}
-            {% if data['reviewWhyPA'] == "complete" %}
-              <div class="govuk-inset-text">
-                {% if data['cwAppStatus'] == "Amended" %}
-                  <p><strong>Provider comment (15th Nov 2023):</strong><br>
-                    Currently there is no mitigation that is available</p>
-                {% endif %}
-                <p><strong>LAA comment (12th Nov 2023):</strong><br>
-                {{data['checkWhyPA'] or "Description of case is missing details of mitigatione"}}</p>
-              </div>
-            {% endif %}
-          {% endif %}    
         </div>
       </div>
 
