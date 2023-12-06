@@ -12,64 +12,14 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-
-  {{ mojPrimaryNavigation({
-    label: 'Primary navigation',
-    items: [
-      {
-        text: 'Your applications',
-        href: '/caseworker/crm-assess',
-        active: false
-      },
-      {
-        text: 'Open applications',
-        href: '/caseworker/crm-assess-open',
-        active: false
-      },
-      {
-        text: 'Referred applications',
-        href: '/caseworker/crm-assess-referred',
-        active: false
-      },
-      {
-        text: 'Assessed applications',
-        href: '/caseworker/crm-assess-closed',
-        active: false
-      }
-    ]
-  }) }}
+  {% include "includes/cw-second-nav-mvp.html"%}
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-
       {% include "includes/app-info.html"%}
-
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'application-details',
-          active: true
-        }, 
-        {
-          text: 'Adust quote',
-          href: 'application-details-adjust',
-          active: false
-        }, 
-        {
-          text: 'Related applications',
-          href: 'application-details-related',
-          active: false
-        }, 
-        {
-          text: 'Application history',
-          href: 'application-details-history',
-          active: false
-        }]
-      }) }}
     </div>
   </div>
 
