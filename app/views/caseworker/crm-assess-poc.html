@@ -1,0 +1,104 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw-poc.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Your applications – {{data['serviceName1'] }} - GOV.UK
+{% endblock %}
+
+<!-- {% set bodyClasses = 'caseworker-width caseworker-pink' %} -->
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ mojPrimaryNavigation({
+    label: 'Primary navigation',
+    items: [
+      {
+        text: 'Your applications',
+        href: '/caseworker/crm-assess',
+        active: true
+      },
+      {
+        text: 'Open applications',
+        href: '/caseworker/crm-assess-open',
+        active: false
+      },
+      {
+        text: 'Assessed applications',
+        href: '/caseworker/crm-assess-closed',
+        active: false
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row"> 
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">
+      Your applications
+    </h1>
+    {{ govukButton({
+      text: "Assess next application",
+      href: "assess/application-details?cwAppStatus=In progress"
+    }) }}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    {% if data['cwAppState'] == "empty"  %}
+      <p>There are not any applications for you to assess.</p>
+      {% else %}
+      {% if data['cwAppState'] == "all" %}
+        <table class="govuk-table" data-module="moj-sortable-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header" aria-sort="none">Reference</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Firm</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Received</th>
+              <th scope="col" class="govuk-table__header" aria-sort="descending">Updated</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">                
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-1z5f7w&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
+              <td class="govuk-table__cell">Law Fans</td>
+              <td class="govuk-table__cell">Roger Catapult</td>
+              <td class="govuk-table__cell" data-sort-value="230801">1st Aug 2023</td>
+              <td class="govuk-table__cell" data-sort-value="230901">1st Sept 2023</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-6p4f0r&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
+              <td class="govuk-table__cell">Crime Busters Legal</td>
+              <td class="govuk-table__cell">Dami Olu</td>
+              <td class="govuk-table__cell" data-sort-value="230913">13th Sept 2023</td>
+              <td class="govuk-table__cell" data-sort-value="231013">13th Oct 2023</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-8p3h0e&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
+              <td class="govuk-table__cell">Legal Aiders Ltd</td>
+              <td class="govuk-table__cell">Bobby Brownie</td>
+              <td class="govuk-table__cell" data-sort-value="230703">3rd July 2023</td>
+              <td class="govuk-table__cell" data-sort-value="230803">3rd Aug 2023</td>
+            </tr>
+          </body>
+        </table>     
+      {% endif %} 
+    {% endif %}    
+    
+  </div>
+  <div class="govuk-grid-column-one-third">
+      
+  </div>
+</div>
+
+{% endblock %}
