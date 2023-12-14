@@ -27,6 +27,8 @@
       
       <form class="form" action="question3-quote-prep" method="post">
 
+        {% include "includes/service-list.html" %}
+
         {% call govukFieldset({
           legend: {
             text: "Service provider",
@@ -66,8 +68,6 @@
           }) }}
 
         {% endcall %}
-
-        {% include "includes/service-list.html" %}
 
         {{ govukFileUpload({
           id: "quote1Upload",
