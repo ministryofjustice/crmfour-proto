@@ -156,71 +156,74 @@
          
 
         {% if data['prisonLaw'] == "Yes" %}
-          <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hearing-hint">
-              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-                <h1 class="govuk-fieldset__heading">
-                  Date of next hearing (otional)
-                </h1>
-              </legend>
-              <div id="date-hearing-hint" class="govuk-hint">
-                For example, 27 3 2007
-              </div>
-              <div class="govuk-date-input" id="date-hearing">
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="date-hearing-day">
-                      Day
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-day" name="date-hearing-day" type="text" inputmode="numeric" value="{{data['date-hearing-day']}}">
+          
+          {% set hearingHtml %}
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hearing-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  <h1 class="govuk-fieldset__heading">
+                    Date of next hearing
+                  </h1>
+                </legend>
+                <div id="date-hearing-hint" class="govuk-hint">
+                  For example, 27 3 2007
+                </div>
+                <div class="govuk-date-input" id="date-hearing">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="date-hearing-day">
+                        Day
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-day" name="date-hearing-day" type="text" inputmode="numeric" value="{{data['date-hearing-day']}}">
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="date-hearing-month">
+                        Month
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-month" name="date-hearing-month" type="text" inputmode="numeric" value="{{data['date-hearing-month']}}">
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="date-hearing-year">
+                        Year
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-hearing-year" name="date-hearing-year" type="text" inputmode="numeric" value="{{data['date-hearing-year']}}">
+                    </div>
                   </div>
                 </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="date-hearing-month">
-                      Month
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-month" name="date-hearing-month" type="text" inputmode="numeric" value="{{data['date-hearing-month']}}">
-                  </div>
-                </div>
-                <div class="govuk-date-input__item">
-                  <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="date-hearing-year">
-                      Year
-                    </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-hearing-year" name="date-hearing-year" type="text" inputmode="numeric" value="{{data['date-hearing-year']}}">
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-          </div>
+              </fieldset>
+            </div>
+          {% endset %}
 
-          {% if data['question3-case'] == "complete" or data['changeCase'] =="change" %}
-
-            {% else %}
-            {{ govukRadios({
-              name: "haveYouCompletedHearing",
-              fieldset: {
-                legend: {
-                  text: "Have you completed this section?",
-                  isPageHeading: false,
-                  classes: "govuk-fieldset__legend--s"
+          {{ govukRadios({
+            name: "contact",
+            fieldset: {
+              legend: {
+                text: "Do you know the date of the next hearing?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                checked: checked("hearing", "Yes"),
+                conditional: {
+                  html: hearingHtml
                 }
               },
-              items: [
-                {
-                  value: "Yes",
-                  text: "Yes, I’ve completed this section",
-                  checked: checked("haveYouCompletedHearing", "Yes")
-                },
-                {
-                  value: "No",
-                  text: "No, I’ll come back to it later",
-                  checked: checked("haveYouCompletedHearing", "No")
-                }
-              ]
-            }) }}
-          {% endif %}
+              {
+                value: "No",
+                text: "No",
+                checked: checked("hearing", "No")
+              }
+            ]
+          }) }}     
+
         {% endif %}
 
 
