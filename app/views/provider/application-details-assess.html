@@ -102,15 +102,17 @@
                             </li>
                           </ul>
                         </div>
-                        <button class="govuk-button" href="appeal-offline" data-module="govuk-button">
-                          Appeal this decision
-                        </button>
+                        {{ govukButton({
+                          text: "How to appeal this decision",
+                          href: "appeal-offline"
+                        }) }}
                       {% else %}
                       {% if data['app-task'] == "Rejected" %}
                         <p> This application has been fully rejected as the correct form has not been used. Please use CRM5.</p>
-                        <button class="govuk-button" href="appeal-offline" data-module="govuk-button">
-                          Appeal this decision
-                        </button>
+                        {{ govukButton({
+                          text: "How to appeal this decision",
+                          href: "appeal-offline"
+                        }) }}
                       {% endif %}
                     {% endif %}
                   {% endif %}
