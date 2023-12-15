@@ -22,7 +22,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-xl">2. About the case</span>
-      <h1 class="govuk-heading-xl">Case details</h1>
+      {% if data['prisonLaw'] == "Yes" %}
+        <h1 class="govuk-heading-xl">Case and hearing details</h1>
+        {% else %}
+        <h1 class="govuk-heading-xl">Case details</h1>
+      {% endif %}
       
       <!--Is it Prison law? Is it a Check asnswers update?-->
       {% if data['prisonLaw'] == "Yes" %}

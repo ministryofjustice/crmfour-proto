@@ -154,7 +154,11 @@
       <!--Case details-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title">Case details</h3>
+          {% if data['prisonLaw'] == "Yes" %}
+            <h3 class="govuk-summary-card__title">Case and hearing details</h3>
+            {% else %}
+            <h3 class="govuk-summary-card__title">Case details</h3>
+          {% endif %}
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action-->
@@ -171,14 +175,6 @@
             
             {% if data['prisonLaw'] == "Yes" %}
               <!--If YES to Prison Law--->
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Subject to POCA
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['poca'] or "Yes" }}
-                </dd>
-              </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   Date of next hearing
