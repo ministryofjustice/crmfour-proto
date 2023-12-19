@@ -43,6 +43,10 @@
       {% else %}
       {% if data['cwAppStatus'] == "Rejected" %}
         <span class="govuk-body-l"><strong>Allowed: </strong>£0.00
+        {% else %}
+        {% if data['serviceAdjust'] !== null and data['cwAppStatus'] == "In progress" %}
+          <span class="govuk-body-l"><strong>Allowed: </strong>£440.00
+        {% endif %}
       {% endif %}
     {% endif %}
   {% endif %}
