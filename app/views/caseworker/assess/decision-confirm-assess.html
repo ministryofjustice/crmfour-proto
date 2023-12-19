@@ -31,8 +31,11 @@
             name: "partConfirm",
             id: "partConfirm",
             label: {
-              text: "Provide an overview of your decision (optional)",
+              text: "Additional comments for the provider (optional)",
               isPageHeading: false
+            },
+            hint: {
+              text: "These are optional and should not contain appeal information"
             }
           }) }}    
         {% endset %}
@@ -72,7 +75,10 @@
             {
               value: "Part granted",
               text: "Part granted",
-              checked: checked("cwAppStatus", "Part granted")
+              checked: checked("cwAppStatus", "Part granted"),
+              conditional: {
+                html: partGrantedHtml
+              }
             },
             {
               value: "Rejected",
