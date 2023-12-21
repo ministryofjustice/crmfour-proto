@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Are you sure you want unassign this application? – {{ serviceName }} – GOV.UK Prototype Kit
+  Remove from caseworker? – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -17,14 +17,14 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Unassign application</h1>
+      <h1 class="govuk-heading-xl">Remove from caseworker</h1>
       <form class="form" action="application-details-readonly?appAssigned=no&cwAppStatus=New" method="post">
 
         {{ govukTextarea({
             name: "unassignConfirm",
             id: "unassignConfirm",
             label: {
-              text: "Explain why you unassigning this application",
+              text: "Explain why you removing this application from the caseworker",
               classes: "govuk-label--s",
               isPageHeading: false
             },
@@ -35,7 +35,7 @@
 
         <div class="govuk-button-group">
           {{ govukButton({
-            text: "Unassign application"
+            text: "Remove from caseworker"
           }) }}
 
         <a class="govuk-link govuk-link--no-visited-state" href="application-details">Cancel</a>
