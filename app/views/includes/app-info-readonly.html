@@ -1,6 +1,7 @@
 {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
   {% else %}
   {% if data['cwAppStatus'] == "In progress" %}
+   <strong class="govuk-tag">In progress</strong><br><br>
     {% else %}
     {% if data['cwAppStatus'] == "Granted" %}
       <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
@@ -74,13 +75,27 @@
       {% endif %}
     {% endif %}
   {% endif %}
+  {% if data['cwAppStatus'] == "In progress" %}
+    <br><span class="govuk-body-m"><strong>Caseworker</strong> {{data['caseworker1']}}</span>
+  {% endif %}
 </p>
+<div class="govuk-button-group">
 
-{% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" %}
-  {% else %}
-  {{ govukButton({
-    text: "Assign application to me",
-    href: "application-details-assign",
-    classes: "govuk-button--secondary"
-  }) }}
-{% endif %}
+  {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" %}
+    {% else %}
+    {{ govukButton({
+      text: "Assign application to me",
+      href: "application-details-assign",
+      classes: "govuk-button--secondary"
+    }) }}
+  {% endif %}
+
+  {% if data['cwAppStatus'] == "In progress" or data ['cwAppStatus'] == "Referred" or data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Amended" %}
+    {{ govukButton({
+      text: "Remove from caseworker",
+      href: "application-details-unassign",
+      classes: "govuk-button--secondary"
+    }) }}
+  {% endif %}
+
+</div>
