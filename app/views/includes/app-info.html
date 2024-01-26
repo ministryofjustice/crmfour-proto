@@ -59,21 +59,21 @@
     {{data['serviceType'] or "Interpreter"}}
   {% endif %}
   <br>
-<strong>Rep order date:</strong> {{data['rep-order-day'] or "19" }} {{data['rep-order-month'] or "April" }} {{data['rep-order-year'] or "2023" }}</span>
+<strong>Representation order date:</strong> {{data['rep-order-day'] or "19" }} {{data['rep-order-month'] or "April" }} {{data['rep-order-year'] or "2023" }}</span>
 </p>
 <p>
-  <span class="govuk-body-m"><strong>Date received:</strong> 17th October 2023</span>
+  <span class="govuk-body-m"><strong>Date received:</strong> 17 October 2023</span>
   {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" %}
-    <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21st October 2023</span>
+    <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21 October 2023</span>
     {% else %}
     {% if data['cwAppStatus'] == "Referred" %}
-      <br><span class="govuk-body-m"><strong>Date referred:</strong> 21st October 2023</span>
+      <br><span class="govuk-body-m"><strong>Date referred:</strong> 21 October 2023</span>
       {% else %}
       {% if data['cwAppStatus'] == "Review" %}
-        <br><span class="govuk-body-m"><strong>Date sent to provider:</strong> 21st October 2023</span>
+        <br><span class="govuk-body-m"><strong>Date sent to provider:</strong> 21 October 2023</span>
         {% else %}
         {% if data['cwAppStatus'] == "Returned" %}
-          <br><span class="govuk-body-m"><strong>Date amended:</strong> 21st October 2023</span>
+          <br><span class="govuk-body-m"><strong>Date amended:</strong> 21 October 2023</span>
         {% endif %}
       {% endif %}
     {% endif %}
