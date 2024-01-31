@@ -618,9 +618,20 @@
         </div>
         <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
         <input type="hidden" name="answers-checked" value="true">
-        <button class="govuk-button" data-module="govuk-button">
-          Accept and send
-        </button>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Accept and send",
+            href: "application-submitted"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps?cwAppState=all"
+          }) }}
+        </div>
+
       </form>
     </div>
   </div>
