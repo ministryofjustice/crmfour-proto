@@ -29,19 +29,22 @@
         {% endif %}
       </div>
       {% else %}
-      {% if data['cwAppStatus'] == "Amended" %}
+      {% if data['cwAppStatus'] == "Returned" %}
         <div class="govuk-inset-text">
-          <p><strong>Further information from provider</strong></p>
+          <p><strong>Updated by provider (14 Nov 2023)</strong></p>
             <ul class="govuk-list">
               <li>
-                <a href="#review-quote" class="govuk-link--no-visited-state">Primary quote information</a>
+                <a href="#review-client" class="govuk-link--no-visited-state">Client details</a>
+              </li>
+              <li>
+                <a href="#review-further-info" class="govuk-link--no-visited-state">Further information</a>
               </li>
             </ul>
         </div>
         {% else %}
         {% if data['cwAppStatus'] == "Review"%}
           <div class="govuk-inset-text">
-            <p><strong>Sent back to provider (12th Nov 2023)</strong></p>
+            <p><strong>Sent back to provider (12 Nov 2023)</strong></p>
             <p>Incorrect information:<br>
               {{data['fieldIncorrectInfo']}}
             </p>

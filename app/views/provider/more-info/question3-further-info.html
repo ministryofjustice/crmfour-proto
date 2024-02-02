@@ -23,26 +23,16 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
-    <form class="form" action="task-list?more-primary=complete" method="post">
-
-      <h1 class="govuk-heading-xl">
-        Primary quote
-      </h1>
-      <div class="govuk-inset-text">
-        <p><strong>LAA comment :</strong><br>
-        The attached quote does not match with the data enterered. Please attach the correct quote</p>
-      </div>
+    <form class="form" action="task-list-review?question3-further-info=complete" method="post">
+      <span class="govuk-caption-xl">Required further information</span>
 
       {{ govukTextarea({
-        name: "morePrimary",
-        id: "morePrimary",
+        name: "providerFurtherInfo",
+        id: "providerFurtherInfo",
         label: {
-          text: "Further information (optional)",
-          classes: "govuk-label--s",
-          isPageHeading: false
-        },
-        hint: {
-          text: "Provide information as requested the LAA"
+          text: "Further information",
+          classes: "govuk-label--xl",
+          isPageHeading: true
         }
       }) }}
 

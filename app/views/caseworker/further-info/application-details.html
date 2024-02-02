@@ -12,14 +12,40 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% include "includes/cw-second-nav-mvp.html"%}
+
+  {% include "includes/cw-second-nav.html"%}
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
+
       {% include "includes/app-info.html"%}
+
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: 'application-details',
+          active: true
+        }, 
+        {
+          text: 'Adjust quote',
+          href: 'application-details-adjust',
+          active: false
+        }, 
+        {
+          text: 'Related applications',
+          href: 'application-details-related',
+          active: false
+        }, 
+        {
+          text: 'Application history',
+          href: 'application-details-history',
+          active: false
+        }]
+      }) }}
     </div>
   </div>
 
@@ -64,7 +90,7 @@
           </dl>
         </div>
       </div>
-
+      
       <!--About the request-->
       <h2 class="govuk-heading-m">About the request</h2>
 
@@ -72,25 +98,9 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title" id="review-quote">Primary quote</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['reviewPrimary'] == "review" %}
-                <a class="govuk-link" href="review-primary-details?reviewPrimary=review">Review<span class="govuk-visually-hidden"> primary quote information</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="review-primary-details?reviewPrimary=review">Review<span class="govuk-visually-hidden"> primary quote information</span></a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['checkPrimary'] == null or data['checkPrimary'] == "" %}
-            {% else %}
-            <div class="govuk-inset-text">
-              <p><strong>Further information requested (12th Nov 2023):</strong><br></p>
-              <p>{{data['checkPrimary'] or "The attached quote does not match with the data enterered. Please attach the correct quote"}}</p>
-            </div>
-          {% endif %}
+          
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -207,48 +217,14 @@
 
           <p><a href="application-details-adjust">Adust quote figures</a></p>   
 
-          {% if data['cwAppStatus'] =="Amended" %}
-            <h3 class="govuk-heading-s">Further information from provider</h3>
-            <table class="govuk-table">
-              <tbody class="govuk-table__body">
-                <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header">Submitted 12th Nov 2023</th>
-                  <td class="govuk-table__cell">This is the further further information that the provider added to their application. It comes in one big text block because we cannot easily change how it looks when coming from a textfield. <a href="">newdocument.pdf</a></td>
-                </tr>
-                <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header">Submitted 10th Nov 2023</th>
-                  <td class="govuk-table__cell"> This is earlier further information that the provider added to their application. It comes in one big text block because we cannot easily change how it looks when coming from a textfield.
-                    <a href="">newdocument.pdf</a></a></td>
-                </tr>
-              </tbody>
-            </table>
-          {% endif %}
         </div>
       </div>
-
       <!---Why PA required-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title" id="review-whypa"> Reason for prior authority</h3>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['reviewWhyPA'] == "review" %}
-                <a class="govuk-link" href="review-why-pa?reviewWhyPA=review">Review<span class="govuk-visually-hidden"> reason for prior authority</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="review-why-pa?reviewWhyPA=review">Review<span class="govuk-visually-hidden"> reason for prior authority</span></a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['checkWhyPA'] == null or data['checkWhyPA'] == "" %}
-            {% else %}
-            <div class="govuk-inset-text">
-              <p><strong>Further information requested (12th Nov 2023):</strong></p>
-              <p>{{data['checkWhyPA'] or "Description of case is missing details of mitigatione"}}</p>
-            </div>
-          {% endif %}   
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -260,7 +236,7 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Supplementary documents
+                Supporting documents
               </dt>
               <dd class="govuk-summary-list__value">
                 <a href="">whyPADocs1.pdf</a><br>
@@ -276,26 +252,8 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title" id="review-altquote1">Alternative quote 1</h2>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['reviewAltQuote1'] == "review" %}
-                <a class="govuk-link" href="review-alt-quote?addAlt=Yes&showAltQuote=1&reviewAltQuote1=review">
-                Review<span class="govuk-visually-hidden"> additional item</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="review-alt-quote?addAlt=Yes&showAltQuote=1&reviewAltQuote1=review">Review<span class="govuk-visually-hidden"> additional item</a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
-          {% if data['checkAltQuote1'] == null or data['checkAltQuote1'] == "" %}
-            {% else %}
-            <div class="govuk-inset-text">
-              <p><strong>Further information requested (12th Nov 2023):</strong></p>
-              <p>{{data['checkAltQuote1'] or "Why are the travel cost significantly smaller compared to the primary quote costs? Please attach a detailed quote."}}</p>
-            </div>
-          {% endif %}    
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -422,17 +380,6 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">Alternative quote 2</h2>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['reviewAlt2'] == "review" %}
-                <a class="govuk-link" href="?addAlt=Yes&showAltQuote=2&reviewAlt2=review">
-                Review<span class="govuk-visually-hidden"> additional item</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="?addAlt=Yes&showAltQuote=2&reviewAlt2=review">Review<span class="govuk-visually-hidden"> additional item</a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -560,17 +507,6 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">Alternative quote 3</h2>
-          <ul class="govuk-summary-card__actions">
-            <li class="govuk-summary-card__action">
-              <!--For the proto make links show as not yet selected until the user does the action-->
-              {% if data['reviewAlt3'] == "review" %}
-                <a class="govuk-link" href="?addAlt=Yes&showAltQuote=3&reviewAlt3=review">
-                Review<span class="govuk-visually-hidden"> additional item</span></a>
-                {% else %}
-                <a class="govuk-link--no-visited-state" href="?addAlt=Yes&showAltQuote=3&reviewAlt3=review">Review<span class="govuk-visually-hidden"> additional item</a>
-              {% endif %} 
-            </li>
-          </ul>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -694,12 +630,43 @@
         </div>
       </div>
 
+      <!---Further info -->
+      <h2 class="govuk-heading-m">Required further information</h2>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title" id="review-further-info">Further information (14 Nov 2023)</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Further information
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['providerFurtherInfo'] or "Please see the attached court documetents that show why my client is in prison but not charged." }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Supporting documents
+              </dt>
+              <dd class="govuk-summary-list__value">
+                courtDocs1.pdf<br>
+                courtDocs2.pdf
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
+
+       <!--About the case-->
       <h2 class="govuk-heading-m">About the case </h2>
 
       <!--Client details-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title">Client details</h3>
+          <h3 class="govuk-summary-card__title" id="review-client">Client details</h3>
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
               <!--For the proto make links show as not yet selected until the user does the action
@@ -924,7 +891,7 @@
         </div>
       {% endif %}
 
-       <h2 class="govuk-heading-m">Contact details</h2>
+      <h2 class="govuk-heading-m">Contact details</h2>
       <!--Case contact-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -952,7 +919,7 @@
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Contact details
+                Case contact
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['contact-name'] or "Jim Bowen" }}<br>

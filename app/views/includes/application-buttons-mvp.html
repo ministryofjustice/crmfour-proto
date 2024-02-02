@@ -7,41 +7,18 @@
     href: "decision-confirm-assess"
   }) }}
 
-{% if data['reviewPrimary'] == "complete" or data['reviewAltQuote1'] == "complete" or data['reviewWhyPA'] == "complete"%}
-
   {{ govukButton({
     text: "Send back to provider",
     classes: "govuk-button--secondary",
-    href: "check-answers-moreinfo"
+    href: "further-info-required"
   }) }}
 
-  {% else %}
+  
 
-  {{ govukButton({
-    text: "Send back to provider",
-    classes: "govuk-button--secondary",
-    href: "check-answers-moreinfo-error"
-  }) }}
-
-{% endif %}
-
-  {{ govukButton({
-    text: "Refer to ICA",
-    classes: "govuk-button--secondary",
-    href: "application-details-confirm-refer"
-  }) }}
-</div>
-
-<div class="govuk-button-group">
-  {{ govukButton({
-    text: "Save and exit",
+ {{ govukButton({
+    text: "Save and come back later",
     classes: "govuk-button--secondary",
     href: "../crm-assess?cwAppState=all"
   }) }}
 
-  {{ govukButton({
-    text: "Return to Your applications",
-    classes: "govuk-button--secondary",
-    href: "../crm-assess?cwAppState=all"
-  }) }}
 </div>
