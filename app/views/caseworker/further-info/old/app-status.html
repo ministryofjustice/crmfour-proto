@@ -1,0 +1,82 @@
+{% if data['cwAppStatus'] == "Part granted"%}
+  <div class="govuk-inset-text">
+    <p><strong>Part granted </strong></p>
+    {% if data['partConfirm'] == null %}
+      <p>This application was part granted due to disallowed travel costs.</p>
+      {% else %}
+      <p>{{data['partConfirm']}}</p>
+    {% endif %}
+    </p><a href="application-details-adjust-readonly" class="govuk-link--no-visited-state">Review quote adjustments</a></p>
+  </div>
+  {% else %}
+  {% if data['cwAppStatus'] == "Rejected"%}
+    <div class="govuk-inset-text">
+      <p><strong>Rejected</strong></p>
+      {% if data['rejectedConfirm'] == null %}
+        <p>This application has been rejected as the correct form has not been used. Please use CRM5.</p>
+      {% else %}
+      <p>{{data['rejectedConfirm']}}</p>        
+      {% endif %}
+    </div>
+    {% else %}
+    {% if data['cwAppStatus'] == "Referred"%}
+      <div class="govuk-inset-text">
+        <p><strong>Referred</strong></p>
+        {% if data['referredConfirm'] == null %}
+          <p>Referred to ICA due to questions over the expert used and rates requested by provider.</p>
+          {% else %}
+          <p>{{data['referredConfirm']}}</p>
+        {% endif %}
+      </div>
+      {% else %}
+      {% if data['cwAppStatus'] == "Amended" %}
+        <div class="govuk-inset-text">
+          <p><strong>Further information from provider</strong></p>
+            <ul class="govuk-list">
+              <li>
+                <a href="#review-quote" class="govuk-link--no-visited-state">Primary quote information</a>
+              </li>
+            </ul>
+        </div>
+        {% else %}
+        {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "Review"%}
+          {% if data['reviewPrimary'] == "complete" or data['reviewAltQuote1'] == "complete" or data['reviewWhyPA'] == "complete" %}
+            <div class="govuk-inset-text">
+              <p><strong>Further information requested</strong></p>
+              <ul class="govuk-list">
+                {% if data['reviewPrimary'] == "complete" %}
+                  <li>
+                    <a href="#review-quote" class="govuk-link--no-visited-state">Primary quote comments</a>
+                  </li>
+                {% endif %}
+                {% if data['reviewAltQuote1'] == "complete" %}
+                  <li>
+                    <a href="#review-altquote1" class="govuk-link--no-visited-state">Alternative quote 1 comments</a>
+                  </li>
+                {% endif %}
+                {% if data['reviewWhyPA'] == "complete" %}
+                  <li>
+                    <a href="#review-whypa" class="govuk-link--no-visited-state">Reason for prior authority comments</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+            {% else %}
+            {% if data['cwAppStatus'] == "Review"%}
+              {% if data['reviewPrimary'] !== "complete" or data['reviewAltQuote1'] !== "complete" or data['reviewWhyPA'] !== "complete" %}
+                <div class="govuk-inset-text">
+                  <p><strong>Further information requested</strong></p>
+                  <ul class="govuk-list">
+                    <li>
+                      <a href="#review-quote" class="govuk-link--no-visited-state">Primary quote comments</a>
+                    </li>
+                  </ul>
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endif %}

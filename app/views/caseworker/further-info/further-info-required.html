@@ -1,0 +1,106 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Further information not provided – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+   {% include "includes/cw-second-nav.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Send back to provider</h1>
+
+      <form class="form" action="application-details?cwAppStatus=Review" method="post">
+        {{ govukTextarea({
+          name: "fieldFurtherInfo",
+          id: "fieldFurtherInfo",
+          value: data['fieldFurtherInfo'],
+          label: {
+            text: "Incorrect or further information",
+            classes: "govuk-label--m",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Summarise the actions the provider needs to take, for example, form errors that need correcting or further information that is needed regarding specific parts of their application."
+          }
+        }) }}      
+
+      
+
+        {% set incorrectHtml %}
+          {{ govukTextarea({
+            name: "fieldIncorrectInfo",
+            id: "fieldIncorrectInfo",
+            value: data['fieldIncorrectInfo'],
+            label: {
+              text: "Describe what information is incorrect and needs amending"
+            }
+          }) }}      
+        {% endset -%}
+
+        {% set furtherHtml %}
+          {{ govukTextarea({
+            name: "fieldFurtherInfo",
+            id: "fieldFurtherInfo",
+            value: data['fieldFurtherInfo'],
+            label: {
+              text: "Describe what further information you require"
+            }
+          }) }}      
+        {% endset -%}
+
+        {{ govukCheckboxes({
+          name: "reviewApp",
+          fieldset: {
+            legend: {
+              text: "What needs to be reviewed in this application?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "Select all options that are relevant to you."
+          },
+          items: [
+            {
+              value: "incorrect",
+              text: "Incorrect information",
+              conditional: {
+                html: incorrectHtml
+              }
+            },
+            {
+              value: "further",
+              text: "Further information",
+              conditional: {
+                html: furtherHtml
+              }
+            }
+          ]
+        }) }}
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Submit"
+          }) }}
+
+          <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

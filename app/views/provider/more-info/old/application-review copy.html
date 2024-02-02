@@ -18,20 +18,41 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
     <h1 class="govuk-heading-xl">
-      Information required
+      Provide further information
     </h1>
     <p>Further information is required by the LAA to be able to assess your application.</p>
-
-    <div class="govuk-inset-text">
-      <p><strong>LAA comments (12th Nov 2023):</strong><br>
-        {{data['fieldFurtherInfo']}}
-      </p>
-    </div>
 
     <h2 class="govuk-heading-m">
       LAA comments
     </h2>
 
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Primary quote
+        </dt>
+          <dd class="govuk-summary-list__value">
+          {{data['checkPrimary'] or "Why did the expert need a hotel stay?"}}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Alternative quote 1
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['checkAltQuote1'] or "Why are the travel cost significantly smaller compared to the primary quote costs? Please attach a detailed quote."}}
+        </dd>
+      </div>
+  
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Reason for prior authority
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['checkWhyPA'] or "Description of case is missing details of mitigation"}}
+        </dd>
+      </div>
+    </dl>
 
     <h2 class="govuk-heading-m">
       Provider information

@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Further information required – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+ {% include "includes/cw-second-nav.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+      <h1 class="govuk-heading-xl">Request more information from the provider</h1>
+
+      <form class="form" action="application-details-readonly?cwAppStatus=Review" method="post">
+        <p>Please review and confirm the further information you require from the provider.</p>
+
+        <dl class="govuk-summary-list">
+          {% if data['reviewPrimary'] == "complete" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Primary quote
+              </dt>
+                <dd class="govuk-summary-list__value">
+                {{data['checkPrimary'] or "Why are the travel cost significantly smaller compared to the primary quote costs? Please attach a detailed quote."}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                  <a href="review-primary-details?changePrimary=change">
+                  Change<span class="govuk-visually-hidden"> name</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+          {% if data['reviewAltQuote1'] == "complete" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Alternative quote 1
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['checkAltQuote1'] or "Why are the travel cost significantly smaller compared to the primary quote costs? Please attach a detailed quote."}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="review-alt-quote?changeAltQuote1=change">
+                  Change<span class="govuk-visually-hidden"> name</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+          {% if data['reviewWhyPA'] == "complete" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                 Reason for prior authority
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['checkWhyPA'] or "Description of case is missing details of mitigatione"}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="review-why-pa?changeWhyPA=change">
+                  Change<span class="govuk-visually-hidden"> name</span>
+                </a>
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+  
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Send to provider"
+          }) }}
+         <a class="govuk-link" href="application-details">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
