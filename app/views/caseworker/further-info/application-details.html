@@ -630,36 +630,6 @@
         </div>
       </div>
 
-      <!---Further info -->
-      <h2 class="govuk-heading-m">Required further information</h2>
-
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title" id="review-further-info">Further information (14 Nov 2023)</h3>
-        </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Further information
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['providerFurtherInfo'] or "Please see the attached court documetents that show why my client is in prison but not charged." }}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Supporting documents
-              </dt>
-              <dd class="govuk-summary-list__value">
-                courtDocs1.pdf<br>
-                courtDocs2.pdf
-              </dd>
-            </div>
-          </dl>       
-        </div>
-      </div>
-
        <!--About the case-->
       <h2 class="govuk-heading-m">About the case </h2>
 
@@ -680,6 +650,11 @@
           </ul>
         </div>
         <div class="govuk-summary-card__content">
+          {% if data['cwAppStatus'] == "Returned" %}
+            <div class="govuk-inset-text">
+              <strong>Amended by provider</strong>
+            </div>
+          {% endif %}
           {% if data['fieldClient'] == null or data['fieldClient'] == "" %}
             {% else %}
             <div class="govuk-inset-text">
@@ -938,6 +913,66 @@
           </dl>
         </div>
       </div>
+
+       <!---Further info -->
+      {% if data['cwAppStatus'] == "Returned" %}
+
+        <h2 class="govuk-heading-m">Requested further information</h2>
+
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h3 class="govuk-summary-card__title" id="review-further-info2">Further information - 14 Nov 2023</h3>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Further information
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['providerFurtherInfo'] or "Please see the attached court documetents that show why my client is in prison but not charged." }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Supporting documents
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <a href="">courtDocs1.pdf</a><br>
+                  <a href="">courtDocs2.pdf</a>
+                </dd>
+              </div>
+            </dl>       
+          </div>
+        </div>
+
+         <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h3 class="govuk-summary-card__title" id="review-further-info1">Further information - 10 Nov 2023</h3>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Further information
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['providerFurtherInfo'] or "I've attached some further info here for you to look at." }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Supporting documents
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <a href="">furtherDocs.pdf</a>
+                </dd>
+              </div>
+            </dl>       
+          </div>
+        </div>
+
+      {% endif %}
       
       {% include "includes/application-buttons-mvp.html"%}
 

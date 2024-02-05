@@ -30,16 +30,25 @@
       </div>
       {% else %}
       {% if data['cwAppStatus'] == "Returned" %}
+       
         <div class="govuk-inset-text">
-          <p><strong>Updated by provider (14 Nov 2023)</strong></p>
-            <ul class="govuk-list">
-              <li>
-                <a href="#review-client" class="govuk-link--no-visited-state">Client details</a>
-              </li>
-              <li>
-                <a href="#review-further-info" class="govuk-link--no-visited-state">Further information</a>
-              </li>
-            </ul>
+          <p><strong>Requested further information</strong></p>
+          <ul class="govuk-list">
+            <li>
+              <a href="#review-further-info2" class="govuk-link--no-visited-state">Further information - 14 Nov 2023 </a>
+            </li>
+            <li>
+              <a href="#review-further-info1" class="govuk-link--no-visited-state">Further information - 10 Nov 2023</a>
+            </li>
+          </ul>
+        </div>
+         <div class="govuk-inset-text">
+          <p><strong>Updated by provider  - 14 Nov 2023</strong></p>
+          <ul class="govuk-list">
+            <li>
+              <a href="#review-client" class="govuk-link--no-visited-state">Client details</a>
+            </li>
+          </ul>
         </div>
         {% else %}
         {% if data['cwAppStatus'] == "Review"%}
@@ -48,7 +57,7 @@
             <p>Incorrect information:<br>
               {{data['fieldIncorrectInfo']}}
             </p>
-            <p>Further information:<br>
+            <p>Required further information:<br>
                {{data['fieldFurtherInfo']}}
             </p>
           </div>
