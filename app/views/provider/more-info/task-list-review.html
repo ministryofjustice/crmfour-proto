@@ -24,17 +24,18 @@
         <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
         <strong class="govuk-warning-text__text">
           <span class="govuk-visually-hidden">Warning</span>
-          You need to review and re-submit your application by 23rd July 2023
+          You need to review and re-submit your application by 23rd Nov 2023
         </strong>
       </div>
       <div class="govuk-inset-text">
-        <p><strong>Incorrect information</strong><br>
-          {{data['fieldIncorrectInfo']}}
-        </p>
         <p><strong>Further information required</strong><br>
-            {{data['fieldFurtherInfo']}}
+            {{data['fieldFurtherInfo'] or "Some words here"}}
+        </p>
+        <p><strong>Incorrect information</strong><br>
+          {{data['fieldIncorrectInfo'] or "Some other words here"}}
         </p>
       </div>
+      
     </div>
   </div>
 
@@ -354,6 +355,7 @@
               {% endif %}
             </li>
           </ul>
+
           <!--Question 2B-->
           <h2 class="govuk-heading-m govuk-!-margin-top-5">
             Required further information
@@ -397,6 +399,7 @@
               {% endif %}
             </li>
           </ul>
+          
         <!--Question 3-->
           <h2 class="govuk-heading-m govuk-!-margin-top-5">
             Apply

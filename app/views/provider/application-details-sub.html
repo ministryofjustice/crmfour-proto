@@ -71,6 +71,13 @@
                         <br>
                         <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                         <p>£520.00 allowed</p>
+                        {% else %}
+                        {% if data['app-task'] == "Returned" %}
+                          <p><strong class="govuk-tag govuk-tag--green">Re-submitted</strong></p>
+                          <p>22nd August 2023</p>
+                          <br>
+                          <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+                        {% endif %}
                       {% endif %}
                     {% endif %}
                   {% endif %}
@@ -959,6 +966,43 @@
         </dl>       
       </div>
     </div>
+
+    <!---Further info -->
+     
+    {% if data['app-task'] =="Returned" %}
+     
+      <h2 class="govuk-heading-m">Required further information</h2>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title" id="review-further-info1">{{data['caseworker1']}} - 10 Nov 2023</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <div class="govuk-inset-text">
+            <p>{{data['fieldFurtherInfo'] or "Some words here"}}
+            </p>
+          </div>
+          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Further information
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['providerFurtherInfo'] or "I've attached some further info here for you to look at." }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Supporting documents
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <a href="">furtherDocs.pdf</a>
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
+
+    {% endif %}
 
   </div>
 

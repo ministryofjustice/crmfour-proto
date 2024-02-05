@@ -582,6 +582,46 @@
         </div>
       </div>
 
+      <!---Further info -->
+      <h2 class="govuk-heading-m">Required further information</h2>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Further information</h3>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <!--For the proto make links show as not yet selected until the user does the action-->
+              {% if data['changeWhyPA'] == "change" %}
+                <a class="govuk-link" href="question3-further-info?changeFurtherInfo=change">Change<span class="govuk-visually-hidden"> further information</span></a>
+                {% else %}
+                <a class="govuk-link--no-visited-state" href="question3-further-info?changeFurtherInfo=change">Change<span class="govuk-visually-hidden"> further information</span></a>
+              {% endif %} 
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Further information
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['providerFurtherInfo'] or "Please see the attached court documetents that show why my client is in prison but not charged." }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Supporting documents
+              </dt>
+              <dd class="govuk-summary-list__value">
+                courtDocs1.pdf<br>
+                courtDocs2.pdf
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
+
       
       <h2 class="govuk-heading-m">Now send your application</h2>
       <form action="application-submitted" method="post" novalidate>

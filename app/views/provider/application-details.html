@@ -72,11 +72,18 @@
                         <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                         <p>£520.00 allowed</p>
                         {% else %}
-                        {% if data['app-task'] == "Review" or data['cwAppStatus'] == "Review" %}
+                        {% if data['app-task'] == "Review" %}
                           <p><strong class="govuk-tag govuk-tag--yellow">Review needed</strong></p>
                           <p>22nd August 2023</p>
                           <br>
                           <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+                          {% else %}
+                          {% if data['app-task'] == "Returned" %}
+                            <p><strong class="govuk-tag govuk-tag--green">Re-submitted</strong></p>
+                            <p>22nd August 2023</p>
+                            <br>
+                            <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+                          {% endif %}
                         {% endif %}
                       {% endif %}
                     {% endif %}
@@ -87,7 +94,7 @@
               <button class="govuk-button govuk-button--secondary" data-module="govuk-button" onclick="window.print()">Print this application</button>-->
             </dd>
           </div>
-          {% if data['app-task'] == "Submitted" %}
+          {% if data['app-task'] == "Submitted" or data['app-task'] == "Returned" %}
             {% else %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -126,7 +133,7 @@
                           <p>Review and re-submit your application by 23rd July 2023 else it will be destroyed.</p>
                           {{ govukButton({
                             text: "Review application",
-                            href: "more-info/task-list-review"
+                            href: "form/task-list?ufn=301222/003&laa-ref=LAA-6p4f0r&first-use=no&app-state=all&question-ufn=complete&question1-org=complete&question2-client=complete&question2-case=complete&question3-why-pa=complete&question3-quote=complete&question3-alt-quote=complete&&app-task=Review&"
                           }) }}
                         {% endif %}
                       {% endif %}
@@ -1089,6 +1096,75 @@
         </dl>       
       </div>
     </div>
+
+    <!---Further info -->
+     
+    {% if data['app-task'] =="Returned" %}
+     
+      <h2 class="govuk-heading-m">Required further information</h2>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title" id="review-further-info2">Resubmitted 14 Nov 2023</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <div class="govuk-inset-text">
+            <p><strong>LAA requested:</strong><br>
+            {{data['fieldFurtherInfo'] or "Some words go here"}}
+            </p>
+          </div>
+          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Further information
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['providerFurtherInfo'] or "Please see the attached court documents that show why my client is in prison but not charged." }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Supporting documents
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <a href="">courtDocs1.pdf</a><br>
+                <a href="">courtDocs2.pdf</a>
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title" id="review-further-info1">Resubmitted 10 Nov 2023</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <div class="govuk-inset-text">
+            <p><strong>LAA requested:</strong><br>
+            {{data['fieldFurtherInfo'] or "Some words here"}}
+            </p>
+          </div>
+          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Further information
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['providerFurtherInfo'] or "I've attached some further info here for you to look at." }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Supporting documents
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <a href="">furtherDocs.pdf</a>
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
+
+    {% endif %}
 
   </div>
 
