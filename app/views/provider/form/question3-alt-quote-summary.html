@@ -425,9 +425,8 @@
           </div>
         {% endif %}
         
-        {% if data['addAltQuote'] == "1" or data['addAltQuote'] == "0" or data['addAltQuote'] == null %}
+        {% if data['addAltQuote'] == "1"  %}
           {{ govukRadios({
-            classes: "govuk-radios--inline",
             name: "altAddQuote1",
             fieldset: {
               legend: {
@@ -449,7 +448,6 @@
           {% else %}
           {% if data['addAltQuote'] == "2"%}
             {{ govukRadios({
-              classes: "govuk-radios--inline",
               name: "altAddQuote2",
               fieldset: {
                 legend: {
@@ -468,6 +466,43 @@
                 }
               ]
             }) }}
+          
+            {% else %}
+            {% set noHtml %}
+              {{ govukTextarea({
+                name: "no-alt-quotes-info",
+                id: "no-alt-quotes-info",
+                value: data['no-alt-quotes-info'],
+                label: {
+                  text: "Why did you not get other quotes?"
+                }
+              }) }}
+            {% endset -%}
+
+            {% if data['addAltQuote'] == "0" or data['addAltQuote'] == null %}
+              {{ govukRadios({
+                name: "altAddQuote0",
+                fieldset: {
+                  legend: {
+                    text: "Do you want to add an additional quote?",
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                items: [
+                  {
+                    value: "Yes",
+                    text: "Yes"
+                  },
+                  {
+                    value: "No",
+                    text: "No",
+                    conditional: {
+                      html: noHtml
+                    }
+                  }
+                ]
+              }) }}
+            {% endif %}
           {% endif %}
         {% endif %}
 
