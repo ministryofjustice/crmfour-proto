@@ -45,61 +45,66 @@
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Service cost
+                  Additional items
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {% if data['serviceType'] == "Transcription" %}
-                    £{{data['alt1actualTransTotalCost'] or "360"}}.00
-                    {% else %}
-                    {% if data['serviceType'] == "Translation and transcription" %}
-                      £{{data['alt1actualTransTotalCost'] or "360"}}.00
-                      {% else %}
-                      {% if data['serviceType'] == "Translator" %}
-                        £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                  {{data['alt1Descript'] or "None"}}
+                </dd>
+              </div>
+            </dl>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Costs</th>
+                  <th scope="col" class="govuk-table__header">Total</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Service</td>
+                  <td class="govuk-table__cell">
+                    <!--Service cost-->
+                    {% if data['serviceType'] == "Transcription" %}
+                        £{{data['alt1actualTransTotalCost'] or "760"}}.00
                         {% else %}
-                        {% if data['serviceType'] == "Photocopying" %}
-                          £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                        {% if data['serviceType'] == "Translation and transcription" %}
+                          £{{data['alt1actualTransTotalCost'] or "760"}}.00
                           {% else %}
-                          {% if data['serviceType'] == "DNA report" %}
-                            £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                          {% if data['serviceType'] == "Translator" %}
+                            £{{data['alt1actualTransTotalCost'] or "760"}}.00
                             {% else %}
-                            {% if data['serviceType'] == "Other" %}
-                              £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                            {% if data['serviceType'] == "Photocopying" %}
+                              £{{data['alt1actualTransTotalCost'] or "760"}}.00
                               {% else %}
-                              £{{data['alt1actualTransTotalCost'] or "360"}}.00
+                              {% if data['serviceType'] == "DNA report" %}
+                                £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                                {% else %}
+                                {% if data['serviceType'] == "Other" %}
+                                  £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                                  {% else %}
+                                  £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                                {% endif %}
+                              {% endif %}
                             {% endif %}
                           {% endif %}
                         {% endif %}
                       {% endif %}
-                    {% endif %}
-                  {% endif %}
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Travel
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  £{{data['actualalt1TravelTotal'] or "200"}}.00
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Additional items
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  £{{data['alt1AddCost'] or "420"}}.00
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Total cost
-                </dt>
-                <dd class="govuk-summary-list__value">
-                    £{{data['actualalt1TotalCost'] or "1000"}}.00
-                </dd>
-              </div>
-            </dl>
+                  </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Travel</td>
+                  <td class="govuk-table__cell">£{{data['actualalt1TravelTotal'] or "0"}}.00</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Additional</td>
+                  <td class="govuk-table__cell">£{{data['alt1AddCost'] or "0"}}.00</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell govuk-table__header">Total cost</td>
+                  <td class="govuk-table__cell"><strong>£{{data['actualalt1TotalCost'] or "760"}}.00</strong></td>
+                </tr>          
+            </tbody>
+            </table>  
           </div>
         </div>
 
