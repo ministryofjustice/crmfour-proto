@@ -26,6 +26,20 @@
 
       <form class="form" action="decision-sent" method="post">
 
+        {% set grantedHtml %}
+          {{ govukTextarea({
+            name: "grantedConfirm",
+            id: "grantedConfirm",
+            label: {
+              text: "Additional comments for the provider (optional)",
+              isPageHeading: false
+            },
+            hint: {
+              text: "These are optional and should not contain appeal information"
+            }
+          }) }}    
+        {% endset %}
+        
         {% set partGrantedHtml %}
           {{ govukTextarea({
             name: "partConfirm",
@@ -70,7 +84,10 @@
             {
               value: "Granted",
               text: "Granted",
-              checked: checked("cwAppStatus", "Granted")
+              checked: checked("cwAppStatus", "Granted"),
+              conditional: {
+                html: grantedHtml
+              }
             },
             {
               value: "Part granted",
