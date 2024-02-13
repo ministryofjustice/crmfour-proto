@@ -44,7 +44,8 @@
       {% if data['cwAppStatus'] == "Rejected" %}
         <span class="govuk-body-l"><strong>Allowed: </strong>£0.00
         {% else %}
-        {% if data['serviceAdjust'] !== null and data['cwAppStatus'] == "In progress" %}
+        {% if data['serviceAdjust'] == null %}
+        {% else %}
           <span class="govuk-body-l"><strong>Allowed: </strong>£440.00
         {% endif %}
       {% endif %}
@@ -79,15 +80,3 @@
     {% endif %}
   {% endif %}
 </p>
-
-<div class="govuk-button-group">
-
-  {% if data['cwAppStatus'] == "In progress" or data ['cwAppStatus'] == "Referred" or data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Returned" %}
-    {{ govukButton({
-      text: "Remove from list",
-      href: "application-details-unassign",
-      classes: "govuk-button--secondary"
-    }) }}
-  {% endif %}
-
-</div>
