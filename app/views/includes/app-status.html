@@ -54,11 +54,12 @@
         {% if data['cwAppStatus'] == "Review"%}
           <div class="govuk-inset-text">
             <p><strong>Sent back to provider - 12 Nov 2023</strong></p>
+            
+            <p>Further information request:<br>
+               {{data['fieldFurtherInfo']}}
+            </p>
             <p>Incorrect information:<br>
               {{data['fieldIncorrectInfo']}}
-            </p>
-            <p>Required further information:<br>
-               {{data['fieldFurtherInfo']}}
             </p>
           </div>
         {% endif %}
