@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Request sent back to provider – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+   {% include "includes/cw-nav-your.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "Request sent"
+      }) }}
+
+      <p class="govuk-body">We have sent the following request back to the provider:</p>
+      <p><strong>Further information request</strong><br>
+      {{data['fieldFurtherInfo']}}</p>
+
+      <p><strong>Incorrect information</strong><br>
+      {{data['fieldIncorrectInfo']}}</p>
+
+
+      <form class="form" action="application-details?cwAppStatus=Review" method="post">
+             
+
+        
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Return to application",
+            href: "application-details?cwAppStatus=Review"
+          }) }}
+          {{ govukButton({
+            text: "Assess next application",
+              classes: "govuk-button--secondary",
+            href: "application-details?cwAppStatus=In progress"
+          }) }}
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

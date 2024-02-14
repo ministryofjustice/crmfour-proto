@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Further information not provided – {{ serviceName }} – GOV.UK Prototype Kit
+  Send back to provider – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% set bodyClasses = 'caseworker-width' %}
@@ -19,10 +19,10 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Send back to provider</h1>
 
-      <form class="form" action="application-details?cwAppStatus=Review" method="post">
+      <form class="form" action="application-details-further-info-sent?cwAppStatus=Review" method="post">
              
-
         {% set incorrectHtml %}
           {{ govukTextarea({
             name: "fieldIncorrectInfo",
@@ -50,8 +50,8 @@
           fieldset: {
             legend: {
               text: "What needs to be reviewed in this application?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
             }
           },
           hint: {
@@ -60,7 +60,7 @@
           items: [
             {
               value: "further",
-              text: "Further information",
+              text: "Further information request",
               conditional: {
                 html: furtherHtml
               }
