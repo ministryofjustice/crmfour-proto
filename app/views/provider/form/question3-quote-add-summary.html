@@ -27,12 +27,12 @@
         <h1 class="govuk-heading-xl">You've added 2 additional costs</h1>
         <form class="form" action="/question3-quote-add-summary1" method="post">
         {% else %}
-        {% if data['addCost'] =="1" %}
-          <h1 class="govuk-heading-xl">You've added 1 additional cost</h1>
-          <form class="form" action="/question3-quote-add-summary1" method="post">
-          {% else %}
-          <h1 class="govuk-heading-xl">You've have no additional costs</h1>
+        {% if data['addCost'] =="0" %}
+          <h1 class="govuk-heading-xl">You've added 0 additional costs</h1>
           <form class="form" action="/question3-quote-add-summary0" method="post">
+          {% else %}
+          <h1 class="govuk-heading-xl">You've have 1 additional cost</h1>
+          <form class="form" action="/question3-quote-add-summary1" method="post">
         {% endif %}
       {% endif %}
            
