@@ -12,7 +12,11 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-   {% include "includes/cw-nav-your.html"%}
+  {% include "includes/cw-nav-your.html"%}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -81,7 +85,12 @@
             text: "Submit"
           }) }}
 
-          <a class="govuk-link" href="javascript:window.history.back()">Cancel</a>
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-assess"
+          }) }}
+
         </div>
 
       </form>
