@@ -24,15 +24,21 @@
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
     <form class="form" action="task-list?question3-further-info=complete" method="post">
-      <span class="govuk-caption-xl">Required further information</span>
+      <span class="govuk-caption-xl">About the request </span>
+      <h1 class="govuk-heading-xl">Further information requested</h1>
+
+      <div class="govuk-inset-text">
+        <p><strong>Caseworker request you should respond to</strong></p>
+        <p>{{data['fieldFurtherInfo'] or "Please provide details of the case mitgation"}}
+        </p>
+      </div>
 
       {{ govukTextarea({
         name: "providerFurtherInfo",
         id: "providerFurtherInfo",
         label: {
-          text: "Further information",
-          classes: "govuk-label--xl",
-          isPageHeading: true
+          text: "Enter the information requested",
+          classes: "govuk-label--s"
         }
       }) }}
 
