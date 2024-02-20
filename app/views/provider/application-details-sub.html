@@ -970,37 +970,61 @@
     <!---Further info -->
      
     {% if data['app-task'] =="Returned" %}
-     
-      <h2 class="govuk-heading-m">Required further information</h2>
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title" id="review-further-info1">{{data['caseworker1']}} - 10 Nov 2023</h3>
-        </div>
-        <div class="govuk-summary-card__content">
-          <div class="govuk-inset-text">
-            <p>{{data['fieldFurtherInfo'] or "Some words here"}}
-            </p>
+           
+       <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 21 Oct 2023</h3>
           </div>
-          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Further information
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['providerFurtherInfo'] or "I've attached some further info here for you to look at." }}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Supporting documents
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <a href="">furtherDocs.pdf</a>
-              </dd>
-            </div>
-          </dl>       
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Information request
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['fieldFurtherInfo'] or "Please provide supplementary docuementation for the case mitgation"}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Your response
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['providerFurtherInfo'] or "Please see the attached documetents that show my client was not in the in UK" }}<br>
+                  <a href="">courtDocs1.pdf</a><br>
+                  <a href="">courtDocs2.pdf</a>
+                </dd>
+              </div>
+            </dl>       
+          </div>
         </div>
-      </div>
+
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 19 Oct 2023</h3>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Information request
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Please provide details of the case mitgation
+
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Your response
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['providerFurtherInfo'] or "My client was not in the country at the time of the alledged assult." }}<br>
+                </dd>
+              </div>
+            </dl>       
+          </div>
+        </div>
 
     {% endif %}
 
