@@ -31,19 +31,31 @@
 
         {% call govukFieldset({
           legend: {
-            text: "Service details",
+            text: "Service provider details",
             classes: "govuk-fieldset__legend--m"
           }
         }) %}
-        
+
           {{ govukInput({
             label: {
-              text: "Contact full name",
+              text: "First name",
               classes: "govuk-label--s"
             },
-            id: "expert-name",
-            name: "expert-name",
-            value: data['expert-name']
+            classes: "govuk-input--width-20",
+            id: "expert-first-name",
+            name: "expert-first-name",
+            value: data['expert-first-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Last name",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-last-name",
+            name: "expert-last-name",
+            value: data['expert-last-name']
           }) }}
 
           {{ govukInput({
