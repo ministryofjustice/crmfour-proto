@@ -37,10 +37,14 @@
         {% endif %}
         {% else %}
         {% if data['prisonLaw'] == "No" or data['prisonLaw'] == null %}
-          {% if data['changeCase'] == "change" %}
-            <form class="form" action="check-answers" method="post">
+          {% if data['interrupt'] == "detainedYestoNo" or data['interrupt'] == "detainedNotoYes" %}
+            <form class="form" action="question-interrupt" method="post">
             {% else %}
-            <form class="form" action="question2-case-hearing" method="post">
+            {% if data['changeCase'] == "change" %}
+              <form class="form" action="check-answers" method="post">
+              {% else %}
+              <form class="form" action="question2-case-hearing" method="post">
+            {% endif %}
           {% endif %}
         {% endif %}
       {% endif %}

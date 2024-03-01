@@ -24,8 +24,11 @@
       <span class="govuk-caption-xl">About the request </span>
       <h1 class="govuk-heading-xl">Primary quote</h1>
 
-      
-      <form class="form" action="question3-quote-prep" method="post">
+      {% if data ['interrupt'] == "serviceChange"%}
+        <form class="form" action="question-interrupt" method="post">
+        {% else%}
+        <form class="form" action="question3-quote-prep" method="post">
+      {% endif %}
 
         {% include "includes/service-list.html" %}
 

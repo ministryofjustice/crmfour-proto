@@ -213,43 +213,57 @@
 
             <!--Section 3 - quote-->
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
-
-              {% if data['question2-case'] != "complete" and data['question2-hearing'] != "complete" %}
-                <!--If the case questions are not complete, all of the other questions are the status Cannot start-->
+              {% if data['question3-quote'] =="draft" and data['interrupt'] == "detainedYestoNo" %}
                 <div class="govuk-task-list__name-and-hint">
-                  Primary quote
-                </div>
-                <div class="govuk-task-list__status govuk-task-list__status--cannot-start-yet" id="quote-status">
-                  Cannot start yet
-                </div>
-                {% else %}
-                {% if data['question3-quote'] == null or data['question3-quote'] == "notStarted" %}
-                  <!--If question3-quote has not been started show the status Not yet started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
-                  <div class="govuk-task-list__name-and-hint">
-                    <a href="question3-quote?question3-quote=notStarted&addTravel=No&addAdd=No" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="quote-status">
+                    <a href="question3-quote-travel?question3-quote=complete" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="quote-status">
                       Primary quote
                     </a>
                   </div>
                   <div class="govuk-task-list__status" id="quote-status">
-                    <strong class="govuk-tag govuk-tag--blue">
-                      Not yet started
-                    </strong>
-                  </div>
-                  {% else %}
-                  <!--For all other states AND show visited link status-->
+                  <strong class="govuk-tag govuk-tag--light-blue">
+                    In progress
+                  </strong>
+                </div>
+                {% else %}
+                {% if data['question3-quote'] =="complete" %}
+                  <!--If question3-quote is complete, show the status Completed-->
                   <div class="govuk-task-list__name-and-hint">
-                    <a class="govuk-link govuk-task-list__link" href="question3-quote" aria-describedby="quote-status">
+                    <a href="question3-quote-summary" class="govuk-link govuk-task-list__link"  aria-describedby="quote-status">
                       Primary quote
                     </a>
                   </div>
-                  {% if data['question3-quote'] =="complete" %}
-                    <!--If question3-quote is complete, show the status Completed-->
-                    <div class="govuk-task-list__status" id="quote-status">
-                      Completed
+                  <div class="govuk-task-list__status" id="quote-status">
+                    Completed
+                  </div>
+                  {% else %}
+                  {% if data['question2-case'] != "complete" and data['question2-hearing'] != "complete" %}
+                    <!--If the case questions are not complete, all of the other questions are the status Cannot start-->
+                    <div class="govuk-task-list__name-and-hint">
+                      Primary quote
+                    </div>
+                    <div class="govuk-task-list__status govuk-task-list__status--cannot-start-yet" id="quote-status">
+                      Cannot start yet
                     </div>
                     {% else %}
-                    {% if data['question3-quote'] =="draft" %}
-                      <!--If question3-quote is draft, show the status Draft-->
+                    {% if data['question3-quote'] == null or data['question3-quote'] == "notStarted" %}
+                      <!--If question3-quote has not been started show the status Not yet started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
+                      <div class="govuk-task-list__name-and-hint">
+                        <a href="question3-quote?question3-quote=notStarted&addTravel=No&addAdd=No" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="quote-status">
+                          Primary quote
+                        </a>
+                      </div>
+                      <div class="govuk-task-list__status" id="quote-status">
+                        <strong class="govuk-tag govuk-tag--blue">
+                          Not yet started
+                        </strong>
+                      </div>
+                      {% else %}
+                      <!--For all other states AND show visited link status-->
+                      <div class="govuk-task-list__name-and-hint">
+                        <a class="govuk-link govuk-task-list__link" href="question3-quote" aria-describedby="quote-status">
+                          Primary quote
+                        </a>
+                      </div>
                       <div class="govuk-task-list__status" id="quote-status">
                         <strong class="govuk-tag govuk-tag--light-blue">
                           In progress
@@ -262,47 +276,58 @@
             </li>
             <!--Section 3 - alternative quotes -->
             <li class="govuk-task-list__item govuk-task-list__item--with-link">
-              {% if data['question3-quote'] != "complete"  %}
-                <!--If the case question are not complete, all of the other questions are the status Cannot start-->
+              {% if data['interrupt'] == "detainedYestoNo" %}
                 <div class="govuk-task-list__name-and-hint">
-                  Alternative quotes
+                  <a class="govuk-link govuk-task-list__link" href="question3-alt-quotes-q" aria-describedby="alt-quote-status">
+                    Alternative quotes
+                  </a>
                 </div>
-                <div class="govuk-task-list__status govuk-task-list__status--cannot-start-yet" id="alt-quote-status">
-                  Cannot start yet
+                <div class="govuk-task-list__status" id="alt-quote-status">
+                  Completed
                 </div>
                 {% else %}
-                {% if data['question3-quote'] == "complete" %}
-                  {% if data['question3-alt-quote'] != "complete" and data['question3-alt-quote'] != "notStarted" %}
-                    <div class="govuk-task-list__name-and-hint">
-                      <a href="question3-alt-quotes-q?question3-alt-quote=notStarted?serviceType=Other" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="alt-quote-status">
-                        Alternative quotes
-                      </a>
-                    </div>
-                    <div class="govuk-task-list__status" id="alt-quote-status">
-                      <strong class="govuk-tag govuk-tag--blue">
-                        Not yet started
-                      </strong>
-                    </div>
-                    {% else %}
-                    <!--For all other states AND show visited link status-->
-                    <div class="govuk-task-list__name-and-hint">
-                      <a class="govuk-link govuk-task-list__link" href="question3-alt-quotes-q" aria-describedby="alt-quote-status">
-                        Alternative quotes
-                      </a>
-                    </div>
-                    {% if data['question3-alt-quote'] =="complete" %}
-                      <!--If question3-alt-quote is complete, show the status Completed-->
+                {% if data['question3-quote'] != "complete"  %}
+                  <!--If the case question are not complete, all of the other questions are the status Cannot start-->
+                  <div class="govuk-task-list__name-and-hint">
+                    Alternative quotes
+                  </div>
+                  <div class="govuk-task-list__status govuk-task-list__status--cannot-start-yet" id="alt-quote-status">
+                    Cannot start yet
+                  </div>
+                  {% else %}
+                  {% if data['question3-quote'] == "complete" %}
+                    {% if data['question3-alt-quote'] != "complete" and data['question3-alt-quote'] != "notStarted" %}
+                      <div class="govuk-task-list__name-and-hint">
+                        <a href="question3-alt-quotes-q?question3-alt-quote=notStarted?serviceType=Other" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="alt-quote-status">
+                          Alternative quotes
+                        </a>
+                      </div>
                       <div class="govuk-task-list__status" id="alt-quote-status">
-                        Completed
+                        <strong class="govuk-tag govuk-tag--blue">
+                          Not yet started
+                        </strong>
                       </div>
                       {% else %}
-                      {% if data['question3-alt-quote'] =="draft" %}
-                        <!--If question3-alt-quote is draft, show the status Draft-->
+                      <!--For all other states AND show visited link status-->
+                      <div class="govuk-task-list__name-and-hint">
+                        <a class="govuk-link govuk-task-list__link" href="question3-alt-quotes-q" aria-describedby="alt-quote-status">
+                          Alternative quotes
+                        </a>
+                      </div>
+                      {% if data['question3-alt-quote'] =="complete" %}
+                        <!--If question3-alt-quote is complete, show the status Completed-->
                         <div class="govuk-task-list__status" id="alt-quote-status">
-                          <strong class="govuk-tag govuk-tag--light-blue">
-                            In progress
-                          </strong>
+                          Completed
                         </div>
+                        {% else %}
+                        {% if data['question3-alt-quote'] =="draft" %}
+                          <!--If question3-alt-quote is draft, show the status Draft-->
+                          <div class="govuk-task-list__status" id="alt-quote-status">
+                            <strong class="govuk-tag govuk-tag--light-blue">
+                              In progress
+                            </strong>
+                          </div>
+                        {% endif %}
                       {% endif %}
                     {% endif %}
                   {% endif %}
