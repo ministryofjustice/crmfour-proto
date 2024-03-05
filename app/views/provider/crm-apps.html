@@ -228,7 +228,7 @@
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell"><a href="application-details?app-task=Review&first-use=no&app-state=all&ufn=301222/003&laa-ref=LAA-6p4f0r&question-ufn=complete&question1-org=complete&question2-client=complete&question2-case=complete&question3-why-pa=complete&question3-quote=complete&question3-alt-quote=complete" class="govuk-link--no-visited-state" data-sort-value="301222003">301222/003</a></td>
                 <td class="govuk-table__cell">Dami Olu</td>
-                <td class="govuk-table__cell" data-sort-value="230821">21 Aug 2023</td>
+                <td class="govuk-table__cell" data-sort-value="240307">7 March 2024</td>
                 <td class="govuk-table__cell">LAA-6p4f0r</td>
                 <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Update needed</strong></td>
               </tr>
@@ -276,7 +276,7 @@
                   {% endif %}
                 </td>
                 <td class="govuk-table__cell">Roger Blackbeard</td>
-                <td class="govuk-table__cell" data-sort-value="230712">12 July 2023</td>
+                <td class="govuk-table__cell" data-sort-value="231114">14 Nov 2023</td>
                 <td class="govuk-table__cell">LAA-4f6e2b</td>
               </tr>
               <tr class="govuk-table__row">
@@ -284,8 +284,8 @@
                  <a href="application-details?question1-org=complete&ufn=231123/114&laa-ref=LAA-6t3d5w&app-task=Returned" class="govuk-link--no-visited-state" data-sort-value="231123114">231123/114</a>
 
                 </td>
-                <td class="govuk-table__cell">Roger Blackbeard</td>
-                <td class="govuk-table__cell" data-sort-value="230712">14 Nov 2023</td>
+                <td class="govuk-table__cell">Dami Olu</td>
+                <td class="govuk-table__cell" data-sort-value="240309"><span id="date"></span></td>
                 <td class="govuk-table__cell">LAA-6t3d5w</td>
               </tr>
             </body>
@@ -327,5 +327,13 @@
       
   </div>
 </div>
+
+  <script>
+    const date = new Date();
+    const formattedDate = date.toLocaleDateString('en-GB', {
+      day: '2-digit', month: 'short', year: 'numeric'
+    }).replace(/ /g, ' ');
+    document.getElementById("date").innerHTML = formattedDate;
+  </script>  
 
 {% endblock %}
