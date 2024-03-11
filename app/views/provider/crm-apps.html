@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-  {% include "includes/header.html"%}
+  {% include "includes/header1.html"%}
 {% endblock %}
 
 
@@ -11,6 +11,11 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
+  <!--<div class="moj-organisation-nav" aria-label="Organisation switcher">
+    <div class="moj-organisation-nav__title">Office {{data ['officeCodeNo'] or "1A2B3C" }}</div>
+    <a href="nscc-choose-office" class="moj-organisation-nav__link">Change office</a>
+  </div>
+  -->
 {% endblock %}
 
 {% block content %}
@@ -31,16 +36,14 @@
       <p>You have not started any applications.</p>
       {{ govukButton({
         text: "Make a new application",
-        href: "/provider/form/question-prison?question1-org=notStarted&question2-client=notStarted&question2-case=notStarted",
-        isStartButton: true
+        href: "/provider/form/question-prison?question1-org=notStarted&question2-client=notStarted&question2-case=notStarted"
       }) }}
 
       {% else %}
 
       {{ govukButton({
         text: "Make a new application",
-        href: "/provider/form/question-prison?question1-org=notStarted&question2-client=notStarted&question2-case=notStarted",
-        isStartButton: true
+        href: "/provider/form/question-prison?question1-org=notStarted&question2-client=notStarted&question2-case=notStarted"
       }) }}
         
       {% if data['app-state'] == "draft" or data['app-state'] == null %}
