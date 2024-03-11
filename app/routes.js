@@ -18,6 +18,18 @@ router.get('/provider/form/auto-complete-example', async (req, res, next) => {
     res.render('/provider/form/auto-complete-example', { courtLists: courtLists, hearingOutcomeLists: hearingOutcomeLists, matterTypeLists: matterTypeLists })
   })
 
+ //Office accounts
+router.post('/nscc-office', function(request, response) {
+
+    var officeCodeQ = request.session.data['officeCodeQ']
+    if (officeCodeQ == "No"){
+        response.redirect("/provider/nscc-choose-office")
+    } 
+    if (officeCodeQ == "Yes"){
+        response.redirect("provider/crm-apps")
+    }
+}) 
+
 //Eligibility
 router.post('/question1-eligibility', function(request, response) {
 
