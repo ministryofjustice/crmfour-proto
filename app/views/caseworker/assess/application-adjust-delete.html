@@ -1,16 +1,20 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-  {% include "includes/header.html"%}
+  {% include "includes/header-cw.html"%}
 {% endblock %}
 
 {% block pageTitle %}
-  Are you sure you want to delete this adjustment? – {{ serviceName }} – GOV.UK Prototype Kit
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Are you sure you want to delete this adjustment? – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
+
   {% include "includes/cw-nav-your.html"%}
+  
 {% endblock %}
 
 {% block content %}
