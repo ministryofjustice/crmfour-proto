@@ -23,7 +23,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Adjust travel cost</h1>
 
-      <form class="form" action="application-details-adjust#travelID" method="post">      
+      <form class="form" action="application-details-adjust?travelAdjust=Yes#travelID" method="post">      
         <p>Adjust the providers' costs by changing the values.</p>
 
         <!--Travel-->
@@ -78,9 +78,8 @@
         </h2>
 
         {{ govukTextarea({
-          name: "travelAdjust",
-          value: data['travelAdjust'],
-          id: "travelAdjust",
+          name: "travelAdjustField",
+          id: "travelAdjustField",
           label: {
             text: "Explain your decision",
             classes: "govuk-label--s",

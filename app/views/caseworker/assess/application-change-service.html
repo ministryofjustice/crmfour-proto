@@ -24,7 +24,7 @@
       <h1 class="govuk-heading-xl">Adjust service costs</h1>
       <h2 class="govuk-heading-l">{{data['serviceType'] or "Interpreter"}} cost</h1>
 
-      <form class="form" action="application-details-adjust#serviceID" method="post">
+      <form class="form" action="application-details-adjust?serviceAdjust=Yes#serviceID" method="post">
         <p>Adjust the providers' costs by changing the values.</p>
 
         {% if data['serviceType'] == "Transcription" %}
@@ -316,9 +316,8 @@
         {% endif %}
 
         {{ govukTextarea({
-          name: "serviceAdjust",
-          value: data['serviceAdjust'],
-          id: "serviceAdjust",
+          name: "serviceAdjustField",
+          id: "serviceAdjustField",
           label: {
             text: "Explain your decision",
             classes: "govuk-label--s",

@@ -57,11 +57,11 @@
 
       <h4 class="govuk-heading-m" id="serviceID">{{data['serviceType'] or "Interpreter"}} cost</h4>
 
-      {% if data['serviceAdjust'] == null %}
-        {% else %}
+      {% if data['serviceAdjust'] == "Yes" %}
         <div class="govuk-inset-text">
-          {{data['serviceAdjust']}}
+          {{data['serviceAdjustField']}}
         </div>
+        {% else %}
       {% endif %}
 
       {% if data['serviceType'] == "Transcription" %}
@@ -77,7 +77,7 @@
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">Amount</td>
               <td class="govuk-table__cell">20 minutes</td>
-              {% if data['transNoMins'] == null %}
+              {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
                 <td class="govuk-table__cell">{{data['transNoMins'] or ""}} minutes</td>
@@ -86,7 +86,7 @@
              <tr class="govuk-table__row">
               <td class="govuk-table__cell">Cost</td>
               <td class="govuk-table__cell">£20.00 per minute</td>
-              {% if data['transCostMin'] == null %}
+              {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
                 <td class="govuk-table__cell">£{{data['transCostMin'] or ""}}.00 per minute</td>
@@ -95,7 +95,7 @@
              <tr class="govuk-table__row">
               <td class="govuk-table__cell">Total</td>
               <td class="govuk-table__cell">£400.00</td>
-              {% if data['actualTransTotal'] == null %}
+              {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
                 <td class="govuk-table__cell">£{{data['actualTransTotal'] or ""}}.00</td>
@@ -118,7 +118,7 @@
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Amount</td>
                 <td class="govuk-table__cell">20 minutes</td>
-                {% if data['transtransNoMins'] == null %}
+                {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                   <td class="govuk-table__cell"></td>
                   {% else %}
                   <td class="govuk-table__cell">{{data['transtransNoMins'] or ""}} minutes</td>
@@ -127,7 +127,7 @@
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Cost</td>
                 <td class="govuk-table__cell">£20.00 per minute</td>
-                {% if data['transtransCostMin'] == null %}
+                {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                   <td class="govuk-table__cell"></td>
                   {% else %}
                   <td class="govuk-table__cell">£{{data['transtransCostMin'] or ""}}.00 per minute</td>
@@ -136,7 +136,7 @@
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Total</td>
                 <td class="govuk-table__cell">£400.00</td>
-                {% if data['actualTransTransTotal'] == null %}
+                {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                   <td class="govuk-table__cell"></td>
                   {% else %}
                   <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or ""}}.00</td>
@@ -159,7 +159,7 @@
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Amount</td>
                   <td class="govuk-table__cell">20 words</td>
-                  {% if data['translatorWords'] == null %}
+                  {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                     <td class="govuk-table__cell"></td>
                     {% else %}
                     <td class="govuk-table__cell">{{data['translatorWords'] or ""}} words</td>
@@ -168,7 +168,7 @@
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Cost</td>
                   <td class="govuk-table__cell">£20.00 per word</td>
-                  {% if data['translatorCostWord'] == null %}
+                  {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                     <td class="govuk-table__cell"></td>
                     {% else %}
                     <td class="govuk-table__cell">£{{data['translatorCostWord'] or ""}}.00 per minute</td>
@@ -177,7 +177,7 @@
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Total</td>
                   <td class="govuk-table__cell">£400.00</td>
-                  {% if data['actualTranslatorTotal'] == null %}
+                  {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                     <td class="govuk-table__cell"></td>
                     {% else %}
                     <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or ""}}.00</td>
@@ -200,7 +200,7 @@
                   <tr class="govuk-table__row">
                     <td class="govuk-table__cell">Amount</td>
                     <td class="govuk-table__cell">20 words</td>
-                    {% if data['photoNoPages'] == null %}
+                    {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                       <td class="govuk-table__cell"></td>
                       {% else %}
                       <td class="govuk-table__cell">{{data['photoNoPages'] or ""}} words</td>
@@ -209,7 +209,7 @@
                   <tr class="govuk-table__row">
                     <td class="govuk-table__cell">Cost</td>
                     <td class="govuk-table__cell">£20.00 per word</td>
-                    {% if data['photoCostPage'] == null %}
+                    {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                       <td class="govuk-table__cell"></td>
                       {% else %}
                       <td class="govuk-table__cell">£{{data['photoCostPage'] or ""}}.00 per word</td>
@@ -218,7 +218,7 @@
                   <tr class="govuk-table__row">
                     <td class="govuk-table__cell">Total</td>
                     <td class="govuk-table__cell">£400.00</td>
-                    {% if data['actualPhotoTotal'] == null %}
+                    {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                       <td class="govuk-table__cell"></td>
                       {% else %}
                       <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or ""}}.00</td>
@@ -241,7 +241,7 @@
                     <tr class="govuk-table__row">
                       <td class="govuk-table__cell">Amount</td>
                       <td class="govuk-table__cell">2 hours 0 minutes</td>
-                      {% if data['otherNoHours-hours'] == null %}
+                      {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                         <td class="govuk-table__cell"></td>
                         {% else %}
                         <td class="govuk-table__cell">{{data['otherNoHours-hours'] or "2"}} hours {{data['otherNoHours-mins'] or "0"}} minutes</td>
@@ -250,7 +250,7 @@
                     <tr class="govuk-table__row">
                       <td class="govuk-table__cell">Cost</td>
                       <td class="govuk-table__cell">£200 per hour</td>
-                      {% if data['otherCostTime'] == null %}
+                      {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                         <td class="govuk-table__cell"></td>
                         {% else %}
                         <td class="govuk-table__cell">£{{data['otherCostTime'] or "200"}} per hour</td>
@@ -259,7 +259,7 @@
                     <tr class="govuk-table__row">
                       <td class="govuk-table__cell">Total</td>
                       <td class="govuk-table__cell">£400.00</td>
-                      {% if data['actualOtherTotal'] == null %}
+                      {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                         <td class="govuk-table__cell"></td>
                         {% else %}
                         <td class="govuk-table__cell">£{{data['actualOtherTotal'] or ""}}.00</td>
@@ -283,7 +283,7 @@
                       <tr class="govuk-table__row">
                         <td class="govuk-table__cell">Amount</td>
                         <td class="govuk-table__cell">2 items</td>
-                        {% if data['otherNoItems'] == null %}
+                        {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                           <td class="govuk-table__cell"></td>
                           {% else %}
                           <td class="govuk-table__cell">{{data['otherNoItems'] or ""}} items</td>
@@ -292,7 +292,7 @@
                       <tr class="govuk-table__row">
                         <td class="govuk-table__cell">Cost</td>
                         <td class="govuk-table__cell">£200.00 per item</td>
-                        {% if data['otherItemsCost'] == null %}
+                        {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                           <td class="govuk-table__cell"></td>
                           {% else %}
                           <td class="govuk-table__cell">£{{data['otherItemsCost'] or ""}}.00 per item</td>
@@ -301,7 +301,7 @@
                       <tr class="govuk-table__row">
                         <td class="govuk-table__cell">Total</td>
                         <td class="govuk-table__cell">£400.00</td>
-                        {% if data['actualOtherTotal'] == null %}
+                        {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                           <td class="govuk-table__cell"></td>
                           {% else %}
                           <td class="govuk-table__cell">£{{data['actualOtherTotal'] or ""}}.00</td>
@@ -325,7 +325,7 @@
                         <tr class="govuk-table__row">
                           <td class="govuk-table__cell">Amount</td>
                           <td class="govuk-table__cell">1 report</td>
-                          {% if data['dnaNoReport'] == null %}
+                          {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                             <td class="govuk-table__cell"></td>
                             {% else %}
                             <td class="govuk-table__cell">{{data['dnaNoReport'] or ""}} report</td>
@@ -334,7 +334,7 @@
                         <tr class="govuk-table__row">
                           <td class="govuk-table__cell">Cost</td>
                           <td class="govuk-table__cell">£400 per report</td>
-                          {% if data['dnaReportCost'] == null %}
+                          {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                             <td class="govuk-table__cell"></td>
                             {% else %}
                             <td class="govuk-table__cell">£{{data['dnaReportCost'] or ""}} per report</td>
@@ -343,7 +343,7 @@
                         <tr class="govuk-table__row">
                           <td class="govuk-table__cell">Total</td>
                           <td class="govuk-table__cell">£400.00</td>
-                          {% if data['actualDNATotal'] == null %}
+                          {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                             <td class="govuk-table__cell"></td>
                             {% else %}
                             <td class="govuk-table__cell">£{{data['actualDNATotal'] or ""}}.00</td>
@@ -366,7 +366,7 @@
                         <tr class="govuk-table__row">
                           <td class="govuk-table__cell">Amount</td>
                           <td class="govuk-table__cell">2 hour 0 minutes</td>
-                          {% if data['generalNoHours-hours'] == null %}
+                            {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                             <td class="govuk-table__cell"></td>
                             {% else %}
                             <td class="govuk-table__cell">{{data['generalNoHours-hours'] or "2"}} hours {{data['generalNoHours-mins'] or "0"}} minutes</td>
@@ -375,7 +375,7 @@
                         <tr class="govuk-table__row">
                           <td class="govuk-table__cell">Cost</td>
                           <td class="govuk-table__cell">£200 per hour</td>
-                          {% if data['generalNoHours-hours'] == null %}
+                          {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                             <td class="govuk-table__cell"></td>
                             {% else %}
                             <td class="govuk-table__cell">£{{data['generalCost'] or "200"}} per hour</td>
@@ -384,7 +384,7 @@
                         <tr class="govuk-table__row">
                           <td class="govuk-table__cell">Total</td>
                           <td class="govuk-table__cell">£400.00</td>
-                          {% if data['actualGeneralTotal'] == null %}
+                          {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                             <td class="govuk-table__cell"></td>
                             {% else %}
                             <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or ""}}.00</td>
@@ -400,11 +400,25 @@
           {% endif %}
         {% endif %}
       {% endif %}
-      {{ govukButton({
-        text: "Adjust service costs",
-        href: "application-change-service",
-        classes: "govuk-button--secondary"
-      }) }}
+     
+
+      {% if data['serviceAdjust'] == "Yes" %}
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Adjust service cost",
+            href: "application-change-service",
+            classes: "govuk-button--secondary"
+          }) }}
+
+          <a class="govuk-link govuk-link--no-visited-state" href="application-adjust-delete?deleteAdjust=service">Delete service cost adjustment</a>
+        </div>
+        {% else %}
+        {{ govukButton({
+          text: "Adjust service costs",
+          href: "application-change-service",
+          classes: "govuk-button--secondary"
+        }) }}
+      {% endif %}
           
 
       <h4 class="govuk-heading-m" id="travelID">Travel cost</h4>
@@ -413,11 +427,11 @@
         <p>No travel costs added</p>
         {% else %}
 
-        {% if data['travelAdjust'] == null %}
-          {% else %}
+        {% if data['travelAdjust'] == 'Yes' %}
           <div class="govuk-inset-text">
-            {{data['travelAdjust']}}
+            {{data['travelAdjustField']}}
           </div>
+          {% else %}
         {% endif %}
 
         <p>Reason for travel cost: "{{data['whyTravel'] or "The expert lives in Ireland"}}"</p>
@@ -434,7 +448,7 @@
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">Time</td>
               <td class="govuk-table__cell">3 hours 0 minutes</td>
-              {% if data['travelTime-hours'] == null %}
+              {% if data['travelAdjust'] == "No" or data['travelAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
                 <td class="govuk-table__cell">{{data['travelTime-hours'] or ""}} hours {{data['travelTime-mins'] or "0"}} minutes</td>
@@ -443,7 +457,7 @@
              <tr class="govuk-table__row">
               <td class="govuk-table__cell">Cost</td>
               <td class="govuk-table__cell">£40.00 per hour</td>
-              {% if data['travelCostTime'] == null %}
+              {% if data['travelAdjust'] == "No" or data['travelAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
                 <td class="govuk-table__cell">£{{data['travelCostTime'] or ""}}.00 per hour</td>
@@ -452,7 +466,7 @@
              <tr class="govuk-table__row">
               <td class="govuk-table__cell">Total</td>
               <td class="govuk-table__cell">£120.00</td>
-              {% if data['actualTravelTotal'] == null %}
+              {% if data['travelAdjust'] == "No" or data['travelAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
                 <td class="govuk-table__cell">£{{data['actualTravelTotal'] or ""}}.00</td>
@@ -460,12 +474,24 @@
             </tr>
           </tbody>
         </table>
-        {{ govukButton({
-          text: "Adjust travel costs",
-          href: "application-change-travel",
-          classes: "govuk-button--secondary"
-        }) }}
-         
+
+        {% if data['travelAdjust'] == "Yes" %}
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Adjust travel costs",
+              href: "application-change-service",
+              classes: "govuk-button--secondary"
+            }) }}
+
+            <a class="govuk-link govuk-link--no-visited-state" href="application-adjust-delete?deleteAdjust=travel">Delete travel cost adjustment</a>
+          </div>
+          {% else %}
+          {{ govukButton({
+            text: "Adjust travel costs",
+            href: "application-change-travel",
+            classes: "govuk-button--secondary"
+          }) }}
+        {% endif %}         
 
       {% endif %}
 
@@ -475,11 +501,11 @@
         {% else %}
 
         <h4 class="govuk-heading-m" id="additional1ID">Additional cost 1</h4>
-        {% if data['addCost1Adjust'] == null %}
-          {% else %}
+        {% if data['add1Adjust'] == "Yes" %}
           <div class="govuk-inset-text">
             {{data['addCost1Adjust']}}
           </div>
+          {% else %}
         {% endif %}
         <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
 
@@ -495,7 +521,7 @@
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">Time</td>
               <td class="govuk-table__cell">4 hours 0 minutes</td>
-              {% if data['actualAdd1Total'] == null %}
+              {% if data['add1Adjust'] == "No" or data['add1Adjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
                 <td class="govuk-table__cell">{{data['addTime1-hours'] or ""}} hours {{data['addTime1-mins'] or "0"}} minutes</td>
@@ -504,7 +530,7 @@
              <tr class="govuk-table__row">
               <td class="govuk-table__cell">Cost</td>
               <td class="govuk-table__cell">£40.00 per hour</td>
-              {% if data['actualAdd1Total'] == null %}
+              {% if data['add1Adjust'] == "No" or data['add1Adjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
                 <td class="govuk-table__cell">£{{data['addCostTime1'] or ""}} per hour</td>
@@ -513,7 +539,7 @@
              <tr class="govuk-table__row">
               <td class="govuk-table__cell">Total</td>
               <td class="govuk-table__cell">£120.00</td>
-              {% if data['actualAdd1Total'] == null %}
+              {% if data['add1Adjust'] == "No" or data['add1Adjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
                 <td class="govuk-table__cell">£{{data['actualAdd1Total'] or ""}}.00</td>
@@ -522,60 +548,23 @@
           </tbody>
         </table>
 
-        {{ govukButton({
-          text: "Adjust additional cost",
-          href: "application-change-additionalCost1",
-          classes: "govuk-button--secondary"
-        }) }}
-          
+        {% if data['add1Adjust'] == "Yes" %}
+          <div class="govuk-button-group">
+            {{ govukButton({
+            text: "Adjust additional cost 1",
+            href: "application-change-additionalCost1",
+              classes: "govuk-button--secondary"
+            }) }}
 
-
-        <h4 class="govuk-heading-m" id="additional2ID">Additional cost 2</h4>
-        <p>Cost description: "{{data['addCost2'] or "Hotel"}} - {{data['whyAdd2'] or "The expert traveled from Ireland and was unable to return the same day."}}"</p>
-
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Details</th>
-              <th scope="col" class="govuk-table__header">Requested</th>
-              <th scope="col" class="govuk-table__header">Caseworker adjusted</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Time</td>
-              <td class="govuk-table__cell">4 hours 0 minutes</td>
-              {% if data['actualAdd2Total'] == null %}
-                <td class="govuk-table__cell"></td>
-                {% else %}
-                <td class="govuk-table__cell">{{data['addTime2-hours'] or ""}} hours {{data['addTime1-mins'] or "0"}} minutes</td>
-              {% endif %}
-            </tr>
-             <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Cost</td>
-              <td class="govuk-table__cell">£40.00 per hour</td>
-              {% if data['actualAdd2Total'] == null %}
-                <td class="govuk-table__cell"></td>
-                {% else %}
-                <td class="govuk-table__cell">£{{data['addCostTime2'] or ""}} per hour</td>
-              {% endif %}
-            </tr>
-             <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Total</td>
-              <td class="govuk-table__cell">£120.00</td>
-              {% if data['actualAdd2Total'] == null %}
-                <td class="govuk-table__cell"></td>
-                {% else %}
-                <td class="govuk-table__cell">£{{data['actualAdd2Total'] or ""}}.00</td>
-              {% endif %}
-            </tr>
-          </tbody>
-        </table>
-        {{ govukButton({
-          text: "Adjust additional cost",
-          href: "application-change-additionalCost2",
-          classes: "govuk-button--secondary"
-        }) }}
+            <a class="govuk-link govuk-link--no-visited-state" href="application-adjust-delete?deleteAdjust=add1">Delete additional cost 1 adjustment</a>
+          </div>
+          {% else %}
+          {{ govukButton({
+            text: "Adjust additional cost 1",
+            href: "application-change-additionalCost1",
+            classes: "govuk-button--secondary"
+          }) }}
+        {% endif %}
           
       {% endif %}
 
