@@ -23,6 +23,10 @@
                 {% else %}
                 {% if data['cwAppStatus'] == "Auto granted" %}
                   <strong class="govuk-tag govuk-tag--green">Auto granted</strong><br><br>
+                    {% else %}
+                  {% if data['cwAppStatus'] == "Expired" %}
+                    <strong class="govuk-tag govuk-tag--red">Expired</strong><br><br>
+                  {% endif %}
                 {% endif %}
               {% endif %}
             {% endif %}
@@ -56,7 +60,7 @@
     {{data['serviceType'] or "Interpreter"}}
   {% endif %}
   <br>
-<strong>Representation order date:</strong> {{data['rep-order-day'] or "19" }} {{data['rep-order-month'] or "April" }} {{data['rep-order-year'] or "2023" }}</span>
+<strong>Representation order date:</strong> 19 April 2023</span>
 </p>
 <p>
   <span class="govuk-body-m"><strong>Date received:</strong> 17 October 2023</span>
@@ -71,6 +75,10 @@
         {% else %}
         {% if data['cwAppStatus'] == "Returned" %}
           <br><span class="govuk-body-m"><strong>Date amended:</strong> 21 October 2023</span>
+          {% else %}
+          {% if data['cwAppStatus'] == "Expired" %}
+            <br><span class="govuk-body-m"><strong>Date expired</strong> 5 November 2023</span>
+          {% endif %}
         {% endif %}
       {% endif %}
     {% endif %}
