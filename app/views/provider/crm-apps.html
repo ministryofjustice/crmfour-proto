@@ -20,8 +20,6 @@
 
 {% block content %}
 
-
-
 <div class="govuk-grid-row"> 
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">
@@ -200,7 +198,7 @@
           {% endset %}
       
         {% set manageAssessedHTML %}
-          <h2 class="govuk-heading-m">Assessed</h2>          
+          <h2 class="govuk-heading-m">Reviewed</h2>          
           <table class="govuk-table" data-module="moj-sortable-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -219,15 +217,15 @@
                 <td class="govuk-table__cell">LAA-1z5f7w</td>
                 <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
               </tr>
-              <!--
+              
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell"><a href="application-details?ufn=311222/003&laa-ref=LAA-9p4f0e&app-task=Referred" class="govuk-link--no-visited-state" data-sort-value="311222003">311222/003</a></td>
                 <td class="govuk-table__cell">Jamie Innes</td>
-                <td class="govuk-table__cell" data-sort-value="230821">21st Aug 2023</td>
+                <td class="govuk-table__cell" data-sort-value="230821">21 Aug 2023</td>
                 <td class="govuk-table__cell">LAA-9p4f0e</td>
-                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Referred</strong></td>
+                <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Expired</strong></td>
               </tr>
-              -->
+              
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell"><a href="application-details?app-task=Review&first-use=no&app-state=all&ufn=301222/003&laa-ref=LAA-6p4f0r&question-ufn=complete&question1-org=complete&question2-client=complete&question2-case=complete&question3-why-pa=complete&question3-quote=complete&question3-alt-quote=complete" class="govuk-link--no-visited-state" data-sort-value="301222003">301222/003</a></td>
                 <td class="govuk-table__cell">Dami Olu</td>
@@ -298,7 +296,7 @@
         {{ govukTabs ({
           items: [
           { 
-            label: "Assessed",
+            label: "Reviewed",
             id: "manage-assessed",
             panel: {
               html: manageAssessedHTML
