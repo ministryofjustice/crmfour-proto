@@ -22,26 +22,18 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Check your answers</h1>
-    </div>
-
-    
+      {% if data['app-task'] == "Review" %}  
+        <div class="govuk-inset-text">
+          <p><strong>Your application needs editing as it has incorrect information</strong></p>
+          <p> {{data['fieldIncorrectInfo'] or "The postcode of the expert does not match the one partially supplied on the CRM4. Please clarify and provide the correct address which is where they are based/located and not the correspondence or organisation address."}}</p>          
+        </div>
+      {% endif %}
+      </div>
   </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% if data['app-task'] == "Review" %}  
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-visually-hidden">Warning</span>
-          Your application needs editing as it has incorrect information
-        </strong>
-      </div>
-      <div class="govuk-inset-text">
-        <p><strong>Recieved from LAA 7th March 2024</strong></p>
-        <p> {{data['fieldIncorrectInfo'] or "The postcode of the expert does not match the one partially supplied on the CRM4. Please clarify and provide the correct address which is where they are based/located and not the correspondence or organisation address."}}</p>          
-      </div>
-    {% endif %}
+   
       <div class="govuk-summary-card">
 
         <div class="govuk-summary-card__title-wrapper">
