@@ -53,6 +53,12 @@
               {{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
             </p>
           </div>
+          {% else %}
+          {% if data['cwAppStatus'] == "Granted" %}
+            <div class="govuk-inset-text">
+              <p>{{data['grantedConfirm'] or "This is an optional comment from the caseworker"}}</p>        
+            </div>
+          {% endif %}
         {% endif %}
       {% endif %}
     {% endif %}
