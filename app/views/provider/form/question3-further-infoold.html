@@ -23,12 +23,13 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
-    <form class="form" action="task-listFI?app-task=Review" method="post">
-      <h1 class="govuk-heading-xl">Further information request</h1>
+    <form class="form" action="task-list?question3-further-info=complete" method="post">
+      <span class="govuk-caption-xl">About the request </span>
+      <h1 class="govuk-heading-xl">Further information requested</h1>
 
       <div class="govuk-inset-text">
-        <p><strong>Your application needs the following further information to proceed</strong></p>
-        <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this is much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+        <p><strong>Caseworker request you should respond to</strong></p>
+        <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
         </p>
       </div>
 
@@ -63,12 +64,7 @@
 
       <div class="govuk-button-group">
         {{ govukButton({
-          text: "Save and continue TL"
-        }) }}
-
-        {{ govukButton({
-          text: "Save and continue CYA",
-          href: "check-answersFI?app-task=Review"
+          text: "Save and continue"
         }) }}
 
         {% if data['app-state'] =="empty" or data['app-state'] ==null %}

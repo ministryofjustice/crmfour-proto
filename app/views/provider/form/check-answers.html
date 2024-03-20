@@ -22,11 +22,39 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Check your answers</h1>
-    </div>
+      
+      {% if data['app-task'] == "Review" %}  
+        <div class="govuk-inset-text">
+          <p><strong>
+            Your application needs existing information corrected
+          </strong></p>
+          <p> {{data['fieldIncorrectInfo'] or "The postcode of the service provider does not match the one partially supplied on the CRM4. Please clarify and provide the correct address which is where they are based/located and not the correspondence or organisation address."}}</p>          
+        </div>
+        {% else %}
+        {% if data['app-task'] == "ReviewError" %} 
+          {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: [
+              {
+                text: "You have not made corrections to your application",
+                href: "#incorrect-error"
+              }
+            ]
+          }) }}
+          <div class="govuk-form-group govuk-form-group--error">
+            <p id="incorrect-error" class="govuk-error-message" aria-describedby="passport-issued-hint passport-issued-error"><strong>
+              Your application needs existing information corrected
+            </strong></p>
+            <p> {{data['fieldIncorrectInfo'] or "The postcode of the service provider does not match the one partially supplied on the CRM4. Please clarify and provide the correct address which is where they are based/located and not the correspondence or organisation address."}}</p>          
+          </div>
+        {% endif %}
+      {% endif %}
+      </div>
   </div>
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+   
       <div class="govuk-summary-card">
 
         <div class="govuk-summary-card__title-wrapper">
@@ -590,10 +618,10 @@
             <ul class="govuk-summary-card__actions">
               <li class="govuk-summary-card__action">
                 <!--For the proto make links show as not yet selected until the user does the action-->
-                {% if data['changeWhyPA'] == "change" %}
-                  <a class="govuk-link" href="question3-further-info?changeFurtherInfo=change">Change<span class="govuk-visually-hidden"> further information</span></a>
+                {% if data['changeFI'] == "change" %}
+                  <a class="govuk-link" href="question3-further-info?changeFI=change">Change<span class="govuk-visually-hidden"> further information</span></a>
                   {% else %}
-                  <a class="govuk-link--no-visited-state" href="question3-further-info?changeFurtherInfo=change">Change<span class="govuk-visually-hidden"> further information</span></a>
+                  <a class="govuk-link--no-visited-state" href="question3-further-info?changeFI=change">Change<span class="govuk-visually-hidden"> further information</span></a>
                 {% endif %} 
               </li>
             </ul>
@@ -610,10 +638,10 @@
               </div>
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
-                  Further information
+                  Further information provided
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['providerFurtherInfo'] or "Please see the attached court documetents that show why my client is in prison but not charged." }}
+                  {{data['providerFurtherInfo'] or "Please see the detasiled breakdown of the preparation time required as provided by the service provider" }}
                 </dd>
               </div>
               <div class="govuk-summary-list__row">

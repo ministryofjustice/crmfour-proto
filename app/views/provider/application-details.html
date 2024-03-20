@@ -97,9 +97,6 @@
                   {% endif %}
                 {% endif %}
               {% endif %} 
-
-              <!---<br>
-              <button class="govuk-button govuk-button--secondary" data-module="govuk-button" onclick="window.print()">Print this application</button>-->
             </dd>
           </div>
           {% if data['app-task'] == "Submitted" or data['app-task'] == "Returned" %}
@@ -137,10 +134,12 @@
                         }) }}
                       {% else %}
                         {% if data['app-task'] == "Review" %}
-                          <p>Review and answer the LAA requests and resubmit your application by 21st March 2024. After this date your application will be closed.</p>
+                          <p>Updates are needed to proceed with your application.<p>
+                          <p>Review the requests and resubmit your application by <strong>21 March 2024</strong>. </p>
+                          <p>After this date your application will be automatically closed.</p>
                           {{ govukButton({
                             text: "Update application",
-                            href: "form/task-list?ufn=301222/003&laa-ref=LAA-6p4f0r&first-use=no&app-state=all&question-ufn=complete&question1-org=complete&question2-client=complete&question2-case=complete&question3-why-pa=complete&question3-quote=complete&question3-alt-quote=complete&question3-further-info=notStarted&app-task=Review&serviceType=Translation&expert-first-name=John&expert-last-name=Smith&expert-org-name=Walkers Crips&expert-postcode=BS6 4RF&rep-order-day=12&rep-order-month=04&rep-order-year=2024&maat=123456578&detained=No&prisons=&poca=No&main-offence=Conspire to supply a class A controlled drug - cocaine&hearing=No&plea=Not guilty&courtType=Crown court (excluding Central Criminal Court)&&addTravel=Yes&addAdd=No&travelTime-hours=2&travelTime-mins=0&travelCostTime=12&client-first-name=Dami&client-last-name=Olu&client-dob-day=12&client-dob-month=June&client-dob-year=2001"
+                            href: "form/question3-further-info?changeFI=change&ufn=301222/003&laa-ref=LAA-6p4f0r&first-use=no&app-state=all&question-ufn=complete&question1-org=complete&question2-client=complete&question2-case=complete&question3-why-pa=complete&question3-quote=complete&question3-alt-quote=complete&question3-further-info=notStarted&app-task=Review&serviceType=Translation&expert-first-name=John&expert-last-name=Smith&expert-org-name=Walkers Crips&expert-postcode=BS6 4RF&rep-order-day=12&rep-order-month=04&rep-order-year=2024&maat=123456578&detained=No&prisons=&poca=No&main-offence=Conspire to supply a class A controlled drug - cocaine&hearing=No&plea=Not guilty&courtType=Crown court (excluding Central Criminal Court)&&addTravel=Yes&addAdd=No&travelTime-hours=2&travelTime-mins=0&travelCostTime=12&client-first-name=Dami&client-last-name=Olu&client-dob-day=12&client-dob-month=June&client-dob-year=2001"
                           }) }}
                           {% else %}
                           {% if data['app-task'] == "Expired" %}
@@ -1205,8 +1204,7 @@
                   Information request
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. 
-
+                  Please provide counsel's advice, providing information as to why further funding is necessary & ATTACH IT ELECTRONICALLY. CBAM 7.2.6a
                 </dd>
               </div>
               <div class="govuk-summary-list__row">
@@ -1214,7 +1212,9 @@
                   Your response
                 </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['providerFurtherInfo'] or "My client was not in the country at the time of the alledged assult." }}<br>
+                  {{data['providerFurtherInfo'] or "Relevant documents attached as requested" }}<br>
+                  <a href="">Docs1.pdf</a><br>
+                  <a href="">Docs2.pdf</a>
                 </dd>
               </div>
             </dl>       
