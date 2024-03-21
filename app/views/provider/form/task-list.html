@@ -20,20 +20,10 @@
         Your application progress
       </h1>
 
-      {% if data['app-task'] == "Review" %}  
-        <div class="govuk-warning-text">
-          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-          <strong class="govuk-warning-text__text">
-            <span class="govuk-visually-hidden">Warning</span>
-            Review the LAA's request and re-submit your application
-          </strong>
-        </div>
+       {% if data['app-task'] == "Review" %}  
         <div class="govuk-inset-text">
-          <p><strong>Your application needs editing as it has incorrect information </strong></p>
-           <p> {{data['fieldIncorrectInfo'] or "The postcode of the expert does not match the one partially supplied on the CRM4. Please clarify and provide the correct address which is where they are based/located and not the correspondence or organisation address."}}</p>
-          <p><strong>Complete the Further Information section</strong></p>
-          <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this is much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
-          </p>
+          <p><strong> Your application needs existing information corrected</strong></p>
+           <p> {{data['fieldIncorrectInfo'] or "The postcode of the service provider does not match the one partially supplied on the CRM4. Please clarify and provide the correct address which is where they are based/located and not the correspondence or organisation address."}}</p>
         </div>
         
       {% endif %}
