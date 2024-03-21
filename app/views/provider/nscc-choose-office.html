@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+
+
+{% block pageTitle %}
+What is your office number? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+        <form class="form" action="crm-apps" method="post">
+
+       {{ govukRadios({
+            name: "officeCodeNo",
+            value: data['officeCodeNo'],
+            fieldset: {
+              legend: {
+                text: "Which office account do you want to work on?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "1A2B3C",
+                text: "1A2B3C"
+              },
+              {
+                value: "3A2B3C",
+                text: "3A2B3C"
+              },
+              {
+                value: "4A2B3C",
+                text: "4A2B3C"
+              }
+            ]
+          }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
