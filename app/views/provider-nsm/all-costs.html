@@ -6,7 +6,7 @@
 
 
 {% block pageTitle %}
-  Claims details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+  Claims details - All costs {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -23,7 +23,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">
-      All costs
+      Claim details
     </h1>  
 
     <!--Claim status-->
@@ -113,11 +113,11 @@
                     <p>The claim has been refered to the ICA.</p>
                     {% else %}
                     {% if data['app-task'] == "Part granted" %}
-                      <p>This claim was part granted due to disallowed travel costs. </p>
+                      <p>This claim was part granted due to somethings were not right. </p>
                       <div class="govuk-error-summary__body">
                           <ul class="govuk-list govuk-list--bullet">
                             <li>
-                              <a href="application-details-adjust" class="govuk-link--no-visited-state">Review travel cost adjustments</a>
+                              <a href="adjusted-costs#workItems" class="govuk-link--no-visited-state">Review adjustments to Work items</a>
                             </li>
                           </ul>
                         </div>
@@ -169,17 +169,92 @@
         active: false
       }, 
       {
-        text: 'All costs',
-        href: 'all-costs',
-        active: true
-      }, 
-      {
         text: 'Adjusted costs',
         href: 'adjusted-costs',
         active: false
+      }, 
+      {
+        text: 'All costs',
+        href: 'all-costs',
+        active: true
       }
       ]
     }) }}
+
+     <!--TAbs items -->
+    {% set lettersCallsHtml %}
+      <h3 class="govuk_header--m" id="lettersCalls">Letter and calls</h3>
+      <p>No adjustments were made </p>
+    {% endset %}
+    {% set disbursementsHtml %} 
+      <h3 class="govuk_header--m" id="disbursements">Disbursements</h3>
+      <p>No adjustments were made </p>
+    {% endset %}
+    {% set workItemsHtml %} 
+      <h3 class="govuk_header--m" id="workItems">Work items</h3>
+
+      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s">31 January 2024</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Type of Work</th>
+            <th class="govuk-table__header" scope="col">Uplift requested</th>
+            <th class="govuk-table__header" scope="col">Provider requested</th>
+            <th class="govuk-table__header" scope="col">Uplift allowed</th>
+            <th class="govuk-table__header" scope="col">Caseworker allowed</th>
+            <th class="govuk-table__header" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Attendance without counsel</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">1 hour<br>0 minutes</td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell">0 hours 30 minutes</td>
+            <td class="govuk-table__cell"><a data-turbo="false" href="">View</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Attendance with counsel</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">4 hour<br>0 minutes</td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><a data-turbo="false" href="">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+       <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s">1 January 2024</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Type of Work</th>
+            <th class="govuk-table__header" scope="col">Uplift requested</th>
+            <th class="govuk-table__header" scope="col">Provider requested</th>
+            <th class="govuk-table__header" scope="col">Uplift allowed</th>
+            <th class="govuk-table__header" scope="col">Caseworker allowed</th>
+            <th class="govuk-table__header" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Attendance without counsel</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">2 hour<br>0 minutes</td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><a data-turbo="false" href="">View</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Attendance with counsel</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">4 hour<br>0 minutes</td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><a data-turbo="false" href="">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+    {% endset %}
 
     {{ govukTabs({
       items: [

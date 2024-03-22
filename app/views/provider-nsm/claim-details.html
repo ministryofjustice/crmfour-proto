@@ -6,7 +6,7 @@
 
 
 {% block pageTitle %}
-  Claims details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+  Claims details - Overview {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -113,11 +113,11 @@
                     <p>The claim has been refered to the ICA.</p>
                     {% else %}
                     {% if data['app-task'] == "Part granted" %}
-                      <p>This claim was part granted due to disallowed travel costs. </p>
+                      <p>This claim was part granted due to somethings were not right. </p>
                       <div class="govuk-error-summary__body">
                           <ul class="govuk-list govuk-list--bullet">
                             <li>
-                              <a href="application-details-adjust" class="govuk-link--no-visited-state">Review travel cost adjustments</a>
+                              <a href="adjusted-costs#workItems" class="govuk-link--no-visited-state">Review adjustments to Work items</a>
                             </li>
                           </ul>
                         </div>
@@ -169,13 +169,13 @@
         active: true
       }, 
       {
-        text: 'All costs',
-        href: 'all-costs',
+        text: 'Adjusted costs',
+        href: 'adjusted-costs',
         active: false
       }, 
       {
-        text: 'Adjusted costs',
-        href: 'adjusted-costs',
+        text: 'All costs',
+        href: 'all-costs',
         active: false
       }
       ]
