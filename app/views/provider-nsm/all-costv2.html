@@ -1,0 +1,642 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header2.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Claims details - All costs {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Claim details
+    </h1>  
+
+    <!--Claim status-->
+    {% include "includes/app-statusNSM.html"%}
+  </div>
+  <div class="govuk-grid-column-full">
+
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [{
+        text: 'Overview',
+        href: 'claim-details',
+        active: false
+      }, 
+      {
+        text: 'Costs',
+        href: 'all-costs#costs',
+        active: true
+      }, 
+      {
+        text: 'Adjusted costs',
+        href: 'adjusted-costs',
+        active: false
+      }
+      ]
+    }) }}
+
+   
+        <!--
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header govuk-!-width-one-third">Item</th>
+              <th scope="col" class="govuk-table__header">Time requested</th>
+              <th scope="col" class="govuk-table__header">Cost requested</th>
+              <th scope="col" class="govuk-table__header">Time allowed</th>
+              <th scope="col" class="govuk-table__header">Cost allowed</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item1'] or "Attendance without counsel assigned"}}</td>
+              <td class="govuk-table__cell">1 hours<br> 0 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
+              <td class="govuk-table__cell">0 hours<br> 30 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>
+              
+            </tr>
+             <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item2'] or "Attendance with counsel assigned"}}</td>
+              <td class="govuk-table__cell">9 hours<br> 10 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem2'] or "100"}}</td>
+              <td class="govuk-table__cell">9 hours<br> 10 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem2'] or "100"}}</td>
+              
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item3'] or "Advocacy"}}</td>
+              <td class="govuk-table__cell">2 hours<br> 10 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem3'] or "100"}}</td>
+              <td class="govuk-table__cell">2 hours<br> 10 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem3'] or "100"}}</td>
+              
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
+              <td class="govuk-table__cell">3 hours<br> 10 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem4'] or "100"}}</td>
+              <td class="govuk-table__cell">3 hours<br> 10 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem4'] or "100"}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item5'] or "Calls"}}</td>
+              <td class="govuk-table__cell">4 hours<br> 10 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem5'] or "100"}}</td>
+              <td class="govuk-table__cell">4 hours<br> 10 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem5'] or "100"}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item6'] or "Letters"}}</td>
+              <td class="govuk-table__cell">1 hours<br> 10 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem6'] or "100"}}</td>
+              <td class="govuk-table__cell">1 hours<br> 10 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem6'] or "100"}}</td>
+              
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">Total cost</td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><strong>£{{data['totalCost'] or "700"}}</strong></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><strong>£{{data['totalCost'] or "600"}}</strong></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">Total including VAT</td>
+               <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><strong>£{{data['totalCost'] or "770"}}</strong></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><strong>£{{data['totalCost'] or "660"}}</strong></td>
+            </tr>
+          </tbody>
+        </table> 
+        -->
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Your costs summary</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-third">Item</th>
+          <th scope="col" class="govuk-table__header">Requested</th>
+          <th scope="col" class="govuk-table__header">Requested with VAT</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
+          <td class="govuk-table__cell">£{{data['totalPerItem1'] or "700"}}</td>
+          <td class="govuk-table__cell">£{{data['totalPerItem2'] or "770"}}</td>          
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
+          <td class="govuk-table__cell">£{{data['totalPerItem3'] or "50"}}</td>
+          <td class="govuk-table__cell">£{{data['totalPerItem3'] or "50"}}</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
+          <td class="govuk-table__cell">£{{data['totalPerItem4'] or "50"}}</td>
+          <td class="govuk-table__cell">£{{data['totalPerItem4'] or "50"}}</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
+          <td class="govuk-table__cell">-</td>
+          <td class="govuk-table__cell">£{{data['totalPerItem6'] or "300"}}</td>
+        </tr>
+      </tbody>
+    </table> 
+
+    
+
+    <!--Tabs work items -->
+    {% set workItemsHtml %} 
+      <h3 class="govuk_header--m" id="workItems">Work items</h3>
+
+      <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          View work items summary
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <!--
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Item</th>
+              <th scope="col" class="govuk-table__header">Time requested</th>
+              <th scope="col" class="govuk-table__header">Time allowed</th>
+              <th scope="col" class="govuk-table__header">Cost requested <br>with VAT</th>
+              <th scope="col" class="govuk-table__header">Cost allowed <br>with VAT</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
+              <td class="govuk-table__cell">1 hours 30 minutes</td>
+              <td class="govuk-table__cell">1 hours 0 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>             
+            </tr>
+             <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
+              <td class="govuk-table__cell">10 hours 30 minutes</td>
+              <td class="govuk-table__cell">5 hours 0 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
+              
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item3'] or "Advocacy"}}</td>
+              <td class="govuk-table__cell">10 hours 30 minutes</td>
+              <td class="govuk-table__cell">5 hours 0 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
+              <td class="govuk-table__cell">10 hours 30 minutes</td>
+              <td class="govuk-table__cell">5 hours 0 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item5'] or "Travel"}}</td>
+              <td class="govuk-table__cell">10 hours 30 minutes</td>
+              <td class="govuk-table__cell">5 hours 0 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item6'] or "waiting"}}</td>
+              <td class="govuk-table__cell">10 hours 30 minutes</td>
+              <td class="govuk-table__cell">5 hours 0 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>          
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">Total</td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">£1000</td>
+              <td class="govuk-table__cell">£1200</td>          
+            </tr>
+          </tbody>
+        </table>    
+        --> 
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Item</th>
+              <th scope="col" class="govuk-table__header">Time requested</th>
+              <th scope="col" class="govuk-table__header">Cost requested</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
+              <td class="govuk-table__cell">1 hours 30 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>             
+            </tr>
+             <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
+              <td class="govuk-table__cell">5 hours 0 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
+              
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item3'] or "Advocacy"}}</td>
+              <td class="govuk-table__cell">3 hours 30 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
+              <td class="govuk-table__cell">1 hours 30 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item5'] or "Travel"}}</td>
+              <td class="govuk-table__cell">1 hours 30 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item6'] or "Waiting"}}</td>
+              <td class="govuk-table__cell">1 hours 30 minutes</td>
+              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">Total</td>
+              <td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell"><strong>£900</strong></td>
+            </tr>
+          </tbody>
+        </table>   
+             
+      </div>
+    </details>
+
+      <h3 class="govuk_header--m" id="workItems">Example 1 - table</h3>
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col" aria-sort="none">Item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="descending">Date</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Fee Earner</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Time requested</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Uplift requested</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">VAT</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Claim total</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Without counsel assigned</td>
+            <td class="govuk-table__cell" data-sort-value="240131">31 January 2024</td>           
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">1 hour<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£54.40</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Advocacy</td>
+            <td class="govuk-table__cell" data-sort-value="240131">31 January 2024</td>
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">4 hours 0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£354.40</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Preparation</td>
+            <td class="govuk-table__cell" data-sort-value="240101">1 January 2024</td>   
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">2 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£154.40</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">With counsel assigned</td>
+            <td class="govuk-table__cell" data-sort-value="240101">1 January 2024</td>                   
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£354.40</td>
+          </tr>
+           <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Travel</td>
+            <td class="govuk-table__cell" data-sort-value="240101">1 January 2024</td>      
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£254.40</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Waiting</td>  
+            <td class="govuk-table__cell" data-sort-value="010124">1 January 2024</td>
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£154.40</td>
+          </tr>
+          <tr class="govuk-table__row">   
+            <td class="govuk-table__cell">Travel</td>  
+            <td class="govuk-table__cell" data-sort-value="240301">1 March 2024</td>
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£154.40</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">With counsel assigned</td>  
+            <td class="govuk-table__cell" data-sort-value="240301">1 March 2024</td>
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£154.40</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Waiting</td>  
+            <td class="govuk-table__cell" data-sort-value="240301">1 March 2024</td>       
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£154.40</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Advocacy</td>  
+            <td class="govuk-table__cell" data-sort-value="240301">1 March 2024</td>  
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£154.40</td>
+          </tr>
+        </tbody>
+      </table>
+      {{ mojPagination({
+        items: [{
+          text: '1',
+          href: '/page=1',
+          selected: true
+        }, {
+          text: '2',
+          href: '/page=2',
+          selected: false
+        }, {
+          text: '3',
+          href: '/page=3'
+        }, {
+          type: 'dots'
+        }, {
+          text: '5',
+          href: '/page=5'
+        }],
+          results: {
+            count: 6,
+            from: 1,
+            to: 5,
+            text: 'pages'
+          },
+          next: {
+            text: 'Next'
+          }
+      }) }}  
+      <br>
+      <br>
+      <h3 class="govuk_header--m" id="workItems">Example 2 - by date, min data</h3>
+
+      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s">31 January 2024</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Item</th>
+            <th class="govuk-table__header" scope="col">Uplift requested</th>
+            <th class="govuk-table__header" scope="col">Time requested</th>
+            <th class="govuk-table__header" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Without counsel assigned</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell"><a href="">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s">1 January 2024</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Item</th>
+            <th class="govuk-table__header" scope="col">Uplift requested</th>
+            <th class="govuk-table__header" scope="col">Time requested</th>
+            <th class="govuk-table__header" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Preparation</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">2 hour<br>0 minutes</td>
+            <td class="govuk-table__cell"><a href="">View</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">With counsel assigned</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell"><a href="">View</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Travel</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell"><a href="">View</a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Writing</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell"><a href="">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 class="govuk_header--m" id="workItems">Example 2 - by date, max date</h4>
+      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s">31 January 2024</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Item</th>
+            <th class="govuk-table__header" scope="col">Fee earner</th>
+            <th class="govuk-table__header" scope="col">Time requested</th>
+            <th class="govuk-table__header" scope="col">Uplift requested</th>
+            <th class="govuk-table__header" scope="col">VAT</th>
+            <th class="govuk-table__header" scope="col">Claim total</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Without counsel assigned</td>
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">20%</td>
+            <td class="govuk-table__cell">£234</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s">1 January 2024</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Item</th>
+            <th class="govuk-table__header" scope="col">Fee earner</th>
+            <th class="govuk-table__header" scope="col">Time requested</th>
+            <th class="govuk-table__header" scope="col">Uplift requested</th>
+            <th class="govuk-table__header" scope="col">VAT</th>
+            <th class="govuk-table__header" scope="col">Claim total</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Without counsel assigned</td>
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">4 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">20%</td>
+            <td class="govuk-table__cell">£234</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">With counsel assigned</td>
+            <td class="govuk-table__cell">AW</td>
+            <td class="govuk-table__cell">2 hours<br>0 minutes</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">20%</td>
+            <td class="govuk-table__cell">£134</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      
+    {% endset %}
+    
+    <!--Tabs letters -->
+    {% set lettersCallsHtml %}
+      <h3 class="govuk_header--m" id="lettersCalls">Letter and calls</h3>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Item</th>
+            <th class="govuk-table__header" scope="col">Number</th>
+            <th class="govuk-table__header" scope="col">Rate</th>
+            <th class="govuk-table__header" scope="col">Uplift</th>
+            <th class="govuk-table__header" scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Letters</td>
+            <td class="govuk-table__cell">3</td>
+            <td class="govuk-table__cell">£4.01</td>
+            <td class="govuk-table__cell">100%</td>
+            <td class="govuk-table__cell">£120.30</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Calls</td>
+            <td class="govuk-table__cell">5</td>
+            <td class="govuk-table__cell">£4.01</td>
+            <td class="govuk-table__cell">0%</td>
+            <td class="govuk-table__cell">£20.05</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Total</td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><strong>£32.08</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      
+    {% endset %}
+
+    <!--Tabs Disbursements -->
+    {% set disbursementsHtml %} 
+      <h3 class="govuk_header--m" id="disbursements">Disbursements</h3>
+      <p>No disbursements were requested </p>
+    {% endset %}
+
+    {{ govukTabs({
+      items: [
+        {
+          label: "Work items",
+          id: "workItems",
+          panel: {
+            html: workItemsHtml
+          }
+        },
+        {
+          label: "Letters and calls",
+          id: "lettersCalls",
+          panel: {
+            html: lettersCallsHtml
+          }
+        },
+        {
+          label: "Disbursements",
+          id: "disbursements",
+          panel: {
+            html: disbursementsHtml
+          }
+        }
+      ]
+    }) }}
+
+   
+
+    
+
+  <!-- 
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-s" id="subsection-title">Email the LAA case team</h2>
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li>
+            <p><a class="govuk-link govuk-link--no-visited-state" href="mailto:magsbilling@justice.gov.uk">magsbilling@justice.gov.uk</a></p>
+          </li> 
+        </ul>
+      </nav>
+    </aside>
+  </div>
+  -->
+
+  <script>
+    const date = new Date();
+    const formattedDate = date.toLocaleDateString('en-GB', {
+      day: '2-digit', month: 'short', year: 'numeric'
+    }).replace(/ /g, ' ');
+    document.getElementById("date").innerHTML = formattedDate;
+  </script>  
+
+{% endblock %}
+

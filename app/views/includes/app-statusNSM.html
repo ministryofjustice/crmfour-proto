@@ -1,0 +1,134 @@
+<div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Claim status</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+                <p><strong class="govuk-tag govuk-tag--green">Submitted</strong></p>
+                <p>09 March 2024</p>
+                <p>Awaiting LAA review</p>
+                <br>
+                <p>£{{data['actualdistTotalCost'] or ('1252')}}.00 requested</p>
+                {% else %}
+                {% if data['app-task'] == "Granted" %}
+                  <p><strong class="govuk-tag govuk-tag--green">Granted</strong></p>
+                  <p>1 Sept 2023</p>
+                  <br>
+                  <p>£{{data['actualdistTotalCost'] or ('1252')}}.00 requested</p>
+                  <p>£1252.00 allowed</p>
+                  {% else %}
+                  {% if data['app-task'] == "Rejected" %}
+                    <p><strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
+                    <p>21 August 2023</p>
+                    <br>
+                    <p>£{{data['actualdistTotalCost'] or ('1252')}}.00 requested</p>
+                    <p>£0.00 allowed</p>
+                    {% else %}
+                    {% if data['app-task'] == "Referred" %}
+                      <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
+                      <p>22 August 2023</p>
+                      <br>
+                      <p>£{{data['actualdistTotalCost'] or ('1252')}}.00 requested</p>
+                      {% else %}
+                      {% if data['app-task'] == "Part granted" %}
+                        <p><strong class="govuk-tag govuk-tag--green">Part granted</strong></p>
+                        <p>22 August 2023</p>
+                        <br>
+                        <p>£{{data['actualdistTotalCost'] or ('1252')}}.00 requested</p>
+                        <p>£1057.00 allowed</p>
+                        {% else %}
+                        {% if data['app-task'] == "Review" %}
+                          <p><strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
+                          <p>7 March 2024</p>
+                          <br>
+                          <p>£{{data['actualdistTotalCost'] or ('1252')}}.00 requested</p>
+                          {% else %}
+                          {% if data['app-task'] == "Returned" %}
+                            <p><strong class="govuk-tag govuk-tag--green">Re-submitted</strong></p>
+                            <p><span id="date"></span></p>
+                            <br>
+                            <p>£{{data['actualdistTotalCost'] or ('1252')}}.00 requested</p>
+                            {% else %}
+                            {% if data['app-task'] == "Expired" %}
+                              <p><strong class="govuk-tag govuk-tag--red">Expired</strong></p>
+                              <p>22 March 2024</p>
+                              <br>
+                              <p>£{{data['actualdistTotalCost'] or ('1252')}}.00 requested</p>
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %} 
+            </dd>
+          </div>
+          {% if data['app-task'] == "Submitted" or data['app-task'] == "Returned" %}
+            {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                LAA response
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if data['app-task'] == "Granted" %}
+                  <p>The claim has been fully granted.</p>
+                  {% else %}
+                  {% if data['app-task'] == "Referred" %}
+                    <p>The claim has been refered to the ICA.</p>
+                    {% else %}
+                    {% if data['app-task'] == "Part granted" %}
+                      <p>This claim was part granted due to somethings that were not right. </p>
+                      <div class="govuk-error-summary__body">
+                          <ul class="govuk-list govuk-list--bullet">
+                            <li>
+                              <a href="adjusted-costs#workItems" class="govuk-link--no-visited-state">Review adjustments to work items</a>
+                            </li>
+                            <li>
+                              <a href="adjusted-costs#disbursements" class="govuk-link--no-visited-state">Review adjustments to disbursements</a>
+                            </li>
+                          </ul>
+                        </div>
+                        {{ govukButton({
+                          text: "How to appeal this decision",
+                          href: "appeal-offline"
+                        }) }}
+                      {% else %}
+                      {% if data['app-task'] == "Rejected" %}
+                        <p> This claim has been fully rejected as the correct form has not been used. Please use CRM5.</p>
+                        {{ govukButton({
+                          text: "How to appeal this decision",
+                          href: "appeal-offline"
+                        }) }}
+                      {% else %}
+                        {% if data['app-task'] == "Review" %}
+                          <p>Updates are needed to proceed with your claim.<p>
+                          <p>Review the requests and resubmit your claim by <strong>21 March 2024</strong>. </p>
+                          <p>After this date your claim will be automatically closed.</p>
+                          {{ govukButton({
+                            text: "Update claim",
+                            href: "form/question3-further-info?changeFI=change&ufn=301222/003&laa-ref=LAA-6p4f0r&first-use=no&app-state=all&question-ufn=complete&question1-org=complete&question2-client=complete&question2-case=complete&question3-why-pa=complete&question3-quote=complete&question3-alt-quote=complete&question3-further-info=notStarted&app-task=Review&serviceType=Translation&expert-first-name=John&expert-last-name=Smith&expert-org-name=Walkers Crips&expert-postcode=BS6 4RF&rep-order-day=12&rep-order-month=04&rep-order-year=2024&maat=110056578&detained=No&prisons=&poca=No&main-offence=Conspire to supply a class A controlled drug - cocaine&hearing=No&plea=Not guilty&courtType=Crown court (excluding Central Criminal Court)&&addTravel=Yes&addAdd=No&travelTime-hours=2&travelTime-mins=0&travelCostTime=12&client-first-name=Dami&client-last-name=Olu&client-dob-day=12&client-dob-month=June&client-dob-year=2001"
+                          }) }}
+                          {% else %}
+                          {% if data['app-task'] == "Expired" %}
+                            <p>On 7 March 2024 we asked you to update your claim before we could complete the assessment. This was due by 21 March 2024.</p>
+                            <p>As this update was not made by the required date this claim has been automatically closed.</p>
+                            <p>If you make a new claim you should include the requested update.</p>
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+      </div>
+    </div>

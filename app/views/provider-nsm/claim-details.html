@@ -27,159 +27,46 @@
     </h1>  
 
     <!--Claim status-->
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Claim status</h2>
-      </div>
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Status
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
-                <p><strong class="govuk-tag govuk-tag--green">Submitted</strong></p>
-                <p>09 March 2024</p>
-                <p>Awaiting LAA review</p>
-                <br>
-                <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                {% else %}
-                {% if data['app-task'] == "Granted" %}
-                  <p><strong class="govuk-tag govuk-tag--green">Granted</strong></p>
-                  <p>1 Sept 2023</p>
-                  <br>
-                  <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                  <p>£640.00 allowed</p>
-                  {% else %}
-                  {% if data['app-task'] == "Rejected" %}
-                    <p><strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
-                    <p>21 August 2023</p>
-                    <br>
-                    <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                    <p>£0.00 allowed</p>
-                    {% else %}
-                    {% if data['app-task'] == "Referred" %}
-                      <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
-                      <p>22 August 2023</p>
-                      <br>
-                      <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                      {% else %}
-                      {% if data['app-task'] == "Part granted" %}
-                        <p><strong class="govuk-tag govuk-tag--green">Part granted</strong></p>
-                        <p>22 August 2023</p>
-                        <br>
-                        <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                        <p>£520.00 allowed</p>
-                        {% else %}
-                        {% if data['app-task'] == "Review" %}
-                          <p><strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
-                          <p>7 March 2024</p>
-                          <br>
-                          <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                          {% else %}
-                          {% if data['app-task'] == "Returned" %}
-                            <p><strong class="govuk-tag govuk-tag--green">Re-submitted</strong></p>
-                            <p><span id="date"></span></p>
-                            <br>
-                            <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                            {% else %}
-                            {% if data['app-task'] == "Expired" %}
-                              <p><strong class="govuk-tag govuk-tag--red">Expired</strong></p>
-                              <p>22 March 2024</p>
-                              <br>
-                              <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                            {% endif %}
-                          {% endif %}
-                        {% endif %}
-                      {% endif %}
-                    {% endif %}
-                  {% endif %}
-                {% endif %}
-              {% endif %} 
-            </dd>
-          </div>
-          {% if data['app-task'] == "Submitted" or data['app-task'] == "Returned" %}
-            {% else %}
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                LAA response
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {% if data['app-task'] == "Granted" %}
-                  <p>The claim has been fully granted.</p>
-                  {% else %}
-                  {% if data['app-task'] == "Referred" %}
-                    <p>The claim has been refered to the ICA.</p>
-                    {% else %}
-                    {% if data['app-task'] == "Part granted" %}
-                      <p>This claim was part granted due to somethings were not right. </p>
-                      <div class="govuk-error-summary__body">
-                          <ul class="govuk-list govuk-list--bullet">
-                            <li>
-                              <a href="adjusted-costs#workItems" class="govuk-link--no-visited-state">Review adjustments to Work items</a>
-                            </li>
-                          </ul>
-                        </div>
-                        {{ govukButton({
-                          text: "How to appeal this decision",
-                          href: "appeal-offline"
-                        }) }}
-                      {% else %}
-                      {% if data['app-task'] == "Rejected" %}
-                        <p> This claim has been fully rejected as the correct form has not been used. Please use CRM5.</p>
-                        {{ govukButton({
-                          text: "How to appeal this decision",
-                          href: "appeal-offline"
-                        }) }}
-                      {% else %}
-                        {% if data['app-task'] == "Review" %}
-                          <p>Updates are needed to proceed with your claim.<p>
-                          <p>Review the requests and resubmit your claim by <strong>21 March 2024</strong>. </p>
-                          <p>After this date your claim will be automatically closed.</p>
-                          {{ govukButton({
-                            text: "Update claim",
-                            href: "form/question3-further-info?changeFI=change&ufn=301222/003&laa-ref=LAA-6p4f0r&first-use=no&app-state=all&question-ufn=complete&question1-org=complete&question2-client=complete&question2-case=complete&question3-why-pa=complete&question3-quote=complete&question3-alt-quote=complete&question3-further-info=notStarted&app-task=Review&serviceType=Translation&expert-first-name=John&expert-last-name=Smith&expert-org-name=Walkers Crips&expert-postcode=BS6 4RF&rep-order-day=12&rep-order-month=04&rep-order-year=2024&maat=123456578&detained=No&prisons=&poca=No&main-offence=Conspire to supply a class A controlled drug - cocaine&hearing=No&plea=Not guilty&courtType=Crown court (excluding Central Criminal Court)&&addTravel=Yes&addAdd=No&travelTime-hours=2&travelTime-mins=0&travelCostTime=12&client-first-name=Dami&client-last-name=Olu&client-dob-day=12&client-dob-month=June&client-dob-year=2001"
-                          }) }}
-                          {% else %}
-                          {% if data['app-task'] == "Expired" %}
-                            <p>On 7 March 2024 we asked you to update your claim before we could complete the assessment. This was due by 21 March 2024.</p>
-                            <p>As this update was not made by the required date this claim has been automatically closed.</p>
-                            <p>If you make a new claim you should include the requested update.</p>
-                          {% endif %}
-                        {% endif %}
-                      {% endif %}
-                    {% endif %}
-                  {% endif %}
-                {% endif %}
-              </dd>
-            </div>
-          {% endif %}
-        </dl>
-      </div>
-    </div>
+    {% include "includes/app-statusNSM.html"%}
   </div>
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-full" id="nav">
 
-    {{ mojSubNavigation({
-      label: 'Sub navigation',
-      items: [{
-        text: 'Overview',
-        href: 'claim-details',
-        active: true
-      }, 
-      {
-        text: 'Adjusted costs',
-        href: 'adjusted-costs',
-        active: false
-      }, 
-      {
-        text: 'All costs',
-        href: 'all-costs',
-        active: false
-      }
-      ]
-    }) }}
+    {% if data['app-task'] =="Part granted"%}
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: 'claim-details#nav',
+          active: true
+        }, 
+        {
+          text: 'Costs',
+          href: 'all-costs#nav',
+          active: false
+        }, 
+        {
+          text: 'Adjusted costs',
+          href: 'adjusted-costs#nav',
+          active: false
+        }
+        ]
+      }) }}
+      {% else %}
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: 'claim-details#nav',
+          active: true
+        }, 
+        {
+          text: 'Costs',
+          href: 'all-costs#nav',
+          active: fal
+        }
+        ]
+      }) }}
+    {% endif%}
 
     <!--App ref-->
     <h2 class="govuk-heading-m">What you are claiming for</h2>
@@ -539,7 +426,7 @@
     </div>
 
     <!--Work items-->
-    <div class="govuk-summary-card" aria-describedby="review-quote">
+    <!--<div class="govuk-summary-card" aria-describedby="review-quote">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title" id="review-quote">Work items</h3>
       </div>
@@ -548,57 +435,50 @@
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th scope="col" class="govuk-table__header govuk-!-width-one-third">Items</th>
-              <th scope="col" class="govuk-table__header">Total per item</th>
-              <th scope="col" class="govuk-table__header">Total hours</th>
+              <th scope="col" class="govuk-table__header">Cost</th>
             </tr>
           </thead>
           <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__header">{{data['item1'] or "Attendance with counsel assigned"}}</td>
               <td class="govuk-table__cell">£{{data['totalPerItem1'] or "234"}}</td>
-              <td class="govuk-table__cell">{{data['totalHours1'] or "3 hours 50 minutes"}}</td>
             </tr>
              <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__header">{{data['item2'] or "Attendance without counsel assigned"}}</td>
               <td class="govuk-table__cell">£{{data['totalPerItem2'] or "234"}}</td>
-              <td class="govuk-table__cell">{{data['totalHours2'] or "6 hours 30 minutes"}}</td>
             </tr>
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__header">{{data['item3'] or "Advocacy"}}</td>
               <td class="govuk-table__cell">£{{data['totalPerItem3'] or "234"}}</td>
-              <td class="govuk-table__cell">{{data['totalHours3'] or "2 hours 30 minutes"}}</td>
             </tr>
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
               <td class="govuk-table__cell">£{{data['totalPerItem4'] or "234"}}</td>
-              <td class="govuk-table__cell">{{data['totalHours4'] or "20 hours 30 minutes"}}</td>
             </tr>
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__header">{{data['item5'] or "Travel"}}</td>
               <td class="govuk-table__cell">£{{data['totalPerItem5'] or "234"}}</td>
-              <td class="govuk-table__cell">{{data['totalHours5'] or "7 hours 00 minutes"}}</td>
             </tr>
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__header">{{data['item6'] or "Writing"}}</td>
               <td class="govuk-table__cell">£{{data['totalPerItem6'] or "234"}}</td>
-              <td class="govuk-table__cell">{{data['totalHours6'] or "9 hours 10 minutes"}}</td>
             </tr>
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__header">Total cost</td>
               <td class="govuk-table__cell"><strong>£{{data['totalCost'] or "2344.34"}}</strong></td>
-              <td class="govuk-table__cell"></td>
             </tr>
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__header">Total including VAT</td>
               <td class="govuk-table__cell"><strong>£{{data['totalVATCost'] or "2344.34"}}</strong></td>
-              <td class="govuk-table__cell"></td>
             </tr>
           </tbody>
         </table> 
+
       </div>
     </div>
+    -->
 
-    <!--Letters and phone calls-->
+    <!--Letters and phone calls
     <div class="govuk-summary-card" aria-describedby="review-quote">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title" id="review-quote">Letters and phone calls</h3>
@@ -607,50 +487,34 @@
         <table class="govuk-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header govuk-!-width-one-third">Items</th>
-              <th scope="col" class="govuk-table__header">Total per item</th>
+              <th scope="col" class="govuk-table__header govuk-!-width-one-third">Item</th>
+              <th scope="col" class="govuk-table__header">Cost</th>
             </tr>
           </thead>
           <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['letterItem1'] or "Number of letters"}}</td>
-              <td class="govuk-table__cell">{{data['noLetter1'] or "3"}}</td>
-            </tr>
-             <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['letterItem2'] or "Letters uplift applied"}}</td>
-              <td class="govuk-table__cell">{{data['letterUplife'] or "0"}}%</td>
+              <td scope="row" class="govuk-table__header">{{data['letterItem1'] or "Letters"}}</td>
+              <td class="govuk-table__cell">£{{data['totalLetterCost'] or "23.30"}}</td>
             </tr>
             <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['letterItem3'] or "Letters payment"}}</td>
-              <td class="govuk-table__cell">£{{data['totalPerLetter3'] or "234"}}</td>
+              <td scope="row" class="govuk-table__header">{{data['callsItem1'] or "Calls"}}</td>
+              <td class="govuk-table__cell">£{{data['totalCallCost'] or "32.30"}}</td>
             </tr>
             <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['callsItem1'] or "Number of calls"}}</td>
-              <td class="govuk-table__cell">{{data['noCalls1'] or "5"}}</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['callsItem2'] or "Calls uplift applied"}}</td>
-              <td class="govuk-table__cell">{{data['callUplife'] or "10"}}%</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['callsItem3'] or "Calls payment"}}</td>
-              <td class="govuk-table__cell">£{{data['totalPerCalls2'] or "234"}}</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">Total</td>
-              <td class="govuk-table__cell"><strong>£{{data['totalCostLetter'] or "2344.34"}}</strong></td>
+              <td scope="row" class="govuk-table__header">Total cost</td>
+              <td class="govuk-table__cell"><strong>£{{data['totalCostLetter'] or "55.60"}}</strong></td>
             </tr>
             <tr class="govuk-table__row">
               <td scope="row" class="govuk-table__header">Total including VAT</td>
-              <td class="govuk-table__cell"><strong>£{{data['totalCostVATLetter'] or "2344.34"}}</strong></td>
+              <td class="govuk-table__cell"><strong>£{{data['totalCostVATLetter'] or "65.60"}}</strong></td>
             </tr>
           </tbody>
         </table> 
       </div>
     </div>
-
-     <!--Disbursement costs-->
-    <div class="govuk-summary-card"">
+    -->
+     <!--Disbursement costs
+    <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title" id="review-quote">Disbursement costs</h3>
       </div>
@@ -658,8 +522,8 @@
         <table class="govuk-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header govuk-!-width-one-third">Items</th>
-              <th scope="col" class="govuk-table__header">Total per item</th>
+              <th scope="col" class="govuk-table__header govuk-!-width-one-third">Item</th>
+              <th scope="col" class="govuk-table__header">Cost</th>
             </tr>
           </thead>
           <tbody class="govuk-table__body">
@@ -683,6 +547,7 @@
         </table> 
       </div>
     </div>
+    -->
 
     <!-- Other info justification-->
     <div class="govuk-summary-card">
