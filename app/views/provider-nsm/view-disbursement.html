@@ -22,7 +22,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">
-        Calls
+        {{data['disbursementType']}}
       </h1>  
 
       {% if data['adjustedClaim'] =="Yes" %}
@@ -30,19 +30,15 @@
           Adjusted claim
         </h2>  
 
-        <table class="govuk-table">
+         <table class="govuk-table">
           <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell govuk-!-width-one-half">Uplift allowed</td>
-              <td class="govuk-table__cell">0%</td>
-            </tr>
-            <tr class="govuk-table__row">
               <td class="govuk-table__cell">Cost allowed</td>
-              <td class="govuk-table__cell">£{{data['callAdjustCost'] or "75.00" }}.00</td>
+              <td class="govuk-table__cell">No</td>
             </tr>
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Reason for adjustment</td>
-              <td class="govuk-table__cell">The caseworkers reason for the adjustment goes here.</td>
+              <td class="govuk-table__cell">Reason for removal</td>
+              <td class="govuk-table__cell">The caseworkers reason for removing the disbusement goes here.</td>
             </tr>
           </tbody>
         </table>
@@ -55,25 +51,23 @@
       <table class="govuk-table">
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell govuk-!-width-one-half">Number of calls</td>
-            <td class="govuk-table__cell">5</td>
+            <td class="govuk-table__cell govuk-!-width-one-half">Date</td>
+            <td class="govuk-table__cell">1 Jan 2024</td>
           </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Uplift</td>
-            <td class="govuk-table__cell">0%</td>
-          </tr>
-          <!-- 
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Rate applied</td>
-            <td class="govuk-table__cell">£4.00</td>
-          </tr>
-          -->
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">Net cost</td>
-            <td class="govuk-table__cell">£20.00</td>
+            <td class="govuk-table__cell">{{data['disbursementCost']}}</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">VAT</td>
+            <td class="govuk-table__cell">{{data['']}}</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Total cost</td>
+            <td class="govuk-table__cell">{{data['']}}</td>
           </tr>
         </tbody>
-      </table>
+      </table> 
       
 
        
