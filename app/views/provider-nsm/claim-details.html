@@ -21,15 +21,8 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
-      Claim details
-    </h1>  
-
-    <!--Claim status-->
-    {% include "includes/app-statusNSM.html"%}
-  </div>
-  <div class="govuk-grid-column-full"">
+  {% include "includes/app-info-NSM.html" %}
+  <div class="govuk-grid-column-full">
 
     {% if data['app-task'] =="Part granted"%}
       {{ mojSubNavigation({
