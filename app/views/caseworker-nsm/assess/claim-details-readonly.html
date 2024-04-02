@@ -26,29 +26,83 @@
 
       {% include "includes/app-info-nsm-readonly.html"%}
 
-       {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details-readonly',
-          active: true
-        }, 
-        {
-          text: 'Adjustments',
-          href: 'claim-details-adjust-readonly',
-          active: false
-        }, 
-        {
-          text: 'Supporting evidence',
-          href: '',
-          active: false
-        }, 
-        {
-          text: 'Claim history',
-          href: '',
-          active: false
-        }]
-      }) }}
+      {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New" %}
+      
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: 'claim-details-readonly',
+            active: true
+          }, 
+          {
+            text: 'Review and adjust',
+            href: 'claim-details-adjust-PG-readonly',
+            active: false
+          }, 
+          {
+            text: 'Supporting evidence',
+            href: '',
+            active: false
+          }, 
+          {
+            text: 'Claim history',
+            href: '',
+            active: false
+          }]
+        }) }}
+
+        {% else %}
+        {% if data['cwAppStatus'] == "Part granted" %}
+          {{ mojSubNavigation({
+            label: 'Sub navigation',
+            items: [{
+              text: 'Overview',
+              href: 'claim-details-readonly',
+              active: true
+            }, 
+            {
+              text: 'Costs',
+              href: 'claim-details-adjust-PG-readonly',
+              active: false
+            }, 
+            {
+              text: 'Supporting evidence',
+              href: '',
+              active: false
+            }, 
+            {
+              text: 'Claim history',
+              href: '',
+              active: false
+            }]
+          }) }}
+          {% else %}
+          {{ mojSubNavigation({
+            label: 'Sub navigation',
+            items: [{
+              text: 'Overview',
+              href: 'claim-details-readonly',
+              active: true
+            }, 
+            {
+              text: 'Costs',
+              href: 'claim-details-adjust-readonly',
+              active: false
+            }, 
+            {
+              text: 'Supporting evidence',
+              href: '',
+              active: false
+            }, 
+            {
+              text: 'Claim history',
+              href: '',
+              active: false
+            }]
+          }) }}
+        {% endif %}
+      {% endif %}
     </div>
   </div>
 
