@@ -19,7 +19,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      {% include "includes/app-info-nsm.html"%}
+      {% include "includes/app-info-nsm-readonly.html"%}
 
       {{ mojSubNavigation({
         label: 'Sub navigation',
@@ -29,8 +29,8 @@
           active: false
         }, 
         {
-          text: 'Review and adjust',
-          href: 'claim-details-adjust',
+          text: 'Adjustments',
+          href: 'claim-details-adjust-readonly',
           active: true
         }, 
         {
@@ -203,7 +203,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">3 hours<br> 0 minutes</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
             <td class="govuk-table__cell govuk-table__cell--numeric">£75.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=Yes&workItem=Without counsel assigned&workTime=4&workCost=100&workAdjustTime=3&workAdjustCost=75"> Adjust</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=Yes&workItem=Without counsel assigned&workTime=4&workCost=100&workAdjustTime=3&workAdjustCost=75">  View</a></td>
           </tr>
         </tbody>
       </table>
@@ -230,7 +230,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=No&workItem=Preparation&workTime=2&workCost=25"> Adjust</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=No&workItem=Preparation&workTime=2&workCost=25">  View</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">With counsel assigned</td>
@@ -240,7 +240,7 @@
              <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=No&workItem=With counsel assigned&workTime=6&workCost=120"> Adjust</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=No&workItem=With counsel assigned&workTime=6&workCost=120">  View</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">Waiting</td>
@@ -250,7 +250,7 @@
              <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=No&workItem=Waiting&workTime=2&workCost=50"> Adjust</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=No&workItem=Waiting&workTime=2&workCost=50">  View</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">Travel</td>
@@ -260,7 +260,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">0 hours<br>0 minutes</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=Yes&workItem=Travel&workTime=2&workCost=50&&workAdjustTime=0&workAdjustCost=0"> Adjust</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=Yes&workItem=Travel&workTime=2&workCost=50&&workAdjustTime=0&workAdjustCost=0">  View</a></td>
           </tr>
         </tbody>
       </table>
@@ -289,7 +289,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td> 
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£12.00</td>              
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-letters"> Adjust</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-letters">  View</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">Calls</td>
@@ -298,7 +298,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" >£20.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£12.00</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-calls"> Adjust</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-calls">  View</a></td>
           </tr>
         </tbody>
       </table>
@@ -330,7 +330,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-disbursement?adjustedClaim=No&disbursementType=Psychologist&disbursementNet=400&disbursementVAT=80&disbursementTotal=480">Adjust</a></td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-disbursement?adjustedClaim=No&disbursementType=Psychologist&disbursementNet=400&disbursementVAT=80&disbursementTotal=480"> View</a></td>  
           </tr>
         </tbody>
       </table>
@@ -357,7 +357,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-disbursement?adjustedClaim=Yes&disbursementType=Car&disbursementNet=50&disbursementVAT=0&disbursementTotal=50">Adjust</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-disbursement?adjustedClaim=Yes&disbursementType=Car&disbursementNet=50&disbursementVAT=0&disbursementTotal=50"> View</a></td>
           </tr>
            <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">Translator</td>
@@ -367,7 +367,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-disbursement?adjustedClaim=No&disbursementType=Translator&disbursementNet=300&disbursementVAT=60&disbursementTotal=360">Adjust</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-disbursement?adjustedClaim=No&disbursementType=Translator&disbursementNet=300&disbursementVAT=60&disbursementTotal=360"> View</a></td>
           </tr>
         </tbody>
       </table>

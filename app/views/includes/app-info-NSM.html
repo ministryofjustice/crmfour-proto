@@ -35,8 +35,8 @@
     {% endif %}
   {% endif %}
 {% endif %}
-<span class="govuk-caption-xl">Crime Busters Legal</span>
-<h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
+<span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+<h1 class="govuk-heading-xl">{{data['client'] or "Roger Blackbeard"}}</h1>
 <p>
   <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00<br>
   {% if data['cwAppStatus'] == "Part granted" %}
@@ -75,9 +75,7 @@
       {% endif %}
     {% endif %}
   {% endif %}
-  {% if data['cwAppStatus'] == "In progress" %}
-    <br><span class="govuk-body-m"><strong>Caseworker:</strong> {{data['caseworker2']}}</span>
-  {% endif %}
+  
 </p>
 <div class="govuk-button-group">
 
