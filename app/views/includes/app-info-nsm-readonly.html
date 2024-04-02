@@ -1,6 +1,7 @@
 {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
   {% else %}
   {% if data['cwAppStatus'] == "In progress" %}
+   <strong class="govuk-tag govuk-tag--purple">In progress</strong><br><br>
     {% else %}
     {% if data['cwAppStatus'] == "Granted" %}
       <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
@@ -52,7 +53,10 @@
   {% endif %}
 </p> 
 <p>
-  <span class="govuk-body-l">High risk </span><a href="" class="govuk-link--no-visited-state">Change risk</a>
+  <span class="govuk-body-l">High risk</span>
+</p>
+<p>
+  <span class="govuk-body-m"><strong>Assigned to:</strong> {{data['caseworker1']}}</span> 
 </p>
 <p>
   <span class="govuk-body-m"><strong>Date received:</strong> 17 October 2023</span>
@@ -76,7 +80,7 @@
     {% endif %}
   {% endif %}
   {% if data['cwAppStatus'] == "In progress" %}
-    <br><span class="govuk-body-m"><strong>Caseworker:</strong> {{data['caseworker2']}}</span>
+    <br><span class="govuk-body-m"><strong>Caseworker</strong> {{data['caseworker2']}}</span>
   {% endif %}
 </p>
 <div class="govuk-button-group">
