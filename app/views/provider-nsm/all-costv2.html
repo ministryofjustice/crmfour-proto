@@ -21,14 +21,7 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
-      Claim details
-    </h1>  
-
-    <!--Claim status-->
-    {% include "includes/app-statusNSM.html"%}
-  </div>
+  {% include "includes/app-info-NSM.html"%}
   <div class="govuk-grid-column-full">
 
     {{ mojSubNavigation({
@@ -51,243 +44,51 @@
       ]
     }) }}
 
-   
-        <!--
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header govuk-!-width-one-third">Item</th>
-              <th scope="col" class="govuk-table__header">Time requested</th>
-              <th scope="col" class="govuk-table__header">Cost requested</th>
-              <th scope="col" class="govuk-table__header">Time allowed</th>
-              <th scope="col" class="govuk-table__header">Cost allowed</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item1'] or "Attendance without counsel assigned"}}</td>
-              <td class="govuk-table__cell">1 hours<br> 0 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
-              <td class="govuk-table__cell">0 hours<br> 30 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>
-              
-            </tr>
-             <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item2'] or "Attendance with counsel assigned"}}</td>
-              <td class="govuk-table__cell">9 hours<br> 10 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem2'] or "100"}}</td>
-              <td class="govuk-table__cell">9 hours<br> 10 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem2'] or "100"}}</td>
-              
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item3'] or "Advocacy"}}</td>
-              <td class="govuk-table__cell">2 hours<br> 10 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem3'] or "100"}}</td>
-              <td class="govuk-table__cell">2 hours<br> 10 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem3'] or "100"}}</td>
-              
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
-              <td class="govuk-table__cell">3 hours<br> 10 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem4'] or "100"}}</td>
-              <td class="govuk-table__cell">3 hours<br> 10 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem4'] or "100"}}</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item5'] or "Calls"}}</td>
-              <td class="govuk-table__cell">4 hours<br> 10 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem5'] or "100"}}</td>
-              <td class="govuk-table__cell">4 hours<br> 10 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem5'] or "100"}}</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item6'] or "Letters"}}</td>
-              <td class="govuk-table__cell">1 hours<br> 10 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem6'] or "100"}}</td>
-              <td class="govuk-table__cell">1 hours<br> 10 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem6'] or "100"}}</td>
-              
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">Total cost</td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell"><strong>£{{data['totalCost'] or "700"}}</strong></td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell"><strong>£{{data['totalCost'] or "600"}}</strong></td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">Total including VAT</td>
-               <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell"><strong>£{{data['totalCost'] or "770"}}</strong></td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell"><strong>£{{data['totalCost'] or "660"}}</strong></td>
-            </tr>
-          </tbody>
-        </table> 
-        -->
-    <table class="govuk-table">
-      <caption class="govuk-table__caption govuk-table__caption--m">Your costs summary</caption>
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header govuk-!-width-one-third">Item</th>
-          <th scope="col" class="govuk-table__header">Requested</th>
-          <th scope="col" class="govuk-table__header">Requested with VAT</th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
-          <td class="govuk-table__cell">£{{data['totalPerItem1'] or "700"}}</td>
-          <td class="govuk-table__cell">£{{data['totalPerItem2'] or "770"}}</td>          
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-          <td class="govuk-table__cell">£{{data['totalPerItem3'] or "50"}}</td>
-          <td class="govuk-table__cell">£{{data['totalPerItem3'] or "50"}}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-          <td class="govuk-table__cell">£{{data['totalPerItem4'] or "50"}}</td>
-          <td class="govuk-table__cell">£{{data['totalPerItem4'] or "50"}}</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-          <td class="govuk-table__cell">-</td>
-          <td class="govuk-table__cell">£{{data['totalPerItem6'] or "300"}}</td>
-        </tr>
-      </tbody>
-    </table> 
-
-    
-
     <!--Tabs work items -->
     {% set workItemsHtml %} 
-      <h3 class="govuk_header--m" id="workItems">Work items</h3>
+      <h3 class="govuk_header--m" id="workItems">Work items summary</h3>
 
-      <details class="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-          View work items summary
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-        <!--
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Item</th>
-              <th scope="col" class="govuk-table__header">Time requested</th>
-              <th scope="col" class="govuk-table__header">Time allowed</th>
-              <th scope="col" class="govuk-table__header">Cost requested <br>with VAT</th>
-              <th scope="col" class="govuk-table__header">Cost allowed <br>with VAT</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
-              <td class="govuk-table__cell">1 hours 30 minutes</td>
-              <td class="govuk-table__cell">1 hours 0 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>             
-            </tr>
-             <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
-              <td class="govuk-table__cell">10 hours 30 minutes</td>
-              <td class="govuk-table__cell">5 hours 0 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
-              
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item3'] or "Advocacy"}}</td>
-              <td class="govuk-table__cell">10 hours 30 minutes</td>
-              <td class="govuk-table__cell">5 hours 0 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
-              <td class="govuk-table__cell">10 hours 30 minutes</td>
-              <td class="govuk-table__cell">5 hours 0 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item5'] or "Travel"}}</td>
-              <td class="govuk-table__cell">10 hours 30 minutes</td>
-              <td class="govuk-table__cell">5 hours 0 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item6'] or "waiting"}}</td>
-              <td class="govuk-table__cell">10 hours 30 minutes</td>
-              <td class="govuk-table__cell">5 hours 0 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>          
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">Total</td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell">£1000</td>
-              <td class="govuk-table__cell">£1200</td>          
-            </tr>
-          </tbody>
-        </table>    
-        --> 
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Item</th>
-              <th scope="col" class="govuk-table__header">Time requested</th>
-              <th scope="col" class="govuk-table__header">Cost requested</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
-              <td class="govuk-table__cell">1 hours 30 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>             
-            </tr>
-             <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
-              <td class="govuk-table__cell">5 hours 0 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
-              
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item3'] or "Advocacy"}}</td>
-              <td class="govuk-table__cell">3 hours 30 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "100"}}</td>     
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
-              <td class="govuk-table__cell">1 hours 30 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item5'] or "Travel"}}</td>
-              <td class="govuk-table__cell">1 hours 30 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item6'] or "Waiting"}}</td>
-              <td class="govuk-table__cell">1 hours 30 minutes</td>
-              <td class="govuk-table__cell">£{{data['totalPerItem1'] or "200"}}</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">Total</td>
-              <td class="govuk-table__cell"></td>
-              <td class="govuk-table__cell"><strong>£900</strong></td>
-            </tr>
-          </tbody>
-        </table>   
-             
-      </div>
-    </details>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third">Item</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third">Time</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-third">Net cost</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
+            <td class="govuk-table__cell">4 hours 0 minutes</td>
+            <td class="govuk-table__cell">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
+            <td class="govuk-table__cell">5 hours 0 minutes</td>
+            <td class="govuk-table__cell">£120.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
+            <td class="govuk-table__cell">1 hours 0 minutes</td>
+            <td class="govuk-table__cell">£25.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item5'] or "Travel"}}</td>
+            <td class="govuk-table__cell">1 hours 0 minutes</td>
+            <td class="govuk-table__cell">£50.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item6'] or "Waiting"}}</td>
+            <td class="govuk-table__cell">1 hours 0 minutes</td>
+            <td class="govuk-table__cell">£50.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Total</td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><strong>£345.00</strong></td>
+          </tr>
+        </tbody>
+      </table>   
 
       <h3 class="govuk_header--m" id="workItems">Example 1 - table</h3>
       <table class="govuk-table" data-module="moj-sortable-table">
