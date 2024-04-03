@@ -12,7 +12,12 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% include "includes/cw-nav-your-nsm.html"%}
+  {% if data['cwAppStatus'] == "New"%}
+    {% include "includes/cw-nav-open-nsm.html"%}
+    {% else %}
+    {% include "includes/cw-nav-your-nsm.html"%}
+  {% endif %}
+  
 {% endblock %}
 
 {% block content %}

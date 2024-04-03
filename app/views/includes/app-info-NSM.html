@@ -38,12 +38,12 @@
 <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
 <h1 class="govuk-heading-xl">{{data['client'] or "Roger Blackbeard"}}</h1>
 <p>
-  <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00<br>
+  <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "1135"}}.00<br>
   {% if data['cwAppStatus'] == "Part granted" %}
-    <span class="govuk-body-l"><strong>Allowed: </strong>£520.00
+    <span class="govuk-body-l"><strong>Allowed: </strong>£1192.80
     {% else %}
     {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}
-      <span class="govuk-body-l"><strong>Allowed: </strong>£{{data['actualdistTotalCost'] or "640"}}.00
+      <span class="govuk-body-l"><strong>Allowed: </strong>£{{data['actualdistTotalCost'] or "1135"}}.00
       {% else %}
       {% if data['cwAppStatus'] == "Rejected" %}
         <span class="govuk-body-l"><strong>Allowed: </strong>£0.00
