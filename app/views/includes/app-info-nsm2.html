@@ -1,7 +1,6 @@
 {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
   {% else %}
   {% if data['cwAppStatus'] == "In progress" %}
-   <strong class="govuk-tag govuk-tag--purple">In progress</strong><br><br>
     {% else %}
     {% if data['cwAppStatus'] == "Granted" %}
       <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
@@ -39,8 +38,8 @@
 <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
 <h1 class="govuk-heading-xl">{{data['client'] or "Roger Blackbeard"}}</h1>
 <p>
-  <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "1135"}}.00
-  
+  <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "1135"}}.00<br>
+  <span class="govuk-body-l"><strong>Allowed: </strong>£1292.80
 </p> 
 <p>
   <span class="govuk-body-l">High risk</span>
