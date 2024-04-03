@@ -12,10 +12,14 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% if data['cwAppStatus'] == "New"%}
-    {% include "includes/cw-nav-open-nsm.html"%}
-    {% else %}
+   {% if data['cwAppStatus'] == "In progress"%}
     {% include "includes/cw-nav-your-nsm.html"%}
+    {% else %}
+    {% if data['cwAppStatus'] == "New"%}
+      {% include "includes/cw-nav-open-nsm.html"%}
+      {% else %}
+      {% include "includes/cw-nav-assessed-nsm.html"%}
+    {% endif %}
   {% endif %}
 {% endblock %}
 
@@ -30,12 +34,12 @@
         items: [{
           text: 'Overview',
           href: 'claim-details',
-          active: false
+          active: true
         }, 
         {
           text: 'Review and adjust',
           href: 'claim-details-adjust',
-          active: true
+          active: false
         }, 
         {
           text: 'Supporting evidence',
@@ -84,9 +88,9 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__header">Disbursements</td>
@@ -102,9 +106,9 @@
             <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><strong></strong></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><strong></strong></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><strong></strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1085.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£207.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1292.00</strong></td>
           </tr>
         </tbody>
       </table> 
@@ -170,15 +174,15 @@
                 <td scope="row" class="govuk-table__header">{{data['item6'] or "Travel"}}</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">1 hours 0 minutes</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">0 hours 0 minutes</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
               </tr>
               <tr class="govuk-table__row">
                 <td scope="row" class="govuk-table__header">Total</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                 <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£345.00</strong></td>
                 <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><strong></strong></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£295.00</strong></td>
               </tr>
             </tbody>
           </table> 
@@ -207,10 +211,10 @@
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>  
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            {% if data['cwAppStatus'] == "New" %}
-              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
-              {% else %}
+            {% if data['cwAppStatus'] == "In progress" %}
               <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
             {% endif %}
           </tr>
         </tbody>
@@ -238,10 +242,10 @@
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            {% if data['cwAppStatus'] == "New" %}
-              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
-              {% else %}
+            {% if data['cwAppStatus'] == "In progress" %}
               <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
             {% endif %}
           </tr>
           <tr class="govuk-table__row">
@@ -252,10 +256,10 @@
              <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            {% if data['cwAppStatus'] == "New" %}
-              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
-              {% else %}
+            {% if data['cwAppStatus'] == "In progress" %}
               <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
             {% endif %}
           </tr>
           <tr class="govuk-table__row">
@@ -266,10 +270,10 @@
              <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            {% if data['cwAppStatus'] == "New" %}
-              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
-              {% else %}
+            {% if data['cwAppStatus'] == "In progress" %}
               <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
             {% endif %}
           </tr>
           <tr class="govuk-table__row">
@@ -277,13 +281,13 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">2 hours<br>0 minutes</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            {% if data['cwAppStatus'] == "New" %}
-              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
-              {% else %}
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            {% if data['cwAppStatus'] == "In progress" %}
               <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
             {% endif %}
           </tr>
         </tbody>
@@ -313,10 +317,10 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td> 
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>              
-            {% if data['cwAppStatus'] == "New" %}
-              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
-              {% else %}
+            {% if data['cwAppStatus'] == "In progress" %}
               <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
             {% endif %}
           </tr>
           <tr class="govuk-table__row">
@@ -326,10 +330,10 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" >£20.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>  
-            {% if data['cwAppStatus'] == "New" %}
-              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
-              {% else %}
+            {% if data['cwAppStatus'] == "In progress" %}
               <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
             {% endif %}
           </tr>
         </tbody>
@@ -362,10 +366,10 @@
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            {% if data['cwAppStatus'] == "New" %}
-              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
-              {% else %}
+            {% if data['cwAppStatus'] == "In progress" %}
               <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
             {% endif %}
           </tr>
         </tbody>
@@ -393,10 +397,10 @@
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            {% if data['cwAppStatus'] == "New" %}
-              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
-              {% else %}
+            {% if data['cwAppStatus'] == "In progress" %}
               <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
             {% endif %}
           </tr>
            <tr class="govuk-table__row">
@@ -407,10 +411,10 @@
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            {% if data['cwAppStatus'] == "New" %}
-              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
-              {% else %}
+            {% if data['cwAppStatus'] == "In progress" %}
               <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
             {% endif %}
           </tr>
         </tbody>

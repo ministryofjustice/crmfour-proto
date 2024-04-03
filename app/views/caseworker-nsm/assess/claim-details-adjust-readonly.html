@@ -12,7 +12,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Returned"%}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review"%}
     {% include "includes/cw-nav-open-nsm.html"%}
     {% else %}
     {% include "includes/cw-nav-assessed-nsm.html"%}
@@ -25,408 +25,189 @@
     <div class="govuk-grid-column-full">
       {% include "includes/app-info-nsm-readonly.html"%}
 
-      {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New" %}
-      
-        {{ mojSubNavigation({
-          label: 'Sub navigation',
-          items: [{
-            text: 'Overview',
-            href: 'claim-details-readonly',
-            active: false
-          }, 
-          {
-            text: 'Review and adjust',
-            href: 'claim-details-adjust-readonly',
-            active: true
-          }, 
-          {
-            text: 'Supporting evidence',
-            href: '',
-            active: false
-          }, 
-          {
-            text: 'Claim history',
-            href: '',
-            active: false
-          }]
-        }) }}
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: 'claim-details-readonly',
+          active: false
+        }, 
+        {
+          text: 'Review and adjust',
+          href: 'claim-details-adjust-readonly',
+          active: true
+        }, 
+        {
+          text: 'Supporting evidence',
+          href: '',
+          active: false
+        }, 
+        {
+          text: 'Claim history',
+          href: '',
+          active: false
+        }]
+      }) }}
 
-        {% else %}
-        {{ mojSubNavigation({
-          label: 'Sub navigation',
-          items: [{
-            text: 'Overview',
-            href: 'claim-details-readonly',
-            active: false
-          }, 
-          {
-            text: 'Costs',
-            href: 'claim-details-adjust-readonly',
-            active: true
-          }, 
-          {
-            text: 'Supporting evidence',
-            href: '',
-            active: false
-          }, 
-          {
-            text: 'Claim history',
-            href: '',
-            active: false
-          }]
-        }) }}
-      {% endif %}
-
-    <table class="govuk-table"  >
-      <caption class="govuk-table__caption govuk-table__caption--m">Costs summary</caption>
-      <thead class="govuk-table__head">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost claimed </th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT on claimed</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total claimed</th>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£57.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Total</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
-        </tr>
-      </tbody>
-    </table> 
-
-    <!--
-    <table class="govuk-table"  >
-      <caption class="govuk-table__caption govuk-table__caption--m">Your costs summary</caption>
-      <thead class="govuk-table__head">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£100.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£24.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£144.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£5.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£30.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Advocacy"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Letters"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£4.00</td>  
-          <td class="govuk-table__cell govuk-table__cell--numeric">£24.00</td>          
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Calls"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£4.00</td>  
-          <td class="govuk-table__cell govuk-table__cell--numeric">£24.00</td>          
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Total</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
-        </tr>
-      </tbody>
-    </table> 
-      
-    <table class="govuk-table"  >
-      <caption class="govuk-table__caption govuk-table__caption--m">Your costs summary (reg VAT firm)</caption>
-      <thead class="govuk-table__head">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£57.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Total</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
-        </tr>
-      </tbody>
-    </table> 
-      
-    <table class="govuk-table"  >
-      <caption class="govuk-table__caption govuk-table__caption--m">Your costs summary (not reg VAT firm)</caption>
-      <thead class="govuk-table__head">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£100.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£100.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Advocacy"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Letters"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>  
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>          
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Calls"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>  
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>          
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Total</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£140.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1275.00</strong></td>
-        </tr>
-      </tbody>
-    </table>
-
-    <table class="govuk-table"  >
-      <caption class="govuk-table__caption govuk-table__caption--m">Your costs summary (not reg VAT firm)</caption>
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Costs summary</caption>
+        <thead class="govuk-table__head">
           <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Total</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£140.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1275.00</strong></td>
-        </tr>
-      </tbody>
-    </table> 
-    -->
-        
-    <!--Tabs work items -->
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost claimed</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">VAT on claimed</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost allowed</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">VAT on allowed</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Profit costs</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£57.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Waiting</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Travel</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Disbursements</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Total</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong></strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong></strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong></strong></td>
+          </tr>
+        </tbody>
+      </table> 
+
+    <!--TAbs items -->
     {% set workItemsHtml %} 
-      <h2 class="govuk_header--l">Work items</h2>
+      <h2 class="govuk_header--l">Work items</h3>
+
       <details class="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
-            Work items summary
+            Adjusted work items summary
           </span>
         </summary>
         <div class="govuk-details__text">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header govuk-!-width-one-third">Item</th>
-                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Time claimed</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Time claimed</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost claimed</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Time allowed</th>
+                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost allowed</th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
                 <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">4 hours 0 minutes</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£100.00</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">100.00</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
               </tr>
               <tr class="govuk-table__row">
                 <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">6 hours 0 minutes</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">120.00</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__header">{{data['item3'] or "Advocacy"}}</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">0 hours 0 minutes</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
               </tr>
               <tr class="govuk-table__row">
                 <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">1 hours 0 minutes</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item4'] or "Advocacy"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">0 hours 0 minutes</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
               </tr>
               <tr class="govuk-table__row">
                 <td scope="row" class="govuk-table__header">{{data['item5'] or "Waiting"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">2 hours 0 minutes</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">1 hours 0 minutes</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
               </tr>
               <tr class="govuk-table__row">
                 <td scope="row" class="govuk-table__header">{{data['item6'] or "Travel"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">2 hours 0 minutes</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">1 hours 0 minutes</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
               </tr>
               <tr class="govuk-table__row">
                 <td scope="row" class="govuk-table__header">Total</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                 <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£345.00</strong></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"><strong></strong></td>
               </tr>
             </tbody>
           </table> 
         </div>
       </details>
-
+      
       <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--m">31 January 2024</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header govuk-!-width-one-quarter" scope="col">Item</th>
+            <th class="govuk-table__header govuk-!-width-one-fifth" scope="col">Item</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Time claimed </th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Time allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">Without counsel assigned</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4 hours<br>0 minutes</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4 hours<br> 0 minutes</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
             <td class="govuk-table__cell govuk-table__cell--numeric">£100.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=Yes&workItem=Without counsel assigned&workTime=4&workCost=100">View</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
           </tr>
         </tbody>
       </table>
@@ -434,10 +215,13 @@
       <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--m">1 January 2024</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header govuk-!-width-one-quarter" scope="col">Item</th>
+            <th class="govuk-table__header govuk-!-width-one-fifth" scope="col">Item</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Time claimed </th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Time allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
           </tr>
         </thead>
@@ -447,44 +231,57 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">1 hour<br>0 minutes</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=No&workItem=Preparation&workTime=2&workCost=25">View</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">With counsel assigned</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">6 hours<br>0 minutes</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=No&workItem=With counsel assigned&workTime=6&workCost=120">View</a></td>
+             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">Waiting</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2 hours<br>0 minutes</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=No&workItem=Waiting&workTime=2&workCost=50">View</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="">View</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">Travel</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2 hours<br>0 minutes</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-work-item?adjustedClaim=Yes&workItem=Travel&workTime=2&workCost=50">View</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="">View</a></td>
           </tr>
-        </tbody>
+        </tbody>      
       </table>
-
     {% endset %}
-    
-    <!--Tabs letters -->
+
     {% set lettersCallsHtml %}
       <h2 class="govuk_header--l">Letters and calls</h3>
+      <!--<p>There are no adjusted letters and calls</p>-->
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header govuk-!-width-one-quarter" scope="col">Item</th>
+            <th class="govuk-table__header" scope="col">Item</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Number claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
           </tr>
         </thead>
@@ -493,33 +290,38 @@
             <td scope="col" class="govuk-table__header">Letters</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">5</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>            
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-letters">View</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td> 
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>              
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="">View</a></td>
           </tr>
           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">Calls</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">5</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" >£20.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-calls">View</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="">View</a></td>
           </tr>
         </tbody>
       </table>
-      
     {% endset %}
 
-    <!--Tabs Disbursements -->
     {% set disbursementsHtml %} 
-     
-      <h2 class="govuk_header--l">Disbursements</h3>
+    
+      <h3 class="govuk_header--m">Disbursement detail</h3>
 
-      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--m">31 January 2024</caption>
+      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s">31 January 2024</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header govuk-!-width-one-quarter" scope="col">Item</th>
+            <th class="govuk-table__header govuk-!-width-one-fifth" scope="col">Item</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">VAT on claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Total claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">VAT on allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Total allowed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
           </tr>
         </thead>
@@ -529,18 +331,24 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">£400.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£80.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£480.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-disbursement?adjustedClaim=No&disbursementType=Psychologist&disbursementNet=400&disbursementVAT=80&disbursementTotal=480">View</a></td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="">View</a></td>
           </tr>
         </tbody>
       </table>
-
-      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--m">1 January 2024</caption>
+      
+      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s">1 January 2024</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header govuk-!-width-one-quarter" scope="col">Item</th>
+            <th class="govuk-table__header govuk-!-width-one-fifth" scope="col">Item</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">VAT on claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Total claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">VAT on allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Total allowed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
           </tr>
         </thead>
@@ -550,18 +358,25 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-disbursement?adjustedClaim=Yes&disbursementType=Car&disbursementNet=50&disbursementVAT=0&disbursementTotal=50">View</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="">View</a></td>
           </tr>
-          <tr class="govuk-table__row">
+           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header">Translator</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£300.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£360.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="view-disbursement?adjustedClaim=No&disbursementType=Translator&disbursementNet=300&disbursementVAT=60&disbursementTotal=360">View</a></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a href="">View</a></td>
           </tr>
         </tbody>
       </table>
     {% endset %}
+   
 
     {{ govukTabs({
       items: [
@@ -588,6 +403,7 @@
         }
       ]
     }) }}
+
 
 
 
