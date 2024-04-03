@@ -6,7 +6,7 @@
 
 
 {% block pageTitle %}
-  Claims details - Overview {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+  Check your answers - {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -19,54 +19,21 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="govuk-grid-row">
-  {% include "includes/app-status-NSM.html" %}
-  <div class="govuk-grid-column-full" id="nav">
+  <div class="govuk-grid-column-full">
+    
+    <h1 class="govuk-heading-xl">Check your answers</h1>
 
-    {% if data['app-task'] =="Part granted"%}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details#nav',
-          active: true
-        }, 
-        {
-          text: 'Costs',
-          href: 'all-costs#nav',
-          active: false
-        }, 
-        {
-          text: 'Adjusted costs',
-          href: 'adjusted-costs#nav',
-          active: false
-        }
-        ]
-      }) }}
-      {% else %}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details#nav',
-          active: true
-        }, 
-        {
-          text: 'Costs',
-          href: 'all-costs#nav',
-          active: fal
-        }
-        ]
-      }) }}
-    {% endif%}
-
-    <h2 class="govuk-heading-l">Overview</h2>
-    <h3 class="govuk-heading-m">What are you claiming for</h3>
-
+     <!--App ref-->
+    <h2 class="govuk-heading-l">What are you claiming for</h2>
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">What are you claiming for</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> what you are claiming for</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -106,11 +73,16 @@
       </div>
     </div>
 
-    <h3 class="govuk-heading-m">About you</h3>
+    <h2 class="govuk-heading-l">About you</h2>
     <!--Case contact-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Your details</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> your details</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -178,11 +150,16 @@
       </div>
     </div>
 
-    <h3 class="govuk-heading-m">About the defendant</h3>
+    <h2 class="govuk-heading-l">About the defendant</h2>
     <!--Defendant details-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Defendant details</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> Defendant details</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -222,11 +199,16 @@
       </div>
     </div>
 
-    <h3 class="govuk-heading-m">About the case</h3>
+    <h2 class="govuk-heading-l">About the case</h2>
     <!--Case details-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Case details</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> Defendant details</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -294,6 +276,11 @@
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Hearing details</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> hearing details</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -361,6 +348,11 @@
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Case disposal</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> hearing details</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -377,12 +369,17 @@
     </div>
 
     <!--About the request-->
-    <h3 class="govuk-heading-m">About the claim</h3>
+    <h2 class="govuk-heading-l">About the claim</h2>
 
     <!-- Claim justification-->
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Claim justification</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> claim justification</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -422,6 +419,11 @@
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Claim details</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> claim details</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -489,91 +491,96 @@
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Costs summary</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="check-payment-claim">Change<span class="govuk-visually-hidden"> costs summary</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
-      {% if data['vat'] =="yes"%}
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
-              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
-              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£57.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">Total</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
-            </tr>
-          </tbody>
-        </table> 
-        {% else %}
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
-              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
-              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td scope="row" class="govuk-table__header">Total</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£140.00</strong></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1275.00</strong></td>
-            </tr>
-          </tbody>
-        </table> 
-      {% endif %}
+        {% if data['vat'] =="yes"%}
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£57.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Total</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
+          </tr>
+        </tbody>
+      </table> 
+      {% else %}
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Total</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£140.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1275.00</strong></td>
+          </tr>
+        </tbody>
+      </table> 
+    {% endif %}
       </div>
     </div>
   
@@ -581,6 +588,11 @@
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Other information</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> other information</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -613,10 +625,15 @@
     </div>
 
     <!---Supporting evidence -->
-    <h3 class="govuk-heading-m">Supporting evidence</h3>
+    <h2 class="govuk-heading-l">Supporting evidence</h2>
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Uploaded suported evidence</h3>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> supporting documents</span></a>
+          </li>
+        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -634,41 +651,28 @@
       </div>
     </div>
 
-     <!---EQ -->
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title">Equality monitoring</h3>
+    <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+
       </div>
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Willing to answer equality questions
-            </dt>
-            <dd class="govuk-summary-list__value">
-              No
-            </dd>
-          </div>
-        </dl>
-      </div>
+
+
+
+
+
+ 
     </div>
-
   </div>
 
-  <!-- 
-  <div class="govuk-grid-column-one-third">
-    <aside class="app-related-items" role="complementary">
-      <h3 class="govuk-heading-s" id="subsection-title">Email the LAA case team</h3>
-      <nav role="navigation" aria-labelledby="subsection-title">
-        <ul class="govuk-list govuk-!-font-size-16">
-          <li>
-            <p><a class="govuk-link govuk-link--no-visited-state" href="mailto:magsbilling@justice.gov.uk">magsbilling@justice.gov.uk</a></p>
-          </li> 
-        </ul>
-      </nav>
-    </aside>
-  </div>
-  -->
+
 
 {% endblock %}
 
