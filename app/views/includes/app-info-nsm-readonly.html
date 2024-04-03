@@ -55,9 +55,11 @@
 <p>
   <span class="govuk-body-l">High risk</span>
 </p>
-<p>
-  <span class="govuk-body-m"><strong>Assigned to:</strong> {{data['caseworker1']}}</span> 
-</p>
+{% if data['cwAppStatus'] == "New"%}
+  <p><span class="govuk-body-m"><strong>Assigned to:</strong> Unassigned</span></p>
+  {% else %}
+  <p><span class="govuk-body-m"><strong>Assigned to:</strong> {{data['caseworker1']}}</span></p>
+{% endif %}
 <p>
   <span class="govuk-body-m"><strong>Date received:</strong> 17 October 2023</span>
   {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Auto granted" %}
