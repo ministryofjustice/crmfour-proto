@@ -19,13 +19,13 @@
                 <p>09 March 2024</p>
                 <p>Awaiting LAA review</p>
                 <br>
-                <p>£{{data['actualdistTotalCost'] or ('1362')}}.00 requested</p>
+                <p>£{{data['actualdistTotalCost'] or ('1362')}}.00 claimed</p>
                 {% else %}
                 {% if data['app-task'] == "Granted" %}
                   <p><strong class="govuk-tag govuk-tag--green">Granted</strong></p>
                   <p>1 Sept 2023</p>
                   <br>
-                  <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 requested</p>
+                  <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
                   <p>£1352.00 allowed</p>
 
                   {% else %}
@@ -33,39 +33,39 @@
                     <p><strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
                     <p>21 August 2023</p>
                     <br>
-                    <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 requested</p>
+                    <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
                     <p>£0.00 allowed</p>
                     {% else %}
                     {% if data['app-task'] == "Referred" %}
                       <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
                       <p>22 August 2023</p>
                       <br>
-                      <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 requested</p>
+                      <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
                       {% else %}
                       {% if data['app-task'] == "Part granted" %}
                         <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
                         <p>22 August 2023</p>
                         <br>
-                        <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 requested</p>
+                        <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
                         <p>£1192.80 allowed</p>
                         {% else %}
                         {% if data['app-task'] == "Review" %}
                           <p><strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
                           <p>7 March 2024</p>
                           <br>
-                          <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 requested</p>
+                          <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
                           {% else %}
                           {% if data['app-task'] == "Returned" %}
                             <p><strong class="govuk-tag govuk-tag--green">Re-submitted</strong></p>
                             <p><span id="date"></span></p>
                             <br>
-                            <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 requested</p>
+                            <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
                             {% else %}
                             {% if data['app-task'] == "Expired" %}
                               <p><strong class="govuk-tag govuk-tag--red">Expired</strong></p>
                               <p>22 March 2024</p>
                               <br>
-                              <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 requested</p>
+                              <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
                               
                             {% endif %}
                           {% endif %}
@@ -75,7 +75,6 @@
                   {% endif %}
                 {% endif %}
               {% endif %} 
-              <p>(Figures include VAT where applicable)</p>
             </dd>
           </div>
           {% if data['app-task'] == "Submitted" or data['app-task'] == "Returned" %}
@@ -130,7 +129,7 @@
                           {% if data['app-task'] == "Expired" %}
                             <p>On 7 March 2024 we asked you to update your claim before we could complete the assessment. This was due by 21 March 2024.</p>
                             <p>As this update was not made by the required date this claim has been automatically closed.</p>
-                            <p>If you make a new claim you should include the requested update.</p>
+                            <p>If you make a new claim you should include the claimed update.</p>
                           {% endif %}
                         {% endif %}
                       {% endif %}
