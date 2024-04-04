@@ -46,6 +46,7 @@
       }) }}
 
       <h2 class="govuk-heading-m">Application history</h2>
+      <p><strong><a href="application-details-note" class="govuk-link--no-visited-state">Add a note to the application history</a><br></strong></p>
 
       <table class="govuk-table">
         <thead class="govuk-table__head">
@@ -127,13 +128,36 @@
         next: {
           text: 'Next'
         }
-      }) }}     
+      }) }}   
+     <!--
+      <div class="history-input">
+        <form class="form" action="/application-details-history" method="post">
+
+          {{ govukTextarea({
+            name: "moreDetail",
+            id: "more-detail",
+            label: {
+              text: "Add a note to the application history (optional)",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+            hint: {
+              text: "This information is for internal use only"
+            }
+          }) }}
+
+          {{ govukButton({
+            text: "Add to claim history",
+            classes: "govuk-button--secondary"
+          }) }}
+
+        </form>
+      </div>
+      -->
 
       {% include "includes/application-buttons.html"%}
 
-
     </div>
-
 
   </div>
 
