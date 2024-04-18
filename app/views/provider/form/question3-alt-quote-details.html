@@ -98,7 +98,7 @@
               classes: 'govuk-label--s'
             },
             hint: {
-              text: 'The maximum file size is 7MB. Files must be a DOC, DOCX, RTF, ODT, JPG, BMP, PNG, TIF or PDF.'
+              text: 'The maximum size for each file is 10MB. Files must be a DOC, DOCX, RTF, ODT, JPG, BMP, PNG, TIF or PDF.'
             }
           }) }}
 
@@ -603,7 +603,7 @@
               classes: 'govuk-label--s'
             },
             hint: {
-              text: 'The maximum file size of the quote is 70MB. Files must be a DOC, DOCX, XLSX, XLS, RTF, ODT, JPG, BMP, PNG, TIF or PDF.'
+              text: 'The maximum size for each file is 10MB. Files must be a DOC, DOCX, RTF, ODT, JPG, BMP, PNG, TIF or PDF.'
             }
           }) }}
 
@@ -1046,19 +1046,6 @@
             {% else %}
             {% if data['addAltQuote'] == "3" or data['showAltQuote'] == "3"  %}
 
-              {{ govukFileUpload({
-                id: "alt3Upload",
-                name: "alt3Upload",
-                isPageHeading: true,
-                label: {
-                  text: "Upload the quote (optional)",
-                  classes: 'govuk-label--m'
-                },
-                hint: {
-                  text: 'The maximum file size is 7MB. Files must be a DOC, DOCX, RTF, ODT, JPG, BMP, PNG, TIF or PDF.'
-                }
-              }) }}
-
               <!--Alt quote 3-->
 
               {% call govukFieldset({
@@ -1112,6 +1099,19 @@
                 }) }}
 
               {% endcall %}
+
+              {{ govukFileUpload({
+                id: "alt3Upload",
+                name: "alt3Upload",
+                isPageHeading: true,
+                label: {
+                  text: "Upload the quote (optional)",
+                  classes: 'govuk-label--m'
+                },
+                hint: {
+                  text: 'The maximum size for each file is 10MB. Files must be a DOC, DOCX, RTF, ODT, JPG, BMP, PNG, TIF or PDF.'
+                }
+              }) }}
 
               <!--Service 3 details -->
 
