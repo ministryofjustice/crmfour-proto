@@ -1,0 +1,130 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header1.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Case contact – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl">Contact details</span>
+    {% if data['changeOrg'] == "change" %}
+      <form class="form" action="check-answers" method="post">
+      {% else %}
+      <form class="form" action="task-list2?question1-org=complete" method="post">
+    {% endif %}
+
+        {% set NoneHTML %}
+          <p>According to your permissions you can only apply on behalf of the accounts displayed. If you think you should have access to a different account please contact ????. </p>
+        {% endset %}
+
+        {% if data['offices'] =="many-many" %}
+          {{ govukRadios({
+            name: "firmAC",
+            fieldset: {
+              legend: {
+                text: "Confirm the account number that this application is being made on behalf of",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "A1B2C3",
+                text: "A1B2C3"
+              },
+              {
+                divider: "or"
+              },
+              {
+                value: "none",
+                text: "I want to apply under a different account number",
+                conditional: {
+                  html: NoneHTML
+                }
+              }
+            ]
+          }) }}
+          {% else %}
+          {% if data['offices'] =="one-many" %}
+            {{ govukRadios({
+              name: "firmAC",
+              fieldset: {
+                legend: {
+                  text: "Confirm the account number that this application is being made on behalf of",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--xl"
+                }
+              },
+              items: [
+                {
+                  value: "A1B2C3",
+                  text: "A1B2C3"
+                },
+                {
+                  value: "C1B2A3",
+                  text: "C1B2A3"
+                },
+                {
+                  value: "C3B2A1",
+                  text: "C3B2A1"
+                },
+                {
+                  divider: "or"
+                },
+                {
+                  value: "none",
+                  text: "I want to apply under a different account number",
+                  conditional: {
+                    html: NoneHTML
+                  }
+                }
+              ]
+            }) }}
+          {% endif %}
+        {% endif %}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+      
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps?claims-state=draft"
+          }) }}
+
+          {% else %}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps?claims-state=all"
+          }) }}
+
+        {% endif %}
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
