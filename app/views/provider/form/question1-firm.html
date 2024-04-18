@@ -32,7 +32,7 @@
           <p>According to your permissions you can only apply on behalf of the accounts displayed. If you think you should have access to a different account please contact ????. </p>
         {% endset %}
 
-        {% if data['offices'] =="many-many" %}
+        {% if data['offices'] =="one-many" %}
           {{ govukRadios({
             name: "firmAC",
             fieldset: {
@@ -60,7 +60,7 @@
             ]
           }) }}
           {% else %}
-          {% if data['offices'] =="one-many" %}
+          {% if data['offices'] =="many-many" %}
             {{ govukRadios({
               name: "firmAC",
               fieldset: {
