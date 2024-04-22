@@ -29,7 +29,7 @@
     {% endif %}
 
         {% set NoneHTML %}
-          <p>According to your permissions you can only apply on behalf of the accounts displayed. If you think you should have access to a different account please contact ????. </p>
+          <p>According to your permissions you can only apply on behalf of the accounts displayed. If you think you should have access to a different account please contact your firm's LAA account administrator. </p>
         {% endset %}
 
         {% if data['offices'] =="one-many" %}
@@ -60,7 +60,7 @@
             ]
           }) }}
           {% else %}
-          {% if data['offices'] =="many-many" %}
+          
             {{ govukRadios({
               name: "firmAC",
               fieldset: {
@@ -95,7 +95,6 @@
                 }
               ]
             }) }}
-          {% endif %}
         {% endif %}
 
       <div class="govuk-button-group">

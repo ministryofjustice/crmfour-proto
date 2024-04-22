@@ -27,7 +27,7 @@
     {% if data['changeOrg'] == "change" %}
       <form class="form" action="check-answers" method="post">
       {% else %}
-      <form class="form" action="task-list?question1-org=complete" method="post">
+      <form class="form" action="question1-firm" method="post">
     {% endif %}
 
       {{ govukInput({
@@ -62,7 +62,6 @@
         name: "contact-email",
         autocomplete: "email",
         value: data['contact-email']
-        
       }) }}
 
       {{ govukInput({
@@ -74,21 +73,8 @@
         id: "org-name",
         name: "org-name",
         value: data['org-name']
-      }) }}
-
-      {{ govukInput({
-        label: {
-          text: "Firm account number",
-          classes: "govuk-label--s"
-        },
-        hint: {
-          text: "For example, 1A234B"
-        },
-        classes: "govuk-input--width-20",
-        id: "org-acc",
-        name: "org-acc",
-        value: data['org-acc']
-      }) }}      
+      }) }}   
+     
 
       <div class="govuk-button-group">
         {{ govukButton({
