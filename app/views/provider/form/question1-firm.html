@@ -28,74 +28,29 @@
       <form class="form" action="task-list2?question1-org=complete" method="post">
     {% endif %}
 
-        {% set NoneHTML %}
-          <p>According to your permissions you can only apply on behalf of the accounts displayed. If you think you should have access to a different account please contact your firm's LAA account administrator. </p>
-        {% endset %}
-
-        {% if data['offices'] =="one-many" %}
-          {{ govukRadios({
-            name: "firmAC",
-            fieldset: {
-              legend: {
-                text: "Confirm the account number that this application is being made on behalf of",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
-              }
-            },
-            items: [
-              {
-                value: "A1B2C3",
-                text: "A1B2C3"
-              },
-              {
-                divider: "or"
-              },
-              {
-                value: "none",
-                text: "I want to apply under a different account number",
-                conditional: {
-                  html: NoneHTML
-                }
-              }
-            ]
-          }) }}
-          {% else %}
-          
-            {{ govukRadios({
-              name: "firmAC",
-              fieldset: {
-                legend: {
-                  text: "Confirm the account number that this application is being made on behalf of",
-                  isPageHeading: true,
-                  classes: "govuk-fieldset__legend--xl"
-                }
-              },
-              items: [
-                {
-                  value: "A1B2C3",
-                  text: "A1B2C3"
-                },
-                {
-                  value: "C1B2A3",
-                  text: "C1B2A3"
-                },
-                {
-                  value: "C3B2A1",
-                  text: "C3B2A1"
-                },
-                {
-                  divider: "or"
-                },
-                {
-                  value: "none",
-                  text: "I want to apply under a different account number",
-                  conditional: {
-                    html: NoneHTML
-                  }
-                }
-              ]
-            }) }}
-        {% endif %}
+      {{ govukRadios({
+        name: "firmAC",
+        fieldset: {
+          legend: {
+            text: "Which firm account number is this application for?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+          },
+          hint: {
+            text: "Your sign in details give you access to these firm account numbers. To get access to a different firm account number contact your firm's LAA account administrator."
+          },
+        items: [
+          {
+            value: "A1B2C3",
+            text: "A1B2C3"
+          },
+          {
+            value: "B1B2C3",
+            text: "B1B2C3"
+          }
+        ]
+      }) }}
 
       <div class="govuk-button-group">
         {{ govukButton({
