@@ -1,0 +1,48 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Is 1A2B3C your office account code? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/interaction-designer-summary" method="post">
+
+        {{ govukInput({
+            label: {
+              text: "My first field",
+              classes: "govuk-label--s"
+            },
+            id: "firstField",
+            name: "firstField",
+            value: data['firstField']
+          }) }}
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="secondField">
+              My second field
+            </label>
+            <input class="govuk-input" id="secondField" name="secondField" value="{{data['secondField']}}" type="text">
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="thirdField">
+              My third field that doesn't remember
+            </label>
+            <input class="govuk-input" id="thirdField" name="thirdField" type="text">
+          </div>
+
+          {{ govukButton({
+            text: "Show me"
+          }) }}
+
+      </form>
+      
+    </div>
+  </div>
+
+{% endblock %}
