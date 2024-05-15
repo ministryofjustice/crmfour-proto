@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw4.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  LAA Online Portal – Assess a crime form - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner2.html"%}
+  {% if data['app'] == "4" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'CRM4',
+          href: 'metabase?app=4',
+          active: true
+        },
+        {
+          text: 'CRM5',
+          href: 'metabase?app=5'
+        },
+        {
+          text: 'CRM7',
+          href: 'metabase?app=7'
+        }
+      ]
+    }) }}
+    {% elif data['app'] == "5" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'CRM4',
+          href: 'metabase?app=4',
+          active: false
+        },
+        {
+          text: 'CRM5',
+          href: 'metabase?app=5',
+          active: true
+        },
+        {
+          text: 'CRM7',
+          href: 'metabase?app=7'
+        }
+      ]
+    }) }}
+    {% elif data['app'] == "7" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'CRM4',
+          href: 'metabase?app=4',
+          active: false
+        },
+        {
+          text: 'CRM5',
+          href: 'metabase?app=5',
+          active: false
+        },
+        {
+          text: 'CRM7',
+          href: 'metabase?app=7',
+          active: true
+        }
+      ]
+    }) }}
+  {% endif %}
+
+
+
+
+
+
+
+
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% if data['app'] == "4" %}
+        <h1 class="govuk-heading-xl">CRM4 dashboard</h1>
+        {% elif data['app'] == "5" %}
+        <h1 class="govuk-heading-xl">CRM5 dashboard</h1>
+        {% elif data['app'] == "7" %}
+        <h1 class="govuk-heading-xl">CRM7 dashboard</h1>
+      {% endif %}
+      <table role="presentation" width="100%" style="border-collapse: collapse;min-width: 100%;width: 100% !important;" cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr align="center">
+          <td><img src="/public/images/metabase.png"></td> 
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+   
+
+{% endblock %}
