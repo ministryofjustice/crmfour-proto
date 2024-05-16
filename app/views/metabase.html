@@ -1,7 +1,11 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-  {% include "includes/header-cw4.html"%}
+  {% if data['version'] =="1" %}
+    {% include "includes/header-cw4.html"%}
+    {% elif data['version'] =="2" %}
+    {% include "includes/header-cw5.html"%}
+  {% endif %}
 {% endblock %}
 
 {% block pageTitle %}
@@ -10,13 +14,54 @@
 
 {% block beforeContent %}
   {% include "includes/banner2.html"%}
-  {% if data['app'] == "4" %}
+
+{% if data['version'] =="2" %}
     {{ mojPrimaryNavigation({
       label: 'Primary navigation',
       items: [
         {
           text: 'User management',
           href: 'user-management',
+          active: true
+        },
+        {
+          text: 'Dashboard',
+          href: 'metabase?app=4',
+          active: false
+        }
+      ]
+    }) }}
+    {% elif data['version'] =="1" and data['app'] == "user" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'User management',
+          href: 'user-management?app=user',
+          active: true
+        },
+        {
+          text: 'CRM4',
+          href: 'metabase?app=4',
+          active: false
+        },
+        {
+          text: 'CRM5',
+          href: 'metabase?app=5'
+        },
+        {
+          text: 'CRM7',
+          href: 'metabase?app=7'
+        }
+      ]
+    }) }}
+    {% elif data['version'] =="1" and data['app'] == "4" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'User management',
+          href: 'user-management?app=user',
           active: false
         },
         {
@@ -34,13 +79,13 @@
         }
       ]
     }) }}
-    {% elif data['app'] == "5" %}
+    {% elif data['version'] =="1" and data['app'] == "5" %}
     {{ mojPrimaryNavigation({
       label: 'Primary navigation',
       items: [
         {
           text: 'User management',
-          href: 'user-management',
+          href: 'user-management?app=user',
           active: false
         },
         {
@@ -59,13 +104,13 @@
         }
       ]
     }) }}
-    {% elif data['app'] == "7" %}
+    {% elif data['version'] =="1" and data['app'] == "7" %}
     {{ mojPrimaryNavigation({
       label: 'Primary navigation',
       items: [
         {
           text: 'User management',
-          href: 'user-management',
+          href: 'user-management?app=user',
           active: false
         },
         {
