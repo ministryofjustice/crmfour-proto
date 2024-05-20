@@ -47,15 +47,14 @@
   <div class="govuk-grid-column-two-thirds">
     
     <h1 class="govuk-heading-xl">
-      Search
+      Search for an application
     </h1>
   </div>
 </div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-
-     <div class="search-panel govuk-!-margin-bottom-6">
+    <div class="search-panel govuk-!-margin-bottom-6">
 
       <div class="govuk-form-group govuk-!-width-two-thirds" role="search">
         <h2 class="govuk-label-wrapper">
@@ -67,8 +66,14 @@
           You can search by defendant name, firm name, UFN or LAA reference
         </div>
         <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-describedby="search-hint" aria-description="Search will filter the table of users">
+        
       </div>
 
+      <h2 class="govuk-heading-m">
+          Filter results
+      </h2>
+
+      <div id="filters" class="govuk-date-input">
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <label class="govuk-label" for="sort">
@@ -102,9 +107,51 @@
             </select>
           </div>
         </div>
+      </div>
+
+      <div id="date-filters" lass="govuk-date-input">
+
+        <div class="govuk-date-input__item">
+          {{ govukDateInput({
+            id: "filter-date-from",
+            namePrefix: "filter-date-from",
+            fieldset: {
+              legend: {
+                text: "Date from",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            }
+          }) }}
+        </div>
+
+        <div class="govuk-date-input__item">
+          {{ govukDateInput({
+            id: "filter-date-to",
+            namePrefix: "filter-date-to",
+            fieldset: {
+              legend: {
+                text: "Date to",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            }
+          }) }}
+        </div>
 
       </div>
-    <div id="resultsTable">
+
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button" onclick="mySearch()" id="searchButton">
+          Search
+        </button>
+
+        <a class="govuk-link" href="crm-assess-search2">Clear all</a>
+      </div>
+            
+    </div>
+
+    <div id="resultsTable2">
       <h2 class="govuk-heading-m">
         Search results
       </h2>
@@ -230,7 +277,7 @@
           text: 'Next'
         }
       }) }}  
-    </div>       
+    </div>     
      
   </div>
 
@@ -238,8 +285,22 @@
 
 
 <script>
- //Search that filters rows in a table
- // https://www.w3schools.com/howto/howto_js_filter_table.asp
+
+   https://www.w3schools.com/howto/howto_js_read_more.asp
+
+function mySearch() {
+  var searchResult = document.getElementById("resultsTable2");
+  var searchButton = document.getElementById("searchButton");
+
+  if (searchResult.style.display === "none") {
+    searchResult.style.display = "none";
+  } else {
+    searchResult.style.display = "inline";
+  }
+} 
+
+  //Search that filters rows in a table
+// https://www.w3schools.com/howto/howto_js_filter_table.asp
 
   function tablefilterSearch() {
     // Declare variables
