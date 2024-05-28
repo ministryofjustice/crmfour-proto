@@ -115,7 +115,7 @@
                     {% if data['app-task'] == "Part granted" %}
                       <p>This application was part granted due to disallowed travel costs. </p>
                       <div class="govuk-error-summary__body">
-                          <ul class="govuk-list govuk-list--bullet">
+                          <ul class="govuk-list">
                             <li>
                               <a href="#review-travel" class="govuk-link--no-visited-state">Review travel cost adjustments</a>
                             </li>
@@ -146,7 +146,7 @@
                           <h3 class="govuk-heading-s">Further information request</h3>
                           <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this is much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
                           </p>
-                          <h3 class="govuk-heading-s">Information corrections</h3>
+                          <h3 class="govuk-heading-s">Amendment request</h3>
                           <p> {{data['fieldIncorrectInfo'] or "The postcode of the service provider does not match the one partially supplied on the CRM4. Please clarify and provide the correct address which is where they are based/located and not the correspondence or organisation address."}}</p>   
                           {% else %}
                           {% if data['app-task'] == "Expired" %}
@@ -1199,6 +1199,32 @@
                   {{data['providerFurtherInfo'] or "Please see the attached documetents that show my client was not in the in UK" }}<br>
                   <a href="">courtDocs1.pdf</a><br>
                   <a href="">courtDocs2.pdf</a>
+                </dd>
+              </div>
+            </dl>       
+          </div>
+        </div>
+
+                <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h3 class="govuk-summary-card__title" id="review-incorrect-info">Amendment request 21 Oct 2023</h3>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Information request
+                </dt>
+                <dd class="govuk-summary-list__value">
+                 {{data['fieldIncorrectInfo'] or "The postcode of the service provider does not match the one partially supplied on the CRM4. Please clarify and provide the correct address which is where they are based/located and not the correspondence or organisation address."}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Your response
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <a href="#review-further-info2" class="govuk-link--no-visited-state"><a href="#review-client" class="govuk-link--no-visited-state">Client details - updated</a>
                 </dd>
               </div>
             </dl>       
