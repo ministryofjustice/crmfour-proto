@@ -34,7 +34,7 @@
             id: "fieldIncorrectInfo",
             value: data['fieldIncorrectInfo'],
             label: {
-              text: "Describe what information is incorrect and needs amending by the provider"
+              text: "Tell the provider what information they need to edit."
             }
           }) }}      
         {% endset -%}
@@ -45,7 +45,7 @@
             id: "fieldFurtherInfo",
             value: data['fieldFurtherInfo'],
             label: {
-              text: "Describe what further information you require from the provider"
+              text: "Tell the provider what information they need to add to their application."
             }
           }) }}      
         {% endset -%}
@@ -65,7 +65,10 @@
           items: [
             {
               value: "further",
-              text: "Further information",
+              text: "Further information required",
+              hint: {
+                text: "for example, if further clarification is needed"
+              },
               conditional: {
                 html: furtherHtml
               }
@@ -73,6 +76,9 @@
              {
               value: "incorrect",
               text: "Incorrect information",
+              hint: {
+                text: "for example, if a mistake has been made (not including service type)"
+              },
               conditional: {
                 html: incorrectHtml
               }
