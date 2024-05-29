@@ -30,64 +30,135 @@
           Adjusted claim
         </h2>  
 
-         <table class="govuk-table">
-          <tbody class="govuk-table__body">
+        {% if data['disbursementType'] =="Car milage"%}
+          <table class="govuk-table">
+            <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
-            <td class="govuk-table__cell govuk-!-width-one-half">Net cost allowed</td>
-            <td class="govuk-table__cell">£0.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">VAT on allowed</td>
-            <td class="govuk-table__cell">£0.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Total cost allowed</td>
-            <td class="govuk-table__cell">£0.00</td>
-          </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Reason for adjustment</td>
-              <td class="govuk-table__cell">The caseworkers reason for adjusting the disbusement goes here.</td>
+              <td class="govuk-table__cell govuk-!-width-one-half">Mileage allowed</td>
+              <td class="govuk-table__cell">5 miles</td>
             </tr>
-          </tbody>
-        </table>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Net cost allowed</td>
+              <td class="govuk-table__cell">£25.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">VAT on allowed</td>
+              <td class="govuk-table__cell">£0.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Total cost allowed</td>
+              <td class="govuk-table__cell">£25.00</td>
+            </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Reason for adjustment</td>
+                <td class="govuk-table__cell">The caseworkers reason for adjusting the disbusement goes here.</td>
+              </tr>
+            </tbody>
+          </table>
+          {% else %}
+
+          <table class="govuk-table">
+            <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Net cost allowed</td>
+              <td class="govuk-table__cell">£25.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">VAT on allowed</td>
+              <td class="govuk-table__cell">£0.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Total cost allowed</td>
+              <td class="govuk-table__cell">£25.00</td>
+            </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Reason for adjustment</td>
+                <td class="govuk-table__cell">The caseworkers reason for adjusting the disbusement goes here.</td>
+              </tr>
+            </tbody>
+          </table>
+
+        {% endif %}
+
       {% endif%}
 
       <h2 class="govuk-heading-m">
         Your costs
       </h2>  
 
-      <table class="govuk-table">
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell govuk-!-width-one-half">Date</td>
-            <td class="govuk-table__cell">1 January 2024</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell govuk-!-width-one-half">Disbursement type</td>
-            <td class="govuk-table__cell">{{data['disbursementType']}}</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell govuk-!-width-one-half">Disbursement description</td>
-            <td class="govuk-table__cell">This is a description of the disbursement.</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell govuk-!-width-one-half">Prior authority granted?</td>
-            <td class="govuk-table__cell">Yes</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Net cost</td>
-            <td class="govuk-table__cell">£{{data['disbursementNet']}}.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">VAT</td>
-            <td class="govuk-table__cell">£{{data['disbursementVAT']}}.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">Total cost</td>
-            <td class="govuk-table__cell">£{{data['disbursementTotal']}}.00</td>
-          </tr>
-        </tbody>
-      </table> 
+      {% if data['disbursementType'] =="Car milage"%}
+
+        <table class="govuk-table">
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Date</td>
+              <td class="govuk-table__cell">1 January 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Disbursement type</td>
+              <td class="govuk-table__cell">{{data['disbursementType']}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Disbursement description</td>
+              <td class="govuk-table__cell">This is a description of the disbursement.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Prior authority granted?</td>
+              <td class="govuk-table__cell">Yes</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Mileage</td>
+              <td class="govuk-table__cell">10 miles</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Net cost</td>
+              <td class="govuk-table__cell">£{{data['disbursementNet']}}.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">VAT</td>
+              <td class="govuk-table__cell">£{{data['disbursementVAT']}}.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Total cost</td>
+              <td class="govuk-table__cell">£{{data['disbursementTotal']}}.00</td>
+            </tr>
+          </tbody>
+        </table> 
+
+        {% else %}
+        <table class="govuk-table">
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Date</td>
+              <td class="govuk-table__cell">1 January 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Disbursement type</td>
+              <td class="govuk-table__cell">{{data['disbursementType']}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Disbursement description</td>
+              <td class="govuk-table__cell">This is a description of the disbursement.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Prior authority granted?</td>
+              <td class="govuk-table__cell">Yes</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Net cost</td>
+              <td class="govuk-table__cell">£{{data['disbursementNet']}}.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">VAT</td>
+              <td class="govuk-table__cell">£{{data['disbursementVAT']}}.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Total cost</td>
+              <td class="govuk-table__cell">£{{data['disbursementTotal']}}.00</td>
+            </tr>
+          </tbody>
+        </table> 
+      {% endif %}
       
 
        
