@@ -37,26 +37,44 @@
               {{data['laa-ref'] or "LAA-5a7d3c"}}
             </dd>
           </div>
-          {% if data['reviewApp'] == "further" or data['reviewApp'] == "further,incorrect" %}
+          {% if data['reviewApp'] == "further" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Further information
+                Further information request
               </dt>
                 <dd class="govuk-summary-list__value">
                 {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
               </dd>
             </div>
-          {% endif %}
-          {% if data['reviewApp'] == "incorrect" or data['reviewApp'] == "further,incorrect" %}
+          {% else %}
+          {% if data['reviewApp'] == "incorrect" %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Incorrect information
+                Amendment request
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
+              </dd>
+            </div>
+            {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Further information request
+              </dt>
+                <dd class="govuk-summary-list__value">
+                {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Amendment request
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
               </dd>
             </div>
           {% endif %}
+        {% endif %}
         </dl>
         <div class="govuk-button-group">
           {{ govukButton({
