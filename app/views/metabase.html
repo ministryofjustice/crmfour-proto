@@ -41,19 +41,9 @@
           active: false
         },
         {
-          text: 'CRM5',
-          href: 'metabase?app=5',
-          active: false
-        },
-        {
           text: 'CRM7',
           href: 'metabase?app=7',
           active: false
-        },
-        {
-          text: 'User management',
-          href: 'user-management?app=user',
-          active: true
         }
       ]
     }) }}
@@ -67,18 +57,8 @@
           active: true
         },
         {
-          text: 'CRM5',
-          href: 'metabase?app=5',
-          active: false
-        },
-        {
           text: 'CRM7',
           href: 'metabase?app=7',
-          active: false
-        },
-        {
-          text: 'User management',
-          href: 'user-management?app=user',
           active: false
         }
       ]
@@ -93,18 +73,8 @@
           active: false
         },
         {
-          text: 'CRM5',
-          href: 'metabase?app=5',
-          active: true
-        },
-        {
           text: 'CRM7',
           href: 'metabase?app=7',
-          active: false
-        },
-        {
-          text: 'User management',
-          href: 'user-management?app=user',
           active: false
         }
       ]
@@ -119,19 +89,9 @@
           active: false
         },
         {
-          text: 'CRM5',
-          href: 'metabase?app=5',
-          active: false
-        },
-        {
           text: 'CRM7',
           href: 'metabase?app=7',
           active: true
-        },
-        {
-          text: 'User management',
-          href: 'user-management?app=user',
-          active: false
         }
       ]
     }) }}
@@ -143,13 +103,29 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-      {% if data['app'] == "4" %}
+       {% if data['app'] == "4" %}
         <h1 class="govuk-heading-xl">CRM4 dashboard</h1>
         {% elif data['app'] == "5" %}
         <h1 class="govuk-heading-xl">CRM5 dashboard</h1>
         {% elif data['app'] == "7" %}
         <h1 class="govuk-heading-xl">CRM7 dashboard</h1>
       {% endif %}
+
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: '#1',
+          active: true
+        }, {
+          text: 'Auto grant',
+          href: '#2'
+        }, {
+          text: 'Other key table',
+          href: '#3'
+        }]
+      }) }}
+     
       <table role="presentation" width="100%" style="border-collapse: collapse;min-width: 100%;width: 100% !important;" cellpadding="0" cellspacing="0" border="0">
       <tbody>
         <tr align="center">
