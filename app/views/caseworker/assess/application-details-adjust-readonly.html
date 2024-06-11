@@ -152,7 +152,7 @@
           <p><a href="application-change-service">Adjust service costs</a></p>
 
           {% else %}
-          {% if data['serviceType'] == "Translator" %} 
+          {% if data['serviceType'] == "Translation" %} 
             <table class="govuk-table">
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
@@ -164,7 +164,7 @@
               <tbody class="govuk-table__body">
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Amount</td>
-                  <td class="govuk-table__cell">20 words</td>
+                  <td class="govuk-table__cell">20000 words</td>
                   {% if data['translatorWords'] == null %}
                     <td class="govuk-table__cell"></td>
                     {% else %}
@@ -173,11 +173,11 @@
                 </tr>
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Cost</td>
-                  <td class="govuk-table__cell">£20.00 per word</td>
+                  <td class="govuk-table__cell">£20.00 per 1000 words</td>
                   {% if data['translatorCostWord'] == null %}
                     <td class="govuk-table__cell"></td>
                     {% else %}
-                    <td class="govuk-table__cell">£{{data['translatorCostWord'] or ""}}.00 per minute</td>
+                    <td class="govuk-table__cell">£{{data['translatorCostWord'] or "19"}}.00 per 1000 words</td>
                   {% endif %}
                 </tr>
                 <tr class="govuk-table__row">
@@ -191,7 +191,6 @@
                 </tr>
               </tbody>
             </table>
-            <p><a href="application-change-service">Adjust service costs</a></p>
 
             {% else %}
             {% if data['serviceType'] == "Photocopying" %} 

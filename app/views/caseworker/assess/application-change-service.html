@@ -86,19 +86,19 @@
             </h2>
 
             {% else %}
-            {% if data['serviceType'] == "Translator" %}
-              <!--Translator-->
+            {% if data['serviceType'] == "Translation" %}
+              <!--Translation-->
               
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-label--s" for="translatorWords">
                   Number of words
                 </label>
-                <input class="govuk-input govuk-input--width-5" id="translatorWords" name="translatorWords" type="text" spellcheck="false" inputmode="numeric" value="{{data['translatorWords'] or "20"}}">
+                <input class="govuk-input govuk-input--width-5" id="translatorWords" name="translatorWords" type="text" spellcheck="false" inputmode="numeric" value="{{data['translatorWords'] or "20000"}}">
               </div>
 
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-label--s" for="translatorCostWord">
-                  Cost per word
+                  Cost per 1000 words
                 </label>
                 <div class="govuk-input__wrapper">
                   <div class="govuk-input__prefix" aria-hidden="true">£</div>

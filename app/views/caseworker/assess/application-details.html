@@ -187,7 +187,23 @@
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Service</td>
-                <td class="govuk-table__cell">2 hours 0 minutes</td>
+                {% if data['serviceType'] == "Transcription" %}
+                  <td class="govuk-table__cell">20 minutes</td>
+                  {% elseif data['serviceType'] == "Translation and transcription"%}
+                    <td class="govuk-table__cell">20 minutes</td>
+                    {% elseif data['serviceType'] == "Translation"%}
+                      <td class="govuk-table__cell">20000 words</td>
+                    {% elseif data['serviceType'] == "Photocopying"%}
+                      <td class="govuk-table__cell">200 pages</td>
+                    {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%}
+                      <td class="govuk-table__cell">2 hours 0 minutes</td>
+                      {% elseif data['serviceType'] == "Other" %}
+                        <td class="govuk-table__cell">2 items</td>
+                        {% elseif data['serviceType'] == "DNA report" %}
+                          <td class="govuk-table__cell">2 reports</td>
+                          {% else %}
+                          <td class="govuk-table__cell">2 hours 0 minutes</td>
+                {% endif%}
                 <td class="govuk-table__cell">£200.00</td>
                 <td class="govuk-table__cell">£400.00</td>
 
@@ -302,7 +318,7 @@
                     {% if data['serviceType'] == "Translation and transcription" %}
                       £{{data['alt1actualTransTotalCost'] or "760"}}.00
                       {% else %}
-                      {% if data['serviceType'] == "Translator" %}
+                      {% if data['serviceType'] == "Translation" %}
                         £{{data['alt1actualTransTotalCost'] or "760"}}.00
                         {% else %}
                         {% if data['serviceType'] == "Photocopying" %}
@@ -332,7 +348,7 @@
                       {% if data['serviceType'] == "Translation and transcription" %}
                         £{{data['actualTransTransTotal'] or "400" }}.00
                         {% else %}
-                        {% if data['serviceType'] == "Translator" %} 
+                        {% if data['serviceType'] == "Translation" %} 
                           £{{data['actualTranslatorTotal'] or "400" }}.00
                           {% else %}
                           {% if data['serviceType'] == "Photocopying" %} 
@@ -429,7 +445,7 @@
                       {% if data['serviceType'] == "Translation and transcription" %}
                         £{{data['alt2actualTransTotalCost'] or "825"}}.00
                         {% else %}
-                        {% if data['serviceType'] == "Translator" %}
+                        {% if data['serviceType'] == "Translation" %}
                           £{{data['alt2actualTransTotalCost'] or "825"}}.00
                           {% else %}
                           {% if data['serviceType'] == "Photocopying" %}
@@ -459,7 +475,7 @@
                       {% if data['serviceType'] == "Translation and transcription" %}
                         £{{data['actualTransTransTotal'] or "400" }}.00
                         {% else %}
-                        {% if data['serviceType'] == "Translator" %} 
+                        {% if data['serviceType'] == "Translation" %} 
                           £{{data['actualTranslatorTotal'] or "400" }}.00
                           {% else %}
                           {% if data['serviceType'] == "Photocopying" %} 
@@ -556,7 +572,7 @@
                       {% if data['serviceType'] == "Translation and transcription" %}
                         £{{data['alt3actualTransTotalCost'] or "780"}}.00
                         {% else %}
-                        {% if data['serviceType'] == "Translator" %}
+                        {% if data['serviceType'] == "Translation" %}
                           £{{data['alt3actualTransTotalCost'] or "780"}}.00
                           {% else %}
                           {% if data['serviceType'] == "Photocopying" %}
@@ -586,7 +602,7 @@
                       {% if data['serviceType'] == "Translation and transcription" %}
                         £{{data['actualTransTransTotal'] or "400" }}.00
                         {% else %}
-                        {% if data['serviceType'] == "Translator" %} 
+                        {% if data['serviceType'] == "Translation" %} 
                           £{{data['actualTranslatorTotal'] or "400" }}.00
                           {% else %}
                           {% if data['serviceType'] == "Photocopying" %} 

@@ -69,7 +69,6 @@
       <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
       <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
       <input type="hidden" id="serviceType" name="serviceType" value="{{data['serviceType']}}" />
-   
 
       <h2 class="govuk-heading-l">
         <span class="govuk-caption-l">Quote total cost</span> £
@@ -196,20 +195,20 @@
                   </tbody>
                 </table>
                 {% else %}
-                {% if data['serviceType'] == "Translator" %} 
+                {% if data['serviceType'] == "Translation" %} 
                   <table class="govuk-table">
                     <thead class="govuk-table__head">
                       <tr class="govuk-table__row">
                         <th scope="col" class="govuk-table__header">Number of words</th>
-                        <th scope="col" class="govuk-table__header">Cost per word</th>
+                        <th scope="col" class="govuk-table__header">Cost per 1000 words</th>
                         <th scope="col" class="govuk-table__header">Total</th>
                       </tr>
                     </thead>
                     <tbody class="govuk-table__body">
                       <tr class="govuk-table__row">
-                        <td class="govuk-table__cell">{{data['translatorWords'] or "20"}} words</td>
-                        <td class="govuk-table__cell">£{{data['translatorCostWord'] or "20"}} per word</td>
-                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "400"}}.00</td>
+                        <td class="govuk-table__cell">{{data['translatorWords'] or "20000"}} words</td>
+                        <td class="govuk-table__cell">£{{data['translatorCostWord'] or "20"}} per 1000 words</td>
+                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "400"}}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -507,7 +506,7 @@
           document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
           document.getElementById("actualdistTotalCost").value = distTotalCost;
         } else
-        if (serviceType1 === "Translator"){   
+        if (serviceType1 === "Translation"){   
           distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTranslatorTotal;
           document.getElementById("actualdistTotalCost").value = distTotalCost;
         } else
@@ -540,7 +539,7 @@
           distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTransTotal;
           document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
         } else
-        if (serviceType1 === "Translator"){   
+        if (serviceType1 === "Translation"){   
           distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTranslatorTotal;
           document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
         } else

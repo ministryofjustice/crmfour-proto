@@ -65,7 +65,7 @@ function calTranslatorCost() {
   var translatorWords = parseInt(document.getElementById("translatorWords").value)
   var translatorCostWord = parseInt(document.getElementById("translatorCostWord").value)
 
-  translatorCost = translatorWords * translatorCostWord;
+  translatorCost = (translatorWords * translatorCostWord) / 1000;
   document.getElementById("showTranslatorTotal").innerHTML = translatorCost;
   document.getElementById("actualTranslatorTotal").value = translatorCost;
 }
