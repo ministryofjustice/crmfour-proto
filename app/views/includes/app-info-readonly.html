@@ -89,14 +89,14 @@
 </p>
 <div class="govuk-button-group">
 
-  {% if data['cwAppStatus'] == "In progress" or data ['cwAppStatus'] == "Referred" or data['cwAppStatus'] == "Returned" %}
+  {% if data['cwAppStatus'] == "In progress"  %}
     {{ govukButton({
       text: "Remove from list",
       href: "application-details-unassign",
       classes: "govuk-button--secondary"
     }) }}
     {% else %}
-    {% if data['cwAppStatus'] == "New" %}
+    {% if data['cwAppStatus'] == "New" or data ['cwAppStatus'] == "Referred" or data['cwAppStatus'] == "Returned" %}
     {{ govukButton({
       text: "Add to my list",
       href: "application-details-assign",
