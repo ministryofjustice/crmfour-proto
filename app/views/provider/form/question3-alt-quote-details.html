@@ -109,26 +109,25 @@
             <!--Transcription-->
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                <h1 class="govuk-fieldset__heading">
+                <h2 class="govuk-fieldset__heading">
                   Transcription cost
-                </h1>
+                </h2>
               </legend>
             
               <div class="govuk-form-group">
-                <h1 class="govuk-label-wrapper">
-                  <label class="govuk-label govuk-label--s" for="alt1TransNoMins">
-                    Number of minutes
-                  </label>
-                </h1>
+                <label class="govuk-label govuk-label--s" for="alt1TransNoMins">
+                  Number of minutes
+                </label>
                 <input class="govuk-input govuk-input--width-5" id="alt1TransNoMins" name="alt1TransNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt1TransNoMins']}}">
               </div>
 
               <div class="govuk-form-group">
-                <h1 class="govuk-label-wrapper">
-                  <label class="govuk-label govuk-label--s" for="alt1TransCostMin">
-                    What is the cost per minute?
-                  </label>
-                </h1>
+                <label class="govuk-label govuk-label--s" for="alt1TransCostMin">
+                  What is the cost per minute?
+                </label>
+                <div id="transCostMin-hint" class="govuk-hint">
+                Costs should be exclusive of VAT 
+              </div>
                 <div class="govuk-input__wrapper">
                   <div class="govuk-input__prefix" aria-hidden="true">£</div>
                   <input class="govuk-input govuk-input--width-5" id="alt1TransCostMin" name="alt1TransCostMin" type="text" spellcheck="false" value="{{data['alt1TransCostMin']}}">
@@ -139,10 +138,10 @@
                       
               <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Update calculation</button>
 
-              <h2 class="govuk-heading-l">
+              <h3 class="govuk-heading-l">
                 <span class="govuk-caption-l">Total cost</span> £
                 <span id="showTransTotal">0</span>.00
-              </h2>
+              </h3>
 
             </fieldset>
 
@@ -151,26 +150,25 @@
               <!--Transcription & translation-->
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                  <h1 class="govuk-fieldset__heading">
+                  <h2 class="govuk-fieldset__heading">
                     Translation and transcription cost
-                  </h1>
+                  </h2>
                 </legend>
               
                 <div class="govuk-form-group">
-                  <h1 class="govuk-label-wrapper">
-                    <label class="govuk-label govuk-label--s" for="alt1TranstransNoMins">
-                      Number of minutes
-                    </label>
-                  </h1>
+                  <label class="govuk-label govuk-label--s" for="alt1TranstransNoMins">
+                    Number of minutes
+                  </label>
                   <input class="govuk-input govuk-input--width-5" id="alt1TranstransNoMins" name="alt1TranstransNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt1TranstransNoMins']}}">
                 </div>
 
                 <div class="govuk-form-group">
-                  <h1 class="govuk-label-wrapper">
-                    <label class="govuk-label govuk-label--s" for="alt1TranstransCostMin">
-                      What is the cost per minute?
-                    </label>
-                  </h1>
+                  <label class="govuk-label govuk-label--s" for="alt1TranstransCostMin">
+                    What is the cost per minute?
+                  </label>
+                  <div id="transCostMin-hint" class="govuk-hint">
+                    Costs should be exclusive of VAT 
+                  </div>
                   <div class="govuk-input__wrapper">
                     <div class="govuk-input__prefix" aria-hidden="true">£</div>
                     <input class="govuk-input govuk-input--width-5" id="alt1TranstransCostMin" name="alt1TranstransCostMin" type="text" spellcheck="false" value="{{data['alt1TranstransCostMin']}}">
@@ -184,26 +182,25 @@
                 <!--Translation-->
                 <fieldset class="govuk-fieldset">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    <h1 class="govuk-fieldset__heading">
+                    <h2 class="govuk-fieldset__heading">
                       Translation cost
-                    </h1>
+                    </h2>
                   </legend>
                 
                   <div class="govuk-form-group">
-                    <h1 class="govuk-label-wrapper">
-                      <label class="govuk-label govuk-label--s" for="alt1TranslatorWords">
-                        Number of words
-                      </label>
-                    </h1>
+                    <label class="govuk-label govuk-label--s" for="alt1TranslatorWords">
+                      Number of words
+                    </label>
                     <input class="govuk-input govuk-input--width-5" id="alt1TranslatorWords" name="alt1TranslatorWords" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt1TranslatorWords']}}">
                   </div>
 
                   <div class="govuk-form-group">
-                    <h1 class="govuk-label-wrapper">
-                      <label class="govuk-label govuk-label--s" for="alt1TranslatorCostWord">
-                        What is the cost per 1000 words?
-                      </label>
-                    </h1>
+                    <label class="govuk-label govuk-label--s" for="alt1TranslatorCostWord">
+                      What is the cost per 1000 words?
+                    </label>
+                    <div id="transCostMin-hint" class="govuk-hint">
+                      Costs should be exclusive of VAT 
+                    </div>
                     <div class="govuk-input__wrapper">
                       <div class="govuk-input__prefix" aria-hidden="true">£</div>
                       <input class="govuk-input govuk-input--width-5" id="alt1TranslatorCostWord" name="alt1TranslatorCostWord" type="text" spellcheck="false" value="{{data['alt1TranslatorCostWord']}}">
@@ -217,26 +214,25 @@
                   <!--Photocopying-->
                   <fieldset class="govuk-fieldset">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                      <h1 class="govuk-fieldset__heading">
+                      <h2 class="govuk-fieldset__heading">
                         Photocopying cost
-                      </h1>
+                      </h2>
                     </legend>
                   
                     <div class="govuk-form-group">
-                      <h1 class="govuk-label-wrapper">
-                        <label class="govuk-label govuk-label--s" for="alt1PhotoNoPages">
-                          Number of pages
-                        </label>
-                      </h1>
+                      <label class="govuk-label govuk-label--s" for="alt1PhotoNoPages">
+                        Number of pages
+                      </label>
                       <input class="govuk-input govuk-input--width-5" id="alt1PhotoNoPages" name="alt1PhotoNoPages" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt1PhotoNoPages']}}">
                     </div>
 
                     <div class="govuk-form-group">
-                      <h1 class="govuk-label-wrapper">
-                        <label class="govuk-label govuk-label--s" for="alt1PhotoCostPage">
-                          What is the cost per page?
-                        </label>
-                      </h1>
+                      <label class="govuk-label govuk-label--s" for="alt1PhotoCostPage">
+                        What is the cost per page?
+                      </label>
+                      <div id="transCostMin-hint" class="govuk-hint">
+                        Costs should be exclusive of VAT 
+                      </div>
                       <div class="govuk-input__wrapper">
                         <div class="govuk-input__prefix" aria-hidden="true">£</div>
                         <input class="govuk-input govuk-input--width-5" id="alt1PhotoCostPage" name="alt1PhotoCostPage" type="text" spellcheck="false" value="{{data['alt1PhotoCostPage']}}">
@@ -251,17 +247,18 @@
                     <fieldset class="govuk-fieldset">
 
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                        <h1 class="govuk-fieldset__heading">
+                        <h2 class="govuk-fieldset__heading">
                           DNA report cost
-                        </h1>
+                        </h2>
                       </legend>
                   
                       <div class="govuk-form-group">
-                        <h1 class="govuk-label-wrapper">
-                          <label class="govuk-label govuk-label--s" for="alt1dnaCost">
-                            What is the total cost of the report?
-                          </label>
-                        </h1>
+                        <label class="govuk-label govuk-label--s" for="alt1dnaCost">
+                          What is the total cost of the report?
+                        </label>
+                        <div id="transCostMin-hint" class="govuk-hint">
+                          Costs should be exclusive of VAT 
+                        </div>
                         <div class="govuk-input__wrapper">
                           <div class="govuk-input__prefix" aria-hidden="true">£</div>
                           <input class="govuk-input govuk-input--width-5" id="alt1dnaCost" name="alt1dnaCost" type="text" spellcheck="false" value="{{data['alt1dnaCost']}}">
@@ -275,9 +272,9 @@
                       <!--Other-->
                       <fieldset class="govuk-fieldset">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                          <h1 class="govuk-fieldset__heading">
-                            Other costs
-                          </h1>
+                          <h2 class="govuk-fieldset__heading">
+                            This is user entered cost
+                          </h2>
                         </legend>
 
                         {% set hourlyHtml %}
@@ -312,7 +309,10 @@
                             name: "alt1OtherCostTime",
                             value: data['alt1OtherCostTime'],
                             label: {
-                              text: "What is the hourly cost? "
+                              text: "What is the hourly cost?"
+                            },
+                            hint: {
+                              text: "Costs should be exclusive of VAT "
                             },
                             prefix: {
                               text: "£"
@@ -324,11 +324,9 @@
 
                         {% set nonhourHtml %}
                           <div class="govuk-form-group">
-                            <h1 class="govuk-label-wrapper">
-                              <label class="govuk-label" for="alt1OtherNoItems">
-                                Number of items
-                              </label>
-                            </h1>
+                            <label class="govuk-label" for="alt1OtherNoItems">
+                              Number of items
+                            </label>
                             <div class="govuk-input__wrapper">
                               <input class="govuk-input govuk-input--width-5" id="alt1OtherNoItems" name="alt1OtherNoItems" type="text" spellcheck="false" value="{{data['alt1OtherNoItems']}}">
                             </div>
@@ -343,6 +341,9 @@
                             },
                             prefix: {
                               text: "£"
+                            },
+                            hint: {
+                              text: "Costs should be exclusive of VAT "
                             },
                             classes: "govuk-input--width-5",
                             spellcheck: false
@@ -383,9 +384,9 @@
                       <!--General-->
                       <fieldset class="govuk-fieldset">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                          <h1 class="govuk-fieldset__heading">
+                          <h2 class="govuk-fieldset__heading">
                             {{data['serviceType'] or "Interpreter"}} cost
-                          </h1>
+                          </h2>
                         </legend>
                       
                         <div class="govuk-form-group">
@@ -415,11 +416,12 @@
                         </div>
                             
                         <div class="govuk-form-group">
-                          <h1 class="govuk-label-wrapper">
-                            <label class="govuk-label govuk-label--s" for="alt1GeneralCost">
-                              What is the hourly cost?
-                            </label>
-                          </h1>
+                          <label class="govuk-label govuk-label--s" for="alt1GeneralCost">
+                            What is the hourly cost?
+                          </label>
+                          <div id="photoCostPage-hint" class="govuk-hint">
+                            Costs should be exclusive of VAT 
+                          </div>
                           <div class="govuk-input__wrapper">
                             <div class="govuk-input__prefix" aria-hidden="true">£</div>
                             <input class="govuk-input govuk-input--width-5" id="alt1GeneralCost" name="alt1GeneralCost" type="text" spellcheck="false" value="{{data['alt1GeneralCost']}}">
@@ -437,9 +439,9 @@
           <!--Travel-->
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              <h1 class="govuk-fieldset__heading">
+              <h2 class="govuk-fieldset__heading">
                 Travel cost (optional)
-              </h1>
+              </h2>
             </legend>
             <p>Only include the hourly rate cost. Any other travel expenditure (such as mileage, parking and travel fares) can be added as additional costs.</p>
 
@@ -477,6 +479,9 @@
                 text: "What is the hourly cost?",
                 classes: "govuk-label--s"
               },
+              hint: {
+                text: "Costs should be exclusive of VAT "
+              },
               prefix: {
                 text: "£"
               },
@@ -512,6 +517,9 @@
               label: {
                 text: "Total additional costs",
                 classes: "govuk-label--s"
+              },
+              hint: {
+                text: "Costs should be exclusive of VAT "
               },
               prefix: {
                 text: "£"
@@ -613,40 +621,39 @@
             <!--Transcription-->
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                <h1 class="govuk-fieldset__heading">
+                <h2 class="govuk-fieldset__heading">
                   Transcription cost
-                </h1>
+                </h2>
               </legend>
             
               <div class="govuk-form-group">
-                <h1 class="govuk-label-wrapper">
-                  <label class="govuk-label govuk-label--s" for="alt2TransNoMins">
-                    Number of minutes
-                  </label>
-                </h1>
+                <label class="govuk-label govuk-label--s" for="alt2TransNoMins">
+                  Number of minutes
+                </label>
                 <input class="govuk-input govuk-input--width-5" id="alt2TransNoMins" name="alt2TransNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt2TransNoMins']}}">
               </div>
 
               <div class="govuk-form-group">
-                <h1 class="govuk-label-wrapper">
-                  <label class="govuk-label govuk-label--s" for="alt2TransCostMin">
-                    What is the cost per minute?
-                  </label>
-                </h1>
+                <label class="govuk-label govuk-label--s" for="alt2TransCostMin">
+                  What is the cost per minute?
+                </label>
+                <div id="transCostMin-hint" class="govuk-hint">
+                Costs should be exclusive of VAT 
+              </div>
                 <div class="govuk-input__wrapper">
                   <div class="govuk-input__prefix" aria-hidden="true">£</div>
                   <input class="govuk-input govuk-input--width-5" id="alt2TransCostMin" name="alt2TransCostMin" type="text" spellcheck="false" value="{{data['alt2TransCostMin']}}">
                 </div>
               </div>
             
-              <input type="hidden" id="actualalt2TransTotal" name="actualalt2TransTotal" value="{{data['actualalt2TransTotal']}}" />
+              <input type="hidden" id="actualTransTotal" name="actualTransTotal" value="{{data['actualTransTotal']}}" />
                       
               <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Update calculation</button>
 
-              <h2 class="govuk-heading-l">
+              <h3 class="govuk-heading-l">
                 <span class="govuk-caption-l">Total cost</span> £
-                <span id="showalt2TransTotal">0</span>.00
-              </h2>
+                <span id="showTransTotal">0</span>.00
+              </h3>
 
             </fieldset>
 
@@ -655,26 +662,25 @@
               <!--Transcription & translation-->
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                  <h1 class="govuk-fieldset__heading">
+                  <h2 class="govuk-fieldset__heading">
                     Translation and transcription cost
-                  </h1>
+                  </h2>
                 </legend>
               
                 <div class="govuk-form-group">
-                  <h1 class="govuk-label-wrapper">
-                    <label class="govuk-label govuk-label--s" for="alt2TranstransNoMins">
-                      Number of minutes
-                    </label>
-                  </h1>
+                  <label class="govuk-label govuk-label--s" for="alt2TranstransNoMins">
+                    Number of minutes
+                  </label>
                   <input class="govuk-input govuk-input--width-5" id="alt2TranstransNoMins" name="alt2TranstransNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt2TranstransNoMins']}}">
                 </div>
 
                 <div class="govuk-form-group">
-                  <h1 class="govuk-label-wrapper">
-                    <label class="govuk-label govuk-label--s" for="alt2TranstransCostMin">
-                      What is the cost per minute?
-                    </label>
-                  </h1>
+                  <label class="govuk-label govuk-label--s" for="alt2TranstransCostMin">
+                    What is the cost per minute?
+                  </label>
+                  <div id="transCostMin-hint" class="govuk-hint">
+                    Costs should be exclusive of VAT 
+                  </div>
                   <div class="govuk-input__wrapper">
                     <div class="govuk-input__prefix" aria-hidden="true">£</div>
                     <input class="govuk-input govuk-input--width-5" id="alt2TranstransCostMin" name="alt2TranstransCostMin" type="text" spellcheck="false" value="{{data['alt2TranstransCostMin']}}">
@@ -688,26 +694,25 @@
                 <!--Translation-->
                 <fieldset class="govuk-fieldset">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    <h1 class="govuk-fieldset__heading">
+                    <h2 class="govuk-fieldset__heading">
                       Translation cost
-                    </h1>
+                    </h2>
                   </legend>
                 
                   <div class="govuk-form-group">
-                    <h1 class="govuk-label-wrapper">
-                      <label class="govuk-label govuk-label--s" for="alt2TranslatorWords">
-                        Number of words
-                      </label>
-                    </h1>
+                    <label class="govuk-label govuk-label--s" for="alt2TranslatorWords">
+                      Number of words
+                    </label>
                     <input class="govuk-input govuk-input--width-5" id="alt2TranslatorWords" name="alt2TranslatorWords" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt2TranslatorWords']}}">
                   </div>
 
                   <div class="govuk-form-group">
-                    <h1 class="govuk-label-wrapper">
-                      <label class="govuk-label govuk-label--s" for="alt2TranslatorCostWord">
-                        What is the cost per 1000 words?
-                      </label>
-                    </h1>
+                    <label class="govuk-label govuk-label--s" for="alt2TranslatorCostWord">
+                      What is the cost per 1000 words?
+                    </label>
+                    <div id="transCostMin-hint" class="govuk-hint">
+                      Costs should be exclusive of VAT 
+                    </div>
                     <div class="govuk-input__wrapper">
                       <div class="govuk-input__prefix" aria-hidden="true">£</div>
                       <input class="govuk-input govuk-input--width-5" id="alt2TranslatorCostWord" name="alt2TranslatorCostWord" type="text" spellcheck="false" value="{{data['alt2TranslatorCostWord']}}">
@@ -721,26 +726,25 @@
                   <!--Photocopying-->
                   <fieldset class="govuk-fieldset">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                      <h1 class="govuk-fieldset__heading">
+                      <h2 class="govuk-fieldset__heading">
                         Photocopying cost
-                      </h1>
+                      </h2>
                     </legend>
                   
                     <div class="govuk-form-group">
-                      <h1 class="govuk-label-wrapper">
-                        <label class="govuk-label govuk-label--s" for="alt2PhotoNoPages">
-                          Number of pages
-                        </label>
-                      </h1>
+                      <label class="govuk-label govuk-label--s" for="alt2PhotoNoPages">
+                        Number of pages
+                      </label>
                       <input class="govuk-input govuk-input--width-5" id="alt2PhotoNoPages" name="alt2PhotoNoPages" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt2PhotoNoPages']}}">
                     </div>
 
                     <div class="govuk-form-group">
-                      <h1 class="govuk-label-wrapper">
-                        <label class="govuk-label govuk-label--s" for="alt2PhotoCostPage">
-                          What is the cost per page?
-                        </label>
-                      </h1>
+                      <label class="govuk-label govuk-label--s" for="alt2PhotoCostPage">
+                        What is the cost per page?
+                      </label>
+                      <div id="transCostMin-hint" class="govuk-hint">
+                        Costs should be exclusive of VAT 
+                      </div>
                       <div class="govuk-input__wrapper">
                         <div class="govuk-input__prefix" aria-hidden="true">£</div>
                         <input class="govuk-input govuk-input--width-5" id="alt2PhotoCostPage" name="alt2PhotoCostPage" type="text" spellcheck="false" value="{{data['alt2PhotoCostPage']}}">
@@ -755,17 +759,18 @@
                     <fieldset class="govuk-fieldset">
 
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                        <h1 class="govuk-fieldset__heading">
+                        <h2 class="govuk-fieldset__heading">
                           DNA report cost
-                        </h1>
+                        </h2>
                       </legend>
                   
                       <div class="govuk-form-group">
-                        <h1 class="govuk-label-wrapper">
-                          <label class="govuk-label govuk-label--s" for="altdnaCost">
-                            What is the total cost of the report?
-                          </label>
-                        </h1>
+                        <label class="govuk-label govuk-label--s" for="alt2dnaCost">
+                          What is the total cost of the report?
+                        </label>
+                        <div id="transCostMin-hint" class="govuk-hint">
+                          Costs should be exclusive of VAT 
+                        </div>
                         <div class="govuk-input__wrapper">
                           <div class="govuk-input__prefix" aria-hidden="true">£</div>
                           <input class="govuk-input govuk-input--width-5" id="alt2dnaCost" name="alt2dnaCost" type="text" spellcheck="false" value="{{data['alt2dnaCost']}}">
@@ -779,9 +784,9 @@
                       <!--Other-->
                       <fieldset class="govuk-fieldset">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                          <h1 class="govuk-fieldset__heading">
-                            Other costs
-                          </h1>
+                          <h2 class="govuk-fieldset__heading">
+                            This is user entered cost
+                          </h2>
                         </legend>
 
                         {% set hourlyHtml %}
@@ -816,7 +821,10 @@
                             name: "alt2OtherCostTime",
                             value: data['alt2OtherCostTime'],
                             label: {
-                              text: "What is the hourly cost? "
+                              text: "What is the hourly cost?"
+                            },
+                            hint: {
+                              text: "Costs should be exclusive of VAT "
                             },
                             prefix: {
                               text: "£"
@@ -828,11 +836,9 @@
 
                         {% set nonhourHtml %}
                           <div class="govuk-form-group">
-                            <h1 class="govuk-label-wrapper">
-                              <label class="govuk-label" for="alt2OtherNoItems">
-                                Number of items
-                              </label>
-                            </h1>
+                            <label class="govuk-label" for="alt2OtherNoItems">
+                              Number of items
+                            </label>
                             <div class="govuk-input__wrapper">
                               <input class="govuk-input govuk-input--width-5" id="alt2OtherNoItems" name="alt2OtherNoItems" type="text" spellcheck="false" value="{{data['alt2OtherNoItems']}}">
                             </div>
@@ -847,6 +853,9 @@
                             },
                             prefix: {
                               text: "£"
+                            },
+                            hint: {
+                              text: "Costs should be exclusive of VAT "
                             },
                             classes: "govuk-input--width-5",
                             spellcheck: false
@@ -887,9 +896,9 @@
                       <!--General-->
                       <fieldset class="govuk-fieldset">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                          <h1 class="govuk-fieldset__heading">
+                          <h2 class="govuk-fieldset__heading">
                             {{data['serviceType'] or "Interpreter"}} cost
-                          </h1> 
+                          </h2>
                         </legend>
                       
                         <div class="govuk-form-group">
@@ -919,11 +928,12 @@
                         </div>
                             
                         <div class="govuk-form-group">
-                          <h1 class="govuk-label-wrapper">
-                            <label class="govuk-label govuk-label--s" for="alt2GeneralCost">
-                              What is the hourly cost?
-                            </label>
-                          </h1>
+                          <label class="govuk-label govuk-label--s" for="alt2GeneralCost">
+                            What is the hourly cost?
+                          </label>
+                          <div id="photoCostPage-hint" class="govuk-hint">
+                            Costs should be exclusive of VAT 
+                          </div>
                           <div class="govuk-input__wrapper">
                             <div class="govuk-input__prefix" aria-hidden="true">£</div>
                             <input class="govuk-input govuk-input--width-5" id="alt2GeneralCost" name="alt2GeneralCost" type="text" spellcheck="false" value="{{data['alt2GeneralCost']}}">
@@ -941,9 +951,9 @@
           <!--Travel-->
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              <h1 class="govuk-fieldset__heading">
+              <h2 class="govuk-fieldset__heading">
                 Travel cost (optional)
-              </h1>
+              </h2>
             </legend>
             <p>Only include the hourly rate cost. Any other travel expenditure (such as mileage, parking and travel fares) can be added as additional costs.</p>
             <div class="govuk-form-group">
@@ -980,6 +990,9 @@
                 text: "What is the hourly cost?",
                 classes: "govuk-label--s"
               },
+              hint: {
+                text: "Costs should be exclusive of VAT "
+              },
               prefix: {
                 text: "£"
               },
@@ -992,9 +1005,9 @@
           <!--Additional-->
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-              <h1 class="govuk-fieldset__heading">
+              <h2 class="govuk-fieldset__heading">
                 Additional costs (optional)
-              </h1>
+              </h2>
             </legend>
             <p>For example, other costs such as extra fees, travel mileage, parking charges or travel fares. </p>
 
@@ -1015,6 +1028,9 @@
               label: {
                 text: "Total additional costs",
                 classes: "govuk-label--s"
+              },
+              hint: {
+                text: "Costs should be exclusive of VAT "
               },
               prefix: {
                 text: "£"
@@ -1119,26 +1135,25 @@
                 <!--Transcription-->
                 <fieldset class="govuk-fieldset">
                   <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                    <h1 class="govuk-fieldset__heading">
-                      Transcription costs
-                    </h1>
+                    <h2 class="govuk-fieldset__heading">
+                      Transcription cost
+                    </h2>
                   </legend>
                 
                   <div class="govuk-form-group">
-                    <h1 class="govuk-label-wrapper">
-                      <label class="govuk-label govuk-label--s" for="alt3TransNoMins">
-                        Number of minutes
-                      </label>
-                    </h1>
+                    <label class="govuk-label govuk-label--s" for="alt3TransNoMins">
+                      Number of minutes
+                    </label>
                     <input class="govuk-input govuk-input--width-5" id="alt3TransNoMins" name="alt3TransNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt3TransNoMins']}}">
                   </div>
 
                   <div class="govuk-form-group">
-                    <h1 class="govuk-label-wrapper">
-                      <label class="govuk-label govuk-label--s" for="alt3TransCostMin">
-                        What is the cost per minute?
-                      </label>
-                    </h1>
+                    <label class="govuk-label govuk-label--s" for="alt3TransCostMin">
+                      What is the cost per minute?
+                    </label>
+                    <div id="transCostMin-hint" class="govuk-hint">
+                    Costs should be exclusive of VAT 
+                  </div>
                     <div class="govuk-input__wrapper">
                       <div class="govuk-input__prefix" aria-hidden="true">£</div>
                       <input class="govuk-input govuk-input--width-5" id="alt3TransCostMin" name="alt3TransCostMin" type="text" spellcheck="false" value="{{data['alt3TransCostMin']}}">
@@ -1149,10 +1164,10 @@
                           
                   <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Update calculation</button>
 
-                  <h2 class="govuk-heading-l">
+                  <h3 class="govuk-heading-l">
                     <span class="govuk-caption-l">Total cost</span> £
                     <span id="showTransTotal">0</span>.00
-                  </h2>
+                  </h3>
 
                 </fieldset>
 
@@ -1161,26 +1176,25 @@
                   <!--Transcription & translation-->
                   <fieldset class="govuk-fieldset">
                     <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                      <h1 class="govuk-fieldset__heading">
-                        Translation and transcription costs
-                      </h1>
+                      <h2 class="govuk-fieldset__heading">
+                        Translation and transcription cost
+                      </h2>
                     </legend>
                   
                     <div class="govuk-form-group">
-                      <h1 class="govuk-label-wrapper">
-                        <label class="govuk-label govuk-label--s" for="alt3TranstransNoMins">
-                          Number of minutes
-                        </label>
-                      </h1>
+                      <label class="govuk-label govuk-label--s" for="alt3TranstransNoMins">
+                        Number of minutes
+                      </label>
                       <input class="govuk-input govuk-input--width-5" id="alt3TranstransNoMins" name="alt3TranstransNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt3TranstransNoMins']}}">
                     </div>
 
                     <div class="govuk-form-group">
-                      <h1 class="govuk-label-wrapper">
-                        <label class="govuk-label govuk-label--s" for="alt3TranstransCostMin">
-                          What is the cost per minute?
-                        </label>
-                      </h1>
+                      <label class="govuk-label govuk-label--s" for="alt3TranstransCostMin">
+                        What is the cost per minute?
+                      </label>
+                      <div id="transCostMin-hint" class="govuk-hint">
+                        Costs should be exclusive of VAT 
+                      </div>
                       <div class="govuk-input__wrapper">
                         <div class="govuk-input__prefix" aria-hidden="true">£</div>
                         <input class="govuk-input govuk-input--width-5" id="alt3TranstransCostMin" name="alt3TranstransCostMin" type="text" spellcheck="false" value="{{data['alt3TranstransCostMin']}}">
@@ -1194,26 +1208,25 @@
                     <!--Translation-->
                     <fieldset class="govuk-fieldset">
                       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                        <h1 class="govuk-fieldset__heading">
-                          Translation costs
-                        </h1>
+                        <h2 class="govuk-fieldset__heading">
+                          Translation cost
+                        </h2>
                       </legend>
                     
                       <div class="govuk-form-group">
-                        <h1 class="govuk-label-wrapper">
-                          <label class="govuk-label govuk-label--s" for="alt3TranslatorWords">
-                            Number of words
-                          </label>
-                        </h1>
+                        <label class="govuk-label govuk-label--s" for="alt3TranslatorWords">
+                          Number of words
+                        </label>
                         <input class="govuk-input govuk-input--width-5" id="alt3TranslatorWords" name="alt3TranslatorWords" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt3TranslatorWords']}}">
                       </div>
 
                       <div class="govuk-form-group">
-                        <h1 class="govuk-label-wrapper">
-                          <label class="govuk-label govuk-label--s" for="alt3TranslatorCostWord">
-                            What is the cost per 1000 words?
-                          </label>
-                        </h1>
+                        <label class="govuk-label govuk-label--s" for="alt3TranslatorCostWord">
+                          What is the cost per 1000 words?
+                        </label>
+                        <div id="transCostMin-hint" class="govuk-hint">
+                          Costs should be exclusive of VAT 
+                        </div>
                         <div class="govuk-input__wrapper">
                           <div class="govuk-input__prefix" aria-hidden="true">£</div>
                           <input class="govuk-input govuk-input--width-5" id="alt3TranslatorCostWord" name="alt3TranslatorCostWord" type="text" spellcheck="false" value="{{data['alt3TranslatorCostWord']}}">
@@ -1227,26 +1240,25 @@
                       <!--Photocopying-->
                       <fieldset class="govuk-fieldset">
                         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                          <h1 class="govuk-fieldset__heading">
-                            Photocopying costs
-                          </h1>
+                          <h2 class="govuk-fieldset__heading">
+                            Photocopying cost
+                          </h2>
                         </legend>
                       
                         <div class="govuk-form-group">
-                          <h1 class="govuk-label-wrapper">
-                            <label class="govuk-label govuk-label--s" for="alt3PhotoNoPages">
-                              Number of pages
-                            </label>
-                          </h1>
+                          <label class="govuk-label govuk-label--s" for="alt3PhotoNoPages">
+                            Number of pages
+                          </label>
                           <input class="govuk-input govuk-input--width-5" id="alt3PhotoNoPages" name="alt3PhotoNoPages" type="text" spellcheck="false" inputmode="numeric" value="{{data['alt3PhotoNoPages']}}">
                         </div>
 
                         <div class="govuk-form-group">
-                          <h1 class="govuk-label-wrapper">
-                            <label class="govuk-label govuk-label--s" for="alt3PhotoCostPage">
-                              What is the cost per page?
-                            </label>
-                          </h1>
+                          <label class="govuk-label govuk-label--s" for="alt3PhotoCostPage">
+                            What is the cost per page?
+                          </label>
+                          <div id="transCostMin-hint" class="govuk-hint">
+                            Costs should be exclusive of VAT 
+                          </div>
                           <div class="govuk-input__wrapper">
                             <div class="govuk-input__prefix" aria-hidden="true">£</div>
                             <input class="govuk-input govuk-input--width-5" id="alt3PhotoCostPage" name="alt3PhotoCostPage" type="text" spellcheck="false" value="{{data['alt3PhotoCostPage']}}">
@@ -1261,17 +1273,18 @@
                         <fieldset class="govuk-fieldset">
 
                           <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                            <h1 class="govuk-fieldset__heading">
-                              DNA report costs
-                            </h1>
+                            <h2 class="govuk-fieldset__heading">
+                              DNA report cost
+                            </h2>
                           </legend>
                       
                           <div class="govuk-form-group">
-                            <h1 class="govuk-label-wrapper">
-                              <label class="govuk-label govuk-label--s" for="alt3dnaCost">
-                                What is the total cost of the report?
-                              </label>
-                            </h1>
+                            <label class="govuk-label govuk-label--s" for="alt3dnaCost">
+                              What is the total cost of the report?
+                            </label>
+                            <div id="transCostMin-hint" class="govuk-hint">
+                              Costs should be exclusive of VAT 
+                            </div>
                             <div class="govuk-input__wrapper">
                               <div class="govuk-input__prefix" aria-hidden="true">£</div>
                               <input class="govuk-input govuk-input--width-5" id="alt3dnaCost" name="alt3dnaCost" type="text" spellcheck="false" value="{{data['alt3dnaCost']}}">
@@ -1285,9 +1298,9 @@
                           <!--Other-->
                           <fieldset class="govuk-fieldset">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                              <h1 class="govuk-fieldset__heading">
-                                Other costs
-                              </h1>
+                              <h2 class="govuk-fieldset__heading">
+                                This is user entered cost
+                              </h2>
                             </legend>
 
                             {% set hourlyHtml %}
@@ -1322,7 +1335,10 @@
                                 name: "alt3OtherCostTime",
                                 value: data['alt3OtherCostTime'],
                                 label: {
-                                  text: "What is the hourly cost? "
+                                  text: "What is the hourly cost?"
+                                },
+                                hint: {
+                                  text: "Costs should be exclusive of VAT "
                                 },
                                 prefix: {
                                   text: "£"
@@ -1334,11 +1350,9 @@
 
                             {% set nonhourHtml %}
                               <div class="govuk-form-group">
-                                <h1 class="govuk-label-wrapper">
-                                  <label class="govuk-label" for="alt3OtherNoItems">
-                                    Number of items
-                                  </label>
-                                </h1>
+                                <label class="govuk-label" for="alt3OtherNoItems">
+                                  Number of items
+                                </label>
                                 <div class="govuk-input__wrapper">
                                   <input class="govuk-input govuk-input--width-5" id="alt3OtherNoItems" name="alt3OtherNoItems" type="text" spellcheck="false" value="{{data['alt3OtherNoItems']}}">
                                 </div>
@@ -1353,6 +1367,9 @@
                                 },
                                 prefix: {
                                   text: "£"
+                                },
+                                hint: {
+                                  text: "Costs should be exclusive of VAT "
                                 },
                                 classes: "govuk-input--width-5",
                                 spellcheck: false
@@ -1393,9 +1410,9 @@
                           <!--General-->
                           <fieldset class="govuk-fieldset">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                              <h1 class="govuk-fieldset__heading">
-                                {{data['serviceType'] or "Interpreter"}} costs
-                              </h1>
+                              <h2 class="govuk-fieldset__heading">
+                                {{data['serviceType'] or "Interpreter"}} cost
+                              </h2>
                             </legend>
                           
                             <div class="govuk-form-group">
@@ -1425,11 +1442,12 @@
                             </div>
                                 
                             <div class="govuk-form-group">
-                              <h1 class="govuk-label-wrapper">
-                                <label class="govuk-label govuk-label--s" for="alt3GeneralCost">
-                                  What is the hourly cost?
-                                </label>
-                              </h1>
+                              <label class="govuk-label govuk-label--s" for="alt3GeneralCost">
+                                What is the hourly cost?
+                              </label>
+                              <div id="photoCostPage-hint" class="govuk-hint">
+                                Costs should be exclusive of VAT 
+                              </div>
                               <div class="govuk-input__wrapper">
                                 <div class="govuk-input__prefix" aria-hidden="true">£</div>
                                 <input class="govuk-input govuk-input--width-5" id="alt3GeneralCost" name="alt3GeneralCost" type="text" spellcheck="false" value="{{data['alt3GeneralCost']}}">
@@ -1447,9 +1465,9 @@
               <!--Travel-->
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                  <h1 class="govuk-fieldset__heading">
+                  <h2 class="govuk-fieldset__heading">
                     Travel cost (optional)
-                  </h1>
+                  </h2>
                 </legend>
                 <p>Only include the hourly rate cost. Any other travel expenditure (such as mileage, parking and travel fares) can be added as additional costs.</p>
                 <div class="govuk-form-group">
@@ -1486,6 +1504,9 @@
                     text: "What is the hourly cost?",
                     classes: "govuk-label--s"
                   },
+                  hint: {
+                    text: "Costs should be exclusive of VAT "
+                  },
                   prefix: {
                     text: "£"
                   },
@@ -1498,9 +1519,9 @@
               <!--Additional-->
               <fieldset class="govuk-fieldset">
                 <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-                  <h1 class="govuk-fieldset__heading">
+                  <h2 class="govuk-fieldset__heading">
                     Additional costs (optional)
-                  </h1>
+                  </h2>
                 </legend>
                 <p>For example, other costs such as extra fees, travel mileage, parking charges or travel fares. </p>
 
@@ -1521,6 +1542,9 @@
                   label: {
                     text: "Total additional costs",
                     classes: "govuk-label--s"
+                  },
+                  hint: {
+                    text: "Costs should be exclusive of VAT "
                   },
                   prefix: {
                     text: "£"
