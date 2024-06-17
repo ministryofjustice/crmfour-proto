@@ -474,12 +474,12 @@
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Number of minutes</th>
-                <th scope="col" class="govuk-table__header">Cost per minute</th>
-                {% if data['app-task'] == "Submitted" %}
-                  <th scope="col" class="govuk-table__header">Total</th>
+                <th scope="col" class="govuk-table__header">Amount</th>
+                <th scope="col" class="govuk-table__header">Rate</th>
+                {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+                  <th scope="col" class="govuk-table__header">Total requested</th>
                   {% else %}
-                  <th scope="col" class="govuk-table__header">Requested</th>
+                  <th scope="col" class="govuk-table__header">Total requested</th>
                   <th scope="col" class="govuk-table__header">LAA allowed</th>
                 {% endif %}
               </tr>
@@ -507,12 +507,12 @@
             <table class="govuk-table">
               <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                  <th scope="col" class="govuk-table__header">Number of minutes</th>
-                  <th scope="col" class="govuk-table__header">Cost per minute</th>
-                  {% if data['app-task'] == "Submitted" %}
-                    <th scope="col" class="govuk-table__header">Total</th>
+                  <th scope="col" class="govuk-table__header">Amount</th>
+                  <th scope="col" class="govuk-table__header">Rate</th>
+                  {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+                    <th scope="col" class="govuk-table__header">Total requested</th>
                     {% else %}
-                    <th scope="col" class="govuk-table__header">Requested</th>
+                    <th scope="col" class="govuk-table__header">Total requested</th>
                     <th scope="col" class="govuk-table__header">LAA allowed</th>
                   {% endif %}
                 </tr>
@@ -540,12 +540,12 @@
               <table class="govuk-table">
                 <thead class="govuk-table__head">
                   <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Number of words</th>
-                    <th scope="col" class="govuk-table__header">Cost per 1000 words</th>
-                    {% if data['app-task'] == "Submitted" %}
-                      <th scope="col" class="govuk-table__header">Total</th>
+                    <th scope="col" class="govuk-table__header">Amount</th>
+                    <th scope="col" class="govuk-table__header">Rate</th>
+                    {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+                      <th scope="col" class="govuk-table__header">Total requested</th>
                       {% else %}
-                      <th scope="col" class="govuk-table__header">Requested</th>
+                      <th scope="col" class="govuk-table__header">Total requested</th>
                       <th scope="col" class="govuk-table__header">LAA allowed</th>
                     {% endif %}
                   </tr>
@@ -573,12 +573,12 @@
                 <table class="govuk-table">
                   <thead class="govuk-table__head">
                     <tr class="govuk-table__row">
-                      <th scope="col" class="govuk-table__header">Number of pages</th>
-                      <th scope="col" class="govuk-table__header">Cost per page</th>
-                      {% if data['app-task'] == "Submitted" %}
-                      <th scope="col" class="govuk-table__header">Total</th>
+                      <th scope="col" class="govuk-table__header">Amount</th>
+                      <th scope="col" class="govuk-table__header">Rate</th>
+                      {% if data['app-task'] == "Submitted"  or data['app-task'] == "Re-submitted"%}
+                      <th scope="col" class="govuk-table__header">Total requested</th>
                       {% else %}
-                        <th scope="col" class="govuk-table__header">Requested</th>
+                        <th scope="col" class="govuk-table__header">Total requested</th>
                         <th scope="col" class="govuk-table__header">LAA allowed</th>
                       {% endif %}
                     </tr>
@@ -606,12 +606,12 @@
                   <table class="govuk-table">
                     <thead class="govuk-table__head">
                       <tr class="govuk-table__row">
-                        <th scope="col" class="govuk-table__header">Time</th>
-                        <th scope="col" class="govuk-table__header">Cost per hour</th>
-                        {% if data['app-task'] == "Submitted" %}
-                          <th scope="col" class="govuk-table__header">Total</th>
+                        <th scope="col" class="govuk-table__header">Amount</th>
+                        <th scope="col" class="govuk-table__header">Rate</th>
+                        {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+                          <th scope="col" class="govuk-table__header">Total requested</th>
                           {% else %}
-                          <th scope="col" class="govuk-table__header">Requested</th>
+                          <th scope="col" class="govuk-table__header">Total requested</th>
                           <th scope="col" class="govuk-table__header">LAA allowed</th>
                         {% endif %}
                       </tr>
@@ -639,12 +639,12 @@
                     <table class="govuk-table">
                       <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
-                          <th scope="col" class="govuk-table__header">Number of items</th>
-                          <th scope="col" class="govuk-table__header">Cost per item</th>
-                          {% if data['app-task'] == "Submitted" %}
-                            <th scope="col" class="govuk-table__header">Total</th>
+                          <th scope="col" class="govuk-table__header">Amount</th>
+                          <th scope="col" class="govuk-table__header">Rate/th>
+                          {% if data['app-task'] == "Submitted"  or data['app-task'] == "Re-submitted"%}
+                            <th scope="col" class="govuk-table__header">Total requested</th>
                             {% else %}
-                            <th scope="col" class="govuk-table__header">Requested</th>
+                            <th scope="col" class="govuk-table__header">Total requested</th>
                             <th scope="col" class="govuk-table__header">LAA allowed</th>
                           {% endif %}
                         </tr>
@@ -673,11 +673,12 @@
                       <table class="govuk-table">
                         <thead class="govuk-table__head">
                           <tr class="govuk-table__row">
-                            <th scope="col" class="govuk-table__header">Number of reports</th><th scope="col" class="govuk-table__header">Report cost</th>
-                            {% if data['app-task'] == "Submitted" %}
-                              <th scope="col" class="govuk-table__header">Total</th>
+                            <th scope="col" class="govuk-table__header">Amount</th>
+                            <th scope="col" class="govuk-table__header">Rate</th>
+                            {% if data['app-task'] == "Submitted"  or data['app-task'] == "Re-submitted"%}
+                              <th scope="col" class="govuk-table__header">Total requested</th>
                               {% else %}
-                              <th scope="col" class="govuk-table__header">Requested</th>
+                              <th scope="col" class="govuk-table__header">Total requested</th>
                               <th scope="col" class="govuk-table__header">LAA allowed</th>
                             {% endif %}
                           </tr>
@@ -705,12 +706,12 @@
                         <table class="govuk-table">
                           <thead class="govuk-table__head">
                             <tr class="govuk-table__row">
-                              <th scope="col" class="govuk-table__header">Time</th>
-                              <th scope="col" class="govuk-table__header">Cost per hour</th>
-                              {% if data['app-task'] == "Submitted" %}
-                                <th scope="col" class="govuk-table__header">Total</th>
+                              <th scope="col" class="govuk-table__header">Amount</th>
+                              <th scope="col" class="govuk-table__header">Rate</th>
+                              {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+                                <th scope="col" class="govuk-table__header">Total requested</th>
                                 {% else %}
-                                <th scope="col" class="govuk-table__header">Requested</th>
+                                <th scope="col" class="govuk-table__header">Total requested</th>
                                 <th scope="col" class="govuk-table__header">LAA allowed</th>
                               {% endif %}
                             </tr>
@@ -761,12 +762,12 @@
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Travel time</th>
-                <th scope="col" class="govuk-table__header">Hourly cost</th>
-                {% if data['app-task'] == "Submitted" %}
-                <th scope="col" class="govuk-table__header">Total</th>
+                <th scope="col" class="govuk-table__header">Amount</th>
+                <th scope="col" class="govuk-table__header">Rate</th>
+                {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+                <th scope="col" class="govuk-table__header">Total requested</th>
                 {% else %}
-                  <th scope="col" class="govuk-table__header">Requested</th>
+                  <th scope="col" class="govuk-table__header">Total requested</th>
                   <th scope="col" class="govuk-table__header">LAA allowed</th>
                 {% endif %}
               </tr>
@@ -810,12 +811,12 @@
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Time</th>
-                <th scope="col" class="govuk-table__header">Rate per hour</th>
-                {% if data['app-task'] == "Submitted" %}
-                  <th scope="col" class="govuk-table__header">Total</th>
+                <th scope="col" class="govuk-table__header">Amount</th>
+                <th scope="col" class="govuk-table__header">Rate</th>
+                {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+                  <th scope="col" class="govuk-table__header">Total requested</th>
                   {% else %}
-                  <th scope="col" class="govuk-table__header">Requested</th>
+                  <th scope="col" class="govuk-table__header">Total requested</th>
                   <th scope="col" class="govuk-table__header">LAA allowed</th>
                 {% endif %}
               </tr>
@@ -845,12 +846,12 @@
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Number of items</th>
-                <th scope="col" class="govuk-table__header">Cost per item</th>
-                {% if data['app-task'] == "Submitted" %}
-                  <th scope="col" class="govuk-table__header">Total</th>
+                <th scope="col" class="govuk-table__header">Amount</th>
+                <th scope="col" class="govuk-table__header">Rate</th>
+                {% if data['app-task'] == "Submitted"  or data['app-task'] == "Re-submitted"%}
+                  <th scope="col" class="govuk-table__header">Total requested</th>
                   {% else %}
-                  <th scope="col" class="govuk-table__header">Requested</th>
+                  <th scope="col" class="govuk-table__header">Total requested</th>
                   <th scope="col" class="govuk-table__header">LAA allowed</th>
                 {% endif %}
               </tr>
@@ -915,7 +916,7 @@
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th scope="col" class="govuk-table__header">Costs</th>
-              <th scope="col" class="govuk-table__header">Total</th>
+              <th scope="col" class="govuk-table__header">Total requested</th>
             </tr>
           </thead>
           <tbody class="govuk-table__body">
