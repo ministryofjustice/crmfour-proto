@@ -264,23 +264,13 @@
                 {% else %}
                 <li class="govuk-summary-card__action"> 
                   <!--For the proto make links show as not yet selected until the user does the action-->
-                  {% if data['changeTravel'] == "change" %}
-                    <a class="govuk-link" href="question3-quote-travel?changeTravel=change">Change<span class="govuk-visually-hidden"> additional item</span></a>
-                    {% else %}
-                    <a class="govuk-link--no-visited-state" href="question3-quote-travel?addAdd=Yes&addCost=1&changeTravel=change">Change<span class="govuk-visually-hidden"> additional item</a>
-                  {% endif %} 
+                  <a class="govuk-link" href="question3-quote-travel?changeTravel=change">Change<span class="govuk-visually-hidden"> travel item</a>
                 </li>
               {% endif %} 
               {% if data['addTravel'] =="No" %}
                 {% else %}
                 <li class="govuk-summary-card__action">
-                  <!--For the proto make links show as not selected until the user does the action-->
-                  {% if data['deleteTravel'] == "delete" %}
-                    <a class="govuk-link" href="question3-quote-travel-delete?deleteTravel=yes">
-                    Delete<span class="govuk-visually-hidden"> travel</span></a>
-                    {% else %}
-                    <a class="govuk-link--no-visited-state" href="question3-quote-travel-delete?deleteTravel=yes">Delete<span class="govuk-visually-hidden"> travel</a>
-                  {% endif %}
+                    <a class="govuk-link" href="question3-quote-travel-delete">Delete<span class="govuk-visually-hidden"> travel</span></a>
                 </li>
               {% endif %}
             </ul>
