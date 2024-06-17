@@ -29,7 +29,7 @@
         <!--Additonal cost 1-->
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset" role="group">
-            <legend class="govuk-fieldset__legend">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
               Time
             </legend>
             <div class="govuk-date-input" id="addTime1">
@@ -58,7 +58,8 @@
           name: "addCostTime1",
           value: data['addCostTime1'] or "30",
           label: {
-            text: "What is the hourly cost?"
+            text: "Cost per hour",
+            classes: "govuk-fieldset__legend--s"
           },
           prefix: {
             text: "£"
@@ -67,7 +68,7 @@
           spellcheck: false
         }) }}
       
-        <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total'] or "120"}}">                        
+        <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total'] or "120"}}.00">                        
                 
         <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd1CWCost()">Calculate my changes</button>
       
