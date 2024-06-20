@@ -53,7 +53,7 @@
           </label>
         </h2>
         <div id="search-hint" class="govuk-hint">
-          You can search by client name, office number, UFN or LAA reference
+          You can search by client name, UFN or LAA reference
         </div>
         <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-describedby="search-hint" aria-description="Search will filter the table of users">
         
@@ -126,19 +126,31 @@
             </label>
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
               <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
-              <option value="Not assigned" onclick="filterSelection('none')">Not assigned</option>
-              <option value="In progress" onclick="filterSelection('in-progress')">In progress</option>
-              <option value="Sent back" onclick="filterSelection('sent-back')">Sent back</option>
+              <option value="In progress" onclick="filterSelection('in-progress')">Submitted</option>
+              <option value="Sent back" onclick="filterSelection('update')">Update needed</option>
+              <option value="In progress" onclick="filterSelection('re-sub')">Re-submitted</option>
               <option value="Granted" onclick="filterSelection('granted')">Granted</option>
-              <option value="Auto-granted" onclick="filterSelection('auto-granted')">Auto-granted</option>
-              <option value="Part granted" onclick="filterSelection('part-granted')">Part granted</option>
+              <option value="Part granted" onclick="filterSelection('part')">Part granted</option>
               <option value="Rejected" onclick="filterSelection('rejected')">Rejected</option>
-              <option value="Cancelled" onclick="filterSelection('cancelled')">Cancelled</option>
+              <option value="Cancelled" onclick="filterSelection('cancelled')">Expired</option>
             </select>
           </div>
         </div>
 
         <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="sort">
+              Account
+            </label>
+            <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
+              <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
+              <option value="Justice" onclick="filterSelection('C1B1C1')">C1B1C1</option>
+              <option value="Wolf" onclick="filterSelection('A1B1C1')">A1B1C1</option>
+            </select>
+          </div>
+        </div>
+
+         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <label class="govuk-label" for="sort">
               Submitted by
@@ -158,7 +170,7 @@
           Search
         </button>
 
-        <a class="govuk-link" href="crm-assess-search1">Clear all</a>
+        <a class="govuk-link" href="crm-apps-search">Clear all</a>
       </div>
             
     </div>
@@ -170,97 +182,75 @@
       <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
-            <th scope="col" class="govuk-table__header" aria-sort="none">Firm name</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">UFN</th>
             <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
-            <th scope="col" class="govuk-table__header" aria-sort="none">Caseworker</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Account</th>
             <th scope="col" class="govuk-table__header" aria-sort="descending">Last updated</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
             <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">                
-          <tr class="govuk-table__row hideTR all part-granted">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f7w&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
-            <td class="govuk-table__cell">Law Fans</td>
+          <tr class="govuk-table__row hideTR all granted A1B1C1 Justice">
+            <td class="govuk-table__cell"><a href="application-details?question1-org=complete&ufn=100323/342&laa-ref=LAA-1z5f7w&app-task=Granted" class="govuk-link--no-visited-state" data-sort-value="100323342">100323/342</a></td>
             <td class="govuk-table__cell">Roger Catapult</td>
-            <td class="govuk-table__cell">Not assigned</td>
-            <td class="govuk-table__cell" data-sort-value="231121">21 Nov 2023</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Part granted</strong></td>
-          </tr>
-          <tr class="govuk-table__row hideTR all none Not">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-9p4f0e&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="9p4f0e">LAA-9p4f0e</a></td>
-            <td class="govuk-table__cell">Legal Aiders Ltd</td>
-            <td class="govuk-table__cell">Jamie Innes</td>
-            <td class="govuk-table__cell">Not assigned</td>
-            <td class="govuk-table__cell" data-sort-value="231011">11 Oct 2023</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not assigned</strong></td>
-          </tr>
-          <tr class="govuk-table__row hideTR all none Not">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-6p4f0r&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
-            <td class="govuk-table__cell">Crime Busters Legal</td>
-            <td class="govuk-table__cell">Dami Olu</td>
-            <td class="govuk-table__cell">Not assigned</td>
-            <td class="govuk-table__cell" data-sort-value="230913">13 Sept 2023</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not assigned</strong></td>
-          </tr>
-          <tr class="govuk-table__row hideTR all granted Wolf">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-8p3h0e&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
-            <td class="govuk-table__cell">Legal Aiders Ltd</td>
-            <td class="govuk-table__cell">Bobby Brownie</td>
-            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
-            <td class="govuk-table__cell" data-sort-value="230801">1 Aug 2023</td>
+            <td class="govuk-table__cell" data-sort-value="A1B1C1">A1B1C1</td>
+            <td class="govuk-table__cell" data-sort-value="230901">1 Sept 2023</td>
+            <td class="govuk-table__cell">LAA-1z5f7w</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all none Not">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>
-            <td class="govuk-table__cell">Big Law</td>
-            <td class="govuk-table__cell">Ishia Melta</td>
-            <td class="govuk-table__cell">Not assigned</td>
-            <td class="govuk-table__cell" data-sort-value="230903">3 Sept 2023</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not assigned</strong></td>
+          
+          <tr class="govuk-table__row hideTR all expired C1B1C1 Justice">
+            <td class="govuk-table__cell"><a href="application-details?ufn=311222/003&laa-ref=LAA-9p4f0e&app-task=Expired" class="govuk-link--no-visited-state" data-sort-value="311222003">311222/003</a></td>
+            <td class="govuk-table__cell">Jamie Innes</td>
+            <td class="govuk-table__cell" data-sort-value="C1B1C1">C1B1C1</td>
+            <td class="govuk-table__cell" data-sort-value="230821">21 Aug 2023</td>
+            <td class="govuk-table__cell">LAA-9p4f0e</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Expired</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all in-progress Wolf">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-2d9t4j&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
-            <td class="govuk-table__cell">Boss Lawyers Inc</td>
-            <td class="govuk-table__cell">Arnie Swartz</td>
-            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
-            <td class="govuk-table__cell" data-sort-value="230414">14 April 2023</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">In progress</strong></td>
+          
+          <tr class="govuk-table__row hideTR all update A1B1C1 Wolf">
+            <td class="govuk-table__cell"><a href="application-details?app-task=Review&first-use=no&app-state=all&ufn=301222/003&laa-ref=LAA-6p4f0r&question-ufn=complete&question1-org=complete&question2-client=complete&question2-case=complete&question3-why-pa=complete&question3-quote=complete&question3-alt-quote=complete" class="govuk-link--no-visited-state" data-sort-value="301222003">301222/003</a></td>
+            <td class="govuk-table__cell">Dami Olu</td>
+            <td class="govuk-table__cell" data-sort-value="A1B1C1">A1B1C1</td>
+            <td class="govuk-table__cell" data-sort-value="240307">7 March 2024</td>
+            <td class="govuk-table__cell">LAA-6p4f0r</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Update needed</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all auto-granted Justice">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>  
-            <td class="govuk-table__cell">Big Law</td>          
-            <td class="govuk-table__cell">Bob Holness</td>
-            <td class="govuk-table__cell">{{data['caseworker2']}}</td>
-            <td class="govuk-table__cell" data-sort-value="230902">2 Sept 2023</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Auto granted</strong></td>
-          </tr>
-          <tr class="govuk-table__row hideTR all rejected Hussein">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-6j4k6k&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="6j4k6k">LAA-6j4k6k</a></td>
-            <td class="govuk-table__cell">Griffins Grifting Grifters Law</td>
-            <td class="govuk-table__cell">Melanie Longname Griffins</td>
-            <td class="govuk-table__cell">{{data['caseworker3']}}</td>
-            <td class="govuk-table__cell" data-sort-value="230631">31 June 2023</td>
+          <tr class="govuk-table__row hideTR all rejected A1B1C1 Wolf">
+            <td class="govuk-table__cell"><a href="application-details?ufn=311222/003&laa-ref=LAA-9p4f0e&app-task=Rejected" class="govuk-link--no-visited-state" data-sort-value="311222003">311222/003</a></td>
+            <td class="govuk-table__cell">Bobby Brownie</td>
+            <td class="govuk-table__cell" data-sort-value="A1B1C1">A1B1C1</td>
+            <td class="govuk-table__cell" data-sort-value="230821">21 Aug 2023</td>
+            <td class="govuk-table__cell">LAA-9p4f0e</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Rejected</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all cancelled Not">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-7j8s9s&cwAppStatus=Returned" class="govuk-link--no-visited-state" data-sort-value="7j8s9s">LAA-7j8s9s</a></td>
-            <td class="govuk-table__cell">Music Solicitors</td>
-            <td class="govuk-table__cell">Alecia Pink</td>
-            <td class="govuk-table__cell">Not assigned</td>
-            <td class="govuk-table__cell" data-sort-value="230410">10 Apr 2023</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+          <tr class="govuk-table__row hideTR all part C1B1C1 Hussein">
+            <td class="govuk-table__cell"><a href="application-details?question1-org=complete&ufn=202323/342&laa-ref=LAA-1z5f76&app-task=Part granted" class="govuk-link--no-visited-state" data-sort-value="202323342">202323/342</a></td>
+            <td class="govuk-table__cell">Marlie Mytoe</td>
+            <td class="govuk-table__cell" data-sort-value="C1B1C1">C1B1C1</td>
+            <td class="govuk-table__cell" data-sort-value="230901">1 Sept 2023</td>
+            <td class="govuk-table__cell">LAA-1z5f76</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all sent-back Not">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-4m4m4m&cwAppStatus=Review" class="govuk-link--no-visited-state" data-sort-value="4m4m4m">LAA-4m4m4m</a></td>
-            <td class="govuk-table__cell">Griffins Grifting Grifters Law</td>
-            <td class="govuk-table__cell">Simone Gutter</td>
-            <td class="govuk-table__cell">Not assigned</td>
-            <td class="govuk-table__cell" data-sort-value="230321">21 Mar 2023</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Sent back</strong></td>
+          <tr class="govuk-table__row hideTR all re-sub C1B1C1 Hussein">
+            <td class="govuk-table__cell"><a href="application-details?question1-org=complete&ufn=202323/342&laa-ref=LAA-1z5f76&app-task=Part granted" class="govuk-link--no-visited-state" data-sort-value="202324534">202324/534</a></td>
+            <td class="govuk-table__cell">Ishia Melta</td>
+            <td class="govuk-table__cell" data-sort-value="C1B1C1">C1B1C1</td>
+            <td class="govuk-table__cell" data-sort-value="240301">1 March 2024</td>
+            <td class="govuk-table__cell">LAA-3z5h76</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Re-submitted</strong></td>
+          </tr>
+           <tr class="govuk-table__row hideTR all submitted A1B1C1 Wolf">
+            <td class="govuk-table__cell"><a href="application-details?ufn=310524/021&laa-ref=LAA-4t3f6&app-task=Rejected" class="govuk-link--no-visited-state" data-sort-value="31052024">310524/021</a></td>
+            <td class="govuk-table__cell">Bobby Brownie</td>
+            <td class="govuk-table__cell" data-sort-value="A1B1C1">A1B1C1</td>
+            <td class="govuk-table__cell" data-sort-value="240531">31 May 2024</td>
+            <td class="govuk-table__cell">LAA-4t3f6</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--light-blue">Submitted</strong></td>
           </tr>
         </body>
-      </table>      
+      </table>     
 
     </div>     
      
