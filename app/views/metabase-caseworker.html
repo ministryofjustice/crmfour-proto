@@ -107,43 +107,45 @@
           href: 'metabase-auto',
           active: false
         }, {
-          text: 'Caseworkers',
+          text: 'Allocation',
           href: 'metabase-caseworker',
           active: true
         }]
       }) }}
 
-      <h2 class="govuk-heading-l">Caseworkers</h2>
-      
+      <h2 class="govuk-heading-l">Allocation of open applications</h2>
+    </div>
+    
+    <div class="govuk-grid-column-one-third">
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--s">Open applications</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Assigned</th>
+            <th scope="col" class="govuk-table__header">Not assigned</th>
+          </tr>
+          </thead>
+        <tbody class="govuk-table__body">                
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">24</td>
+              <td class="govuk-table__cell">5</td>
+          </tr>
+        </body>
+      </table> 
+    </div>
+    <div class="govuk-grid-column-full">
       <div class="search-panel govuk-!-margin-bottom-6">
+        <h2 class="govuk-heading-s">
+          Filter open applications
+        </h2>
 
-        <div id="filters" class="govuk-date-input">
-          <div class="govuk-date-input__item">
+          <div class="filter-align-bottom">
             <div class="govuk-form-group">
               <label class="govuk-label" for="sort">
-                Status
+                Assigned to
               </label>
               <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
-                <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
-                <option value="Not assigned" onclick="filterSelection('none')">Not assigned</option>
-                <option value="In progress" onclick="filterSelection('in-progress')">In progress</option>
-                <option value="Sent back" onclick="filterSelection('sent-back')">Sent back</option>
-                <option value="Granted" onclick="filterSelection('granted')">Granted</option>
-                <option value="Auto-granted" onclick="filterSelection('auto')">Auto-granted</option>
-                <option value="Part granted" onclick="filterSelection('part')">Part granted</option>
-                <option value="Rejected" onclick="filterSelection('rejected')">Rejected</option>
-                <option value="Cancelled" onclick="filterSelection('expired')">Expired</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <label class="govuk-label" for="sort">
-                Caseworker
-              </label>
-              <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
-                <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
+                <option value="Show all" selected onclick="filterSelection('all')">Show all applications</option>
                 <option value="Not" onclick="filterSelection('Not')">Not assigned</option>
                 <option value="Justice" onclick="filterSelection('Justice')">Johanna Justice</option>
                 <option value="Wolf" onclick="filterSelection('Wolf')">Tattina Wolf</option>
@@ -151,22 +153,15 @@
               </select>
             </div>
           </div>
-        </div>
-
-        <div class="govuk-button-group">
-          <button type="submit" class="govuk-button" data-module="govuk-button" onclick="mySearch()" id="searchButton">
-            Search
-          </button>
-
-          <a class="govuk-link" href="metabase-caseworker">Clear all</a>
-        </div>
+          <div class="filter-align-bottom">
+            <button type="submit" class="govuk-button" data-module="govuk-button" onclick="mySearch()" id="searchButton">
+              Filter
+            </button>
+          </div>
               
       </div>
 
-      <div id="resultsTable2">
-        <h2 class="govuk-heading-m">
-          Search results
-        </h2>
+      <div id="resultsTable1">
         <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -297,7 +292,7 @@
    https://www.w3schools.com/howto/howto_js_read_more.asp
 
   function mySearch() {
-    var searchResult = document.getElementById("resultsTable2");
+    var searchResult = document.getElementById("resultsTable1");
     var searchButton = document.getElementById("searchButton");
 
     if (searchResult.style.display === "none") {
