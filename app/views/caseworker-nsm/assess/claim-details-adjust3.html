@@ -1,0 +1,256 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header-cw2.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Application details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+   {% if data['cwAppStatus'] == "In progress"%}
+    {% include "includes/cw-nav-your-nsm.html"%}
+    {% else %}
+    {% if data['cwAppStatus'] == "New"%}
+      {% include "includes/cw-nav-open-nsm.html"%}
+      {% else %}
+      {% include "includes/cw-nav-assessed-nsm.html"%}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    {% include "includes/app-info-nsm2.html" %}
+
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [{
+        text: 'Overview',
+        href: 'claim-details',
+        active: false
+      }, 
+      {
+        text: 'Review and adjust',
+        href: 'claim-details-adjust2',
+        active: false
+      }, 
+      {
+        text: 'Adjusted costs',
+        href: 'claim-details-adjust3',
+        active: true
+      }, 
+      {
+        text: 'Supporting evidence',
+        href: '',
+        active: false
+      }, 
+      {
+        text: 'Claim history',
+        href: '',
+        active: false
+      }]
+    }) }}
+
+    <h2 class="govuk-heading-l">Adjusted costs</h2>
+
+    <!--TAbs items -->
+    {% set workItemsHtml %} 
+    
+      <h3 class="govuk-heading-m">Adjusted work items</h3>
+
+       <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s"></caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Reason</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Uplift allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="col" class="govuk-table__header">4</td>
+            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    {% endset %}
+
+    {% set lettersCallsHtml %}
+      <h3 class="govuk-heading-m">Adjusted letters and calls</h3>
+      <!--<p>There are no adjusted letters and calls</p>-->
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Item</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Number claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Number allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="col" class="govuk-table__header">Letters</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td> 
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>              
+            {% if data['cwAppStatus'] == "In progress" %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
+            {% endif %}
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="col" class="govuk-table__header">Calls</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">5</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric" >£20.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>  
+            {% if data['cwAppStatus'] == "In progress" %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
+    {% endset %}
+
+    {% set disbursementsHtml %} 
+    
+      <h3 class="govuk-heading-m">Adjusted disbursements</h3>
+
+      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s">31 January 2024</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header govuk-!-width-one-fifth" scope="col">Item</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">VAT on claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Total claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">VAT on allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Total allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="col" class="govuk-table__header">Psychologist</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£400.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£80.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£480.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            {% if data['cwAppStatus'] == "In progress" %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
+      
+      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s">1 January 2024</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header govuk-!-width-one-fifth" scope="col">Item</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">VAT on claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Total claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">VAT on allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Total allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="col" class="govuk-table__header">Car</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            {% if data['cwAppStatus'] == "In progress" %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
+            {% endif %}
+          </tr>
+           <tr class="govuk-table__row">
+            <td scope="col" class="govuk-table__header">Translator</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£300.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£360.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            {% if data['cwAppStatus'] == "In progress" %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> Adjust</a></td>
+              {% else %}
+              <td class="govuk-table__cell govuk-table__cell--numeric"><a href=""> View</a></td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
+    {% endset %}
+   
+
+    {{ govukTabs({
+      items: [
+        {
+          label: "Adjusted work items",
+          id: "workItems",
+          panel: {
+            html: workItemsHtml
+          }
+        },
+        {
+          label: "Adjusted letters and calls",
+          id: "lettersCalls",
+          panel: {
+            html: lettersCallsHtml
+          }
+        },
+        {
+          label: "Adjusted disbursements",
+          id: "disbursements",
+          panel: {
+            html: disbursementsHtml
+          }
+        }
+      ]
+    }) }}
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
