@@ -28,7 +28,6 @@
 
       {% include "includes/app-info-nsm-readonly.html"%}
 
-      {% if data ['cwAppStatus'] == "Part granted"%}
         {{ mojSubNavigation({
           label: 'Sub navigation',
           items: [{
@@ -38,7 +37,7 @@
           }, 
           {
             text: 'Review and adjust',
-            href: 'claim-details-adjust-PG-readonly',
+            href: 'claim-details-review-readonly',
             active: false
           }, 
           {
@@ -52,31 +51,6 @@
             active: false
           }]
         }) }}
-        {% else %}
-        {{ mojSubNavigation({
-          label: 'Sub navigation',
-          items: [{
-            text: 'Overview',
-            href: 'claim-details-readonly',
-            active: true
-          }, 
-          {
-            text: 'Review and adjust',
-            href: 'claim-details-adjust-readonly',
-            active: false
-          }, 
-          {
-            text: 'Supporting evidence',
-            href: '',
-            active: false
-          }, 
-          {
-            text: 'Claim history',
-            href: '',
-            active: false
-          }]
-        }) }}
-      {% endif %}  
     </div>
   </div>
 
@@ -637,7 +611,6 @@
 
       {% endif %}
       
-      {% include "includes/application-buttons-mvp.html"%}
 
     </div>
   </div>

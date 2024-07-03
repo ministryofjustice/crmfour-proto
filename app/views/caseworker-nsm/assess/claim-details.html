@@ -41,6 +41,11 @@
       }, 
       {
         text: 'Review and adjust',
+        href: 'claim-details-review',
+        active: false
+      }, 
+      {
+        text: 'Adjusted costs',
         href: 'claim-details-adjust',
         active: false
       }, 
@@ -615,8 +620,10 @@
         </div>
 
       {% endif %}
-      
-      {% include "includes/application-buttons-mvp.html"%}
+      {% if data ['cwAppStatus'] == "Part granted"%}
+        {% else %}
+        {% include "includes/application-buttons-mvp.html"%}
+      {% endif %}
 
     </div>
   </div>
