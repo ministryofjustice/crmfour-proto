@@ -48,7 +48,7 @@
     <table class="govuk-table"  >
       <caption class="govuk-table__caption govuk-table__caption--m">Costs summary</caption>
       <thead class="govuk-table__head">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Cost type</th>
+        <td class="govuk-table__cell"></td>
         <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost claimed</th>
         <th scope="col" class="govuk-table__header govuk-table__header--numeric">VAT on claimed</th>
         <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
@@ -58,7 +58,7 @@
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Profit costs</td>
+          <th scope="row" class="govuk-table__header">Profit costs</th>
           <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£57.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
@@ -67,7 +67,7 @@
           <td class="govuk-table__cell govuk-table__cell--numeric">£292.80</td>
         </tr>
         <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Waiting</td>
+          <th scope="row" class="govuk-table__header">Waiting</th>
           <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
@@ -76,7 +76,7 @@
           <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
         </tr>
         <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Travel</td>
+          <th scope="row" class="govuk-table__header">Travel</th>
           <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
@@ -85,7 +85,7 @@
           <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
         </tr>
         <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Disbursements</td>
+          <th scope="row" class="govuk-table__header">Disbursements</th>
           <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
@@ -94,234 +94,17 @@
           <td class="govuk-table__cell govuk-table__cell--numeric">£840.00</td>
         </tr>
         <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Total</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£994.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£198.80</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1192.80</strong></td>
-        </tr>
-      </tbody>
-    </table> 
-    <!--
-    <table class="govuk-table"  >
-      <caption class="govuk-table__caption govuk-table__caption--m">Your adjusted costs summary</caption>
-      <thead class="govuk-table__head">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">VAT</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost allowed</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">VAT for allowed</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£100.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£75.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£15.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£90.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£24.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£144.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£5.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£30.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Advocacy"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Letters"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£12.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£2.40</td>  
-          <td class="govuk-table__cell govuk-table__cell--numeric">£14.40</td>          
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Calls"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£12.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£2.40</td>  
-          <td class="govuk-table__cell govuk-table__cell--numeric">£14.40</td>          
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£700.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£840.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Total</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£994.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£198.80</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1192.80</strong></td>
+          <th scope="row" class="govuk-table__header">Total</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of net cost claimed: </span>£1135.00</strong></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of VAT on claimed: </span>£217.00</strong></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of net cost and VAT on claimed: </span>£1352.00</strong></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of net cost allowed: </span>£994.00</strong></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of VAT on allowed: </span>£198.80</strong></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of net cost and VAT on allowed: </span>£1192.80</strong></td>
         </tr>
       </tbody>
     </table> 
 
-    <table class="govuk-table"  >
-      <caption class="govuk-table__caption govuk-table__caption--m">Your costs summary (not reg VAT firm)</caption>
-      <thead class="govuk-table__head">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-fifth govuk-table__header--numeric">Net cost</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-fifth govuk-table__header--numeric">Net cost allowed</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-fifth govuk-table__header--numeric">VAT for allowed</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-fifth govuk-table__header--numeric">Total allowed</th>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£100.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£75.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£75.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Advocacy"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Letters"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£12.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>  
-          <td class="govuk-table__cell govuk-table__cell--numeric">£12.00</td>          
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Calls"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£12.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>  
-          <td class="govuk-table__cell govuk-table__cell--numeric">£12.00</td>       
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£700.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£840.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Total</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1044.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£140.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1134.00</strong></td>
-        </tr>
-      </tbody>
-    </table>
-    
-    <table class="govuk-table"  >
-      <caption class="govuk-table__caption govuk-table__caption--m">Your costs summary (not reg VAT firm)</caption>
-      <thead class="govuk-table__head">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-fifth govuk-table__header--numeric">Net cost</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-fifth govuk-table__header--numeric">Net cost allowed</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-fifth govuk-table__header--numeric">VAT for allowed</th>
-          <th scope="col" class="govuk-table__header govuk-!-width-one-fifth govuk-table__header--numeric">Total allowed</th>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£244.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£244.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£700.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£840.00</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Total</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£994.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£140.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1134.00</strong></td>
-        </tr>
-      </tbody>
-    </table> 
-    -->
 
     <!--TAbs items -->
      {% set workItemsHtml %} 
@@ -335,9 +118,10 @@
         </summary>
         <div class="govuk-details__text">
           <table class="govuk-table">
+            <caption class="govuk-visually-hidden">Adjusted work items summary</caption>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Cost</th>
+                <td class="govuk-table__cell"></td>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Time claimed</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost claimed</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Time allowed</th>
@@ -346,64 +130,65 @@
             </thead>
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item6'] or "Travel"}}</td>
+                <th scope="row" class="govuk-table__header">Travel</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item5'] or "Waiting"}}</td>
+                <th scope="row" class="govuk-table__header">Waiting</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
               </tr>
                <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
+                <th scope="row" class="govuk-table__header">With counsel assigned</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">120.00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">120.00</td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
+                <th scope="row" class="govuk-table__header">Without counsel assigned</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">100.00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">3:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">75.00</td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
+                <th scope="row" class="govuk-table__header">Preparation</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item3'] or "Advocacy"}}</td>
+                <th scope="row" class="govuk-table__header">Advocacy</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
               </tr>            
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">Total</td>
+                <th scope="row" class="govuk-table__header">Total</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£345.00</strong></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of net cost claimed: </span>£345.00</strong></td>
                 <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£270.00</strong></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of net cost allowed: </span>£270.00</strong></td>
               </tr>
             </tbody>
           </table> 
         </div>
       </details>
       
-      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s"></caption>
+      <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Adjusted work items</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col" aria-sort="ascending">Item</th>
-            <th class="govuk-table__header" scope="col" aria-sort="none">Cost</th>
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Line item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
             <th class="govuk-table__header" scope="col" aria-sort="none">Reason</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time allowed </th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Uplift allowed</th>
@@ -412,168 +197,168 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">4</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">4</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">14</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">14</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">24</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">24</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">34</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">34</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">44</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">44</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">54</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">54</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">55</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">55</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">64</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">64</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">74</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">74</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">84</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">84</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">90</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">90</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">91</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">91</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">92</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">92</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">92</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">92</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">93</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">93</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">94</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">94</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">95</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">95</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">96</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">96</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">97</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">97</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">98</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">98</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">99</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">99</th>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
@@ -596,7 +381,7 @@
       <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s"></caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col" aria-sort="none">Cost</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
             <th class="govuk-table__header" scope="col" aria-sort="none">Reason</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Number allowed </th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Uplift allowed</th>
@@ -605,7 +390,7 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Letters</a></td>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Letters</a></td>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
              <td class="govuk-table__cell govuk-table__cell--numeric">4</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
@@ -619,11 +404,12 @@
     
       <h3 class="govuk-heading-m">Adjusted disbursements</h3>
 
-      <table class="govuk-table"><caption class="govuk-table__caption govuk-table__caption--s"></caption>
+      <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Adjusted disbursements</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col" aria-sort="ascending">Item</th>
-            <th class="govuk-table__header" scope="col" aria-sort="none">Cost</th>
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Line item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
             <th class="govuk-table__header" scope="col" aria-sort="none">Reason</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost allowed </th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">VAT on allowed</th>
@@ -632,8 +418,8 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">4</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Car milage</a></td>
+            <th scope="row" class="govuk-table__header">4</td>
+            <th scope="row" class="govuk-table__header"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Car milage</a></td>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>

@@ -66,41 +66,41 @@
     <table class="govuk-table">
       <caption class="govuk-table__caption govuk-table__caption--m">Costs summary</caption>
       <thead class="govuk-table__head">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
+        <td class="govuk-table__header"></td>
         <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost claimed</th>
         <th scope="col" class="govuk-table__header govuk-table__header--numeric">VAT on claimed</th>
         <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Profit costs</td>
+          <th scope="row" class="govuk-table__header">Profit costs</th>
           <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£57.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
         </tr>
         <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Disbursements</td>
+          <th scope="row" class="govuk-table__header">Disbursements</th>
           <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
         </tr>
          <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Travel</td>
+          <th scope="row" class="govuk-table__header">Travel</th>
           <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
         </tr>
         <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Waiting</td>
+          <th scope="row" class="govuk-table__header">Waiting</th>
           <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
         </tr>        
         <tr class="govuk-table__row">
-          <td scope="row" class="govuk-table__header">Total</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
+         <th scope="row" class="govuk-table__header">Total</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of net cost claimed: </span>£1135.00</strong></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of VAT on claimed: </span>£217.00</strong></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of net cost and VAT on claimed: </span>£1352.00</strong></td>
         </tr>
       </tbody>
     </table> 
@@ -118,59 +118,61 @@
         </summary>
         <div class="govuk-details__text">
           <table class="govuk-table">
+            <caption class="govuk-visually-hidden">Summary of work items</caption>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header govuk-!-width-one-third">Item</th>
+                <td class="govuk-table__cell"></td>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Time claimed</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost claimed</th>
               </tr>
             </thead>
             <tbody class="govuk-table__body">
                <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item6'] or "Travel"}}</td>
+                <th scope="row" class="govuk-table__header">Travel</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item5'] or "Waiting"}}</td>
+                <th scope="row" class="govuk-table__header">Waiting</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item1'] or "Without counsel assigned"}}</td>
+                <th scope="row" class="govuk-table__header">Without counsel assigned"</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£100.00</td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item2'] or "With counsel assigned"}}</td>
+                <th scope="row" class="govuk-table__header">With counsel assigned</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">120.00</td>
               </tr>
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item4'] or "Preparation"}}</td>
+                <th scope="row" class="govuk-table__header">Preparation</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
               </tr>
                <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item3'] or "Advocacy"}}</td>
+                <th scope="row" class="govuk-table__header">Advocacy</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">0:00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
               </tr>             
               <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">Total</td>
+                <th scope="row" class="govuk-table__header">Total</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£345.00</strong></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"><strong><span class="govuk-visually-hidden">Sum of net cost claimed: </span>£345.00</strong></td>
               </tr>
             </tbody>
           </table> 
         </div>
       </details>
 
-      <table class="govuk-table" data-module="moj-sortable-table"><caption class="govuk-table__caption govuk-table__caption--s"></caption>
+       <table class="govuk-table" data-module="moj-sortable-table">
+        <caption class="govuk-visually-hidden">Claimed work items</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col" aria-sort="ascending">Item</th>
-            <th class="govuk-table__header" scope="col" aria-sort="none">Cost</th>
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Line item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
             <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
             <th class="govuk-table__header" scope="col" aria-sort="none">Fee earner</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time claimed </th>
@@ -180,8 +182,8 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">1</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Preparation</a></td>
+            <th scope="row" class="govuk-table__header">1</th>
+            <th scope="row" class="govuk-table__cell"><a href="a"><span class="govuk-visually-hidden">Adjust </span>Preparation</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
@@ -189,8 +191,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">2</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>With counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">2</th>
+            <th scope="row" class="govuk-table__cell"><a href="2"><span class="govuk-visually-hidden">Adjust </span>With counsel assigned</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">CSL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
@@ -198,8 +200,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">3</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Waiting</a></td>
+            <th scope="row" class="govuk-table__header">3</th>
+            <th scope="row" class="govuk-table__header"><a href="3"><span class="govuk-visually-hidden">Adjust </span>Waiting</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -207,8 +209,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">4</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">4</th>
+            <th scope="row" class="govuk-table__header"><a href="4"><span class="govuk-visually-hidden">Adjust </span>Travel</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -216,8 +218,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">5</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">5</td>
+            <th scope="row" class="govuk-table__header"><a href="5"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -225,8 +227,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">6</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">6</td>
+            <th scope="row" class="govuk-table__header"><a href="6"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -234,8 +236,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">7</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">7</td>
+             <th scope="row" class="govuk-table__cell"><a href="7"><span class="govuk-visually-hidden">Adjust </span>Preparation</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -243,8 +245,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">8</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">8</th>
+            <th scope="row" class="govuk-table__header"><a href="8"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -252,8 +254,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">9</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">9</th>
+            <th scope="row" class="govuk-table__cell"><a href="9"><span class="govuk-visually-hidden">Adjust </span>Preparation</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -261,8 +263,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">10</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">10</th>
+            <th scope="row" class="govuk-table__header"><a href="10"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -270,8 +272,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">11</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">11</th>
+            <th scope="row" class="govuk-table__header"><a href="11"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -279,8 +281,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">12</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">12</th>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -288,8 +290,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">13</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">13</th>
+            <th scope="row" class="govuk-table__header"><a href="13"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -297,8 +299,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">14</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">14</th>
+            <th scope="row" class="govuk-table__header"><a href="14"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -306,8 +308,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">15</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">15</th>
+            <th scope="row" class="govuk-table__header"><a href="15"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -315,8 +317,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">16</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">16</th>
+            <th scope="row" class="govuk-table__header"><a href="16"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -324,8 +326,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">17</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">17</th>
+            <th scope="row" class="govuk-table__header"><a href="17"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -333,8 +335,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">18</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">18</th>
+            <th scope="row" class="govuk-table__header"><a href="18"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -342,8 +344,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">19</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">19</th>
+            <th scope="row" class="govuk-table__header"><a href="19"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -351,8 +353,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">20</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">20</th>
+            <th scope="row" class="govuk-table__header"><a href="20"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -360,8 +362,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">21</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">21</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -369,8 +371,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">22</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">22</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -378,8 +380,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">23</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">23</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -387,8 +389,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">24</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">24</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -396,8 +398,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">25</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">25</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -405,8 +407,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">26</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">26</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -414,8 +416,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">27</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">27</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -423,8 +425,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">28</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">28</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -432,8 +434,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">29</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">29</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -441,8 +443,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">30</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">30</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -450,16 +452,17 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
                     <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">31</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Preparation</a></td>
+            <th scope="row" class="govuk-table__header">31</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">32</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>With counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">32</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">CSL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
@@ -467,8 +470,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">33</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Waiting</a></td>
+            <th scope="row" class="govuk-table__header">33</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -476,8 +479,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">34</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">34</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -485,8 +488,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">35</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">35</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -494,8 +497,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">36</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">36</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -503,8 +506,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">37</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">37</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -512,8 +515,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">38</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">38</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -521,8 +524,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">39</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">39</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -530,8 +533,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">40</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">40</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -539,8 +542,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">41</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">41</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -548,190 +551,189 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">42</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">42</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">43</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">44</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">45</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">46</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">47</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">48</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">49</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">50</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">51</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">52</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">53</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">54</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">55</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">56</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">57</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">58</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">59</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">60</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">23 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          </tr>
+           <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">61</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
+            <td class="govuk-table__cell">1 January 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">43</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">44</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">45</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">46</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">47</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">48</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">49</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">50</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">51</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">52</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">53</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">54</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">55</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">56</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">57</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">58</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">59</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">60</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
-            <td class="govuk-table__cell">23 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-          </tr>
-           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">61</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Preparation</a></td>
-            <td class="govuk-table__cell">1 January 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">62</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>With counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">62</td>
+          <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">CSL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
@@ -739,8 +741,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">63</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Waiting</a></td>
+            <th scope="row" class="govuk-table__header">63</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -748,8 +750,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">64</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">64</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -757,8 +759,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">65</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">65</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -766,8 +768,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">66</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">66</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -775,8 +777,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">67</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">67</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -784,8 +786,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">68</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">68</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -793,18 +795,17 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">69</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">69</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">70</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">70</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -812,8 +813,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
            <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">71</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Preparation</a></td>
+            <th scope="row" class="govuk-table__header">71</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
@@ -821,8 +822,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">72</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>With counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">72</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">CSL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
@@ -830,8 +831,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">73</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Waiting</a></td>
+            <th scope="row" class="govuk-table__header">73</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -839,8 +840,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">74</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">74</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -848,8 +849,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">75</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">75</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -857,8 +858,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">76</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">76</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -866,8 +867,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">77</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">77</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -875,8 +876,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">78</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">78</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -884,8 +885,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">79</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">79</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -893,8 +894,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">80</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">80</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -902,8 +903,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
            <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">81</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Preparation</a></td>
+            <th scope="row" class="govuk-table__header">81</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
@@ -911,8 +912,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">82</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>With counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">82</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">CSL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
@@ -920,8 +921,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">83</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Waiting</a></td>
+            <th scope="row" class="govuk-table__header">83</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -929,8 +930,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">84</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">84</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -938,8 +939,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">85</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">85</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -947,8 +948,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">86</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">86</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -956,8 +957,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">87</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">87</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -965,8 +966,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">88</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">88</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -974,8 +975,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">89</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">89</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -983,8 +984,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">90</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">90</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -992,8 +993,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
            <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">91</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Preparation</a></td>
+            <th scope="row" class="govuk-table__header">91</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
@@ -1001,8 +1002,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">92</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>With counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">92</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">1 January 2024</td>
             <td class="govuk-table__cell">CSL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
@@ -1010,8 +1011,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">93</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Waiting</a></td>
+            <th scope="row" class="govuk-table__header">93</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -1019,8 +1020,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">94</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Travel</a></td>
+            <th scope="row" class="govuk-table__header">94</td>
+           <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">7 January 2024</td>
             <td class="govuk-table__cell">GL</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
@@ -1028,8 +1029,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">95</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">95</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -1037,8 +1038,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">96</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">96</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -1046,8 +1047,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">97</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">97</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -1055,8 +1056,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">98</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">98</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -1064,8 +1065,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">99</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">99</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -1073,8 +1074,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="col" class="govuk-table__header">100</td>
-            <td class="govuk-table__cell"><a href="1"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></td>
+            <th scope="row" class="govuk-table__header">100</td>
+            <th scope="row" class="govuk-table__header"><a href="12"><span class="govuk-visually-hidden">Adjust </span>Without counsel assigned</a></th>
             <td class="govuk-table__cell">23 January 2024</td>
             <td class="govuk-table__cell">RT</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
@@ -1109,9 +1110,10 @@
       <h3 class="govuk-heading-m">Letters and calls</h3>
       <!--<p>There are no adjusted letters and calls</p>-->
       <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Claimed letters and calls</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col">Item</th>
+            <th class="govuk-table__header" scope="col">Cost type</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Number claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
@@ -1138,11 +1140,12 @@
     
       <h3 class="govuk-heading-m">Disbursements</h3>
 
-       <table class="govuk-table" data-module="moj-sortable-table"><caption class="govuk-table__caption govuk-table__caption--s"></caption>
+       <table class="govuk-table" data-module="moj-sortable-table">
+        <caption class="govuk-visually-hidden">Claimed disbursements</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col" aria-sort="ascending">Item</th>
-            <th class="govuk-table__header" scope="col" aria-sort="none">Cost</th>
+            <th class="govuk-table__header" scope="col" aria-sort="ascending">Line item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
             <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost claimed </th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">VAT on claimed</th>
