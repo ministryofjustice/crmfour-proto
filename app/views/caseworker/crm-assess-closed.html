@@ -13,26 +13,7 @@
 {% block beforeContent %}
   {% include "includes/banner.html"%}
   
-  {{ mojPrimaryNavigation({
-    label: 'Primary navigation',
-    items: [
-      {
-        text: 'Your applications',
-        href: '/caseworker/crm-assess',
-        active: false
-      },
-      {
-        text: 'Open applications',
-        href: '/caseworker/crm-assess-open',
-        active: false
-      },
-      {
-        text: 'Closed applications',
-        href: '/caseworker/crm-assess-closed',
-        active: true
-      }
-    ]
-  }) }}
+  {% include "includes/cw-nav-closed.html"%}
   
 {% endblock %}
 
