@@ -27,7 +27,7 @@
         },
         {
           text: 'Search',
-          href: 'metabase-search?app=search',
+          href: 'metabase-search',
           active: false
         }
       ]
@@ -48,7 +48,7 @@
         },
         {
           text: 'Search',
-          href: 'metabase-search?app=search',
+          href: 'metabase-search',
           active: false
         }
       ]
@@ -66,12 +66,12 @@
         {
           text: 'Non-standard magistrates',
           href: 'metabase?app=7',
-          active: false
+          active: true
         },
         {
           text: 'Search',
           href: 'metabase-search?app=search',
-          active: true
+          active: false
         }
       ]
     }) }}
@@ -111,6 +111,38 @@
         <h1 class="govuk-heading-xl">CRM5 dashboard</h1>
         {% elif data['app'] == "7" %}
         <h1 class="govuk-heading-xl">Non-standard magistrates</h1>
+      {% endif %}
+
+      {% if data['app'] == "7" %}
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: '#1',
+            active: true
+          }, {
+            text: 'Caseworkers',
+            href: 'metabase-caseworker',
+            active: false
+          }]
+        }) }}
+        {% else %}
+             {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: '#1',
+            active: true
+          }, {
+            text: 'Auto grant',
+            href: 'metabase-auto',
+            active: false
+          }, {
+            text: 'Caseworkers',
+            href: 'metabase-caseworker',
+            active: false
+          }]
+        }) }}
       {% endif %}
      
       <table role="presentation" width="100%" style="border-collapse: collapse;min-width: 100%;width: 100% !important;" cellpadding="0" cellspacing="0" border="0">
