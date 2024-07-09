@@ -30,29 +30,60 @@
 
     {% include "includes/app-info-nsm2.html" %}
 
-    {{ mojSubNavigation({
-      label: 'Sub navigation',
-      items: [{
-        text: 'Overview',
-        href: 'claim-details-readonly',
-        active: false
-      }, 
-      {
-        text: 'Review and adjust',
-        href: 'claim-details-review-readonly',
-        active: true
-      }, 
-      {
-        text: 'Supporting evidence',
-        href: '',
-        active: false
-      }, 
-      {
-        text: 'Claim history',
-        href: '',
-        active: false
-      }]
-    }) }}
+    {% if data['cwAppStatus'] == "Part granted"%}
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: 'claim-details',
+          active: false
+        }, 
+        {
+          text: 'Review and adjust',
+          href: 'claim-details-review-readonly',
+          active: true
+        }, 
+        {
+          text: 'Adjusted costs',
+          href: 'claim-details-adjust',
+          active: false
+        }, 
+        {
+          text: 'Supporting evidence',
+          href: '',
+          active: false
+        }, 
+        {
+          text: 'Claim history',
+          href: '',
+          active: false
+        }]
+      }) }}
+      {% else %}
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: 'claim-details-readonly',
+          active: false
+        }, 
+        {
+          text: 'Review and adjust',
+          href: 'claim-details-review-readonly',
+          active: true
+        }, 
+        {
+          text: 'Supporting evidence',
+          href: '',
+          active: false
+        }, 
+        {
+          text: 'Claim history',
+          href: '',
+          active: false
+        }]
+      }) }}
+    {% endif %}
 
     <h2 class="govuk-heading-l">Review and adjust</h2>
 

@@ -28,6 +28,36 @@
 
       {% include "includes/app-info-nsm-readonly.html"%}
 
+      {% if data['cwAppStatus'] == "Part granted"%}
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: 'claim-details',
+            active: true
+          }, 
+          {
+            text: 'Review and adjust',
+            href: 'claim-details-review-readonly',
+            active: false
+          }, 
+          {
+            text: 'Adjusted costs',
+            href: 'claim-details-adjust',
+            active: false
+          }, 
+          {
+            text: 'Supporting evidence',
+            href: '',
+            active: false
+          }, 
+          {
+            text: 'Claim history',
+            href: '',
+            active: false
+          }]
+        }) }}
+        {% else %}
         {{ mojSubNavigation({
           label: 'Sub navigation',
           items: [{
@@ -51,6 +81,7 @@
             active: false
           }]
         }) }}
+      {% endif %}
     </div>
   </div>
 
