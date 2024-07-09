@@ -182,3 +182,27 @@ router.post('/question3-add-info', function(request, response) {
         response.redirect("/provider/form/task-list?question3-add-info=complete")
     }
 })
+
+//Additional work item first time (CRM7)
+router.post('/add-work-item', function(request, response) {
+
+    var addAnother = request.session.data['add-another']
+    if (addAnother == "No"){
+        response.redirect("/provider-nsm/form/review-all-work-items")
+    } 
+    if (addAnother == "Yes"){
+        response.redirect("/provider-nsm/form/add-work-item")
+    }
+})
+
+//Additional work item second time (CRM7)
+router.post('/add-work-item2', function(request, response) {
+
+    var addAnother = request.session.data['add-another']
+    if (addAnother == "No"){
+        response.redirect("/provider-nsm/form/check-payment-claim")
+    } 
+    if (addAnother == "Yes"){
+        response.redirect("/provider-nsm/form/add-work-item")
+    }
+})
