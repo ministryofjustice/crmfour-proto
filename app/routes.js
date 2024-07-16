@@ -183,26 +183,39 @@ router.post('/question3-add-info', function(request, response) {
     }
 })
 
-//Additional work item first time (CRM7)
-router.post('/add-work-item', function(request, response) {
 
-    var addAnother = request.session.data['add-another']
-    if (addAnother == "No"){
-        response.redirect("/provider-nsm/form/review-all-work-items")
-    } 
-    if (addAnother == "Yes"){
-        response.redirect("/provider-nsm/form/add-work-item")
-    }
-})
-
-//Additional work item second time (CRM7)
-router.post('/add-work-item2', function(request, response) {
+//Additional work item second time (CRM7) version 1 from review
+router.post('/add-work-item-final1', function(request, response) {
 
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
         response.redirect("/provider-nsm/form/check-payment-claim")
     } 
     if (addAnother == "Yes"){
-        response.redirect("/provider-nsm/form/add-work-item")
+        response.redirect("/provider-nsm/form/add-work-item1")
+    }
+})
+
+//Additional work item first time (CRM7) version 3
+router.post('/add-work-item3', function(request, response) {
+
+    var addAnother = request.session.data['add-another']
+    if (addAnother == "No"){
+        response.redirect("/provider-nsm/form/review-all-work-items3")
+    } 
+    if (addAnother == "Yes"){
+        response.redirect("/provider-nsm/form/add-work-item3")
+    }
+})
+
+//Additional work item second time (CRM7) version 3 from view
+router.post('/add-work-item-final3', function(request, response) {
+
+    var addAnother = request.session.data['add-another']
+    if (addAnother == "No"){
+        response.redirect("/provider-nsm/form/check-payment-claim")
+    } 
+    if (addAnother == "Yes"){
+        response.redirect("/provider-nsm/form/add-work-item3")
     }
 })

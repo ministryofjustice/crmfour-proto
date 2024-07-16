@@ -23,36 +23,35 @@
   <div class="govuk-grid-column-full">
     
     <h1 class="govuk-heading-xl">You've added a work item</h1>
+    <p>You have added 123 work items. <a href="review-all-work-items3">Review added work items</a></p>
+    <br>
 
-    <table class="govuk-table">
+     <table class="govuk-table" data-module="moj-sortable-table">
       <caption class="govuk-visually-hidden">Claimed work items</caption>
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
-          <th class="govuk-table__header" scope="col">Cost type</th>
-          <th class="govuk-table__header" scope="col">Date</th>
-          <th class="govuk-table__header" scope="col">Fee earner</th>
-          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time claimed </th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Fee earner</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time claimed</th>
           <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Uplift claimed</th>
-          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Action</th>
+          <th class="govuk-table__header govuk-table__header--numeric govuk-!-width-one-fifth" scope="col" aria-sort="none">Action</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
         <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__cell">Preparation</th>
+          <th scope="row" class="govuk-table__cell"><a href="add-work-item3">Preparation</a></th>
           <td class="govuk-table__cell">1 January 2024</td>
           <td class="govuk-table__cell">RT</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">
-            <ul class="govuk-list">
-              <li>
-                <a class="govuk-link" href="add-work-item">Change<span class="govuk-visually-hidden"> work item</span></a>
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
               </li>
-              <li>
-                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> work item</span></a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> work item</span></a>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
               </li>
             </ul>
           </td>
@@ -60,13 +59,13 @@
       </tbody>
     </table>
 
-    <form class="form" action="/add-work-item" method="post">
+    <form class="form" action="/add-work-item3" method="post">
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="add-another-hint">
+        <fieldset class="govuk-fieldset" >
           <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--s">
             Do you need to add another work item?
           </legend>
-          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+          <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
               <label class="govuk-label govuk-radios__label" for="add-another">

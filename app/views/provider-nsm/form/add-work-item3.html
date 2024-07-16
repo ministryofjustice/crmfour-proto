@@ -1,0 +1,235 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header2.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Work items- {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">What work item are you claiming for?</h1>
+    
+    <form class="form" action="work-item-added3" method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            <h1 class="govuk-fieldset__heading">
+              Work type
+            </h1>
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="workType" name="workType" type="radio" value="Attendance with counsel assigned" aria-describedby="workType-hint">
+              <label class="govuk-label govuk-radios__label" for="workType">
+                Attendance with counsel assigned
+              </label>
+              <div id="workType-hint" class="govuk-hint govuk-radios__hint">
+                £31.03 per hour 
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="workType-2" name="workType" type="radio" value="Attendance without counsel assigned" aria-describedby="workType-2-hint">
+              <label class="govuk-label govuk-radios__label" for="workType-2">
+                Attendance without counsel assigned
+              </label>
+              <div id="workType-2-hint" class="govuk-hint govuk-radios__hint">
+                £45.35 per hour
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="workType-3" name="workType" type="radio" value="Preparation" aria-describedby="workType-3-hint">
+              <label class="govuk-label govuk-radios__label" for="workType-3">
+                Preparation
+              </label>
+              <div id="workType-3-hint" class="govuk-hint govuk-radios__hint">
+                £45.35 per hour
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="workType-6" name="workType" type="radio" value="Advocacy" aria-describedby="workType-6-hint">
+              <label class="govuk-label govuk-radios__label" for="workType-6">
+                Advocacy
+              </label>
+              <div id="workType-6-hint" class="govuk-hint govuk-radios__hint">
+                £56.89 per hour 
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="workType-4" name="workType" type="radio" value="Travel" aria-describedby="workType-4-hint">
+              <label class="govuk-label govuk-radios__label" for="workType-4">
+                Travel
+              </label>
+              <div id="workType-4-hint" class="govuk-hint govuk-radios__hint">
+                £24.00 per hour 
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="workType-5" name="workType" type="radio" value="Waiting" aria-describedby="workType-5-hint">
+              <label class="govuk-label govuk-radios__label" for="workType-5">
+                Waiting
+              </label>
+              <div id="workType-5-hint" class="govuk-hint govuk-radios__hint">
+                £24.00 per hour 
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" >
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Time spent
+          </legend>
+          <div id="passport-issued-hint" class="govuk-hint">
+            For example, 1 hour and 30 minutes
+          </div>
+          <div class="govuk-date-input" id="otherNoHours">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="otherNoHours-hours">
+                  Hours
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours-hours" name="otherNoHours-hours" type="text" inputmode="numeric" value="{{data['otherNoHours-hours']}}">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="otherNoHours-mins">
+                  Minutes
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours-mins" name="otherNoHours-mins" type="text" inputmode="numeric" value="{{data['otherNoHours-mins']}}">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="completionDate-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              Completion date
+            </h1>
+          <div id="completionDate-hint" class="govuk-hint">
+            For example, 27 3 2024
+          </div>
+          <div class="govuk-date-input" id="completionDate">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="completionDate-day">
+                  Day
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="completionDate-day" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="completionDate-month">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="completionDate-month" type="text" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="completionDate-year">
+                  Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="completionDate-year" type="text" inputmode="numeric">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="feeEarner">
+          Fee earner initials
+        </label>
+        <div id="feeEarner-hint" class="govuk-hint">
+          The name you’ll use on promotional material
+        </div>
+        <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner" type="text" aria-describedby="feeEarner-hint">
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">         
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="uplift" name="uplift" type="checkbox" value="email" data-aria-controls="conditional-uplift">
+              <label class="govuk-label govuk-checkboxes__label" for="uplift">
+                Apply an uplift to this work
+              </label>
+            </div>
+
+            <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-uplift">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="uplift-allowed">
+                  Enter the percentage uplift
+                </label>
+                <div class="govuk-input__wrapper">
+                  <input class="govuk-input govuk-input--width-5" id="uplift-allowed" name="uplift-allowed" type="text" spellcheck="false">
+                  <div class="govuk-input__suffix" aria-hidden="true">%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">
+        Update calculation
+      </button> 
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Calculations</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col"> Before uplift</th>
+            <th class="govuk-table__header" scope="col" >After uplift</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">£45.35</td>
+            <td class="govuk-table__cell">£45.35</td>
+          </tr>
+        </tbody>
+      </table>
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,1810 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header2.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Work items- {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    
+    <h1 class="govuk-heading-xl">You've added 101 work items</h1>
+    {{ govukButton({
+      text: "Add another work item",
+      classes: "govuk-button--secondary",
+      href: "add-work-item2"
+    }) }}
+    
+     <table class="govuk-table">
+      <caption class="govuk-visually-hidden">Claimed work items</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col" aria-sort="ascending" id="itemTitle">Item</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Fee earner</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time </th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Action</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+       <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="item1">1</th>
+          <th scope="row" class="govuk-table__header"><a href="add-work-item1?workType=Preparation&otherNoHours-hours=1&otherNoHours-mins=00&feeEarner=RT&uplift=0&completionDate-year=2024&completionDate-month=3&completionDate-day=2" id="workType1" aria-labelledby="itemTitle item1 workType1">Preparation</a></th>
+          <td class="govuk-table__cell">1 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle item1 workType1" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">2</th>
+          <th scope="row" class="govuk-table__header"><a href="2" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel</a></th>
+          <td class="govuk-table__cell">1 Jan 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a id="duplicate" aria-labelledby="duplicate itemTitle itemX workTypeX" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a id="delete" aria-labelledby="delete itemTitle itemX workTypeX" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">3</th>
+          <th scope="row" class="govuk-table__header"><a href="3" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Waiting</a></th>
+          <td class="govuk-table__cell">7 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a id="duplicate" aria-labelledby="duplicate itemTitle itemX workTypeX" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a id="delete" aria-labelledby="delete itemTitle itemX workTypeX" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">4</th>
+          <th scope="row" class="govuk-table__header"><a href="4" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Travel</a></th>
+          <td class="govuk-table__cell">7 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">5</td>
+          <th scope="row" class="govuk-table__header"><a href="5" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">6</td>
+          <th scope="row" class="govuk-table__header"><a href="6" id="workTypeX" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></td>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">7</td>
+            <th scope="row" class="govuk-table__cell"><a href="7" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">8</th>
+          <th scope="row" class="govuk-table__header"><a href="8" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">9</th>
+          <th scope="row" class="govuk-table__cell"><a href="9" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">10</th>
+          <th scope="row" class="govuk-table__header"><a href="10" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">11</th>
+          <th scope="row" class="govuk-table__header"><a href="11" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">12</th>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></td>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">13</th>
+          <th scope="row" class="govuk-table__header"><a href="13" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></td>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">14</th>
+          <th scope="row" class="govuk-table__header"><a href="14" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Advocacy</a></td>
+          <td class="govuk-table__cell">30 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">15</th>
+          <th scope="row" class="govuk-table__header"><a href="15" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></td>
+          <td class="govuk-table__cell">30 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">16</th>
+          <th scope="row" class="govuk-table__header"><a href="16" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">30 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">17</th>
+          <th scope="row" class="govuk-table__header"><a href="17" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">01 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">18</th>
+          <th scope="row" class="govuk-table__header"><a href="18" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">04 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">19</th>
+          <th scope="row" class="govuk-table__header"><a href="19" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">04 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">20</th>
+          <th scope="row" class="govuk-table__header"><a href="20" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Advocacy</a></th>
+          <td class="govuk-table__cell">04 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">21</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">04 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">22</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">04 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">23</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">04 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">24</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">12 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">25</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Advocacy</a></th>
+          <td class="govuk-table__cell">12 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">26</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">12 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">27</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">12 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">28</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">12 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">29</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">30</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+                  <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">31</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">32</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">33</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">34</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">35</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">36</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">37</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">38</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">39</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">40</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Advocacy</a></th>
+          <td class="govuk-table__cell">15 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">41</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">28 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">42</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">28 Feb 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">43</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">3 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">44</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">3 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">45</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">4 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">46</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Advocacy</a></th>
+          <td class="govuk-table__cell">4 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">47</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">4 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">48</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">4 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">49</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">4 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">50</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">8 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">51</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Advocacy</a></th>
+          <td class="govuk-table__cell">8 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">52</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">8 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">53</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">10 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">54</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">10 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">55</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">10 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">56</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">10 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">57</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">10 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">58</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">10 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">59</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">12 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">60</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">12 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">61</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">13 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">62</td>
+        <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Advocacy</a></th>
+          <td class="govuk-table__cell">14 Mar 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">63</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">14 Mar 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">64</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">14 Mar 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">65</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">15 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">66</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">15 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">67</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">15 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">68</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">69</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">70</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">71</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">72</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">73</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">74</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Advocacy</a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">75</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">76</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">77</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">78</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">21 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">79</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">21 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">80</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">21 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">81</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">82</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Advocacy</a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">83</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">84</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">18 Mar 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">85</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">21 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">86</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">21 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">87</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">21 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">88</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">21 Mar 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">89</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">2 Apr 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">90</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">2 Apr 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">91</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">2 Apr 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">92</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Preparation</a></th>
+          <td class="govuk-table__cell">2 Apr 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">93</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">7 Apr 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">94</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">7 Apr 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">95</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">21 Apr 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">96</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">21 Apr 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">97</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">22 Apr 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">98</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">22 Apr 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">99</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">22 Apr 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">100</td>
+          <th scope="row" class="govuk-table__header"><a href="#" id="workTypeX" aria-labelledby="itemTitle itemX workTypeX">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">23 May 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="item101">101</td>
+          <th scope="row" class="govuk-table__header"><a href="add-work-item1?workType=Attendance without&otherNoHours-hours=4&otherNoHours-mins=00&feeEarner=RT&uplift=0&completionDate-year=2024&completionDate-month=1&completionDate-day=30" id="workType101" aria-labelledby="itemTitle item101 workType101">Attendance without counsel</a></th>
+          <td class="govuk-table__cell">30 Jun 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX workTypeX" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX workTypeX" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+     <form class="form" action="/add-work-item-final2" method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" >
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--s">
+            Do you need to add another work item?
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="add-another">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="add-another-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}
+
