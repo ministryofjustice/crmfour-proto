@@ -25,71 +25,67 @@
     <h1 class="govuk-heading-xl">What work item are you claiming for?</h1>
     
     <form class="form" action="review-all-work-items2" method="post">
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-            <h1 class="govuk-fieldset__heading">
-              Work type
-            </h1>
-          </legend>
-          <div class="govuk-radios" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="workType" name="workType" type="radio" value="Attendance with counsel assigned" aria-describedby="workType-hint">
-              <label class="govuk-label govuk-radios__label" for="workType">
-                Attendance with counsel assigned
-              </label>
-              <div id="workType-hint" class="govuk-hint govuk-radios__hint">
-                £31.03 per hour 
-              </div>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="workType-2" name="workType" type="radio" value="Attendance without counsel assigned" aria-describedby="workType-2-hint">
-              <label class="govuk-label govuk-radios__label" for="workType-2">
-                Attendance without counsel assigned
-              </label>
-              <div id="workType-2-hint" class="govuk-hint govuk-radios__hint">
-                £45.35 per hour
-              </div>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="workType-3" name="workType" type="radio" value="Preparation" aria-describedby="workType-3-hint">
-              <label class="govuk-label govuk-radios__label" for="workType-3">
-                Preparation
-              </label>
-              <div id="workType-3-hint" class="govuk-hint govuk-radios__hint">
-                £45.35 per hour
-              </div>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="workType-6" name="workType" type="radio" value="Advocacy" aria-describedby="workType-6-hint">
-              <label class="govuk-label govuk-radios__label" for="workType-6">
-                Advocacy
-              </label>
-              <div id="workType-6-hint" class="govuk-hint govuk-radios__hint">
-                £56.89 per hour 
-              </div>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="workType-4" name="workType" type="radio" value="Travel" aria-describedby="workType-4-hint">
-              <label class="govuk-label govuk-radios__label" for="workType-4">
-                Travel
-              </label>
-              <div id="workType-4-hint" class="govuk-hint govuk-radios__hint">
-                £24.00 per hour 
-              </div>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="workType-5" name="workType" type="radio" value="Waiting" aria-describedby="workType-5-hint">
-              <label class="govuk-label govuk-radios__label" for="workType-5">
-                Waiting
-              </label>
-              <div id="workType-5-hint" class="govuk-hint govuk-radios__hint">
-                £24.00 per hour 
-              </div>
-            </div>
-          </div>
-        </fieldset>
-      </div>
+      {{ govukRadios({
+        name: "workType",
+        value: data['workType'],
+        fieldset: {
+          legend: {
+            text: "Work type",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Attendance with",
+            text: "Attendance with counsel assigned",
+            checked: checked('workType','Attendance with'),
+            hint: {
+              text: "£31.03 per hour"
+            }
+          },
+          {
+            value: "Attendance without",
+            text: "Attendance without counsel assigned",
+            checked: checked('workType','Attendance without'),
+            hint: {
+              text: "£45.35 per hour"
+            }
+          },
+          {
+            value: "Preparation",
+            text: "Preparation",
+            checked: checked('workType','Preparation'),
+            hint: {
+              text: "£45.35 per hour"
+            }
+          },
+          {
+            value: "Advocacy",
+            text: "Advocacy",
+            checked: checked('workType','Advocacy'),
+            hint: {
+              text: "£56.89 per hour "
+            }
+          },
+          {
+            value: "Travel",
+            text: "Travel",
+            checked: checked('workType','Travel'),
+            hint: {
+              text: "£24.00 per hour"
+            }
+          },
+          {
+            value: "Waiting",
+            text: "Waiting",
+            checked: checked('workType','Waiting'),
+            hint: {
+              text: "£24.00 per hour"
+            }
+          }
+        ]
+      }) }}
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" role="group" >
@@ -134,7 +130,7 @@
                 <label class="govuk-label govuk-date-input__label" for="completionDate-day">
                   Day
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="completionDate-day" type="text" inputmode="numeric">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="completionDate-day" type="text" inputmode="numeric" value="{{data['completionDate-day']}}">
               </div>
             </div>
             <div class="govuk-date-input__item">
@@ -142,7 +138,7 @@
                 <label class="govuk-label govuk-date-input__label" for="completionDate-month">
                   Month
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="completionDate-month" type="text" inputmode="numeric">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="completionDate-month" type="text" inputmode="numeric" value="{{data['completionDate-month']}}">
               </div>
             </div>
             <div class="govuk-date-input__item">
@@ -150,7 +146,7 @@
                 <label class="govuk-label govuk-date-input__label" for="completionDate-year">
                   Year
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="completionDate-year" type="text" inputmode="numeric">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="completionDate-year" type="text" inputmode="numeric" value="{{data['completionDate-year']}}">
               </div>
             </div>
           </div>
@@ -161,11 +157,14 @@
         <label class="govuk-label govuk-label--s" for="feeEarner">
           Fee earner initials
         </label>
-        <div id="feeEarner-hint" class="govuk-hint">
+       <!-- <div id="feeEarner-hint" class="govuk-hint">
           The name you’ll use on promotional material
         </div>
-        <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner" type="text" aria-describedby="feeEarner-hint">
+        -->
+        <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner']}}">
       </div>
+
+      <!--
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">         
@@ -191,11 +190,26 @@
           </div>
         </fieldset>
       </div>
+      -->
 
       <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">
         Update calculation
       </button> 
 
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Calculations</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col"> Total</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">£45.35</td>
+          </tr>
+        </tbody>
+      </table>
+      <!--
       <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m">Calculations</caption>
         <thead class="govuk-table__head">
@@ -211,6 +225,7 @@
           </tr>
         </tbody>
       </table>
+      -->
     
       <div class="govuk-button-group">
         {{ govukButton({
