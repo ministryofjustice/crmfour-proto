@@ -1,0 +1,314 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header2.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Disbursements - {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    
+    <h1 class="govuk-heading-xl">You've added 12 disbursements</h1>
+    {{ govukButton({
+      text: "Add another disbursement",
+      classes: "govuk-button--secondary",
+      href: "add-disbursement"
+    }) }}
+    
+     <table class="govuk-table" data-module="moj-sortable-table">
+      <caption class="govuk-visually-hidden">Claimed disbursements</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col" aria-sort="ascending" id="itemTitle">Item</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Total cost</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="item1">1</th>
+          <th scope="row" class="govuk-table__header"><a href="#" id="disbursementType1" aria-labelledby="itemTitle item1 workType1">Cell phone site analysis</a></th>
+          <td class="govuk-table__cell">1 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£144:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle item1 workType1" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">2</th>
+          <th scope="row" class="govuk-table__header"><a href="2" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Car milage</a></th>
+          <td class="govuk-table__cell">1 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£32.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£32.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a id="duplicate" aria-labelledby="duplicate itemTitle itemX disbursementTypeN" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a id="delete" aria-labelledby="delete itemTitle itemX disbursementTypeN" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">3</th>
+          <th scope="row" class="govuk-table__header"><a href="3" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Car milage</a></th>
+          <td class="govuk-table__cell">7 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£32.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£32.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a id="duplicate" aria-labelledby="duplicate itemTitle itemX disbursementTypeN" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a id="delete" aria-labelledby="delete itemTitle itemX disbursementTypeN" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">4</th>
+          <th scope="row" class="govuk-table__header"><a href="4" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Accident reconstruction report</a></th>
+          <td class="govuk-table__cell">7 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£400.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£480.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX disbursementTypeN" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">5</td>
+          <th scope="row" class="govuk-table__header"><a href="5" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">DNA report</a></th>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£230.34</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£276.41</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX disbursementTypeN" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">6</td>
+          <th scope="row" class="govuk-table__header"><a href="6" id="disbursementTypeN" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Car milage</a></td>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£12.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£12.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX disbursementTypeN" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">7</td>
+            <th scope="row" class="govuk-table__cell"><a href="7" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Car milage</a></th>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£43.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£43.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX disbursementTypeN" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">8</th>
+          <th scope="row" class="govuk-table__header"><a href="8" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£56.32</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£56.30</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX disbursementTypeN" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">9</th>
+          <th scope="row" class="govuk-table__cell"><a href="9" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Car milage</a></th>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£76.80</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£92.16</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX disbursementTypeN" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">10</th>
+          <th scope="row" class="govuk-table__header"><a href="10" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Translation report</a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£240.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£288.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX disbursementTypeN" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">11</th>
+          <th scope="row" class="govuk-table__header"><a href="11" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Car milage</a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£12.12</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£12.12</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX disbursementTypeN" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">12</th>
+          <th scope="row" class="govuk-table__header"><a href="#" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Car milage</a></td>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£23.99</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£28.79</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX disbursementTypeN" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemX">13</th>
+          <th scope="row" class="govuk-table__header"><a href="13" id="disbursementTypeN" aria-labelledby="itemTitle itemX disbursementTypeN">Back calculation </a></td>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£144.0</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle itemX disbursementTypeN" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemX disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+     <form class="form" action="/add-work-item-final1" method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" >
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--s">
+            Do you need to add another work item?
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="add-another">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="add-another-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}
+
