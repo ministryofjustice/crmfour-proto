@@ -219,3 +219,53 @@ router.post('/add-work-item-final3', function(request, response) {
         response.redirect("/provider-nsm/form/add-work-item3")
     }
 })
+
+
+//Additional work item second time (CRM7) version 3 from view
+router.post('/review-all-work-items1a1', function(request, response) {
+
+    var addAnother = request.session.data['add-another']
+    if (addAnother == "No"){
+        response.redirect("/provider-nsm/form/task-listquestion2-work=complete")
+    } 
+    if (addAnother == "Yes"){
+        response.redirect("/provider-nsm/form/add-work-item2?add=2")
+    }
+})
+
+//Additional work item second time (CRM7) version 3 from view
+router.post('/review-all-work-items1a2', function(request, response) {
+
+    var addAnother = request.session.data['add-another']
+    if (addAnother == "No"){
+        response.redirect("/provider-nsm/form/task-listquestion2-work=complete")
+    } 
+    if (addAnother == "Yes"){
+        response.redirect("/provider-nsm/form/add-work-item2?add=3")
+    }
+})
+
+//Additional work item second time (CRM7) version 3 from view
+router.post('/review-all-work-items1a3', function(request, response) {
+
+    var addAnother = request.session.data['add-another']
+    if (addAnother == "No"){
+        response.redirect("/provider-nsm/form/task-listquestion2-work=complete")
+    } 
+    if (addAnother == "Yes"){
+        response.redirect("/provider-nsm/form/add-work-item2?add=4")
+    }
+})
+
+//Additional work item second time (CRM7) version 3 from view
+router.post('/review-all-work-items1a4', function(request, response) {
+
+    var addAnother = request.session.data['add-another']
+    if (addAnother == "No"){
+        response.redirect("/provider-nsm/form/task-list?question2-work=complete")
+    } 
+    if (addAnother == "Yes"){
+        response.redirect("/provider-nsm/form/add-work-item2?add=4")
+    }
+})
+

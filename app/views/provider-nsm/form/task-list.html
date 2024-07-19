@@ -335,7 +335,7 @@
             {% elseif data['question2-work'] == "" or data['question2-work'] == "notStarted" %}
             <!--If question2-case has not been started show the status Not yet started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
             <div class="govuk-task-list__name-and-hint">
-              <a href="add-work-items?question2-work=notStarted" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="work-status">
+              <a href="add-work-item2?question2-work=notStarted&add=1" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="work-status">
                   Work items
               </a>
             </div>
@@ -347,7 +347,7 @@
             {% else %}
             <!--For all other states AND show visited link status-->
             <div class="govuk-task-list__name-and-hint">
-              <a class="govuk-link govuk-task-list__link" href="add-work-items" aria-describedby="work-status">
+              <a class="govuk-link govuk-task-list__link" href="review-all-work-items2" aria-describedby="work-status">
                   Work items
               </a>
             </div>
@@ -614,7 +614,7 @@
       {{ govukButton({
         text: "Back to your claims",
         classes: "govuk-button--secondary",
-        href: "../crm-claims-current"
+        href: "../crm-claims-reviewed"
       }) }}
     </div>
 
