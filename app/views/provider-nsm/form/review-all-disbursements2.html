@@ -1,0 +1,127 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header2.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Disbursements - {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    
+    <h1 class="govuk-heading-xl">You've added 2 disbursements</h1>
+    {{ govukButton({
+      text: "Add another disbursement",
+      classes: "govuk-button--secondary",
+      href: "add-disbursement"
+    }) }}
+    
+     <table class="govuk-table" data-module="moj-sortable-table">
+      <caption class="govuk-visually-hidden">Claimed disbursements</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col" aria-sort="ascending" id="itemTitle">Item</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Total cost</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="item1">1</th>
+          <th scope="row" class="govuk-table__header"><a href="#" id="disbursementType1" aria-labelledby="itemTitle item1 workType1">Cell phone site analysis</a></th>
+          <td class="govuk-table__cell">1 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£144:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="duplicate itemTitle item1 workType1" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a aria-labelledby="delete itemTitle itemN disbursementTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemN">2</th>
+          <th scope="row" class="govuk-table__header"><a href="2" id="disbursementTypeN" aria-labelledby="itemTitle itemN disbursementTypeN">Car mileage</a></th>
+          <td class="govuk-table__cell">1 Jan 2024</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£32.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£32.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a id="duplicate" aria-labelledby="duplicate itemTitle itemN disbursementTypeN" class="govuk-link" href="#">Duplicate</a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a id="delete" aria-labelledby="delete itemTitle itemN disbursementTypeN" class="govuk-link" href="#">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+     <form class="form" action="/add-work-item-final1" method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" >
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--s">
+            Do you need to add another work item?
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="add-another">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="add-another-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}
+
