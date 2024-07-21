@@ -243,38 +243,8 @@
       </table>
     {% endif %}
     
-    {% if data['add'] =="4" %}
-      <form class="form" action="/review-all-work-4items3" method="post">
-      {% elseif data['add'] =="3" %}
-        <form class="form" action="/review-all-work-3items3" method="post">
-      {% elseif data['add'] =="2" %}
-        <form class="form" action="/review-all-work-2items3" method="post">
-      {% elseif data['add'] =="1" %}
-        <form class="form" action="/review-all-work-1items3" method="post">
-    {% endif %}
+    <form class="form" action="task-list?question2-work=complete" method="post">
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" >
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--s">
-            Do you need to add another work item?
-          </legend>
-          <div class="govuk-radios" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
-              <label class="govuk-label govuk-radios__label" for="add-another">
-                Yes
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
-              <label class="govuk-label govuk-radios__label" for="add-another-2">
-                No
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-    
       <div class="govuk-button-group">
         {{ govukButton({
           text: "Save and continue"
