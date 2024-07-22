@@ -498,49 +498,52 @@
         </ul>
       </div>
       <div class="govuk-summary-card__content">
-        {% if data['vat'] =="yes"%}
+       {% if data['vat'] =="yes"%}
       <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Your costs summary</caption>
         <thead class="govuk-table__head">
-          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
+          <td class="govuk-table__header"></td>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">VAT on claimed</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total</th>
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
+            <th scope="row" class="govuk-table__header">Profit costs</th>
             <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£57.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
+            <th scope="row" class="govuk-table__header">Disbursements</th>
             <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
           </tr>
           <tr class="govuk-table__row">
-            <td scope="row" class="govuk-table__header">Total</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
+            <th scope="row" class="govuk-table__header">Travel</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Waiting</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+          </tr>        
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Total</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of net cost: </span><strong>£1135.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of VAT on claimed: </span><strong>£217.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of net cost and VAT on claimed: </span><strong>£1352.00</strong></td>
           </tr>
         </tbody>
       </table> 
       {% else %}
+      
       <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Your costs summary</caption>
         <thead class="govuk-table__head">
           <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
             <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
@@ -574,9 +577,10 @@
           </tr>
           <tr class="govuk-table__row">
             <td scope="row" class="govuk-table__header">Total</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£140.00</strong></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1275.00</strong></td>
+             <th scope="row" class="govuk-table__header">Total</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of net cost claimed: </span><strong>£1135.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of VAT on claimed: </span><strong>£140.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of net cost and VAT on claimed: </span><strong>£1275.00</strong></td>
           </tr>
         </tbody>
       </table> 
