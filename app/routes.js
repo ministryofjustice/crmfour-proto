@@ -201,7 +201,7 @@ router.post('/review-all-work-1items2', function(request, response) {
 
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
-        response.redirect("/provider-nsm/form/task-listquestion2-work=complete")
+        response.redirect("/provider-nsm/form/task-list2?question2-work=complete")
     } 
     if (addAnother == "Yes"){
         response.redirect("/provider-nsm/form/add-work-item2?add2=2")
@@ -213,7 +213,7 @@ router.post('/review-all-work-2items2', function(request, response) {
 
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
-        response.redirect("/provider-nsm/form/task-listquestion2-work=complete")
+        response.redirect("/provider-nsm/form/task-list2?question2-work=complete")
     } 
     if (addAnother == "Yes"){
         response.redirect("/provider-nsm/form/add-work-item2?add2=3")
@@ -225,7 +225,7 @@ router.post('/review-all-work-3items2', function(request, response) {
 
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
-        response.redirect("/provider-nsm/form/task-listquestion2-work=complete")
+        response.redirect("/provider-nsm/form/task-list2?question2-work=complete")
     } 
     if (addAnother == "Yes"){
         response.redirect("/provider-nsm/form/add-work-item2?add2=4")
@@ -237,7 +237,7 @@ router.post('/review-all-work-4items2', function(request, response) {
 
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
-        response.redirect("/provider-nsm/form/task-list?question2-work=complete")
+        response.redirect("/provider-nsm/form/task-list2?question2-work=complete")
     } 
     if (addAnother == "Yes"){
         response.redirect("/provider-nsm/form/add-work-item2?add2=4")
@@ -249,7 +249,7 @@ router.post('/review-all-work-1items3', function(request, response) {
 
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
-        response.redirect("/provider-nsm/form/task-list?question2-work=complete")
+        response.redirect("/provider-nsm/form/task-list3?question2-work=complete")
     } 
     if (addAnother == "Yes"){
         response.redirect("/provider-nsm/form/add-work-item3?add3=2")
