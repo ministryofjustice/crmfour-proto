@@ -25,9 +25,9 @@
     <h1 class="govuk-heading-xl">What work item are you claiming for?</h1>
     <form class="form" action="work-item-added3" method="post">
 
-      {% if data['add'] == "4"%}
+      {% if data['add'] == "4" or data['view'] == "4" %}
         {{ govukRadios({
-          name: "workType1",
+          name: "workType4",
           value: data['workType4'],
           fieldset: {
             legend: {
@@ -38,17 +38,17 @@
           },
           items: [
             {
-              value: "Attendance with",
-              text: "Attendance with counsel assigned",
-              checked: checked('workType4','Attendance with'),
+              value: "Attendance with counsel",
+              text: "Attendance with counsel",
+              checked: checked('workType4','Attendance with counsel'),
               hint: {
                 text: "£31.03 per hour"
               }
             },
             {
-              value: "Attendance without",
-              text: "Attendance without counsel assigned",
-              checked: checked('workType4','Attendance without'),
+              value: "Attendance without counsel",
+              text: "Attendance without counsel",
+              checked: checked('workType4','Attendance without counsel'),
               hint: {
                 text: "£45.35 per hour"
               }
@@ -161,7 +161,7 @@
           <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner4" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner4']}}">
         </div>
 
-        {% elseif data['add'] == "3"%}
+        {% elseif data['add'] == "3" or data['view'] == "3"%}
 
           {{ govukRadios({
             name: "workType3",
@@ -175,17 +175,17 @@
             },
             items: [
               {
-                value: "Attendance with",
-                text: "Attendance with counsel assigned",
-                checked: checked('workType3','Attendance with'),
+                value: "Attendance with counsel",
+                text: "Attendance with counsel",
+                checked: checked('workType3','Attendance with counsel'),
                 hint: {
                   text: "£31.03 per hour"
                 }
               },
               {
                 value: "Attendance without",
-                text: "Attendance without counsel assigned",
-                checked: checked('workType3','Attendance without'),
+                text: "Attendance without counsel",
+                checked: checked('workType3','Attendance without counsel'),
                 hint: {
                   text: "£45.35 per hour"
                 }
@@ -298,7 +298,7 @@
             <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner3" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner3']}}">
           </div>
 
-        {% elseif data['add'] == "2"%}
+        {% elseif data['add'] == "2" or data['view'] == "2"%}
 
           {{ govukRadios({
             name: "workType2",
@@ -312,17 +312,17 @@
             },
             items: [
               {
-                value: "Attendance with",
-                text: "Attendance with counsel assigned",
-                checked: checked('workType2','Attendance with'),
+                value: "Attendance with counsel",
+                text: "Attendance with counsel",
+                checked: checked('workType2','Attendance with counsel'),
                 hint: {
                   text: "£31.03 per hour"
                 }
               },
               {
-                value: "Attendance without",
-                text: "Attendance without counsel assigned",
-                checked: checked('workType2','Attendance without'),
+                value: "Attendance without counsel",
+                text: "Attendance without counsel",
+                checked: checked('workType2','Attendance without counsel'),
                 hint: {
                   text: "£45.35 per hour"
                 }
@@ -450,7 +450,7 @@
             items: [
               {
                 value: "Attendance with counsel",
-                text: "Attendance with counsel assigned",
+                text: "Attendance with counsel",
                 checked: checked('workType1','Attendance with counsel'),
                 hint: {
                   text: "£31.03 per hour"
@@ -459,7 +459,7 @@
               {
                 value: "Attendance without counsel",
                 text: "Attendance without counsel",
-                checked: checked('workType1','Attendance without counsel assigned'),
+                checked: checked('workType1','Attendance without counsel'),
                 hint: {
                   text: "£45.35 per hour"
                 }

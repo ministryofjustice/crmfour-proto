@@ -204,7 +204,7 @@ router.post('/review-all-work-1items2', function(request, response) {
         response.redirect("/provider-nsm/form/task-listquestion2-work=complete")
     } 
     if (addAnother == "Yes"){
-        response.redirect("/provider-nsm/form/add-work-item2?add=2")
+        response.redirect("/provider-nsm/form/add-work-item2?add2=2")
     }
 })
 
@@ -216,7 +216,7 @@ router.post('/review-all-work-2items2', function(request, response) {
         response.redirect("/provider-nsm/form/task-listquestion2-work=complete")
     } 
     if (addAnother == "Yes"){
-        response.redirect("/provider-nsm/form/add-work-item2?add=3")
+        response.redirect("/provider-nsm/form/add-work-item2?add2=3")
     }
 })
 
@@ -228,7 +228,7 @@ router.post('/review-all-work-3items2', function(request, response) {
         response.redirect("/provider-nsm/form/task-listquestion2-work=complete")
     } 
     if (addAnother == "Yes"){
-        response.redirect("/provider-nsm/form/add-work-item2?add=4")
+        response.redirect("/provider-nsm/form/add-work-item2?add2=4")
     }
 })
 
@@ -240,7 +240,7 @@ router.post('/review-all-work-4items2', function(request, response) {
         response.redirect("/provider-nsm/form/task-list?question2-work=complete")
     } 
     if (addAnother == "Yes"){
-        response.redirect("/provider-nsm/form/add-work-item2?add=4")
+        response.redirect("/provider-nsm/form/add-work-item2?add2=4")
     }
 })
 
