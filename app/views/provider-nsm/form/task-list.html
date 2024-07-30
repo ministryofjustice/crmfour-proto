@@ -30,20 +30,20 @@
       <!--Section 0 - UFN-->
 
       <h2 class="govuk-heading-m govuk-!-margin-top-5">
-        What are you claiming
+        Claim details
       </h2>
       <ul class="govuk-task-list">
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          {% if data['question-nsm'] =="complete" %}
+          {% if data['question-claimType'] =="complete" %}
             <div class="govuk-task-list__name-and-hint">
-              <a href="question-ufn?question-nsm=complete" class="govuk-link govuk-task-list__link"  aria-describedby="nsm-status">
-                Non-standard magistrates’ court payment
+              <a href="question-claim?question-claimType=complete" class="govuk-link govuk-task-list__link"  aria-describedby="nsm-status">
+               What you are claiming for
               </a>
             </div>
             {% else %}
               <div class="govuk-task-list__name-and-hint">
-              <a href="question-ufn?question-ufn=complete" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="nsm-status">
-                Non-standard magistrates’ court payment
+              <a href="question-claim?question-claimType=complete" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="nsm-status">
+                What you are claiming for
               </a>
             </div>
           {% endif %}
@@ -52,7 +52,27 @@
             Completed
           </div>
         </li>
+       <!--
+        <li class="govuk-task-list__item govuk-task-list__item--with-link">
+          {% if data['question-claimType'] =="complete" %}
+            <div class="govuk-task-list__name-and-hint">
+              <a href="question-stageProvider?question-stage=complete" class="govuk-link govuk-task-list__link"  aria-describedby="stage-status">
+               Stage reached
+              </a>
+            </div>
+            {% else %}
+              <div class="govuk-task-list__name-and-hint">
+              <a href="question-stageProvider?question-stage=complete" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="stage-status">
+                Stage reached
+              </a>
+            </div>
+          {% endif %}
+          <div class="govuk-task-list__status" id="stage-status">
+            Completed
+          </div>
+        </li>
       </ul>
+      -->
 
       <!--Section 1 - About you-->
       <h2 class="govuk-heading-m govuk-!-margin-top-5">
@@ -62,7 +82,7 @@
 
         <!--Question 1 - your details-->
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          {% if data['question-nsm'] !== "complete" %}
+          {% if data['question-claimType'] !== "complete" %}
             <div class="govuk-task-list__name-and-hint">
                 Firm details
             </div>
@@ -335,7 +355,7 @@
               {% elseif data['question2-work'] == "" or data['question2-work'] == "notStarted" %}
               <!--If question2-case has not been started show the status Not yet started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
               <div class="govuk-task-list__name-and-hint">
-                <a href="add-work-item2?question2-work=notStarted&add3=1" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="work-status">
+                <a href="add-work-item1?question2-work=notStarted&add2=1" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="work-status">
                     Work items
                 </a>
               </div>
@@ -369,7 +389,7 @@
               {% elseif data['question2-work'] == "" or data['question2-work'] == "notStarted" %}
               <!--If question2-case has not been started show the status Not yet started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
               <div class="govuk-task-list__name-and-hint">
-                <a href="add-work-item3?question2-work=notStarted&add3=1" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="work-status">
+                <a href="add-work-item1?question2-work=notStarted&add2=1" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="work-status">
                     Work items
                 </a>
               </div>
@@ -381,7 +401,7 @@
               {% else %}
               <!--For all other states AND show visited link status-->
               <div class="govuk-task-list__name-and-hint">
-                <a class="govuk-link govuk-task-list__link" href="review-all-work-items3" aria-describedby="work-status">
+                <a class="govuk-link govuk-task-list__link" href="review-all-work-items1a" aria-describedby="work-status">
                     Work items
                 </a>
               </div>
@@ -665,6 +685,14 @@
             <li>
               <strong>LAA reference</strong>   
               <br>{{data['laa-ref'] or "LAA-5a7d3c"}}
+            </li>
+            <li>                
+              <strong>Claim type</strong>   
+              <br>{{data['claimType'] or "Non-standard magistrates’ court payment" }} 
+            </li>
+            <li>
+              <strong>Stage reached</strong>   
+              <br>{{data['stage'] }}
             </li>
           </ul>
         </nav>

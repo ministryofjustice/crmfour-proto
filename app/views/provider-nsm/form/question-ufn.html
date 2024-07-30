@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header2.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+What is your unique reference number? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      {% if data['changeUFN'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form class="form" action="task-list?laa-ref=LAA-5a7d3c&app-state=draft&question-ufn=complete" method="post">
+      {% endif %}
+
+        {{ govukInput({
+          label: {
+            text: "What is your unique file number (UFN)?",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example 310223/001"
+          },
+          classes: "govuk-input--width-10",
+          id: "ufnNSM",
+          name: "ufnNSM"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

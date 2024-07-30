@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+  {% include "includes/header2.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  What stage has been reached? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/question-stageProvider" method="post">
+
+        {{ govukRadios({
+          name: "stageProvider",
+          fieldset: {
+            legend: {
+              text: "Is the office working on this case located in a designated area?",
+              classes: "govuk-fieldset__legend--xl",
+              isPageHeading: true            
+              }
+          },
+          items: [
+            {
+              value: "Designated area",
+              text: "Designated area",
+              checked: checked("stageProvider", "Designated area")
+            },
+            {
+              value: "Undesignated area",
+              text: "Undesignated area",
+              checked: checked("stageProvider", "Undesignated area")
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
