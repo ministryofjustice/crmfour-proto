@@ -25,13 +25,16 @@
     <h1 class="govuk-heading-xl">Check your answers</h1>
 
      <!--App ref-->
-    <h2 class="govuk-heading-l">What are you claiming for</h2>
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title">What are you claiming for</h3>
+        <h3 class="govuk-summary-card__title">Claim details</h3>
         <ul class="govuk-summary-card__actions">
           <li class="govuk-summary-card__action">
-            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> what you are claiming for</span></a>
+            {% if data['claimType'] =="Breach of injunction" %}
+              <a class="govuk-link" href="question-claim?claimType=Breach of injunction&stageProvider=&stageCourt=&stage=PROM&changeClaim=change">Change<span class="govuk-visually-hidden"> what you are claiming for</span></a>
+              {% else %}
+              <a class="govuk-link" href="question-claim?claimType=Non-standard magistrates' court payment&stageProvider=Undesignated area&stageCourt=Undesignated area&stage=PROG&changeClaim=change">Change<span class="govuk-visually-hidden"> what you are claiming for</span></a>
+            {% endif %}
           </li>
         </ul>
       </div>
@@ -50,7 +53,7 @@
               Unique file number
             </dt>
             <dd class="govuk-summary-list__value">
-              {{data['ufn'] or "100323/234234"}}
+              {{data['ufnNSM'] or "100323/234"}}
             </dd>
           </div>
            <div class="govuk-summary-list__row">
@@ -58,15 +61,42 @@
               Type of claim
             </dt>
             <dd class="govuk-summary-list__value">
-              Non-standard magistrates' court payment
+              {{ data['claimType'] or "Non-standard magistrates' court payment" }}
             </dd>
           </div>
+          {% if data['claimType'] =="Breach of injunction" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                CNTP (contempt) number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['contemptNumber'] or "12345678" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of CNTP representation order
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['dateContempt-day'] or "19" }} April {{data['dateContempt-year'] or "2023" }}
+              </dd>
+            </div>
+            {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date of representation order
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['rep-order-day'] or "19" }} April {{data['rep-order-year'] or "2023" }}
+              </dd>
+            </div>
+          {% endif %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Date of representation order
+              Stage reached
             </dt>
             <dd class="govuk-summary-list__value">
-              {{data['rep-order-day'] or "19" }} {{data['rep-order-month'] or "April" }} {{data['rep-order-year'] or "2023" }}
+              {{data['stage'] or "PROM" }}
             </dd>
           </div>
         </dl>

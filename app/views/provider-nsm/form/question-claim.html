@@ -23,7 +23,11 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">What you are claiming for</h1>
 
-      <form class="form" action="/question-claimType" method="post">
+      {% if data['changeClaim'] =="change" %}
+        <form class="form" action="/change-claimType" method="post">
+        {% else %}
+        <form class="form" action="/question-claimType" method="post">
+      {% endif %}
 
         {{ govukInput({
           label: {
@@ -90,45 +94,45 @@
               hint: {
                 text: "Must be between 6 and 8 digits long"
               },
-              id: "account-number",
-              name: "accountNumber",
+              id: "contemptNumber",
+              name: "contemptNumber",
               inputmode: "numeric",
-              spellcheck: false
+              value: data['contemptNumber']
             }) }}
 
           <div class="govuk-form-group">
-            <fieldset class="govuk-fieldset" role="group" aria-describedby="date-contempt-hint">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="dateContempt-hint">
               <legend class="govuk-fieldset__legend">
                 <h1 class="govuk-fieldset__heading">
                   Date the CNTP representation order was issued
                 </h1>
               </legend>
-              <div id="date-contempt-hint" class="govuk-hint">
+              <div id="dateContempt-hint" class="govuk-hint">
                 For example, 27 03 2025
               </div>
-              <div class="govuk-date-input" id="date-contempt">
+              <div class="govuk-date-input" id="dateContempt">
                 <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="date-contempt-day">
+                    <label class="govuk-label govuk-date-input__label" for="dateContempt-day">
                       Day
                     </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-contempt-day" name="date-contempt-day" type="text" inputmode="numeric" value="{{data['date-contempt-day']}}">
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dateContempt-day" name="dateContempt-day" type="text" inputmode="numeric" value="{{data['dateContempt-day']}}">
                   </div>
                 </div>
                 <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="date-contempt-month">
+                    <label class="govuk-label govuk-date-input__label" for="dateContempt-month">
                       Month
                     </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-contempt-month" name="date-contempt-month" type="text" inputmode="numeric" value="{{data['date-contempt-month']}}">
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dateContempt-month" name="dateContempt-month" type="text" inputmode="numeric" value="{{data['dateContempt-month']}}">
                   </div>
                 </div>
                 <div class="govuk-date-input__item">
                   <div class="govuk-form-group">
-                    <label class="govuk-label govuk-date-input__label" for="date-contempt-year">
+                    <label class="govuk-label govuk-date-input__label" for="dateContempt-year">
                       Year
                     </label>
-                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-contempt-year" name="date-contempt-year" type="text" inputmode="numeric" value="{{data['date-rep-year']}}">
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dateContempt-year" name="dateContempt-year" type="text" inputmode="numeric" value="{{data['dateContempt-year']}}">
                   </div>
                 </div>
               </div>

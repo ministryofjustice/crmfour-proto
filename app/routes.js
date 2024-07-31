@@ -316,12 +316,36 @@ router.post('/question-claimType', function(request, response) {
     }
 })
 
+//Create a new claim
+router.post('/change-claimType', function(request, response) {
+
+    var claimType = request.session.data['claimType']
+    if (claimType == "Breach of injunction"){
+        response.redirect("/provider-nsm/form/check-answers?question-claimType=complete&stage=PROG")
+    } 
+    if (claimType == "Non-standard magistrates' court payment"){
+        response.redirect("/provider-nsm/form/question-stageProvider?question-claimType=complete")
+    }
+})
+
 //Designated provider
 router.post('/question-stageProvider', function(request, response) {
 
     var stageProvider = request.session.data['stageProvider']
     if (stageProvider == "Designated area"){
         response.redirect("/provider-nsm/form/task-list?question-stage=complete&stage=PROM")
+    } 
+    if (stageProvider == "Undesignated area"){
+        response.redirect("/provider-nsm/form/question-stageCourt")
+    }
+})
+
+//Designated provider
+router.post('/change-stageProvider', function(request, response) {
+
+    var stageProvider = request.session.data['stageProvider']
+    if (stageProvider == "Designated area"){
+        response.redirect("/provider-nsm/form/check-answers?question-stage=complete&stage=PROM")
     } 
     if (stageProvider == "Undesignated area"){
         response.redirect("/provider-nsm/form/question-stageCourt")
@@ -339,5 +363,19 @@ router.post('/question-stageCourt', function(request, response) {
     } 
     else {
         response.redirect("/provider-nsm/form/task-list?question-stage=complete&stage=PROG")
+    }
+})
+
+//Designated court
+router.post('/change-stageCourt', function(request, response) {
+
+    var stageCourt = request.session.data['stageCourt']
+    var stageTrans = request.session.data['stageTrans']
+    
+       if (stageCourt == "Designated area", stageTrans == "Yes") {
+        response.redirect("/provider-nsm/form/check-answers-list?question-stage=complete&stage=PROM")
+    } 
+    else {
+        response.redirect("/provider-nsm/form/check-answers?question-stage=complete&stage=PROG")
     }
 })

@@ -74,7 +74,7 @@
       <!--Claim summmary-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title">Claim summary</h3>
+          <h3 class="govuk-summary-card__title">Claim details</h3>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
@@ -91,23 +91,50 @@
                 Unique file number
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['ufn'] or "100323/234234"}}
+                {{data['ufnNSM'] or "100323/234"}}
               </dd>
             </div>
-            <div class="govuk-summary-list__row">
+              <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Type of claim
               </dt>
               <dd class="govuk-summary-list__value">
-                Non-standard magistrates' court payment
+                {{ data['claimType'] or "Non-standard magistrates' court payment" }}
               </dd>
             </div>
+            {% if data['claimType'] =="Breach of injunction" %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  CNTP (contempt) number
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['contemptNumber'] or "12345678" }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Date of CNTP representation order
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['dateContempt-day'] or "19" }} April {{data['dateContempt-year'] or "2023" }}
+                </dd>
+              </div>
+              {% else %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Date of representation order
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['rep-order-day'] or "19" }} April {{data['rep-order-year'] or "2023" }}
+                </dd>
+              </div>
+            {% endif %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Date of representation order
+                Stage reached
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['rep-order-day'] or "19" }} {{data['rep-order-month'] or "April" }} {{data['rep-order-year'] or "2023" }}
+                {{data['stage'] or "PROM" }}
               </dd>
             </div>
           </dl>

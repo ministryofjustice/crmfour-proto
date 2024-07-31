@@ -22,7 +22,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/question-stageCourt" method="post">
+      {% if data['changeClaim'] =="change" %}
+        <form class="form" action="/change-stageCourt" method="post">
+        {% else %}
+         <form class="form" action="/question-stageCourt" method="post">
+      {% endif %}
+
 
         {% set transHtml %}
           {{ govukRadios({

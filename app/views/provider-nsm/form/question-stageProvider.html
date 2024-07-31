@@ -22,8 +22,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/question-stageProvider" method="post">
+      {% if data['changeClaim'] =="change" %}
+        <form class="form" action="/change-stageProvider" method="post">
+        {% else %}
+        <form class="form" action="/question-stageProvider" method="post">
+      {% endif %}
 
+      
         {{ govukRadios({
           name: "stageProvider",
           fieldset: {
