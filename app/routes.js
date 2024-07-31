@@ -192,7 +192,7 @@ router.post('/add-work-item-final1', function(request, response) {
         response.redirect("/provider-nsm/form/check-payment-claim")
     } 
     if (addAnother == "Yes"){
-        response.redirect("/provider-nsm/form/add-work-item1")
+        response.redirect("/provider-nsm/form/add-work-item")
     }
 })
 
@@ -305,7 +305,7 @@ router.post('/add-work-item-final3', function(request, response) {
 })
 
 //Create a new claim
-router.post('/question-contempt', function(request, response) {
+router.post('/question-claimType', function(request, response) {
 
     var claimType = request.session.data['claimType']
     if (claimType == "Breach of injunction"){
