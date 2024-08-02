@@ -397,9 +397,9 @@ router.post('/question-stageTrans', function(request, response) {
     var stageTrans = request.session.data['stageTrans']
     
     if (stageTrans == "Yes") {
-        response.redirect("/provider-nsm/form/check-answers?question-stage=complete&stage=PROM")
+        response.redirect("/provider-nsm/form/check-answers?question-stage=complete&stage=PROG")
     } 
     else {
-        response.redirect("/provider-nsm/form/check-answers?question-stage=complete&stage=PROG")
+        response.redirect("/provider-nsm/form/check-answers?question-stage=complete&stage=PROM")
     }
 })
