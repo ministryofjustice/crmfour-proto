@@ -28,31 +28,6 @@
          <form class="form" action="/question-stageCourt" method="post">
       {% endif %}
 
-
-        {% set transHtml %}
-          {{ govukRadios({
-            name: "stageTrans",
-            fieldset: {
-              legend: {
-                text: "Was the court transfered from a undesignated area?",
-                isPageHeading: false            
-                }
-            },
-            items: [
-              {
-                value: "Yes",
-                text: "Yes",
-                checked: checked("stageTrans", "Yes")
-              },
-              {
-                value: "No",
-                text: "No",
-                checked: checked("stageTrans", "No")
-              }
-            ]
-          }) }}          
-        {% endset %}
-
          {{ govukRadios({
           name: "stageCourt",
           fieldset: {
@@ -64,17 +39,14 @@
           },
           items: [
             {
-              value: "Designated area",
-              text: "Designated area",
-              checked: checked("stageCourt", "Designated area"),
-              conditional: {
-              html: transHtml
-              }
+              value: "Yes",
+              text: "Yes",
+              checked: checked("stageCourt", "Yes")
             },
             {
-              value: "Undesignated area",
-              text: "Undesignated area",
-              checked: checked("stageCourt", "Undesignated area")
+              value: "No",
+              text: "No",
+              checked: checked("stageCourt", "No")
             }
           ]
         }) }}

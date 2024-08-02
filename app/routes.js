@@ -332,10 +332,10 @@ router.post('/change-claimType', function(request, response) {
 router.post('/question-stageProvider', function(request, response) {
 
     var stageProvider = request.session.data['stageProvider']
-    if (stageProvider == "Designated area"){
+    if (stageProvider == "Yes"){
         response.redirect("/provider-nsm/form/task-list?question-stage=complete&stage=PROM")
     } 
-    if (stageProvider == "Undesignated area"){
+    if (stageProvider == "No"){
         response.redirect("/provider-nsm/form/question-stageCourt")
     }
 })
@@ -344,10 +344,10 @@ router.post('/question-stageProvider', function(request, response) {
 router.post('/change-stageProvider', function(request, response) {
 
     var stageProvider = request.session.data['stageProvider']
-    if (stageProvider == "Designated area"){
+    if (stageProvider == "Yes"){
         response.redirect("/provider-nsm/form/check-answers?question-stage=complete&stage=PROM")
     } 
-    if (stageProvider == "Undesignated area"){
+    if (stageProvider == "No"){
         response.redirect("/provider-nsm/form/question-stageCourt")
     }
 })
@@ -356,10 +356,9 @@ router.post('/change-stageProvider', function(request, response) {
 router.post('/question-stageCourt', function(request, response) {
 
     var stageCourt = request.session.data['stageCourt']
-    var stageTrans = request.session.data['stageTrans']
     
-       if (stageCourt == "Designated area", stageTrans == "Yes") {
-        response.redirect("/provider-nsm/form/task-list?question-stage=complete&stage=PROM")
+    if (stageCourt == "Yes") {
+        response.redirect("/provider-nsm/form/question-stageTrans")
     } 
     else {
         response.redirect("/provider-nsm/form/task-list?question-stage=complete&stage=PROG")
@@ -370,10 +369,35 @@ router.post('/question-stageCourt', function(request, response) {
 router.post('/change-stageCourt', function(request, response) {
 
     var stageCourt = request.session.data['stageCourt']
+    
+    if (stageCourt == "Yes") {
+        response.redirect("/provider-nsm/form/question-stageTrans")
+    } 
+    else {
+        response.redirect("/provider-nsm/form/task-list?question-stage=complete&stage=PROG")
+    }
+})
+
+//Transfered court
+router.post('/question-stageTrans', function(request, response) {
+
     var stageTrans = request.session.data['stageTrans']
     
-       if (stageCourt == "Designated area", stageTrans == "Yes") {
-        response.redirect("/provider-nsm/form/check-answers-list?question-stage=complete&stage=PROM")
+    if (stageTrans == "Yes") {
+        response.redirect("/provider-nsm/form/task-list?question-stage=complete&stage=PROM")
+    } 
+    else {
+        response.redirect("/provider-nsm/form/task-list?question-stage=complete&stage=PROG")
+    }
+})
+
+//Transfered court
+router.post('/question-stageTrans', function(request, response) {
+
+    var stageTrans = request.session.data['stageTrans']
+    
+    if (stageTrans == "Yes") {
+        response.redirect("/provider-nsm/form/check-answers?question-stage=complete&stage=PROM")
     } 
     else {
         response.redirect("/provider-nsm/form/check-answers?question-stage=complete&stage=PROG")

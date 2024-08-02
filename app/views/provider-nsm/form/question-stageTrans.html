@@ -23,17 +23,17 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% if data['changeClaim'] =="change" %}
-        <form class="form" action="/change-stageProvider" method="post">
+        <form class="form" action="/change-stageTrans" method="post">
         {% else %}
-        <form class="form" action="/question-stageProvider" method="post">
+         <form class="form" action="/question-stageTrans" method="post">
       {% endif %}
 
-      
+
         {{ govukRadios({
-          name: "stageProvider",
+          name: "stageTrans",
           fieldset: {
             legend: {
-              text: "Was this case worked on in an office in a designated area?",
+              text: "Was the court transfered from a undesignated area?",
               classes: "govuk-fieldset__legend--xl",
               isPageHeading: true            
               }
@@ -42,15 +42,15 @@
             {
               value: "Yes",
               text: "Yes",
-              checked: checked("stageProvider", "Yes")
+              checked: checked("stageTrans", "Yes")
             },
             {
               value: "No",
               text: "No",
-              checked: checked("stageProvider", "No")
+              checked: checked("stageTrans", "No")
             }
           ]
-        }) }}
+        }) }}       
 
         <div class="govuk-button-group">
           {{ govukButton({
