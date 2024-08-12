@@ -28,7 +28,7 @@
 
       {% include "includes/app-info-nsm-readonly.html"%}
 
-      {% if data['cwAppStatus'] == "Part granted"%}
+      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
         {{ mojSubNavigation({
           label: 'Sub navigation',
           items: [{
@@ -43,7 +43,7 @@
           }, 
           {
             text: 'Adjusted costs',
-            href: 'claim-details-adjust',
+            href: 'claim-details-adjust-readonly',
             active: false
           }, 
           {
