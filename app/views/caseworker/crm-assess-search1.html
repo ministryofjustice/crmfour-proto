@@ -42,8 +42,9 @@
           </label>
         </h2>
         <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Search will filter the table of users">
-        
       </div>
+
+      
 
       <h2 class="govuk-heading-m">
         Filter your search criteria
@@ -281,12 +282,14 @@
   function mySearch() {
     var searchResult = document.getElementById("resultsTable2");
     var searchButton = document.getElementById("searchButton");
+    
 
     if (searchResult.style.display === "none") {
       searchResult.style.display = "none";
     } else {
       searchResult.style.display = "inline";
     }
+    window.location='/caseworker/crm-assess-search1#resultsTable2';
   } 
 
   //Search that filters rows in a table
