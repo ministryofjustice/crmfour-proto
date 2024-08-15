@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-  {% include "includes/header-cw.html"%}
+  {% include "includes/header-cw2.html"%}
 {% endblock %}
 
 {% block pageTitle %}
@@ -12,13 +12,15 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-
-  {% include "includes/cw-nav-closed.html"%}
+  {% if data['cwAppStatus'] == "In progress"%}
+    {% include "includes/cw-nav-your-nsm.html"%}
+    {% else %}
+    {% include "includes/cw-nav-assessed-nsm.html"%}
+  {% endif %}
   {{ govukBackLink({
-      text: "Back",
-      href: "javascript:window.history.back()"
-    }) }}
-
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 {% endblock %}
 
 {% block content %}
