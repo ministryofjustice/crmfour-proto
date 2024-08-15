@@ -529,16 +529,29 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
           </tr>
-          <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header">15</th>
-            <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="change-work-item">Travel</a></span> <sup><a href="#fn2" id="r2">[2]</th>
-            <td class="govuk-table__cell">25 Jan 2024</td>
-            <td class="govuk-table__cell">RT</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          </tr>
+           {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">15</th>
+              <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="change-work-item">Travel</a></span> <sup><a href="#fn2" id="r2">[2]</th>
+              <td class="govuk-table__cell">25 Jan 2024</td>
+              <td class="govuk-table__cell">RT</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            </tr>
+            {% else %}
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">15</th>
+              <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="change-work-item">Travel</a></th>
+              <td class="govuk-table__cell">25 Jan 2024</td>
+              <td class="govuk-table__cell">RT</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            </tr>
+          {% endif %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">16</th>
             <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="16">Attendance without counsel </a></th>
