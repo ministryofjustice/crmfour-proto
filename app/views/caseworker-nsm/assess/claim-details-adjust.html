@@ -30,7 +30,7 @@
 
     {% include "includes/app-info-nsm2.html" %}
 
-        <!-- Nav -->
+    <!-- Nav -->
     {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
       {{ mojSubNavigation({
         label: 'Sub navigation',
@@ -42,12 +42,12 @@
         {
           text: 'Review and adjust',
           href: 'claim-details-review-readonly',
-          active: true
+          active: false
         }, 
         {
           text: 'Adjusted costs',
           href: 'claim-details-adjust',
-          active: false
+          active: true
         }, 
         {
           text: 'Supporting evidence',
