@@ -80,20 +80,20 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header" id="item4">4</th>
-            <th scope="row" class="govuk-table__header"><a id="workType4" aria-labelledby="itemTitle item4 workType4" href="f">Travel</a></th>
-            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-          </tr>
-          <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header" id="item5">5</th>
-            <th scope="row" class="govuk-table__header"><a id="workType5" aria-labelledby="itemTitle item5 workType5" href="d">Attendance without counsel </a></th>
+            <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workType5" aria-labelledby="itemTitle item5 workType5" href="d">Travel </a></span> <sup><a href="#fn1" id="r1">[1]</th>
             <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">3<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£75.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="item15">15</th>
+            <th scope="row" class="govuk-table__header"><a id="workType15" aria-labelledby="itemTitle item15 workType15" href="f">Travel</a></th>
+            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
           </tr>
         </tbody>
       </table>
@@ -103,6 +103,14 @@
         </ul>
         <p class="moj-pagination__results">Showing <b>1</b> to <b>2</b> of <b>2</b> work items</p>
       </nav>
+
+      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        <section>
+          <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item">Item 5</a></a></p>
+          <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item">Item 15</a></a></p>
+        </section>
+      {% endif %}
       
     {% endset %}
 
