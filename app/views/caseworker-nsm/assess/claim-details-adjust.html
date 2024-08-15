@@ -31,61 +31,35 @@
     {% include "includes/app-info-nsm2.html" %}
 
     <!-- Nav -->
-    {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details',
-          active: false
-        }, 
-        {
-          text: 'Review and adjust',
-          href: 'claim-details-review-readonly',
-          active: false
-        }, 
-        {
-          text: 'Adjusted costs',
-          href: 'claim-details-adjust',
-          active: true
-        }, 
-        {
-          text: 'Supporting evidence',
-          href: '',
-          active: false
-        }, 
-        {
-          text: 'Claim history',
-          href: '',
-          active: false
-        }]
-      }) }}
-      {% else %}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details-readonly',
-          active: false
-        }, 
-        {
-          text: 'Review and adjust',
-          href: 'claim-details-review-readonly',
-          active: true
-        }, 
-        {
-          text: 'Supporting evidence',
-          href: '',
-          active: false
-        }, 
-        {
-          text: 'Claim history',
-          href: '',
-          active: false
-        }]
-      }) }}
-    {% endif %}
-
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [{
+        text: 'Overview',
+        href: 'claim-details',
+        active: false
+      }, 
+      {
+        text: 'Review and adjust',
+        href: 'claim-details-review',
+        active: false
+      }, 
+      {
+        text: 'Adjusted costs',
+        href: 'claim-details-adjust',
+        active: true
+      }, 
+      {
+        text: 'Supporting evidence',
+        href: '',
+        active: false
+      }, 
+      {
+        text: 'Claim history',
+        href: '',
+        active: false
+      }]
+    }) }}
+     
     <h2 class="govuk-heading-l">Adjusted costs</h2>
 
     <!--TAbs items -->
@@ -131,11 +105,17 @@
         <p class="moj-pagination__results">Showing <b>1</b> to <b>2</b> of <b>2</b> work items</p>
       </nav>
 
-      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+      {% if  data['cwAppStatus'] == "Part granted" %}
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <section>
-          <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item">Item 5</a></a></p>
-          <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item">Item 15</a></a></p>
+          <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 5</a></a></p>
+          <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 15</a></a></p>
+        </section>
+        {% elseif data['cwAppStatus'] == "In progress" %}
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        <section>
+          <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item?adjustedClaim=Yes">Item 5</a></a></p>
+          <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item?adjustedClaim=Yes">Item 15</a></a></p>
         </section>
       {% endif %}
       
