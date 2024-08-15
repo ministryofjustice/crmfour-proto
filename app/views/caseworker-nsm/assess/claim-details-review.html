@@ -26,61 +26,60 @@
 
     {% include "includes/app-info-nsm2.html" %}
 
-       <!--Cost summary -->
-      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
-        {{ mojSubNavigation({
-          label: 'Sub navigation',
-          items: [{
-            text: 'Overview',
-            href: 'claim-details',
-            active: false
-          }, 
-          {
-            text: 'Review and adjust',
-            href: 'claim-details-review-readonly',
-            active: true
-          }, 
-          {
-            text: 'Adjusted costs',
-            href: 'claim-details-adjust',
-            active: false
-          }, 
-          {
-            text: 'Supporting evidence',
-            href: '',
-            active: false
-          }, 
-          {
-            text: 'Claim history',
-            href: '',
-            active: false
-          }]
-        }) }}
-        {% else %}
-        {{ mojSubNavigation({
-          label: 'Sub navigation',
-          items: [{
-            text: 'Overview',
-            href: 'claim-details-readonly',
-            active: false
-          }, 
-          {
-            text: 'Review and adjust',
-            href: 'claim-details-review-readonly',
-            active: true
-          }, 
-          {
-            text: 'Supporting evidence',
-            href: '',
-            active: false
-          }, 
-          {
-            text: 'Claim history',
-            href: '',
-            active: false
-          }]
-        }) }}
-      {% endif %}
+    {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: 'claim-details',
+          active: false
+        }, 
+        {
+          text: 'Review and adjust',
+          href: 'claim-details-review-readonly',
+          active: true
+        }, 
+        {
+          text: 'Adjusted costs',
+          href: 'claim-details-adjust',
+          active: false
+        }, 
+        {
+          text: 'Supporting evidence',
+          href: '',
+          active: false
+        }, 
+        {
+          text: 'Claim history',
+          href: '',
+          active: false
+        }]
+      }) }}
+      {% else %}
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: 'claim-details-readonly',
+          active: false
+        }, 
+        {
+          text: 'Review and adjust',
+          href: 'claim-details-review-readonly',
+          active: true
+        }, 
+        {
+          text: 'Supporting evidence',
+          href: '',
+          active: false
+        }, 
+        {
+          text: 'Claim history',
+          href: '',
+          active: false
+        }]
+      }) }}
+    {% endif %}
 
     <h2 class="govuk-heading-l">Review and adjust</h2>
 
