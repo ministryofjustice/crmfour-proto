@@ -42,10 +42,10 @@
         active: true
       }
       ]
-    }) }}
+    }) }}f
 
     <h2 class="govuk-heading-l">Adjusted costs</h2>
-    {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}      
+    {% if  data['app-task'] == "Part granted" or data['app-task'] == "In progress" %}      
       <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m">Costs summary</caption>
         <thead class="govuk-table__head">
@@ -172,7 +172,7 @@
      {% set workItemsHtml %} 
       <h3 class="govuk-heading-m">Adjusted work items</h3>
 
-      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+      {% if  data['app-task'] == "Part granted" or data['app-task'] == "In progress" %}
         <details class="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
@@ -359,7 +359,7 @@
         <p class="moj-pagination__results">Showing <b>1</b> to <b>2</b> of <b>2</b> work items</p>
       </nav>
 
-      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+      {% if  data['app-task'] == "Part granted" or data['app-task'] == "In progress" %}
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <section>
           <p id="fn*">[*] One or more of these items were adjusted to be a different work item type. See: <a href="change-work-item">Item 5</a>, <a href="change-work-item">Item 15</a></p>
