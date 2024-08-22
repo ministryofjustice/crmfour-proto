@@ -26,11 +26,25 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
+     {% if data['adjustDeleteAll'] == "Yes" %}
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            You deleted all adjustments
+          </h3>
+        </div>
+      </div>
+    {% endif %}
 
-    {% include "includes/app-info-nsm2.html" %}
+    {% include "includes/app-info-nsm.html" %}
 
     <!-- Nav -->
-    {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+    {% if data['serviceAdjust'] == "Yes" %}
       {{ mojSubNavigation({
         label: 'Sub navigation',
         items: [{
@@ -59,7 +73,7 @@
           active: false
         }]
       }) }}
-    {% else %}
+      {% else %}
       {{ mojSubNavigation({
         label: 'Sub navigation',
         items: [{
@@ -88,7 +102,7 @@
     <h2 class="govuk-heading-l">Review and adjust</h2>
 
     <!--Cost summary -->
-    {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}      
+    {% if data['serviceAdjust'] == "Yes" %}
       <table class="govuk-table">
         <caption class="govuk-table__caption govuk-table__caption--m">Costs summary</caption>
         <thead class="govuk-table__head">
@@ -215,7 +229,7 @@
     
       <h3 class="govuk-heading-m">Work items</h3>
 
-      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+      {% if data['serviceAdjust'] == "Yes" %}
         <details class="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
@@ -419,7 +433,7 @@
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
               <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             </tr>
-          {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+            {% if data['serviceAdjust'] == "Yes" %}
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">5</td>
               <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="change-work-item">Travel</a></span> <sup><a href="#fn1" id="r1">[1]</th>
@@ -532,7 +546,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
           </tr>
-           {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+          {% if data['serviceAdjust'] == "Yes" %}
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">15</th>
               <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="change-work-item">Travel</a></span> <sup><a href="#fn2" id="r2">[2]</th>
@@ -552,7 +566,7 @@
               <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
               <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             </tr>
           {% endif %}
           <tr class="govuk-table__row">

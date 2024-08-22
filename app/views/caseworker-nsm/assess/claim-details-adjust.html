@@ -27,7 +27,22 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    {% include "includes/app-info-nsm2.html" %}
+    {% if data['adjustDelete'] == "Yes" %}
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            You deleted the adjustment
+          </h3>
+        </div>
+      </div>
+    {% endif %}
+
+    {% include "includes/app-info-nsm.html" %}
 
     <!-- Nav -->
     {{ mojSubNavigation({
@@ -60,6 +75,11 @@
     }) }}
      
     <h2 class="govuk-heading-l">Adjusted costs</h2>
+    {{ govukButton({
+      text: "Delete all adjustments",
+      classes: "govuk-button--secondary",
+      href: "claim-adjust-delete-all"
+    }) }}
 
     <!--TAbs items -->
     {% set workItemsHtml %} 
@@ -76,6 +96,7 @@
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time allowed </th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Uplift allowed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -86,6 +107,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">3<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£75.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a id="delete5" aria-labelledby="delete5 itemTitle item5 workType5" href="claim-adjust-delete">Delete</a></td>
           </tr>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header" id="item15">15</th>
@@ -94,6 +116,8 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">0<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a id="delete15" aria-labelledby="delete15 itemTitle item15 workType15"href="claim-adjust-delete">Delete</a></td>
+
           </tr>
         </tbody>
       </table>
@@ -104,7 +128,7 @@
         <p class="moj-pagination__results">Showing <b>1</b> to <b>2</b> of <b>2</b> work items</p>
       </nav>
 
-      {% if  data['cwAppStatus'] == "Part granted" %}
+      {% if data['serviceAdjust'] == "Yes" %}
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <section>
           <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 5</a></a></p>
@@ -133,6 +157,7 @@
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Number allowed </th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift allowed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -143,6 +168,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">4</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£16.00</td> 
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a id="delete5" aria-labelledby="delete5 itemTitle item5 workType5" href="claim-adjust-delete">Delete</a></td>
           </tr>
         </tbody>
       </table>
@@ -163,6 +189,7 @@
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost allowed </th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">VAT on allowed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Total cost allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">
@@ -173,6 +200,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><a id="delete5" aria-labelledby="delete5 itemTitle item5 workType5" href="claim-adjust-delete?costType=disbursement">Delete</a></td>
           </tr>
         </tbody>
       </table>
