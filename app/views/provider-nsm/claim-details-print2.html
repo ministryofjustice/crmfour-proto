@@ -1,21 +1,12 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-  {% include "includes/header2.html"%}
+  {% include "includes/headerprint.html"%}
 {% endblock %}
 
 
 {% block pageTitle %}
   Claims details - Overview {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
-{% endblock %}
-
-{% block beforeContent %}
-  {% include "includes/banner.html"%}
-
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 {% endblock %}
 
 {% block content %}
@@ -28,48 +19,137 @@
   </div>
 
   <!--Status of claim-->
-  {% include "includes/app-status-NSM.html" %}
+  <div class="govuk-grid-column-full">
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Claim status</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+                <p><strong class="govuk-tag govuk-tag--light-blue">Submitted</strong></p>
+                <p>09 March 2024</p>
+                <p>Awaiting LAA review</p>
+                <br>
+                <p>£{{data['actualdistTotalCost'] or ('1362')}}.00 claimed</p>
+
+                {% elseif data['app-task'] == "Granted" %}
+                <p><strong class="govuk-tag govuk-tag--green">Granted</strong></p>
+                <p>1 Sept 2023</p>
+                <br>
+                <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+                <p>£1352.00 allowed</p>
+
+                {% elseif data['app-task'] == "Rejected" %}
+                <p><strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
+                <p>21 August 2023</p>
+                <br>
+                <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+                <p>£0.00 allowed</p>
+
+                {% elseif data['app-task'] == "Referred" %}
+                <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
+                <p>22 August 2023</p>
+                <br>
+                <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+
+                {% elseif data['app-task'] == "Part granted" %}
+                <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
+                <p>22 August 2023</p>
+                <br>
+                <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+                <p>£1192.80 allowed</p>
+
+                {% elseif data['app-task'] == "Review" %}
+                <p><strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
+                <p>7 March 2024</p>
+                <br>
+                <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+
+                {% elseif data['app-task'] == "Returned" %}
+                <p><strong class="govuk-tag govuk-tag--light-blue">Resubmitted</strong></p>
+                <p><span id="date"></span></p>
+                <br>
+                <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+                              
+                {% elseif data['app-task'] == "Expired" %}
+                <p><strong class="govuk-tag govuk-tag--red">Expired</strong></p>
+                <p>22 March 2024</p>
+                <br>
+                <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+                
+                {% elseif data['app-task'] == "Requested" %}
+                <p><strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
+                <p>22 March 2024</p>
+                <br>
+                <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+              {% endif %} 
+            </dd>
+          </div>
+          
+          {% if data['app-task'] == "Submitted" or data['app-task'] == "Returned" %}
+            {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                LAA response
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if data['app-task'] == "Granted" %}
+                  <p>The claim has been fully granted.</p>
+
+                  {% elseif data['app-task'] == "Referred" %}
+                  <p>The claim has been refered to the ICA.</p>
+
+                  {% elseif data['app-task'] == "Part granted" %}
+                  <p>This claim was part granted due to somethings that were not right. </p>
+
+                  <h3 class="govuk-heading-s">Appeal the adjustment</h3>
+                  <p>If you want to appeal the adjustment, email or post a detailed explanation of the grounds of your appeal and any supporting documents to:</p>
+
+                  <p>Appeals may be considered by LAA caseworkers or sent to an independent costs assessor (ICA). You can only appeal once. The ICA’s decision is final (as stated in the Criminal Bills Assessment Manual (CBAM) rule 4.4.1).</p>
+                      
+                  {% elseif data['app-task'] == "Rejected" %}
+                  <p> This claim has been fully rejected as the correct form has not been used. Please use CRM5.</p>
+                  <h3 class="govuk-heading-s">Appeal the rejection</h3>
+                  <p>If you want to appeal the rejection, email or post a detailed explanation of the grounds of your appeal and any supporting documents to:</p> 
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li><a href="mailto:CRM7appeal@justice.gov.uk">CRM7appeal@justice.gov.uk</a>, with the LAA case reference in the subject of the email</li>
+                    <li>Nottingham Office, 3rd Floor B3.20, 1 Unity Square, Queensbridge Road, Nottingham NG2 1AW, or DX 10035 Nottingham 1</li>
+                  </ul>
+                  <p>Appeals may be considered by LAA caseworkers or sent to an independent costs assessor (ICA). You can only appeal once. The ICA’s decision is final (as stated in the Criminal Bills Assessment Manual (CBAM) rule 4.4.1).</p>
+
+                  {% elseif data['app-task'] == "Review" %}
+                  <p>We need you to make updates to proceed with your claim.<p>
+                  <p>This is one thing we need.<p>
+                  <p>This is another thing we need.<p>
+                  <h3 class="govuk-heading-s">Update your claim</h3>
+                  <p>To update your claim, email <a href="mailto:magsbilling@justice.gov.uk?subject=Updating my claim LAA-5a7d3c">magsbilling@justice.gov.uk</a> with the LAA case reference in the subject of the email and include any supporting information requested.</p>
+
+                  {% elseif data['app-task'] == "Expired" %}
+                  <p>On 7 March 2024 we asked you to update your claim before we could complete the assessment. This was due by 21 March 2024.</p>
+                  <p>As this update was not made by the required date this claim has been automatically closed.</p>
+                  <p>If you make a new claim you should include the claimed update.</p>
+
+                  {% elseif data['app-task'] == "Requested" %}
+                  <p>The provider requested the ability to send back more information regarding their case details due to a material change in their somethnig.<p>
+                  <h3 class="govuk-heading-s">Update your claim</h3>
+                  <p>To update your claim, email <a href="mailto:magsbilling@justice.gov.uk?subject=Updating my claim LAA-5a7d3c">magsbilling@justice.gov.uk</a> with the LAA case reference in the subject of the email and include your new information.</p>
+                {% endif %}
+              </dd>
+            </div>
+          {% endif %}
+        </dl>
+      </div>
+    </div>
+  </div>
 
   <div class="govuk-grid-column-full" id="nav">
   
-    <!--2nd nav-->
-    {% if data['app-task'] =="Part granted"%}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details#nav',
-          active: true
-        }, 
-        {
-          text: 'Claimed costs',
-          href: 'all-costs#nav',
-          active: false
-        }, 
-        {
-          text: 'Adjusted costs',
-          href: 'adjusted-costs#nav',
-          active: false
-        }
-        ]
-      }) }}
-      {% else %}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details#nav',
-          active: true
-        }, 
-        {
-          text: 'Claimed costs',
-          href: 'all-costs#nav',
-          active: fal
-        }
-        ]
-      }) }}
-    {% endif%}
-
     <h2 class="govuk-heading-l">Overview</h2>
     
     <!--Claim overview-->
@@ -589,93 +669,50 @@
           </tbody>
         </table>  
         <section>
-          <p id="fn*">[*] One or more of these items were adjusted to be a different work item type. See: <a href="view-work-item">Item 5</a>, <a href="view-work-item">Item 15</a></p>
+          <p id="fn*">[*] One or more of these items were adjusted to be a different work item type.</p>
         </section>
         {% else %}
-        {% if data['vat'] =="yes"%}
-          <table class="govuk-table">
-            <caption class="govuk-visually-hidden">Summary of cost items</caption>
-            <thead class="govuk-table__head">
-              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
-                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
-                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£57.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">Total</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
-              </tr>
-            </tbody>
-          </table> 
-          {% else %}
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
-                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
-                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
-                <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td scope="row" class="govuk-table__header">Total</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£140.00</strong></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1275.00</strong></td>
-              </tr>
-            </tbody>
-          </table> 
-        {% endif %}
+        <table class="govuk-table">
+          <caption class="govuk-visually-hidden">Summary of cost items</caption>
+          <thead class="govuk-table__head">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Item</th>
+              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Net cost </th>
+              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">VAT</th>
+              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter govuk-table__header--numeric">Total</th>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item1'] or "Profit costs"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£285.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£57.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item3'] or "Waiting"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item4'] or "Travel"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£10.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">{{data['item6'] or "Disbursements"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£140.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">Total</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1135.00</strong></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£217.00</strong></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1352.00</strong></td>
+            </tr>
+          </tbody>
+        </table> 
       {% endif %}
       </div>
     </div>
@@ -756,22 +793,166 @@
       </div>
     </div>
 
-  </div>
+    {% if data['app-task'] == "Part granted" %}      
 
-  <!-- 
-  <div class="govuk-grid-column-one-third">
-    <aside class="app-related-items" role="complementary">
-      <h3 class="govuk-heading-s" id="subsection-title">Email the LAA case team</h3>
-      <nav role="navigation" aria-labelledby="subsection-title">
-        <ul class="govuk-list govuk-!-font-size-16">
-          <li>
-            <p><a class="govuk-link govuk-link--no-visited-state" href="mailto:magsbilling@justice.gov.uk">magsbilling@justice.gov.uk</a></p>
-          </li> 
-        </ul>
-      </nav>
-    </aside>
+      <!--TAbs items -->
+      <h3 class="govuk-heading-m">Adjusted work items</h3>
+
+      <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Summary of work items</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__header"></td>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Time claimed</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost claimed</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Time allowed</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Travel</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">0<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Waiting</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Attendance with counsel </th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">6<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">6<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="changedWorkItem1"><span title="One or more of these items were adjusted to be a different work item type.">Attendance without counsel</span> <sup><a href="#fn*" id="r*">[*]</a></sup></th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£100.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£75.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="changedWorkItem1"><span title="One or more items were adjusted to a different work item type.">Preparation</span> <sup><a href="#fn*" id="r*">[*]</a></sup></th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Advocacy</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+          </tr>       
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__cell">Total</th>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of net cost claimed: </span><strong>£345.00</strong></td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of net cost allowed: </span><strong>£245.00</strong></td>
+          </tr>
+        </tbody>
+      </table> 
+      
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <caption class="govuk-visually-hidden">Adjusted work items</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col" aria-sort="ascending" id="itemTitle">Item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+            <th class="govuk-table__header" scope="col">Reason for adjustment</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Uplift allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="item5">5</th>
+            <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workType5" aria-labelledby="itemTitle item5 workType5" href="view-work-item?adjustedClaim=Yes">Travel</a></span> <sup><a href="#fn1" id="r1">[1]</th>
+            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£75.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="item15">15</th>
+            <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workType15" aria-labelledby="itemTitle item15 workType15" href="view-work-item?adjustedClaim=Yes">Travel</a></span> <sup><a href="#fn2" id="r2">[2]</th>
+            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <section>
+        <p id="fn*">[*] One or more of these items were adjusted to be a different work item type.</p>
+        <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. </p>
+        <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type.</p>
+      </section>
+      <br>
+      
+      <h3 class="govuk-heading-m">Adjusted letters and calls</h3>
+      <!--<p>There are no adjusted letters and calls</p>-->
+      <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Adjusted letters and calls</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Cost type</th>
+            <th class="govuk-table__header" scope="col">Reason for adjustment</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Number allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="x">Letters</a></th>
+            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
+             <td class="govuk-table__cell govuk-table__cell--numeric">4</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£16.00</td> 
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="govuk-heading-m">Adjusted disbursements</h3>
+
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <caption class="govuk-visually-hidden">Adjusted disbursements</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col" aria-sort="ascending" id="disburseTitle">Item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+            <th class="govuk-table__header" scope="col">Reason for adjustment</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">VAT on allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Total cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="disburseItem4">4</td>
+            <th scope="row" class="govuk-table__header"><a id="disbursement4" aria-labelledby="disburseTitle disburseItem4 disbursement4" href="1">Car milage</a></td>
+            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
+          </tr>
+        </tbody>
+      </table>
+    {% endif%}
+   
   </div>
-  -->
 
 {% endblock %}
 
