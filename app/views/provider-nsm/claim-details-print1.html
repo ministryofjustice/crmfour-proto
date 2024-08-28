@@ -107,6 +107,17 @@
 
                   {% elseif data['app-task'] == "Part granted" %}
                   <p>This claim was part granted due to somethings that were not right. </p>
+                  <ul class="govuk-list">
+                    <li>
+                      <a href="#workItems" class="govuk-link--no-visited-state">Review adjustments to work items</a>
+                    </li>
+                      <li>
+                      <a href="#lettersCalls" class="govuk-link--no-visited-state">Review adjustments to letters and calls</a>
+                    </li>
+                    <li>
+                      <a href="#disbursements" class="govuk-link--no-visited-state">Review adjustments to disbursements</a>
+                    </li>
+                  </ul>
 
                   <h3 class="govuk-heading-s">Appeal the adjustment</h3>
                   <p>If you want to appeal the adjustment, email or post a detailed explanation of the grounds of your appeal and any supporting documents to:</p>
@@ -668,9 +679,6 @@
             </tr>
           </tbody>
         </table>  
-        <section>
-          <p id="fn*">[*] One or more of these items were adjusted to be a different work item type.</p>
-        </section>
         {% else %}
         <table class="govuk-table">
           <caption class="govuk-visually-hidden">Summary of cost items</caption>
@@ -862,7 +870,7 @@
         </tbody>
       </table> 
       
-      <table class="govuk-table" data-module="moj-sortable-table">
+      <table class="govuk-table">
         <caption class="govuk-visually-hidden">Adjusted work items</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -895,7 +903,6 @@
       </table>
 
       <section>
-        <p id="fn*">[*] One or more of these items were adjusted to be a different work item type.</p>
         <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. </p>
         <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type.</p>
       </section>
@@ -927,7 +934,7 @@
 
       <h3 class="govuk-heading-m">Adjusted disbursements</h3>
 
-      <table class="govuk-table" data-module="moj-sortable-table">
+      <table class="govuk-table">
         <caption class="govuk-visually-hidden">Adjusted disbursements</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -950,6 +957,10 @@
           </tr>
         </tbody>
       </table>
+
+      <section>
+        <p id="fn*">[*] One or more of these items were adjusted to be a different work item type.</p>
+      </section>
     {% endif%}
    
   </div>

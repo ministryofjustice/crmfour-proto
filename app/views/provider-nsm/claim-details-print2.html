@@ -107,6 +107,17 @@
 
                   {% elseif data['app-task'] == "Part granted" %}
                   <p>This claim was part granted due to somethings that were not right. </p>
+                  <ul class="govuk-list">
+                    <li>
+                      <a href="#workItems" class="govuk-link--no-visited-state">Review adjustments to work items</a>
+                    </li>
+                      <li>
+                      <a href="#lettersCalls" class="govuk-link--no-visited-state">Review adjustments to letters and calls</a>
+                    </li>
+                    <li>
+                      <a href="#disbursements" class="govuk-link--no-visited-state">Review adjustments to disbursements</a>
+                    </li>
+                  </ul>
 
                   <h3 class="govuk-heading-s">Appeal the adjustment</h3>
                   <p>If you want to appeal the adjustment, email or post a detailed explanation of the grounds of your appeal and any supporting documents to:</p>
@@ -668,9 +679,6 @@
             </tr>
           </tbody>
         </table>  
-        <section>
-          <p id="fn*">[*] One or more of these items were adjusted to be a different work item type.</p>
-        </section>
         {% else %}
         <table class="govuk-table">
           <caption class="govuk-visually-hidden">Summary of cost items</caption>
@@ -792,6 +800,1116 @@
         </dl>
       </div>
     </div>
+    
+    <h3 class="govuk-heading-m">Work items</h3>
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--s govuk-visually-hidden">Summary of work items</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <td scope="col" class="govuk-table__header"></td>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Time claimed</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Net cost claimed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Travel</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Waiting</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Attendance with counsel </th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Attendance without counsel </th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Preparation</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£25.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Advocacy</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+        </tr>          
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__cell">Total</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Net cost claimed total of </span><strong>£345.00</strong></td>
+        </tr>
+      </tbody>
+    </table> 
+
+    <table class="govuk-table">
+      <caption class="govuk-visually-hidden">Claimed work items</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col" aria-sort="ascending" id="itemTitle">Item</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Fee earner</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time claimed </th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Uplift claimed</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost claimed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="item1">1</th>
+          <th scope="row" class="govuk-table__header"><a id="workType1" aria-labelledby="itemTitle item1 workType1" href="a">Preparation</a></th>
+          <td class="govuk-table__cell">1 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" id="itemN">2</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">1 Jan 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">3</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="3">Waiting</a></th>
+          <td class="govuk-table__cell">7 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">4</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="4">Travel</a></th>
+          <td class="govuk-table__cell">7 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">5</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="5">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">14 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">6</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="6">Attendance without counsel </a></td>
+          <td class="govuk-table__cell">14 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">7</td>
+            <th scope="row" class="govuk-table__cell"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="7">Preparation</a></th>
+          <td class="govuk-table__cell">14 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">8</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="8">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">14 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">9</th>
+          <th scope="row" class="govuk-table__cell"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="9">Preparation</a></th>
+          <td class="govuk-table__cell">14 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">10</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="10">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">11</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="11">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">12</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="12">Attendance without counsel </a></td>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">13</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="13">Attendance without counsel </a></td>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">14</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="14">Attendance without counsel </a></td>
+          <td class="govuk-table__cell">23 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">15</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="15">Attendance without counsel </a></td>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">16</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="16">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">17</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="17">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">18</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="18">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">19</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="19">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">20</th>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="20">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">21</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">22</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">23</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">24</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">25</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">25 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">26</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">27 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">27</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">27 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">28</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">27 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">29</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">27 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">30</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">27 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+                  <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">31</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">32</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">33</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">34</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">35</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">36</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">37</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">38</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">39</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">40</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">41</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">42</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">43</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">44</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">45</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">46</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">47</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">48</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">49</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">50</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">51</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">52</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">53</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">54</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">55</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">56</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">57</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">58</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">59</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">60</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">61</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">62</td>
+        <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">63</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">64</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">65</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">66</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">67</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">68</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">69</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">70</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">71</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">72</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">73</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">74</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">75</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">76</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">77</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">78</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">79</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">80</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">81</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">82</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">83</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">84</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">85</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">86</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">87</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">88</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">89</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">90</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">91</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£25.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">92</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">CSL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">6<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£120.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">93</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">94</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">GL</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">95</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">96</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+          
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">97</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">98</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">99</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">100</td>
+          <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="#">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">31 Jan 2024</td>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+          <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="govuk-heading-m">Letters and calls</h3>
+    <table class="govuk-table">
+      <caption class="govuk-visually-hidden">Claimed letters and calls</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">            
+          <th class="govuk-table__header" scope="col">Cost type</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col">Number claimed</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift claimed</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header"><a href="letters">Letters</a></th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">5</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td> 
+        </tr>
+        <tr class="govuk-table__row">            
+          <th scope="row" class="govuk-table__header"><a href="calls">Calls</a></th>
+          <td class="govuk-table__cell govuk-table__cell--numeric">5</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="govuk-heading-m">Disbursements</h3>
+
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <caption class="govuk-visually-hidden">Claimed disbursements</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col" aria-sort="ascending" id="disburseTitle">Item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost claimed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">VAT on claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Total cost claimed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="disburseItem1">1</th>
+            <th scope="row" class="govuk-table__header"><a id="disbursement1" aria-labelledby="disburseTitle disburseItem1 disbursement1" href="#">Psychologist</a></th>
+            <td class="govuk-table__cell">1 Jan 2024</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£400.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£80.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£480.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="disburseItemN">2</th>
+            <th scope="row" class="govuk-table__header"><a id="disbursementN" aria-labelledby="disburseTitle disburseItemN disbursementN" href="#">Car mileage</a></th>
+            <td class="govuk-table__cell">1 Jan 2024</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="disburseItemN">3</th>
+            <th scope="row" class="govuk-table__header"><a id="disbursementN" aria-labelledby="disburseTitle disburseItemN disbursementN" href="#">Translator</a></th>
+            <td class="govuk-table__cell">7 Jan 2024</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£300.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£360.00</td>
+          </tr>
+        </tbody>
+      </table>
+
 
     {% if data['app-task'] == "Part granted" %}      
 
@@ -862,7 +1980,7 @@
         </tbody>
       </table> 
       
-      <table class="govuk-table" data-module="moj-sortable-table">
+      <table class="govuk-table">
         <caption class="govuk-visually-hidden">Adjusted work items</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -895,7 +2013,6 @@
       </table>
 
       <section>
-        <p id="fn*">[*] One or more of these items were adjusted to be a different work item type.</p>
         <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. </p>
         <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type.</p>
       </section>
@@ -927,7 +2044,7 @@
 
       <h3 class="govuk-heading-m">Adjusted disbursements</h3>
 
-      <table class="govuk-table" data-module="moj-sortable-table">
+      <table class="govuk-table">
         <caption class="govuk-visually-hidden">Adjusted disbursements</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -950,6 +2067,10 @@
           </tr>
         </tbody>
       </table>
+
+      <section>
+        <p id="fn*">[*] One or more of these items were adjusted to be a different work item type.</p>
+      </section>
     {% endif%}
    
   </div>
