@@ -1,0 +1,176 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+
+{% block header %}
+  {% include version + "/includes/header1.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Primary quote – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">About the request </span>
+      <h1 class="govuk-heading-xl">Primary quote</h1>
+
+      {% if data ['interrupt'] == "serviceChange"%}
+        <form class="form" action="question-interrupt" method="post">
+        {% else%}
+        <form class="form" action="question3-quote-prep" method="post">
+      {% endif %}
+
+        {% include version + "/includes/service-list.html" %}
+
+        {% call govukFieldset({
+          legend: {
+            text: "Service provider details",
+            classes: "govuk-fieldset__legend--m"
+          }
+        }) %}
+
+          {{ govukInput({
+            label: {
+              text: "First name",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-first-name",
+            name: "expert-first-name",
+            value: data['expert-first-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Last name",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-last-name",
+            name: "expert-last-name",
+            value: data['expert-last-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Organisation",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-org-name",
+            name: "expert-org-name",
+            value: data['expert-org-name']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Town",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-20",
+            id: "expert-town",
+            name: "expert-town",
+            value: data['expert-town']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Postcode",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-10",
+            id: "expert-postcode",
+            name: "expert-postcode",
+            value: data['expert-postcode']
+          }) }}
+
+        {% endcall %}
+
+        {{ govukFileUpload({
+          id: "quote1Upload",
+          name: "quote1Upload",
+          isPageHeading: false,
+          label: {
+            text: "Upload the quote",
+            classes: 'govuk-label--m'
+          },
+          hint: {
+            html: 'Friendly file names make it easier for us to assess your case. For example, Client-case.pdf instead of File23.pdf. <br><br>The maximum size for each file is 10MB. Files must be a DOC, DOCX, RTF, ODT, JPG, BMP, PNG, TIF or PDF.'
+          }
+        }) }}
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=draft"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all#manage-drafts"
+            }) }}
+
+          {% endif %}
+         
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+      let selectElements = $('.autocomplete-select')
+      let placeholder = ''
+
+
+      selectElements.each(function (index) {
+        let selectElement = $(this)
+        if (selectElement.length) {
+          if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+          
+          accessibleAutocomplete.enhanceSelectElement({
+            defaultValue: '',
+            placeholder: placeholder,
+            minLength: 1,
+            showNoOptionsFound: false,
+            showAllValues: true,
+            autoselect: false,
+            selectElement: selectElement[0],
+          })
+        }
+
+      })
+    
+    </script>
+
+{% endblock %}

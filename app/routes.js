@@ -7,8 +7,9 @@ const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 const formData = require('./data/form_data')
 
+// Include other version routes files
+require('./routes/latest-pa.js')
 
-// Add your routes here
 
 //Autocomplete example for bringing in select lists
 router.get('/provider/form/auto-complete-example', async (req, res, next) => {
@@ -18,18 +19,6 @@ router.get('/provider/form/auto-complete-example', async (req, res, next) => {
     res.render('/provider/form/auto-complete-example', { courtLists: courtLists, hearingOutcomeLists: hearingOutcomeLists, matterTypeLists: matterTypeLists })
   })
 
- //Office accounts
-router.post('/nscc-office', function(request, response) {
-
-    var officeCodeQ = request.session.data['officeCodeQ']
-    if (officeCodeQ == "No"){
-        response.redirect("/provider/nscc-choose-office")
-    } 
-    if (officeCodeQ == "Yes"){
-        response.redirect("provider/crm-apps")
-    }
-}) 
-
 //Eligibility
 router.post('/question1-eligibility', function(request, response) {
 
@@ -38,16 +27,17 @@ router.post('/question1-eligibility', function(request, response) {
         response.redirect("/provider/form/question-ufn")
     } 
     if (eligibility == "Yes"){
-        response.redirect("provider/form/question-ineligible")
+        response.redirect("/provider/form/question-ineligible")
     }
-})
+  })
+
 
 //Prison law matter (Section 2)
 router.post('/question2-case-hearing', function(request, response) {
 
     var courtType = request.session.data['courtType']
     if (courtType == "Crown Court (excluding Central Criminal Court)"){
-        response.redirect("provider/form/task-list?question2-case=complete")
+        response.redirect("/provider/form/task-list?question2-case=complete")
     } else {
         response.redirect("/provider/form/question2-case-hearing-extra")
     }

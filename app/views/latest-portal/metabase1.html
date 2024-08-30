@@ -1,0 +1,163 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-portal" %}
+
+{% block header %}
+    {% include version + "/includes/header-cw4.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  LAA Online Portal – Assess a crime form - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner2.html"%}
+
+  {% if data['app'] == "5" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'Prior authority',
+          href: 'metabase?app=4',
+          active: false
+        },
+        {
+          text: 'Non-standard magistrates',
+          href: 'metabase?app=7',
+          active: false
+        },
+        {
+          text: 'Search',
+          href: 'metabase-search',
+          active: false
+        }
+      ]
+    }) }}
+    {% elif data['app'] == "7" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'Prior authority',
+          href: 'metabase?app=4',
+          active: false
+        },
+        {
+          text: 'Non-standard magistrates',
+          href: 'metabase?app=7',
+          active: true
+        },
+        {
+          text: 'Search',
+          href: 'metabase-search',
+          active: false
+        }
+      ]
+    }) }}
+
+    {% elif data['app'] == "search" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'Prior authority',
+          href: 'metabase?app=4',
+          active: false
+        },
+        {
+          text: 'Non-standard magistrates',
+          href: 'metabase?app=7',
+          active: true
+        },
+        {
+          text: 'Search',
+          href: 'metabase-search?app=search',
+          active: false
+        }
+      ]
+    }) }}
+
+    {% else %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'Prior authority',
+          href: 'metabase?app=4',
+          active: true
+        },
+        {
+          text: 'Non-standard magistrates',
+          href: 'metabase?app=7',
+          active: false
+        },
+        {
+          text: 'Search',
+          href: 'metabase-search',
+          active: false
+        }
+      ]
+    }) }}
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+       {% if data['app'] == "4" %}
+        <h1 class="govuk-heading-xl">Prior authority</h1>
+        {% elif data['app'] == "5" %}
+        <h1 class="govuk-heading-xl">CRM5 dashboard</h1>
+        {% elif data['app'] == "7" %}
+        <h1 class="govuk-heading-xl">Non-standard magistrates</h1>
+      {% endif %}
+
+      {% if data['app'] == "7" %}
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: '#1',
+            active: true
+          }, {
+            text: 'Caseworkers',
+            href: 'metabase-caseworker',
+            active: false
+          }]
+        }) }}
+        {% else %}
+             {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: '#1',
+            active: true
+          }, {
+            text: 'Auto grant',
+            href: 'metabase-auto',
+            active: false
+          }, {
+            text: 'Caseworkers',
+            href: 'metabase-caseworker',
+            active: false
+          }]
+        }) }}
+      {% endif %}
+     
+      <table role="presentation" width="100%" style="border-collapse: collapse;min-width: 100%;width: 100% !important;" cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr align="center">
+          <td><img src="/public/images/metabase-image2.png" width="100%"></td> 
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+   
+
+{% endblock %}
+
+

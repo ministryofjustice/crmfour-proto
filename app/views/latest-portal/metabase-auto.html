@@ -1,0 +1,236 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-portal" %}
+
+{% block header %}
+  {% if data['version'] =="1" %}
+    {% include version + "/includes/header-cw4.html"%}
+    {% elif data['version'] =="2" %}
+    {% include version + "/includes/header-cw5.html"%}
+  {% endif %}
+{% endblock %}
+
+{% block pageTitle %}
+  LAA Online Portal – Assess a crime form - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner2.html"%}
+
+  {% if data['version'] =="1" and data['app'] == "user" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'Prior authority',
+          href: 'metabase?app=4',
+          active: false
+        },
+        {
+          text: 'Non-standard magistrates',
+          href: 'metabase?app=7',
+          active: false
+        }
+      ]
+    }) }}
+    {% elif data['version'] =="1" and data['app'] == "4" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'Prior authority',
+          href: 'metabase?app=4',
+          active: true
+        },
+        {
+          text: 'Non-standard magistrates',
+          href: 'metabase?app=7',
+          active: false
+        }
+      ]
+    }) }}
+    {% elif data['version'] =="1" and data['app'] == "5" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'Prior authority',
+          href: 'metabase?app=4',
+          active: false
+        },
+        {
+          text: 'Non-standard magistrates',
+          href: 'metabase?app=7',
+          active: false
+        }
+      ]
+    }) }}
+    {% elif data['version'] =="1" and data['app'] == "7" %}
+    {{ mojPrimaryNavigation({
+      label: 'Primary navigation',
+      items: [
+        {
+          text: 'Prior authority',
+          href: 'metabase?app=4',
+          active: false
+        },
+        {
+          text: 'Non-standard magistrates',
+          href: 'metabase?app=7',
+          active: true
+        }
+      ]
+    }) }}
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+       {% if data['app'] == "4" %}
+        <h1 class="govuk-heading-xl">Prior authority</h1>
+        {% elif data['app'] == "5" %}
+        <h1 class="govuk-heading-xl">CRM5 dashboard</h1>
+        {% elif data['app'] == "7" %}
+        <h1 class="govuk-heading-xl">Non-standard magistrates</h1>
+      {% endif %}
+
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: '#1',
+          active: false
+        }, {
+          text: 'Auto grant',
+          href: 'metabase-auto',
+          active: true
+        }, {
+          text: 'Caseworkers',
+          href: 'metabase-caseworker',
+          active: false
+        }]
+      }) }}
+
+      <h2 class="govuk-heading-l">Auto grant</h2>
+
+
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Firm name</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Caseworker</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Last updated</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">                
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-1z5f7w&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
+            <td class="govuk-table__cell">Law Fans</td>
+            <td class="govuk-table__cell">Roger Catapult</td>            
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell" data-sort-value="230801">1 Aug 2023</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-6p4f0r&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
+            <td class="govuk-table__cell">Crime Busters Legal</td>
+            <td class="govuk-table__cell">Dami Olu</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell" data-sort-value="230913">13 Sept 2023</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-8p3h0e&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
+            <td class="govuk-table__cell">Legal Aiders Ltd</td>
+            <td class="govuk-table__cell">Bobby Brownie</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell" data-sort-value="230703">3 July 2023</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f7w&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
+            <td class="govuk-table__cell">Law Fans</td>
+            <td class="govuk-table__cell">Roger Catapult</td>
+            <td class="govuk-table__cell">Not assigned</td>
+            <td class="govuk-table__cell" data-sort-value="231121">21 Nov 2023</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-9p4f0e&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="9p4f0e">LAA-9p4f0e</a></td>
+            <td class="govuk-table__cell">Legal Aiders Ltd</td>
+            <td class="govuk-table__cell">Jamie Innes</td>
+            <td class="govuk-table__cell">Not assigned</td>
+            <td class="govuk-table__cell" data-sort-value="231011">11 Oct 2023</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-6p4f0r&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
+            <td class="govuk-table__cell">Crime Busters Legal</td>
+            <td class="govuk-table__cell">Dami Olu</td>
+            <td class="govuk-table__cell">Not assigned</td>
+            <td class="govuk-table__cell" data-sort-value="230913">13 Sept 2023</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-8p3h0e&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
+            <td class="govuk-table__cell">Legal Aiders Ltd</td>
+            <td class="govuk-table__cell">Bobby Brownie</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell" data-sort-value="230801">1 Aug 2023</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>
+            <td class="govuk-table__cell">Big Law</td>
+            <td class="govuk-table__cell">Ishia Melta</td>
+            <td class="govuk-table__cell">Not assigned</td>
+            <td class="govuk-table__cell" data-sort-value="230903">3 Sept 2023</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-2d9t4j&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
+            <td class="govuk-table__cell">Boss Lawyers Inc</td>
+            <td class="govuk-table__cell">Arnie Swartz</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell" data-sort-value="230414">14 April 2023</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>  
+            <td class="govuk-table__cell">Big Law</td>          
+            <td class="govuk-table__cell">Bob Holness</td>
+            <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+            <td class="govuk-table__cell" data-sort-value="230902">2 Sept 2023</td>
+          </tr>
+        </body>
+      </table>  
+
+      <nav class="moj-pagination" aria-label="Pagination navigation">
+
+        <ul class="moj-pagination__list">
+          <li class="moj-pagination__item  moj-pagination__item--prev">
+            <a class="moj-pagination__link" href="">Previous<span class="govuk-visually-hidden"> page</span></a>
+          </li>
+
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="/page=1" aria-label="Page 1 of 30">1</a></li>
+
+          <li class="moj-pagination__item moj-pagination__item--active" aria-label="Page 2 of 30" aria-current="page">2</li>
+
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="/page=3" aria-label="Page 3 of 30">3</a></li>
+
+          <li class="moj-pagination__item moj-pagination__item--dots">…</li>
+
+          <li class="moj-pagination__item"><a class="moj-pagination__link" href="/page=5" aria-label="Page 5 of 30">5</a></li>
+
+          <li class="moj-pagination__item  moj-pagination__item--next">
+            <a class="moj-pagination__link" href="">Next<span class="govuk-visually-hidden"> page</span></a>
+          </li>
+        </ul>
+        <p class="moj-pagination__results">63 total results</p>
+        <p class="moj-pagination__results">Showing <b>10</b> to <b>20</b> of <b>30</b> pages</p>
+      </nav>
+
+   
+     
+     
+    </div>
+  </div>
+
+   
+
+{% endblock %}
