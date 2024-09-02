@@ -1,88 +1,41 @@
 {% extends "layouts/main.html" %}
 
 {% block header %}
-    {% include "includes/header-cw4.html"%}
+  {% include "includes/header-cw2.html"%}
 {% endblock %}
-
 
 {% block pageTitle %}
-  Search for claims or applications – {{data['serviceName1'] }} - GOV.UK
+  Search – {{data['serviceName1'] }} - GOV.UK
 {% endblock %}
 
-<!-- {% set bodyClasses = 'caseworker-width caseworker-pink' %} -->
-
 {% block beforeContent %}
-  {% include "includes/banner2.html"%}
-
-  {{ mojPrimaryNavigation({
-    label: 'Primary navigation',
-    items: [
-      {
-        text: 'Prior authority',
-        href: 'metabase?app=4',
-        active: false
-      },
-      {
-        text: 'Non-standard magistrates',
-        href: 'metabase?app=7',
-        active: false
-      },
-      {
-        text: 'Search',
-        href: 'metabase-search',
-        active: true
-      }
-    ]
-  }) }}
-
+  {% include "includes/banner.html"%}
+  {% include "includes/cw-nav-search-nsm.html"%}
 {% endblock %}
 
 {% block content %}
 
 <div class="govuk-grid-row"> 
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-two-thirds">
     
     <h1 class="govuk-heading-xl">
-      Search for claims or applications
+      Search for a claim
     </h1>
-    <p class="govuk-hint">Enter at least one field to search</p>
+    <p>Enter at least one field to search</p>
   </div>
 </div>
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <div class="search-panel govuk-!-margin-bottom-6">
-     
+
       <div class="govuk-form-group govuk-!-width-two-thirds" role="search">
-        {{ govukRadios({
-          name: "whichService",
-            classes: "govuk-radios--inline",
-
-          fieldset: {
-            legend: {
-              text: "Which service do you want to search?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "crm4",
-              text: "Prior authority"
-            },
-            {
-              value: "crm7",
-              text: "Non-standard magistrates"
-            }
-          ]
-        }) }}
-
         <h2 class="govuk-label-wrapper">
           <label class="govuk-label govuk-label--s" for="filterSearch">
             Enter any combination of client or firm name, UFN or LAA reference
           </label>
         </h2>
-        <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Enter any combination of client or firm name, UFN or LAA reference">
+        <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Search will filter the table of users">
       </div>
 
       {% call govukFieldset({
@@ -91,7 +44,7 @@
           classes: "govuk-fieldset__legend--s",
           isPageHeading: false
         }
-      }) %}
+        }) %}
 
         <p>
          Enter a start date, end date or both, for example, 17/5/2024
@@ -127,14 +80,13 @@
           classes: "govuk-fieldset__legend--s",
           isPageHeading: false
         }
-      }) %}
+        }) %}
 
-      <p>
-        Enter a start date, end date or both, for example, 17/5/2024
-      </p>
+        <p>
+          Enter a start date, end date or both, for example, 17/5/2024
+        </p>
 
         <div id="date-filters" class="govuk-date-input">
-          
           <div class="govuk-date-input__item">
             <div class="moj-datepicker" data-module="moj-date-picker">
               <div class="govuk-form-group">
@@ -177,7 +129,7 @@
 
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
-            <label class="govuk-label" for="filterbuttonContainer">
+            <label class="govuk-label" for="sort">
               Status
             </label>
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
@@ -185,7 +137,7 @@
               <option value="Not assigned" onclick="filterSelection('none')">Not assigned</option>
               <option value="In progress" onclick="filterSelection('in-progress')">In progress</option>
               <option value="Sent back" onclick="filterSelection('sent-back')">Sent back</option>
-              <option value="Granted" onclick="filterSelection('granted')">Granted</option>
+              <option value="Granted" onclick="filterSelection('Granted')">Granted</option>
               <option value="Auto-granted" onclick="filterSelection('auto-granted')">Auto-granted</option>
               <option value="Part granted" onclick="filterSelection('part-granted')">Part granted</option>
               <option value="Rejected" onclick="filterSelection('rejected')">Rejected</option>
@@ -194,9 +146,9 @@
           </div>
         </div>
 
-        <div class="govuk-date-input__item">
+         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
-            <label class="govuk-label" for="filterbuttonContainer">
+            <label class="govuk-label" for="sort">
               Caseworker
             </label>
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
@@ -215,14 +167,14 @@
           Search
         </button>
 
-        <a class="govuk-link" href="crm-assess-search1">Clear all</a>
+        <a class="govuk-link" href="crm-assess-search">Clear all</a>
       </div>
             
     </div>
 
     <div id="resultsTable2">
       <h2 class="govuk-heading-m">
-       X search results
+        X search results
       </h2>
       <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
         <thead class="govuk-table__head">
@@ -328,8 +280,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Sent back</strong></td>
           </tr>
         </body>
-      </table>  
-
+      </table>      
       <nav class="moj-pagination" aria-label="Pagination navigation">
         <ul class="moj-pagination__list">
           <li class="govuk-pagination__item govuk-pagination__item--current"><a class="govuk-link govuk-pagination__link" href="/page=1" aria-label="Page 1 of 3">1</a></li>
@@ -346,7 +297,7 @@
           </a>
           </li>
         </ul>
-        <p class="moj-pagination__results">Showing <b>1</b> to <b>20</b> of <b>222</b> results</p>
+        <p class="moj-pagination__results">Showing <b>1</b> to <b>20</b> of <b>22</b> results</p>
       </nav>
 
     </div>     

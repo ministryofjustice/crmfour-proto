@@ -53,100 +53,112 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <div class="search-panel govuk-!-margin-bottom-6">
-
+     
       <div class="govuk-form-group govuk-!-width-two-thirds" role="search">
+        {{ govukRadios({
+          name: "whichService",
+            classes: "govuk-radios--inline",
+
+          fieldset: {
+            legend: {
+              text: "Which service do you want to search?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "crm4",
+              text: "Prior authority"
+            },
+            {
+              value: "crm7",
+              text: "Non-standard magistrates"
+            }
+          ]
+        }) }}
+
         <h2 class="govuk-label-wrapper">
-          <label class="govuk-label govuk-label--m" for="filterSearch">
-            Claim or application details
+          <label class="govuk-label govuk-label--s" for="filterSearch">
+            Enter any combination of client or firm name, UFN or LAA reference
           </label>
         </h2>
-        <div id="search-hint" class="govuk-hint">
-          Search for a client/ defendant name, firm name, UFN or LAA reference
-        </div>
-        <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-describedby="search-hint" >
+        <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Enter any combination of client or firm name, UFN or LAA reference">
       </div>
 
-      {{ govukRadios({
-        name: "whichService",
-          classes: "govuk-radios--inline",
+      {% call govukFieldset({
+        legend: {
+          text: "Submission date",
+          classes: "govuk-fieldset__legend--s",
+          isPageHeading: false
+        }
+      }) %}
 
-        fieldset: {
-          legend: {
-            text: "Which service do you want to search?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--s"
-          }
-        },
-        items: [
-          {
-            value: "crm4",
-            text: "Prior authority"
-          },
-          {
-            value: "crm7",
-            text: "Non-standard magistrates"
-          }
-        ]
-      }) }}
+        <p>
+         Enter a start date, end date or both, for example, 17/5/2024
+        </p>
 
-      <h2 class="govuk-heading-m">
-          Filter results (optional)
-      </h2>
+        <div id="date-filters" class="govuk-date-input">
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker" data-module="moj-date-picker">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="sub-date-from">
+                  Submission date from
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="sub-date-from" name="sub-date-from" type="text" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker " data-module="moj-date-picker">
+              <div class="govuk-form-group govuk-date-input__item">
+                <label class="govuk-label" for="sub-date-to">
+                  Submission date to
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="sub-date-to" name="sub-date-to" type="text"  autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endcall %}
 
-      <div id="date-filters" class="govuk-date-input">
-        <div class="govuk-date-input__item">
-          {{ govukDateInput({
-            id: "filter-date-from",
-            namePrefix: "filter-date-from",
-            fieldset: {
-              legend: {
-                text: "Date submitted from",
-                isPageHeading: false
-                
-              }
-            }
-          }) }}
-        </div>
-        <div class="govuk-date-input__item">
-          {{ govukDateInput({
-            id: "filter-date-to",
-            namePrefix: "filter-date-to",
-            fieldset: {
-              legend: {
-                text: "Date submitted to",
-                isPageHeading: false
-              }
-            }
-          }) }}
-        </div>
-      </div>
+      {% call govukFieldset({
+        legend: {
+          text: "Last updated date",
+          classes: "govuk-fieldset__legend--s",
+          isPageHeading: false
+        }
+      }) %}
 
-      <div id="date-filters" class="govuk-date-input">
-        <div class="govuk-date-input__item">
-          {{ govukDateInput({
-            id: "filter-date-from",
-            namePrefix: "filter-date-from",
-            fieldset: {
-              legend: {
-                text: "Last updated from",
-                isPageHeading: false
-              }
-            }
-          }) }}
+      <p>
+        Enter a start date, end date or both, for example, 17/5/2024
+      </p>
+
+        <div id="date-filters" class="govuk-date-input">
+          
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker" data-module="moj-date-picker">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="last-date-from">
+                  Last updated from
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="last-date-from" name="last-date-from" type="text" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker" data-module="moj-date-picker">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="last-date-to">
+                  Last updated to
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="last-date-to" name="last-date-to" type="text"  autocomplete="off">
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="govuk-date-input__item">
-          {{ govukDateInput({
-            id: "filter-date-to",
-            namePrefix: "filter-date-to",
-            fieldset: {
-              legend: {
-                text: "Last updated to",
-                isPageHeading: false
-              }
-            }
-          }) }}
-        </div>
-      </div>
+
+      {% endcall %}
 
       <div id="filters" class="govuk-date-input">
 
@@ -166,7 +178,7 @@
 
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
-            <label class="govuk-label" for="sort">
+            <label class="govuk-label" for="filterbuttonContainer">
               Status
             </label>
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
@@ -174,7 +186,7 @@
               <option value="Not assigned" onclick="filterSelection('none')">Not assigned</option>
               <option value="In progress" onclick="filterSelection('in-progress')">In progress</option>
               <option value="Sent back" onclick="filterSelection('sent-back')">Sent back</option>
-              <option value="Granted" onclick="filterSelection('Granted')">Granted</option>
+              <option value="Granted" onclick="filterSelection('granted')">Granted</option>
               <option value="Auto-granted" onclick="filterSelection('auto-granted')">Auto-granted</option>
               <option value="Part granted" onclick="filterSelection('part-granted')">Part granted</option>
               <option value="Rejected" onclick="filterSelection('rejected')">Rejected</option>
@@ -185,7 +197,7 @@
 
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
-            <label class="govuk-label" for="sort">
+            <label class="govuk-label" for="filterbuttonContainer">
               Caseworker
             </label>
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
@@ -204,14 +216,14 @@
           Search
         </button>
 
-        <a class="govuk-link" href="metabase-search">Clear all</a>
+        <a class="govuk-link" href="crm-assess-search1">Clear all</a>
       </div>
             
     </div>
 
     <div id="resultsTable2">
       <h2 class="govuk-heading-m">
-        Search results
+       X search results
       </h2>
       <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
         <thead class="govuk-table__head">
@@ -317,7 +329,26 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Sent back</strong></td>
           </tr>
         </body>
-      </table>        
+      </table>  
+
+      <nav class="moj-pagination" aria-label="Pagination navigation">
+        <ul class="moj-pagination__list">
+          <li class="govuk-pagination__item govuk-pagination__item--current"><a class="govuk-link govuk-pagination__link" href="/page=1" aria-label="Page 1 of 3">1</a></li>
+          <li class="govuk-pagination__item"><a class="govuk-link govuk-pagination__link" href="/page=1" aria-label="Page 2 of 3">2</a></li>
+           <li class="govuk-pagination__item "><a class="govuk-link govuk-pagination__link" href="/page=1" aria-label="Page 3 of 3">3</a></li>
+          <li class="govuk-pagination__item  govuk-pagination__next">
+            <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+            <span class="govuk-pagination__link-title">
+              Next<span class="govuk-visually-hidden"> page</span>
+            </span>
+            <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg>
+          </a>
+          </li>
+        </ul>
+        <p class="moj-pagination__results">Showing <b>1</b> to <b>20</b> of <b>22</b> results</p>
+      </nav>
 
     </div>     
      
