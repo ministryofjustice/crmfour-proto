@@ -1,7 +1,8 @@
 {% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
 
 {% block header %}
-  {% include "includes/header-cw2.html"%}
+  {% include version +"/includes/header-cw.html"%}
 {% endblock %}
 
 {% block pageTitle %}
@@ -13,12 +14,12 @@
 {% block beforeContent %}
   {% include "includes/banner.html"%}
   {% if data['cwAppStatus'] == "In progress"%}
-    {% include "includes/cw-nav-your-nsm.html"%}
+    {% include version +"/includes/cw-nav-your.html"%}
     {% else %}
     {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
-      {% include "includes/cw-nav-open-nsm.html"%}
+      {% include version +"/includes/cw-nav-open.html"%}
       {% else %}
-      {% include "includes/cw-nav-assessed-nsm.html"%}
+      {% include version +"/includes/cw-nav-assessed.html"%}
     {% endif %}
   {% endif %}
 {% endblock %}
@@ -41,7 +42,7 @@
       </div>
     {% endif %}
 
-    {% include "includes/app-info-nsm.html" %}
+    {% include version +"/includes/app-info.html" %}
 
     <!-- Nav -->
     {% if data['serviceAdjust'] == "Yes" %}
@@ -425,7 +426,7 @@
           </tr>
           <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">4</th>
-              <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="view-work-item?adjustedClaim=Yes&workItem=Travel&workTime=2&workCost=50">Travel</a></th>
+              <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="4">Travel</a></th>
               <td class="govuk-table__cell">7 Jan 2024</td>
               <td class="govuk-table__cell">GL</td>
               <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
@@ -1580,7 +1581,7 @@
 
     {% if data ['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Review"%}
         {% else %}
-        {% include "includes/claim-buttons.html"%}
+        {% include version +"/includes/claim-buttons.html"%}
       {% endif %}
 
   </div>

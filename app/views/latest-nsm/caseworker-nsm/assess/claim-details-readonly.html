@@ -1,7 +1,8 @@
 {% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
 
 {% block header %}
-  {% include "includes/header-cw2.html"%}
+  {% include version +"/includes/header-cw.html"%}
 {% endblock %}
 
 {% block pageTitle %}
@@ -13,12 +14,12 @@
 {% block beforeContent %}
   {% include "includes/banner.html"%}
   {% if data['cwAppStatus'] == "In progress"%}
-    {% include "includes/cw-nav-your-nsm.html"%}
+    {% include version +"/includes/cw-nav-your.html"%}
     {% else %}
     {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
-      {% include "includes/cw-nav-open-nsm.html"%}
+      {% include version +"/includes/cw-nav-open.html"%}
       {% else %}
-      {% include "includes/cw-nav-assessed-nsm.html"%}
+      {% include version +"/includes/cw-nav-assessed.html"%}
     {% endif %}
   {% endif %}
 {% endblock %}
@@ -27,7 +28,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      {% include "includes/app-info-nsm-readonly.html"%}
+      {% include version +"/includes/app-info-readonly.html"%}
 
       <!-- Nav -->
     {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
@@ -92,7 +93,7 @@
 
       <h2 class="govuk-heading-l">Overview</h2>
       
-      {% include "includes/app-status-CW-NSM.html"%}
+      {% include version +"/includes/app-status-cw.html"%}
 
       <!--Claim summmary-->
       <div class="govuk-summary-card">
