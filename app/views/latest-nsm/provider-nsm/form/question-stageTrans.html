@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version +"/includes/header2.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  What stage has been reached? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['changeClaim'] =="change" %}
+        <form class="form" action="/change-stageTrans" method="post">
+        {% else %}
+         <form class="form" action="/question-stageTrans" method="post">
+      {% endif %}
+
+
+        {{ govukRadios({
+          name: "stageTrans",
+          fieldset: {
+            legend: {
+              text: "Was this case transferred to a court in an undesignated area?",
+              classes: "govuk-fieldset__legend--xl",
+              isPageHeading: true            
+              }
+          },
+          hint: {
+            text: "You can claim travel time and waiting time if the case was transferred to a court in an undesignated area"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("stageTrans", "Yes")
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("stageTrans", "No")
+            }
+          ]
+        }) }}       
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

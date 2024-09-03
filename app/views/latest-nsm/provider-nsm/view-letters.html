@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version +"/includes/header2.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Letters – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Letters
+      </h1>  
+
+      {% if data['adjustedClaim'] =="Yes" %}
+        <h2 class="govuk-heading-m">
+          Adjusted claim
+        </h2>  
+
+        <table class="govuk-table">
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Uplift allowed</td>
+              <td class="govuk-table__cell">0%</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Net cost allowed</td>
+              <td class="govuk-table__cell">£12.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Reason for adjustment</td>
+              <td class="govuk-table__cell">The caseworkers reason for the adjustment goes here.</td>
+            </tr>
+          </tbody>
+        </table>
+      {% endif%}
+
+      <h2 class="govuk-heading-m">
+        Your claimed costs
+      </h2>  
+
+      <table class="govuk-table">
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rate applied</td>
+            <td class="govuk-table__cell">£4.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-!-width-one-half">Number of letters</td>
+            <td class="govuk-table__cell">5</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Uplift</td>
+            <td class="govuk-table__cell">0%</td>
+          </tr>
+          
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Net cost</td>
+            <td class="govuk-table__cell">£12.00</td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+       
+
+
+    </div>
+  </div>
+
+{% endblock %}
