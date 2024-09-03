@@ -24,9 +24,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       {% if data['changeClaim'] =="change" %}
-        <form class="form" action="/change-stageCourt" method="post">
+        <form class="form" action="/{{version}}/change-stageCourt" method="post">
         {% else %}
-         <form class="form" action="/question-stageCourt" method="post">
+         <form class="form" action="/{{version}}/question-stageCourt" method="post">
       {% endif %}
 
          {{ govukRadios({
