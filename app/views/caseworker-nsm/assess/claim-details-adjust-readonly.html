@@ -40,12 +40,12 @@
       {
         text: 'Review and adjust',
         href: 'claim-details-review-readonly',
-        active: true
+        active: false
       }, 
       {
           text: 'Adjusted costs',
           href: 'claim-details-adjust-readonly',
-          active: false
+          active: true
         }, 
       {
         text: 'Supporting evidence',
@@ -107,14 +107,14 @@
       {% if  data['cwAppStatus'] == "Part granted" %}
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
         <section>
-          <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 5</a></a></p>
-          <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 15</a></a></p>
+          <p class="govuk-body-s" id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 5</a></a></p>
+          <p  class="govuk-body-s"id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 15</a></a></p>
         </section>
         {% elseif data['cwAppStatus'] == "In progress" %}
-        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        <br>
         <section>
-          <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item?adjustedClaim=Yes">Item 5</a></a></p>
-          <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item?adjustedClaim=Yes">Item 15</a></a></p>
+          <p class="govuk-body-s" id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item?adjustedClaim=Yes">Item 5</a></a></p>
+          <p class="govuk-body-s" id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item?adjustedClaim=Yes">Item 15</a></a></p>
         </section>
       {% endif %}
       
