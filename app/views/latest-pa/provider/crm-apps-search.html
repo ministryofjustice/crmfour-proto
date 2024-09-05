@@ -1,5 +1,7 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
+{% set activePrimeNav = [false, true] %}
+
 
 {% block header %}
   {% include version + "/includes/header-provider.html"%}
@@ -15,21 +17,8 @@
 {% block beforeContent %}
   {% include "includes/banner.html"%}
 
-  {{ mojPrimaryNavigation({
-    label: 'Primary navigation',
-    items: [
-      {
-        text: 'Applications',
-        href: 'crm-apps',
-        active: false
-      },
-      {
-        text: 'Search',
-        href: 'crm-apps-search',
-        active: true
-      }
-    ]
-  }) }}
+  {% include version + "/includes/primary-nav-provider.njk" %}
+
 {% endblock %}
 
 {% block content %}
