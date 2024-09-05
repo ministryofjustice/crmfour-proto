@@ -1,0 +1,272 @@
+{% extends "layouts/main.html" %}
+{% set version = "nsm-0-1" %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Work items- {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <!-- Header -->
+    {% if data['add3'] =="4" %}
+      <h1 class="govuk-heading-xl">Check your work items</h1>
+      {{ govukButton({
+        text: "Add another work item",
+        classes: "govuk-button--secondary",
+        href: ""
+      }) }}
+      {% elseif data['add3'] =="3" %}
+        <h1 class="govuk-heading-xl">Check your work items</h1>
+        {{ govukButton({
+          text: "Add another work item",
+          classes: "govuk-button--secondary",
+          href: "add-work-item3?add3=4"
+        }) }}
+      {% elseif data['add3'] =="2" %}
+        <h1 class="govuk-heading-xl">Check your work items</h1>
+        {{ govukButton({
+          text: "Add another work item",
+          classes: "govuk-button--secondary",
+          href: "add-work-item3?add3=3"
+        }) }}
+      {% elseif data['add3'] =="1" %}
+        <h1 class="govuk-heading-xl">Check your work items</h1>
+        {{ govukButton({
+            text: "Add another work item",
+            classes: "govuk-button--secondary",
+            href: "add-work-item3?add3=2"
+          }) }}
+    {% endif %}
+
+
+    <!-- Table -->
+    {% if data['add3'] =="4"%}
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <caption class="govuk-visually-hidden">Claimed work items</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col" aria-sort="ascending" id="itemTitle">Item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Fee earner</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="item1">21</th>
+            <th scope="row" class="govuk-table__header"><a href="21">Preparation</a></th>
+            <td class="govuk-table__cell">1 Mar 2024</td>
+            <td class="govuk-table__cell">RT</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              <ul class="govuk-summary-list__actions-list">
+                <li class="govuk-summary-list__actions-list-item">
+                  <a aria-labelledby="duplicate itemTitle item1 workTypeA" id="duplicate" class="govuk-link" href="#">Duplicate</a>
+                </li>
+                <li class="govuk-summary-list__actions-list-item">
+                  <a aria-labelledby="delete itemTitle itemN workTypeN" id="delete" class="govuk-link" href="#">Delete</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="itemN">22</th>
+            <th scope="row" class="govuk-table__header"><a href="2" id="workTypeN" aria-labelledby="itemTitle itemN workTypeN">Attendance with counsel</a></th>
+            <td class="govuk-table__cell">1 Mar 2024</td>
+            <td class="govuk-table__cell">CSL</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">6:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              <ul class="govuk-summary-list__actions-list">
+                <li class="govuk-summary-list__actions-list-item">
+                  <a id="duplicate" aria-labelledby="duplicate itemTitle itemN workTypeN" class="govuk-link" href="#">Duplicate</a>
+                </li>
+                <li class="govuk-summary-list__actions-list-item">
+                  <a id="delete" aria-labelledby="delete itemTitle itemN workTypeN" class="govuk-link" href="#">Delete</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="itemN">23</th>
+            <th scope="row" class="govuk-table__header"><a href="3" id="workTypeN" aria-labelledby="itemTitle itemN workTypeN">Waiting</a></th>
+            <td class="govuk-table__cell">1 Mar 2024</td>
+            <td class="govuk-table__cell">GL</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2:00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              <ul class="govuk-summary-list__actions-list">
+                <li class="govuk-summary-list__actions-list-item">
+                  <a id="duplicate" aria-labelledby="duplicate itemTitle itemN workTypeN" class="govuk-link" href="#">Duplicate</a>
+                </li>
+                <li class="govuk-summary-list__actions-list-item">
+                  <a id="delete" aria-labelledby="delete itemTitle itemN workTypeN" class="govuk-link" href="#">Delete</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="item2">24</th>
+            <th scope="row" class="govuk-table__header"><a href="add-work-item3-view?view3=4" id="workType2" aria-labelledby="itemTitle item2 workType2">{{data['workType4'] or "Travel"}}</a></th>
+            <td class="govuk-table__cell">{{data['completionDateD-day'] or "23"}} Mar {{data['completionDateD-year'] or "2024"}}</td>
+            <td class="govuk-table__cell">{{data['feeEarnerD'] or "ET"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">{{data['otherNoHoursD-hours'] or "1"}}:{{data['otherNoHoursD-mins'] or "00"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              <ul class="govuk-summary-list__actions-list">
+                <li class="govuk-summary-list__actions-list-item">
+                  <a aria-labelledby="duplicate itemTitle item2 workType2" id="duplicate" class="govuk-link" href="add-work-ite32?duplicate3=4">Duplicate</a>
+                </li>
+                <li class="govuk-summary-list__actions-list-item">
+                  <a aria-labelledby="delete itemTitle item2 workType2" id="delete" class="govuk-link" href="add-work-item3?delete3=4">Delete</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <nav class="moj-pagination" aria-label="Pagination navigation">
+        <ul class="moj-pagination__list">
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="review-all-work-items3a" rel="prev">
+              <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+              </svg>
+              <span class="govuk-pagination__link-title">
+                Previous<span class="govuk-visually-hidden"> page</span>
+              </span>
+            </a>
+          </li>
+          <li class="govuk-pagination__item "><a class="govuk-link govuk-pagination__link" href="review-all-work-items3a" aria-label="Page 1 of 2">1</a></li>
+          <li class="govuk-pagination__item govuk-pagination__item--current"><a class="govuk-link govuk-pagination__link" href="review-all-work-items3b" aria-label="Page 2 of 2">2</a></li>
+        </ul>
+        <p class="moj-pagination__results">Showing <b>20</b> to <b>24</b> of <b>24</b> work items</p>
+      </nav>
+
+      {% else %}
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <caption class="govuk-visually-hidden">Claimed work items</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col" aria-sort="ascending" id="itemTitle">Item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Fee earner</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="item1">1</th>
+            <th scope="row" class="govuk-table__header"><a href="add-work-item3-view?view3=1" id="workType1" aria-labelledby="itemTitle item1 workTypeA">{{data['workTypeA'] or "Waiting"}}</a></th>
+            <td class="govuk-table__cell">{{data['completionDateA-day'] or "1"}} January {{data['completionDateA-year'] or "2024"}}</td>
+            <td class="govuk-table__cell">{{data['feeEarnerA'] or "ET"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">{{data['otherNoHoursA-hours'] or "1"}}:{{data['otherNoHoursA-mins'] or "00"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              <ul class="govuk-summary-list__actions-list">
+                <li class="govuk-summary-list__actions-list-item">
+                  <a aria-labelledby="duplicate itemTitle item1 workTypeA" id="duplicate" class="govuk-link" href="add-work-item3?duplicate3=1">Duplicate</a>
+                </li>
+                <li class="govuk-summary-list__actions-list-item">
+                  <a aria-labelledby="delete itemTitle item1 workTypeA" id="delete" class="govuk-link" href="add-work-item3?delete3=1">Delete</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          {% if data['add3'] =="3" %}
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header" id="item2">2</th>
+              <th scope="row" class="govuk-table__header"><a href="add-work-item3-view?view3=2" id="workType2" aria-labelledby="itemTitle item2 workTypeB">{{data['workTypeB'] or "Travel"}}</a></th>
+              <td class="govuk-table__cell">{{data['completionDateB-day'] or "23"}} March {{data['completionDateB-year'] or "2024"}}</td>
+              <td class="govuk-table__cell">{{data['feeEarnerB'] or "ET"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">{{data['otherNoHoursB-hours'] or "1"}}:{{data['otherNoHoursB-mins'] or "00"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <ul class="govuk-summary-list__actions-list">
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a aria-labelledby="duplicate itemTitle item2 workTypeB" id="duplicate" class="govuk-link" href="add-work-item3">Duplicate</a>
+                  </li>
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a aria-labelledby="delete itemTitle item2 workTypeB" id="delete" class="govuk-link" href="add-work-item3?delete3=2">Delete</a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header" id="item3">3</th>
+              <th scope="row" class="govuk-table__header"><a href="add-work-item3-view?view3=3" id="workType3" aria-labelledby="itemTitle item3 workTypeC">{{data['workTypeC'] or "Preparation"}}</a></th>
+              <td class="govuk-table__cell">{{data['completionDateC-day'] or "4"}} May {{data['completionDateC-year'] or "2024"}}</td>
+              <td class="govuk-table__cell">{{data['feeEarnerC'] or "ET"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">{{data['otherNoHoursC-hours'] or "1"}}:{{data['otherNoHoursC-mins'] or "00"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <ul class="govuk-summary-list__actions-list">
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a aria-labelledby="duplicate itemTitle item3 workTypeC" id="duplicate" class="govuk-link" href="add-work-item3">Duplicate</a>
+                  </li>
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a aria-labelledby="delete itemTitle item3 workTypeC" id="delete" class="govuk-link" href="add-work-item3?delete3=3">Delete</a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            {% elseif data['add3'] =="2" %}
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header" id="item2">2</th>
+              <th scope="row" class="govuk-table__header"><a href="add-work-item3-view?view3=2" id="workType2" aria-labelledby="itemTitle item2 workTypeB">{{data['workTypeB'] or "Travel"}}</a></th>
+              <td class="govuk-table__cell">{{data['completionDateB-day'] or "23"}} March {{data['completionDateB-year'] or "2024"}}</td>
+              <td class="govuk-table__cell">{{data['feeEarnerB'] or "ET"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">{{data['otherNoHoursB-hours'] or "1"}}:{{data['otherNoHoursB-mins'] or "00"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <ul class="govuk-summary-list__actions-list">
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a aria-labelledby="duplicate itemTitle item2 workTypeB" id="duplicate" class="govuk-link" href="add-work-item3">Duplicate</a>
+                  </li>
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a aria-labelledby="delete itemTitle item2 workTypeB" id="delete" class="govuk-link" href="add-work-item3?delete3=2">Delete</a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    {% endif %}
+    
+    <form class="form" action="task-list3?question2-work=complete" method="post">
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}

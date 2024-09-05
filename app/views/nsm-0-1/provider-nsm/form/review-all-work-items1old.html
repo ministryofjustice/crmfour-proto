@@ -1,0 +1,1810 @@
+{% extends "layouts/main.html" %}
+{% set version = "nsm-0-1" %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Work items- {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    
+    <h1 class="govuk-heading-xl">You've added 100 work items</h1>
+    {{ govukButton({
+      text: "Add another work item",
+      classes: "govuk-button--secondary",
+      href: "add-work-item2"
+    }) }}
+    <table class="govuk-table">
+      <caption class="govuk-visually-hidden">Claimed work items</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="col" aria-sort="none">No.</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Date</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+          <th class="govuk-table__header" scope="col" aria-sort="none">Fee earner</th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time </th>
+          <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Action</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">1</th>
+          <td class="govuk-table__cell">1 Jan 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">2</th>
+          <td class="govuk-table__cell">1 Jan 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">3</th>
+          <td class="govuk-table__cell">3 Jan 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">4</th>
+          <td class="govuk-table__cell">3 Jan 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">5</th>
+          <td class="govuk-table__cell">3 Jan 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">6</th>
+          <td class="govuk-table__cell">5 Jan 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">7</th>
+          <td class="govuk-table__cell">12 Jan 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">8</th>
+          <td class="govuk-table__cell">12 Jan 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">9</th>
+          <td class="govuk-table__cell">12 Jan 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">10</th>
+          <td class="govuk-table__cell">1 Feb 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">11</th>
+          <td class="govuk-table__cell">1 Feb 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">12</th>
+          <td class="govuk-table__cell">3 Feb 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">13</th>
+          <td class="govuk-table__cell">3 Feb 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">14</th>
+          <td class="govuk-table__cell">3 Feb 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">15</th>
+          <td class="govuk-table__cell">5 Feb 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">16</th>
+          <td class="govuk-table__cell">12 Feb 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">17</th>
+          <td class="govuk-table__cell">12 Feb 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">18</th>
+          <td class="govuk-table__cell">12 Feb 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">19</th>
+          <td class="govuk-table__cell">1 Mar 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">20</th>
+          <td class="govuk-table__cell">1 Mar 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">21</th>
+          <td class="govuk-table__cell">3 Mar 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">22</th>
+          <td class="govuk-table__cell">3 Mar 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">23</th>
+          <td class="govuk-table__cell">3 Mar 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">24</th>
+          <td class="govuk-table__cell">5 Mar 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">25</th>
+          <td class="govuk-table__cell">12 Mar 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">26</th>
+          <td class="govuk-table__cell">12 Mar 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">27</th>
+          <td class="govuk-table__cell">1 Apr 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">28</th>
+          <td class="govuk-table__cell">1 Apr 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">29</th>
+          <td class="govuk-table__cell">3 Apr 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">30</th>
+          <td class="govuk-table__cell">3 Apr 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">31</th>
+          <td class="govuk-table__cell">3 Apr 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">32</th>
+          <td class="govuk-table__cell">5 Apr 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">33</th>
+          <td class="govuk-table__cell">12 Apr 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">34</th>
+          <td class="govuk-table__cell">12 Apr 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">35</th>
+          <td class="govuk-table__cell">12 Apr 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">36</th>
+          <td class="govuk-table__cell">1 May 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">37</th>
+          <td class="govuk-table__cell">1 May 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">38</th>
+          <td class="govuk-table__cell">3 May 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">39</th>
+          <td class="govuk-table__cell">3 May 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">40</th>
+          <td class="govuk-table__cell">3 May 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">41</th>
+          <td class="govuk-table__cell">5 May 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">42</th>
+          <td class="govuk-table__cell">12 May 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">43</th>
+          <td class="govuk-table__cell">12 May 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">44</th>
+          <td class="govuk-table__cell">12 May 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">45</th>
+          <td class="govuk-table__cell">1 Jun 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">46</th>
+          <td class="govuk-table__cell">1 Jun 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">47</th>
+          <td class="govuk-table__cell">3 Jun 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">48</th>
+          <td class="govuk-table__cell">3 Jun 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Advocacy</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">49</th>
+          <td class="govuk-table__cell">3 Jun 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">50</th>
+          <td class="govuk-table__cell">3 Jun 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">51</th>
+          <td class="govuk-table__cell">5 Jun 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">52</th>
+          <td class="govuk-table__cell">12 Jun 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">53</th>
+          <td class="govuk-table__cell">12 Jun 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">53</th>
+          <td class="govuk-table__cell">1 Jul 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">54</th>
+          <td class="govuk-table__cell">1 Jul 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Advocacy</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">55</th>
+          <td class="govuk-table__cell">1 Jul 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">56</th>
+          <td class="govuk-table__cell">3 Jul 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">57</th>
+          <td class="govuk-table__cell">3 Jul 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">58</th>
+          <td class="govuk-table__cell">3 Jul 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">59</th>
+          <td class="govuk-table__cell">5 Jul 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">60</th>
+          <td class="govuk-table__cell">12 Jul 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">61</th>
+          <td class="govuk-table__cell">12 Jul 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">62</th>
+          <td class="govuk-table__cell">1 Aug 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Advocacy</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">63</th>
+          <td class="govuk-table__cell">1 Aug 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">64</th>
+          <td class="govuk-table__cell">1 Aug 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">65</th>
+          <td class="govuk-table__cell">3 Aug 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">66</th>
+          <td class="govuk-table__cell">3 Aug 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">67</th>
+          <td class="govuk-table__cell">3 Aug 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">68</th>
+          <td class="govuk-table__cell">5 Aug 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">69</th>
+          <td class="govuk-table__cell">12 Aug 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">70</th>
+          <td class="govuk-table__cell">12 Aug 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">71</th>
+          <td class="govuk-table__cell">1 Sep 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">72</th>
+          <td class="govuk-table__cell">1 Sep 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">73</th>
+          <td class="govuk-table__cell">3 Sep 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">74</th>
+          <td class="govuk-table__cell">3 Sep 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Advocacy</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">75</th>
+          <td class="govuk-table__cell">3 Sep 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">76</th>
+          <td class="govuk-table__cell">3 Sep 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">77</th>
+          <td class="govuk-table__cell">5 Sep 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">78</th>
+          <td class="govuk-table__cell">12 Sep 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">79</th>
+          <td class="govuk-table__cell">12 Sep 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">80</th>
+          <td class="govuk-table__cell">1 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">81</th>
+          <td class="govuk-table__cell">1 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">82</th>
+          <td class="govuk-table__cell">3 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">83</th>
+          <td class="govuk-table__cell">3 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">84</th>
+          <td class="govuk-table__cell">3 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">85</th>
+          <td class="govuk-table__cell">5 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">86</th>
+          <td class="govuk-table__cell">12 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">87</th>
+          <td class="govuk-table__cell">12 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Advocacy</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">88</th>
+          <td class="govuk-table__cell">14 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+         <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">89</th>
+          <td class="govuk-table__cell">14 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Advocacy</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+         <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">90</th>
+          <td class="govuk-table__cell">12 Oct 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Advocacy</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+         <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">91</th>
+          <td class="govuk-table__cell">1 Nov 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="2">Attendance with counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">4:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">92</th>
+          <td class="govuk-table__cell">3 Nov 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Attendance without counsel </a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">2:45</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">93</th>
+          <td class="govuk-table__cell">3 Nov 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">94</th>
+          <td class="govuk-table__cell">3 Nov 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">95</th>
+          <td class="govuk-table__cell">5 Nov 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Travel</a></th>
+          <td class="govuk-table__cell">GT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">0:30</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">96</th>
+          <td class="govuk-table__cell">12 Nov 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Preparation</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">97</th>
+          <td class="govuk-table__cell">12 Nov 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Advocacy</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">98</th>
+          <td class="govuk-table__cell">14 Nov 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Waiting</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+         <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">99</th>
+          <td class="govuk-table__cell">14 Nov 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Advocacy</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">100</th>
+          <td class="govuk-table__cell">12 Nov 2024</td>
+          <th scope="row" class="govuk-table__cell"><a href="a">Advocacy</a></th>
+          <td class="govuk-table__cell">RT</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">1:00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <ul class="govuk-summary-list__actions-list">
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Duplicate<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+              <li class="govuk-summary-list__actions-list-item">
+                <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> contact details</span></a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+     <form class="form" action="/{{version}}/add-work-item-final2" method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" >
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--s">
+            Do you need to add another work item?
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="add-another">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="add-another-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}
+
