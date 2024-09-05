@@ -10,3 +10,4 @@ const formData = require('./data/form_data')
 // Include other version routes files
 require('./routes/latest-nsm.js')
 require('./routes/latest-pa.js')
+require('./routes/pa-1-0.js')

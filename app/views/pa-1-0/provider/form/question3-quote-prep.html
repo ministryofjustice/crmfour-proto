@@ -1,0 +1,542 @@
+{% extends "layouts/main.html" %}
+{% set version = "pa-1-0" %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Service cost – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">About the request </span>
+      <h1 class="govuk-heading-xl">Service cost</h1>
+
+      {% if data['changeQuote'] =="change" %}
+        <form class="form" action="question3-quote-summary" method="post">
+        {% else %}
+        <form class="form" action="question3-quote-summary" method="post">
+      {% endif %}
+        
+        {% if data['serviceType'] == "Other" %}
+          <!--
+          {{ govukInput({
+            label: {
+              text: "Describe the type of service required",
+              classes: "govuk-label--s"
+            },
+            classes: "govuk-input--width-30",
+            id: "other-expert",
+            name: "otherExpert",
+            value: data['otherExpert']
+          }) }}
+
+          -->
+
+        {% endif %}
+
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "existingAuth",
+          fieldset: {
+            legend: {
+              text: "Have you already been granted prior authority in this case for the same type of service?",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("existingAuth", "Yes")
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("existingAuth", "No")
+            }
+          ]
+        }) }}
+        
+        {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
+
+          {{ govukRadios({
+            classes: "govuk-radios--inline",
+            name: "courtOrdered",
+            fieldset: {
+              legend: {
+                text: "Was this report ordered by the court?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                checked: checked("courtOrdered", "Yes")
+              },
+              {
+                value: "No",
+                text: "No",
+                checked: checked("courtOrdered", "No")
+              }
+            ]
+          }) }}
+
+          {% else %} 
+          {% if data['serviceType'] == "Pathologist's report" %}
+            {{ govukRadios({
+              classes: "govuk-radios--inline",
+              name: "postMortem",
+              fieldset: {
+                legend: {
+                  text: "Is this related to a post-mortem?",
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes",
+                  checked: checked("postMortem", "Yes")
+                },
+                {
+                  value: "No",
+                  text: "No",
+                  checked: checked("postMortem", "No")
+                }
+              ]
+            }) }}
+          {% endif %}
+        {% endif %}
+
+        {% if data['serviceType'] == "Transcription" %}
+
+          <!--Transcription-->
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              {{data['serviceType']}}
+            </legend>
+    
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--s" for="transNoMins">
+                Number of minutes
+              </label>
+              <input class="govuk-input govuk-input--width-5" id="transNoMins" name="transNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['transNoMins']}}">
+            </div>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--s" for="transCostMin">
+                What is the cost per minute?
+              </label>
+              <div id="transCostMin-hint" class="govuk-hint">
+                Costs should be exclusive of VAT 
+              </div>
+              <div class="govuk-input__wrapper">
+                <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                <input class="govuk-input govuk-input--width-5" id="transCostMin" name="transCostMin" type="text" spellcheck="false" value="{{data['transCostMin']}}" aria-describedby="transCostMin-hint">
+              </div>
+            </div>
+          
+            <input type="hidden" id="actualTransTotal" name="actualTransTotal" value="{{data['actualTransTotal']}}" />
+                    
+            <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Update calculation</button>
+
+            <p class="govuk-heading-m">
+              <span class="govuk-caption-m">Total cost</span> £
+              <span id="showTransTotal">0</span>.00
+            </p>
+
+          </fieldset>
+
+          {% else %}
+          {% if data['serviceType'] == "Translation and transcription" %}
+            <!--Transcription & translation-->
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                {{data['serviceType']}}
+              </legend>
+            
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--s" for="transtransNoMins">
+                  Number of minutes
+                </label>
+                <input class="govuk-input govuk-input--width-5" id="transtransNoMins" name="transtransNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['transtransNoMins']}}">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-label--s" for="transtransCostMin">
+                  What is the cost per minute?
+                </label>
+                <div id="transtransCostMin-hint" class="govuk-hint">
+                  Costs should be exclusive of VAT 
+                </div>
+                <div class="govuk-input__wrapper">
+                  <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                  <input class="govuk-input govuk-input--width-5" id="transtransCostMin" name="transtransCostMin" type="text" spellcheck="false" value="{{data['transtransCostMin']}}" aria-describedby="transtransCostMin-hint">
+                </div>
+              </div>
+            
+              <input type="hidden" id="actualTransTransTotal" name="actualTransTransTotal" value="{{data['actualTransTransTotal']}}" />
+                    
+              <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransTransCost()">Update calculation</button>
+
+              <p class="govuk-heading-m">
+                <span class="govuk-caption-m">Total cost</span> £
+                <span id="showTransTransTotal">0</span>.00
+              </p>
+
+            </fieldset>
+
+            {% else %}
+            {% if data['serviceType'] == "Translation" %}
+              <!--Translation-->
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                  {{data['serviceType']}}
+                </legend>
+              
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-label--s" for="translatorWords">
+                    Number of words
+                  </label>
+                  <input class="govuk-input govuk-input--width-5" id="translatorWords" name="translatorWords" type="text" spellcheck="false" inputmode="numeric" value="{{data['translatorWords']}}">
+                </div>
+
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-label--s" for="translatorCostWord">
+                    What is the cost per 1000 words?
+                  </label>
+                  <div id="translatorCostWord-hint" class="govuk-hint">
+                    Costs should be exclusive of VAT 
+                  </div>
+                  <div class="govuk-input__wrapper">
+                    <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                    <input class="govuk-input govuk-input--width-5" id="translatorCostWord" name="translatorCostWord" type="text" spellcheck="false" value="{{data['translatorCostWord']}}" aria-describedby="translatorCostWord-hint">
+                  </div>
+                </div>
+              
+                <input type="hidden" id="actualTranslatorTotal" name="actualTranslatorTotal" value="{{data['actualTranslatorTotal']}}" />
+                    
+                <button class="govuk-button govuk-button--secondary" type="button" onclick="calTranslatorCost()">Update calculation</button>
+
+                <p class="govuk-heading-m">
+                  <span class="govuk-caption-m">Total cost</span> £
+                  <span id="showTranslatorTotal">0</span>
+                </p>
+
+              </fieldset>
+
+              {% else %}
+              {% if data['serviceType'] == "Photocopying" %}
+                <!--Photocopying-->
+                <fieldset class="govuk-fieldset">
+                  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                    {{data['serviceType']}}
+                  </legend>
+                
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--s" for="photoNoPages">
+                      Number of pages
+                    </label>
+                    <input class="govuk-input govuk-input--width-5" id="photoNoPages" name="photoNoPages" type="text" spellcheck="false" inputmode="numeric" value="{{data['photoNoPages']}}">
+                  </div>
+
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--s" for="photoCostPage">
+                      What is the cost per page?
+                    </label>
+                    <div id="photoCostPage-hint" class="govuk-hint">
+                      Costs should be exclusive of VAT 
+                    </div>
+                    <div class="govuk-input__wrapper">
+                      <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                      <input class="govuk-input govuk-input--width-5" id="photoCostPage" name="photoCostPage" type="text" spellcheck="false" value="{{data['photoCostPage']}}" aria-describedby="photoCostPage-hint">
+                    </div>
+                  </div>
+                
+                  <input type="hidden" id="actualPhotoTotal" name="actualPhotoTotal" value="{{data['actualPhotoTotal']}}" />
+                    
+                  <button class="govuk-button govuk-button--secondary" type="button" onclick="calPhotoCost()">Update calculation</button>
+
+                  <p class="govuk-heading-m">
+                    <span class="govuk-caption-m">Total cost</span> £
+                    <span id="showPhotoTotal">0</span>.00
+                  </p>
+
+                </fieldset>
+
+                {% else %}
+                {% if data['serviceType'] == "DNA report" %}
+                  <!--DNA-->
+                  <fieldset class="govuk-fieldset">
+                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                      {{data['serviceType']}}
+                    </legend>
+
+                    <div class="govuk-form-group">
+                    <label class="govuk-label govuk-label--s" for="dnaNoReport">
+                      Number of reports
+                    </label>
+                    <div class="govuk-input__wrapper">
+                      <input class="govuk-input govuk-input--width-5" id="dnaNoReport" name="dnaNoReport" type="text" spellcheck="false" value="{{data['dnaNoReport'] or "1"}}">
+                    </div>
+                  </div>
+                
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-label--s" for="dnaReportCost">
+                        Cost of report
+                      </label>
+                      <div id="dnaCost-hint" class="govuk-hint">
+                        Costs should be exclusive of VAT 
+                      </div>
+                      <div class="govuk-input__wrapper">
+                        <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                        <input class="govuk-input govuk-input--width-5" id="dnaReportCost" name="dnaReportCost" type="text" spellcheck="false" value="{{data['dnaReportCost']}}" aria-describedby="dnaCost-hint">
+                      </div>
+                    </div>
+
+                    <input type="hidden" id="actualDNATotal" name="actualDNATotal" value="{{data['actualOtherTotal']}}" />
+                      
+                      <button class="govuk-button govuk-button--secondary" type="button" onclick="calDNACost()">Update calculation</button>
+
+                      <p class="govuk-heading-m">
+                        <span class="govuk-caption-m">Total cost</span> £
+                        <span id="showDNATotal">0</span>.00
+                      </p>
+
+                  </fieldset>
+
+                  {% else %}
+                  {% if data['serviceType'] == "Other" %}
+                    <!--Other-->
+                    <fieldset class="govuk-fieldset">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                        {{data['serviceType']}}
+                      </legend>
+
+                      {% set hourlyHtml %}
+                        <div class="govuk-form-group">
+                          <fieldset class="govuk-fieldset" role="group" >
+                            <legend class="govuk-fieldset__legend">
+                              Time
+                            </legend>
+                            <div class="govuk-date-input" id="otherNoHours">
+                              <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                  <label class="govuk-label govuk-date-input__label" for="otherNoHours-hours">
+                                    Hours
+                                  </label>
+                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours-hours" name="otherNoHours-hours" type="text" inputmode="numeric" value="{{data['otherNoHours-hours']}}">
+                                </div>
+                              </div>
+                              <div class="govuk-date-input__item">
+                                <div class="govuk-form-group">
+                                  <label class="govuk-label govuk-date-input__label" for="otherNoHours-mins">
+                                    Minutes
+                                  </label>
+                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours-mins" name="otherNoHours-mins" type="text" inputmode="numeric" value="{{data['otherNoHours-mins']}}">
+                                </div>
+                              </div>
+                            </div>
+                          </fieldset>
+                        </div>
+                    
+                        {{ govukInput({
+                          id: "otherCostTime",
+                          name: "otherCostTime",
+                          value: data['otherCostTime'],
+                          label: {
+                            text: "What is the cost per hour? "
+                          },
+                          hint: {
+                            text: "Costs should be exclusive of VAT "
+                          },
+                          prefix: {
+                            text: "£"
+                          },
+                          classes: "govuk-input--width-5",
+                          spellcheck: false
+                        }) }}
+                      {% endset %}
+
+                      {% set nonhourHtml %}
+                        <div class="govuk-form-group">
+                          <label class="govuk-label" for="otherNoItems">
+                            Number of items
+                          </label>
+                          <div class="govuk-input__wrapper">
+                            <input class="govuk-input govuk-input--width-5" id="otherNoItems" name="otherNoItems" type="text" spellcheck="false" value="{{data['otherNoItems']}}">
+                          </div>
+                        </div>
+                    
+                        {{ govukInput({
+                          id: "otherItemsCost",
+                          name: "otherItemsCost",
+                          value: data['otherItemsCost'],
+                          label: {
+                            text: "What is the cost per item?"
+                          },
+                          hint: {
+                            text: "Costs should be exclusive of VAT "
+                          },
+                          prefix: {
+                            text: "£"
+                          },
+                          classes: "govuk-input--width-5",
+                          spellcheck: false
+                        }) }}
+                      {% endset %}
+
+                      {{ govukRadios({
+                        name: "otherChargeType",
+                        fieldset: {
+                          legend: {
+                            text: "How are you being charged?",
+                            classes: "govuk-fieldset__legend--s"
+                          }
+                        },
+                        items: [
+                          {
+                            value: "Charged per item",
+                            text: "Charged per item",
+                            checked: checked("otherChargeType", "Charged per item"),
+                            conditional: {
+                              html: nonhourHtml
+                            }
+                          },
+                          {
+                            value: "Charged by the hour",
+                            text: "Charged by the hour",
+                            checked: checked("otherChargeType", "Charged by the hour"),
+                            conditional: {
+                              html: hourlyHtml
+                            }
+                          }
+                        ]
+                      }) }}
+
+                      <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
+                      
+                      <button class="govuk-button govuk-button--secondary" type="button" onclick="calOtherCost()">Update calculation</button>
+
+                      <p class="govuk-heading-m">
+                        <span class="govuk-caption-m">Total cost</span> £
+                        <span id="showOtherTotal">0</span>.00
+                      </p>
+
+                    </fieldset>
+
+                    {% else %}
+                    <!--General-->
+                    <fieldset class="govuk-fieldset">
+                      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                        {{data['serviceType'] or "Interpreter"}}
+                      </legend>
+                    
+                      <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset" role="group" >
+                          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                              Time
+                          </legend>
+                          <div class="govuk-date-input" id="generalNoHours">
+                            <div class="govuk-date-input__item">
+                              <div class="govuk-form-group">
+                                <label class="govuk-label govuk-date-input__label" for="generalNoHours-hours">
+                                  Hours
+                                </label>
+                                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="generalNoHours-hours" name="generalNoHours-hours" type="text" inputmode="numeric" value="{{data['generalNoHours-hours']}}">
+                              </div>
+                            </div>
+                            <div class="govuk-date-input__item">
+                              <div class="govuk-form-group">
+                                <label class="govuk-label govuk-date-input__label" for="generalNoHours-mins">
+                                  Minutes
+                                </label>
+                                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="generalNoHours-mins" name="generalNoHours-mins" type="text" inputmode="numeric" value="{{data['generalNoHours-mins']}}">
+                              </div>
+                            </div>
+                          </div>
+                        </fieldset>
+                      </div>
+                          
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-label--s" for="generalCost">
+                          What is the cost per hour?
+                        </label>
+                        <div id="generalCost-hint" class="govuk-hint">
+                          Costs should be exclusive of VAT 
+                        </div>
+                        <div class="govuk-input__wrapper">
+                          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+                          <input class="govuk-input govuk-input--width-5" id="generalCost" name="generalCost" type="text" spellcheck="false" value="{{data['generalCost']}}" aria-describedby="generalCost-hint">
+                        </div>
+                      </div>
+
+                      <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">
+                        Update calculation
+                      </button>
+
+                      <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
+
+                      <p class="govuk-heading-m">
+                        <span class="govuk-caption-m">Total cost</span> £
+                        <span id="showGeneralTotal">0</span>.00
+                      </p>
+
+                    </fieldset>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=draft"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?claims-state=all#manage-drafts"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}

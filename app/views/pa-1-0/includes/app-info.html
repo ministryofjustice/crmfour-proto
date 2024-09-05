@@ -1,0 +1,88 @@
+{% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
+  {% else %}
+  {% if data['cwAppStatus'] == "In progress" %}
+    {% else %}
+    {% if data['cwAppStatus'] == "Granted" %}
+      <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
+      {% else %}
+      {% if data['cwAppStatus'] == "Rejected" %}
+        <strong class="govuk-tag govuk-tag--red">Rejected</strong><br><br>
+        {% else %}
+        {% if data['cwAppStatus'] == "Review" %}
+          <strong class="govuk-tag govuk-tag--yellow">Sent back</strong><br><br>
+          {% else %}
+          {% if data['cwAppStatus'] == "Part granted" %}
+            <strong class="govuk-tag govuk-tag--blue">Part granted</strong><br><br>
+            {% else %}
+            {% if data['cwAppStatus'] == "Returned" %}
+              <strong class="govuk-tag govuk-tag--grey">Provider updated</strong><br><br>
+              {% else %}
+              {% if data['cwAppStatus'] == "Referred" %}
+                <strong class="govuk-tag govuk-tag--yellow">Referred</strong><br><br>
+                {% else %}
+                {% if data['cwAppStatus'] == "Auto granted" %}
+                  <strong class="govuk-tag govuk-tag--green">Auto granted</strong><br><br>
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+<span class="govuk-caption-xl">Crime Busters Legal</span>
+<h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
+<p>
+  <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00<br>
+  {% if data['cwAppStatus'] == "Part granted" %}
+    <span class="govuk-body-l"><strong>Allowed: </strong>£520.00
+    {% else %}
+    {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}
+      <span class="govuk-body-l"><strong>Allowed: </strong>£{{data['actualdistTotalCost'] or "640"}}.00
+      {% else %}
+      {% if data['cwAppStatus'] == "Rejected" %}
+        <span class="govuk-body-l"><strong>Allowed: </strong>£0.00
+        {% else %}
+        {% if data['serviceAdjust'] == null %}
+        {% else %}
+          <span class="govuk-body-l"><strong>Allowed: </strong>£440.00
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+</p> 
+<p>
+  <span class="govuk-body-m"><strong>Service: </strong> 
+  {% if data['serviceType'] == "Pathologist's report" and data['postMortem'] == "Yes" %}
+    Pathologist's report - post-mortem
+    {% else %}
+    {{data['serviceType'] or "Interpreter"}}
+  {% endif %}
+  <br>
+  <strong>Representation order date:</strong> 19 April 2023</span>
+</p>
+<p>
+  <span class="govuk-body-m"><strong>Date received:</strong> 17 October 2023</span>
+  {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" %}
+    <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21 October 2023</span>
+    {% else %}
+    {% if data['cwAppStatus'] == "Referred" %}
+      <br><span class="govuk-body-m"><strong>Date referred:</strong> 21 October 2023</span>
+      {% else %}
+      {% if data['cwAppStatus'] == "Review" %}
+        <br><span class="govuk-body-m"><strong>Date sent back to provider:</strong> 21 October 2023</span>
+        {% else %}
+        {% if data['cwAppStatus'] == "Returned" %}
+          <br><span class="govuk-body-m"><strong>Date amended:</strong> 22 October 2023</span>
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+</p>
+
+{{ govukButton({
+  text: "Remove from list",
+  href: "application-details-unassign",
+  classes: "govuk-button--secondary"
+}) }}

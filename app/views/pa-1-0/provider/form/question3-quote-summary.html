@@ -1,0 +1,496 @@
+{% extends "layouts/main.html" %}
+{% set version = "pa-1-0" %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Primary quote summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if data['addTravel'] =="23" %}
+        <div class="govuk-notification-banner-green" role="region"
+          aria-labelledby="govuk-notification-banner-title"
+          data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              The travel cost was deleted
+            </p>
+          </div>
+        </div>
+      {% endif %}
+
+       {% if data['addAdd'] =="23" %}
+        <div class="govuk-notification-banner-green" role="region"
+          aria-labelledby="govuk-notification-banner-title"
+          data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+              Important
+            </h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <p class="govuk-notification-banner__heading">
+              The additional cost was deleted
+            </p>
+          </div>
+        </div>
+      {% endif %}
+      
+      <span class="govuk-caption-xl">About the request </span>
+      <h1 class="govuk-heading-xl">Primary quote summary</h1>
+      
+      <input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal']}}" />
+      <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total']}}" />
+      <input type="hidden" id="actualAdd2Total" name="actualAdd2Total" value="{{data['actualAdd2Total']}}" />
+      <input type="hidden" id="actualTransTotal" name="actualTransTotal" value="{{data['actualTransTotal']}}" />
+      <input type="hidden" id="actualTransTransTotal" name="actualTransTransTotal" value="{{data['actualTransTransTotal']}}" />
+      <input type="hidden" id="actualTranslatorTotal" name="actualTranslatorTotal" value="{{data['actualTranslatorTotal']}}" />
+      <input type="hidden" id="actualPhotoTotal" name="actualPhotoTotal" value="{{data['actualPhotoTotal']}}" />
+      <input type="hidden" id="actualDNATotal" name="actualDNATotal" value="{{data['actualDNATotal']}}" />
+      <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
+      <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
+      <input type="hidden" id="serviceType" name="serviceType" value="{{data['serviceType']}}" />
+
+      <h2 class="govuk-heading-l">
+        <span class="govuk-caption-l">Quote total cost</span> £
+        <span id="showdistTotalCost">0</span>.00 
+      </h2>
+
+      {% if data['changeQuote'] == "change" %}
+        <form class="form" action="check-answers" onclick="primaryTotals()" method="post">
+        {% else %}
+        <form class="form" action="task-list?question3-quote=complete" method="post">
+      {% endif %}
+
+        <input type="hidden" id="actualdistTotalCost" name="actualdistTotalCost" value="{{data['actualdistTotalCost']}}" />
+        <input type="hidden" id="actualaddFinalTotal" name="actualaddFinalTotal" value="{{data['actualaddFinalTotal']}}" />
+
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">Service costs</h2>
+            <ul class="govuk-summary-card__actions">
+              <li class="govuk-summary-card__action">
+                <!--For the proto make links show as not yet selected until the user does the action-->
+                <a class="govuk-link" href="question3-quote">Change<span class="govuk-visually-hidden"> service costs </span></a>
+                 
+              </li>
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Service required 
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['serviceType'] == "Other" %}
+                    {{data['otherExpert'] or "Driving instructor" }}
+                    {% else %}
+                    {{data['serviceType'] or "Interpreter"}}
+                  {% endif %}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Service provider details
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['expert-first-name'] or "Indra"}} {{data['expert-last-name'] or "Tolbort"}}<br>
+                  {{data['expert-org-name'] or "Tolbort Borts"}}, 
+                  {{data['expert-town'] or "Stepney"}},
+                  {{data['expert-postcode'] or "E2"}}
+                </dd>
+              </div>
+              {% if data['serviceType'] == "Pathologist's report" %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Post-mortem
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['postMortem'] or "Yes"}}
+                  </dd>
+                </div>
+              {% endif %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Quote upload
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  myquote1.pdf
+                </dd>
+              </div>
+               {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" %}
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Ordered by court
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    {{data['courtOrdered'] or "Yes"}}
+                  </dd>
+                </div>
+              {% endif %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Existing prior authority granted
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['existingAuth'] or "No"}}
+                </dd>
+              </div>
+            </dl>
+
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Amount</th>
+                  <th scope="col" class="govuk-table__header">Rate</th>
+                  <th scope="col" class="govuk-table__header">Total requested</th>
+                </tr>
+              </thead>
+              <!--Tables for services-->
+              {% if data['serviceType'] == "Transcription" %}
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">{{data['transNoMins'] or "20"}} minutes</td>
+                    <td class="govuk-table__cell">£{{data['transCostMin'] or "20"}} per minute</td>
+                    <td class="govuk-table__cell">£{{data['actualTransTotal'] or "400"}}.00</td>
+                  </tr>
+                </tbody>
+                {% else %}
+                {% if data['serviceType'] == "Translation and transcription" %}
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">{{data['transtransNoMins'] or "20"}} minutes</td>
+                      <td class="govuk-table__cell">£{{data['transtransCostMin'] or "20"}} per minute</td>
+                      <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "400"}}.00</td>
+                    </tr>
+                  </tbody>
+                  {% else %}
+                  {% if data['serviceType'] == "Translation" %} 
+                    <tbody class="govuk-table__body">
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">{{data['translatorWords'] or "20000"}} words</td>
+                        <td class="govuk-table__cell">£{{data['translatorCostWord'] or "20"}} per 1000 words</td>
+                        <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "400"}}.00</td>
+                      </tr>
+                    </tbody>
+                    {% else %}
+                    {% if data['serviceType'] == "Photocopying" %} 
+                      <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+                          <td class="govuk-table__cell">{{data['photoNoPages'] or "200"}} pages</td>
+                          <td class="govuk-table__cell">£{{data['photoCostPage'] or "2"}} per page</td>
+                          <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "400"}}.00</td>
+                        </tr>
+                      </tbody>
+                      {% else %}
+                      {% if data['otherChargeType'] =="Charged by the hour"%} 
+                        <tbody class="govuk-table__body">
+                          <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">{{data['otherNoHours-hours'] or "2"}} hours {{data['otherNoHours-mins'] or "0"}}</td>
+                            <td class="govuk-table__cell">£{{data['otherCost'] or "200"}}.00 per hour</td>
+                            <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400"}}.00</td>
+                          </tr>
+                        </tbody>
+                        {% else %}
+                        {% if data['otherChargeType'] =="Charged per item"%} 
+                          <tbody class="govuk-table__body">
+                            <tr class="govuk-table__row">
+                              <td class="govuk-table__cell">{{data['otherNoItems'] or "1"}} items</td>
+                              <td class="govuk-table__cell">£{{data['otherItemsCost'] or "400"}} per item</td>
+                              <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "400"}}.00</td>
+                            </tr>
+                          </tbody>
+                          {% else %}
+                          {% if data['serviceType'] == "DNA report" %}
+                            <!--All other service types-->
+                            <tbody class="govuk-table__body">
+                              <tr class="govuk-table__row">
+                                <td class="govuk-table__cell">{{data['dnaNoReport'] or "1"}} report</td>
+                                <td class="govuk-table__cell">£{{data['dnaReportCost'] or "400"}}.00 per report</td>
+                                <td class="govuk-table__cell">£{{data['actualDNATotal'] or "400"}}.00</td>
+                              </tr>
+                            </tbody>
+                            {% else %}
+                            {% if data['serviceType'] !== "DNA report" %}
+                              <!--All other service types-->
+                              <tbody class="govuk-table__body">
+                                <tr class="govuk-table__row">
+                                  <td class="govuk-table__cell">{{data['generalNoHours-hours'] or "2"}} hours {{data['generalNoHours-mins'] or "0"}} minutes</td>
+                                  <td class="govuk-table__cell">£{{data['generalCost'] or "200"}} per hour</td>
+                                  <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "400"}}.00</td>
+                                </tr>
+                              </tbody>
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            </table> 
+          </div>
+        </div>
+
+        <!--Tables for travel-->
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">Travel cost</h2>
+            <ul class="govuk-summary-card__actions">
+              {% if data['addTravel'] =="No" %}
+                <li class="govuk-summary-card__action"> 
+                  <a class="govuk-link--no-visited-state" href="question3-quote-travel?changeTravel=change">Change <span class="govuk-visually-hidden"> travel costs</span></a>
+                </li>
+                {% else %}
+                <li class="govuk-summary-card__action"> 
+                  <!--For the proto make links show as not yet selected until the user does the action-->
+                  <a class="govuk-link" href="question3-quote-travel?changeTravel=change">Change<span class="govuk-visually-hidden"> travel item</a>
+                </li>
+              {% endif %} 
+              {% if data['addTravel'] =="No" %}
+                {% else %}
+                <li class="govuk-summary-card__action">
+                    <a class="govuk-link" href="question3-quote-travel-delete">Delete<span class="govuk-visually-hidden"> travel</span></a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            {% if data['addTravel'] =="No" %}
+             <p>No travel costs added</p>
+              {% else %}
+              {% if data['detained'] == "Yes" or data['prisonLaw'] == "Yes" %}
+                {% else %}
+                <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Why travel costs if not detained?
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      {{data['whyTravel'] or "The expert lives in Ireland"}}
+                    </dd>
+                  </div>
+                </dl>
+              {% endif %}
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Amount</th>
+                    <th scope="col" class="govuk-table__header">Rate</th>
+                    <th scope="col" class="govuk-table__header">Total requested</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">{{data['travelTime-hours'] or "2"}} hours {{data['travelTime-mins'] or "0"}} minutes</td>
+                    <td class="govuk-table__cell">£{{data['travelCostTime'] or "60"}}.00 per hour</td>
+                    <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120"}}.00</td>
+                  </tr>
+                </tbody>
+              </table>
+            {% endif %}
+          </div>
+        </div>
+        
+        <!--Tables for additional-->
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">Additional costs</h2>
+            <ul class="govuk-summary-card__actions">
+              {% if data['addAdd'] =="" or data['addAdd'] =="No" or data['addCost'] == 0 %}
+                <li class="govuk-summary-card__action"> 
+                  <a class="govuk-link--no-visited-state" href="question3-quote-add?addCost=1">Change <span class="govuk-visually-hidden"> additional item</span></a>
+                </li>
+                {% else %}
+                  <li class="govuk-summary-card__action"> 
+                    <!--For the proto make links show as not yet selected until the user does the action-->
+                    {% if data['changeAdd1'] == "change" %}
+                    <a class="govuk-link" href="question3-quote-add-summary?addAdd=Yes&changeAdd=change">
+                    Change<span class="govuk-visually-hidden"> additional item</span></a>
+                    {% else %}
+                    <a class="govuk-link--no-visited-state" href="question3-quote-add-summary?addAdd=Yes&changeAdd=change">Change<span class="govuk-visually-hidden"> additional item</a>
+                  {% endif %} 
+                  </li>
+              {% endif %} 
+            </ul>
+          </div>
+          <div class="govuk-summary-card__content">
+            {% if data['addAdd'] =="No" or data['addAdd'] =="delete" %}
+             <p>No additional costs added</p>
+              {% else %}
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Cost</th>
+                    <th scope="col" class="govuk-table__header">Total requested</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">{{data['addCost1'] or "Waiting time"}}</td>
+                    <td class="govuk-table__cell">£{{data['actualAdd1Total'] or "120"}}.00</td>
+                  </tr>
+                  {% if data['addCost'] == "2" %}
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">{{data['addCost2'] or "Hotel"}}</td>
+                      <td class="govuk-table__cell">£{{data['actualAdd2Total'] or "120"}}.00 </td>
+                    </tr>
+                  {% endif %}
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell govuk-table__header">Total requested</td>
+                    <td class="govuk-table__cell govuk-table__header">£<span id="showaddFinalTotal">0</span>.00 </td>
+                  </tr>
+                </tbody>
+              </table>
+            {% endif %}
+          </div>
+        </div>
+   
+        <div class="govuk-button-group">
+
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=draft"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps?app-state=all#manage-drafts"
+            }) }}
+
+          {% endif %}
+         
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+    <script>
+
+        var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
+        var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
+        var actualAdd2Total = parseInt(document.getElementById("actualAdd2Total").value) | 0
+        var actualTransTransTotal = parseInt(document.getElementById("actualTransTransTotal").value) | 0
+        var actualTransTotal = parseInt(document.getElementById("actualTransTotal").value) | 0
+        var actualTranslatorTotal = parseInt(document.getElementById("actualTranslatorTotal").value) | 0
+        var actualPhotoTotal = parseInt(document.getElementById("actualPhotoTotal").value) | 0
+        var actualDNATotal = parseInt(document.getElementById("actualDNATotal").value) | 0
+        var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
+        var actualOtherTotal = parseInt(document.getElementById("actualOtherTotal").value) | 0
+        var serviceType1 = document.getElementById("serviceType").value
+
+      primaryTotals = function(){  
+        if (serviceType1 === "Other"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualOtherTotal;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Photocopying"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualPhotoTotal;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Transcription"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTotal;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Translation and transcription"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTransTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "Translation"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTranslatorTotal;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else
+        if (serviceType1 === "DNA report"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualDNATotal;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        } else {
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualGeneralTotal;
+          document.getElementById("actualdistTotalCost").value = distTotalCost;
+        }
+        
+        addFinalTotal = actualAdd1Total + actualAdd2Total; 
+        document.getElementById("actualaddFinalTotal").value = addFinalTotal;
+      }
+
+      window.onload = function(){  
+        if (serviceType1 === "Other"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualOtherTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        } else
+        if (serviceType1 === "Photocopying"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualPhotoTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        } else
+        if (serviceType1 === "Transcription"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        } else
+        if (serviceType1 === "Translation and transcription"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTransTransTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        } else
+        if (serviceType1 === "Translation"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualTranslatorTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        } else
+        if (serviceType1 === "DNA report"){   
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualDNATotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        } else {
+          distTotalCost = actualTravelTotal + actualAdd1Total + actualAdd2Total + actualGeneralTotal;
+          document.getElementById("showdistTotalCost").innerHTML = distTotalCost;
+        }
+        
+        addFinalTotal = actualAdd1Total + actualAdd2Total; 
+        document.getElementById("showaddFinalTotal").innerHTML = addFinalTotal;    
+        document.getElementById("actualaddFinalTotal").value = addFinalTotal;
+      }
+
+        
+
+
+
+   
+    
+    </script>
+
+{% endblock %}
+

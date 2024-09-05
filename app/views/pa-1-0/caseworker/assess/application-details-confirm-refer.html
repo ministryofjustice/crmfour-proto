@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+{% set version = "pa-1-0" %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Confirm referral – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+ {% include version + "/includes/cw-nav-your.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+      <h1 class="govuk-heading-xl">Refer application to ICA</h1>
+
+      <form class="form" action="application-details-readonly?cwAppStatus=Referred" method="post">
+
+        {{ govukTextarea({
+          name: "referredConfirm",
+          value: data['referredConfirm'],
+          id: "referredConfirm",
+          label: {
+            text: "Explain your decision to refer this application to the ICA",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "For example, why the current rates cannot be applied to requested service"
+          }
+        }) }}    
+      
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Submit decision"
+          }) }}
+         <a class="govuk-link" href="application-details">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
