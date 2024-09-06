@@ -14,12 +14,12 @@
 {% block beforeContent %}
   {% include "includes/banner.html"%}
   {% if data['cwAppStatus'] == "In progress"%}
-    {% include version +"/includes/cw-nav-your.html"%}
+    {% include version +"/includes/nav-prime-cw.html"%}
     {% else %}
     {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
-      {% include version +"/includes/cw-nav-open.html"%}
+      {% include version +"/includes/nav-prime-cw.html"%}
       {% else %}
-      {% include version +"/includes/cw-nav-assessed.html"%}
+      {% include version +"/includes/nav-prime-cw.html"%}
     {% endif %}
   {% endif %}
   {{ govukBackLink({
