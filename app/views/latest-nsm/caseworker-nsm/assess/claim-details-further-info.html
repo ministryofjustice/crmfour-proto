@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Send back to provider – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version + "/includes/cw-nav-your.html"%}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="decision-sent?cwAppStatus=Review" method="post">
+             
+        {{ govukTextarea({
+          name: "fieldFurtherInfo",
+          id: "fieldFurtherInfo",
+          value: data['fieldFurtherInfo'],
+          label: {
+            text: "Send back to provider",
+            classes: "govuk-label--xl",
+              isPageHeading: true
+          },
+          hint: {
+            text: "Tell the provider what information they need to add"
+          }
+        }) }}      
+        
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Submit"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-assess"
+          }) }}
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
