@@ -1,5 +1,7 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-nsm" %}
+{% set activePrimeNav = [false, false, true, false] %}
+{% set activeSubNav = [true, false, false] %}
 
 {% block header %}
   {% include version +"/includes/header-cw.html"%}  
@@ -11,7 +13,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% include version +"/includes/cw-nav-assessed.html"%}
+  {% include version + "/includes/nav-prime-cw.njk" %}
 {% endblock %}
 
 {% block content %}

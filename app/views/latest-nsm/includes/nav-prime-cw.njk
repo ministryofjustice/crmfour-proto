@@ -1,25 +1,25 @@
-  {{ mojPrimaryNavigation({
+{{ mojPrimaryNavigation({
     label: 'Primary navigation',
     items: [
       {
         text: 'Your claims',
         href: '/' + version + '/caseworker-nsm/crm-assess',
-        active: false
+        active: + activePrimeNav[0] | default('true')
       },
       {
         text: 'Open claims',
         href: '/' + version + '/caseworker-nsm/crm-assess-open',
-        active: true
+        active: + activePrimeNav[1]
       },
       {
         text: 'Closed claims',
         href: '/' + version + '/caseworker-nsm/crm-assess-closed',
-        active: false
+        active: + activePrimeNav[2]
       },
       {
         text: 'Search',
         href: '/' + version + '/caseworker-nsm/crm-assess-search',
-        active: false
+        active: + activePrimeNav[3]
       }
     ]
   }) }}
