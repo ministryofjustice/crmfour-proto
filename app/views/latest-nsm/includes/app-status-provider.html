@@ -117,21 +117,20 @@
                   <p>Appeals may be considered by LAA caseworkers or sent to an independent costs assessor (ICA). You can only appeal once. The ICA’s decision is final (as stated in the Criminal Bills Assessment Manual (CBAM) rule 4.4.1).</p>
 
                   {% elseif data['app-task'] == "Review" %}
-                  <p>We need you to make updates to proceed with your claim.<p>
-                  <p>This is one thing we need.<p>
-                  <p>This is another thing we need.<p>
-                  <h3 class="govuk-heading-s">Update your claim</h3>
-                  <p>To update your claim, email <a href="mailto:magsbilling@justice.gov.uk?subject=Updating my claim LAA-5a7d3c">magsbilling@justice.gov.uk</a> with the LAA case reference in the subject of the email and include any supporting information requested.</p>
-
+                   <p>Review the requests and resubmit your application by <strong>21 October 2024</strong>. </p>
+                  <p>After this date your application will be automatically closed.</p>
+                  
+                  <h3 class="govuk-heading-s">Further information request</h3>
+                  <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this is much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+                  </p> 
+                  {{ govukButton({
+                    text: "Update claim",
+                    href: "form/question-further-info"
+                  }) }} 
                   {% elseif data['app-task'] == "Expired" %}
-                  <p>On 7 March 2024 we asked you to update your claim before we could complete the assessment. This was due by 21 March 2024.</p>
+                  <p>On 7 October 2024 we asked you to update your claim before we could complete the assessment. This was due by 21 March 2024.</p>
                   <p>As this update was not made by the required date this claim has been automatically closed.</p>
                   <p>If you make a new claim you should include the claimed update.</p>
-
-                  {% elseif data['app-task'] == "Requested" %}
-                  <p>The provider requested the ability to send back more information regarding their case details due to a material change in their somethnig.<p>
-                  <h3 class="govuk-heading-s">Update your claim</h3>
-                  <p>To update your claim, email <a href="mailto:magsbilling@justice.gov.uk?subject=Updating my claim LAA-5a7d3c">magsbilling@justice.gov.uk</a> with the LAA case reference in the subject of the email and include your new information.</p>
                 {% endif %}
               </dd>
             </div>
