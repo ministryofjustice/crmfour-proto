@@ -2,7 +2,7 @@
 {% set version = "latest-nsm" %}
 
 {% block header %}
-  {% include version +"/includes/header-provider.html"%}
+  {% include version + "/includes/header-provider.html" %}
 {% endblock %}
 
 
@@ -72,6 +72,16 @@
     {% endif%}
 
     <h2 class="govuk-heading-l">Overview</h2>
+    {% if data['app-task'] == "Returned" %}
+      <div class="govuk-inset-text">
+        <p><strong>Claim updated 7 Oct 2024 </strong></p>
+        <ul class="govuk-list">
+          <li>
+            <a href="#review-further-info2" class="govuk-link--no-visited-state">Further information</a>
+          </li>
+        </ul>
+      </div>
+    {% endif %}
     
     <!--Claim overview-->
     <div class="govuk-summary-card">
@@ -599,7 +609,10 @@
       </div>
     </div>
 
+    {% include version + "/includes/further-info-provider.html" %}
+
   </div>
+</div>
 
 {% endblock %}
 
