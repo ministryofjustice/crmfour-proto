@@ -1,8 +1,12 @@
 {% extends "layouts/main.html" %}
-{% set version = "latest-pa" %}
+{% set version = "latest-nsm" %}
 
 {% block pageTitle %}
   Application complete – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
 {% endblock %}
 
 {% block content %}
@@ -47,12 +51,12 @@
        <div class="govuk-button-group">
           {{ govukButton({
             text: "View your claims",
-            href: "../crm-claims-reviewed-reviewed?app-state=all&app-task=Submitted#manage-submitted"
+            href: "../crm-claims-reviewed?app-state=all&app-task=Submitted#manage-submitted"
 
           }) }}
         
           {{ govukButton({
-            text: "Start new claims",
+            text: "Start new claim",
             classes: "govuk-button--secondary",
             href: "question-claim"
           }) }}

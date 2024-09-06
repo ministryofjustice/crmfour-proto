@@ -24,11 +24,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
-    {% if data['changeFI'] == "change" %}
-      <form class="form" action="check-answers" method="post">
-      {% else %}
-      <form class="form" action="task-list?question3-quote=complete" method="post">
-    {% endif %}
+    <form class="form" action="claim-submitted" method="post">
 
     <form class="form" action="task-listFI?app-task=Review" method="post">
       <h1 class="govuk-heading-xl">Further information request</h1>
@@ -72,8 +68,7 @@
       <div class="govuk-button-group">
         
         {{ govukButton({
-          text: "Save and continue",
-          href: "check-answers?app-task=Review"
+          text: "Submit further information"
         }) }}
 
         {% if data['app-state'] =="empty" or data['app-state'] ==null %}
