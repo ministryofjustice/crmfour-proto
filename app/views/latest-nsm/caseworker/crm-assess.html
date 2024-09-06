@@ -13,7 +13,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% include version + "/includes/nav-prime-cw.html" %}
+  {% include version + "/includes/nav-prime-cw.njk" %}
 {% endblock %}
 
 {% block content %}
@@ -24,6 +24,7 @@
     <h1 class="govuk-heading-xl">
       Your claims
     </h1>
+    
     {{ govukButton({
       text: "Assess next claim",
       href: "assess/claim-details?cwAppStatus=In progress"
