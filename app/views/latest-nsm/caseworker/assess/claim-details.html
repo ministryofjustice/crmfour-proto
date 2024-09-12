@@ -29,7 +29,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    {% include version +"/includes/app-info.html"%}
+    {% include version +"/includes/app-info-cw.html"%}
 
     <!-- Nav -->
     {% if data['serviceAdjust'] == "Yes" %}
@@ -580,9 +580,9 @@
       </div>
 
       <!---Further info -->
-      {% if data['cwAppStatus'] == "Returned" %}
-        {% include version +"/includes/further-info-cw.html"%}
-      {% endif %}
+
+      {% include version + "/includes/further-info-cw.html"%}
+
 
       {% if data ['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Review"%}
         {% else %}
