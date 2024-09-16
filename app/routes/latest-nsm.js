@@ -17,50 +17,50 @@ router.post('/add-work-item-final1', function(request, response) {
   })
   
   //Adding work items Option 2 - 1 item
-  router.post('/review-all-work-1items2', function(request, response) {
+  router.post('/review-all-work-1items1', function(request, response) {
   
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
-        response.redirect('/' + version + "/provider/form/task-list2?question2-work=complete")
+        response.redirect('/' + version + "/provider/form/check-payment-claim")
     } 
     if (addAnother == "Yes"){
-        response.redirect('/' + version + "/provider/form/add-work-item2?add2=2")
+        response.redirect('/' + version + "/provider/form/add-work-item?add1=2")
     }
   })
   
   //Adding work items Option 2 - 2 items
-  router.post('/review-all-work-2items2', function(request, response) {
+  router.post('/review-all-work-2items1', function(request, response) {
   
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
-        response.redirect('/' + version + "/provider/form/task-list2?question2-work=complete")
+        response.redirect('/' + version + "/provider/form/check-payment-claim")
     } 
     if (addAnother == "Yes"){
-        response.redirect('/' + version + "/provider/form/add-work-item2?add2=3")
+        response.redirect('/' + version + "/provider/form/add-work-item?add1=3")
     }
   })
   
   //Adding work items Option 2 - 3 items
-  router.post('/review-all-work-3items2', function(request, response) {
+  router.post('/review-all-work-3items1', function(request, response) {
   
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
-        response.redirect('/' + version + "/provider/form/task-list2?question2-work=complete")
+        response.redirect('/' + version + "/provider/form/check-payment-claim")
     } 
     if (addAnother == "Yes"){
-        response.redirect('/' + version + "/provider/form/add-work-item2?add2=4")
+        response.redirect('/' + version + "/provider/form/add-work-item?add1=4")
     }
   })
   
   //Adding work items Option 2 - 4 plus items
-  router.post('/review-all-work-4items2', function(request, response) {
+  router.post('/review-all-work-4items1', function(request, response) {
   
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
-        response.redirect('/' + version + "/provider/form/task-list2?question2-work=complete")
+        response.redirect('/' + version + "/provider/form/check-payment-claim")
     } 
     if (addAnother == "Yes"){
-        response.redirect('/' + version + "/provider/form/add-work-item2?add2=4")
+        response.redirect('/' + version + "/provider/form/add-work-item?add1=4")
     }
   })
   

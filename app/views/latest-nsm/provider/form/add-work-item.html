@@ -26,7 +26,7 @@
     <h1 class="govuk-heading-xl">What work item are you claiming for?</h1>
     <form class="form" action="review-all-work-items" method="post">
 
-      {% if data['add2'] == "4" %}
+      {% if data['add1'] == "4" %}
         {{ govukRadios({
           name: "workType4",
           value: data['workType4'],
@@ -162,7 +162,7 @@
           <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner4" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner4']}}">
         </div>
 
-        {% elseif data['add2'] == "3"%}
+        {% elseif data['add1'] == "3"%}
 
           {{ govukRadios({
             name: "workType3",
@@ -299,7 +299,7 @@
             <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner3" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner3']}}">
           </div>
 
-        {% elseif data['add2'] == "2"%}
+        {% elseif data['add1'] == "2"%}
 
           {{ govukRadios({
             name: "workType2",
