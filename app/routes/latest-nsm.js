@@ -65,28 +65,28 @@ router.post('/add-work-item-final1', function(request, response) {
   })
 
   //Additional work item second time (CRM7) version 1 from review
-router.post('/add-work-item-final2', function(request, response) {
+    router.post('/add-work-item-final2', function(request, response) {
 
-    var addAnother = request.session.data['add-another']
-    if (addAnother == "No"){
-        response.redirect('/' + version + "/provider/form/")
-    } 
-    if (addAnother == "Yes"){
-        response.redirect('/' + version + "/provider/form/add-work-item2")
-    }
-  })
+        var addAnother = request.session.data['add-another']
+        if (addAnother == "No"){
+            response.redirect('/' + version + "/provider/form/")
+        } 
+        if (addAnother == "Yes"){
+            response.redirect('/' + version + "/provider/form/add-work-item2")
+        }
+    })
   
-  //Adding work items Option 2 - 1 item
-  router.post('/review-all-work-1items2', function(request, response) {
+//Adding work items Option 2 - 1 item
+router.post('/review-all-work-1items2', function(request, response) {
   
     var addAnother = request.session.data['add-another']
     if (addAnother == "No"){
         response.redirect('/' + version + "/provider/form/review-all-work-items2")
     } 
     if (addAnother == "Yes"){
-        response.redirect('/' + version + "/provider/form/add-work-item?add1=2")
+        response.redirect('/' + version + "/provider/form/add-work-item2?add2=2")
     }
-  })
+})
   
   //Adding work items Option 2 - 2 items
   router.post('/review-all-work-2items2', function(request, response) {
@@ -96,7 +96,7 @@ router.post('/add-work-item-final2', function(request, response) {
         response.redirect('/' + version + "/provider/form/review-all-work-items2")
     } 
     if (addAnother == "Yes"){
-        response.redirect('/' + version + "/provider/form/add-work-item?add1=3")
+        response.redirect('/' + version + "/provider/form/add-work-item2?add2=3")
     }
   })
   
@@ -108,7 +108,7 @@ router.post('/add-work-item-final2', function(request, response) {
         response.redirect('/' + version + "/provider/form/review-all-work-items2")
     } 
     if (addAnother == "Yes"){
-        response.redirect('/' + version + "/provider/form/add-work-item?add1=4")
+        response.redirect('/' + version + "/provider/form/add-work-item2?add2=4")
     }
   })
   
@@ -120,11 +120,11 @@ router.post('/add-work-item-final2', function(request, response) {
         response.redirect('/' + version + "/provider/form/review-all-work-items2")
     } 
     if (addAnother == "Yes"){
-        response.redirect('/' + version + "/provider/form/add-work-item?add1=4")
+        response.redirect('/' + version + "/provider/form/add-work-item2?add2=4")
     }
   })
 
-  //Create a new claim
+//Create a new claim
 router.post('/question-claimType', function(request, response) {
 
     var claimType = request.session.data['claimType']
@@ -133,6 +133,9 @@ router.post('/question-claimType', function(request, response) {
     } 
     if (claimType == "Non-standard magistrates' court payment"){
         response.redirect('/' + version + "/provider/form/question-stageProvider?question-claimType=complete")
+    }
+    if (claimType == "Supplemental claim"){
+        response.redirect('/' + version + "/provider/form/supplemental")
     }
 })
 
