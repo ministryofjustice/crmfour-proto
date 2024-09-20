@@ -22,7 +22,8 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
+    
+    <h1 class="govuk-heading-xl">What work item are you claiming for?</h1>
     {% if data['add2'] =="4" %}
       <form class="form" action="/{{version}}/review-all-work-4items2" method="post">
       {% elseif data['add2'] =="3" %}
@@ -32,10 +33,8 @@
       {% elseif data['add2'] =="1" %}
         <form class="form" action="/{{version}}/review-all-work-1items2" method="post">
     {% endif %}
-    
-      <h1 class="govuk-heading-xl">What work item are you claiming for?</h1>
 
-      {% if data['add2'] == "4" %}
+      {% if data['view2'] == "4" %}
         {{ govukRadios({
           name: "workType4",
           value: data['workType4'],
@@ -171,7 +170,7 @@
           <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner4" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner4']}}">
         </div>
 
-        {% elseif data['add2'] == "3"%}
+        {% elseif data['view2'] == "3"%}
 
           {{ govukRadios({
             name: "workType3",
@@ -308,7 +307,7 @@
             <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner3" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner3']}}">
           </div>
 
-        {% elseif data['add2'] == "2"%}
+        {% elseif data['view2'] == "2"%}
 
           {{ govukRadios({
             name: "workType2",
@@ -624,6 +623,7 @@
           </div>
         </fieldset>
       </div>
+
     
       <div class="govuk-button-group">
         {{ govukButton({
