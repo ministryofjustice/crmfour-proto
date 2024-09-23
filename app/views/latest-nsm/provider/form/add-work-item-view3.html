@@ -22,31 +22,11 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/{{version}}/add-another-work-items2" method="post">
-
-      {% set banner %}
-        {% if data['banner2'] =="4" %}
-          <h3 class="govuk-notification-banner__heading">You've added 21 work items</h3>
-          {% elseif data['banner2'] =="3" %}
-          <h3 class="govuk-notification-banner__heading">You've added 3 work items</h3>
-          {% elseif data['banner2'] =="2" %}
-          <h3 class="govuk-notification-banner__heading">You've added 2 work items</h3>
-          {% elseif data['banner2'] =="1" %}
-          <h3 class="govuk-notification-banner__heading">You've added 1 work item</h3>
-        {% endif %}
-      {% endset %}
-
-      {% if data['banner2'] == Null or data['banner2'] =="0"  %}
-        {% else %}
-        {{ govukNotificationBanner({
-          html: banner,
-          type: "success"
-        }) }}
-      {% endif %}
+    <form class="form" action="review-all-work-items3" method="post">
     
       <h1 class="govuk-heading-xl">What work item are you claiming for?</h1>
 
-      {% if data['add2'] == "4" %}
+      {% if data['view3'] == "4" %}
         {{ govukRadios({
           name: "workType4",
           value: data['workType4'],
@@ -182,7 +162,7 @@
           <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner4" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner4']}}">
         </div>
 
-        {% elseif data['add2'] == "3"%}
+        {% elseif data['view3'] == "3"%}
 
           {{ govukRadios({
             name: "workType3",
@@ -319,7 +299,7 @@
             <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner3" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner3']}}">
           </div>
 
-        {% elseif data['add2'] == "2"%}
+        {% elseif data['view3'] == "2"%}
 
           {{ govukRadios({
             name: "workType2",
@@ -594,28 +574,6 @@
           </div>
       {% endif %}
 
-
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" >
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--s">
-            Do you need to add another work item?
-          </legend>
-          <div class="govuk-radios" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
-              <label class="govuk-label govuk-radios__label" for="add-another">
-                Yes
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
-              <label class="govuk-label govuk-radios__label" for="add-another-2">
-                No
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
     
       <div class="govuk-button-group">
         {{ govukButton({
@@ -627,14 +585,10 @@
           classes: "govuk-button--secondary",
           href: ""
         }) }}
-
       </div>
     </form>
-
   </div>
 </div>
-
-
 
 {% endblock %}
 

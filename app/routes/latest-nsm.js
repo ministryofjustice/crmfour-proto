@@ -66,9 +66,9 @@ router.post('/add-work-item-final1', function(request, response) {
     }
   })
 
-  //Add 2
+//Add 2
 
-//Adding work items Option 2 - any item from review page
+//Adding work items Option 2 - from add page
 router.post('/add-another-work-items2', function(request, response) {
   
     var addAnother = request.session.data['add-another']
@@ -83,8 +83,9 @@ router.post('/add-another-work-items2', function(request, response) {
         response.redirect('/' + version + '/provider/form/add-work-item2?add2=' + added + '&banner2=' + bannered)
     }
   })
+  
 
-  //Adding work items Option 2 - any item from review page
+  //Adding work items Option 2 - from review page
   router.post('/review-all-work-items2', function(request, response) {
 
     var addAnother = request.session.data['add-another']
@@ -99,28 +100,31 @@ router.post('/add-another-work-items2', function(request, response) {
     }
   })
 
-
-
  // Add 3
 
- //Adding work items Option 3 - any item from review page
-router.post('/add-another-work-items3', function(request, response) {
+  //Adding work items Option 3 - from add page
+  router.post('/add-another-work-items3', function(request, response) {
   
     var addAnother = request.session.data['add-another']
     var add3 = request.session.data['add3']
-    var banner3 = request.session.data['banner3']
 
     if (addAnother == "No"){
         response.redirect('/' + version + "/provider/form/review-all-work-items3")
     } 
-    if (addAnother == "Yes"){
+    if (addAnother == "yesNew"){
         added = parseInt(add3) + 1
-        bannered = parseInt(banner3) + 1
-        response.redirect('/' + version + '/provider/form/add-work-item2?add3=' + added + '&banner3q=' + bannered)
+        bannered = added - 1
+        response.redirect('/' + version + '/provider/form/add-work-item3?add3=' + added + '&banner3=' + bannered)
+    }
+    if (addAnother == "yesDuplicate"){
+      added = parseInt(add3) + 1
+      bannered = added - 1
+      viewed = added -1
+      response.redirect('/' + version + '/provider/form/add-work-item-duplicate3?add3=' + added + '&banner3=' + bannered + '&view3=' + viewed)
     }
   })
 
-  //Adding work items Option 2 - any item from review page
+  //Adding work items Option 3 - from review page
   router.post('/review-all-work-items3', function(request, response) {
 
     var addAnother = request.session.data['add-another']
@@ -131,7 +135,7 @@ router.post('/add-another-work-items3', function(request, response) {
     } 
     if (addAnother == "Yes"){
         added = parseInt(add3) + 1
-        response.redirect('/' + version + '/provider/form/add-work-item2?add3=' + added + '&banner3=0')
+        response.redirect('/' + version + '/provider/form/add-work-item3?add3=' + added + '&banner3=0')
     }
   })
 

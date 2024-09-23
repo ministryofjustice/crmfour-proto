@@ -46,7 +46,7 @@
     
       <h1 class="govuk-heading-xl">What work item are you claiming for?</h1>
 
-      {% if data['add2'] == "4" %}
+      {% if data['view2'] == "4" %}
         {{ govukRadios({
           name: "workType4",
           value: data['workType4'],
@@ -182,7 +182,7 @@
           <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner4" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner4']}}">
         </div>
 
-        {% elseif data['add2'] == "3"%}
+        {% elseif data['view2'] == "3"%}
 
           {{ govukRadios({
             name: "workType3",
@@ -319,7 +319,7 @@
             <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner3" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner3']}}">
           </div>
 
-        {% elseif data['add2'] == "2"%}
+        {% elseif data['view2'] == "2"%}
 
           {{ govukRadios({
             name: "workType2",
@@ -594,7 +594,6 @@
           </div>
       {% endif %}
 
-
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" >
           <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--s">
@@ -616,25 +615,22 @@
           </div>
         </fieldset>
       </div>
+
     
       <div class="govuk-button-group">
         {{ govukButton({
-          text: "Save and continue"
+          text: "Save and add another"
         }) }}
 
         {{ govukButton({
-          text: "Save and come back later",
+          text: "Save and review all",
           classes: "govuk-button--secondary",
           href: ""
         }) }}
 
       </div>
     </form>
-
   </div>
 </div>
 
-
-
 {% endblock %}
-
