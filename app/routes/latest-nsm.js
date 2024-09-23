@@ -119,8 +119,7 @@ router.post('/add-another-work-items2', function(request, response) {
     if (addAnother == "yesDuplicate"){
       added = parseInt(add3) + 1
       bannered = added - 1
-      viewed = added -1
-      response.redirect('/' + version + '/provider/form/add-work-item-duplicate3?add3=' + added + '&banner3=' + bannered + '&view3=' + viewed)
+      response.redirect('/' + version + '/provider/form/add-work-item-duplicate3?add3=' + added + '&banner3=' + bannered + '&view3=' + added)
     }
   })
 
