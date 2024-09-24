@@ -24,7 +24,7 @@
   <div class="govuk-grid-column-two-thirds">
     <form class="form" action="review-all-work-items2" method="post">
     
-      <h1 class="govuk-heading-xl">What work item are you claiming for?</h1>
+      <h1 class="govuk-heading-l">What work item are you claiming for?</h1>
 
       {% if data['view2'] == "4" %}
         {{ govukRadios({
@@ -573,6 +573,24 @@
             <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner1" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner1']}}">
           </div>
       {% endif %}
+
+      <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">
+        Update calculation
+      </button> 
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Calculations</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col"> Total</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"></td>
+          </tr>
+        </tbody>
+      </table>
 
     
       <div class="govuk-button-group">
