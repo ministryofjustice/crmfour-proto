@@ -22,30 +22,27 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">What you are claiming for</h1>
-
       {% if data['changeClaim'] =="change" %}
         <form class="form" action="/{{version}}/change-claimType" method="post">
         {% else %}
         <form class="form" action="/{{version}}/question-claimType" method="post">
       {% endif %}
 
-        {{ govukInput({
-          label: {
-            text: "What is your unique file number (UFN)?",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          },
-          hint: {
-            text: "For example 310223/001"
-          },
-          classes: "govuk-input--width-10",
-          id: "ufnNSM",
-          name: "ufnNSM",
-          value: data['ufnNSM']
-        }) }}
-
         {% set repHtml %}
+          {{ govukInput({
+            label: {
+              text: "What is your unique file number (UFN)?",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example 310223/001"
+            },
+            classes: "govuk-input--width-10",
+            id: "ufnNSM",
+            name: "ufnNSM",
+            value: data['ufnNSM']
+          }) }}
+
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group" aria-describedby="date-rep-hint">
               <legend class="govuk-fieldset__legend">
@@ -87,6 +84,19 @@
         {% endset %}
 
         {% set contemptHtml %}
+          {{ govukInput({
+            label: {
+              text: "What is your unique file number (UFN)?",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example 310223/001"
+            },
+            classes: "govuk-input--width-10",
+            id: "ufnNSM",
+            name: "ufnNSM",
+            value: data['ufnNSM']
+          }) }}
           {{ govukInput({
               label: {
                 text: "Client's CNTP (contempt) number"
@@ -141,8 +151,22 @@
           </div>
         {% endset %}
 
-        <!-- 
+
         {% set supplementalHtml %}
+          {{ govukInput({
+            label: {
+              text: "What is your unique file number (UFN)?",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example 310223/001"
+            },
+            classes: "govuk-input--width-10",
+            id: "ufnNSM",
+            name: "ufnNSM",
+            value: data['ufnNSM']
+          }) }}
+
           {{ govukInput({
             label: {
               text: "LAA reference number of the existing claim"
@@ -158,15 +182,15 @@
           }) }}
         {% endset %}
 
-        -->
+
 
         {{ govukRadios({
           name: "claimType",
           fieldset: {
             legend: {
               text: "What are you claiming for?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--s"
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
             }
           },
           items: [
@@ -191,6 +215,7 @@
               value: "Supplemental claim",
               text: "Supplemental claim",
               checked: checked("claimType", "Supplemental claim")
+             
             }
           ]
         }) }}  
