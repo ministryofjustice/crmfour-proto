@@ -139,6 +139,41 @@ router.post('/add-another-work-items2', function(request, response) {
   })
 
 
+//Disbursements 2
+
+//Adding disbursements Option 2 - from add page
+router.post('/add-another-disbursement2', function(request, response) {
+  
+    var addAnotherD = request.session.data['add-anotherD']
+    var addD2 = request.session.data['addD2']
+
+    if (addAnotherD == "No"){
+        response.redirect('/' + version + "/provider/form/review-all-disbursements2")
+    } 
+    if (addAnotherD == "Yes"){
+        addedD = parseInt(addD2) + 1
+        banneredD = addedD - 1
+        response.redirect('/' + version + '/provider/form/add-disbursement2?addD2=' + addedD + '&bannerD2=' + banneredD)
+    }
+  })
+  
+
+  //Adding disbursement Option 2 - from review page
+  router.post('/review-all-disbursements2', function(request, response) {
+
+    var addAnotherD = request.session.data['add-anotherD']
+    var addD2 = request.session.data['addD2']
+
+    if (addAnotherD == "No"){
+        response.redirect('/' + version + "/provider/form/review-all-disbursements2")
+    } 
+    if (addAnotherD == "Yes"){
+        addedD = parseInt(addD2) + 1
+        banneredD = addedD - 1
+        response.redirect('/' + version + '/provider/form/add-disbursement2?addD2=' + addedD + '&bannerD2=0')
+    }
+  })
+
 //Create a new claim
 router.post('/question-claimType', function(request, response) {
 

@@ -35,8 +35,8 @@
           <h1 class="govuk-heading-l">You've added 1 work item</h1>
       {% endif %}
 
-      <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--s">Summary of work items</caption>
+      <table class="govuk-table govuk-!-margin-bottom-9">
+        <caption class="govuk-table__caption govuk-table__caption--m">Summary of work items</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <td scope="col" class="govuk-table__header"></td>
@@ -84,7 +84,8 @@
       </table> 
 
       <!-- Tables -->
-      <table class="govuk-table" data-module="moj-sortable-table">
+      <div class="govuk-!-margin-bottom-9">
+        <table class="govuk-table" data-module="moj-sortable-table">
         <caption class="govuk-table__caption govuk-table__caption--m">All work items</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -444,11 +445,12 @@
             </tr>
           {% endif %}
         </tbody>
-      </table>
-      {% if data['add3'] =="4" %}
-        {% include "includes/pagination-search.html"%}
-      {% endif %}
-      <br>
+        </table>
+        {% if data['add3'] =="4" %}
+          {% include "includes/pagination-search.html"%}
+        {% endif %}
+      </div>
+
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset" >
