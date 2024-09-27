@@ -1,0 +1,133 @@
+{% extends "layouts/main.html" %}
+{% set version = "nsm-1-0" %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Claim details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% if data['cwAppStatus'] == "In progress"%}
+    {% include version +"/includes/nav-prime-cw.html"%}
+    {% else %}
+    {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+      {% include version +"/includes/nav-prime-cw.html"%}
+      {% else %}
+      {% include version +"/includes/nav-prime-cw.html"%}
+    {% endif %}
+  {% endif %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="decision-sent" method="post">
+
+        {% set grantedHtml %}
+          {{ govukTextarea({
+            name: "grantedConfirm",
+            id: "grantedConfirm",
+            label: {
+              text: "Enter additional comments (optional)",
+              isPageHeading: false
+            },
+            hint: {
+            text: "We'll share this information with the provider"
+            }
+          }) }}    
+        {% endset %}
+        
+        {% set partGrantedHtml %}
+          {{ govukTextarea({
+            name: "partConfirm",
+            id: "partConfirm",
+            label: {
+              text: "Explain your decision",
+              isPageHeading: false
+            },
+            hint: {
+            text: "We'll share this information with the provider"
+            }
+          }) }}    
+        {% endset %}
+
+         {% set rejectedHtml %}
+          {{ govukTextarea({
+            name: "rejectedConfirm",
+            id: "rejectedConfirm",
+            label: {
+              text: "Explain your decision",
+              isPageHeading: false
+            },
+            hint: {
+            text: "We'll share this information with the provider"
+            }
+          }) }}    
+        {% endset %}
+
+        {{ govukRadios({
+          name: "cwAppStatus",
+          fieldset: {
+            legend: {
+              text: "Make a decision",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Granted",
+              text: "Grant",
+              checked: checked("cwAppStatus", "Granted"),
+              conditional: {
+                html: grantedHtml
+              }
+            },
+            {
+              value: "Part granted",
+              text: "Part grant",
+              checked: checked("cwAppStatus", "Part granted"),
+              conditional: {
+                html: partGrantedHtml
+              }
+            },
+            {
+              value: "Rejected",
+              text: "Reject",
+              checked: checked("cwAppStatus", "Rejected"),
+              conditional: {
+                html: rejectedHtml
+              }
+            }
+          ]
+        }) }}
+      
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Submit decision"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and come back later",
+              classes: "govuk-button--secondary",
+            href: ""
+          }) }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

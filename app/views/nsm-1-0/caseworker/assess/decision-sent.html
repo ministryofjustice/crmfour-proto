@@ -1,0 +1,117 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Decision sent to provider – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version + "/includes/nav-prime-cw.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+      {% if data['cwAppStatus'] =="Review" %}
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title">
+            Claim sent back
+          </h1>
+        </div>
+        <p>Your request has been sent to the provider.</p>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Claim reference 
+            </dt>
+              <dd class="govuk-summary-list__value">
+              {{data['laa-ref'] or "LAA-5a7d3c"}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Further information request
+            </dt>
+              <dd class="govuk-summary-list__value">
+              {{data['fieldFurtherInfo'] or "There is little justification within the claim regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+            </dd>
+          </div>
+        </dl>
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Assess next claim",
+            href: "claim-details?cwAppStatus=In progress"
+          }) }}
+          <a class="govuk-link" href="claim-details-readonly">Return to the claim</a>
+        </div>
+
+        {% else %}
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title">
+            Decision sent
+          </h1>
+        </div>
+        <p>Your decision has been sent to the provider. </p>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Claim reference
+            </dt>
+              <dd class="govuk-summary-list__value">
+              {{data['laa-ref'] or "LAA-5a7d3c"}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              LAA decision
+            </dt>
+              <dd class="govuk-summary-list__value">
+              {{data['cwAppStatus'] or "Granted"}}
+            </dd>
+          </div>
+           <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Comments
+            </dt>
+              <dd class="govuk-summary-list__value">
+                {% if data['cwAppStatus'] == "Granted" %}
+                  {{data['grantedConfirm'] or "Granted with thanks for such an excellent claim"}}
+                  {% else %}
+                  {% if data['cwAppStatus'] == "Part granted" %}
+                    {{data['partConfirm'] or "A number of your claimed costs were not permissible."}}
+                    {% else %}
+                    {% if data['cwAppStatus'] == "Rejected" %}
+                      {{data['rejectedConfirm'] or "Please use a CRM5 form"}}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+            </dd>
+          </div>
+        </dl>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Assess next claim",
+            href: "claim-details?cwAppStatus=In progress"
+          }) }}
+          <a class="govuk-link" href="claim-details-readonly">Return to the claim</a>
+        </div>
+      {% endif %}
+
+  
+      
+
+    </div>
+  </div>
+
+{% endblock %}

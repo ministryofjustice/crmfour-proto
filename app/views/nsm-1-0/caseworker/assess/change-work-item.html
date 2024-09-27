@@ -1,0 +1,249 @@
+{% extends "layouts/main.html" %}
+{% set version = "nsm-1-0" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Adjust service cost – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-cw.html"%}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Adjust a work item</h1>
+      <h2 class="govuk-heading-l">Provider submission</h2>
+
+
+      <form class="form" action="claim-details-review?serviceAdjust=Yes#serviceID" method="post">
+
+        <table class="govuk-table">
+          <caption class="govuk-visually-hidden">Claimed costs summary</caption>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Work item</th>
+              <td class="govuk-table__cell">Attendance without counsel</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Date</th>
+              <td class="govuk-table__cell">1 Jan 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Fee earner</th>
+              <td class="govuk-table__cell">AB</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Time claimed</th>
+              <td class="govuk-table__cell">1 hours 0 minutes</td>
+            </tr>
+            
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Uplift claimed</th>
+              <td class="govuk-table__cell">0%</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Cost claimed</th>
+              <td class="govuk-table__cell">50.00</td>
+            </tr>
+          </tbody>
+        </table> 
+
+        <h2 class="govuk-heading-l">LAA adjustments</h2>
+
+        {{ govukRadios({
+          name: "workItem",
+          value: data['workItem'],
+          fieldset: {
+            legend: {
+              text: "Change work item (optional)",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Attendance with counsel",
+              text: "Attendance with counsel",
+              checked: checked('workItem','Attendance with counsel'),
+              hint: {
+                text: "£31.03 per hour"
+              }
+            },
+            {
+              value: "Attendance without counsel",
+              text: "Attendance without counsel",
+              checked: checked('workItem','Attendance without counsel') or 'Attendance without counsel',
+              hint: {
+                text: "£45.35 per hour"
+              }
+            },
+            {
+              value: "Preparation",
+              text: "Preparation",
+              checked: checked('workItem','Preparation'),
+              hint: {
+                text: "£45.35 per hour"
+              }
+            },
+            {
+              value: "Advocacy",
+              text: "Advocacy",
+              checked: checked('workItem','Advocacy'),
+              hint: {
+                text: "£56.89 per hour "
+              }
+            },
+            {
+              value: "Travel",
+              text: "Travel",
+              checked: checked('workItem','Travel'),
+              hint: {
+                text: "£24.00 per hour"
+              }
+            },
+            {
+              value: "Waiting",
+              text: "Waiting",
+              checked: checked('workItem','Waiting'),
+              hint: {
+                text: "£24.00 per hour"
+              }
+            }
+          ]
+        }) }}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="workTime-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              Change time claimed (optional)
+            </legend>
+            <div id="workTime-hint" class="govuk-hint">
+              For example, 1 hour and 30 minutes
+            </div>
+            <div class="govuk-date-input" id="workTime">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="workTime-hours">
+                    Hours
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="workTime-hours" name="workTime-hours" type="text" inputmode="numeric" value="{{data['workTime-hours'] or "1"}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="workTime-mins">
+                    Minutes
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="workTime-mins" name="workTime-mins" type="text" inputmode="numeric" value="{{data['workTime-mins'] or '0'}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukRadios({
+          name: "removeUplift",
+          value: data['removeUplift'],
+          fieldset: {
+            legend: {
+              text: "Remove the uplift for this item ",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes, remove uplift",
+              text: "Yes, remove uplift",
+              checked: checked('removeUplift','Yes, remove uplift'),
+              hint: {
+                text: "You must explain your decision "
+              }
+            },
+            {
+              value: "No, do not remove uplift",
+              text: "No, do not remove uplift",
+              checked: checked('removeUplift','No, do not remove uplift') or 'No, do not remove uplift'        
+            }
+          ]
+        }) }}
+
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Calculate my changes</button>
+
+       <!-- 
+        <h3 class="govuk-heading-l">
+          <span class="govuk-caption-m">Net cost allowed</span> £75.00
+        </h3>
+
+        -->
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Allowed cost</caption>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Cost claimed</th>
+              <th scope="col" class="govuk-table__header">Uplift allowed</th>
+              <th scope="col" class="govuk-table__header">Cost allowed</th>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">1 hours 0 minutes</td>
+              <td class="govuk-table__cell">0%</td>              
+              <td class="govuk-table__cell">£25.00</td>
+            </tr>
+          </tbody>
+        </table> 
+        
+
+
+        {{ govukTextarea({
+          name: "serviceAdjustField",
+          id: "serviceAdjustField",
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "For example, why you made changed the work type, changed the time spent or removed an uplift. We'll share this explanation with the provider."
+          }
+        }) }}
+
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save changes"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-details-adjust">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}

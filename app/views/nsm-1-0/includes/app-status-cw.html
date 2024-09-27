@@ -1,0 +1,61 @@
+{% if data['cwAppStatus'] == "Part granted"%}
+  <div class="govuk-inset-text">
+    <p><strong>Part granted </strong></p>
+    {% if data['partConfirm'] == null %}
+      <p>This application was part granted due to disallowed travel costs.</p>
+      {% else %}
+      <p>{{data['partConfirm']}}</p>
+    {% endif %}
+    </p><a href="claim-details-adjust-readonly" class="govuk-link--no-visited-state">View adjusted costs</a></p>
+  </div>
+  {% else %}
+  {% if data['cwAppStatus'] == "Rejected"%}
+    <div class="govuk-inset-text">
+      <p><strong>Rejected</strong></p>
+      {% if data['rejectedConfirm'] == null %}
+        <p>This application has been rejected as the correct form has not been used. Please use CRM5.</p>
+      {% else %}
+      <p>{{data['rejectedConfirm']}}</p>        
+      {% endif %}
+    </div>
+    {% else %}
+    {% if data['cwAppStatus'] == "Referred"%}
+      <div class="govuk-inset-text">
+        <p><strong>Referred</strong></p>
+        {% if data['referredConfirm'] == null %}
+          <p>Referred to ICA due to questions over the expert used and rates requested by provider.</p>
+          {% else %}
+          <p>{{data['referredConfirm']}}</p>
+        {% endif %}
+      </div>
+      {% else %}
+      {% if data['cwAppStatus'] == "Returned" %}
+       
+        <div class="govuk-inset-text">
+          <p><strong>Provider updated 20 Oct 2024 </strong></p>
+          <ul class="govuk-list">
+            <li>
+              <a href="#review-further-info2" class="govuk-link--no-visited-state">Further information</a>
+            </li>
+          </ul>
+        </div>
+        {% else %}
+        {% if data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Expired"%}
+          <div class="govuk-inset-text">
+            <p><strong>Sent back to provider 7 Oct 2024</strong></p>
+            <p>Further information: <br>
+               {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+            </p>            
+          </div>
+          {% else %}
+          {% if data['cwAppStatus'] == "Granted" %}
+            <div class="govuk-inset-text">
+              <p><strong>Granted</strong></p>
+              <p>{{data['grantedConfirm'] or "This is an optional comment from the caseworker"}}</p>        
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endif %}

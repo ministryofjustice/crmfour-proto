@@ -1,0 +1,660 @@
+{% extends "layouts/main.html" %}
+{% set version = "nsm-1-0" %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Work items- {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/{{version}}/add-another-work-items2" method="post">
+
+      {% set banner %}
+        {% if data['banner2'] =="5" %}
+          <h3 class="govuk-notification-banner__heading">You've added 21 work items</h3>
+          {% elseif data['banner2'] =="4" %}
+          <h3 class="govuk-notification-banner__heading">You've added 4 work items</h3>
+          {% elseif data['banner2'] =="3" %}
+          <h3 class="govuk-notification-banner__heading">You've added 3 work items</h3>
+          {% elseif data['banner2'] =="2" %}
+          <h3 class="govuk-notification-banner__heading">You've added 2 work items</h3>
+          {% elseif data['banner2'] =="1" %}
+          <h3 class="govuk-notification-banner__heading">You've added 1 work item</h3>
+        {% endif %}
+      {% endset %}
+
+      {% if data['banner2'] == Null or data['banner2'] =="0"  %}
+        {% else %}
+        {{ govukNotificationBanner({
+          html: banner,
+          type: "success"
+        }) }}
+      {% endif %}
+    
+      <h1 class="govuk-heading-l">What work item are you claiming for?</h1>
+
+      {% if data['add2'] == "4" %}
+        {{ govukRadios({
+          name: "workType4",
+          value: data['workType4'],
+          fieldset: {
+            legend: {
+              text: "Work type",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Attendance with counsel",
+              text: "Attendance with counsel",
+              checked: checked('workType4','Attendance with counsel'),
+              hint: {
+                text: "£31.03 per hour"
+              }
+            },
+            {
+              value: "Attendance without counsel",
+              text: "Attendance without counsel",
+              checked: checked('workType4','Attendance without counsel'),
+              hint: {
+                text: "£45.35 per hour"
+              }
+            },
+            {
+              value: "Preparation",
+              text: "Preparation",
+              checked: checked('workType4','Preparation'),
+              hint: {
+                text: "£45.35 per hour"
+              }
+            },
+            {
+              value: "Advocacy",
+              text: "Advocacy",
+              checked: checked('workType4','Advocacy'),
+              hint: {
+                text: "£56.89 per hour "
+              }
+            },
+            {
+              value: "Travel",
+              text: "Travel",
+              checked: checked('workType4','Travel'),
+              hint: {
+                text: "£24.00 per hour"
+              }
+            },
+            {
+              value: "Waiting",
+              text: "Waiting",
+              checked: checked('workType4','Waiting'),
+              hint: {
+                text: "£24.00 per hour"
+              }
+            }
+          ]
+        }) }}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" >
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              Time spent
+            </legend>
+            <div id="passport-issued-hint" class="govuk-hint">
+              For example, 1 hour and 30 minutes
+            </div>
+            <div class="govuk-date-input" id="otherNoHours4">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="otherNoHours4-hours">
+                    Hours
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours4-hours" name="otherNoHours4-hours" type="text" inputmode="numeric" value="{{data['otherNoHours4-hours']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="otherNoHours4-mins">
+                    Minutes
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours4-mins" name="otherNoHours4-mins" type="text" inputmode="numeric" value="{{data['otherNoHours4-mins']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="completionDate-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Completion date
+              </h1>
+            <div id="completionDate-hint" class="govuk-hint">
+              For example, 27 3 2024
+            </div>
+            <div class="govuk-date-input" id="completionDate4">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="completionDate4-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate4-day" name="completionDate4-day" type="text" inputmode="numeric" value="{{data['completionDate4-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="completionDate4-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate4-month" name="completionDate4-month" type="text" inputmode="numeric" value="{{data['completionDate4-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="completionDate4-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="completionDate4-year" name="completionDate4-year" type="text" inputmode="numeric" value="{{data['completionDate4-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s" for="feeEarner4">
+            Fee earner initials
+          </label>
+          <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner4" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner4']}}">
+        </div>
+
+        {% elseif data['add2'] == "3"%}
+
+          {{ govukRadios({
+            name: "workType3",
+            value: data['workType3'],
+            fieldset: {
+              legend: {
+                text: "Work type",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Attendance with counsel",
+                text: "Attendance with counsel",
+                checked: checked('workType3','Attendance with counsel'),
+                hint: {
+                  text: "£31.03 per hour"
+                }
+              },
+              {
+                value: "Attendance without",
+                text: "Attendance without counsel",
+                checked: checked('workType3','Attendance without counsel'),
+                hint: {
+                  text: "£45.35 per hour"
+                }
+              },
+              {
+                value: "Preparation",
+                text: "Preparation",
+                checked: checked('workType3','Preparation'),
+                hint: {
+                  text: "£45.35 per hour"
+                }
+              },
+              {
+                value: "Advocacy",
+                text: "Advocacy",
+                checked: checked('workType3','Advocacy'),
+                hint: {
+                  text: "£56.89 per hour "
+                }
+              },
+              {
+                value: "Travel",
+                text: "Travel",
+                checked: checked('workType3','Travel'),
+                hint: {
+                  text: "£24.00 per hour"
+                }
+              },
+              {
+                value: "Waiting",
+                text: "Waiting",
+                checked: checked('workType3','Waiting'),
+                hint: {
+                  text: "£24.00 per hour"
+                }
+              }
+            ]
+          }) }}
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Time spent
+              </legend>
+              <div id="passport-issued-hint" class="govuk-hint">
+                For example, 1 hour and 30 minutes
+              </div>
+              <div class="govuk-date-input" id="otherNoHours3">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours3-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours3-hours" name="otherNoHours3-hours" type="text" inputmode="numeric" value="{{data['otherNoHours3-hours']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours3-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours3-mins" name="otherNoHours3-mins" type="text" inputmode="numeric" value="{{data['otherNoHours3-mins']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="completionDate-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  Completion date
+                </h1>
+              <div id="completionDate-hint" class="govuk-hint">
+                For example, 27 3 2024
+              </div>
+              <div class="govuk-date-input" id="completionDate3">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate3-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate3-day" name="completionDate3-day" type="text" inputmode="numeric" value="{{data['completionDate3-day']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate3-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate3-month" name="completionDate3-month" type="text" inputmode="numeric" value="{{data['completionDate3-month']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate3-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="completionDate3-year" name="completionDate3-year" type="text" inputmode="numeric" value="{{data['completionDate3-year']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="feeEarner3">
+              Fee earner initials
+            </label>
+            <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner3" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner3']}}">
+          </div>
+
+        {% elseif data['add2'] == "2"%}
+
+          {{ govukRadios({
+            name: "workType2",
+            value: data['workType2'],
+            fieldset: {
+              legend: {
+                text: "Work type",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Attendance with counsel",
+                text: "Attendance with counsel",
+                checked: checked('workType2','Attendance with counsel'),
+                hint: {
+                  text: "£31.03 per hour"
+                }
+              },
+              {
+                value: "Attendance without counsel",
+                text: "Attendance without counsel",
+                checked: checked('workType2','Attendance without counsel'),
+                hint: {
+                  text: "£45.35 per hour"
+                }
+              },
+              {
+                value: "Preparation",
+                text: "Preparation",
+                checked: checked('workType2','Preparation'),
+                hint: {
+                  text: "£45.35 per hour"
+                }
+              },
+              {
+                value: "Advocacy",
+                text: "Advocacy",
+                checked: checked('workType2','Advocacy'),
+                hint: {
+                  text: "£56.89 per hour "
+                }
+              },
+              {
+                value: "Travel",
+                text: "Travel",
+                checked: checked('workType2','Travel'),
+                hint: {
+                  text: "£24.00 per hour"
+                }
+              },
+              {
+                value: "Waiting",
+                text: "Waiting",
+                checked: checked('workType2','Waiting'),
+                hint: {
+                  text: "£24.00 per hour"
+                }
+              }
+            ]
+          }) }}
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Time spent
+              </legend>
+              <div id="passport-issued-hint" class="govuk-hint">
+                For example, 1 hour and 30 minutes
+              </div>
+              <div class="govuk-date-input" id="otherNoHours2">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours2-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours2-hours" name="otherNoHours2-hours" type="text" inputmode="numeric" value="{{data['otherNoHours2-hours']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours2-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours2-mins" name="otherNoHours2-mins" type="text" inputmode="numeric" value="{{data['otherNoHours2-mins']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="completionDate-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  Completion date
+                </h1>
+              <div id="completionDate-hint" class="govuk-hint">
+                For example, 27 3 2024
+              </div>
+              <div class="govuk-date-input" id="completionDate2">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate2-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate2-day" name="completionDate2-day" type="text" inputmode="numeric" value="{{data['completionDate2-day']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate2-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate2-month" name="completionDate2-month" type="text" inputmode="numeric" value="{{data['completionDate2-month']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate2-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="completionDate2-year" name="completionDate2-year" type="text" inputmode="numeric" value="{{data['completionDate2-year']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="feeEarner2">
+              Fee earner initials
+            </label>
+            <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner2" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner2']}}">
+          </div>
+
+        {% else %}
+
+          {{ govukRadios({
+            name: "workType1",
+            value: data['workType1'],
+            fieldset: {
+              legend: {
+                text: "Work type",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Attendance with counsel",
+                text: "Attendance with counsel",
+                checked: checked('workType1','Attendance with counsel'),
+                hint: {
+                  text: "£31.03 per hour"
+                }
+              },
+              {
+                value: "Attendance without counsel",
+                text: "Attendance without counsel",
+                checked: checked('workType1','Attendance without counsel'),
+                hint: {
+                  text: "£45.35 per hour"
+                }
+              },
+              {
+                value: "Preparation",
+                text: "Preparation",
+                checked: checked('workType1','Preparation'),
+                hint: {
+                  text: "£45.35 per hour"
+                }
+              },
+              {
+                value: "Advocacy",
+                text: "Advocacy",
+                checked: checked('workType1','Advocacy'),
+                hint: {
+                  text: "£56.89 per hour"
+                }
+              },
+              {
+                value: "Travel",
+                text: "Travel",
+                checked: checked('workType1','Travel'),
+                hint: {
+                  text: "£24.00 per hour"
+                }
+              },
+              {
+                value: "Waiting",
+                text: "Waiting",
+                checked: checked('workType1','Waiting'),
+                hint: {
+                  text: "£24.00 per hour"
+                }
+              }
+            ]
+          }) }}
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Time spent
+              </legend>
+              <div id="passport-issued-hint" class="govuk-hint">
+                For example, 1 hour and 30 minutes
+              </div>
+              <div class="govuk-date-input" id="otherNoHours1">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-hours" name="otherNoHours1-hours" type="text" inputmode="numeric" value="{{data['otherNoHours1-hours']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-mins" name="otherNoHours1-mins" type="text" inputmode="numeric" value="{{data['otherNoHours1-mins']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="completionDate-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  Completion date
+                </h1>
+              <div id="completionDate-hint" class="govuk-hint">
+                For example, 27 3 2024
+              </div>
+              <div class="govuk-date-input" id="completionDate1">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate1-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate1-day" name="completionDate1-day" type="text" inputmode="numeric" value="{{data['completionDate1-day']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate1-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate1-month" name="completionDate1-month" type="text" inputmode="numeric" value="{{data['completionDate1-month']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate1-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="completionDate1-year" name="completionDate1-year" type="text" inputmode="numeric" value="{{data['completionDate1-year']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="feeEarner1">
+              Fee earner initials
+            </label>
+            <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner1" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner1']}}">
+          </div>
+      {% endif %}
+
+      <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">
+        Update calculation
+      </button> 
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Calculations</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Net cost claimed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">£</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" >
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--m">
+            Do you need to add another work item?
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="add-another">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="add-another-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+
+{% endblock %}
+
