@@ -53,22 +53,22 @@ router.post('/question3-add-add', function(request, response) {
 
   var addAdd = request.session.data['addAdd']
   if (addAdd == "No"){
-      response.redirect('/' + version + "/provider/form/question3-quote-summary?addAdd=No")
+      response.redirect('/' + version + "/provider/form/question3-quote-summary?addAdd=no")
   } 
   if (addAdd == "Yes"){
-      response.redirect('/' + version + "/provider/form/question3-quote-add?addAdd=Yes&addCost=1")
+      response.redirect('/' + version + "/provider/form/question3-quote-add?addAdd=yes&addCost=1")
   }
 })
 
 //Additional items summary (Section3)
-router.post('/question3-quote-add-summary0', function(request, response) {
+router.post('/question3-quote-add-summary', function(request, response) {
 
   var quoteAddOther = request.session.data['quoteAddOther']
   if (quoteAddOther == "No"){
-      response.redirect('/' + version + "/provider/form/question3-quote-summary")
+      response.redirect('/' + version + "/provider/form/question3-quote-summary?deleteAddBanner=no")
   } 
   if (quoteAddOther == "Yes"){
-      response.redirect('/' + version + "/provider/form/question3-quote-add?addCost=1&addShow=")
+      response.redirect('/' + version + "/provider/form/question3-quote-add?deleteAddBanner=no")
   }
 })
 
@@ -80,7 +80,7 @@ router.post('/question3-quote-add-summary1', function(request, response) {
       response.redirect('/' + version + "/provider/form/question3-quote-summary")
   } 
   if (quoteAddOther == "Yes"){
-      response.redirect('/' + version + "/provider/form/question3-quote-add?addCost=2&addShow=2")
+      response.redirect('/' + version + "/provider/form/question3-quote-add?addCost=2&showAdd=2")
   }
 })
 
