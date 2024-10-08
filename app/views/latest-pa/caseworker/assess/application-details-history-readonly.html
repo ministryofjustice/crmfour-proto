@@ -91,7 +91,7 @@
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">7 Nov 2023 <br>01:43pm</td>
             <td class="govuk-table__cell">{{data['caseworker1']}}</td>
-            <td class="govuk-table__cell"><strong>Self assigned by {{data['caseworker1']}}</strong><br>The magistrate on this case requested this application</td>
+            <td class="govuk-table__cell"><strong>Self-assigned by {{data['caseworker1']}}</strong><br>The magistrate on this case requested this application</td>
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">7 Nov 2023 <br>11:02am</td>
@@ -112,34 +112,7 @@
         </tbody>
       </table>
 
-      {{ mojPagination({
-        items: [{
-          text: '1',
-          href: '#',
-          selected: true
-        }, {
-          text: '2',
-          href: '#',
-          selected: false
-        }, {
-          text: '3',
-          href: '#'
-        }, {
-          type: 'dots'
-        }, {
-          text: '5',
-          href: '#'
-        }],
-        results: {
-          count: 6,
-          from: 1,
-          to: 5,
-          text: 'pages'
-        },
-        next: {
-          text: 'Next'
-        }
-      }) }}        
+      {% include "includes/pagination.html"%}      
 
     </div>
 
