@@ -1,7 +1,14 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
-{% set activePrimeNav = [true, false, false, false] %}
-
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
 
 {% block header %}
   {% include version + "/includes/header-cw.html"%}
@@ -24,8 +31,11 @@
 
 {% block content %}
 
-<div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+      <h1 class="govuk-heading-xl">Make a decision</h1>
 
       <form class="form" action="decision-sent" method="post">
 
@@ -34,11 +44,8 @@
             name: "grantedConfirm",
             id: "grantedConfirm",
             label: {
-              text: "Enter additional comments (optional)",
+              text: "Additional comments for the provider (optional)",
               isPageHeading: false
-            },
-            hint: {
-            text: "We'll share this information with the provider"
             }
           }) }}    
         {% endset %}
@@ -48,11 +55,8 @@
             name: "partConfirm",
             id: "partConfirm",
             label: {
-              text: "Explain your decision",
+              text: "Additional comments for the provider (optional)",
               isPageHeading: false
-            },
-            hint: {
-            text: "We'll share this information with the provider"
             }
           }) }}    
         {% endset %}
@@ -62,11 +66,8 @@
             name: "rejectedConfirm",
             id: "rejectedConfirm",
             label: {
-              text: "Explain your decision",
+              text: "Provide detailed reasons for rejecting this application",
               isPageHeading: false
-            },
-            hint: {
-            text: "We'll share this information with the provider"
             }
           }) }}    
         {% endset %}
@@ -75,15 +76,18 @@
           name: "cwAppStatus",
           fieldset: {
             legend: {
-              text: "Make a decision",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              text: "What is the outcome of your assessment?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
             }
+          },
+          hint: {
+            text: "Your decision and any relevant information will be sent to the provider."
           },
           items: [
             {
               value: "Granted",
-              text: "Grant",
+              text: "Granted",
               checked: checked("cwAppStatus", "Granted"),
               conditional: {
                 html: grantedHtml
@@ -91,7 +95,7 @@
             },
             {
               value: "Part granted",
-              text: "Part grant",
+              text: "Part granted",
               checked: checked("cwAppStatus", "Part granted"),
               conditional: {
                 html: partGrantedHtml
@@ -99,7 +103,7 @@
             },
             {
               value: "Rejected",
-              text: "Reject",
+              text: "Rejected",
               checked: checked("cwAppStatus", "Rejected"),
               conditional: {
                 html: rejectedHtml
