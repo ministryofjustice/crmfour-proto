@@ -26,70 +26,70 @@
 {% endblock %}
 
 {% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
 
-    {% include version +"/includes/app-info-cw.html"%}
+      {% include version +"/includes/app-info-cw.html"%}
 
-    <!-- Nav -->
-    {% if data['serviceAdjust'] == "Yes" %}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details',
-          active: true
-        }, 
-        {
-          text: 'Review and adjust',
-          href: 'claim-details-review',
-          active: false
-        }, 
-        {
-          text: 'Adjusted costs',
-          href: 'claim-details-adjust',
-          active: false
-        }, 
-        {
-          text: 'Supporting evidence',
-          href: '',
-          active: false
-        }, 
-        {
-          text: 'Claim history',
-          href: '',
-          active: false
-        }]
-      }) }}
-      {% else %}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details',
-          active: true
-        }, 
-        {
-          text: 'Review and adjust',
-          href: 'claim-details-review',
-          active: false
-        }, 
-        {
-          text: 'Supporting evidence',
-          href: '',
-          active: false
-        }, 
-        {
-          text: 'Claim history',
-          href: '',
-          active: false
-        }]
-      }) }}
-    {% endif %}
+      <!-- Nav -->
+      {% if data['serviceAdjust'] == "Yes" %}
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: 'claim-details',
+            active: true
+          }, 
+          {
+            text: 'Review and adjust',
+            href: 'claim-details-review',
+            active: false
+          }, 
+          {
+            text: 'Adjusted costs',
+            href: 'claim-details-adjust',
+            active: false
+          }, 
+          {
+            text: 'Supporting evidence',
+            href: '',
+            active: false
+          }, 
+          {
+            text: 'Claim history',
+            href: 'claim-details-history',
+            active: false
+          }]
+        }) }}
+        {% else %}
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: 'claim-details',
+            active: true
+          }, 
+          {
+            text: 'Review and adjust',
+            href: 'claim-details-review',
+            active: false
+          }, 
+          {
+            text: 'Supporting evidence',
+            href: '',
+            active: false
+          }, 
+          {
+            text: 'Claim history',
+            href: 'claim-details-history',
+            active: false
+          }]
+        }) }}
+      {% endif %}
+    </div>
   </div>
-</div>
 
- <div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
       <h2 class="govuk-heading-l">Overview</h2>

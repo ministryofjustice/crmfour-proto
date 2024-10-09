@@ -1,0 +1,184 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Application history – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version + "/includes/nav-prime-cw.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include version +"/includes/app-info-cw.html" %}
+
+      <!-- Nav -->
+      {% if data['serviceAdjust'] == "Yes" %}
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: 'claim-details',
+            active: false
+          }, 
+          {
+            text: 'Review and adjust',
+            href: 'claim-details-review',
+            active: false
+          }, 
+          {
+            text: 'Adjusted costs',
+            href: 'claim-details-adjust',
+            active: false
+          }, 
+          {
+            text: 'Supporting evidence',
+            href: '',
+            active: false
+          }, 
+          {
+            text: 'Claim history',
+            href: 'claim-details-history',
+            active: true
+          }]
+        }) }}
+        {% else %}
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: 'claim-details',
+            active: false
+          }, 
+          {
+            text: 'Review and adjust',
+            href: 'claim-details-review',
+            active: false
+          }, 
+          {
+            text: 'Supporting evidence',
+            href: '',
+            active: false
+          }, 
+          {
+            text: 'Claim history',
+            href: 'claim-details-history',
+            active: true
+          }]
+        }) }}
+      {% endif %}
+    </div>
+  </div>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h2 class="govuk-heading-m">Claim history</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Date</th>
+            <th scope="col" class="govuk-table__header">Caseworker</th>
+            <th scope="col" class="govuk-table__header">Update</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">14 Nov 2023 <br>04:00pm</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell"><strong>Received</strong><br>Received from Provider with further information</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">14 Nov 2023 <br>09:14am</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell"><strong>Sent back</strong><br>Sent back to Provider for further information</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">13 Nov 2023 <br>03:23</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell"><strong>Received</strong><br>Received from Provider with further information.</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">10 Nov 2023 <br>01:47pm</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell"><strong>Sent back</strong><br>Sent back to Provider for further information.</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">7 Nov 2023 <br>01:43pm</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell"><strong>Self-assigned by {{data['caseworker1']}}</strong><br>The magistrate on this case requested this claim</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">7 Nov 2023 <br>11:02am</td>
+            <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+            <td class="govuk-table__cell"><strong>Unassigned by {{data['caseworker2']}}</strong><br>Unable to assess as the claim is Prison Law
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">7 Mar 2023 <br>11:01am</td>
+            <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+            <td class="govuk-table__cell"><strong>Assigned to {{data['caseworker2']}}</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">5 Mar 2023 <br>09:00</td>
+            <td class="govuk-table__cell">N/A</td>
+            <td class="govuk-table__cell"><strong>Received</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      {% include "includes/pagination.html"%}
+
+      <div class="history-input">
+        <form class="form" action="" method="post">
+
+          {{ govukTextarea({
+            name: "moreDetail",
+            id: "more-detail",
+            classes: "govuk-!-width-three-quarters",
+            label: {
+              text: "Add a note to the claim history (optional)",
+              classes: "govuk-label--m",
+              isPageHeading: false
+            },
+            hint: {
+              text: "This information is for internal use only"
+            }
+          }) }}
+
+          {{ govukButton({
+            text: "Add to claim history"
+          }) }}
+
+        </form>
+      </div>
+
+      {% if data ['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Review"%}
+        {% else %}
+        {% include version +"/includes/claim-buttons.html"%}
+      {% endif %}
+
+    </div>
+
+  </div>
+
+{% endblock %}

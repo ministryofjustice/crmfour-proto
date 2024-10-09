@@ -22,15 +22,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% if data['cwAppStatus'] == "In progress"%}
-    {% include version +"/includes/nav-prime-cw.html"%}
-    {% else %}
-    {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
-      {% include version +"/includes/nav-prime-cw.html"%}
-      {% else %}
-      {% include version +"/includes/nav-prime-cw.html"%}
-    {% endif %}
-  {% endif %}
+  {% include version +"/includes/nav-prime-cw.html"%}
 {% endblock %}
 
 {% block content %}
@@ -79,7 +71,7 @@
       }, 
       {
         text: 'Claim history',
-        href: '',
+        href: 'claim-details-history',
         active: false
       }]
     }) }}
