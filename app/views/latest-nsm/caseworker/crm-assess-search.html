@@ -1,6 +1,7 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-nsm" %}
 {% set activePrimeNav = [false, false, false, true] %}
+{% set activeSubNav = [true, false, false] %}
 
 {% block header %}
   {% include version +"/includes/header-cw.html"%}
@@ -23,7 +24,8 @@
     <h1 class="govuk-heading-xl">
       Search for a claim
     </h1>
-    <p>Enter at least one field to search</p>
+    
+    <p>Enter details in at least one field to search for a claim</p>
   </div>
 </div>
 
@@ -33,91 +35,87 @@
 
       <div class="govuk-form-group govuk-!-width-two-thirds" role="search">
         <h2 class="govuk-label-wrapper">
-          <label class="govuk-label govuk-label--m" for="filterSearch">
-            Claim details
+          <label class="govuk-label govuk-label--s" for="filterSearch">
+            Enter any combination of client or firm name, UFN or LAA reference
           </label>
         </h2>
-        <div id="search-hint" class="govuk-hint">
-         Search for a defendant name, firm name, UFN or LAA reference
-        </div>
-        <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-describedby="search-hint" aria-description="Search will filter the table of users">
-        
+        <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Search will filter the table of users">
       </div>
 
-      <h2 class="govuk-heading-m">
-          Filter your search criteria
-      </h2>
+      {% call govukFieldset({
+        legend: {
+          text: "Submission date",
+          classes: "govuk-fieldset__legend--s",
+          isPageHeading: false
+        }
+        }) %}
 
-      <div id="date-filters" class="govuk-date-input">
-        <div class="govuk-date-input__item">
-          {{ govukDateInput({
-            id: "filter-date-from",
-            namePrefix: "filter-date-from",
-            fieldset: {
-              legend: {
-                text: "Date submitted from",
-                isPageHeading: false
-                
-              }
-            }
-          }) }}
-        </div>
-        <div class="govuk-date-input__item">
-          {{ govukDateInput({
-            id: "filter-date-to",
-            namePrefix: "filter-date-to",
-            fieldset: {
-              legend: {
-                text: "Date submitted to",
-                isPageHeading: false
-              }
-            }
-          }) }}
-        </div>
-      </div>
+        <p>
+         Enter a start date, end date or both, for example, 17/5/2024
+        </p>
 
-      <div id="date-filters" class="govuk-date-input">
-        <div class="govuk-date-input__item">
-          {{ govukDateInput({
-            id: "filter-date-from",
-            namePrefix: "filter-date-from",
-            fieldset: {
-              legend: {
-                text: "Last updated from",
-                isPageHeading: false
-              }
-            }
-          }) }}
-        </div>
-        <div class="govuk-date-input__item">
-          {{ govukDateInput({
-            id: "filter-date-to",
-            namePrefix: "filter-date-to",
-            fieldset: {
-              legend: {
-                text: "Last updated to",
-                isPageHeading: false
-              }
-            }
-          }) }}
-        </div>
-      </div>
-
-      <div id="filters" class="govuk-date-input">
-
-        <div class="govuk-date-input__item">
-          <div class="govuk-form-group">
-            <label class="govuk-label" for="sort">
-              Risk
-            </label>
-            <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
-              <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
-              <option value="High" onclick="filterSelection('High')">High</option>
-              <option value="Medium" onclick="filterSelection('Medium')">Medium</option>
-              <option value="Low" onclick="filterSelection('Low')">Low</option>
-            </select>
+        <div id="date-filters" class="govuk-date-input">
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker" data-module="moj-date-picker">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="sub-date-from">
+                  Submission date from
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="sub-date-from" name="sub-date-from" type="text" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker " data-module="moj-date-picker">
+              <div class="govuk-form-group govuk-date-input__item">
+                <label class="govuk-label" for="sub-date-to">
+                  Submission date to
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="sub-date-to" name="sub-date-to" type="text"  autocomplete="off">
+              </div>
+            </div>
           </div>
         </div>
+      {% endcall %}
+
+      {% call govukFieldset({
+        legend: {
+          text: "Last updated date",
+          classes: "govuk-fieldset__legend--s",
+          isPageHeading: false
+        }
+        }) %}
+
+        <p>
+          Enter a start date, end date or both, for example, 17/5/2024
+        </p>
+
+        <div id="date-filters" class="govuk-date-input">
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker" data-module="moj-date-picker">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="last-date-from">
+                  Last updated from
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="last-date-from" name="last-date-from" type="text" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker" data-module="moj-date-picker">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="last-date-to">
+                  Last updated to
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="last-date-to" name="last-date-to" type="text"  autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {% endcall %}
+
+      <div id="filters" class="govuk-date-input">
 
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
@@ -295,7 +293,7 @@
     } else {
       searchResult.style.display = "inline";
     }
-    window.location='#resultsTable2'
+     window.location='#resultsTable2'
   } 
 
   //Search that filters rows in a table
