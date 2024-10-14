@@ -179,13 +179,13 @@ router.post('/question-claimType', function(request, response) {
 
     var claimType = request.session.data['claimType']
     if (claimType == "Breach of injunction"){
-        response.redirect('/' + version + "/provider/form/task-list?question-claimType=complete&stage=PROG")
+        response.redirect('/' + version + "/provider/form/question-claim-injunct") 
     } 
     if (claimType == "Non-standard magistrates' court payment"){
-        response.redirect('/' + version + "/provider/form/question-stageProvider?question-claimType=complete")
+        response.redirect('/' + version + "/provider/form/question-claim-nsm")
     }
     if (claimType == "Supplemental claim"){
-        response.redirect('/' + version + "/provider/form/supplemental")
+        response.redirect('/' + version + "/provider/form/question-claim-supplemental")
     }
 })
 
