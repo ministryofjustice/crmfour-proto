@@ -120,6 +120,18 @@
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <label class="govuk-label govuk-label--s" for="sort">
+              Claim value
+            </label>
+            <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
+              <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
+              <option value="Not" onclick="filterSelection('highValue')">High value</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="sort">
               Status
             </label>
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
@@ -136,7 +148,7 @@
           </div>
         </div>
 
-         <div class="govuk-date-input__item">
+        <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <label class="govuk-label govuk-label--s" for="sort">
               Caseworker
@@ -149,7 +161,8 @@
               <option value="Hussein" onclick="filterSelection('Hussein')">Ishmale Hussein</option>
             </select>
           </div>
-        </div>
+        </div>      
+
       </div>
 
       <div class="govuk-button-group">
@@ -174,18 +187,16 @@
             <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
             <th scope="col" class="govuk-table__header">Caseworker</th>
             <th scope="col" class="govuk-table__header" aria-sort="descending">Last updated</th>
-            <th scope="col" class="govuk-table__header" aria-sort="none">Risk</th>
             <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">                
-          <tr class="govuk-table__row hideTR all part-granted Medium">
+          <tr class="govuk-table__row hideTR all part-granted Medium highValue">
             <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f7w&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
             <td class="govuk-table__cell">Law Fans</td>
             <td class="govuk-table__cell">Roger Catapult</td>
             <td class="govuk-table__cell">Not assigned</td>
             <td class="govuk-table__cell" data-sort-value="231121">21 Nov 2023</td>
-            <td class="govuk-table__cell">Medium</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Part granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all none Not Medium">
@@ -194,7 +205,6 @@
             <td class="govuk-table__cell">Jamie Innes</td>
             <td class="govuk-table__cell">Not assigned</td>
             <td class="govuk-table__cell" data-sort-value="231011">11 Oct 2023</td>
-            <td class="govuk-table__cell">Medium</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not assigned</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all none Not Medium">
@@ -203,7 +213,6 @@
             <td class="govuk-table__cell">Dami Olu</td>
             <td class="govuk-table__cell">Not assigned</td>
             <td class="govuk-table__cell" data-sort-value="230913">13 Sept 2023</td>
-            <td class="govuk-table__cell">Medium</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not assigned</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all Granted Wolf Medium">
@@ -212,7 +221,6 @@
             <td class="govuk-table__cell">Bobby Brownie</td>
             <td class="govuk-table__cell">{{data['caseworker1']}}</td>
             <td class="govuk-table__cell" data-sort-value="230801">1 Aug 2023</td>
-            <td class="govuk-table__cell">Medium</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all none Not Low">
@@ -221,16 +229,14 @@
             <td class="govuk-table__cell">Ishia Melta</td>
             <td class="govuk-table__cell">Not assigned</td>
             <td class="govuk-table__cell" data-sort-value="230903">3 Sept 2023</td>
-            <td class="govuk-table__cell">Low</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not assigned</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all in-progress Wolf High">
+          <tr class="govuk-table__row hideTR all in-progress Wolf High highValue">
             <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-2d9t4j&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
             <td class="govuk-table__cell">Boss Lawyers Inc</td>
             <td class="govuk-table__cell">Arnie Swartz</td>
             <td class="govuk-table__cell">{{data['caseworker1']}}</td>
             <td class="govuk-table__cell" data-sort-value="230414">14 April 2023</td>
-            <td class="govuk-table__cell">High</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">In progress</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all auto-granted Justice Medium">
@@ -239,7 +245,6 @@
             <td class="govuk-table__cell">Bob Holness</td>
             <td class="govuk-table__cell">{{data['caseworker2']}}</td>
             <td class="govuk-table__cell" data-sort-value="230902">2 Sept 2023</td>
-            <td class="govuk-table__cell">Medium</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Auto granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all rejected Hussein Low">
@@ -248,7 +253,6 @@
             <td class="govuk-table__cell">Melanie Longname Griffins</td>
             <td class="govuk-table__cell">{{data['caseworker3']}}</td>
             <td class="govuk-table__cell" data-sort-value="230631">31 June 2023</td>
-            <td class="govuk-table__cell">Low</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Rejected</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all cancelled Not Low">
@@ -257,7 +261,6 @@
             <td class="govuk-table__cell">Alecia Pink</td>
             <td class="govuk-table__cell">Not assigned</td>
             <td class="govuk-table__cell" data-sort-value="230410">10 Apr 2023</td>
-            <td class="govuk-table__cell">Low</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all sent-back Not High">
@@ -266,7 +269,6 @@
             <td class="govuk-table__cell">Simone Gutter</td>
             <td class="govuk-table__cell">Not assigned</td>
             <td class="govuk-table__cell" data-sort-value="230321">21 Mar 2023</td>
-            <td class="govuk-table__cell">High</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Sent back</strong></td>
           </tr>
         </body>
