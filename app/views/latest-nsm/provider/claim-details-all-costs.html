@@ -25,22 +25,28 @@
   {% include version +"/includes/app-status-provider.html"%}
   <div class="govuk-grid-column-full" id="nav">
 
+    <!--2nd nav-->
     {% if data['app-task'] =="Part granted"%}
       {{ mojSubNavigation({
         label: 'Sub navigation',
         items: [{
           text: 'Overview',
           href: 'claim-details#nav',
-          active: false
-        }, 
-        {
-          text: 'Claimed costs',
-          href: 'all-costs#costs#nav',
           active: true
         }, 
         {
+          text: 'Claimed costs',
+          href: 'claim-details-all-costs#nav',
+          active: false
+        }, 
+        {
           text: 'Adjusted costs',
-          href: 'adjusted-costs#nav',
+          href: 'claim-details-adjusted-costs#nav',
+          active: false
+        }, 
+        {
+          text: 'Claim history',
+          href: 'claim-history#nav',
           active: false
         }
         ]
@@ -51,16 +57,21 @@
         items: [{
           text: 'Overview',
           href: 'claim-details#nav',
-          active: false
+          active: true
         }, 
         {
           text: 'Claimed costs',
-          href: 'all-costs#costs#nav',
-          active: true
+          href: 'claim-details-all-costs#nav',
+          active: fal
+        }, 
+        {
+          text: 'Claim history',
+          href: 'claim-history#nav',
+          active: false
         }
         ]
       }) }}
-    {% endif %}
+    {% endif%}
     <h2 class="govuk-heading-l">Claimed costs</h2>
 
     <!--Cost summary -->
