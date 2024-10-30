@@ -28,10 +28,27 @@
     </h1>  
   </div>
 
-  <!--Status of claim-->
+  <!--Status of application-->
   {% include version + "/includes/app-status-provider.html" %}
 
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full" id="nav">
+
+     <!--2nd nav-->
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [{
+        text: 'Overview',
+        href: 'application-details#nav',
+        active: true
+      }, 
+      {
+        text: 'Application history',
+        href: 'application-details-history#nav',
+        active: false
+      }
+      ]
+    }) }}
+
     <h2 class="govuk-heading-l">Overview</h2>
 
     {% if data['app-task'] == "Returned" %}
