@@ -32,60 +32,60 @@
       {% include version +"/includes/app-info-cw.html"%}
 
       <!-- Nav -->
-    {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details-readonly',
-          active: true
-        }, 
-        {
-          text: 'Review and adjust',
-          href: 'claim-details-review-readonly',
-          active: false
-        }, 
-        {
-          text: 'Adjusted costs',
-          href: 'claim-details-adjust-readonly',
-          active: false
-        }, 
-        {
-          text: 'Supporting evidence',
-          href: '',
-          active: false
-        }, 
-        {
-          text: 'Claim history',
-          href: 'claim-details-history',
-          active: false
-        }]
-      }) }}
-      {% else %}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details',
-          active: true
-        }, 
-        {
-          text: 'Review and adjust',
-          href: 'claim-details-review',
-          active: false
-        },
-        {
-          text: 'Supporting evidence',
-          href: '',
-          active: false
-        }, 
-        {
-          text: 'Claim history',
-          href: 'claim-details-history',
-          active: false
-        }]
-      }) }}
-    {% endif %}
+      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: 'claim-details-readonly',
+            active: true
+          }, 
+          {
+            text: 'Review and adjust',
+            href: 'claim-details-review-readonly',
+            active: false
+          }, 
+          {
+            text: 'Adjusted costs',
+            href: 'claim-details-adjust-readonly',
+            active: false
+          }, 
+          {
+            text: 'Supporting evidence',
+            href: '',
+            active: false
+          }, 
+          {
+            text: 'Claim history',
+            href: 'claim-details-history',
+            active: false
+          }]
+        }) }}
+        {% else %}
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [{
+            text: 'Overview',
+            href: 'claim-details',
+            active: true
+          }, 
+          {
+            text: 'Review and adjust',
+            href: 'claim-details-review',
+            active: false
+          },
+          {
+            text: 'Supporting evidence',
+            href: '',
+            active: false
+          }, 
+          {
+            text: 'Claim history',
+            href: 'claim-details-history',
+            active: false
+          }]
+        }) }}
+      {% endif %}
     </div>
   </div>
 
@@ -587,6 +587,25 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 No
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <!---Declaration -->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Declaration</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Submission legal representative
+              </dt>
+              <dd class="govuk-summary-list__value">
+              Joe Bloggs<br>
               </dd>
             </div>
           </dl>
