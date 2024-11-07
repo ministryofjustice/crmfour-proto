@@ -39,68 +39,81 @@
           </li>
         </ul>
       </div>
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              LAA reference
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['laa-ref'] or "LAA-5a7d3c"}}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Unique file number
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['ufnNSM'] or "100323/234"}}
-            </dd>
-          </div>
-           <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Type of claim
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{ data['claimType'] or "Non-standard magistrates' court payment" }}
-            </dd>
-          </div>
-          {% if data['claimType'] =="Breach of injunction" %}
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Claim details</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                CNTP (contempt) number
+                LAA reference
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['contemptNumber'] or "12345678" }}
+                {{data['laa-ref'] or "LAA-5a7d3c"}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Date of CNTP representation order
+                Unique file number
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['dateContempt-day'] or "19" }} April {{data['dateContempt-year'] or "2023" }}
+                {{data['ufnNSM'] or "100323/234"}}
               </dd>
             </div>
-            {% else %}
+              <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Type of claim
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{ data['claimType'] or "Non-standard magistrates' court payment" }}
+              </dd>
+            </div>
+            {% if data['claimType'] =="Breach of injunction" %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  CNTP (contempt) number
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['contemptNumber'] or "12345678" }}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Date of CNTP representation order
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['dateContempt-day'] or "19" }} April {{data['dateContempt-year'] or "2023" }}
+                </dd>
+              </div>
+              {% else %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Date of representation order
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['rep-order-day'] or "19" }} April {{data['rep-order-year'] or "2023" }}
+                </dd>
+              </div>
+            {% endif %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Date of representation order
+                Stage reached
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['rep-order-day'] or "19" }} April {{data['rep-order-year'] or "2023" }}
+                {{data['stage'] or "PROM" }}
               </dd>
             </div>
-          {% endif %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Stage reached
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['stage'] or "PROM" }}
-            </dd>
-          </div>
-        </dl>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Firm account number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['org-acc'] or "1A3B23E4" }}
+              </dd>
+            </div>
+          </dl>
+        </div>
       </div>
     </div>
 
@@ -109,11 +122,6 @@
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Your details</h3>
-        <ul class="govuk-summary-card__actions">
-          <li class="govuk-summary-card__action">
-            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> your details</span></a>
-          </li>
-        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
@@ -127,14 +135,6 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Firm account number
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['org-acc'] or "1A3B23E4" }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
               Firm address
             </dt>
             <dd class="govuk-summary-list__value">
@@ -142,6 +142,14 @@
               Address line 2<br>
               Town or city<br>
               Postcode
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Firm VAT registered
+            </dt>
+            <dd class="govuk-summary-list__value">
+              No
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -162,7 +170,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Alternative contact full name
+              Contact full name
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['contact-first-name'] or "Gemma" }} {{data['contact-last-name'] or "Smith" }}
@@ -170,7 +178,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-               Alternative contact email address
+               Contact email address
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['contact-email'] or "gemme.smith@law.com" }}
