@@ -175,6 +175,28 @@
       
     {% endset %}
 
+    {% set additionalFeesHtml %}
+      <h3 class="govuk-heading-m">Additional fees</h3>
+      <!--<p>There are no adjusted letters and calls</p>-->
+      <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Adjusted additional fees</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Fee type</th>
+            <th class="govuk-table__header" scope="col">Reason for adjustment</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="additionalFee">Youth court fee</a></th>
+            <td class="govuk-table__cell">Incorrectly selected that the court was a youth court</td> 
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+          </tr>
+        </tbody>
+      </table>
+    {% endset %}
+
     {% set disbursementsHtml %} 
     
       <h3 class="govuk-heading-m">Adjusted disbursements</h3>
@@ -210,41 +232,77 @@
         <p class="moj-pagination__results">Showing <b>1</b> of <b>1</b> disbursements</p>
       </nav>
     {% endset %}
-   
 
-    {{ govukTabs({
-      items: [
-        {
-          label: "Adjusted work items",
-          id: "workItems",
-          panel: {
-            html: workItemsHtml
+    {% if data['caseDisposal'] == "youthCatAYes" or data['caseDisposal'] =="youthCatANo" %}
+      {{ govukTabs({
+        items: [
+          {
+            label: "Adjusted work items",
+            id: "workItems",
+            panel: {
+              html: workItemsHtml
+            }
+          },
+          {
+            label: "Adjusted letters and calls",
+            id: "lettersCalls",
+            panel: {
+              html: lettersCallsHtml
+            }
+          },
+          {
+            label: "Adjusted additional fees",
+            id: "additionalFees",
+            panel: {
+              html: additionalFeesHtml
+            }
+          },
+          {
+            label: "Adjusted disbursements",
+            id: "disbursements",
+            panel: {
+              html: disbursementsHtml
+            }
           }
-        },
-        {
-          label: "Adjusted letters and calls",
-          id: "lettersCalls",
-          panel: {
-            html: lettersCallsHtml
+        ]
+      }) }}
+      
+      {% else %}
+      {{ govukTabs({
+        items: [
+          {
+            label: "Adjusted work items",
+            id: "workItems",
+            panel: {
+              html: workItemsHtml
+            }
+          },
+          {
+            label: "Adjusted letters and calls",
+            id: "lettersCalls",
+            panel: {
+              html: lettersCallsHtml
+            }
+          },
+          {
+            label: "Adjusted disbursements",
+            id: "disbursements",
+            panel: {
+              html: disbursementsHtml
+            }
           }
-        },
-        {
-          label: "Adjusted disbursements",
-          id: "disbursements",
-          panel: {
-            html: disbursementsHtml
-          }
-        }
-      ]
-    }) }}
+        ]
+      }) }}
 
-      {% if data ['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Review"%}
-        {% else %}
-        {% include version +"/includes/claim-buttons.html"%}
-      {% endif %}
+    {% endif %}
+
+    {% if data ['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Review"%}
+      {% else %}
+      {% include version +"/includes/claim-buttons.html"%}
+    {% endif %}
 
 
-    </div>
   </div>
+</div>
 
 {% endblock %}
