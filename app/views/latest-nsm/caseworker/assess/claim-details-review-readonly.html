@@ -212,11 +212,12 @@
       </table> 
     {% endif %}
 
-    <!--TAbs items -->
+    <!--Tabs items -->
     {% set workItemsHtml %} 
     
       <h3 class="govuk-heading-m">Work items</h3>
-      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+
+      {% if data['serviceAdjust'] == "Yes" %}
         <details class="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
@@ -412,7 +413,7 @@
           </tr>
           <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">4</th>
-              <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="view-work-item?adjustedClaim=No&workItem=Travel&workTime=2&workCost=50">Travel</a></th>
+              <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="4">Travel</a></th>
               <td class="govuk-table__cell">7 Jan 2024</td>
               <td class="govuk-table__cell">GL</td>
               <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
@@ -420,10 +421,10 @@
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
               <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             </tr>
-          {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+            {% if data['serviceAdjust'] == "Yes" %}
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">5</td>
-              <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="view-work-item">Travel</a></span> <sup><a href="#fn1" id="r1">[1]</th>
+              <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="change-work-item">Travel</a></span> <sup><a href="#fn1" id="r1">[1]</th>
               <td class="govuk-table__cell">14 Jan 2024</td>
               <td class="govuk-table__cell">RT</td>
               <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
@@ -533,7 +534,7 @@
             <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
           </tr>
-          {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+          {% if data['serviceAdjust'] == "Yes" %}
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">15</th>
               <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="change-work-item">Travel</a></span> <sup><a href="#fn2" id="r2">[2]</th>
@@ -553,7 +554,7 @@
               <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
               <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="100">£100.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"></td>
             </tr>
           {% endif %}
           <tr class="govuk-table__row">
@@ -1411,9 +1412,13 @@
 
       <nav class="moj-pagination" aria-label="Pagination navigation">
         <ul class="moj-pagination__list">
+
           <li class="govuk-pagination__item govuk-pagination__item--current"><a class="govuk-link govuk-pagination__link" href="/page=1" aria-label="Page 1 of 3">1</a></li>
+
           <li class="govuk-pagination__item"><a class="govuk-link govuk-pagination__link" href="/page=1" aria-label="Page 2 of 3">2</a></li>
+
            <li class="govuk-pagination__item "><a class="govuk-link govuk-pagination__link" href="/page=1" aria-label="Page 3 of 3">3</a></li>
+
           <li class="govuk-pagination__item  govuk-pagination__next">
             <a class="govuk-link govuk-pagination__link" href="#" rel="next">
             <span class="govuk-pagination__link-title">
@@ -1429,9 +1434,9 @@
       </nav>
 
       {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
-        <section class="govuk-!-margin-top-9">
-          <p class="govuk-body-s"id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item">Item 5</a></a></p>
-          <p class="govuk-body-s" id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item">Item 15</a></a></p>
+       <section class="govuk-!-margin-top-9">
+          <p class="govuk-body-s" id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item">Item 5</a></a></p>
+          <p class="govuk-body-s" id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item">Item 15</a></a></p>
         </section>
       {% endif %}
 
@@ -1444,7 +1449,7 @@
         <caption class="govuk-visually-hidden">Claimed letters and calls</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
-            <th class="govuk-table__header" scope="col">Line item</th>
+            <th class="govuk-table__header" scope="col">Item</th>
             <th class="govuk-table__header" scope="col">Cost type</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Number claimed</th>
             <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift claimed</th>
@@ -1467,6 +1472,28 @@
             <td class="govuk-table__cell govuk-table__cell--numeric">5</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£20.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+          </tr>
+        </tbody>
+      </table>
+    {% endset %}
+
+    {% set additionalFeesHtml %}
+      <h3 class="govuk-heading-m">Additional fees</h3>
+      <!--<p>There are no adjusted letters and calls</p>-->
+      <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Claimed additional fees</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Fee type</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost claimed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="additionalFee">Youth court fee</a></th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£598.59</td> 
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
           </tr>
         </tbody>
@@ -1528,32 +1555,68 @@
       </nav>
     {% endset %}
    
+    {% if data['caseDisposal'] == "youthCatAYes" or data['caseDisposal'] =="youthCatANo" %}
+      {{ govukTabs({
+        items: [
+          {
+            label: "Work items",
+            id: "workItems",
+            panel: {
+              html: workItemsHtml
+            }
+          },
+          {
+            label: "Letters and calls",
+            id: "lettersCalls",
+            panel: {
+              html: lettersCallsHtml
+            }
+          },
+          {
+            label: "Additional fees",
+            id: "additionalFees",
+            panel: {
+              html: additionalFeesHtml
+            }
+          },
+          {
+            label: "Disbursements",
+            id: "disbursements",
+            panel: {
+              html: disbursementsHtml
+            }
+          }
+        ]
+      }) }}
+      
+      {% else %}
+        {{ govukTabs({
+          items: [
+            {
+              label: "Work items",
+              id: "workItems",
+              panel: {
+                html: workItemsHtml
+              }
+            },
+            {
+              label: "Letters and calls",
+              id: "lettersCalls",
+              panel: {
+                html: lettersCallsHtml
+              }
+            },
+            {
+              label: "Disbursements",
+              id: "disbursements",
+              panel: {
+                html: disbursementsHtml
+              }
+            }
+          ]
+        }) }}
 
-    {{ govukTabs({
-      items: [
-        {
-          label: "Work items",
-          id: "workItems",
-          panel: {
-            html: workItemsHtml
-          }
-        },
-        {
-          label: "Letters and calls",
-          id: "lettersCalls",
-          panel: {
-            html: lettersCallsHtml
-          }
-        },
-        {
-          label: "Disbursements",
-          id: "disbursements",
-          panel: {
-            html: disbursementsHtml
-          }
-        }
-      ]
-    }) }}
+    {% endif %}
 
     {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
       <section class="govuk-!-margin-bottom-6">
