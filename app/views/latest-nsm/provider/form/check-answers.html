@@ -335,14 +335,6 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-                Court in a designated area
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['courtDes'] or "Yes" }}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
               Youth court matter
             </dt>
             <dd class="govuk-summary-list__value">
@@ -373,25 +365,68 @@
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h3 class="govuk-summary-card__title">Case disposal</h3>
-        <ul class="govuk-summary-card__actions">
-          <li class="govuk-summary-card__action">
-            <a class="govuk-link" href="#">Change<span class="govuk-visually-hidden"> hearing details</span></a>
-          </li>
-        </ul>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Category 1
-            </dt>
-            <dd class="govuk-summary-list__value">
-              Guilty plea
-            </dd>
-          </div>
+          {% if data['youthCourt'] == "Yes" %}
+            {% if data['caseDisposal'] == "youthCatAYes" %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Category 1A
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Guilty plea
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Additional fee
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Youth court fee claimed
+                </dd>
+              </div>
+              {% elseif data['caseDisposal'] =="youthCatANo"%}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Category 2A
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Contested trial
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                Additional fee
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Youth court fee not claimed
+                </dd>
+              </div>
+              {% elseif data['caseDisposal'] =="youthCatB"%}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Category 2B
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Contested trial
+                </dd>
+              </div>
+            {% endif %}
+            {% else %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Category 2
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  Contested trial
+                </dd>
+              </div>
+          {% endif %}
         </dl>
       </div>
     </div>
+
 
     <!--About the request-->
     <h2 class="govuk-heading-l">About the claim</h2>
