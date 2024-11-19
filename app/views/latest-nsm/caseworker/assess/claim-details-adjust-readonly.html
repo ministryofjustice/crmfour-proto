@@ -206,68 +206,38 @@
       </nav>
     {% endset %}
 
-    {% if data['removeAdditionalFee'] == "Yes" %}
-      {{ govukTabs({
-        items: [
-          {
-            label: "Adjusted work items",
-            id: "workItems",
-            panel: {
-              html: workItemsHtml
-            }
-          },
-          {
-            label: "Adjusted letters and calls",
-            id: "lettersCalls",
-            panel: {
-              html: lettersCallsHtml
-            }
-          },
-          {
-            label: "Adjusted additional fees",
-            id: "additionalFees",
-            panel: {
-              html: additionalFeesHtml
-            }
-          },
-          {
-            label: "Adjusted disbursements",
-            id: "disbursements",
-            panel: {
-              html: disbursementsHtml
-            }
+    {{ govukTabs({
+      items: [
+        {
+          label: "Work items",
+          id: "workItems",
+          panel: {
+            html: workItemsHtml
           }
-        ]
-      }) }}
-      
-      {% else %}
-      {{ govukTabs({
-        items: [
-          {
-            label: "Adjusted work items",
-            id: "workItems",
-            panel: {
-              html: workItemsHtml
-            }
-          },
-          {
-            label: "Adjusted letters and calls",
-            id: "lettersCalls",
-            panel: {
-              html: lettersCallsHtml
-            }
-          },
-          {
-            label: "Adjusted disbursements",
-            id: "disbursements",
-            panel: {
-              html: disbursementsHtml
-            }
+        },
+        {
+          label: "Letters and calls",
+          id: "lettersCalls",
+          panel: {
+            html: lettersCallsHtml
           }
-        ]
-      }) }}
-
-    {% endif %}
+        },
+        {
+          label: "Additional fees",
+          id: "additionalFees",
+          panel: {
+            html: additionalFeesHtml
+          }
+        },
+        {
+          label: "Disbursements",
+          id: "disbursements",
+          panel: {
+            html: disbursementsHtml
+          }
+        }
+      ]
+    }) }}
 
     {% if data ['cwAppStatus'] == "Part granted"%}
       {% else %}
