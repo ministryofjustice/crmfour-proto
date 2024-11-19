@@ -1,0 +1,141 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Adjust additional fee – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-cw.html"%}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Adjust additional fee</h1>
+      <h2 class="govuk-heading-l">Provider submission</h2>
+
+
+      <form class="form" action="claim-details-review?serviceAdjust=Yes#additionalFees" method="post">
+
+        <table class="govuk-table">
+          <caption class="govuk-visually-hidden">Claimed costs summary</caption>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Additional fee</th>
+              <td class="govuk-table__cell">Youth court fee</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Net cost claimed</th>
+              <td class="govuk-table__cell">£598.59</td>
+            </tr>
+          </tbody>
+        </table> 
+
+        <h2 class="govuk-heading-l">LAA adjustments</h2>
+
+        {{ govukRadios({
+          name: "removeAdditionalFee",
+          value: data['removeAdditionalFee'],
+          fieldset: {
+            legend: {
+              text: "Remove the youth court fee?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes, remove fee",
+              checked: checked('removeAdditionalFee','Yes')
+            },
+            {
+              value: "No, do not remove fee",
+              text: "No, do not remove fee",
+              checked: checked('removeAdditionalFee','No, do not remove fee')    
+            }
+          ]
+        }) }}
+
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Calculate my changes</button>
+
+       <!-- 
+        <h3 class="govuk-heading-l">
+          <span class="govuk-caption-m">Net cost allowed</span> £75.00
+        </h3>
+
+        -->
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Allowed cost</caption>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Net cost claimed</th>
+              <th scope="col" class="govuk-table__header">Net cost allowed</th>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">£598.59</td>
+              {% if data['removeAdditionalFee'] == "Yes" %}
+              <td class="govuk-table__cell">£0.00</td>
+              {% else %}
+               <td class="govuk-table__cell"></td>
+            {% endif %}
+            </tr>
+          </tbody>
+        </table> 
+        
+
+
+        {{ govukTextarea({
+          name: "additionalAdjustField",
+          id: "additionalAdjustField",
+          value: data['additionalAdjustField'],
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "Explain why you have removed the additional fee. We'll share this explanation with the provider."
+          }
+        }) }}
+
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save changes"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-details-adjust">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}

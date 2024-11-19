@@ -164,8 +164,8 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header"><a href="additionalFee">Youth court fee</a></th>
-            <td class="govuk-table__cell">Incorrectly selected that the court was a youth court</td> 
+            <th scope="row" class="govuk-table__header"><a href="view-additional-fee?adjustedClaim=Yes">Youth court fee</a></th>
+            <td class="govuk-table__cell">{{data['additionalAdjustField'] or "Incorrectly selected that the court was a youth court"}}</td> 
             <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
           </tr>
         </tbody>
@@ -206,7 +206,7 @@
       </nav>
     {% endset %}
 
-    {% if data['caseDisposal'] == "youthCatAYes" or data['caseDisposal'] =="youthCatANo" %}
+    {% if data['removeAdditionalFee'] == "Yes" %}
       {{ govukTabs({
         items: [
           {

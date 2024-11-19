@@ -1506,9 +1506,13 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header"><a href="additionalFee">Youth court fee</a></th>
+            <th scope="row" class="govuk-table__header"><a href="change-additional-fee">Youth court fee</a></th>
             <td class="govuk-table__cell govuk-table__cell--numeric">£598.59</td> 
-            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            {% if data['removeAdditionalFee'] == "Yes" %}
+              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+              {% else %}
+               <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            {% endif %}
           </tr>
         </tbody>
       </table>
@@ -1568,7 +1572,7 @@
         <p class="moj-pagination__results">Showing <b>1</b> to <b>3</b> of <b>3</b> disbursements</p>
       </nav>
     {% endset %}
-   
+
     {% if data['caseDisposal'] == "youthCatAYes" or data['caseDisposal'] =="youthCatANo" %}
       {{ govukTabs({
         items: [

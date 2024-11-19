@@ -23,14 +23,29 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Are you sure you want to delete this adjustment?</h1>
-      <p><strong>Cost item type: </strong>{{ data['serviceType'] or "Travel"}}<br>
-      <strong>Time allowed: </strong>1:00<br>
-      <strong>Uplift allowed: </strong>0%<br>
+      <p><strong>Cost: </strong>{{ data['serviceType'] or "Travel"}}<br>
 
-      {% if  data['costType'] == "disbursement" %}
-        <strong>Total cost allowed: </strong>£75.00</p>
-        {% else %}
+      {% if data['costType'] == "workItem" %}
+        <strong>Reason: </strong>As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM<br>
+        <strong>Time allowed: </strong>3:00<br>
+        <strong>Uplift allowed: </strong>0%<br>
         <strong>Net cost allowed: </strong>£75.00</p>
+
+        {% elseif data['costType'] == "lettersCalls" %}
+        <strong>Reason: </strong>As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM<br>
+        <strong>Number allowed: </strong>4<br>
+        <strong>Net cost allowed: </strong>£16.00</p>
+
+         {% elseif data['costType'] == "additionalFees" %}
+         <strong>Reason: </strong>Not eligible for youth court fees<br>
+         <strong>Net cost allowed: </strong>£0.00</p>
+
+        {% elseif data['costType'] == "disbursement" %}
+          <strong>Reason: </strong>Not allowed under X,Y,Z reasons<br>
+          <strong>Net cost allowed: </strong>£0.00<br>
+          <strong>VAT on allowed: </strong>£0.00<br>
+          <strong>Total cost allowed: </strong>£0.00</p>
+          
       {% endif %}
 
       {{ govukWarningText({
