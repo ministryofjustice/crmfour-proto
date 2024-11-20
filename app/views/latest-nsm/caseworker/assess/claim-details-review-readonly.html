@@ -37,7 +37,7 @@
         label: 'Sub navigation',
         items: [{
           text: 'Overview',
-          href: 'claim-details',
+          href: 'claim-details-readonly',
           active: false
         }, 
         {
@@ -66,7 +66,7 @@
         label: 'Sub navigation',
         items: [{
           text: 'Overview',
-          href: 'claim-details',
+          href: 'claim-details-readonly',
           active: false
         }, 
         {
@@ -1492,9 +1492,19 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header"><a href="additionalFee">Youth court fee</a></th>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£598.59</td> 
-            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            {% if data['caseDisposal'] == "youthCatANo" %}
+              <th scope="row" class="govuk-table__header"><a href="view-additional-fee?adjustedClaim=No">Youth court fee</a></th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td> 
+              {% else %}
+              <th scope="row" class="govuk-table__header"><a href="view-additional-fee">Youth court fee</a></th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£598.59</td> 
+            {% endif %}
+           
+            {% if data['removeAdditionalFee'] == "Yes" %}
+              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+              {% else %}
+               <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            {% endif %}
           </tr>
         </tbody>
       </table>
@@ -1555,7 +1565,7 @@
       </nav>
     {% endset %}
    
-    {% if data['youthCourt'] == "No" %}
+    {% if data['youthCourt'] == "No" or data['caseDisposal'] == "youthCatB" %}
       {{ govukTabs({
         items: [
           {

@@ -1506,8 +1506,14 @@
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
-            <th scope="row" class="govuk-table__header"><a href="change-additional-fee">Youth court fee</a></th>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£598.59</td> 
+            {% if data['caseDisposal'] == "youthCatANo" %}
+              <th scope="row" class="govuk-table__header"><a href="view-additional-fee?adjustedClaim=No">Youth court fee</a></th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td> 
+              {% else %}
+              <th scope="row" class="govuk-table__header"><a href="change-additional-fee">Youth court fee</a></th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£598.59</td> 
+            {% endif %}
+
             {% if data['removeAdditionalFee'] == "Yes" %}
               <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
               {% else %}
@@ -1573,75 +1579,44 @@
       </nav>
     {% endset %}
 
-    {% if data['caseDisposal'] == "youthCatAYes" or data['caseDisposal'] == "youthCatANo" %}
-      {{ govukTabs({
-        items: [
-          {
-            label: "Work items",
-            id: "workItems",
-            panel: {
-              html: workItemsHtml
-            }
-          },
-          {
-            label: "Letters and calls",
-            id: "lettersCalls",
-            panel: {
-              html: lettersCallsHtml
-            }
-          },
-          {
-            label: "Additional fees",
-            id: "additionalFees",
-            panel: {
-              html: additionalFeesHtml
-            }
-          },
-          {
-            label: "Disbursements",
-            id: "disbursements",
-            panel: {
-              html: disbursementsHtml
-            }
+    {{ govukTabs({
+      items: [
+        {
+          label: "Work items",
+          id: "workItems",
+          panel: {
+            html: workItemsHtml
           }
-        ]
-      }) }}
-      
-      {% else %}
-        {{ govukTabs({
-          items: [
-            {
-              label: "Work items",
-              id: "workItems",
-              panel: {
-                html: workItemsHtml
-              }
-            },
-            {
-              label: "Letters and calls",
-              id: "lettersCalls",
-              panel: {
-                html: lettersCallsHtml
-              }
-            },
-            {
-              label: "Disbursements",
-              id: "disbursements",
-              panel: {
-                html: disbursementsHtml
-              }
-            }
-          ]
-        }) }}
+        },
+        {
+          label: "Letters and calls",
+          id: "lettersCalls",
+          panel: {
+            html: lettersCallsHtml
+          }
+        },
+        {
+          label: "Additional fees",
+          id: "additionalFees",
+          panel: {
+            html: additionalFeesHtml
+          }
+        },
+        {
+          label: "Disbursements",
+          id: "disbursements",
+          panel: {
+            html: disbursementsHtml
+          }
+        }
+      ]
+    }) }}
 
+    {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
+      <section class="govuk-!-margin-bottom-6">
+        <p class="govuk-body-s" id="fn*">[*] One or more of these items were adjusted to be a different work item type. See: <a href="change-work-item">Item 5</a>, <a href="change-work-item">Item 15</a></p>
+      </section>
     {% endif %}
-
-
-      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
-        <section class="govuk-!-margin-bottom-6">
-          <p class="govuk-body-s" id="fn*">[*] One or more of these items were adjusted to be a different work item type. See: <a href="change-work-item">Item 5</a>, <a href="change-work-item">Item 15</a></p>
-        </section>
-      {% endif %}
 
     {% if data ['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Review"%}
         {% else %}

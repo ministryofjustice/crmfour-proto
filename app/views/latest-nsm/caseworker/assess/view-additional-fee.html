@@ -1,5 +1,14 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-nsm" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
 
 {% block header %}
   {% include version +"/includes/header-cw.html"%}
@@ -42,7 +51,11 @@
           </tr>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Net cost claimed</th>
-            <td class="govuk-table__cell">£598.59</td>
+            {% if data['caseDisposal'] == "youthCatAYes" %}
+              <td class="govuk-table__cell">£598.59</td>
+              {% else %}
+              <td class="govuk-table__cell">£0.00</td>
+            {% endif %}
           </tr>
         </tbody>
       </table> 
@@ -56,15 +69,17 @@
           <caption class="govuk-visually-hidden">Allowed costs summary</caption>
           <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Additional fee</th>
               <td class="govuk-table__cell">Youth court fee</td>
             </tr>
             <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Net cost allowed</th>
               <td class="govuk-table__cell">£0.00</td>
             </tr>
           </tbody>
         </table> 
+
+        <div class="govuk-button-group">
+          <a class="govuk-link govuk-link--no-visited-state" href="claim-adjust-delete?costType=additionalFees&serviceType=Youth court fee">Delete adjustment</a>
+        </div>
 
       {% endif%} 
     </div>
