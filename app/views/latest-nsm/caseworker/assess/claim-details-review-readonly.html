@@ -1495,12 +1495,16 @@
             {% if data['caseDisposal'] == "youthCatANo" %}
               <th scope="row" class="govuk-table__header"><a href="view-additional-fee?adjustedClaim=No">Youth court fee</a></th>
               <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td> 
+              {% elseif data['cwAppStatus'] == "Part granted" %}
+              <th scope="row" class="govuk-table__header"><a href="view-additional-fee?adjustedClaim=Yes">Youth court fee</a></th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£598.59</td> 
+
               {% else %}
               <th scope="row" class="govuk-table__header"><a href="view-additional-fee">Youth court fee</a></th>
               <td class="govuk-table__cell govuk-table__cell--numeric">£598.59</td> 
             {% endif %}
            
-            {% if data['removeAdditionalFee'] == "Yes" %}
+            {% if data['removeAdditionalFee'] == "Yes" or data['cwAppStatus'] == "Part granted"%}
               <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
               {% else %}
                <td class="govuk-table__cell govuk-table__cell--numeric"></td>

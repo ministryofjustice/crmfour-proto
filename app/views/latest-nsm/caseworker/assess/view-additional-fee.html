@@ -51,10 +51,10 @@
           </tr>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header govuk-!-width-one-half">Net cost claimed</th>
-            {% if data['caseDisposal'] == "youthCatAYes" %}
-              <td class="govuk-table__cell">£598.59</td>
-              {% else %}
+            {% if data['cwAppStatus'] == "Part granted" or data['serviceAdjust'] == "Yes" or data['caseDisposal'] == "youthCatANo" %}
               <td class="govuk-table__cell">£0.00</td>
+              {% else %}
+              <td class="govuk-table__cell">£598.59</td>
             {% endif %}
           </tr>
         </tbody>
@@ -72,11 +72,17 @@
               <th scope="row" class="govuk-table__header govuk-!-width-one-half">Net cost allowed</th>
               <td class="govuk-table__cell">£0.00</td>
             </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Reason for adjustments</th>
+              <td class="govuk-table__cell">{{data['additionalAdjustField'] or "Case disposal category incorrectly chosen"}}</td>
+            </tr>
           </tbody>
         </table> 
-        <div class="govuk-button-group">
-          <a class="govuk-link govuk-link--no-visited-state" href="claim-adjust-delete?costType=additionalFees&serviceType=Youth court fee">Delete adjustment</a>
-        </div>
+        {% if data['cwAppStatus'] =="In progress"%}
+          <div class="govuk-button-group">
+            <a class="govuk-link govuk-link--no-visited-state" href="claim-adjust-delete?costType=additionalFees&serviceType=Youth court fee">Delete adjustment</a>
+          </div>
+        {% endif %}
 
       {% endif%} 
     </div>
