@@ -1,0 +1,14 @@
+  <div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="offenceType">
+      Main offence
+    </label>
+    <div id="offenceType-hint" class="govuk-hint">
+      Enter the name of an offence, or select one from the suggestions that appear when you start to enter the name.
+    </div>
+    <select class="govuk-select autocomplete-select" id="offenceType" name="offenceType" aria-describedby="offenceType-hint">
+      <option></option>
+      <option value="Assault (common)" {{ "selected" if data["offenceType"] == "Assault (common)" }}>Assault (common)</option>
+      <option value="Battery (common)" {{ "selected" if data["offenceType"] == "Battery (common)" }}>Battery (common)</option>
+      <option value="Assault occasioning actual bodily harm" {{ "selected" if data["offenceType"] == "Assault occasioning actual bodily harm" }}>Assault occasioning actual bodily harm</option>
+    </select>
+  </div>
