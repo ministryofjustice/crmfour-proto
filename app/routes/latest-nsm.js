@@ -279,13 +279,17 @@ router.post('/change-stageTrans', function(request, response) {
 
 
 //Youth court - hearing details page
-router.post('/question-hearing', function(request, response) {
+router.post('/question-case-category', function(request, response) {
 
-    var youthCourt = request.session.data['youthCourt']
-    if (youthCourt == "No"){
-        response.redirect('/' + version + "/provider/form/question-case-category")
+    var caseCategoryYouth = request.session.data['caseCategoryYouth']
+    var caseCategoryNotYouth = request.session.data['caseCategoryNotYouth']
+
+    if (caseCategoryYouth == "Category 1A" || caseCategoryYouth == "Category 1B" || caseCategoryNotYouth == "Category 1A" || caseCategoryNotYouth == "Category 2A" ){
+        response.redirect('/' + version + "/provider/form/question-case-outcome1")
     } 
-    if (youthCourt == "Yes"){
-        response.redirect('/' + version + "/provider/form/question-case-category")
-    }
+
+    if (caseCategoryYouth == "Category 2A" || caseCategoryYouth == "Category 2B" || caseCategoryNotYouth == "Category 2"){
+        response.redirect('/' + version + "/provider/form/question-case-outcome2")
+    } 
+    
   })

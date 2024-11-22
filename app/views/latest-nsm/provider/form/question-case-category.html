@@ -22,46 +22,46 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/{{version}}/question-claimType" method="post">
+    <form class="form" action="/{{version}}/question-case-category" method="post">
 
       {% if data['youthCourt'] == "Yes" %}
 
-          {{ govukRadios({
-            name: "caseDisposal",
-            fieldset: {
-              legend: {
-                text: "Select the case category",
-                isPageHeading: true,
-                classes: "govuk-fieldset__legend--xl"
-              }
+        {{ govukRadios({
+          name: "caseCategoryYouth",
+          fieldset: {
+            legend: {
+              text: "Select the case category",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Category 1A",
+              text: "Category 1A",
+              checked: checked("claimType", "Category 1A")
             },
-            items: [
-              {
-                value: "Category 1A",
-                text: "Category 1A",
-                checked: checked("claimType", "Category 1A")
-              },
-              {
-                value: "Category 1B",
-                text: "Category 1B",
-                checked: checked("claimType", "Category 1B")
-              },
-              {
-                value: "Category 2A",
-                text: "Category 2A",
-                checked: checked("claimType", "Category 2A")
-              },
-              {
-                value: "Category 2B",
-                text: "Category 2B",
-                checked: checked("claimType", "Category 2B")
-              }
-            ]
-          }) }}  
+            {
+              value: "Category 1B",
+              text: "Category 1B",
+              checked: checked("claimType", "Category 1B")
+            },
+            {
+              value: "Category 2A",
+              text: "Category 2A",
+              checked: checked("claimType", "Category 2A")
+            },
+            {
+              value: "Category 2B",
+              text: "Category 2B",
+              checked: checked("claimType", "Category 2B")
+            }
+          ]
+        }) }}  
           
-          {% elseif data['youthCourt'] =="No"%}
-         {{ govukRadios({
-          name: "caseDisposal",
+        {% else %}
+        {{ govukRadios({
+          name: "caseCategoryNotYouth",
           fieldset: {
             legend: {
               text: "Select the case category",
