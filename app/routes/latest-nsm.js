@@ -276,3 +276,16 @@ router.post('/change-stageTrans', function(request, response) {
         response.redirect('/' + version + "/provider/form/check-answers?question-stage=complete&stage=PROM")
     }
 })
+
+
+//Youth court - hearing details page
+router.post('/question-hearing', function(request, response) {
+
+    var youthCourt = request.session.data['youthCourt']
+    if (youthCourt == "No"){
+        response.redirect('/' + version + "/provider/form/question-case-category")
+    } 
+    if (youthCourt == "Yes"){
+        response.redirect('/' + version + "/provider/form/question-case-category")
+    }
+  })

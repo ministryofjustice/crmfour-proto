@@ -20,241 +20,241 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Case details</h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Case details</h1>
 
-      {% if data['changeClaim'] =="change" %}
-        <form class="form" action="/{{version}}/change-claimType" method="post">
-        {% else %}
-        <form class="form" action="/{{version}}/question-hearing" method="post">
-      {% endif %}
+    <form class="form" action="question-hearing" method="post">
 
-      {% include version + "/includes/offence-list.html" %}
+    {% include version + "/includes/list-offence.html" %}
 
-      {{ govukRadios({
-        name: "offenceType",
-        fieldset: {
-          legend: {
-            text: "What is the offence type?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--s"
+    {{ govukRadios({
+      name: "offenceType",
+      fieldset: {
+        legend: {
+          text: "What is the offence type?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [
+        {
+          value: "Summary",
+          text: "Summary",
+          checked: checked("offenceType", "Summary")
+        },
+        {
+          value: "Either way",
+          text: "Either way",
+          checked: checked("offenceType", "Either way")
+        },
+        {
+          value: "Indictable only",
+          text: "Indictable only",
+          checked: checked("offenceType", "Indictable only")
+        },
+        {
+          value: "Prescribed proceedings",
+          text: "Prescribed proceedings",
+          checked: checked("offenceType", "Prescribed proceedings")
+        }
+      ]
+    }) }}  
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="date-offence-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Main offence date
+          </h1>
+        <div id="date-offence-hint" class="govuk-hint">
+          For example, 27 03 2024
+        </div>
+        <div class="govuk-date-input" id="date-rep">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="date-offence-day">
+                Day
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-offence-day" name="date-offence-day" type="text" inputmode="numeric" value="{{data['date-offence-day']}}">
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="date-offence-month">
+                Month
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-offence-month" name="date-offence-month" type="text" inputmode="numeric" value="{{data['date-offence-month']}}">
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-date-input__label" for="date-offence-year">
+                Year
+              </label>
+              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-offence-year" name="date-offence-year" type="text" inputmode="numeric" value="{{data['date-offence-year']}}">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    {{ govukRadios({
+      name: "assignedCounsel",
+      fieldset: {
+        legend: {
+          text: "Was there an assigned counsel?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [
+        {
+          value: "Yes",
+          text: "Yes",
+          checked: checked("assignedCounsel", "Yes"),
+          hint: {
+            text: "We'll ask you to upload your CRM8 form before you submit this claim"
           }
         },
-        items: [
-          {
-            value: "Summary",
-            text: "Summary",
-            checked: checked("offenceType", "Summary")
-          },
-          {
-            value: "Either way",
-            text: "Either way",
-            checked: checked("offenceType", "Either way")
-          },
-          {
-            value: "Indictable only",
-            text: "Indictable only",
-            checked: checked("offenceType", "Indictable only")
-          },
-          {
-            value: "Prescribed proceedings",
-            text: "Prescribed proceedings",
-            checked: checked("offenceType", "Prescribed proceedings")
-          }
-        ]
-      }) }}  
+        {
+          value: "No",
+          text: "No",
+          checked: checked("assignedCounsel", "No")
+        }
+      ]
+    }) }}  
 
+    
+    {{ govukRadios({
+      name: "unassignedCounsel",
+      fieldset: {
+        legend: {
+          text: "Was there an unassigned counsel?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [
+        {
+          value: "Yes",
+          text: "Yes",
+          checked: checked("unassignedCounsel", "Yes")
+        },
+        {
+          value: "No",
+          text: "No",
+          checked: checked("unassignedCounsel", "No")
+        }
+      ]
+    }) }}  
+
+    {{ govukRadios({
+      name: "instructedAgent",
+      fieldset: {
+        legend: {
+          text: "Was there an instructed agent?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [
+        {
+          value: "Yes",
+          text: "Yes",
+          checked: checked("instructedAgent", "Yes")
+        },
+        {
+          value: "No",
+          text: "No",
+          checked: checked("instructedAgent", "No")
+        }
+      ]
+    }) }}  
+
+    {% set remittedHtml %}
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" role="group" aria-describedby="date-offence-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-              Main offence date
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="date-remitted-hint">
+          <legend class="govuk-fieldset__legend">
+              Remittal date
             </h1>
-          <div id="date-offence-hint" class="govuk-hint">
+          <div id="date-remitted-hint" class="govuk-hint">
             For example, 27 03 2024
           </div>
           <div class="govuk-date-input" id="date-rep">
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="date-offence-day">
+                <label class="govuk-label govuk-date-input__label" for="date-remitted-day">
                   Day
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-offence-day" name="date-offence-day" type="text" inputmode="numeric" value="{{data['date-offence-day']}}">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-remitted-day" name="date-remitted-day" type="text" inputmode="numeric" value="{{data['date-remitted-day']}}">
               </div>
             </div>
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="date-offence-month">
+                <label class="govuk-label govuk-date-input__label" for="date-remitted-month">
                   Month
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-offence-month" name="date-offence-month" type="text" inputmode="numeric" value="{{data['date-offence-month']}}">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-remitted-month" name="date-remitted-month" type="text" inputmode="numeric" value="{{data['date-remitted-month']}}">
               </div>
             </div>
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
-                <label class="govuk-label govuk-date-input__label" for="date-offence-year">
+                <label class="govuk-label govuk-date-input__label" for="date-remitted-year">
                   Year
                 </label>
-                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-offence-year" name="date-offence-year" type="text" inputmode="numeric" value="{{data['date-offence-year']}}">
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-remitted-year" name="date-remitted-year" type="text" inputmode="numeric" value="{{data['date-offence-year']}}">
               </div>
             </div>
           </div>
         </fieldset>
       </div>
+    {% endset %}
 
-      {{ govukRadios({
-        name: "assignedCounsel",
-        fieldset: {
-          legend: {
-            text: "Was there an assigned counsel?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--s"
+    {{ govukRadios({
+      name: "remitted",
+      fieldset: {
+        legend: {
+          text: "Has the case been remitted from the Crown Court to the magistrates' court?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      items: [
+        {
+          value: "Yes",
+          text: "Yes",
+          checked: checked("remitted", "Yes"),
+          hint: {
+            text: "We’ll ask you to upload evidence of this before you submit this claim"
+          },
+          conditional: {
+            html: remittedHtml
           }
         },
-        items: [
-          {
-            value: "Yes",
-            text: "Yes",
-            checked: checked("assignedCounsel", "Yes"),
-            hint: {
-              text: "We'll ask you to upload your CRM8 form before you submit this claim"
-            }
-          },
-          {
-            value: "No",
-            text: "No",
-            checked: checked("assignedCounsel", "No")
-          }
-        ]
-      }) }}  
-
+        {
+          value: "No",
+          text: "No",
+          checked: checked("remitted", "No")
+        }
+      ]
+    }) }}  
       
-      {{ govukRadios({
-        name: "unassignedCounsel",
-        fieldset: {
-          legend: {
-            text: "Was there an unassigned counsel?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--s"
-          }
-        },
-        items: [
-          {
-            value: "Yes",
-            text: "Yes",
-            checked: checked("unassignedCounsel", "Yes")
-          },
-          {
-            value: "No",
-            text: "No",
-            checked: checked("unassignedCounsel", "No")
-          }
-        ]
-      }) }}  
 
-      {{ govukRadios({
-        name: "instructedAgent",
-        fieldset: {
-          legend: {
-            text: "Was there an instructed agent?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--s"
-          }
-        },
-        items: [
-          {
-            value: "Yes",
-            text: "Yes",
-            checked: checked("instructedAgent", "Yes")
-          },
-          {
-            value: "No",
-            text: "No",
-            checked: checked("instructedAgent", "No")
-          }
-        ]
-      }) }}  
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
 
-      {% set remittedHtml %}
-        <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" role="group" aria-describedby="date-remitted-hint">
-            <legend class="govuk-fieldset__legend">
-                Remittal date
-              </h1>
-            <div id="date-remitted-hint" class="govuk-hint">
-              For example, 27 03 2024
-            </div>
-            <div class="govuk-date-input" id="date-rep">
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="date-remitted-day">
-                    Day
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-remitted-day" name="date-remitted-day" type="text" inputmode="numeric" value="{{data['date-remitted-day']}}">
-                </div>
-              </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="date-remitted-month">
-                    Month
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-remitted-month" name="date-remitted-month" type="text" inputmode="numeric" value="{{data['date-remitted-month']}}">
-                </div>
-              </div>
-              <div class="govuk-date-input__item">
-                <div class="govuk-form-group">
-                  <label class="govuk-label govuk-date-input__label" for="date-remitted-year">
-                    Year
-                  </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-remitted-year" name="date-remitted-year" type="text" inputmode="numeric" value="{{data['date-offence-year']}}">
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </div>
-      {% endset %}
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary"
+        }) }}
+      </div>
 
-      {{ govukRadios({
-        name: "remitted",
-        fieldset: {
-          legend: {
-            text: "Has the case been remitted from the Crown Court to the magistrates' court?",
-            isPageHeading: false,
-            classes: "govuk-fieldset__legend--s"
-          }
-        },
-        items: [
-          {
-            value: "Yes",
-            text: "Yes",
-            checked: checked("remitted", "Yes"),
-            hint: {
-              text: "We’ll ask you to upload evidence of this before you submit this claim"
-            },
-            conditional: {
-              html: remittedHtml
-            }
-          },
-          {
-            value: "No",
-            text: "No",
-            checked: checked("remitted", "No")
-          }
-        ]
-      }) }}  
-       
+    </form>
 
-        <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Save and continue"
-          }) }}
-
-        </div>
-
-      </form>
-
-    </div>
   </div>
+</div>
 
 {% endblock %}
 
