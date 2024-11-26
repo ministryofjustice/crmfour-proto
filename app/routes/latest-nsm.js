@@ -206,7 +206,7 @@ router.post('/question-stageProvider', function(request, response) {
 
     var stageProvider = request.session.data['stageProvider']
     if (stageProvider == "No"){
-        response.redirect('/' + version + "/provider/form/task-list?question-stage=complete&stage=PROM")
+        response.redirect('/' + version + "/provider/form/task-list?question-claimType=complete&stage=PROM")
     } 
     if (stageProvider == "Yes"){
         response.redirect('/' + version + "/provider/form/question-stageCourt")
@@ -218,7 +218,7 @@ router.post('/change-stageProvider', function(request, response) {
 
     var stageProvider = request.session.data['stageProvider']
     if (stageProvider == "No"){
-        response.redirect('/' + version + "/provider/form/check-answers?question-stage=complete&stage=PROM")
+        response.redirect('/' + version + "/provider/form/check-answers?question-claimType=complete&stage=PROM")
     } 
     if (stageProvider == "Yes"){
         response.redirect('/' + version + "/provider/form/question-stageCourt")
@@ -234,7 +234,7 @@ router.post('/question-stageCourt', function(request, response) {
         response.redirect('/' + version + "/provider/form/question-stageTrans")
     } 
     else {
-        response.redirect('/' + version + "/provider/form/task-list?question-stage=complete&stage=PROG")
+        response.redirect('/' + version + "/provider/form/task-list?question-claimType=complete&stage=PROG")
     }
 })
 
@@ -247,7 +247,7 @@ router.post('/change-stageCourt', function(request, response) {
         response.redirect('/' + version + "/provider/form/question-stageTrans")
     } 
     else {
-        response.redirect('/' + version + "/provider/form/task-list?question-stage=complete&stage=PROG")
+        response.redirect('/' + version + "/provider/form/task-list?question-claimType=complete&stage=PROG")
     }
 })
 
@@ -257,10 +257,10 @@ router.post('/question-stageTrans', function(request, response) {
     var stageTrans = request.session.data['stageTrans']
     
     if (stageTrans == "Yes") {
-        response.redirect('/' + version + "/provider/form/task-list?question-stage=complete&stage=PROG")
+        response.redirect('/' + version + "/provider/form/task-list?question-claimType=complete&stage=PROG")
     } 
     else {
-        response.redirect('/' + version + "/provider/form/task-list?question-stage=complete&stage=PROM")
+        response.redirect('/' + version + "/provider/form/task-list?question-claimType=complete&stage=PROM")
     }
 })
 
@@ -270,10 +270,10 @@ router.post('/change-stageTrans', function(request, response) {
     var stageTrans = request.session.data['stageTrans']
     
     if (stageTrans == "Yes") {
-        response.redirect('/' + version + "/provider/form/check-answers?question-stage=complete&stage=PROG")
+        response.redirect('/' + version + "/provider/form/check-answers?question-claimType=complete&stage=PROG")
     } 
     else {
-        response.redirect('/' + version + "/provider/form/check-answers?question-stage=complete&stage=PROM")
+        response.redirect('/' + version + "/provider/form/check-answers?question-claimType=complete&stage=PROM")
     }
 })
 
