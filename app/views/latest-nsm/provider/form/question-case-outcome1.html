@@ -23,10 +23,10 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% if data['caseCategoryYouth'] == "Category 1A" or data['caseCategoryYouth'] == "Category 2A" %}
+    {% if data['caseCategoryYouth'] == "Category 1A" %}
       <form class="form" action="question-youth-court-fee" method="post">
       {% else %}
-      <form class="form" action="task-list" method="post">
+      <form class="form" action="task-list?question-case-disposal=complete" method="post">
     {% endif %}
 
       {% set warrantDateHtml %}

@@ -22,32 +22,30 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/{{version}}/question-case-category" method="post">
+    <form class="form" action="task-list?question-case-disposal=complete" method="post">
 
-      {% if data['youthCourt'] == "Yes" %}
-
-        {{ govukRadios({
-          name: "caseDisposal",
-          fieldset: {
-            legend: {
-              text: "Do you want to claim the youth court additional fee?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
-            }
+      {{ govukRadios({
+        name: "caseDisposal",
+        fieldset: {
+          legend: {
+            text: "Do you want to claim the youth court additional fee?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        items: [
+          {
+            value: "youthCatAYes",
+            text: "Yes",
+            checked: checked("caseDisposal", "youthCatAYes")
           },
-          items: [
-            {
-              value: "youthCatAYes",
-              text: "Yes",
-              checked: checked("caseDisposal", "youthCatAYes")
-            },
-            {
-              value: "youthCatANo",
-              text: "No",
-              checked: checked("caseDisposal", "youthCatANo")
-            }
-          ]
-        }) }}  
+          {
+            value: "youthCatANo",
+            text: "No",
+            checked: checked("caseDisposal", "youthCatANo")
+          }
+        ]
+      }) }}  
           
 
       <div class="govuk-button-group">
@@ -57,7 +55,8 @@
 
         {{ govukButton({
           text: "Save and come back later",
-          classes: "govuk-button--secondary"
+          classes: "govuk-button--secondary",
+          href: "task-list?question-claimType=complete"
         }) }}
       </div>
 

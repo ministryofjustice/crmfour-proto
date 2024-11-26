@@ -211,10 +211,10 @@
             <div class="govuk-task-list__status govuk-task-list__status--cannot-start-yet" id="disposal-status">
                 Cannot start yet
             </div>
-            {% elseif data['question-case-category'] == "" or data['question-case-category'] == "notStarted" %}
+            {% elseif data['question-case-disposal'] == "" or data['question-case-disposal'] == "notStarted" %}
             <!--If question-case-details has not been started show the status Not yet started AND for the proto I'm removing the visited link status for this link so it looks fresh each time-->
             <div class="govuk-task-list__name-and-hint">
-              <a href="question-case-category?question-case-category=notStarted" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="disposal-status">
+              <a href="question-case-disposal?question-case-disposal=notStarted" class="govuk-link govuk-task-list__link govuk-link--no-visited-state"  aria-describedby="disposal-status">
                 Case disposal
               </a>
             </div>
@@ -226,7 +226,7 @@
             {% else %}
             <!--For all other states AND show visited link status-->
             <div class="govuk-task-list__name-and-hint">
-              <a class="govuk-link govuk-task-list__link" href="question-case-category" aria-describedby="disposal-status">
+              <a class="govuk-link govuk-task-list__link" href="question-case-disposal" aria-describedby="disposal-status">
                 Case disposal
               </a>
             </div>
@@ -245,7 +245,7 @@
       <ul class="govuk-task-list">     
         <!--Section 3 - claim-->
         <li class="govuk-task-list__item govuk-task-list__item--with-link">
-          {% if data['question-case-category'] !== "complete" %}
+          {% if data['question-case-disposal'] !== "complete" %}
             <div class="govuk-task-list__name-and-hint">
                 Claim justification
             </div>

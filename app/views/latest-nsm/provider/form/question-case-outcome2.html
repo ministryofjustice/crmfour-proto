@@ -22,7 +22,11 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form class="form" action="/{{version}}/question-case-category" method="post">
+    {% if data['caseCategoryYouth'] == "Category 2A" %}
+      <form class="form" action="question-youth-court-fee" method="post">
+      {% else %}
+      <form class="form" action="task-list?question-case-disposal=complete" method="post">
+    {% endif %}
 
       {% set otherHtml %}
         <div class="govuk-form-group">
