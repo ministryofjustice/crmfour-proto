@@ -217,7 +217,7 @@
     
       <h3 class="govuk-heading-m">Work items</h3>
 
-      {% if data['serviceAdjust'] == "Yes" %}
+      {% if data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
         <details class="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
@@ -412,16 +412,16 @@
             <td class="govuk-table__cell govuk-table__cell--numeric"></td>
           </tr>
           <tr class="govuk-table__row">
-              <th scope="row" class="govuk-table__header">4</th>
-              <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="4">Travel</a></th>
-              <td class="govuk-table__cell">7 Jan 2024</td>
-              <td class="govuk-table__cell">GL</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-            </tr>
-            {% if data['serviceAdjust'] == "Yes" %}
+            <th scope="row" class="govuk-table__header">4</th>
+            <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="4">Travel</a></th>
+            <td class="govuk-table__cell">7 Jan 2024</td>
+            <td class="govuk-table__cell">GL</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">2<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£50.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+          </tr>
+          {% if data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">5</td>
               <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="change-work-item">Travel</a></span> <sup><a href="#fn1" id="r1">[1]</th>
@@ -431,18 +431,18 @@
               <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£100.00</td>
               <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="25">£75.00</td>
-              </tr>
-              {% else %}
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">5</td>
-                <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="change-work-item">Attendance without counsel</a></th>
-                <td class="govuk-table__cell">14 Jan 2024</td>
-                <td class="govuk-table__cell">RT</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
-                <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£100.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-              </tr>
+            </tr>
+            {% else %}
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">5</td>
+              <th scope="row" class="govuk-table__header"><a id="workTypeN" aria-labelledby="itemTitle itemN workTypeN" href="change-work-item">Attendance without counsel</a></th>
+              <td class="govuk-table__cell">14 Jan 2024</td>
+              <td class="govuk-table__cell">RT</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">4<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>  
+              <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="50">£100.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            </tr>
           {% endif %}
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">6</td>
@@ -1433,10 +1433,15 @@
         <p class="moj-pagination__results">Showing <b>1</b> to <b>100</b> of <b>222</b> work items</p>
       </nav>
 
-      {% if  data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "In progress" %}
-       <section class="govuk-!-margin-top-9">
-          <p class="govuk-body-s" id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item">Item 5</a></a></p>
-          <p class="govuk-body-s" id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item">Item 15</a></a></p>
+      {% if data['cwAppStatus'] == "In progress" %}
+        <section class="govuk-!-margin-top-9">
+          <p class="govuk-body-s" id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item?adjustedClaim=Yes">Item 5</a></a></p>
+          <p class="govuk-body-s" id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item?adjustedClaim=Yes">Item 15</a></a></p>
+        </section>
+        {% elseif data['cwAppStatus'] == "Part granted" %}
+        <section class="govuk-!-margin-top-9">
+          <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 5</a></a></p>
+          <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 15</a></a></p>
         </section>
       {% endif %}
 
