@@ -626,18 +626,25 @@
         <h3 class="govuk-summary-card__title">Uploaded suported evidence</h3>
       </div>
       <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Evidence
-            </dt>
-            <dd class="govuk-summary-list__value">
-              doc1.doc<br>
-              doc2.doc<br>
-              doc3.doc
-            </dd>
-          </div>
-        </dl>
+        {% if data['app-task'] == "Expired" %}
+          {{ govukInsetText({
+            text: "Uploaded files deleted. Your uploads are deleted after 6 months to keep your data safe."
+          }) }} 
+          {% else %}
+          
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Evidence
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    doc1.doc<br>
+                    doc2.doc<br>
+                    doc3.doc
+                </dd>
+              </div>
+            </dl>
+        {% endif %}
       </div>
     </div>
 
