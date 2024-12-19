@@ -6,7 +6,20 @@
       {% else %}
       <p>{{data['partConfirm']}}</p>
     {% endif %}
-    </p><a href="claim-details-adjust-readonly" class="govuk-link--no-visited-state">View adjusted costs</a></p>
+    <ul class="govuk-list">
+      <li>
+        <a href="claim-details-adjust-readonly#workItems" class="govuk-link--no-visited-state">Review adjustments to work items</a>
+      </li>
+        <li>
+        <a href="claim-details-adjust-readonly#lettersCalls" class="govuk-link--no-visited-state">Review adjustments to letters and calls</a>
+      </li>
+      <li>
+        <a href="claim-details-adjust-readonly#disbursements" class="govuk-link--no-visited-state">Review adjustments to disbursements</a>
+      </li>
+      <li>
+        <a href="claim-details-adjust-readonly#additionalFee" class="govuk-link--no-visited-state">Review adjustments to additional fees</a>
+      </li>
+    </ul>
   </div>
   {% else %}
   {% if data['cwAppStatus'] == "Rejected"%}
