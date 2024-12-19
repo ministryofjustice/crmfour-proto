@@ -1,0 +1,67 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  What you are claiming for – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form class="form" action="/{{version}}/question-claimTypeSup" method="post">
+
+        {{ govukRadios({
+          name: "claimType",
+          fieldset: {
+            legend: {
+              text: "What do you want to claim?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Non-standard magistrates' court payment",
+              text: "Non-standard magistrates' court payment",
+              checked: checked("claimType", "Non-standard magistrates' court payment")
+            },
+            {
+              value: "Breach of injunction",
+              text: "Breach of injunction",
+              checked: checked("claimType", "Breach of injunction")
+            },
+            {
+              value: "Supplemental claim",
+              text: "Supplemental claim",
+              checked: checked("claimType", "Supplemental claim")
+            }
+          ]
+        }) }}  
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
