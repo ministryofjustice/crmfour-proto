@@ -24,7 +24,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">What you are claiming for</h1>
 
-      <form class="form" action="question-firm" method="post">
+      <form class="form" action="question-account" method="post">
         
         {{ govukInput({
           label: {
@@ -40,6 +40,7 @@
           name: "ufnNSM",
           value: data['ufnNSM']
         }) }}
+
 
         {% set repHtml %}
           <div class="govuk-form-group">
@@ -84,18 +85,18 @@
 
         {% set contemptHtml %}
           {{ govukInput({
-              label: {
-                text: "Client's CNTP (contempt) number"
-              },
-              classes: "govuk-input--width-10",
-              hint: {
-                text: "Must be between 6 and 8 digits long"
-              },
-              id: "contemptNumber",
-              name: "contemptNumber",
-              inputmode: "numeric",
-              value: data['contemptNumber']
-            }) }}
+            label: {
+              text: "Client's CNTP (contempt) number"
+            },
+            classes: "govuk-input--width-10",
+            hint: {
+              text: "Must be between 6 and 8 digits long"
+            },
+            id: "contemptNumber",
+            name: "contemptNumber",
+            inputmode: "numeric",
+            value: data['contemptNumber']
+          }) }}
 
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset" role="group" aria-describedby="dateContempt-hint">
