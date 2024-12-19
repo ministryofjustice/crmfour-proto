@@ -24,11 +24,8 @@
     <div class="govuk-grid-column-two-thirds">
       
       <h1 class="govuk-heading-xl">Breach of injunction</h1>
-      {% if data['changeClaim'] =="change" %}
-        <form class="form" action="/{{version}}/provider/form/check-answers?question-claimType=complete&stage=PROG" method="post">
-        {% else %}
-        <form class="form" action="/{{version}}/provider/form/task-list?question-claimType=complete&stage=PROG" method="post">
-      {% endif %}
+
+        <form class="form" action="question-firm" method="post">
 
         {{ govukInput({
           label: {

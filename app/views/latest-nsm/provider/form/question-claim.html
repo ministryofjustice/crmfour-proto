@@ -24,12 +24,8 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">What you are claiming for</h1>
 
-      {% if data['changeClaim'] =="change" %}
-        <form class="form" action="/{{version}}/change-claimType" method="post">
-        {% else %}
-        <form class="form" action="/{{version}}/question-claimType" method="post">
-      {% endif %}
-
+      <form class="form" action="question-firm" method="post">
+        
         {{ govukInput({
           label: {
             text: "What is your unique file number (UFN)?",

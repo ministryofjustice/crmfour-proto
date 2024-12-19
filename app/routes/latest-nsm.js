@@ -175,7 +175,7 @@ router.post('/add-another-disbursement2', function(request, response) {
   })
 
 //Create a new claim
-router.post('/question-claimType', function(request, response) {
+router.post('/question-claimTypeSup', function(request, response) {
 
     var claimType = request.session.data['claimType']
     if (claimType == "Breach of injunction"){
@@ -186,18 +186,6 @@ router.post('/question-claimType', function(request, response) {
     }
     if (claimType == "Supplemental claim"){
         response.redirect('/' + version + "/provider/form/question-claim-supplemental")
-    }
-})
-
-//Create a new claim
-router.post('/change-claimType', function(request, response) {
-
-    var claimType = request.session.data['claimType']
-    if (claimType == "Breach of injunction"){
-        response.redirect('/' + version + "/provider/form/check-answers?question-claimType=complete&stage=PROG")
-    } 
-    if (claimType == "Non-standard magistrates' court payment"){
-        response.redirect('/' + version + "/provider/form/question-stageProvider?question-claimType=complete")
     }
 })
 
