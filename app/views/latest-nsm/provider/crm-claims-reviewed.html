@@ -31,10 +31,20 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    {{ govukButton({
-      text: "Make a new claim",
-      href: "form/question-claim?question-org=&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal=&ufnNSM=&laa-ref=&claimType=&stageProvider=&stageCourt=&stage="
-    }) }}
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Make a new claim",
+        href: "form/question-claim?question-org=&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal=&ufnNSM=&laa-ref=&claimType=&stageProvider=&stageCourt=&stage="
+      }) }}
+
+      {% if data['showImport'] == "Yes" %}
+        {{ govukButton({
+          text: "Import XML claim",
+          classes: "govuk-button--secondary",
+          href: "form/question-xml-import"
+        }) }}
+      {% endif %}
+    </div>
 
     {% include version + "/includes/nav-sub-provider.njk" %}
 

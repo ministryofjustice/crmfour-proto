@@ -29,10 +29,20 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    {{ govukButton({
-      text: "Make a new claim",
-      href: "form/question-claim?question1-org=&question2-client=&question-case-details=&question-hearing=&question-case-disposal=&question2-just=&question2-claim=&question2-work=&question2-letters=&question2-disburse=&question2-payment=&question2-other=&question2-upload=&question2-check=&question2-equal=&ufnNSM=&laa-ref=&claimType=&stageProvider=&stageCourt=&stage="
-    }) }}
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Make a new claim",
+        href: "form-import/question-claim?question-org=&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal=&ufnNSM=&laa-ref=&claimType=&stageProvider=&stageCourt=&stage="
+      }) }}
+
+      {% if data['showImport'] == "Yes" %}
+        {{ govukButton({
+          text: "Import XML claim",
+          classes: "govuk-button--secondary",
+          href: "question-xml-import"
+        }) }}
+      {% endif %}
+    </div>
 
     {% include version + "/includes/nav-sub-provider.njk" %}
 
@@ -53,7 +63,7 @@
         <tbody class="govuk-table__body">    
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">
-              <a href="claim-details?question1-org=complete&ufnNSM=230323/314&laa-ref=LAA-4f6e2b&app-task=Submitted" class="govuk-link--no-visited-state" data-sort-value="230323314">230323/314</a>
+              <a href="claim-details?question-org=complete&ufnNSM=230323/314&laa-ref=LAA-4f6e2b&app-task=Submitted" class="govuk-link--no-visited-state" data-sort-value="230323314">230323/314</a>
             </td>
             <td class="govuk-table__cell">Roger Blackbeard</td>
             <td class="govuk-table__cell">A1E3W1</td>
@@ -62,7 +72,7 @@
           </tr>
           <tr class="govuk-table__row">
             <td class="govuk-table__cell">
-            <a href="claim-details?question1-org=complete&ufnNSM=231123/114&laa-ref=LAA-6t3d5w&app-task=Returned" class="govuk-link--no-visited-state" data-sort-value="231123114">231123/114</a></td>
+            <a href="claim-details?question-org=complete&ufnNSM=231123/114&laa-ref=LAA-6t3d5w&app-task=Returned" class="govuk-link--no-visited-state" data-sort-value="231123114">231123/114</a></td>
             <td class="govuk-table__cell">Dami Olu</td>
             <td class="govuk-table__cell">B1E3W1</td>
             <td class="govuk-table__cell" data-sort-value="240309"><span id="date"></span></td>
