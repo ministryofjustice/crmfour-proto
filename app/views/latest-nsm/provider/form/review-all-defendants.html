@@ -1,0 +1,138 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Work items- {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <!-- Header -->
+    {% if data['addDef'] =="2" %}
+      <h1 class="govuk-heading-l">You've added 2 defendants</h1>
+      {% elseif data['addDef'] =="1" %}
+      <h1 class="govuk-heading-l">You've added 1 defendant</h1>
+    {% endif %}
+
+    <form class="form" action="question-case-details" method="post">
+
+      <!-- Tables -->
+      {% if data['addDef'] =="1"%}
+        <table class="govuk-table" data-module="moj-sortable-table">
+          <caption class="govuk-visually-hidden">Claimed work items</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="col" aria-sort="ascending" id="itemTitle">Defendant</th>
+              <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
+              <th class="govuk-table__header" scope="col" aria-sort="none">MAAT ID</th>
+              <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header" id="item1">Defendant 1 (lead)</th>
+              <th scope="row" class="govuk-table__header"><a href="add-defendant1-details" id="defendant1" aria-labelledby="itemTitle item1 defendant1">{{data['defendant1-first-name'] or "Amy"}} {{data['defendant1-last-name'] or "Ciderhouse"}}</a></th>
+              <td class="govuk-table__cell">{{data['defendant1-MAAT'] or "1234567"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        {% elseif data['addDef'] =="2"%}
+        <table class="govuk-table" data-module="moj-sortable-table">
+          <caption class="govuk-visually-hidden">Claimed work items</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th class="govuk-table__header" scope="col" aria-sort="ascending" id="itemTitle">Defendant</th>
+              <th class="govuk-table__header" scope="col" aria-sort="none">Name</th>
+              <th class="govuk-table__header" scope="col" aria-sort="none">MAAT ID</th>
+              <th class="govuk-table__header govuk-table__header--numeric" scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header" id="item1">Defendant 1 (lead)</th>
+              <th scope="row" class="govuk-table__header"><a href="add-defendant1-details" id="defendant1" aria-labelledby="itemTitle item1 defendant1">{{data['defendant1-first-name'] or "Amy"}} {{data['defendant1-last-name'] or "Ciderhouse"}}</a></th>
+              <td class="govuk-table__cell">{{data['defendant1-MAAT'] or "1234567"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header" id="item1">Defendant 1 (lead)</th>
+              <th scope="row" class="govuk-table__header"><a href="add-defendant1-details" id="defendant1" aria-labelledby="itemTitle item1 defendant1">{{data['defendant1-first-name'] or "Amy"}} {{data['defendant1-last-name'] or "Ciderhouse"}}</a></th>
+              <td class="govuk-table__cell">{{data['defendant1-MAAT'] or "1234567"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">
+                <ul class="govuk-summary-list__actions-list">
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a aria-labelledby="duplicate itemTitle item1 workType1" id="duplicate" class="govuk-link" href="add-work-item?duplicate2=1">Duplicate</a>
+                  </li>
+                  <li class="govuk-summary-list__actions-list-item">
+                    <a aria-labelledby="delete itemTitle item1 workType1" id="delete" class="govuk-link" href="#">Delete</a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      {% endif %}
+    
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" >
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--m">
+            Do you need to add another work item?
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="add-another">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="add-another-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: ""
+        }) }}
+
+      </div>
+    </form>
+
+
+  </div>
+</div>
+
+
+
+{% endblock %}
+
