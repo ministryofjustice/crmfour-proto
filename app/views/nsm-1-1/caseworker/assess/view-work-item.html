@@ -1,0 +1,103 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Adjust service cost – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% if data['cwAppStatus'] == "In progress"%}
+    {% include version +"/includes/nav-prime-cw.html"%}
+    {% else %}
+    {% include version +"/includes/nav-prime-cw.html"%}
+  {% endif %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+          Work item
+        </h1>  
+      
+      {% if data['adjustedClaim'] =="Yes" %}
+         
+        <h2 class="govuk-heading-l">
+          Provider submission
+        </h2> 
+        <table class="govuk-table">
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Work type</td>
+              <td class="govuk-table__cell">Attendance without counsel</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Date</td>
+              <td class="govuk-table__cell">1 Jan 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell govuk-!-width-one-half">Fee earner initials</td>
+              <td class="govuk-table__cell">AB</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Time claimed</td>
+              <td class="govuk-table__cell">{{data['workTime'] or "3" }} hours 0 minutes</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Uplift claimed</td>
+              <td class="govuk-table__cell">0%</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Net cost claimed</td>
+              <td class="govuk-table__cell">£{{data['workCost'] or "100.00" }}.00</td>
+            </tr>
+          </tbody>
+        </table> 
+      {% endif%}
+
+      <h2 class="govuk-heading-l">
+        LAA adjustments
+      </h2>  
+      <table class="govuk-table">
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-!-width-one-half">Work type</td>
+            <td class="govuk-table__cell">Travel</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-!-width-one-half">Time allowed</td>
+            <td class="govuk-table__cell">{{data['workAdjustTime'] or "3" }} hours 0 minutes</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Uplift allowed</td>
+            <td class="govuk-table__cell">0%</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Net cost allowed</td>
+            <td class="govuk-table__cell">£{{data['workAdjustCost'] or "75" }}.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Reason for adjustment</td>
+            <td class="govuk-table__cell">The caseworkers reason for the adjustment goes here.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      
+
+    </div>
+  </div>
+
+{% endblock %}

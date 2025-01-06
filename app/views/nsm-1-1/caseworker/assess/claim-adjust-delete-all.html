@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Are you sure you want to delete all adjustments? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {% include version +"/includes/nav-prime-cw.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Are you sure you want to delete all adjustments?</h1>
+      <p>This will delete all of the adjustments made to this claim</p>
+       {{ govukTextarea({
+          name: "deleteAllAdjustments",
+          id: "deleteAllAdjustments",
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          }
+        }) }}
+
+      {{ govukWarningText({
+        text: "You cannot undo this action",
+        iconFallbackText: "Warning"
+      }) }}
+
+      
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Yes, delete all",
+          classes: "govuk-button--warning",
+          href: "claim-details-review?serviceAdjust=No&&adjustDeleteAll=Yes#serviceID"
+        }) }}
+        {{ govukButton({
+          text: "No, do not delete all",
+          href: "claim-details-adjust#serviceID"
+        }) }}
+      </div>
+      
+    </div>
+       
+  </div>
+
+{% endblock %}

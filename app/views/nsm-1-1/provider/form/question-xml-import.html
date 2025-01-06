@@ -1,0 +1,135 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Do you want to claim the youth court additional fee? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Importing claims</h1>
+      <p>Here are some instructions for how to import an XML file. Do we need to talk about LEAP or would that be bad?</p>
+
+      <form class="form" action="task-list?question-org=inProgress&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal= 
+
+        
+        &ufnNSM=100323/222
+        &laa-ref=LAA-5a7d2c
+        &claimType=Breach of injunction
+        &date-rep-day=19
+        &date-rep-month=04
+        &date-rep-year=2023
+        &firmAC=A1B2C3 
+        &stageProvider=No
+        &stageCourt=
+        &stageTrans=
+        &stage=PROM"
+
+        method="post">
+  
+        {{ govukFileUpload({
+          id: "quote1Upload",
+          name: "quote1Upload",
+          isPageHeading: true,
+          label: {
+            text: "Import XML claim",
+            classes: 'govuk-label--s'
+          },
+          hint: {
+            html: 'Anything here?'
+          }
+        }) }}
+
+        {% if data[''] == "" %}
+
+          <div class="moj-multi-file__uploaded-files">
+            <table class="govuk-table">
+              <caption class="govuk-table__caption govuk-table__caption--m">Uploaded file</caption>
+              <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">File name</th>
+                <th scope="col" class="govuk-table__header">Upload progress</th>
+                <th scope="col" class="govuk-table__header">Action</th>
+              </tr>
+              </thead>
+              <tbody class="govuk-table__body moj-multi-file-upload__list">
+              <tr class="govuk-table__row moj-multi-file-upload__row" id="0">
+                    <td class="govuk-table__cell moj-multi-file-upload__filename" data-label="File name">
+                      <span class="file-name">Other quote.png</span>
+                    </td>
+                    <td class="govuk-table__cell moj-multi-file-upload__progress" data-label="Upload Progress">
+                      <svg class="moj-banner__icon" fill="00703c" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" height="25" width="25">
+                  <path d="M25,6.2L8.7,23.2L0,14.1l4-4.2l4.7,4.9L21,2L25,6.2z"></path>
+              </svg>
+                    </td>
+                    <td class="govuk-table__cell moj-multi-file-upload__actions">
+                      <a class="remove-link moj-multi-file-upload__delete" href="#0" value="c74106e4-0dff-4869-b662-e7da4e75cf0f">Delete
+                        <span class="govuk-visually-hidden">Other quote.png</span>
+                      </a>
+                    </td>
+                </tr></tbody>
+            </table>
+          </div>
+        {% endif %}
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+         
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+      let selectElements = $('.autocomplete-select')
+      let placeholder = ''
+
+
+      selectElements.each(function (index) {
+        let selectElement = $(this)
+        if (selectElement.length) {
+          if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+          
+          accessibleAutocomplete.enhanceSelectElement({
+            defaultValue: '',
+            placeholder: placeholder,
+            minLength: 1,
+            showNoOptionsFound: false,
+            showAllValues: true,
+            autoselect: false,
+            selectElement: selectElement[0],
+          })
+        }
+
+      })
+    
+    </script>
+
+{% endblock %}

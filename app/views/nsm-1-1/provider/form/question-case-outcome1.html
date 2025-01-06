@@ -1,0 +1,182 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  What is the case category – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data['caseCategoryYouth'] == "Category 1A" %}
+      <form class="form" action="question-youth-court-fee" method="post">
+      {% else %}
+      <form class="form" action="question-why-nsm?question-case-disposal=complete" method="post">
+    {% endif %}
+
+      {% set warrantDateHtml %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="date-warrant-hint">
+            <legend class="govuk-fieldset__legend">
+                Date of warrant issue
+              </h1>
+            <div id="date-warrant-hint" class="govuk-hint">
+              For example, 27 03 2024
+            </div>
+            <div class="govuk-date-input" id="date-rep">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-warrant-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-warrant-day" name="date-warrant-day" type="text" inputmode="numeric" value="{{data['date-warrant-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-warrant-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-warrant-month" name="date-warrant-month" type="text" inputmode="numeric" value="{{data['date-warrant-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-warrant-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-warrant-year" name="date-warrant-year" type="text" inputmode="numeric" value="{{data['date-warrant-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      {% endset %}
+
+      {% set solicitorDateHtml %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="date-solicitor-hint">
+            <legend class="govuk-fieldset__legend">
+                Date of change
+              </h1>
+            <div id="date-solicitor-hint" class="govuk-hint">
+              For example, 27 03 2024
+            </div>
+            <div class="govuk-date-input" id="date-rep">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-solicitor-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-solicitor-day" name="date-solicitor-day" type="text" inputmode="numeric" value="{{data['date-solicitor-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-solicitor-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-solicitor-month" name="date-solicitor-month" type="text" inputmode="numeric" value="{{data['date-solicitor-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="date-solicitor-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-solicitor-year" name="date-solicitor-year" type="text" inputmode="numeric" value="{{data['date-solicitor-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      {% endset %}
+
+      {% set otherHtml %}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="otherOutcome">
+            Case outcome                
+          </label>
+          <input class="govuk-input" id="otherOutcome" name="otherOutcome" type="text">
+        </div>
+      {% endset %}
+
+      {{ govukRadios({
+        name: "caseOutcome",
+        fieldset: {
+          legend: {
+            text: "Select the case outcome",
+            isPageHeading: yes,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        items: [
+          {
+            value: "Guilty plea",
+            text: "Guilty plea",
+            checked: checked("caseOutcome", "Guilty plea")
+          },
+          {
+            value: "Discontinuance",
+            text: "Discontinuance",
+            checked: checked("caseOutcome", "Discontinuance")
+          },
+          {
+            value: "Warrant for arrest",
+            text: "Warrant for arrest",
+            checked: checked("caseOutcome", "Warrant for arrest"),
+            conditional: {
+              html: warrantDateHtml
+            }
+          },
+          {
+            value: "Change of solicitor",
+            text: "Change of solicitor",
+            checked: checked("caseOutcome", "Change of solicitor"),
+            conditional: {
+              html: solicitorDateHtml
+            }
+          },
+          {
+            value: "Other",
+            text: "Other",
+            checked: checked("caseOutcome", "Other"),
+            conditional: {
+              html: otherHtml
+            }
+          }
+        ]
+      }) }}  
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "task-list"
+        }) }}
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

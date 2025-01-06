@@ -1,0 +1,417 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.html"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Work items- {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-l">Work items</h1>
+    <form class="form" action="review-all-work-items" method="post">
+
+      {% if data['add1'] == "4" %}
+
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="completionDate-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Completion date
+              </h1>
+            <div id="completionDate-hint" class="govuk-hint">
+              For example, 27 3 2024
+            </div>
+            <div class="govuk-date-input" id="completionDate4">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="completionDate4-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate4-day" name="completionDate4-day" type="text" inputmode="numeric" value="{{data['completionDate4-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="completionDate4-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate4-month" name="completionDate4-month" type="text" inputmode="numeric" value="{{data['completionDate4-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="completionDate4-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="completionDate4-year" name="completionDate4-year" type="text" inputmode="numeric" value="{{data['completionDate4-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s" for="feeEarner4">
+            Fee earner initials
+          </label>
+          <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner4" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner4']}}">
+        </div>
+
+        {% elseif data['add1'] == "3"%}
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="completionDate-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  Completion date
+                </h1>
+              <div id="completionDate-hint" class="govuk-hint">
+                For example, 27 3 2024
+              </div>
+              <div class="govuk-date-input" id="completionDate3">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate3-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate3-day" name="completionDate3-day" type="text" inputmode="numeric" value="{{data['completionDate3-day']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate3-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate3-month" name="completionDate3-month" type="text" inputmode="numeric" value="{{data['completionDate3-month']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate3-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="completionDate3-year" name="completionDate3-year" type="text" inputmode="numeric" value="{{data['completionDate3-year']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="feeEarner3">
+              Fee earner initials
+            </label>
+            <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner3" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner3']}}">
+          </div>
+
+        {% elseif data['add1'] == "2"%}
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="completionDate-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  Completion date
+                </h1>
+              <div id="completionDate-hint" class="govuk-hint">
+                For example, 27 3 2024
+              </div>
+              <div class="govuk-date-input" id="completionDate2">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate2-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate2-day" name="completionDate2-day" type="text" inputmode="numeric" value="{{data['completionDate2-day']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate2-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate2-month" name="completionDate2-month" type="text" inputmode="numeric" value="{{data['completionDate2-month']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate2-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="completionDate2-year" name="completionDate2-year" type="text" inputmode="numeric" value="{{data['completionDate2-year']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="feeEarner2">
+              Fee earner initials
+            </label>
+            <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner2" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner2']}}">
+          </div>
+
+        {% else %}
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="completionDate-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  Work completion date
+                </h1>
+              <div id="completionDate-hint" class="govuk-hint">
+                For example, 27 3 2024
+              </div>
+              <div class="govuk-date-input" id="completionDate1">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate1-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate1-day" name="completionDate1-day" type="text" inputmode="numeric" value="{{data['completionDate1-day']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate1-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="completionDate1-month" name="completionDate1-month" type="text" inputmode="numeric" value="{{data['completionDate1-month']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="completionDate1-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="completionDate1-year" name="completionDate1-year" type="text" inputmode="numeric" value="{{data['completionDate1-year']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="feeEarner1">
+              Fee earner initials
+            </label>
+            <input class="govuk-input govuk-input--width-5" id="width-5" name="feeEarner1" type="text" aria-describedby="feeEarner-hint" value="{{data['feeEarner1']}}">
+          </div>
+
+          <h2 class="govuk-heading-m"> What works item are you claiming for on this date? </h2>
+          <p>Enter time spent for all options that are relevant to you, for example, 1 hour and 30 minutes</p>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Attendance with counsel time 
+              </legend>
+              <div class="govuk-date-input" id="otherNoHours1">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-hours" name="otherNoHours1-hours" type="text" inputmode="numeric" value="{{data['otherNoHours1-hours']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-mins" name="otherNoHours1-mins" type="text" inputmode="numeric" value="{{data['otherNoHours1-mins']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Attendance without counsel time 
+              </legend>
+              <div class="govuk-date-input" id="otherNoHours1">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-hours" name="otherNoHours1-hours" type="text" inputmode="numeric" value="{{data['otherNoHours1-hours']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-mins" name="otherNoHours1-mins" type="text" inputmode="numeric" value="{{data['otherNoHours1-mins']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Preparation time 
+              </legend>
+              <div class="govuk-date-input" id="otherNoHours1">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-hours" name="otherNoHours1-hours" type="text" inputmode="numeric" value="{{data['otherNoHours1-hours']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-mins" name="otherNoHours1-mins" type="text" inputmode="numeric" value="{{data['otherNoHours1-mins']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Advocacy time 
+              </legend>
+              <div class="govuk-date-input" id="otherNoHours1">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-hours" name="otherNoHours1-hours" type="text" inputmode="numeric" value="{{data['otherNoHours1-hours']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-mins" name="otherNoHours1-mins" type="text" inputmode="numeric" value="{{data['otherNoHours1-mins']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Travel time 
+              </legend>
+              <div class="govuk-date-input" id="otherNoHours1">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-hours" name="otherNoHours1-hours" type="text" inputmode="numeric" value="{{data['otherNoHours1-hours']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-mins" name="otherNoHours1-mins" type="text" inputmode="numeric" value="{{data['otherNoHours1-mins']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" >
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Waiting time 
+              </legend>
+              <div class="govuk-date-input" id="otherNoHours1">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-hours">
+                      Hours
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-hours" name="otherNoHours1-hours" type="text" inputmode="numeric" value="{{data['otherNoHours1-hours']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="otherNoHours1-mins">
+                      Minutes
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="otherNoHours1-mins" name="otherNoHours1-mins" type="text" inputmode="numeric" value="{{data['otherNoHours1-mins']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+        
+
+      {% endif %}
+
+ 
+
+      <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">
+        Update calculation
+      </button> 
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Calculations</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col"> Total</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">£</td>
+          </tr>
+        </tbody>
+      </table>
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "task-list"
+        }) }}
+
+      </div>
+    </form>
+
+  </div>
+</div>
+
+
+
+{% endblock %}
+

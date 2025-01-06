@@ -1,0 +1,378 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+{% set activePrimeNav = [false, false, false, true] %}
+{% set activeSubNav = [true, false, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  Search – {{data['serviceName1'] }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version + "/includes/nav-prime-cw.njk" %}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row"> 
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">
+      Search for a claim
+    </h1>
+    
+    <p>Enter details in at least one field to search for a claim</p>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="search-panel govuk-!-margin-bottom-6">
+
+      <div class="govuk-form-group govuk-!-width-two-thirds" role="search">
+        <h2 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--s" for="filterSearch">
+            Enter any combination of client or firm name, UFN or LAA reference
+          </label>
+        </h2>
+        <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Search will filter the table of users">
+      </div>
+
+      {% call govukFieldset({
+        legend: {
+          text: "Submission date",
+          classes: "govuk-fieldset__legend--s",
+          isPageHeading: false
+        }
+        }) %}
+
+        <p>
+         Enter a start date, end date or both, for example, 17/5/2024
+        </p>
+
+        <div id="date-filters" class="govuk-date-input">
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker" data-module="moj-date-picker">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="sub-date-from">
+                  Submission date from
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="sub-date-from" name="sub-date-from" type="text" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker " data-module="moj-date-picker">
+              <div class="govuk-form-group govuk-date-input__item">
+                <label class="govuk-label" for="sub-date-to">
+                  Submission date to
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="sub-date-to" name="sub-date-to" type="text"  autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endcall %}
+
+      {% call govukFieldset({
+        legend: {
+          text: "Last updated date",
+          classes: "govuk-fieldset__legend--s",
+          isPageHeading: false
+        }
+        }) %}
+
+        <p>
+          Enter a start date, end date or both, for example, 17/5/2024
+        </p>
+
+        <div id="date-filters" class="govuk-date-input">
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker" data-module="moj-date-picker">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="last-date-from">
+                  Last updated from
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="last-date-from" name="last-date-from" type="text" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="moj-datepicker" data-module="moj-date-picker">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="last-date-to">
+                  Last updated to
+                </label>
+                <input class="govuk-input moj-js-datepicker-input " id="last-date-to" name="last-date-to" type="text"  autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {% endcall %}
+
+      <div id="filters" class="govuk-date-input">
+
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="sort">
+              Claim value
+            </label>
+            <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
+              <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
+              <option value="Not" onclick="filterSelection('highValue')">High value</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="sort">
+              Status
+            </label>
+            <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
+              <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
+              <option value="Not assigned" onclick="filterSelection('none')">Not assigned</option>
+              <option value="In progress" onclick="filterSelection('in-progress')">In progress</option>
+              <option value="Sent back" onclick="filterSelection('sent-back')">Sent back</option>
+              <option value="Granted" onclick="filterSelection('Granted')">Granted</option>
+              <option value="Auto-granted" onclick="filterSelection('auto-granted')">Auto-granted</option>
+              <option value="Part granted" onclick="filterSelection('part-granted')">Part granted</option>
+              <option value="Rejected" onclick="filterSelection('rejected')">Rejected</option>
+              <option value="Cancelled" onclick="filterSelection('cancelled')">Cancelled</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="sort">
+              Caseworker
+            </label>
+            <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
+              <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
+              <option value="Not" onclick="filterSelection('Not')">Not assigned</option>
+              <option value="Justice" onclick="filterSelection('Justice')">Johanna Justice</option>
+              <option value="Wolf" onclick="filterSelection('Wolf')">Tattina Wolf</option>
+              <option value="Hussein" onclick="filterSelection('Hussein')">Ishmale Hussein</option>
+            </select>
+          </div>
+        </div>      
+
+      </div>
+
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button" onclick="mySearch()" id="searchButton">
+          Search
+        </button>
+
+        <a class="govuk-link" href="">Clear all</a>
+      </div>
+            
+    </div>
+
+    <div id="resultsTable2">
+      <h2 class="govuk-heading-m">
+        22 search results
+      </h2>
+      <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Firm name</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
+            <th scope="col" class="govuk-table__header">Caseworker</th>
+            <th scope="col" class="govuk-table__header" aria-sort="descending">Last updated</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">                
+          <tr class="govuk-table__row hideTR all part-granted Medium highValue">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f7w&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
+            <td class="govuk-table__cell">Law Fans</td>
+            <td class="govuk-table__cell">Roger Catapult</td>
+            <td class="govuk-table__cell">Not assigned</td>
+            <td class="govuk-table__cell" data-sort-value="231121">21 Nov 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Part granted</strong></td>
+          </tr>
+          <tr class="govuk-table__row hideTR all none Not Medium">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-9p4f0e&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="9p4f0e">LAA-9p4f0e</a></td>
+            <td class="govuk-table__cell">Legal Aiders Ltd</td>
+            <td class="govuk-table__cell">Jamie Innes</td>
+            <td class="govuk-table__cell">Not assigned</td>
+            <td class="govuk-table__cell" data-sort-value="231011">11 Oct 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not assigned</strong></td>
+          </tr>
+          <tr class="govuk-table__row hideTR all none Not Medium">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-6p4f0r&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
+            <td class="govuk-table__cell">Crime Busters Legal</td>
+            <td class="govuk-table__cell">Dami Olu</td>
+            <td class="govuk-table__cell">Not assigned</td>
+            <td class="govuk-table__cell" data-sort-value="230913">13 Sept 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not assigned</strong></td>
+          </tr>
+          <tr class="govuk-table__row hideTR all Granted Wolf Medium">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-8p3h0e&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
+            <td class="govuk-table__cell">Legal Aiders Ltd</td>
+            <td class="govuk-table__cell">Bobby Brownie</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell" data-sort-value="230801">1 Aug 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
+          </tr>
+          <tr class="govuk-table__row hideTR all none Not Low">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>
+            <td class="govuk-table__cell">Big Law</td>
+            <td class="govuk-table__cell">Ishia Melta</td>
+            <td class="govuk-table__cell">Not assigned</td>
+            <td class="govuk-table__cell" data-sort-value="230903">3 Sept 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not assigned</strong></td>
+          </tr>
+          <tr class="govuk-table__row hideTR all in-progress Wolf High highValue">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-2d9t4j&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
+            <td class="govuk-table__cell">Boss Lawyers Inc</td>
+            <td class="govuk-table__cell">Arnie Swartz</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell" data-sort-value="230414">14 April 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">In progress</strong></td>
+          </tr>
+          <tr class="govuk-table__row hideTR all auto-granted Justice Medium">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>  
+            <td class="govuk-table__cell">Big Law</td>          
+            <td class="govuk-table__cell">Bob Holness</td>
+            <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+            <td class="govuk-table__cell" data-sort-value="230902">2 Sept 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Auto granted</strong></td>
+          </tr>
+          <tr class="govuk-table__row hideTR all rejected Hussein Low">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-6j4k6k&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="6j4k6k">LAA-6j4k6k</a></td>
+            <td class="govuk-table__cell">Griffins Grifting Grifters Law</td>
+            <td class="govuk-table__cell">Melanie Longname Griffins</td>
+            <td class="govuk-table__cell">{{data['caseworker3']}}</td>
+            <td class="govuk-table__cell" data-sort-value="230631">31 June 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Rejected</strong></td>
+          </tr>
+          <tr class="govuk-table__row hideTR all cancelled Not Low">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-7j8s9s&cwAppStatus=Returned" class="govuk-link--no-visited-state" data-sort-value="7j8s9s">LAA-7j8s9s</a></td>
+            <td class="govuk-table__cell">Music Solicitors</td>
+            <td class="govuk-table__cell">Alecia Pink</td>
+            <td class="govuk-table__cell">Not assigned</td>
+            <td class="govuk-table__cell" data-sort-value="230410">10 Apr 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Cancelled</strong></td>
+          </tr>
+          <tr class="govuk-table__row hideTR all sent-back Not High">
+            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-4m4m4m&cwAppStatus=Review" class="govuk-link--no-visited-state" data-sort-value="4m4m4m">LAA-4m4m4m</a></td>
+            <td class="govuk-table__cell">Griffins Grifting Grifters Law</td>
+            <td class="govuk-table__cell">Simone Gutter</td>
+            <td class="govuk-table__cell">Not assigned</td>
+            <td class="govuk-table__cell" data-sort-value="230321">21 Mar 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Sent back</strong></td>
+          </tr>
+        </body>
+      </table>      
+      {% include "includes/pagination-search.html"%}
+
+    </div>     
+     
+  </div>
+
+</div>
+
+
+<script>
+
+   https://www.w3schools.com/howto/howto_js_read_more.asp
+
+  function mySearch() {
+    var searchResult = document.getElementById("resultsTable2");
+    var searchButton = document.getElementById("searchButton");
+
+    if (searchResult.style.display === "none") {
+      searchResult.style.display = "none";
+    } else {
+      searchResult.style.display = "inline";
+    }
+     window.location='#resultsTable2'
+  } 
+
+  //Search that filters rows in a table
+  // https://www.w3schools.com/howto/howto_js_filter_table.asp
+
+  function tablefilterSearch() {
+    // Declare variables
+    var input, filter, table, tr, td, i ;
+    input = document.getElementById("filterSearch");
+    filter = input.value.toUpperCase();
+    table = document.getElementsByClassName("generic-filter")[0];
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query  
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td");
+  
+      if(td.length > 0){ // to avoid th
+  
+        // which columns to work on https://www.codeproject.com/Questions/1166596/Search-columns-instead-of-in-HTML-using-javascript
+         if (td[0].innerHTML.toUpperCase().indexOf(filter) > -1 || td[1].innerHTML.toUpperCase().indexOf(filter) > -1 || td[2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+           tr[i].style.display = "";
+         } else {
+           tr[i].style.display = "none";
+         }
+  
+      }
+   }
+  }
+
+
+  //Filters the table based on specific properties that are not in the table data.
+  // https://www.w3schools.com/howto/howto_js_filter_elements.asp
+
+  filterSelection("all")
+  function filterSelection(c) {
+    var x, i;
+    x = document.getElementsByClassName("hideTR");
+    if (c == "all") c = "";
+    for (i = 0; i < x.length; i++) {
+      w3RemoveClass(x[i], "showTR");
+      if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "showTR");
+    }
+  }
+
+  function w3AddClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+    }
+  }
+
+  function w3RemoveClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      while (arr1.indexOf(arr2[i]) > -1) {
+        arr1.splice(arr1.indexOf(arr2[i]), 1);     
+      }
+    }
+    element.className = arr1.join(" ");
+  }
+
+  // Add active class to the current button (highlight it)
+  var btnContainer = document.getElementById("filterbuttonContainer");
+  var btns = btnContainer.getElementsByClassName("govuk-button--secondary");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function(){
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+    });
+  }
+</script>
+
+{% endblock %}
+

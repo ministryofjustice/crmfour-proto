@@ -1,0 +1,87 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-nsm" %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  What is the case category – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% if data['caseCategoryYouth'] == "Category 2A" %}
+      <form class="form" action="question-youth-court-fee" method="post">
+      {% else %}
+      <form class="form" action="question-why-nsm?question-case-disposal=complete" method="post">
+    {% endif %}
+
+      {% set otherHtml %}
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="otherOutcome">
+            Case outcome                
+          </label>
+          <input class="govuk-input" id="otherOutcome" name="otherOutcome" type="text">
+        </div>
+      {% endset %}
+
+      {{ govukRadios({
+        name: "caseOutcome",
+        fieldset: {
+          legend: {
+            text: "Select the case outcome",
+            isPageHeading: yes,
+            classes: "govuk-fieldset__legend--xl"
+          }
+        },
+        items: [
+          {
+            value: "Contested trial",
+            text: "Contested trial",
+            checked: checked("caseOutcome", "Contested trial")
+          },
+          {
+            value: "Discontinuance",
+            text: "Discontinuance",
+            checked: checked("caseOutcome", "Discontinuance")
+          },
+          {
+            value: "Other",
+            text: "Other",
+            checked: checked("caseOutcome", "Other"),
+            conditional: {
+              html: otherHtml
+            }
+          }
+        ]
+      }) }}  
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "task-list"
+        }) }}
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

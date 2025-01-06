@@ -1,0 +1,14 @@
+  <div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="outcome">
+     Hearing outcome
+    </label>
+    <div id="outcome-hint" class="govuk-hint">
+      Select a hearing outcome from the suggestions that appear when you start to enter it, for example, Change of solicitor (CP02)
+    </div>
+    <select class="govuk-select autocomplete-select" id="outcome" name="offenceType" aria-describedby="outcome-hint">
+      <option></option>
+      <option value="CP17 - Extradition" {{ "selected" if data["outcome"] == "CP17 - Extradition" }}>CP17 - Extradition</option>
+      <option value="CP04 - Trial: acquitted" {{ "selected" if data["outcome"] == "CP04 - Trial: acquitted" }}>CP04 - Trial: acquitted</option>
+      <option value="CP06 - Trial: convicted" {{ "selected" if data["outcome"] == "CP06 - Trial: convicted" }}>CP06 - Trial: convicted</option>
+    </select>
+  </div>
