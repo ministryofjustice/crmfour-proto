@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
-{% set version = "latest-nsm" %}
+{% set version = "nsm-1-1" %}
+{% set activePrimeNav = [true, false] %}
 {% set add = "4" %}
 
 {% block header %}
@@ -13,6 +14,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
+  {% include version + "/includes/nav-prime-provider.njk" %}
 
   {{ govukBackLink({
     text: "Back",

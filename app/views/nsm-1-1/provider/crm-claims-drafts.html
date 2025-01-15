@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set version = "latest-nsm" %}
+{% set version = "nsm-1-1" %}
 {% set activePrimeNav = [true, false] %}
 {% set activeSubNav = [false, false, true] %}
 
@@ -14,6 +14,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
+  {% include version + "/includes/nav-prime-provider.njk" %}
 {% endblock %}
 
 {% block content %}
