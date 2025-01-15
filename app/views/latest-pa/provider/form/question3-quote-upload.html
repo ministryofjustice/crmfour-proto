@@ -1,5 +1,6 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
 
 {% block header %}
   {% include version + "/includes/header-provider.html" %}
@@ -11,6 +12,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
+  {% include version + "/includes/nav-prime-provider.njk" %}
   
   {{ govukBackLink({
     text: "Back",
