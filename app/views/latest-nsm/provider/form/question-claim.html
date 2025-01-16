@@ -27,6 +27,22 @@
       <h1 class="govuk-heading-xl">What you are claiming for</h1>
 
       <form class="form" action="question-account" method="post">
+
+        {% if data['showImportMessage'] =="Yes"%}
+          <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Success
+              </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              <h3 class="govuk-notification-banner__heading">
+                Your claim has been imported
+              </h3>
+              <p class="govuk-body">You must check the information in each section to submit this claim.</p>
+            </div>
+          </div>
+        {% endif %}
         
         {{ govukInput({
           label: {

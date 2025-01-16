@@ -24,32 +24,17 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Importing claims</h1>
-      <p>Here are some instructions for how to import an XML file. Do we need to talk about LEAP or would that be bad?</p>
+      <h1 class="govuk-heading-l">Import a claim</h1>
+      <p>To upload your claim, first use your LEAP case management system to export your claim as an XML file.</p>
 
-      <form class="form" action="task-list?question-org=inProgress&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal= 
-
-        
-        &ufnNSM=100323/222
-        &laa-ref=LAA-5a7d2c
-        &claimType=Breach of injunction
-        &date-rep-day=19
-        &date-rep-month=04
-        &date-rep-year=2023
-        &firmAC=A1B2C3 
-        &stageProvider=No
-        &stageCourt=
-        &stageTrans=
-        &stage=PROM"
-
-        method="post">
+      <form class="form" action="task-list?question-claim=inProgress&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal=" method="post">
   
         {{ govukFileUpload({
           id: "quote1Upload",
           name: "quote1Upload",
           isPageHeading: true,
           label: {
-            text: "Import XML claim",
+            text: "Import a claim",
             classes: 'govuk-label--s'
           },
           hint: {
