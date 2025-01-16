@@ -25,20 +25,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">Import a claim</h1>
-      <p>To upload your claim, first use your LEAP case management system to export your claim as an XML file.</p>
+      <p>To import a claim, first export your claim as an XML file from your case management system.</p>
 
-      <form class="form" action="task-list?question-claim=inProgress&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal=" method="post">
+      <form class="form" action="question-claim?question-claim=inProgress&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal=" method="post">
   
         {{ govukFileUpload({
           id: "quote1Upload",
           name: "quote1Upload",
-          isPageHeading: true,
+          isPageHeading: false,
           label: {
-            text: "Import a claim",
+            text: "Upload XML file",
             classes: 'govuk-label--s'
-          },
-          hint: {
-            html: 'Anything here?'
           }
         }) }}
 
