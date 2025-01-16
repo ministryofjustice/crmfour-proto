@@ -25,22 +25,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-l">Import a claim</h1>
-      <p>To import a claim, first export your claim as an XML file from your case management system.</p>
+      <p>To upload your claim, first use your LEAP case management system to export your claim as an XML file.</p>
 
-      <form class="form" action="question-claim?question-claim=inProgress&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal=" method="post">
+      <form class="form" action="question-claim?question-claim=inProgress&question-org=inProgress&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal=&ufnNSM=100323/222&laa-ref=LAA-5a7d2c&claimType=Non-standard magistrates' court payment&date-rep-day=19&date-rep-month=04&date-rep-year=2023&firmAC=A1B2C3&stageProvider=No" method="post">
   
         {{ govukFileUpload({
           id: "quote1Upload",
           name: "quote1Upload",
           isPageHeading: false,
           label: {
-            text: "Upload XML file",
+            text: "Import a claim",
             classes: 'govuk-label--s'
           }
         }) }}
 
         {% if data[''] == "" %}
-
           <div class="moj-multi-file__uploaded-files">
             <table class="govuk-table">
               <caption class="govuk-table__caption govuk-table__caption--m">Uploaded file</caption>
@@ -53,20 +52,21 @@
               </thead>
               <tbody class="govuk-table__body moj-multi-file-upload__list">
               <tr class="govuk-table__row moj-multi-file-upload__row" id="0">
-                    <td class="govuk-table__cell moj-multi-file-upload__filename" data-label="File name">
-                      <span class="file-name">Other quote.png</span>
-                    </td>
-                    <td class="govuk-table__cell moj-multi-file-upload__progress" data-label="Upload Progress">
-                      <svg class="moj-banner__icon" fill="00703c" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" height="25" width="25">
-                  <path d="M25,6.2L8.7,23.2L0,14.1l4-4.2l4.7,4.9L21,2L25,6.2z"></path>
-              </svg>
-                    </td>
-                    <td class="govuk-table__cell moj-multi-file-upload__actions">
-                      <a class="remove-link moj-multi-file-upload__delete" href="#0" value="c74106e4-0dff-4869-b662-e7da4e75cf0f">Delete
-                        <span class="govuk-visually-hidden">Other quote.png</span>
-                      </a>
-                    </td>
-                </tr></tbody>
+                <td class="govuk-table__cell moj-multi-file-upload__filename" data-label="File name">
+                  <span class="file-name">Other quote.png</span>
+                </td>
+                <td class="govuk-table__cell moj-multi-file-upload__progress" data-label="Upload Progress">
+                  <svg class="moj-banner__icon" fill="00703c" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" height="25" width="25">
+                    <path d="M25,6.2L8.7,23.2L0,14.1l4-4.2l4.7,4.9L21,2L25,6.2z"></path>
+                  </svg>
+                </td>
+                <td class="govuk-table__cell moj-multi-file-upload__actions">
+                  <a class="remove-link moj-multi-file-upload__delete" href="#0" value="c74106e4-0dff-4869-b662-e7da4e75cf0f">Delete
+                    <span class="govuk-visually-hidden">Other quote.png</span>
+                  </a>
+                </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         {% endif %}
