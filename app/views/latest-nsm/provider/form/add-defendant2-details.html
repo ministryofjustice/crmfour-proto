@@ -26,7 +26,11 @@
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">Defendant 2</h1>
     
-    <form class="form" action="review-all-defendants?addDef=2" method="post">
+    {% if data['addDef'] =="import"%}
+      <form class="form" action="review-all-defendants" method="post">
+       {% else %}
+       <form class="form" action="review-all-defendants?addDef=2" method="post">
+    {% endif %}
 
       {{ govukInput({
         label: {
@@ -34,9 +38,9 @@
           classes: "govuk-label--s"
         },
         classes: "govuk-input--width-20",
-        id: "defendant1-first-name",
-        name: "defendant1-first-name",
-        value: data['defendant1-last-name']
+        id: "defendant2-first-name",
+        name: "defendant2-first-name",
+        value: data['defendant2-last-name']
       }) }}
 
       {{ govukInput({
@@ -45,9 +49,9 @@
           classes: "govuk-label--s"
         },
         classes: "govuk-input--width-20",
-        id: "defendant1-last-name",
-        name: "defendant1-last-name",
-        value: data['defendant1-last-name']
+        id: "defendant2-last-name",
+        name: "defendant2-last-name",
+        value: data['defendant2-last-name']
       }) }}
 
       {{ govukInput({
@@ -59,11 +63,9 @@
         text: "This is a 7 digit number, for example 1234567"
         },
         classes: "govuk-input--width-10",
-        id: "defendant1-MAAT",
-        name: "defendant1-MAAT",
-        autocomplete: "email",
-        type: "email",
-        value: data['defendant1-MAAT']
+        id: "defendant2-MAAT",
+        name: "defendant2-MAAT",
+        value: data['defendant2-MAAT']
       }) }}  
      
 

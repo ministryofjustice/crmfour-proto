@@ -26,7 +26,11 @@
   <div class="govuk-grid-column-full">
     <h1 class="govuk-heading-xl">Defendant 1 (lead defendant)</h1>
     
-    <form class="form" action="review-all-defendants?addDef=1" method="post">
+    {% if data['addDef'] =="import"%}
+      <form class="form" action="review-all-defendants" method="post">
+       {% else %}
+       <form class="form" action="review-all-defendants?addDef=1" method="post">
+    {% endif %}
 
       {{ govukInput({
         label: {
@@ -61,8 +65,6 @@
         classes: "govuk-input--width-10",
         id: "defendant1-MAAT",
         name: "defendant1-MAAT",
-        autocomplete: "email",
-        type: "email",
         value: data['defendant1-MAAT']
       }) }}  
      
