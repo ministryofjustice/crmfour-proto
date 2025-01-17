@@ -27,7 +27,11 @@
     <h1 class="govuk-heading-xl">Contact details</h1>
     <p>We’ll use these contact details if we need to ask you for more information or to tell you the outcome of your application.</p>
     
-    <form class="form" action="add-defendant1-details?question-org=complete" method="post">
+    {% if data['question-client'] == "inProgress" %}
+      <form class="form" action="review-all-defendants?question-org=complete" method="post">
+      {% else %}
+      <form class="form" action="add-defendant1-details?question-org=complete" method="post">
+    {% endif %}
 
       {{ govukInput({
         label: {
