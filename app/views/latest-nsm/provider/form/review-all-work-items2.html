@@ -29,7 +29,7 @@
     {% set bannerHtml %}
       {% if data['add2'] =="import"%}
         <h3 class="govuk-heading-s">You imported 22 work items</h3>
-        <p>2 work items are incomplete: <a href="add-work-item?">item 3</a>, <a href="add-work-item?defendant2-first-name=Adele&defendant2-last-name=Adele">item 12</a></p>
+        <p>2 work items are incomplete: <a href="add-work-item2?">item 3</a>, <a href="add-work-item2">item 12</a></p>
 
         {% elseif data['add2'] =="5" or data['add2'] =="6" %}
           <h3 class="govuk-heading-s">You've added 22 work items</h3>
@@ -528,28 +528,31 @@
         {% endif %}
       </div>
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" >
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--m">
-            Do you need to add another work item?
-          </legend>
-          <div class="govuk-radios" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
-              <label class="govuk-label govuk-radios__label" for="add-another">
-                Yes
-              </label>
+      {% if data['add2'] =="import" %} 
+        {% else %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" >
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--m">
+              Do you need to add another work item?
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="add-another" name="add-another" type="radio" value="Yes">
+                <label class="govuk-label govuk-radios__label" for="add-another">
+                  Yes
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
+                <label class="govuk-label govuk-radios__label" for="add-another-2">
+                  No
+                </label>
+              </div>
             </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="add-another-2" name="add-another" type="radio" value="No">
-              <label class="govuk-label govuk-radios__label" for="add-another-2">
-                No
-              </label>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-    
+          </fieldset>
+        </div>
+      {% endif %}
+
       <div class="govuk-button-group">
         {{ govukButton({
           text: "Save and continue"
