@@ -17,8 +17,16 @@
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full">
-		<h1 class="govuk-heading-xl">User management
-		</h1>
+		{{ mojPageHeaderActions({
+			heading: {
+				text: "User management"
+			},
+			items: [{
+				text: "Add new user",
+				classes: "govuk-button--secondary",
+				href: "user"
+			}]
+		}) }}
 		<table class="govuk-table" data-module="moj-sortable-table">
 			<thead class="govuk-table__head">
 				<tr class="govuk-table__row">
@@ -67,6 +75,7 @@
 					</tr>
 			</tbody>
 		</table>
+		{% include "includes/pagination.html"%}
 	</div>
 </div>
     
