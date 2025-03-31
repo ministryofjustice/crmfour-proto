@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set version = "latest-portal" %}
+{% set version = "portal-1-0" %}
 
 {% block header %}
   {% include version + "/includes/header-cw3.html"%}
@@ -27,11 +27,7 @@
         <p><a href="/latest-pa/caseworker/crm-assess" class="govuk-link--no-visited-state">Assess prior authority to incur disbursements, previously CRM4</a></p>       
         <p><a href="/latest-nsm/caseworker/crm-assess" class="govuk-link--no-visited-state">Assess a non-standard magistrates' court payment, previously CRM7</a></p>   
         {% if data['permission'] == "supervisor" or data['permission'] == null %}
-          <p><a href="/latest-portal/metabase?version=1&app=4" class="govuk-link--no-visited-state">Analytics dashboard</a></p>
-          {% elseif data['permission'] == "caseworker"  %}
-        {% endif %}
-        {% if data['permission'] == "supervisor" or data['permission'] == null %}
-          <p><a href="/latest-portal/user-management" class="govuk-link--no-visited-state">User management</a></p>
+          <p><a href="/portal-1-0/metabase?version=1&app=4" class="govuk-link--no-visited-state">Analytics dashboard</a></p>
           {% elseif data['permission'] == "caseworker"  %}
         {% endif %}
       </div>

@@ -1,0 +1,142 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-portal" %}
+
+{% block header %}
+  {% include version + "/includes/header-cw3.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  LAA Online Portal – Assess a crime form - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner2.html"%}
+
+	{{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">User details
+		</h1>
+		<form class="form" action="user-management" method="post">
+			{{ govukInput({
+				label: {
+					text: "Full name",
+					classes: "govuk-fieldset__legend--s"
+				},
+				id: "user-name",
+				name: "userName",
+				classes: "govuk-input--width-20"
+			}) }}
+
+			{{ govukInput({
+				label: {
+					text: "Email address",
+					classes: "govuk-fieldset__legend--s"
+				},
+				hint: {
+					text: "This must be the email address they use to access the system"
+				},
+				id: "email",
+				name: "email",
+				classes: "govuk-input--width-20",
+				type: "email",
+				autocomplete: "email",
+				spellcheck: false
+			}) }}
+
+			{% set serviceHtml %}
+				{{ govukRadios({
+					name: "service",
+					fieldset: {
+						legend: {
+							text: "What services can they access?",
+							isPageHeading: false
+						}
+					},
+					items: [
+						{
+							value: "All",
+							text: "All"
+						},
+						{
+							value: "PA",
+							text: "PA"
+						},
+						{
+							value: "NSM",
+							text: "NSM"
+						}
+					]
+				}) }}
+
+			{% endset %}
+			
+
+			{{ govukRadios({
+				name: "permissions",
+				fieldset: {
+					legend: {
+						text: "What permissions should they have",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--s"
+					}
+				},
+				items: [
+					{
+						value: "Supervisor",
+						text: "Supervisor",
+						hint: {
+							html: "Gives the user access to user managment, analytics and all services"
+						}
+					},
+					{
+						value: "Caseworker",
+						text: "Caseworker",
+						hint: {
+							html: "Allows the user to view and assess claims or applications"
+						},
+						conditional: {
+							html: serviceHtml
+						}
+					},
+					{
+						value: "Viewer",
+						text: "Viewer",
+						hint: {
+							html: "Allows the user to view claims or applications"
+						},
+						conditional: {
+							html: serviceHtml
+						}
+					},
+					{
+						value: "Disabled",
+						text: "None - account disabled",
+						hint: {
+							html: "Removes all user permissions"
+						}
+					}
+				]
+			}) }}
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+					text: "Save and continue"
+				}) }}
+
+			</div>
+
+		</form>
+	</div>
+</div>
+    
+    
+        
+{% endblock %}
