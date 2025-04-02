@@ -26,29 +26,44 @@
 		<form class="form" action="user-management" method="post">
 			{{ govukInput({
 				label: {
-					text: "Full name",
+					text: "First name",
 					classes: "govuk-fieldset__legend--s"
 				},
-				id: "user-name",
-				name: "userName",
+				id: "firstName",
+				name: "firstName",
+				classes: "govuk-input--width-20"
+			}) }}
+			{{ govukInput({
+				label: {
+					text: "Last name",
+					classes: "govuk-fieldset__legend--s"
+				},
+				id: "lastName",
+				name: "lastName",
 				classes: "govuk-input--width-20"
 			}) }}
 
-			{{ govukInput({
-				label: {
-					text: "Email address",
-					classes: "govuk-fieldset__legend--s"
-				},
-				hint: {
-					text: "This must be the email address they use to access the system"
-				},
-				id: "email",
-				name: "email",
-				classes: "govuk-input--width-20",
-				type: "email",
-				autocomplete: "email",
-				spellcheck: false
-			}) }}
+			{% if data ['manageUser'] =="new"%}
+				{{ govukInput({
+					label: {
+						text: "Email address",
+						classes: "govuk-fieldset__legend--s"
+					},
+					hint: {
+						text: "This should be the email address they use to access the system"
+					},
+					id: "email",
+					name: "email",
+					classes: "govuk-input--width-20",
+					type: "email",
+					autocomplete: "email",
+					spellcheck: false
+				}) }}
+				{% elseif data ['manageUser'] =="edit" %}
+				
+				<p><span class="govuk-fieldset__legend--s">Email address</span> <br>emo@example.com</p>
+			{% endif %}
+			
 
 			{% set serviceHtml %}
 				{{ govukRadios({
