@@ -24,30 +24,30 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">  
-    
-
     {% set bannerHtml %}
-      {% if data['addDef'] =="import"%}
-        <h3 class="govuk-heading-s">You imported 2 defendants</h3>
-        <p>2 defendants are incomplete: <a href="add-defendant1-details?defendant1-MAAT=1234567">defendant 1</a>, <a href="add-defendant2-details?defendant2-first-name=Adele&defendant2-last-name=Adele">defendant 2</a></p>
-        {% elseif data['addDef'] =="2" %}
+      {% if data['addDef'] =="2" %}
           <h3 class="govuk-heading-s">You've added 2 defendants</h2>
         {% elseif data['addDef'] =="1" %}
           <h3 class="govuk-heading-s">You've added 1 defendant</h2>
       {% endif %}
     {% endset %}
-
-
-    {% if data['addDef'] =="import"%}
-      {{ mojBanner({
-        type: 'information',
-        html: bannerHtml,
-        iconFallbackText: 'Important'
-      }) }}
-      {% elseif data['addDef'] =="2" or data['addDef'] =="1" %}
+    
+    {% if data['addDef'] =="2" or data['addDef'] =="1" %}
       {{ govukNotificationBanner({
           type: "success",
           html: bannerHtml
+      }) }}
+    {% endif %}
+
+    <h1 class="govuk-heading-l">Defendants</h1>
+
+    {% if data['addDef'] =="import"%}
+      {{ mojAlert({
+        variant: "warning",
+        title: "Missing or incorrect informations",
+        showTitleAsHeading: false,
+        dismissible: false,
+        html:  '2 defendants have missing or incorrect information and need to be updated: <a href="add-defendant1-details?defendant1-MAAT=1234567">defendant 1</a>, <a href="add-defendant2-details?defendant2-first-name=Adele&defendant2-last-name=Adele">defendant 2</a>'
       }) }}
     {% endif %}
 
@@ -56,7 +56,7 @@
       <!-- Tables -->
       {% if data['addDef'] =="1"%}
         <table class="govuk-table" data-module="moj-sortable-table">
-          <caption class="govuk-visually-hidden">Claimed work items</caption>
+          <caption class="govuk-visually-hidden">Cost type totals</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th class="govuk-table__header" scope="col" id="itemTitle">Defendant</th>
@@ -77,7 +77,7 @@
         </table>
         {% elseif data['addDef'] =="2"%}
         <table class="govuk-table" data-module="moj-sortable-table">
-          <caption class="govuk-visually-hidden">Claimed work items</caption>
+          <caption class="govuk-visually-hidden">Cost type totals</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th class="govuk-table__header" scope="col" id="itemTitle">Defendant</th>
@@ -113,7 +113,7 @@
         </table>
         {% elseif data['addDef'] =="import"%}
         <table class="govuk-table" data-module="moj-sortable-table">
-          <caption class="govuk-visually-hidden">Claimed work items</caption>
+          <caption class="govuk-visually-hidden">Cost type totals</caption>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th class="govuk-table__header" scope="col" id="itemTitle">Defendant</th>
