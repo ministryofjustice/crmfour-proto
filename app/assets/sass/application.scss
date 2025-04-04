@@ -5,30 +5,45 @@
 
 // Add extra styles here
 
+//New LAA header and serice navigation 
+@media (min-width: 40.0625em) {
 
-/* CHANGING THE WIDTH and HEADER COLOUR BETWEEN PUBLIC AND CASEWORKER */
-//.caseworker-width .govuk-width-container, .caseworker-width .moj-primary-navigation__container {
-//max-width: 1020px;
-//}
-.moj-header {
-  padding-top: 10px;
+  /* Making the account navigation smaller */
+  .moj-header__navigation-item {
+    font-size: 1rem;
+  }
+
+  .header-navigation-link {
+    border-left: 1px solid #b1b4b6;
+    padding-left: 20px;
+    }
+
+  /* Service switch navigation */
+  .service-switch-navigation_flex-grow {
+    flex-grow: 2 ;
+  }
+
+  /* Service switch navigation */
+  .service-switch-navigation_item {
+    margin-left: auto;
+    font-size: 1rem;
+  }
 }
 
-.moj-header__content {
-  padding-bottom: 0px;
-}
-
-.moj-primary-navigation__container {
-  margin: 0 10px;
-}
+//OG header
 
 @media (min-width: 48.0625em) {
-  
+
   .service-link {
   border-left: 2px solid #faf8f8;
   padding-left: 15px;
   }
+
+  .moj-primary-navigation__container {
+    margin: 0 10px;
+  }
 }
+//
 
 .autocomplete__hint, .autocomplete__input, .autocomplete__option {
     @include govuk-font($size: 19);
@@ -127,7 +142,6 @@
 .hideTR {
   display: none; /* Hidden by default */
 }
-
 
 /* The "show" class is added to the filtered elements */
 .showTR {

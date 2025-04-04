@@ -10,6 +10,7 @@ module.exports = {
   //Key users
 
   "provider1": "Jonanna Barton",
+  "providerEmail1": "jonaan.barton@law.com",
   "provider1-permiss": "Admin",
 
   "provider2": "Simi Sunlight",
