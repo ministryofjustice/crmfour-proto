@@ -26,35 +26,18 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    {% set bannerHtml %}
-      {% if data['add2'] =="import"%}
-        <h3 class="govuk-heading-s">You imported 22 work items</h3>
-        <p>2 work items are incomplete: <a href="add-work-item2?">item 3</a>, <a href="add-work-item2">item 12</a></p>
-
-        {% elseif data['add2'] =="5" or data['add2'] =="6" %}
-          <h3 class="govuk-heading-s">You've added 22 work items</h3>
-        {% elseif data['add2'] =="4" %}
-          <h3 class="govuk-heading-s">You've added 4 work items</h3>
-        {% elseif data['add2'] =="3" %}
-          <h1 class="govuk-heading-s">You've added 3 work items</h3>
-        {% elseif data['add2'] =="2" %}
-          <h3 class="govuk-heading-s">You've added 2 work items</h3>
-        {% elseif data['add2'] =="1" %}
-          <h3 class="govuk-heading-s">You've added 1 work item</h3>
-      {% endif %}
-    {% endset %}
-
-    {% if data['add2'] =="import"%}
-      {{ mojBanner({
-        type: 'information',
-        html: bannerHtml,
-        iconFallbackText: 'Important'
-      }) }}
-    {% endif %}
-
     <form class="form" action="/{{version}}/review-all-work-items2" method="post">
       <!-- Header -->
       <h1 class="govuk-heading-l">Work items</h1>
+      {% if data['add2'] =="import"%}
+        {{ mojAlert({
+          variant: "warning",
+          title: "Missing or incorrect informations",
+          showTitleAsHeading: false,
+          dismissible: false,
+          html: '2 work items have missing or incorrect information and need to be updated:: <a href="add-work-item2?">item 3</a>, <a href="add-work-item2">item 12</a>'
+        }) }}
+      {% endif %}
         
       <!-- Summary table -->
       <table class="govuk-table govuk-!-margin-bottom-9">

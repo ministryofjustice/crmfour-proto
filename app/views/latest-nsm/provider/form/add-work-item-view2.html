@@ -25,6 +25,27 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <form class="form" action="review-all-work-items2" method="post">
+
+      {% set bannerHtml %}
+         {% if data['add2'] =="5" or data['add2'] =="6" %}
+          <h3 class="govuk-heading-s">You've added 22 work items</h3>
+        {% elseif data['add2'] =="4" %}
+          <h3 class="govuk-heading-s">You've added 4 work items</h3>
+        {% elseif data['add2'] =="3" %}
+          <h1 class="govuk-heading-s">You've added 3 work items</h3>
+        {% elseif data['add2'] =="2" %}
+          <h3 class="govuk-heading-s">You've added 2 work items</h3>
+        {% elseif data['add2'] =="1" %}
+          <h3 class="govuk-heading-s">You've added 1 work item</h3>
+      {% endif %}
+    {% endset %}
+
+    {% if data['add2'] !=="import" or data['add2'] !=="import" or data['add2'] !== null %}
+      {{ govukNotificationBanner({
+          type: "success",
+          html: bannerHtml
+      }) }}
+    {% endif %}
     
       <h1 class="govuk-heading-l">What work item are you claiming for?</h1>
 
