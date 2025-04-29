@@ -1,0 +1,89 @@
+{% extends "layouts/main.html" %}
+{% set version = "pa-1-1" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Are you applying for a total authority of less than £100? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version + "/includes/nav-prime-provider.njk" %}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+     
+      <form class="form" action="/{{version}}/question1-eligibility" method="post">
+
+        {% if data['prisonLaw'] == "Yes" %}
+
+          {{ govukRadios({
+            name: "eligibility",
+            value: data['eligibility'],
+            fieldset: {
+              legend: {
+                text: "Are you applying for a total authority of less than £500?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+
+          {% else %}
+
+          {{ govukRadios({
+            name: "eligibility",
+            value: data['eligibility'],
+            fieldset: {
+              legend: {
+                text: "Are you applying for a total authority of less than £100?",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--xl"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes"
+              },
+              {
+                value: "No",
+                text: "No"
+              }
+            ]
+          }) }}
+
+        {% endif %}
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

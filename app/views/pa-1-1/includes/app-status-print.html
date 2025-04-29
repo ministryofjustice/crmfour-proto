@@ -1,0 +1,141 @@
+ <div class="govuk-grid-column-full">
+  <div class="govuk-summary-card">
+    <div class="govuk-summary-card__title-wrapper">
+      <h2 class="govuk-summary-card__title">Claim status</h2>
+    </div>
+    <div class="govuk-summary-card__content">
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Status
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+              <p><strong class="govuk-tag govuk-tag--light-blue">Submitted</strong></p>
+              <p>09 March 2024</p>
+              <p>Awaiting LAA review</p>
+              <br>
+              <p>£{{data['actualdistTotalCost'] or ('1362')}}.00 claimed</p>
+
+              {% elseif data['app-task'] == "Granted" %}
+              <p><strong class="govuk-tag govuk-tag--green">Granted</strong></p>
+              <p>1 Sept 2023</p>
+              <br>
+              <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+              <p>£1352.00 allowed</p>
+
+              {% elseif data['app-task'] == "Rejected" %}
+              <p><strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
+              <p>21 August 2023</p>
+              <br>
+              <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+              <p>£0.00 allowed</p>
+
+              {% elseif data['app-task'] == "Referred" %}
+              <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
+              <p>22 August 2023</p>
+              <br>
+              <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+
+              {% elseif data['app-task'] == "Part granted" %}
+              <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
+              <p>22 August 2023</p>
+              <br>
+              <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+              <p>£1192.80 allowed</p>
+
+              {% elseif data['app-task'] == "Review" %}
+              <p><strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
+              <p>7 March 2024</p>
+              <br>
+              <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+
+              {% elseif data['app-task'] == "Returned" %}
+              <p><strong class="govuk-tag govuk-tag--light-blue">Resubmitted</strong></p>
+              <p><span id="date"></span></p>
+              <br>
+              <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+                            
+              {% elseif data['app-task'] == "Expired" %}
+              <p><strong class="govuk-tag govuk-tag--red">Expired</strong></p>
+              <p>22 March 2024</p>
+              <br>
+              <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+              
+              {% elseif data['app-task'] == "Requested" %}
+              <p><strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
+              <p>22 March 2024</p>
+              <br>
+              <p>£{{data['actualdistTotalCost'] or ('1352')}}.00 claimed</p>
+            {% endif %} 
+          </dd>
+        </div>
+        
+        {% if data['app-task'] == "Submitted" or data['app-task'] == "Returned" %}
+          {% else %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              LAA response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['app-task'] == "Granted" %}
+                <p>The claim has been fully granted.</p>
+
+                {% elseif data['app-task'] == "Referred" %}
+                <p>The claim has been refered to the ICA.</p>
+
+                {% elseif data['app-task'] == "Part granted" %}
+                <p>This claim was part granted due to somethings that were not right. </p>
+                <ul class="govuk-list">
+                  <li>
+                    <a href="adjusted-costs#workItems" class="govuk-link--no-visited-state">Review adjustments to work items</a>
+                  </li>
+                    <li>
+                    <a href="adjusted-costs#lettersCalls" class="govuk-link--no-visited-state">Review adjustments to letters and calls</a>
+                  </li>
+                  <li>
+                    <a href="adjusted-costs#disbursements" class="govuk-link--no-visited-state">Review adjustments to disbursements</a>
+                  </li>
+                </ul>
+                <h3 class="govuk-heading-s">Appeal the adjustment</h3>
+                <p>If you want to appeal the adjustment, email or post a detailed explanation of the grounds of your appeal and any supporting documents to:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li><a href="mailto:CRM7appeal@justice.gov.uk">CRM7appeal@justice.gov.uk</a>, with the LAA case reference in the subject of the email</li>
+                  <li>Nottingham Office, 3rd Floor B3.20, 1 Unity Square, Queensbridge Road, Nottingham NG2 1AW, or DX 10035 Nottingham 1</li>
+                </ul>
+                <p>Appeals may be considered by LAA caseworkers or sent to an independent costs assessor (ICA). You can only appeal once. The ICA’s decision is final (as stated in the Criminal Bills Assessment Manual (CBAM) rule 4.4.1).</p>
+                    
+                {% elseif data['app-task'] == "Rejected" %}
+                <p> This claim has been fully rejected as the correct form has not been used. Please use CRM5.</p>
+                <h3 class="govuk-heading-s">Appeal the rejection</h3>
+                <p>If you want to appeal the rejection, email or post a detailed explanation of the grounds of your appeal and any supporting documents to:</p> 
+                <ul class="govuk-list govuk-list--bullet">
+                  <li><a href="mailto:CRM7appeal@justice.gov.uk">CRM7appeal@justice.gov.uk</a>, with the LAA case reference in the subject of the email</li>
+                  <li>Nottingham Office, 3rd Floor B3.20, 1 Unity Square, Queensbridge Road, Nottingham NG2 1AW, or DX 10035 Nottingham 1</li>
+                </ul>
+                <p>Appeals may be considered by LAA caseworkers or sent to an independent costs assessor (ICA). You can only appeal once. The ICA’s decision is final (as stated in the Criminal Bills Assessment Manual (CBAM) rule 4.4.1).</p>
+
+                {% elseif data['app-task'] == "Review" %}
+                <p>We need you to make updates to proceed with your claim.<p>
+                <p>This is one thing we need.<p>
+                <p>This is another thing we need.<p>
+                <h3 class="govuk-heading-s">Update your claim</h3>
+                <p>To update your claim, email <a href="mailto:magsbilling@justice.gov.uk?subject=Updating my claim LAA-5a7d3c">magsbilling@justice.gov.uk</a> with the LAA case reference in the subject of the email and include any supporting information requested.</p>
+
+                {% elseif data['app-task'] == "Expired" %}
+                <p>On 7 March 2024 we asked you to update your claim before we could complete the assessment. This was due by 21 March 2024.</p>
+                <p>As this update was not made by the required date this claim has been automatically closed.</p>
+                <p>If you make a new claim you should include the claimed update.</p>
+
+                {% elseif data['app-task'] == "Requested" %}
+                <p>The provider requested the ability to send back more information regarding their case details due to a material change in their somethnig.<p>
+                <h3 class="govuk-heading-s">Update your claim</h3>
+                <p>To update your claim, email <a href="mailto:magsbilling@justice.gov.uk?subject=Updating my claim LAA-5a7d3c">magsbilling@justice.gov.uk</a> with the LAA case reference in the subject of the email and include your new information.</p>
+              {% endif %}
+            </dd>
+          </div>
+        {% endif %}
+      </dl>
+    </div>
+  </div>
+</div>

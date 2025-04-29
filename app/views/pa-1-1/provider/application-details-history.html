@@ -1,0 +1,113 @@
+{% extends "layouts/main.html" %}
+{% set version = "pa-1-1" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Application details - Overview {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version + "/includes/nav-prime-provider.njk" %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Application details
+    </h1>  
+  </div>
+
+  <!--Status of application-->
+  {% include version + "/includes/app-status-provider.html" %}
+
+  <div class="govuk-grid-column-full" id="nav">
+  
+    <!--2nd nav-->
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [{
+        text: 'Overview',
+        href: 'application-details#nav',
+        active: false
+      }, 
+      {
+        text: 'Application history',
+        href: 'application-details-history#nav',
+        active: true
+      }
+      ]
+    }) }}
+    
+    <h2 class="govuk-heading-l">Application history</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Date</th>
+            <th scope="col" class="govuk-table__header">User</th>
+            <th scope="col" class="govuk-table__header">Update</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">15 Oct 2024 <br>10:01am</td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><strong>Part granted</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">14 Oct 2024 <br>04:00pm</td>
+            <td class="govuk-table__cell">martha@law.com</td>
+            <td class="govuk-table__cell"><strong>Resubmitted</strong><br>application updated with further information</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">14 Oct 2024 <br>09:14am</td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><strong>Update needed</strong><br>Further information requested by LAA</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">13 Oct 2024 <br>03:23</td>
+            <td class="govuk-table__cell">simon@law.com</td>
+            <td class="govuk-table__cell"><strong>Resubmitted</strong><br>application updated with further information and amendments</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">7 Oct 2024 <br>01:43pm</td>
+            <td class="govuk-table__cell"></td>
+            <td class="govuk-table__cell"><strong>Update needed</strong><br>Further information and amendments requested by LAA</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">7 Oct 2024 <br>11:02am</td>
+            <td class="govuk-table__cell">martha@law.com</td>
+            <td class="govuk-table__cell"><strong>Submitted</strong>
+            </td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">5 Mar 2023 <br>09:00</td>
+            <td class="govuk-table__cell">martha@law.com</td>
+            <td class="govuk-table__cell"><strong>Draft created</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+   
+
+  </div>
+
+
+  
+</div>
+
+{% endblock %}
+
