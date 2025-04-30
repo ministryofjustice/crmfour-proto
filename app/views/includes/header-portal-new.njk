@@ -32,7 +32,7 @@
         <image src="/assets/images/moj-logotype-crest-2024.png" xlink:href="" class="moj-header__logotype-crest-fallback-image" width="40" height="40"></image>
 
       </svg>
-      <a class="moj-header__link moj-header__link--organisation-name" href="#">Legal Aid Agency</a>
+      <a class="moj-header__link moj-header__link--organisation-name" href="/">Legal Aid Agency</a>
     </div>
     <div class="moj-header__content">
       <nav class="moj-header__navigation" aria-label="Account navigation">
@@ -51,33 +51,11 @@
 
 {{ govukServiceNavigation({
   navigationClasses: "service-switch-navigation_flex-grow",
-  serviceName: "This is a really long service name that makes the nav go onto the next row",
+  serviceName: "Submit a crime form",
   serviceUrl: "#",
   slots: {
     navigationEnd: '<li class="govuk-service-navigation__item service-switch-navigation_item"><a class="govuk-link--no-visited-state" href="/wip/submissions-search">Change service</a></li>'
-  },
-  navigation: [
-    {
-      text: 'Your applications',
-      href: '/' + version + '/submissions-submitted',
-      active: + activePrimeNav[0] | default('true')
-    },
-    {
-      text: 'Open applications',
-      href: '/' + version + '/matter-starts',
-      active: + activePrimeNav[1]
-    },
-    {
-      text: 'Closed applications',
-      href: '/' + version + '/reporting',
-      active: + activePrimeNav[1]
-    },
-    {
-      text: 'Search',
-      href: '/' + version + '/submissions-search',
-      active: + activePrimeNav[2]
-    }
-  ]
+  }
 }) }}
 
 
