@@ -29,11 +29,178 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Adjust service costs</h1>
-      <h2 class="govuk-heading-l">{{data['serviceType'] or "Interpreter"}} cost</h1>
+      <h1 class="govuk-heading-xl">Adjust service cost</h1>
+      <h2 class="govuk-heading-l">{{data['serviceType'] or "Interpreter"}} </h2>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Quotes</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Quote</th>
+            <th scope="col" class="govuk-table__header">Amount</th>
+            <th scope="col" class="govuk-table__header">Rate</th>
+            <th scope="col" class="govuk-table__header">Total</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Primary</td>
+            <td class="govuk-table__cell">
+              {% if data['serviceType'] == "Transcription" %}
+                20 minutes
+                {% elseif data['serviceType'] == "Translation and transcription" %}
+                20 minutes
+                {% elseif data['serviceType'] == "Translation" %}
+                20000 words
+                {% elseif data['serviceType'] == "Photocopying" %}
+                200 pages
+                {% elseif data['serviceType'] == "DNA report" %}
+                1 report
+                {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the item"%} 
+                2 items
+                {% else %}
+                2 hour 0 minutes
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">
+              {% if data['serviceType'] == "Transcription" %}
+                £20.00 per minute
+                {% elseif data['serviceType'] == "Translation and transcription" %}
+                £20.00 per minute
+                {% elseif data['serviceType'] == "Translation" %}
+                £20.00 per word
+                {% elseif data['serviceType'] == "Photocopying" %}
+                £2.00 per page
+                {% elseif data['serviceType'] == "DNA report" %}
+                £400.00 per report
+                {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the item"%} 
+                £200.00 per item
+                {% else %}
+                £200.00 per hour
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">£400.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Alternative 1</td>
+            <td class="govuk-table__cell">
+              {% if data['serviceType'] == "Transcription" %}
+                20 minutes
+                {% elseif data['serviceType'] == "Translation and transcription" %}
+                20 minutes
+                {% elseif data['serviceType'] == "Translation" %}
+                20000 words
+                {% elseif data['serviceType'] == "Photocopying" %}
+                200 pages
+                {% elseif data['serviceType'] == "DNA report" %}
+                1 report
+                {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the item"%} 
+                2 items
+                {% else %}
+                2 hour 0 minutes
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">
+              {% if data['serviceType'] == "Transcription" %}
+                £20.00 per minute
+                {% elseif data['serviceType'] == "Translation and transcription" %}
+                £20.00 per minute
+                {% elseif data['serviceType'] == "Translation" %}
+                £20.00 per word
+                {% elseif data['serviceType'] == "Photocopying" %}
+                £0.20 per page
+                {% elseif data['serviceType'] == "DNA report" %}
+                £390.00 per report
+                {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the item"%} 
+                £200.00 per item
+                {% else %}
+                £195.00 per hour
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">£380.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Alternative 2</td>
+            <td class="govuk-table__cell">
+              {% if data['serviceType'] == "Transcription" %}
+                30 minutes
+                {% elseif data['serviceType'] == "Translation and transcription" %}
+                30 minutes
+                {% elseif data['serviceType'] == "Translation" %}
+                24000 words
+                {% elseif data['serviceType'] == "Photocopying" %}
+                240 pages
+                {% elseif data['serviceType'] == "DNA report" %}
+                1 report
+                {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the item"%} 
+                2 items
+                {% else %}
+                2 hour 40 minutes
+              {% endif %} 
+            </td>
+            <td class="govuk-table__cell">
+              {% if data['serviceType'] == "Transcription" %}
+                £20.00 per minute
+                {% elseif data['serviceType'] == "Translation and transcription" %}
+                £20.00 per minute
+                {% elseif data['serviceType'] == "Translation" %}
+                £20.00 per word
+                {% elseif data['serviceType'] == "Photocopying" %}
+                £2.00 per page
+                {% elseif data['serviceType'] == "DNA report" %}
+                £400.00 per report
+                {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the item"%} 
+                £200.00 per item
+                {% else %}
+                £200.00 per hour
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">£510.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td scope="row" class="govuk-table__header">Alternative 3</td>
+            <td class="govuk-table__cell">
+              {% if data['serviceType'] == "Transcription" %}
+                25 minutes
+                {% elseif data['serviceType'] == "Translation and transcription" %}
+                25 minutes
+                {% elseif data['serviceType'] == "Translation" %}
+                3000 words
+                {% elseif data['serviceType'] == "Photocopying" %}
+                300 pages
+                {% elseif data['serviceType'] == "DNA report" %}
+                1 report
+                {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the item"%} 
+                1 items
+                {% else %}
+                1 hour 50 minutes
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">{% if data['serviceType'] == "Transcription" %}
+                £20.00 per minute
+                {% elseif data['serviceType'] == "Translation and transcription" %}
+                £20.00 per minute
+                {% elseif data['serviceType'] == "Translation" %}
+                £20.00 per word
+                {% elseif data['serviceType'] == "Photocopying" %}
+                £2.00 per page
+                {% elseif data['serviceType'] == "DNA report" %}
+                £400.00 per report
+                {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the item"%} 
+                £200.00 per item
+                {% else %}
+                £250.00 per hour
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">£500.00</td>
+          </tr>
+        </tbody>
+      </table>
 
       <form class="form" action="application-details-adjust?serviceAdjust=Yes#serviceID" method="post">
-        <p>Adjust the providers' costs by changing the values.</p>
+
+        <h3 class="govuk-heading-m">Amount allowed</h3>
+        <p>Change the amounts to adjust the cost.</p>
 
         {% if data['serviceType'] == "Transcription" %}
 
@@ -42,7 +209,7 @@
             <label class="govuk-label govuk-label--s" for="transNoMins">
               Number of minutes
             </label>
-            <input class="govuk-input govuk-input--width-5" id="transNoMins" name="transNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['transNoMins'] or "20"}}">
+            <input class="govuk-input govuk-input--width-5" id="transNoMins" name="transNoMins" type="text" spellcheck="false" inputmode="numeric" value="{{data['transNoMins'] or ""}}">
           </div>
 
           <div class="govuk-form-group">
@@ -51,18 +218,18 @@
             </label>
             <div class="govuk-input__wrapper">
               <div class="govuk-input__prefix" aria-hidden="true">£</div>
-              <input class="govuk-input govuk-input--width-5" id="transCostMin" name="transCostMin" type="text" spellcheck="false" value="{{data['transCostMin'] or "20"}}" aria-describedby="transCostMin-hint">
+              <input class="govuk-input govuk-input--width-5" id="transCostMin" name="transCostMin" type="text" spellcheck="false" value="{{data['transCostMin'] or ""}}" aria-describedby="transCostMin-hint">
             </div>
           </div>
         
-          <input type="hidden" id="actualTransTotal" name="actualTransTotal" value="{{data['actualTransTotal'] or "20"}}" />
+          <input type="hidden" id="actualTransTotal" name="actualTransTotal" value="{{data['actualTransTotal'] or ""}}" />
                   
-          <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Calculate my changes</button>
+          <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Calculate cost</button>
 
-          <h2 class="govuk-heading-l">
+          <p class="govuk-heading-l">
             <span class="govuk-caption-m">Adjusted cost</span> £
             <span id="showTransTotal">0</span>.00
-          </h2>
+          </p>
 
           {% else %}
           {% if data['serviceType'] == "Translation and transcription" %}
@@ -86,7 +253,7 @@
           
             <input type="hidden" id="actualTransTransTotal" name="actualTransTransTotal" value="{{data['actualTransTransTotal'] or "20"}}" />
                   
-            <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransTransCost()">Calculate my changes</button>
+            <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransTransCost()">Calculate cost</button>
 
             <h2 class="govuk-heading-l">
               <span class="govuk-caption-m">Adjusted cost</span> £
@@ -116,12 +283,12 @@
               
               <input type="hidden" id="actualTranslatorTotal" name="actualTranslatorTotal" value="{{data['actualTranslatorTotal'] or "20"}}" />
                     
-              <button class="govuk-button govuk-button--secondary" type="button" onclick="calTranslatorCost()">Calculate my changes</button>
+              <button class="govuk-button govuk-button--secondary" type="button" onclick="calTranslatorCost()">Calculate cost</button>
 
-              <h2 class="govuk-heading-l">
+              <p class="govuk-heading-l">
                 <span class="govuk-caption-m">Adjusted cost</span> £
                 <span id="showTranslatorTotal">0</span>.00
-              </h2>
+              </p>
 
               {% else %}
               {% if data['serviceType'] == "Photocopying" %}
@@ -148,10 +315,10 @@
                   
                 <button class="govuk-button govuk-button--secondary" type="button" onclick="calPhotoCost()">Update calculation</button>
 
-                <h2 class="govuk-heading-l">
+                <p class="govuk-heading-l">
                   <span class="govuk-caption-m">Adjusted cost</span> £
-                  <span id="showPhotoTotal">0</span>.00
-                </h2>
+                  <span class="govuk-captionlm" id="showPhotoTotal">0</span>.00
+                </p>
 
                 {% else %}
                 {% if data['serviceType'] == "DNA report" %}
@@ -178,12 +345,12 @@
 
                    <input type="hidden" id="actualDNATotal" name="actualDNATotal" value="{{data['actualDNATotal'] or "400"}}" />
                   
-                  <button class="govuk-button govuk-button--secondary" type="button" onclick="calDNACost()">Calculate my changes</button>
+                  <button class="govuk-button govuk-button--secondary" type="button" onclick="calDNACost()">Calculate cost</button>
 
-                  <h2 class="govuk-heading-l">
+                  <p class="govuk-heading-l">
                     <span class="govuk-caption-m">Adjusted cost</span> £
                     <span id="showDNATotal">0</span>.00
-                  </h2>
+                  </p>
 
                   {% else %}
                   {% if data['serviceType'] == "Other" %}
@@ -262,12 +429,12 @@
 
                     <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
                       
-                    <button class="govuk-button govuk-button--secondary" type="button" onclick="calOtherCost()">Calculate my updates</button>
+                    <button class="govuk-button govuk-button--secondary" type="button" onclick="calOtherCost()">Calculate cost</button>
 
-                    <h2 class="govuk-heading-l">
+                    <p class="govuk-heading-l">
                       <span class="govuk-caption-m">Adjusted cost</span> £
                       <span id="showOtherTotal">0</span>.00
-                    </h2>
+                    </p>
 
                     {% else %}
                     <!--General-->                    
@@ -307,14 +474,14 @@
                       </div>
                     </div>
 
-                    <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">Calculate my updates</button>
+                    <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">Calculate cost</button>
 
                     <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
 
-                    <h2 class="govuk-heading-l">
+                    <p class="govuk-heading-l">
                       <span class="govuk-caption-m">Adjusted cost</span> £
                       <span id="showGeneralTotal">0</span>.00
-                    </h2>
+                    </p>
 
                   {% endif %}
                 {% endif %}
@@ -328,7 +495,7 @@
           id: "serviceAdjustField",
           label: {
             text: "Explain your decision",
-            classes: "govuk-label--s",
+            classes: "govuk-label--m",
             isPageHeading: false
           },
           hint: {

@@ -200,19 +200,19 @@
                 {% if data['serviceType'] == "Transcription" %}
                   <td class="govuk-table__cell">20 minutes</td>
                   {% elseif data['serviceType'] == "Translation and transcription"%}
-                  <td class="govuk-table__cell">20 minutes</td>
-                  {% elseif data['serviceType'] == "Translation"%}
-                  <td class="govuk-table__cell">20000 words</td>
-                  {% elseif data['serviceType'] == "Photocopying"%}
-                  <td class="govuk-table__cell">200 pages</td>
-                  {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%}
-                  <td class="govuk-table__cell">2 hours 0 minutes</td>
-                  {% elseif data['serviceType'] == "Other" %}
-                  <td class="govuk-table__cell">2 items</td>
-                  {% elseif data['serviceType'] == "DNA report" %}
-                  <td class="govuk-table__cell">2 reports</td>
-                  {% else %}
-                  <td class="govuk-table__cell">2 hours 0 minutes</td>
+                    <td class="govuk-table__cell">20 minutes</td>
+                    {% elseif data['serviceType'] == "Translation"%}
+                      <td class="govuk-table__cell">20000 words</td>
+                    {% elseif data['serviceType'] == "Photocopying"%}
+                      <td class="govuk-table__cell">200 pages</td>
+                    {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%}
+                      <td class="govuk-table__cell">2 hours 0 minutes</td>
+                      {% elseif data['serviceType'] == "Other" %}
+                        <td class="govuk-table__cell">2 items</td>
+                        {% elseif data['serviceType'] == "DNA report" %}
+                          <td class="govuk-table__cell">2 reports</td>
+                          {% else %}
+                          <td class="govuk-table__cell">2 hours 0 minutes</td>
                 {% endif%}
                 <td class="govuk-table__cell">£200.00</td>
                 <td class="govuk-table__cell">£400.00</td>
@@ -220,15 +220,9 @@
               </tr>
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Travel</td>
-                {% if data['primaryTravel'] == "No" %}
-                  <td class="govuk-table__cell"></td>
-                  <td class="govuk-table__cell"></td>
-                  <td class="govuk-table__cell"></td>
-                  {% else %}
-                  <td class="govuk-table__cell">3 hours 0 minutes</td>
-                  <td class="govuk-table__cell">£40.00</td>
-                  <td class="govuk-table__cell">£120.00</td>
-                {% endif %}
+                <td class="govuk-table__cell">3 hours 0 minutes</td>
+                <td class="govuk-table__cell">£40.00</td>
+                <td class="govuk-table__cell">£120.00</td>
 
               </tr>
               <tr class="govuk-table__row">
@@ -241,13 +235,8 @@
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Hotel</td>
                 <td class="govuk-table__cell">1 item</td>
-                {% if data['primaryTravel'] == "No" %}
-                  <td class="govuk-table__cell">£180</td>
-                  <td class="govuk-table__cell">£180.00</td>
-                  {% else %}
-                  <td class="govuk-table__cell">£60</td>
-                  <td class="govuk-table__cell">£60.00</td>
-                {% endif %}
+                <td class="govuk-table__cell">£600</td>
+                <td class="govuk-table__cell">£60.00</td>
               </tr>
             </tbody>
           </table> 
@@ -319,6 +308,32 @@
               </dd>
             </div>
           </dl>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Quote</th>
+                <th scope="col" class="govuk-table__header">Amount</th>
+                <th scope="col" class="govuk-table__header">Rate</th>
+                <th scope="col" class="govuk-table__header">Total</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__header">Alternative 1</td>
+                <td class="govuk-table__cell">20 minutes</td>
+                <td class="govuk-table__cell">£19.00 per minute</td>
+                <td class="govuk-table__cell">£380.00</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__header">Primary</td>
+                <td class="govuk-table__cell"></td>
+                <td class="govuk-table__cell"></td>
+                <td class="govuk-table__cell"></td>
+              </tr>
+            </tbody>
+          </table>
+
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -333,37 +348,63 @@
                 <!--Service cost-->
                 <td class="govuk-table__cell">
                   <!--Service cost-->
-                   {% if data['serviceType'] == "Transcription" %}
-                    £{{data['alt2actualTransTotalCost'] or "760"}}.00
-                    {% elseif data['serviceType'] == "Translation and transcription" %}
-                    £{{data['alt2actualTransTotalCost'] or "760"}}.00
-                    {% elseif data['serviceType'] == "Translation" %}
-                    £{{data['alt2actualTransTotalCost'] or "760"}}.00
-                    {% elseif data['serviceType'] == "Photocopying" %}
-                    £{{data['alt2actualTransTotalCost'] or "760"}}.00
-                    {% elseif data['serviceType'] == "DNA report" %}
-                    £{{data['alt2actualTransTotalCost'] or "760"}}.00
-                    {% elseif data['serviceType'] == "Other" %}
-                    £{{data['alt2actualTransTotalCost'] or "760"}}.00
+                  {% if data['serviceType'] == "Transcription" %}
+                    £{{data['alt1actualTransTotalCost'] or "760"}}.00
                     {% else %}
-                    £{{data['alt2actualTransTotalCost'] or "760"}}.00
+                    {% if data['serviceType'] == "Translation and transcription" %}
+                      £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translation" %}
+                        £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Photocopying" %}
+                          £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                          {% else %}
+                          {% if data['serviceType'] == "DNA report" %}
+                            £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                            {% else %}
+                            {% if data['serviceType'] == "Other" %}
+                              £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                              {% else %}
+                              £{{data['alt1actualTransTotalCost'] or "760"}}.00
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
                   {% endif %}
                 </td>
                 <td class="govuk-table__cell">
-                  {% if data['serviceType'] == "Transcription" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
-                    {% elseif data['serviceType'] == "Translation and transcription" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
-                    {% elseif data['serviceType'] == "Translation" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
-                    {% elseif data['serviceType'] == "Photocopying" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
-                    {% elseif data['serviceType'] == "DNA report" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
-                    {% elseif data['serviceType'] == "Other" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
+                  {% if data['serviceType'] == "DNA report" %}
+                    £{{data['dnaCost'] or "400" }}.00
                     {% else %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
+                    {% if data['serviceType'] == "Transcription" %}
+                      £{{data['actualTransTotal'] or "400" }}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translation and transcription" %}
+                        £{{data['actualTransTransTotal'] or "400" }}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Translation" %} 
+                          £{{data['actualTranslatorTotal'] or "400" }}.00
+                          {% else %}
+                          {% if data['serviceType'] == "Photocopying" %} 
+                            £{{data['actualPhotoTotal'] or "400" }}.00
+                            {% else %}
+                            {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
+                              £{{data['actualOtherTotal'] or "400" }}.00
+                              {% else %}
+                              {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
+                                >£{{data['actualOtherTotal'] or "400" }}.00
+                                {% else %}
+                                {% if data['serviceType'] !== "DNA report" %}
+                                  £{{data['actualGeneralTotal'] or "400" }}.00
+                                {% endif %}
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
                   {% endif %}
                 </td>
               </tr>
@@ -435,38 +476,62 @@
                 <td class="govuk-table__cell">
                   <!--Service cost-->
                   {% if data['serviceType'] == "Transcription" %}
-                    £{{data['alt2actualTransTotalCost'] or "825"}}.00
-                    {% elseif data['serviceType'] == "Translation and transcription" %}
-                    £{{data['alt2actualTransTotalCost'] or "825"}}.00
-                    {% elseif data['serviceType'] == "Translation" %}
-                    £{{data['alt2actualTransTotalCost'] or "825"}}.00
-                    {% elseif data['serviceType'] == "Photocopying" %}
-                    £{{data['alt2actualTransTotalCost'] or "825"}}.00
-                    {% elseif data['serviceType'] == "DNA report" %}
-                    £{{data['alt2actualTransTotalCost'] or "825"}}.00
-                    {% elseif data['serviceType'] == "Other" %}
-                    £{{data['alt2actualTransTotalCost'] or "825"}}.00
-                    {% else %}
-                    £{{data['alt2actualTransTotalCost'] or "825"}}.00
-                  {% endif %}
+                      £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translation and transcription" %}
+                        £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Translation" %}
+                          £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                          {% else %}
+                          {% if data['serviceType'] == "Photocopying" %}
+                            £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                            {% else %}
+                            {% if data['serviceType'] == "DNA report" %}
+                              £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                              {% else %}
+                              {% if data['serviceType'] == "Other" %}
+                                £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                                {% else %}
+                                £{{data['alt2actualTransTotalCost'] or "825"}}.00
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
                 </td>
                 <td class="govuk-table__cell">
                   {% if data['serviceType'] == "DNA report" %}
                     £{{data['dnaCost'] or "400" }}.00
-                    {% elseif data['serviceType'] == "Transcription" %}
-                    £{{data['actualTransTotal'] or "400" }}.00
-                    {% elseif data['serviceType'] == "Translation and transcription" %}
-                    £{{data['actualTransTransTotal'] or "400" }}.00
-                    {% elseif data['serviceType'] == "Translation" %} 
-                    £{{data['actualTranslatorTotal'] or "400" }}.00
-                    {% elseif data['serviceType'] == "Photocopying" %} 
-                    £{{data['actualPhotoTotal'] or "400" }}.00
-                    {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
-                    £{{data['actualOtherTotal'] or "400" }}.00
-                    {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
-                    £{{data['actualOtherTotal'] or "400" }}.00
-                    {% elseif data['serviceType'] !== "DNA report" %}
-                    £{{data['actualGeneralTotal'] or "400" }}.00     
+                    {% else %}
+                    {% if data['serviceType'] == "Transcription" %}
+                      £{{data['actualTransTotal'] or "400" }}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translation and transcription" %}
+                        £{{data['actualTransTransTotal'] or "400" }}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Translation" %} 
+                          £{{data['actualTranslatorTotal'] or "400" }}.00
+                          {% else %}
+                          {% if data['serviceType'] == "Photocopying" %} 
+                            £{{data['actualPhotoTotal'] or "400" }}.00
+                            {% else %}
+                            {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
+                              £{{data['actualOtherTotal'] or "400" }}.00
+                              {% else %}
+                              {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
+                                >£{{data['actualOtherTotal'] or "400" }}.00
+                                {% else %}
+                                {% if data['serviceType'] !== "DNA report" %}
+                                  £{{data['actualGeneralTotal'] or "400" }}.00
+                                {% endif %}
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
                   {% endif %}
                 </td>
               </tr>
@@ -537,37 +602,63 @@
                 <td class="govuk-table__cell">Service</td>
                 <td class="govuk-table__cell">
                   <!--Service cost-->
-                   {% if data['serviceType'] == "Transcription" %}
-                    £{{data['alt2actualTransTotalCost'] or "780"}}.00
-                    {% elseif data['serviceType'] == "Translation and transcription" %}
-                    £{{data['alt2actualTransTotalCost'] or "780"}}.00
-                    {% elseif data['serviceType'] == "Translation" %}
-                    £{{data['alt2actualTransTotalCost'] or "780"}}.00
-                    {% elseif data['serviceType'] == "Photocopying" %}
-                    £{{data['alt2actualTransTotalCost'] or "780"}}.00
-                    {% elseif data['serviceType'] == "DNA report" %}
-                    £{{data['alt2actualTransTotalCost'] or "780"}}.00
-                    {% elseif data['serviceType'] == "Other" %}
-                    £{{data['alt2actualTransTotalCost'] or "780"}}.00
-                    {% else %}
-                    £{{data['alt2actualTransTotalCost'] or "780"}}.00
-                  {% endif %}
+                  {% if data['serviceType'] == "Transcription" %}
+                      £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translation and transcription" %}
+                        £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Translation" %}
+                          £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                          {% else %}
+                          {% if data['serviceType'] == "Photocopying" %}
+                            £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                            {% else %}
+                            {% if data['serviceType'] == "DNA report" %}
+                              £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                              {% else %}
+                              {% if data['serviceType'] == "Other" %}
+                                £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                                {% else %}
+                                £{{data['alt3actualTransTotalCost'] or "780"}}.00
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
                 </td>
                 <td class="govuk-table__cell">
-                  {% if data['serviceType'] == "Transcription" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
-                    {% elseif data['serviceType'] == "Translation and transcription" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
-                    {% elseif data['serviceType'] == "Translation" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
-                    {% elseif data['serviceType'] == "Photocopying" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
-                    {% elseif data['serviceType'] == "DNA report" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
-                    {% elseif data['serviceType'] == "Other" %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
+                  {% if data['serviceType'] == "DNA report" %}
+                    £{{data['dnaCost'] or "400" }}.00
                     {% else %}
-                    £{{data['alt2actualTransTotalCost'] or "400"}}.00
+                    {% if data['serviceType'] == "Transcription" %}
+                      £{{data['actualTransTotal'] or "400" }}.00
+                      {% else %}
+                      {% if data['serviceType'] == "Translation and transcription" %}
+                        £{{data['actualTransTransTotal'] or "400" }}.00
+                        {% else %}
+                        {% if data['serviceType'] == "Translation" %} 
+                          £{{data['actualTranslatorTotal'] or "400" }}.00
+                          {% else %}
+                          {% if data['serviceType'] == "Photocopying" %} 
+                            £{{data['actualPhotoTotal'] or "400" }}.00
+                            {% else %}
+                            {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
+                              £{{data['actualOtherTotal'] or "400" }}.00
+                              {% else %}
+                              {% if data['serviceType'] == "Other" and data['otherChargeType'] =="Charged per item"%} 
+                                >£{{data['actualOtherTotal'] or "400" }}.00
+                                {% else %}
+                                {% if data['serviceType'] !== "DNA report" %}
+                                  £{{data['actualGeneralTotal'] or "400" }}.00
+                                {% endif %}
+                              {% endif %}
+                            {% endif %}
+                          {% endif %}
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
                   {% endif %}
                 </td>
               </tr>
