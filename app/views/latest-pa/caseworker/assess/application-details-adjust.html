@@ -65,7 +65,7 @@
 
       {% include version + "/includes/adjust-info.html"%}
 
-      <h4 class="govuk-heading-m" id="serviceID">{{data['serviceType'] or "Interpreter"}} cost</h4>
+      <h3 class="govuk-heading-m" id="serviceID">{{data['serviceType'] or "Interpreter"}} cost</h3>
 
       {% if data['serviceAdjust'] == "Yes" %}
         <div class="govuk-inset-text">
@@ -340,7 +340,7 @@
       {% endif %}
           
       <!--Travel -->
-      <h4 class="govuk-heading-m" id="travelID">Travel cost</h4>
+      <h3 class="govuk-heading-m" id="travelID">Travel cost</h3>
       {% if data['addTravel'] =="No" and data['primaryTravel'] =="No" and data['travelRemove'] == "No" %}
         <p>No travel costs were added</p>
         <div class="govuk-button-group">
@@ -436,7 +436,7 @@
 
       <!--Additional-->
       {% if data['addAdd'] =="0" %}
-      <h4 class="govuk-heading-m">Additional costs</h4>
+      <h3 class="govuk-heading-m">Additional costs</h3>
         <p>No additional costs added</p>
         <div class="govuk-button-group">
           {{ govukButton({
@@ -447,7 +447,7 @@
         </div>
         {% else %}
 
-        <h4 class="govuk-heading-m" id="additional1ID">Additional cost 1</h4>
+        <h3 class="govuk-heading-m" id="additional1ID">Additional cost 1</h3>
         {% if data['add1Adjust'] == "Yes" %}
           <div class="govuk-inset-text">
             {{data['addCost1Adjust']}}

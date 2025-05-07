@@ -69,7 +69,7 @@
 
       {% include version + "/includes/adjust-info.html"%}
 
-      <h4 class="govuk-heading-m">{{data['serviceType'] or "Interpreter"}} cost</h4>
+      <h3 class="govuk-heading-m">{{data['serviceType'] or "Interpreter"}} cost</h3>
 
       {% if data['serviceAdjust'] == null %}
         {% else %}
@@ -420,7 +420,7 @@
         {% endif %}
       {% endif %}
 
-      <h4 class="govuk-heading-m">Travel cost</h4>
+      <h3 class="govuk-heading-m">Travel cost</h3>
 
       {% if data['addTravel'] =="No" %}
         <p>No travel costs added</p>
@@ -476,11 +476,11 @@
       {% endif %}
 
       {% if data['addAdd'] =="0" %}
-      <h4 class="govuk-heading-m">Additional costs</h4>
+      <h3 class="govuk-heading-m">Additional costs</h3>
         <p>No additional costs added</p>
         {% else %}
 
-        <h4 class="govuk-heading-m">Additional cost 1</h4>
+        <h3 class="govuk-heading-m">Additional cost 1</h3>
         {% if data['addCost1Adjust'] == null %}
           {% else %}
           <div class="govuk-inset-text">
@@ -527,7 +527,7 @@
           </tbody>
         </table>
 
-        <h4 class="govuk-heading-m">Additional cost 2</h4>
+        <h3 class="govuk-heading-m">Additional cost 2</h3>
         <p>Cost description: "{{data['addCost2'] or "Hotel"}} - {{data['whyAdd2'] or "The expert traveled from Ireland and was unable to return the same day."}}"</p>
 
         <table class="govuk-table">
