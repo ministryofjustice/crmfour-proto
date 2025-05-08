@@ -8,7 +8,7 @@
 
 
 {% block pageTitle %}
-  Applications details - adjusted costs: {{data['laa-ref'] or "LAA-5a7d3c"}}  – {{ serviceName }} - GOV.UK
+  Applications details - allowed costs: {{data['laa-ref'] or "LAA-5a7d3c"}}  – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -44,7 +44,7 @@
         active: false
       }, 
       {
-        text: 'Adjusted costs',
+        text: 'Allowed costs',
         href: 'application-details-adjusted#nav',
         active: true
       }
@@ -52,10 +52,40 @@
     }) }}
 
 
-    <h2 class="govuk-heading-l" id="review-adjustments">Adjusted costs</h2>
+    <h2 class="govuk-heading-l" id="review-adjustments">Allowed costs</h2>
     <p class="govuk-body-m"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00</p>
     <p class="govuk-body-m"><strong>Allowed: </strong>£520.00</p>
-    <p>Maybe a sentence here to explain that they can go off and get their service done within these costs???</p>
+    <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header"></th>
+                <th scope="col" class="govuk-table__header">Requested</th>
+                <th scope="col" class="govuk-table__header">Allowed</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__header">Service</td>
+                <td class="govuk-table__cell">£200.00</td>
+                <td class="govuk-table__cell">£400.00</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__header">Travel</td>
+                <td class="govuk-table__cell">£40.00</td>
+                <td class="govuk-table__cell">£120.00</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__header">Additional costs</td>
+                <td class="govuk-table__cell">£60.00</td>
+                <td class="govuk-table__cell">£60.00</td>
+              </tr>
+               <tr class="govuk-table__row">
+                <td scope="row" class="govuk-table__header">Total costs</td>
+                <td class="govuk-table__cell">£640.00</td>
+                <td class="govuk-table__cell">£520.00</td>
+              </tr>
+            </tbody>
+          </table> 
 
     <!--Service -->
     <h3 class="govuk-heading-m">{{data['serviceType'] or "Interpreter"}} cost</h3>
