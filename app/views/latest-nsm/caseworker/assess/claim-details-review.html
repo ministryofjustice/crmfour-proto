@@ -9,6 +9,11 @@
     {% set activePrimeNav = [false, false, true, false] %}
   {% endif %}
 {% endif %}
+{% if (data['serviceAdjust'] == "Yes" and data['cwAppStatus'] == "In progress") or data['cwAppStatus'] == "Part granted" %}
+  {% set activeSubNav = [false, true, false, false, false, false] %}
+  {% else %}
+  {% set activeSubNav = [false, true, false, false, false] %}
+{% endif %}
 
 {% block header %}
   {% include version +"/includes/header-cw.html"%}
@@ -46,60 +51,7 @@
     {% include version +"/includes/app-info-cw.html" %}
 
     <!-- Nav -->
-    {% if data['serviceAdjust'] == "Yes" %}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details',
-          active: false
-        }, 
-        {
-          text: 'Review and adjust',
-          href: 'claim-details-review',
-          active: true
-        }, 
-        {
-          text: 'Adjusted costs',
-          href: 'claim-details-adjust',
-          active: false
-        }, 
-        {
-          text: 'Supporting evidence',
-          href: '',
-          active: false
-        }, 
-        {
-          text: 'Claim history',
-          href: 'claim-details-history',
-          active: false
-        }]
-      }) }}
-      {% else %}
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'claim-details',
-          active: false
-        }, 
-        {
-          text: 'Review and adjust',
-          href: 'claim-details-review',
-          active: true
-        }, 
-        {
-          text: 'Supporting evidence',
-          href: '',
-          active: false
-        }, 
-        {
-          text: 'Claim history',
-          href: 'claim-details-history',
-          active: false
-        }]
-      }) }}
-    {% endif %}
+      {% include version +"/includes/nav-sub-cw.html"%}
 
     <h2 class="govuk-heading-l">Review and adjust</h2>
 

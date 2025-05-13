@@ -9,7 +9,13 @@
     {% set activePrimeNav = [false, false, true, false] %}
   {% endif %}
 {% endif %}
-{% set activeSubNav = [true, false, false, false] %}
+
+
+{% if (data['serviceAdjust'] == "Yes" and data['cwAppStatus'] == "In progress") or data['cwAppStatus'] == "Part granted" %}
+  {% set activeSubNav = [true, false, false, false, false, false] %}
+  {% else %}
+  {% set activeSubNav = [true, false, false, false, false] %}
+{% endif %}
 
 {% block header %}
   {% include version +"/includes/header-cw.html"%}

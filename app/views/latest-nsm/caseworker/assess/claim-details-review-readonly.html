@@ -9,7 +9,11 @@
     {% set activePrimeNav = [false, false, true, false] %}
   {% endif %}
 {% endif %}
-{% set activeSubNav = [false, true, false, false] %}
+{% if (data['serviceAdjust'] == "Yes" and data['cwAppStatus'] == "In progress") or data['cwAppStatus'] == "Part granted" %}
+  {% set activeSubNav = [true, false, false, false, false, false] %}
+  {% else %}
+  {% set activeSubNav = [true, false, false, false, false] %}
+{% endif %}
 
 {% block header %}
   {% include version +"/includes/header-cw.html"%}
@@ -33,7 +37,7 @@
     {% include version +"/includes/app-info-cw.html" %}
     
     <!-- Nav -->
-      {% include version +"/includes/nav-sub-cw.html"%}
+    {% include version +"/includes/nav-sub-cw.html"%}
 
     <h2 class="govuk-heading-l">Review and adjust</h2>
 
