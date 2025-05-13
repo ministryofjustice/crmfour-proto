@@ -1,0 +1,56 @@
+<!-- Nav -->
+{% if data['serviceAdjust'] == "Yes" %}
+
+  {{ mojSubNavigation({
+    label: 'Sub navigation',
+    items: [{
+      text: 'Overview',
+      href: 'claim-details',
+      active: + activeSubNav[0] | default('true')
+    }, 
+    {
+      text: 'Review and adjust',
+      href: 'claim-details-review',
+      active: + activeSubNav[1]
+    }, 
+    {
+      text: 'Adjusted costs',
+      href: 'claim-details-adjust',
+      active: + activeSubNav[2]
+    }, 
+    {
+      text: 'Supporting evidence',
+      href: 'claim-details-evidence',
+      active: + activeSubNav[3]
+    }, 
+    {
+      text: 'Claim history',
+      href: 'claim-details-history',
+      active: + activeSubNav[4]
+    }]
+  }) }}
+  {% else %}
+  {{ mojSubNavigation({
+    label: 'Sub navigation',
+    items: [{
+      text: 'Overview',
+      href: 'claim-details',
+       active: + activeSubNav[0] | default('true')
+    }, 
+    {
+      text: 'Review and adjust',
+      href: 'claim-details-review',
+      active: + activeSubNav[1]
+    }, 
+    {
+      text: 'Supporting evidence',
+      href: 'claim-details-evidence',
+      active: + activeSubNav[2]
+    }, 
+    {
+      text: 'Claim history',
+      href: 'claim-details-history',
+      active: + activeSubNav[3]
+    }]
+  }) }}
+{% endif %}

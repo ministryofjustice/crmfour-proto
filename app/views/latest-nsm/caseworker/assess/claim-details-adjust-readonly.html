@@ -9,6 +9,7 @@
     {% set activePrimeNav = [false, false, true, false] %}
   {% endif %}
 {% endif %}
+{% set activeSubNav = [false, true, false, false] %}
 
 {% block header %}
   {% include version +"/includes/header-cw.html"%}
@@ -32,34 +33,7 @@
     {% include version +"/includes/app-info-cw.html" %}
 
     <!-- Nav -->
-    {{ mojSubNavigation({
-      label: 'Sub navigation',
-      items: [{
-        text: 'Overview',
-        href: 'claim-details-readonly',
-        active: false
-      }, 
-      {
-        text: 'Review and adjust',
-        href: 'claim-details-review-readonly',
-        active: false
-      }, 
-      {
-          text: 'Adjusted costs',
-          href: 'claim-details-adjust-readonly',
-          active: true
-        }, 
-      {
-        text: 'Supporting evidence',
-        href: '',
-        active: false
-      }, 
-      {
-        text: 'Claim history',
-        href: 'claim-details-history',
-        active: false
-      }]
-    }) }}
+    {% include version +"/includes/nav-sub-cw.html"%}
 
     <h2 class="govuk-heading-l">Adjusted costs</h2>
 

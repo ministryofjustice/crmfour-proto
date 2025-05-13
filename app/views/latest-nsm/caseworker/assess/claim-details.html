@@ -9,6 +9,7 @@
     {% set activePrimeNav = [false, false, true, false] %}
   {% endif %}
 {% endif %}
+{% set activeSubNav = [true, false, false, false] %}
 
 {% block header %}
   {% include version +"/includes/header-cw.html"%}
@@ -30,62 +31,9 @@
     <div class="govuk-grid-column-full">
 
       {% include version +"/includes/app-info-cw.html"%}
-
+      
       <!-- Nav -->
-      {% if data['serviceAdjust'] == "Yes" %}
-        {{ mojSubNavigation({
-          label: 'Sub navigation',
-          items: [{
-            text: 'Overview',
-            href: 'claim-details',
-            active: true
-          }, 
-          {
-            text: 'Review and adjust',
-            href: 'claim-details-review',
-            active: false
-          }, 
-          {
-            text: 'Adjusted costs',
-            href: 'claim-details-adjust',
-            active: false
-          }, 
-          {
-            text: 'Supporting evidence',
-            href: 'claim-details-evidence',
-            active: false
-          }, 
-          {
-            text: 'Claim history',
-            href: 'claim-details-history',
-            active: false
-          }]
-        }) }}
-        {% else %}
-        {{ mojSubNavigation({
-          label: 'Sub navigation',
-          items: [{
-            text: 'Overview',
-            href: 'claim-details',
-            active: true
-          }, 
-          {
-            text: 'Review and adjust',
-            href: 'claim-details-review',
-            active: false
-          }, 
-          {
-            text: 'Supporting evidence',
-            href: 'claim-details-evidence',
-            active: false
-          }, 
-          {
-            text: 'Claim history',
-            href: 'claim-details-history',
-            active: false
-          }]
-        }) }}
-      {% endif %}
+      {% include version +"/includes/nav-sub-cw.html"%}
     </div>
   </div>
 

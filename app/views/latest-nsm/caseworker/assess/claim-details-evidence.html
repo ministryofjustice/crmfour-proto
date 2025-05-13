@@ -9,6 +9,7 @@
     {% set activePrimeNav = [false, false, true, false] %}
   {% endif %}
 {% endif %}
+{% set activeSubNav = [false, false, true, false] %}
 
 {% block header %}
   {% include version + "/includes/header-cw.html"%}
@@ -31,60 +32,7 @@
       {% include version +"/includes/app-info-cw.html" %}
 
       <!-- Nav -->
-      {% if data['serviceAdjust'] == "Yes" %}
-        {{ mojSubNavigation({
-          label: 'Sub navigation',
-          items: [{
-            text: 'Overview',
-            href: 'claim-details',
-            active: false
-          }, 
-          {
-            text: 'Review and adjust',
-            href: 'claim-details-review',
-            active: false
-          }, 
-          {
-            text: 'Adjusted costs',
-            href: 'claim-details-adjust',
-            active: false
-          }, 
-          {
-            text: 'Supporting evidence',
-            href: 'claim-details-evidence',
-            active: true
-          }, 
-          {
-            text: 'Claim history',
-            href: 'claim-details-history',
-            active: false
-          }]
-        }) }}
-        {% else %}
-        {{ mojSubNavigation({
-          label: 'Sub navigation',
-          items: [{
-            text: 'Overview',
-            href: 'claim-details',
-            active: false
-          }, 
-          {
-            text: 'Review and adjust',
-            href: 'claim-details-review',
-            active: false
-          }, 
-          {
-            text: 'Supporting evidence',
-            href: 'claim-details-evidence',
-            active: true
-          }, 
-          {
-            text: 'Claim history',
-            href: 'claim-details-history',
-            active: false
-          }]
-        }) }}
-      {% endif %}
+      {% include version +"/includes/nav-sub-cw.html"%}
     </div>
   </div>
 
