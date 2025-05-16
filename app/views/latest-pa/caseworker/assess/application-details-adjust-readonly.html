@@ -1,14 +1,13 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% if data['cwAppStatus'] == "In progress"%}
-  {% set activePrimeNav = [true, false, false, false] %}
-  {% else %}
-  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
-    {% set activePrimeNav = [false, true, false, false] %}
+  {% set activePrimeNav = [true, false, false, false, false] %}
+  {% elseif data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, false, true, false, false] %}
     {% else %}
-    {% set activePrimeNav = [false, false, true, false] %}
-  {% endif %}
+    {% set activePrimeNav = [false, false, false, true, false] %}
 {% endif %}
+{% set activeAppNav = [false, true, false, false, false] %}
 
 {% block header %}
   {% include version + "/includes/header-cw.html"%}
@@ -21,44 +20,16 @@
 {% set bodyClasses = 'caseworker-width' %}
 
 {% block beforeContent %}
-  {% include "includes/banner.html"%}
-  {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New" %}
-    {% include version + "/includes/nav-prime-cw.html"%}
-    {% else %}
-    {% include version + "/includes/nav-prime-cw.html"%}
-  {% endif %}
+  {% include "/includes/banner.html"%}
+  {% include version + "/includes/nav-prime-cw.html"%}
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full"> 
-      {% include version + "/includes/app-info-readonly.html"%}
-
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'application-details-readonly',
-          active: false
-        },  
-        {
-          text: 'Adjustments',
-          href: 'application-details-adjust-readonly',
-          active: true
-        }, 
-        {
-          text: 'Related applications',
-          href: 'application-details-related-readonly',
-          active: false
-        },
-        {
-          text: 'Application history',
-          href: 'application-details-history-readonly',
-          active: false
-        }]
-      }) }}
-
+   <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% include version + "/includes/app-status-cw.html"%}
+      {% include version + "/includes/nav-app-cw.njk"%}
     </div>
   </div>
 

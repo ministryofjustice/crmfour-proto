@@ -1,14 +1,13 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% if data['cwAppStatus'] == "In progress"%}
-  {% set activePrimeNav = [true, false, false, false] %}
-  {% else %}
-  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
-    {% set activePrimeNav = [false, true, false, false] %}
+  {% set activePrimeNav = [true, false, false, false, false] %}
+  {% elseif data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false, false] %}
     {% else %}
-    {% set activePrimeNav = [false, false, true, false] %}
-  {% endif %}
+    {% set activePrimeNav = [false, false, false, true, false] %}
 {% endif %}
+{% set activeAppNav = [true, false, false, false, false] %}
 
 {% block header %}
   {% include version + "/includes/header-cw.html"%}
@@ -29,32 +28,8 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-
-      {% include version + "/includes/app-info.html"%}
-
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'application-details',
-          active: true
-        }, 
-        {
-          text: 'Adjust quote',
-          href: 'application-details-adjust',
-          active: false
-        }, 
-        {
-          text: 'Related applications',
-          href: 'application-details-related',
-          active: false
-        }, 
-        {
-          text: 'Application history',
-          href: 'application-details-history',
-          active: false
-        }]
-      }) }}
+      {% include version + "/includes/app-status-cw.html"%}
+      {% include version + "/includes/nav-app-cw.njk"%}
     </div>
   </div>
 
@@ -63,7 +38,7 @@
 
       <h2 class="govuk-heading-m">Overview</h2>
         
-      {% include version + "/includes/app-status.html"%}
+      {% include version + "/includes/decision-details-cw.html"%}
 
       <!--App dets-->
       <div class="govuk-summary-card">
@@ -251,8 +226,11 @@
               </tr>
             </tbody>
           </table> 
-
-          <p><a href="application-details-adjust">Adust quote figures</a></p>   
+          {% if data['cwAppStatus'] == "In progress" %}
+            <p><a href="application-details-adjust">Adust quote figures</a></p>   
+            {% else %}
+            <p><a href="application-details-adjust">Adust quote figures</a></p>
+          {% endif %}
 
         </div>
       </div>
@@ -874,7 +852,6 @@
           </dl>
         </div>
       </div>
-
      
       {% include version + "/includes/further-info-cw.html"%}
       {% include version + "/includes/application-buttons.html"%}

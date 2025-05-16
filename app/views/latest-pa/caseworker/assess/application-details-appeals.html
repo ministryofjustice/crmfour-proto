@@ -5,7 +5,7 @@
   {% elseif data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
     {% set activePrimeNav = [false, false, true, false, false] %}
     {% else %}
-    {% set activePrimeNav = [false, false, true, false, false] %}
+    {% set activePrimeNav = [false, false, false, true, false] %}
 {% endif %}
 {% set activeAppNav = [false, true, false, false, false] %}
 
@@ -28,10 +28,8 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-
-      {% include version + "/includes/app-info.html"%}
-       {% include version + "/includes/nav-app-cw.njk"%}
-
+      {% include version + "/includes/app-status-cw.html"%}
+      {% include version + "/includes/nav-app-cw.njk"%}
     </div>
   </div>
 
@@ -40,7 +38,7 @@
 
       <h2 class="govuk-heading-m">Overview</h2>
         
-      {% include version + "/includes/app-status.html"%}
+      {% include version + "/includes/decision-details-cw.html"%}
 
       <!--App dets-->
       <div class="govuk-summary-card">

@@ -1,14 +1,13 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% if data['cwAppStatus'] == "In progress"%}
-  {% set activePrimeNav = [true, false, false, false] %}
-  {% else %}
-  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
-    {% set activePrimeNav = [false, true, false, false] %}
+  {% set activePrimeNav = [true, false, false, false, false] %}
+  {% elseif data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false, false] %}
     {% else %}
-    {% set activePrimeNav = [false, false, true, false] %}
-  {% endif %}
+    {% set activePrimeNav = [false, false, false, true, false] %}
 {% endif %}
+{% set activeAppNav = [false, false, false, true, false] %}
 
 {% block header %}
   {% include version + "/includes/header-cw.html"%}
@@ -29,31 +28,13 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-     {% include version + "/includes/app-info.html"%}
+      {% include version + "/includes/app-status-cw.html"%}
+      {% include version + "/includes/nav-app-cw.njk"%}
+    </div>
+  </div>
 
-      {{ mojSubNavigation({
-        label: 'Sub navigation',
-        items: [{
-          text: 'Overview',
-          href: 'application-details',
-          active: false
-        }, 
-        {
-          text: 'Adjust quote',
-          href: 'application-details-adjust',
-          active: false
-        }, 
-        {
-          text: 'Related applications',
-          href: 'application-details-related',
-          active: true
-        }, 
-        {
-          text: 'Application history',
-          href: 'application-details-history',
-          active: false
-        }]
-      }) }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
 
       <h2 class="govuk-heading-m">Related applications</h2>
       <p>All related applications open in a new tab or window.</p>
@@ -71,7 +52,7 @@
         </thead>
         <tbody class="govuk-table__body">                
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a href="application-details-readonly?laa-ref=LAA-1z5f7w&cwAppStatus=Granted" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-1z5f7w&cwAppStatus=Granted" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
             <td class="govuk-table__cell">Roger Blackbeard</td>
             <td class="govuk-table__cell">{{data['caseworker3']}}</td>
             <td class="govuk-table__cell">Translation</td>
@@ -79,7 +60,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a href="application-details-readonly?laa-ref=LAA-9p4f0e&cwAppStatus=Rejected" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="9p4f0e">LAA-9p4f0e</a></td>
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-9p4f0e&cwAppStatus=Rejected" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="9p4f0e">LAA-9p4f0e</a></td>
             <td class="govuk-table__cell">Roger Blackbeard</td>
             <td class="govuk-table__cell">{{data['caseworker3']}}</td>
             <td class="govuk-table__cell">Translation</td>
@@ -87,7 +68,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Rejected</strong></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a href="application-details-readonly?laa-ref=LAA-6p4f0r&cwAppStatus=Part granted" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-6p4f0r&cwAppStatus=Part granted" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
             <td class="govuk-table__cell">Roger Blackbeard</td>
             <td class="govuk-table__cell">{{data['caseworker1']}}</td>
             <td class="govuk-table__cell">Doctor (GP)</td>
@@ -95,7 +76,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a href="application-details-readonly?laa-ref=LAA-8p3h0e&cwAppStatus=Rejected" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-8p3h0e&cwAppStatus=Rejected" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
             <td class="govuk-table__cell">Roger Blackbeard</td>
             <td class="govuk-table__cell">{{data['caseworker1']}}</td>
             <td class="govuk-table__cell">Translation</td>
@@ -103,7 +84,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Rejected</strong></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a href="application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=Part granted" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="1z5f76">LAA-1z5f76</a></td>
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-1z5f76&cwAppStatus=Part granted" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="1z5f76">LAA-1z5f76</a></td>
             <td class="govuk-table__cell">Roger Blackbeard</td>
             <td class="govuk-table__cell">{{data['caseworker1']}}</td>
             <td class="govuk-table__cell">Photocopying</td>
@@ -111,7 +92,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
           </tr>
           <tr class="govuk-table__row">
-            <td class="govuk-table__cell"><a href="application-details-readonly?laa-ref=LAA-2d9t4j&cwAppStatus=Granted" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-2d9t4j&cwAppStatus=Granted" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
             <td class="govuk-table__cell">Arnie Swartz</td>
             <td class="govuk-table__cell">{{data['caseworker1']}}</td>
             <td class="govuk-table__cell">DNA Report</td>
