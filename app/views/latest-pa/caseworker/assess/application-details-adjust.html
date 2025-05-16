@@ -325,16 +325,16 @@
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Adjust service cost",
-            href: "application-change-service",
+            href: "change-service",
             classes: "govuk-button--secondary"
           }) }}
 
-          <a class="govuk-link govuk-link--no-visited-state" href="application-adjust-delete?deleteAdjust=service">Delete service cost adjustment</a>
+          <a class="govuk-link govuk-link--no-visited-state" href="delete-adjustment?deleteAdjust=service">Delete service cost adjustment</a>
         </div>
         {% else %}
         {{ govukButton({
           text: "Adjust service cost",
-          href: "application-change-service",
+          href: "change-service",
           classes: "govuk-button--secondary"
         }) }}
       {% endif %}
@@ -346,7 +346,7 @@
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Adjust travel cost",
-            href: "application-change-travel",
+            href: "change-travel",
             classes: "govuk-button--secondary"
           }) }}
         </div>
@@ -419,16 +419,16 @@
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Adjust travel cost",
-            href: "application-change-travel",
+            href: "change-travel",
             classes: "govuk-button--secondary"
           }) }}
             
           {% if data['travelAdjust'] == "Yes" %}
-            <a class="govuk-link govuk-link--no-visited-state" href="application-adjust-delete?deleteAdjust=travel">Delete travel cost adjustment</a>
+            <a class="govuk-link govuk-link--no-visited-state" href="delete-adjustment?deleteAdjust=travel">Delete travel cost adjustment</a>
             {% elseif data['travelRemove'] == "Yes" %}
             <!--Can't be undone-->
             {% else %}
-            <a class="govuk-link govuk-link--no-visited-state" href="application-cost-remove?removeCost=travel">Remove requested travel cost</a>
+            <a class="govuk-link govuk-link--no-visited-state" href="delete-cost?removeCost=travel">Remove requested travel cost</a>
           {% endif %}  
         </div>       
 
@@ -441,7 +441,7 @@
         <!----<div class="govuk-button-group">
           {{ govukButton({
             text: "Adjust additional cost",
-            href: "application-change-additionalCost1",
+            href: "change-additionalCost1",
             classes: "govuk-button--secondary"
           }) }}
         </div>
@@ -499,12 +499,12 @@
         <div class="govuk-button-group">
           {{ govukButton({
           text: "Adjust additional cost 1",
-          href: "application-change-additionalCost1",
+          href: "change-additionalCost1",
             classes: "govuk-button--secondary"
           }) }}
 
           {% if data['add1Adjust'] == "Yes" %}
-            <a class="govuk-link govuk-link--no-visited-state" href="application-adjust-delete?deleteAdjust=add1">Delete additional cost 1 adjustment</a>
+            <a class="govuk-link govuk-link--no-visited-state" href="delete-adjustment?deleteAdjust=add1">Delete additional cost 1 adjustment</a>
           {% endif %}
         </div>
           
