@@ -1,6 +1,11 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
+{% if data['Appeal'] == "Yes" %}
+  {% set activeAppNav = [false, false, true] %}
+  {% else %}
+  {% set activeAppNav = [false, true, false] %}
+{% endif %}
 
 {% block header %}
   {% include version + "/includes/header-provider.html" %}
@@ -36,20 +41,7 @@
   <div class="govuk-grid-column-two-thirds" id="nav">
 
     <!--2nd nav-->
-    {{ mojSubNavigation({
-      label: 'Sub navigation',
-      items: [{
-        text: 'Overview',
-        href: 'application-details#nav',
-        active: false
-      }, 
-      {
-        text: 'Allowed costs',
-        href: 'application-details-adjusted#nav',
-        active: true
-      }
-      ]
-    }) }}
+    {% include version + "/includes/nav-app-provider.njk" %}
 
 
     <h2 class="govuk-heading-l" id="review-adjustments">Allowed costs</h2>

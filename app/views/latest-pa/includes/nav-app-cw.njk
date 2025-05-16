@@ -2,7 +2,8 @@
  
   {{ mojSubNavigation({
     label: 'Sub navigation',
-    items: [{
+    items: [
+    {
       text: 'Overview',
       href: 'application-details',
       active: + activeAppNav[0] | default('true')
@@ -26,13 +27,15 @@
       text: 'Application history',
       href: 'application-details-history',
       active: + activeAppNav[4]
-    }]
+    }
+    ]
   }) }}
 
   {% else %}
   {{ mojSubNavigation({
     label: 'Sub navigation',
-    items: [{
+    items: [
+    {
       text: 'Overview',
       href: 'application-details',
       active: + activeAppNav[0] | default('true')
@@ -44,7 +47,7 @@
     }, 
     {
       text: 'Appeals',
-      href: 'application-details-appeals-readonly',
+      href: 'application-details-appeals',
       active: + activeAppNav[2]
     }, 
     {
@@ -56,6 +59,7 @@
       text: 'Application history',
       href: 'application-details-history',
       active: + activeAppNav[4]
-    }]
+    }
+    ]
   }) }}
 {% endif %}
