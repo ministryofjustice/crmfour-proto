@@ -1,23 +1,27 @@
+{% if data['Appeal'] == "Yes" %}
+  <strong class="govuk-tag govuk-tag--light-blue">Appeal</strong>
+{% endif %}
 {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
   {% elseif data['cwAppStatus'] == "In progress" %}
-    <strong class="govuk-tag govuk-tag--purple">In progress</strong><br><br>
+    <strong class="govuk-tag govuk-tag--purple">In progress</strong>
   {% elseif data['cwAppStatus'] == "Granted" %}
-    <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
+    <strong class="govuk-tag govuk-tag--green">Granted</strong>
   {% elseif data['cwAppStatus'] == "Rejected" %}
-    <strong class="govuk-tag govuk-tag--red">Rejected</strong><br><br>
+    <strong class="govuk-tag govuk-tag--red">Rejected</strong>
   {% elseif data['cwAppStatus'] == "Review" %}
-    <strong class="govuk-tag govuk-tag--yellow">Sent back</strong><br><br>
+    <strong class="govuk-tag govuk-tag--yellow">Sent back</strong>
   {% elseif data['cwAppStatus'] == "Part granted" %}
-    <strong class="govuk-tag govuk-tag--blue">Part granted</strong><br><br>
+    <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
   {% elseif data['cwAppStatus'] == "Returned" %}
-    <strong class="govuk-tag govuk-tag--grey">Provider updated</strong><br><br>
+    <strong class="govuk-tag govuk-tag--grey">Provider updated</strong>
   {% elseif data['cwAppStatus'] == "Referred" %}
-    <strong class="govuk-tag govuk-tag--yellow">Referred</strong><br><br>
+    <strong class="govuk-tag govuk-tag--yellow">Referred</strong>
   {% elseif data['cwAppStatus'] == "Auto granted" %}
-    <strong class="govuk-tag govuk-tag--green">Auto granted</strong><br><br>
+    <strong class="govuk-tag govuk-tag--green">Auto granted</strong>
   {% elseif data['cwAppStatus'] == "Expired" %}
-    <strong class="govuk-tag govuk-tag--red">Expired</strong><br><br>
+    <strong class="govuk-tag govuk-tag--red">Expired</strong>
 {% endif %}
+<br><br>
 
 <span class="govuk-caption-xl">Crime Busters Legal</span>
 <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>

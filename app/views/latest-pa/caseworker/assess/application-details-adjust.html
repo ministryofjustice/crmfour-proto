@@ -2,10 +2,12 @@
 {% set version = "latest-pa" %}
 {% if data['cwAppStatus'] == "In progress"%}
   {% set activePrimeNav = [true, false, false, false, false] %}
-  {% elseif data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
-    {% set activePrimeNav = [false, false, true, false, false] %}
-    {% else %}
+  {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
     {% set activePrimeNav = [false, false, false, true, false] %}
+  {% elseif data['Appeal'] == "Yes" %}
+    {% set activePrimeNav = [false, false, true, false, false] %}
+  {% else %}
+    {% set activePrimeNav = [false, true, false, false, false] %}
 {% endif %}
 {% set activeAppNav = [false, true, false, false, false] %}
 
@@ -26,7 +28,7 @@
 
 {% block content %}
 
-   <div class="govuk-grid-row">
+  <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       {% include version + "/includes/app-status-cw.html"%}
       {% include version + "/includes/nav-app-cw.njk"%}
