@@ -15,7 +15,7 @@
   {% elseif data['cwAppStatus'] == "Returned" %}
     <strong class="govuk-tag govuk-tag--grey">Provider updated</strong>
   {% elseif data['cwAppStatus'] == "Referred" %}
-    <strong class="govuk-tag govuk-tag--yellow">Referred</strong>
+    <strong class="govuk-tag govuk-tag--yellow">Sent to ICA</strong>
   {% elseif data['cwAppStatus'] == "Auto granted" %}
     <strong class="govuk-tag govuk-tag--green">Auto granted</strong>
   {% elseif data['cwAppStatus'] == "Expired" %}
@@ -28,7 +28,7 @@
 
 <p>
   <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00<br>
-  {% if data['cwAppStatus'] == "Part granted" %}
+  {% if data['cwAppStatus'] == "Part granted" or data['Appeal'] == "Yes" %}
       <span class="govuk-body-l"><strong>Allowed: </strong>£520.00
     {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}
       <span class="govuk-body-l"><strong>Allowed: </strong>£{{data['actualdistTotalCost'] or "640"}}.00
@@ -52,15 +52,15 @@
 </p>
 
 <p>
-  <span class="govuk-body-m"><strong>Date received:</strong> 17 October 2023</span>
+  <span class="govuk-body-m"><strong>Date received:</strong> 17 May 2025</span>
   {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Auto granted" %}
-    <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21 October 2023</span>
+    <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21 May 2025</span>
     {% elseif data['cwAppStatus'] == "Referred" %}
-      <br><span class="govuk-body-m"><strong>Date referred:</strong> 21 October 2023</span>
+      <br><span class="govuk-body-m"><strong>Date referred:</strong> 21 May 2025</span>
     {% elseif data['cwAppStatus'] == "Review" %}
-      <br><span class="govuk-body-m"><strong>Date sent back to provider:</strong> 21 October 2023</span>
+      <br><span class="govuk-body-m"><strong>Date sent back to provider:</strong> 21 May 2025</span>
     {% elseif data['cwAppStatus'] == "Returned" %}
-      <br><span class="govuk-body-m"><strong>Date amended:</strong> 21 October 2023</span>
+      <br><span class="govuk-body-m"><strong>Date amended:</strong> 21 May 2025</span>
     {% elseif data['cwAppStatus'] == "Expired" %}
       <br><span class="govuk-body-m"><strong>Date expired</strong> 5 November 2023</span>
   {% endif %}

@@ -28,24 +28,43 @@
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      {% include version + "/includes/app-status-cw.html"%}
-      {% include version + "/includes/nav-app-cw.njk"%}
-    </div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include version + "/includes/app-status-cw.html"%}
+    {% include version + "/includes/nav-app-cw.njk"%}
   </div>
+</div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-m">Appeals</h2>
-        
-      {% include version + "/includes/decision-details-cw.html"%}
-    
-      {% include version + "/includes/further-info-appeal-cw.html"%}
-      {% include version + "/includes/application-buttons.html"%}
-
+    <h2 class="govuk-heading-m">Appeals</h2>
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="review-further-info2">Provider appeal 21 May 2025</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Provider appeal
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p>{{data['providerFurtherInfoAppeal'] or "I disagree with the part grant of my application. The expert needs to travel a significant disatance to see my client and therefore needs to stay overnight. This expert has worked for our firm several times and is considered the defacto expert in this area." }}
+              </p>
+              <ul class="govuk-list">
+                <li><a href="">evidence1.pdf</a></li>
+              </ul>
+            </dd>
+          </div>
+        </dl>       
+      </div>
     </div>
+      
+    {% include version + "/includes/further-info-appeal-cw.html"%}
+    {% include version + "/includes/application-buttons.html"%}
+
   </div>
+</div>
 
 {% endblock %}

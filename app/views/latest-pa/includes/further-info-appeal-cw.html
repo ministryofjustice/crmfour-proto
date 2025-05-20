@@ -1,11 +1,43 @@
- <!---Further info -->
-{% if data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" %}
+<!---Further info -->
+  <h2 class="govuk-heading-m">Appeal updates</h2>
 
-  <h2 class="govuk-heading-m">Provider updates</h2>
+   <div class="govuk-summary-card">
+    <div class="govuk-summary-card__title-wrapper">
+      <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 21 May 2025</h3>
+    </div>
+    <div class="govuk-summary-card__content">
+      <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Caseworker
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['caseworker1']}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Sent to ICA
+          </dt>
+          <dd class="govuk-summary-list__value">
+             <p>{{data['referredConfirm']}} or "Appeal referred to ICA due to questions over the expert used and rates requested by provider."</p>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            ICA response
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['ICAResponse'] or "Please see the attached documetents that show my client was not in the in UK" }}<br>
+          </dd>
+        </div>
+      </dl>       
+    </div>
+  </div>
 
   <div class="govuk-summary-card">
     <div class="govuk-summary-card__title-wrapper">
-      <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 21 Oct 2023</h3>
+      <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 21 May 2025</h3>
     </div>
     <div class="govuk-summary-card__content">
       <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -41,7 +73,7 @@
 
   <div class="govuk-summary-card">
     <div class="govuk-summary-card__title-wrapper">
-      <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 19 Oct 2023</h3>
+      <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 19 May 2025</h3>
     </div>
     <div class="govuk-summary-card__content">
       <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -75,4 +107,3 @@
     </div>
   </div>
 
-{% endif %}
