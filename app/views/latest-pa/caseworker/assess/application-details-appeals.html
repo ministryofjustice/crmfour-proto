@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  {{data['laa-ref'] or "LAA-5a7d3c"}} - Appeals – {{ serviceName }} – GOV.UK Prototype Kit
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Appeal – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% set bodyClasses = 'caseworker-width' %}
@@ -38,10 +38,12 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <h2 class="govuk-heading-m">Appeals</h2>
+    <h2 class="govuk-heading-m">Appeal 17 May 2025</h2>
+    {% include version + "/includes/decision-details-appeal-cw.html"%}
+
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title" id="review-further-info2">Provider appeal 21 May 2025</h3>
+        <h3 class="govuk-summary-card__title" id="review-provider-appeal">Provider appeal</h3>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -54,6 +56,18 @@
               </p>
               <ul class="govuk-list">
                 <li><a href="">evidence1.pdf</a></li>
+              </ul>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              All appeals
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <ul class="govuk-list">
+                <li><a href="">Appeal 17 May 2025</a></li>
+                <li><a href="">Appeal 2 May 2025</a></li>
+                <li><a href="">Appeal 14 April 2025</a></li>
               </ul>
             </dd>
           </div>

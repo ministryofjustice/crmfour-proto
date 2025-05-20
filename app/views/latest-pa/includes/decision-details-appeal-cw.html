@@ -1,7 +1,7 @@
-{% if data['Appeal'] == "No"%}
+
   {% if data['cwAppStatus'] == "Part granted"%}
     <div class="govuk-inset-text">
-      <p><strong>Part granted 21 May 2025 </strong></p>
+      <p><strong>ICA decision: Part granted 21 May 2025</strong></p>
       {% if data['partConfirm'] == null %}
         <p>This application was part granted due to disallowed travel costs.</p>
         {% else %}
@@ -34,13 +34,10 @@
       </div>
     {% elseif data['cwAppStatus'] == "Returned" %}
       <div class="govuk-inset-text">
-        <p><strong>Provider update 22 May 2025 </strong></p>
+        <p><strong>Provider update 21 May 2025 </strong></p>
         <ul class="govuk-list">
           <li>
-            <a href="#review-further-info2" class="govuk-link--no-visited-state">Further information request</a>
-          </li>
-          <li>
-            <a href="#review-further-info2" class="govuk-link--no-visited-state"><a href="#review-incorrect-info" class="govuk-link--no-visited-state">Amendment request</a>
+            <a href="#review-further-info" class="govuk-link--no-visited-state">Further information request</a>
           </li>
         </ul>
       </div>
@@ -55,16 +52,3 @@
         </p>
       </div>
   {% endif %}
-{% endif %}
-
-{% if data['Appeal'] == "Yes"%}
-  <div class="govuk-inset-text">
-    <p><strong>Part granted 21 May 2025</strong></p>
-    {% if data['partConfirm'] == null %}
-      <p>This application was part granted due to disallowed travel costs.</p>
-      {% else %}
-      <p>{{data['partConfirm']}}</p>
-    {% endif %}
-    </p><a href="application-details-adjust-readonly" class="govuk-link--no-visited-state">Review quote adjustments</a></p>
-  </div>
-{% endif %}
