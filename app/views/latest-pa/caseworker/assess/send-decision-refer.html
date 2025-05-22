@@ -27,40 +27,12 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="send-confirmation" method="post">
-
-        {% set grantedHtml %}
-          {{ govukTextarea({
-            name: "grantedConfirm",
-            id: "grantedConfirm",
-            label: {
-              text: "Enter additional comments (optional)",
-              isPageHeading: false
-            },
-            hint: {
-            text: "We'll share this information with the provider"
-            }
-          }) }}    
-        {% endset %}
+      <form class="form" action="/{{version}}/refer-to-ica" method="post">
         
-        {% set partGrantedHtml %}
+        {% set ICAHtml %}
           {{ govukTextarea({
-            name: "partConfirm",
-            id: "partConfirm",
-            label: {
-              text: "Explain your decision",
-              isPageHeading: false
-            },
-            hint: {
-            text: "We'll share this information with the provider"
-            }
-          }) }}    
-        {% endset %}
-
-        {% set rejectedHtml %}
-          {{ govukTextarea({
-            name: "rejectedConfirm",
-            id: "rejectedConfirm",
+            name: "icaReason",
+            id: "icaReason",
             label: {
               text: "Explain your decision",
               isPageHeading: false
@@ -72,45 +44,34 @@
         {% endset %}
 
         {{ govukRadios({
-          name: "cwAppStatus",
+          name: "icaDecision",
           fieldset: {
             legend: {
-              text: "Make a decision",
+              text: "Do you want to refer this application to the ICA?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--xl"
             }
           },
           items: [
             {
-              value: "Granted",
-              text: "Grant",
-              checked: checked("cwAppStatus", "Granted"),
+              value: "Yes",
+              text: "Yes",
+              checked: checked("icaDecision", "Yes"),
               conditional: {
-                html: grantedHtml
+                html: ICAHtml
               }
             },
             {
-              value: "Part granted",
-              text: "Part grant",
-              checked: checked("cwAppStatus", "Part granted"),
-              conditional: {
-                html: partGrantedHtml
-              }
-            },
-            {
-              value: "Rejected",
-              text: "Reject",
-              checked: checked("cwAppStatus", "Rejected"),
-              conditional: {
-                html: rejectedHtml
-              }
+              value: "No",
+              text: "No",
+              checked: checked("icaDecision", "No")
             }
           ]
         }) }}
       
         <div class="govuk-button-group">
           {{ govukButton({
-            text: "Submit decision"
+            text: "Submit"
           }) }}
 
           {{ govukButton({

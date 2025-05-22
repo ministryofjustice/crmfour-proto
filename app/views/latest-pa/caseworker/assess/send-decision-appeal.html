@@ -29,6 +29,32 @@
 
       <form class="form" action="send-confirmation" method="post">
 
+        <h1 class="govuk-heading-xl">Appeal decision</h1>
+
+        {{ govukRadios({
+          name: "icaDecision",
+          fieldset: {
+            legend: {
+              text: "Is this the final ICA decsion?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              hint: {
+                text: "You’ll need to provide the relavant information from the ICA"
+              }
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+
         {% set grantedHtml %}
           {{ govukTextarea({
             name: "grantedConfirm",
@@ -57,7 +83,7 @@
           }) }}    
         {% endset %}
 
-        {% set rejectedHtml %}
+         {% set rejectedHtml %}
           {{ govukTextarea({
             name: "rejectedConfirm",
             id: "rejectedConfirm",
@@ -75,9 +101,9 @@
           name: "cwAppStatus",
           fieldset: {
             legend: {
-              text: "Make a decision",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
+              text: "What is the decision",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
             }
           },
           items: [

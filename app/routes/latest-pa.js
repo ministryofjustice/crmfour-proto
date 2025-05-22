@@ -121,3 +121,15 @@ router.post('/question3-add-info', function(request, response) {
       response.redirect('/' + version + "/provider/form/task-list?question3-add-info=complete")
   }
 })
+
+//Refer to ICA yes/No
+router.post('/refer-to-ica', function(request, response) {
+
+  var icaDecision = request.session.data['icaDecision']
+  if (icaDecision == "Yes"){
+      response.redirect('/' + version + "/caseworker/assess/application-details-appeal?cwAppStatus=Referred")
+  } 
+  if (icaDecision == "No"){
+      response.redirect('/' + version + "/caseworker/assess/application-details-appeal?cwAppStatus=In progress")
+  }
+})

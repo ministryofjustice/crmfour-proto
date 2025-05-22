@@ -5,7 +5,7 @@
       items: [
       {
         text: 'Appeal',
-        href: 'application-details-appeals',
+        href: 'application-details-appeal',
         active: + activeAppNav[2]
       }, 
       {
@@ -14,7 +14,7 @@
         active: + activeAppNav[0] | default('true')
       }, 
       {
-        text: 'Adjust quote',
+        text: 'Adjust costs',
         href: 'application-details-adjust',
         active: + activeAppNav[1]
       }, 
@@ -37,7 +37,7 @@
         items: [
         {
           text: 'Appeal',
-          href: 'application-details-appeals',
+          href: 'application-details-appeal',
           active: + activeAppNav[2]
         }, 
         {
@@ -46,7 +46,7 @@
           active: + activeAppNav[0] | default('true')
         }, 
         {
-          text: 'Adjust quote',
+          text: 'Adjust costs',
           href: 'application-details-adjust-readonly',
           active: + activeAppNav[1]
         }, 
@@ -67,7 +67,6 @@
   {% else %}
   
     {% if data['cwAppStatus'] == "In progress" %}
-    
       {{ mojSubNavigation({
         label: 'Sub navigation',
         items: [
@@ -77,7 +76,7 @@
           active: + activeAppNav[0] | default('true')
         }, 
         {
-          text: 'Adjust quote',
+          text: 'Adjust costs',
           href: 'application-details-adjust',
           active: + activeAppNav[1]
         }, 
@@ -104,7 +103,7 @@
             active: + activeAppNav[0] | default('true')
           }, 
           {
-            text: 'Adjust quote',
+            text: 'Adjust costs',
             href: 'application-details-adjust-readonly',
             active: + activeAppNav[1]
           },  
@@ -120,5 +119,5 @@
           }
           ]
         }) }}
-    {% endif %}
+  {% endif %}
 {% endif %}
