@@ -16,12 +16,12 @@
 {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
     {% elseif data['cwAppStatus'] == "In progress" %}
     <strong class="govuk-tag govuk-tag--purple">In progress</strong>
-    {% elseif data['cwAppStatus'] == "Review" %}
+    {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
     <strong class="govuk-tag govuk-tag--yellow">Sent back</strong>
      {% elseif data['cwAppStatus'] == "Returned" %}
     <strong class="govuk-tag govuk-tag--grey">Provider updated</strong>
     {% elseif data['cwAppStatus'] == "Referred" %}
-    <strong class="govuk-tag govuk-tag--yellow">Sent to ICA</strong>
+    <strong class="govuk-tag govuk-tag--yellow">Referred</strong>
 {% endif%}
 <br><br>
 
@@ -63,7 +63,7 @@
     <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21 May 2025</span>
     {% elseif data['cwAppStatus'] == "Referred" %}
       <br><span class="govuk-body-m"><strong>Date referred:</strong> 21 May 2025</span>
-    {% elseif data['cwAppStatus'] == "Review" %}
+    {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
       <br><span class="govuk-body-m"><strong>Date sent back to provider:</strong> 21 May 2025</span>
     {% elseif data['cwAppStatus'] == "Returned" %}
       <br><span class="govuk-body-m"><strong>Date amended:</strong> 21 May 2025</span>
@@ -84,7 +84,7 @@
       href: "user-unassign",
       classes: "govuk-button--secondary"
     }) }}
-    {% elseif data['cwAppStatus'] == "New" or data ['cwAppStatus'] == "Referred"  or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% elseif data['cwAppStatus'] == "New" or data ['cwAppStatus'] == "Referred"  or data['cwAppStatus'] == "Returned" %}
       {{ govukButton({
         text: "Add to my list",
         href: "user-assign",

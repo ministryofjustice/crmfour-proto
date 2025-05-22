@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false, false, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Send back to provider – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version + "/includes/nav-prime-cw.html"%}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+    <h1 class="govuk-heading-xl">Send back to provider</h1>
+
+      <form class="form" action="send-confirmation?cwAppStatus=ICAReview&Appeal=Yes" method="post">
+
+        {{ govukRadios({
+          name: "icaInfoRequest",
+          fieldset: {
+            legend: {
+              text: "Is this an information request by the ICA?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              hint: {
+                text: "You’ll need to provide the relavant information from the ICA"
+              }
+            },
+            {
+              value: "No",
+              text: "No"
+            }
+          ]
+        }) }}
+             
+        {{ govukTextarea({
+          name: "fieldFurtherInfo",
+          id: "fieldFurtherInfo",
+          
+          label: {
+            text: "What updates to the application are needed?",
+            classes: "govuk-fieldset__legend--s"
+          }
+        }) }}      
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Submit"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-assess"
+          }) }}
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

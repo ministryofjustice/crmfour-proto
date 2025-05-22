@@ -68,7 +68,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">{{data['transNoMins'] or ""}} minutes</td>
+                <td class="govuk-table__cell">{{data['transNoMins'] or "10"}} minutes</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -77,7 +77,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['transCostMin'] or ""}}.00 per minute</td>
+                <td class="govuk-table__cell">£{{data['transCostMin'] or "20"}}.00 per minute</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -86,7 +86,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['actualTransTotal'] or ""}}.00</td>
+                <td class="govuk-table__cell">£{{data['actualTransTotal'] or "200"}}.00</td>
               {% endif %}
             </tr>
 
@@ -97,7 +97,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">{{data['transtransNoMins'] or ""}} minutes</td>
+                <td class="govuk-table__cell">{{data['transtransNoMins'] or "10"}} minutes</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -106,7 +106,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['transtransCostMin'] or ""}}.00 per minute</td>
+                <td class="govuk-table__cell">£{{data['transtransCostMin'] or "20"}}.00 per minute</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -115,7 +115,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or ""}}.00</td>
+                <td class="govuk-table__cell">£{{data['actualTransTransTotal'] or "200"}}.00</td>
               {% endif %}
             </tr>
 
@@ -126,7 +126,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">{{data['translatorWords'] or ""}} words</td>
+                <td class="govuk-table__cell">{{data['translatorWords'] or "10000"}} words</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -135,7 +135,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['translatorCostWord'] or ""}}.00 per 1000 words</td>
+                <td class="govuk-table__cell">£{{data['translatorCostWord'] or "20"}}.00 per 1000 words</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -144,7 +144,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or ""}}.00</td>
+                <td class="govuk-table__cell">£{{data['actualTranslatorTotal'] or "200"}}.00</td>
               {% endif %}
             </tr>
 
@@ -155,7 +155,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">{{data['photoNoPages'] or ""}} words</td>
+                <td class="govuk-table__cell">{{data['photoNoPages'] or "10"}} pages</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -164,7 +164,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['photoCostPage'] or ""}}.00 per page</td>
+                <td class="govuk-table__cell">£{{data['photoCostPage'] or "20"}}.00 per page</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -173,7 +173,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or ""}}.00</td>
+                <td class="govuk-table__cell">£{{data['actualPhotoTotal'] or "200"}}.00</td>
               {% endif %}
             </tr>
 
@@ -184,7 +184,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">{{data['otherNoHours-hours'] or "2"}} hours {{data['otherNoHours-mins'] or "0"}} minutes</td>
+                <td class="govuk-table__cell">{{data['otherNoHours-hours'] or "1"}} hours {{data['otherNoHours-mins'] or "0"}} minutes</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -202,7 +202,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['actualOtherTotal'] or ""}}.00</td>
+                <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "200"}}.00</td>
               {% endif %}
             </tr>
 
@@ -213,7 +213,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">{{data['otherNoItems'] or ""}} items</td>
+                <td class="govuk-table__cell">{{data['otherNoItems'] or "1"}} items</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -222,7 +222,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['otherItemsCost'] or ""}}.00 per item</td>
+                <td class="govuk-table__cell">£{{data['otherItemsCost'] or "200"}}.00 per item</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -231,7 +231,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['actualOtherTotal'] or ""}}.00</td>
+                <td class="govuk-table__cell">£{{data['actualOtherTotal'] or "200"}}.00</td>
               {% endif %}
             </tr>
 
@@ -243,7 +243,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">{{data['dnaNoReport'] or ""}} report</td>
+                <td class="govuk-table__cell">{{data['dnaNoReport'] or "1"}} report</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -252,7 +252,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['dnaReportCost'] or ""}} per report</td>
+                <td class="govuk-table__cell">£{{data['dnaReportCost'] or "200"}} per report</td>
               {% endif %}
             </tr>
             <tr class="govuk-table__row">
@@ -261,7 +261,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['actualDNATotal'] or ""}}.00</td>
+                <td class="govuk-table__cell">£{{data['actualDNATotal'] or "200"}}.00</td>
               {% endif %}
             </tr>
 
@@ -291,7 +291,7 @@
               {% if data['serviceAdjust'] == "No" or data['serviceAdjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or ""}}.00</td>
+                <td class="govuk-table__cell">£{{data['actualGeneralTotal'] or "200"}}.00</td>
               {% endif %}
             </tr>
           {% endif %}
