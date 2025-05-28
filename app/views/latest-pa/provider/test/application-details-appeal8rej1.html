@@ -23,7 +23,7 @@ href: "javascript:window.history.back()"
 
 {% block content %}
 
-<!--Stage 2 - app appealed - no response yet > (part granted, following RFI)-->
+<!--Stage 3 - CW has responded to appeal with RFI> (part granted, following RFI)-->
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -46,45 +46,28 @@ href: "javascript:window.history.back()"
               Status
             </dt>
             <dd class="govuk-summary-list__value">
-              <p><strong class="govuk-tag govuk-tag--orange">Appealed</strong> <strong class="govuk-tag govuk-tag--blue">Re-submitted</strong></p>
-              <p>22 August 2023</p>
-              <p>Awaiting LAA review</p>
+              <p><strong class="govuk-tag govuk-tag--orange">Appealed</strong> <strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
+              <p>21 September 2023</p>
+             
               <p>£5,000 requested</p>
-              <p>£3,200 allowed</p>
+              <p>£0 allowed</p>
 
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
-           
-              
             
-
-
-            </dd>
-          </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Initial decision
+              ICA decision 
             </dt>
             <dd class="govuk-summary-list__value">
-
-              <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
-              <p>This application was part granted due to disallowed travel costs. </p>
-              <div class="govuk-error-summary__body">
-                <ul class="govuk-list">
-                  <!--li>
-                          <a href="application-details#review-travel" class="govuk-link--no-visited-state">Review travel cost adjustments</a>
-                        </li> -->
-                  <li>
-                    <a href="application-details-adjusted#review-adjustments"
-                      class="govuk-link--no-visited-state">Review allowed costs</a>
-                  </li>
-          
-                </ul>
-              </div>
-
-            </dd>
+              <p><strong class="govuk-tag govuk-tag--red">Rejected</strong> </p>
+                       <p>Not enough evidence to support the use of this expert at this rate.</p>
+                        </dd>
           </div>
+
+        
+    
+          
         </dl>
       </div>
 
@@ -113,36 +96,88 @@ href: "javascript:window.history.back()"
 
     <div class="govuk-grid-column-two-thirds" id="nav">
 
-      <nav class="moj-sub-navigation" aria-label="Sub navigation">
+      
 
-        <ul class="moj-sub-navigation__list">
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="#1">Appeal</a>
-          </li>
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="#2">Overview</a>
-          </li>
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="#3">Allowed costs</a>
-          </li>
+        <nav class="moj-sub-navigation" aria-label="Sub navigation">
+  
+          <ul class="moj-sub-navigation__list">
+            <li class="moj-sub-navigation__item">
+              <a class="moj-sub-navigation__link" aria-current="page" href="#1">Appeal</a>
+            </li>
+            <li class="moj-sub-navigation__item">
+              <a class="moj-sub-navigation__link" href="#2">Overview</a>
+            </li>
             
+           
+          
+          </ul>
         
-        </ul>
-      
-      </nav>
+        </nav>
+  
+  
+        <h2 class="govuk-heading-l">Appeal</h2>
 
 
-      <h2 class="govuk-heading-l">Appeal</h2>
+        <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Second Appeal: 12 September 2024</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                LAA response
+              </dt>
+              <dd class="govuk-summary-list__value">
+            <p>Referred to ICA    </p>     </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Your appeal
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <p>I have attached the correct certificates for practice from the required body. Please consider this appeal.</p>
+             
+                <a href="">courtDocs1.pdf</a><br>
+              <a href="">courtDocs2.pdf</a>
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
 
-      <h3 class="govuk-heading-s">Your appeal - 22 August 2023</h3>
-
-                <p>I disagree with the part grant of my application. The expert needs to travel a significant disatance to see my client and therefore needs to stay overnight. This expert has worked for our firm several times and is considered the defacto expert in this area.
-                </p>
-                <ul class="govuk-list">
-                  <li>Uploads:<a href="">evidence1.pdf</a></li>
-                </ul>
-      
-
+     
+  
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h3 class="govuk-summary-card__title">Further information request: 31 August 2024</h3>
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Information request
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Your response
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['providerFurtherInfo'] or "Please see the attached documetents that show my client was not in the in UK" }}<br>
+                  <a href="">courtDocs1.pdf</a><br>
+                  <a href="">courtDocs2.pdf</a>
+                </dd>
+              </div>
+            </dl>       
+          </div>
+        </div>
+          
+       
+     
      
       <!--App ref-->
       <div class="govuk-summary-card">
