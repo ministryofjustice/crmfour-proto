@@ -20,7 +20,7 @@
   {{data['laa-ref'] or "LAA-5a7d3c"}} - Application details – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-
+{% set bodyClasses = 'caseworker-width' %}
 
 {% block beforeContent %}
   {% include "/includes/banner.html"%}
@@ -39,7 +39,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-m">Overview</h2>
+      <h2 class="govuk-heading-l">Overview</h2>
         
       {% include version + "/includes/decision-details-cw.html"%}
 
@@ -230,9 +230,9 @@
             </tbody>
           </table> 
           {% if data['cwAppStatus'] == "In progress" %}
-            <p><a href="application-details-adjust">Adust quote figures</a></p>   
+            <p><a href="application-details-adjust">Adust cost figures</a></p>   
             {% else %}
-            <p><a href="application-details-adjust-readonly">Adust quote figures</a></p>
+            <p><a href="application-details-adjust-readonly">View allowed costs</a></p>
           {% endif %}
 
         </div>

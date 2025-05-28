@@ -19,7 +19,7 @@
   {{data['laa-ref'] or "LAA-5a7d3c"}} - Appeal – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-{% set bodyClasses = 'caseworker-width' %}
+
 
 {% block beforeContent %}
   {% include "/includes/banner.html"%}
@@ -38,25 +38,34 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <h2 class="govuk-heading-m">Appeal</h2>
-    {% include version + "/includes/decision-details-appeal-cw.html"%}
+    <h2 class="govuk-heading-l">Appeal details</h2>
+    <!-- {% include version + "/includes/decision-details-appeal-cw.html"%} -->
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title" id="review-provider-appeal">Provider appeal</h3>
+        <h4 class="govuk-summary-card__title" id="review-provider-appeal">Provider appeal 18 May 2025</h4>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Provider evidence for appeal
+              Provider evidence
             </dt>
             <dd class="govuk-summary-list__value">
-              <p>{{data['providerFurtherInfoAppeal'] or "I disagree with the part grant of my application. The expert needs to travel a significant disatance to see my client and therefore needs to stay overnight. This expert has worked for our firm several times and is considered the defacto expert in this area." }}
+              <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost.
               </p>
               <ul class="govuk-list">
-                <li><a href="">evidence1.pdf</a></li>
+                <li><a href="">even-more-evidence.pdf</a></li>
               </ul>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Appealed decision
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p><strong>Part granted 7 May 2025</strong></p>
+              <p>This application was part granted due to disallowed travel costs. The new submission does not materially change the requirement for travel.</p>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -65,8 +74,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               <ul class="govuk-list">
-                <li><a href="">Appeal 17 May 2025</a></li>
-                <li><a href="">Appeal 2 May 2025</a></li>
+                <li><a href="application-details-appeal-previous">Appeal 2 May 2025</a></li>
                 <li><a href="">Appeal 14 April 2025</a></li>
               </ul>
             </dd>
@@ -74,7 +82,7 @@
         </dl>       
       </div>
     </div>
-      
+
     {% include version + "/includes/further-info-appeal-cw.html"%}
     {% include version + "/includes/application-buttons.html"%}
 

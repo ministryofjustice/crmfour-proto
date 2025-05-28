@@ -1,0 +1,206 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false, false] %}
+  {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
+    {% set activePrimeNav = [false, false, false, true, false] %}
+  {% elseif data['Appeal'] == "Yes" %}
+    {% set activePrimeNav = [false, false, true, false, false] %}
+  {% else %}
+    {% set activePrimeNav = [false, true, false, false, false] %}
+{% endif %}
+{% set activeAppNav = [false, false, true, false, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Appeal – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "/includes/banner.html"%}
+  {% include version + "/includes/nav-prime-cw.html"%}
+  {{ govukBackLink({
+    text: "Back to application",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h1 class="govuk-heading-xl">Appeal 2 May 2025 </h1>
+    <div class="govuk-inset-text">
+      <p><strong>Part granted 7 May 2025</strong></p>
+      <p>This application was part granted due to disallowed travel costs. The new submission does not materially change the requirement for travel.</p>
+      <p><a href="application-details-adjust-previous#allowed" class="govuk-link--no-visited-state">Review allowed costs</a></p>
+    </div>
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [
+      {
+        text: 'Appeal details',
+        href: 'application-details-appeal-previous',
+        active: true
+      }, 
+      {
+        text: 'Allowed costs',
+        href: 'application-details-adjust-previous',
+        active: false
+      }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-l">Appeal details</h2>
+  
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="review-provider-appeal">Appeal 2 May 2025</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Provider submission
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost.
+              </p>
+              <ul class="govuk-list">
+                <li><a href="">even-more-evidence.pdf</a></li>
+              </ul>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Previous decision
+            </dt>
+            <dd class="govuk-summary-list__value">
+            <p>Part granted 18 April 2025</p>
+            <p>This application was part granted due to disallowed travel costs.</p>
+            <p><a href="application-details-adjust-readonly" class="govuk-link--no-visited-state">Review adjustments</a></p>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Previous appeals
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <ul class="govuk-list">
+                <li><a href="">Appeal 14 April 2025</a></li>
+              </ul>
+            </dd>
+          </div>
+        </dl>       
+      </div>
+    </div>
+
+    <h2 class="govuk-heading-m">Appeal updates</h2>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="review-further-info">ICA further information request 21 May 2025</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Caseworker
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['caseworker1']}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              ICA request
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['ICAResponse'] or "Please provide further evidence from the expert in question regarding their licencing to carry out this type of report" }}<br>
+            </dd>
+          </div>
+        </dl>       
+      </div>
+    </div>
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 21 May 2025</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Caseworker
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['caseworker1']}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Information request
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Provider response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['providerFurtherInfo'] or "Please see the attached documetents that show my client was not in the in UK" }}<br>
+              <a href="">courtDocs1.pdf</a><br>
+              <a href="">courtDocs2.pdf</a>
+            </dd>
+          </div>
+        </dl>       
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 19 May 2025</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Caseworker
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['caseworker1']}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Information request
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Please provide counsel's advice, providing information as to why further funding is necessary & ATTACH IT ELECTRONICALLY. CBAM 7.2.6a
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Provider response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['providerFurtherInfo'] or "Relevant documents attached as requested" }}<br>
+              <a href="">courtDocs1.pdf</a><br>
+              <a href="">courtDocs2.pdf</a>
+            </dd>
+          </div>
+        </dl>       
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
