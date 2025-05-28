@@ -19,7 +19,7 @@
   {{data['laa-ref'] or "LAA-5a7d3c"}} - Application details – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-{% set bodyClasses = 'caseworker-width' %}
+
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
@@ -36,11 +36,13 @@
   </div>
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-m">Adjust quote</h2>
+      <h2 class="govuk-heading-l">Adjustments</h2>
 
       {% include version + "/includes/adjust-info.html"%}
+      {% include version + "/includes/allowed-costs-cw.njk"%}
+
 
       <h3 class="govuk-heading-m" id="serviceID">{{data['serviceType'] or "Interpreter"}} cost</h3>
 
