@@ -2,16 +2,23 @@
   <br>
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
   <div class="govuk-button-group">
-    {{ govukButton({
-      text: "Make a decision",
-      href: "send-decision"
-    }) }}
-
+    {% if data['Appeal'] == "Yes"%}
+        {{ govukButton({
+          text: "Make a decision",
+          href: "send-decision-appeal"
+        }) }}
+        {% else %}
+        {{ govukButton({
+            text: "Make a decision",
+            href: "send-decision"
+          }) }}
+      {% endif %}
     {{ govukButton({
       text: "Send back to provider",
       classes: "govuk-button--secondary",
       href: "send-further-info-appeal"
     }) }}
+    
     {{ govukButton({
       text: "Back to your applications",
       classes: "govuk-button--secondary",
@@ -19,18 +26,23 @@
     }) }}
   </div>
  
- 
- 
- {% elseif data['cwAppStatus'] == "In progress" %}
-  <br>
-  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-  <div class="govuk-button-group">
 
-    {% if data['Appeal'] == "Yes"%}
-      {{ govukButton({
-        text: "Make a decision",
-        href: "send-decision-appeal"
-      }) }}
+  {% elseif data['cwAppStatus'] == "In progress" %}
+    <br>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+    <div class="govuk-button-group">
+
+      {% if data['Appeal'] == "Yes"%}
+        {{ govukButton({
+          text: "Make a decision",
+          href: "send-decision-appeal"
+        }) }}
+        {% else %}
+        {{ govukButton({
+            text: "Make a decision",
+            href: "send-decision"
+          }) }}
+      {% endif %}
 
       {{ govukButton({
         text: "Send back to provider",
@@ -49,25 +61,7 @@
         classes: "govuk-button--secondary",
         href: "../crm-assess?cwAppState=all"
       }) }}
-
-      {% else %}
-        {{ govukButton({
-          text: "Make a decision",
-          href: "send-decision"
-        }) }}
-
-        {{ govukButton({
-          text: "Send back to provider",
-          classes: "govuk-button--secondary",
-          href: "send-further-info"
-        }) }}
-        {{ govukButton({
-          text: "Back to your applications",
-          classes: "govuk-button--secondary",
-          href: "../crm-assess?cwAppState=all"
-        }) }}
-    {% endif %}
-  </div>
+    </div>
 {% endif %}
 
       
