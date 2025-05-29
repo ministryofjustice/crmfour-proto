@@ -1,49 +1,83 @@
-{% if data['cwAppStatus'] == "Granted" %}
-    <strong class="govuk-tag govuk-tag--green">Granted</strong>
-  {% elseif data['cwAppStatus'] == "Rejected" %}
-    <strong class="govuk-tag govuk-tag--red">Rejected</strong>
-  {% elseif data['cwAppStatus'] == "Part granted" %}
-    <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
-  {% elseif data['cwAppStatus'] == "Auto granted" %}
-    <strong class="govuk-tag govuk-tag--green">Auto granted</strong>
-  {% elseif data['cwAppStatus'] == "Expired" %}
-    <strong class="govuk-tag govuk-tag--red">Expired</strong>
-
-  {% elseif data['Appeal'] == "Yes" %}
-    <strong class="govuk-tag govuk-tag--light-blue">Appeal</strong>
-{% endif %}
-
-{% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
-    {% elseif data['cwAppStatus'] == "In progress" %}
-    <strong class="govuk-tag govuk-tag--purple">In progress</strong>
-    {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
-    <strong class="govuk-tag govuk-tag--yellow">Sent back</strong>
-     {% elseif data['cwAppStatus'] == "Returned" %}
-    <strong class="govuk-tag govuk-tag--grey">Provider updated</strong>
-    {% elseif data['cwAppStatus'] == "Referred" %}
-    <strong class="govuk-tag govuk-tag--yellow">Referred</strong>
-{% endif%}
-<br><br>
-
 <span class="govuk-caption-xl">Crime Busters Legal</span>
 <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
 
-<p>
-  <span class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00<br>
-  {% if data['cwAppStatus'] == "Part granted" or data['Appeal'] == "Yes" %}
-      <span class="govuk-body-l"><strong>Allowed: </strong>£520.00
+{% if data['Appeal'] == "No" or data['Appeal'] == Null %}
+  <p>
+    {% if data['cwAppStatus'] == "Granted" %}
+      <strong class="govuk-tag govuk-tag--green">Granted</strong>
+      {% elseif data['cwAppStatus'] == "Rejected" %}
+        <strong class="govuk-tag govuk-tag--red">Rejected</strong>
+      {% elseif data['cwAppStatus'] == "Part granted" %}
+        <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
+      {% elseif data['cwAppStatus'] == "Auto granted" %}
+        <strong class="govuk-tag govuk-tag--green">Auto granted</strong>
+      {% elseif data['cwAppStatus'] == "Expired" %}
+        <strong class="govuk-tag govuk-tag--red">Expired</strong>
+      {% elseif data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
+      <strong class="govuk-tag govuk-tag--grey">Not assigned</strong>
+      {% elseif data['cwAppStatus'] == "In progress" %}
+      <strong class="govuk-tag govuk-tag--purple">In progress</strong>
+      {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
+      <strong class="govuk-tag govuk-tag--yellow">Sent back</strong>
+        {% elseif data['cwAppStatus'] == "Returned" %}
+      <strong class="govuk-tag govuk-tag--grey">Provider updated</strong>
+      {% elseif data['cwAppStatus'] == "Referred" %}
+      <strong class="govuk-tag govuk-tag--yellow">Referred</strong>
+    {% endif %}
+  </p>
+  {% else %}  
+  {% if data['Appeal'] == "Yes" %}
+    <p>
+      <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
+       
+      {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
+        <strong class="govuk-tag govuk-tag--grey">Appeal</strong>
+        {% elseif data['cwAppStatus'] == "In progress" %}
+        <strong class="govuk-tag govuk-tag--purple">Appeal: In progress</strong>
+        {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
+        <strong class="govuk-tag govuk-tag--yellow">Appeal: Sent back</strong>
+          {% elseif data['cwAppStatus'] == "Returned" %}
+        <strong class="govuk-tag govuk-tag--grey">Appeal: Updated</strong>
+        {% elseif data['cwAppStatus'] == "Referred" %}
+        <strong class="govuk-tag govuk-tag--yellow">Appeal: Referred</strong>
+      {% endif %}
+    </p>
+  {% endif %}
+{% endif %}
+
+
+  <p class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00<br>
+    {% if data['cwAppStatus'] == "Part granted" or data['Appeal'] == "Yes" %}
+      <strong>Allowed: </strong>£520.00<br>
     {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}
-      <span class="govuk-body-l"><strong>Allowed: </strong>£{{data['actualdistTotalCost'] or "640"}}.00
+      <strong>Allowed: </strong>£{{data['actualdistTotalCost'] or "640"}}.00<br>
     {% elseif data['cwAppStatus'] == "Rejected" %}
-      <span class="govuk-body-l"><strong>Allowed: </strong>£0.00
+      <strong>Allowed: </strong>£0.00<br>
     {% elseif data['serviceAdjust'] == null %}
     {% else %}
-      <span class="govuk-body-l"><strong>Allowed: </strong>£440.00
+      <strong>Allowed: </strong>£440.00<br>
   {% endif %}
-</p>
 
-<p>
-  <span class="govuk-body-m"><strong>Service: </strong> 
+  <p class="govuk-body-m">
+    {% if data['Appeal'] =="Yes"%}
+    <strong>Appeal received:</strong> 17 May 2025<br>
+    {% else %}
+    <strong>Date received:</strong> 17 May 2025<br>
+  {% endif %}
+  {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Auto granted" %}
+    <strong>Assessed:</strong> 21 May 2025
+    {% elseif data['cwAppStatus'] == "Referred" %}
+      <strong>Referred to ICA:</strong> 21 May 2025
+    {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
+     <strong>Sent back:</strong> 21 May 2025
+    {% elseif data['cwAppStatus'] == "Returned" %}
+     <strong>Updated:</strong> 21 May 2025
+    {% elseif data['cwAppStatus'] == "Expired" %}
+      <strong>Expired</strong> 31 May 2025
+  {% endif %}
+  </p>
+
+  <p class="govuk-body-m"><strong>Service: </strong>
   {% if data['serviceType'] == "Pathologist's report" and data['postMortem'] == "Yes" %}
     Pathologist's report - post-mortem
     {% else %}
@@ -53,29 +87,11 @@
   <strong>Representation order date:</strong> 19 April 2023</span>
 </p>
 
-<p>
-  {% if data['Appeal'] =="Yes"%}
-    <span class="govuk-body-m"><strong>Date appeal received:</strong> 17 May 2025</span>
-    {% else %}
-    <span class="govuk-body-m"><strong>Date received:</strong> 17 May 2025</span>
-  {% endif %}
-  {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Auto granted" %}
-    <br><span class="govuk-body-m"><strong>Date assessed:</strong> 21 May 2025</span>
-    {% elseif data['cwAppStatus'] == "Referred" %}
-      <br><span class="govuk-body-m"><strong>Date referred:</strong> 21 May 2025</span>
-    {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
-      <br><span class="govuk-body-m"><strong>Date sent back to provider:</strong> 21 May 2025</span>
-    {% elseif data['cwAppStatus'] == "Returned" %}
-      <br><span class="govuk-body-m"><strong>Date amended:</strong> 21 May 2025</span>
-    {% elseif data['cwAppStatus'] == "Expired" %}
-      <br><span class="govuk-body-m"><strong>Date expired</strong> 31 May 2025</span>
-  {% endif %}
-
-
-  {% if data['cwAppStatus'] == "In progress" %}
-    <br><span class="govuk-body-m"><strong>Caseworker</strong> {{data['caseworker2']}}</span>
-  {% endif %}
-</p>
+  <p class="govuk-body-m">
+    {% if data['cwAppStatus'] == "In progress" %}
+    <strong>Caseworker</strong> {{data['caseworker2']}}
+    {% endif %}
+  </p>
 
 <div class="govuk-button-group">
   {% if data['cwAppStatus'] == "In progress"  %}
