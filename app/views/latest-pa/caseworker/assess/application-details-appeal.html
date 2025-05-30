@@ -46,18 +46,30 @@
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-          <!--
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Appeal decision
-            </dt>
-            <dd class="govuk-summary-list__value">
-             <p>Part granted 7 May 2025</p>
-            <p>This application was part granted due to disallowed travel costs. The new submission does not materially change the requirement for travel.</p>
-            <p><a href="application-details-adjust-previous#allowed" class="govuk-link--no-visited-state">Review allowed costs</a></p> 
-            </dd>
-          </div>
-          -->
+          {% if data['appealStatus'] == "" or data['appealStatus'] == null  %}
+          {% else %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                {% if data['icaDecision']== "Yes"%}
+                  ICA appeal decision
+                  {% else %}
+                  Appeal decision
+                {% endif %}
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <p>Appeal status: {{data['appealStatus']}} 21 May 2025</p>
+                <p>
+                  {% if data['appealStatus']== "Upheld"%}
+                    {{data['upheldConfirm'] or "We have upheld your appeal due to supporting evidence."}}
+                    {% elseif data['appealStatus']== "Part upheld"%}
+                      {{data['partUpheldConfirm'] or "We have parially upheld your appeal due to supporting evidence and made appropriate adjustments to some of your costs."}}
+                    {% elseif data['appealStatus']== "Denied"%}
+                      {{data['deniedConfirm'] or "Your appeal has been denied as the travel costs are not permissionable for this type of expert."}}
+                  {% endif %}
+                </p>
+              </dd>
+            </div>
+          {% endif %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Provider evidence
@@ -76,8 +88,7 @@
             </dt>
             <dd class="govuk-summary-list__value">
               <p>Part granted 7 May 2025</p>
-              <p>Appeal: this application was part granted due to disallowed travel costs. The new submission does not materially change the requirement for travel.</p>
-              <p><a href="application-details-adjust-previous" class="govuk-link--no-visited-state">Review appeal</a></p>
+              <p>This application was part granted due to disallowed travel costs. The new submission does not materially change the requirement for travel.</p>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
