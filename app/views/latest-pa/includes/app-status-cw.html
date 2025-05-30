@@ -1,7 +1,7 @@
 <span class="govuk-caption-xl">Crime Busters Legal</span>
 <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
 
-{% if data['Appeal'] == "No" or data['Appeal'] == Null %}
+{% if data['Appeal'] == "No" or data['Appeal'] == null %}
   <p>
     {% if data['cwAppStatus'] == "Granted" %}
       <strong class="govuk-tag govuk-tag--green">Granted</strong>
@@ -26,7 +26,7 @@
     {% endif %}
   </p>
  
-    {% elseif data['Appeal'] == "Yes" and data['appealStatus'] == "" %}
+    {% elseif data['Appeal'] == "Yes" and data['appealStatus'] == null %}
      <p>
       <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
       {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
