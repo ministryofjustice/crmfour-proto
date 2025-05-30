@@ -32,7 +32,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <!--If it was 'Send back to Provider' request--->
-      {% if data['cwAppStatus'] =="Review" or data['cwAppStatus'] =="ICAReview" %}
+      {% if data['cwAppStatus'] =="Review" %}
         <div class="govuk-panel govuk-panel--confirmation">
           <h1 class="govuk-panel__title">
             Request sent
@@ -57,8 +57,9 @@
                   Further information request
                 {% endif %}
               </dt>
-                <dd class="govuk-summary-list__value">
-                {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+              <dd class="govuk-summary-list__value">
+                <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+                </p>
               </dd>
             </div>
             {% elseif data['reviewApp'] == "incorrect" %}
@@ -89,17 +90,6 @@
               </div>
           {% endif %}
         </dl>
-        <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Assess next application",
-            href: "application-details?cwAppStatus=In progress&Appeal=No&reviewPrimary=&reviewAltQuote1=&reviewWhyPA"
-          }) }}
-          {% if data['Appeal'] =="Yes" %}
-            <a class="govuk-link" href="application-details-appeal">Return to the application</a>
-            {% else %}
-            <a class="govuk-link" href="application-details">Return to the application</a>
-          {% endif %}
-        </div>
 
         {% else %}
         
@@ -124,7 +114,11 @@
               LAA decision
             </dt>
               <dd class="govuk-summary-list__value">
-              {{data['cwAppStatus'] or "Granted"}}
+                {% if data['Appeal'] == "Yes" %}
+                  Appeal: {{data['cwAppStatus'] or "Referred"}}
+                  {% else %}
+                  {{data['cwAppStatus'] or "Granted"}}
+                {% endif %}
             </dd>
           </div>
            <div class="govuk-summary-list__row">
@@ -134,35 +128,26 @@
               <dd class="govuk-summary-list__value">
                 {% if data['cwAppStatus'] == "Granted" %}
                   {{data['grantedConfirm'] or "No comments"}}
-                  {% else %}
-                  {% if data['cwAppStatus'] == "Part granted" %}
+                  {% elseif data['cwAppStatus'] == "Part granted" %}
                     {{data['partConfirm'] or "Travel costs not allowed"}}
-                    {% else %}
-                    {% if data['cwAppStatus'] == "Rejected" %}
-                      {{data['rejectedConfirm'] or "Please use a CRM5 form"}}
-                    {% endif %}
-                  {% endif %}
+                  {% elseif data['cwAppStatus'] == "Rejected" %}
+                    {{data['rejectedConfirm'] or "Please use a CRM5 form"}}
+                  {% elseif data['cwAppStatus'] == "Referred" %}
+                    {{data['icaReferredReason'] or "Your appeal has been referred to the ICA for a final decision."}}
                 {% endif %}
             </dd>
           </div>
         </dl>
 
-        <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Assess next application",
-            href: "application-details?cwAppStatus=In progress&Appeal=No&reviewPrimary=&reviewAltQuote1=&reviewWhyPA"
-          }) }}
-          {% if data['Appeal'] =="Yes" %}
-            <a class="govuk-link" href="application-details-appeal">Return to the application</a>
-            {% else %}
-            <a class="govuk-link" href="application-details">Return to the application</a>
-          {% endif %}
-        </div>
       {% endif %}
 
-  
-      
-
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Assess next application",
+          href: "application-details?cwAppStatus=In progress&Appeal=No&reviewPrimary=&reviewAltQuote1=&reviewWhyPA"
+        }) }}
+        <a class="govuk-link" href="application-details">Return to the application</a>
+      </div>
     </div>
   </div>
 

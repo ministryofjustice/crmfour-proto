@@ -27,7 +27,7 @@
     <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">Send back to provider</h1>
 
-      <form class="form" action="send-confirmation?cwAppStatus=ICAReview&Appeal=Yes" method="post">
+      <form class="form" action="send-confirmation?cwAppStatus=Review&Appeal=Yes" method="post">
 
         {{ govukRadios({
           name: "icaInfoRequest",
@@ -43,7 +43,7 @@
               value: "Yes",
               text: "Yes",
               hint: {
-                text: "You’ll need to provide the relavant information from the ICA"
+                text: "Provide the relavant information from the ICA"
               }
             },
             {
@@ -55,11 +55,13 @@
              
         {{ govukTextarea({
           name: "fieldFurtherInfo",
-          id: "fieldFurtherInfo",
-          
+          id: "fieldFurtherInfo",          
           label: {
             text: "What updates to the appeal are needed?",
             classes: "govuk-fieldset__legend--s"
+          },
+          hint: {
+            text: "This information will be shown to the provider "
           }
         }) }}      
 
