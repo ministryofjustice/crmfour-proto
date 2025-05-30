@@ -27,47 +27,20 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/{{version}}/refer-to-ica" method="post">
-        
-        {% set ICAHtml %}
-          {{ govukTextarea({
+       <form class="form" action="send-confirmation?cwAppStatus=Referred" method="post">
+
+        {{ govukTextarea({
             name: "icaReason",
             id: "icaReason",
             label: {
-              text: "Explain your decision",
-              isPageHeading: false
+              text: "Explain your decision to refer this appeal to the ICA",
+              isPageHeading: true,
+              classes: "govuk-label--xl"
             },
             hint: {
             text: "We'll share this information with the provider"
             }
-          }) }}    
-        {% endset %}
-
-        {{ govukRadios({
-          name: "icaDecision",
-          fieldset: {
-            legend: {
-              text: "Do you want to refer this application to the ICA?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
-            }
-          },
-          items: [
-            {
-              value: "Yes",
-              text: "Yes",
-              checked: checked("icaDecision", "Yes"),
-              conditional: {
-                html: ICAHtml
-              }
-            },
-            {
-              value: "No",
-              text: "No",
-              checked: checked("icaDecision", "No")
-            }
-          ]
-        }) }}
+          }) }}   
       
         <div class="govuk-button-group">
           {{ govukButton({
@@ -77,7 +50,7 @@
           {{ govukButton({
             text: "Save and come back later",
               classes: "govuk-button--secondary",
-            href: ""
+            href: "application-details"
           }) }}
         </div>
 
