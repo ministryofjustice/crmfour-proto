@@ -17,7 +17,7 @@
       <strong class="govuk-tag govuk-tag--grey">Not assigned</strong>
       {% elseif data['cwAppStatus'] == "In progress" %}
       <strong class="govuk-tag govuk-tag--purple">In progress</strong>
-      {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
+      {% elseif data['cwAppStatus'] == "Review" %}
       <strong class="govuk-tag govuk-tag--yellow">Sent back</strong>
         {% elseif data['cwAppStatus'] == "Returned" %}
       <strong class="govuk-tag govuk-tag--grey">Provider updated</strong>
@@ -25,24 +25,33 @@
       <strong class="govuk-tag govuk-tag--yellow">Referred</strong>
     {% endif %}
   </p>
-  {% else %}  
-  {% if data['Appeal'] == "Yes" %}
-    <p>
+ 
+    {% elseif data['Appeal'] == "Yes" and data['appealStatus'] == "" %}
+     <p>
       <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
-       
       {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
         <strong class="govuk-tag govuk-tag--grey">Appeal</strong>
         {% elseif data['cwAppStatus'] == "In progress" %}
-        <strong class="govuk-tag govuk-tag--purple">Appeal: In progress</strong>
-        {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
-        <strong class="govuk-tag govuk-tag--yellow">Appeal: Sent back</strong>
-          {% elseif data['cwAppStatus'] == "Returned" %}
-        <strong class="govuk-tag govuk-tag--grey">Appeal: Updated</strong>
+          <strong class="govuk-tag govuk-tag--purple">Appeal: In progress</strong>
+        {% elseif data['cwAppStatus'] == "Review" %}
+          <strong class="govuk-tag govuk-tag--yellow">Appeal: Sent back</strong>
+        {% elseif data['cwAppStatus'] == "Returned" %}
+          <strong class="govuk-tag govuk-tag--grey">Appeal: Updated</strong>
         {% elseif data['cwAppStatus'] == "Referred" %}
-        <strong class="govuk-tag govuk-tag--yellow">Appeal: Referred</strong>
+          <strong class="govuk-tag govuk-tag--yellow">Appeal: Referred</strong>
       {% endif %}
-    </p>
-  {% endif %}
+      </p>
+      {% elseif data['appealStatus'] !== null %}
+      <p>
+        {% if data['cwAppStatus'] == "Granted" %}
+          <strong class="govuk-tag govuk-tag--green">Granted</strong>
+          {% elseif data['cwAppStatus'] == "Rejected" %}
+            <strong class="govuk-tag govuk-tag--red">Rejected</strong>
+          {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
+        {% endif %}
+      </p>
+   
 {% endif %}
 
 

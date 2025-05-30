@@ -27,7 +27,9 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="send-confirmation" method="post">
+      <form class="form" action="/{{version}}/appeal-decision" method="post">
+
+      
 
         <h1 class="govuk-heading-xl">Make a decision</h1>
 
@@ -110,7 +112,6 @@
             {
               value: "Upheld",
               text: "Upheld",
-              checked: checked("appealStatus", "Upheld"),
               conditional: {
                 html: upheldHtml
               }
@@ -118,7 +119,6 @@
             {
               value: "Part upheld",
               text: "Part upheld",
-              checked: checked("appealStatus", "Part upheld"),
               conditional: {
                 html: partUpheldHtml
               }
@@ -126,7 +126,6 @@
             {
               value: "Denied",
               text: "Denied",
-              checked: checked("appealStatus", "Denied"),
               conditional: {
                 html: deniedHtml
               }

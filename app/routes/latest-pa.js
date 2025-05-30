@@ -123,13 +123,16 @@ router.post('/question3-add-info', function(request, response) {
 })
 
 //Refer to ICA yes/No
-router.post('/refer-to-ica', function(request, response) {
+router.post('/appeal-decision', function(request, response) {
 
-  var icaDecision = request.session.data['icaDecision']
-  if (icaDecision == "Yes"){
-      response.redirect('/' + version + "/caseworker/assess/application-details-appeal?cwAppStatus=Referred")
+  var appealStatus = request.session.data['appealStatus']
+  if (appealStatus == "Upheld"){
+      response.redirect('/' + version + "/caseworker/assess/send-confirmation?cwAppStatus=Granted")
   } 
-  if (icaDecision == "No"){
-      response.redirect('/' + version + "/caseworker/assess/application-details-appeal?cwAppStatus=In progress")
+  if (appealStatus == "Part upheld"){
+      response.redirect('/' + version + "/caseworker/assess/send-confirmation?cwAppStatus=Part granted")
+  }
+  if (appealStatus == "Denied"){
+      response.redirect('/' + version + "/caseworker/assess/send-confirmation?cwAppStatus=Part granted")
   }
 })
