@@ -29,13 +29,13 @@
 
       <form class="form" action="send-confirmation" method="post">
 
-        <h1 class="govuk-heading-xl">Appeal decision</h1>
+        <h1 class="govuk-heading-xl">Make a decision</h1>
 
-        {{ govukRadios({
+         {{ govukRadios({
           name: "icaDecision",
           fieldset: {
             legend: {
-              text: "Is this the final ICA decsion?",
+              text: "Is this an ICA decsion?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--s"
             }
@@ -45,7 +45,7 @@
               value: "Yes",
               text: "Yes",
               hint: {
-                text: "You’ll need to provide the relavant information from the ICA"
+                text: "You’ll need to provide the relavant information from the ICA as decsions are final"
               }
             },
             {
@@ -55,12 +55,12 @@
           ]
         }) }}
 
-        {% set grantedHtml %}
+        {% set upheldHtml %}
           {{ govukTextarea({
-            name: "grantedConfirm",
-            id: "grantedConfirm",
+            name: "upheldConfirm",
+            id: "upheldConfirm",
             label: {
-              text: "Enter additional comments (optional)",
+              text: "Explain your decision",
               isPageHeading: false
             },
             hint: {
@@ -69,10 +69,10 @@
           }) }}    
         {% endset %}
         
-        {% set partGrantedHtml %}
+        {% set partUpheldHtml %}
           {{ govukTextarea({
-            name: "partConfirm",
-            id: "partConfirm",
+            name: "partUpheldConfirm",
+            id: "partUpheldConfirm",
             label: {
               text: "Explain your decision",
               isPageHeading: false
@@ -83,10 +83,10 @@
           }) }}    
         {% endset %}
 
-         {% set rejectedHtml %}
+         {% set deniedHtml %}
           {{ govukTextarea({
-            name: "rejectedConfirm",
-            id: "rejectedConfirm",
+            name: "deniedConfirm",
+            id: "deniedConfirm",
             label: {
               text: "Explain your decision",
               isPageHeading: false
@@ -98,41 +98,42 @@
         {% endset %}
 
         {{ govukRadios({
-          name: "cwAppStatus",
+          name: "appealStatus",
           fieldset: {
             legend: {
-              text: "What is the decision",
+              text: "What is decision on the providers appeal?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--s"
             }
           },
           items: [
             {
-              value: "Granted",
-              text: "Grant",
-              checked: checked("cwAppStatus", "Granted"),
+              value: "Upheld",
+              text: "Upheld",
+              checked: checked("appealStatus", "Upheld"),
               conditional: {
-                html: grantedHtml
+                html: upheldHtml
               }
             },
             {
-              value: "Part granted",
-              text: "Part grant",
-              checked: checked("cwAppStatus", "Part granted"),
+              value: "Part upheld",
+              text: "Part upheld",
+              checked: checked("appealStatus", "Part upheld"),
               conditional: {
-                html: partGrantedHtml
+                html: partUpheldHtml
               }
             },
             {
-              value: "Rejected",
-              text: "Reject",
-              checked: checked("cwAppStatus", "Rejected"),
+              value: "Denied",
+              text: "Denied",
+              checked: checked("appealStatus", "Denied"),
               conditional: {
-                html: rejectedHtml
+                html: deniedHtml
               }
             }
           ]
         }) }}
+
       
         <div class="govuk-button-group">
           {{ govukButton({
