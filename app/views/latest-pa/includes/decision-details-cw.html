@@ -100,7 +100,7 @@
           <p><a href="application-details-appeal">View appeal details</a></p>
           </p>
         </div>
-      {% else %}
+      {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" %}
         <div class="govuk-inset-text">
           <p><strong>
             {% if data['icaDecision']== "Yes"%}
@@ -115,8 +115,4 @@
            </p><a href="application-details-appeal" class="govuk-link--no-visited-state">Review appeal details</a></p>
         </div>
         {% endif %}
-
-     
-
-
 {% endif %}

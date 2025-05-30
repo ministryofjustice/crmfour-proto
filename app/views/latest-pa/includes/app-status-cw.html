@@ -26,11 +26,11 @@
     {% endif %}
   </p>
  
-    {% elseif data['Appeal'] == "Yes" and data['appealStatus'] == null %}
+    {% elseif data['Appeal'] == "Yes" and (data['appealStatus'] == "" or data['appealStatus'] == null) %}
      <p>
       <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
-      {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
-        <strong class="govuk-tag govuk-tag--grey">Appeal</strong>
+      {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "" %}
+          <strong class="govuk-tag govuk-tag--grey">Appeal</strong>
         {% elseif data['cwAppStatus'] == "In progress" %}
           <strong class="govuk-tag govuk-tag--purple">Appeal: In progress</strong>
         {% elseif data['cwAppStatus'] == "Review" %}
@@ -41,7 +41,7 @@
           <strong class="govuk-tag govuk-tag--yellow">Appeal: Referred</strong>
       {% endif %}
       </p>
-      {% elseif data['appealStatus'] !== null %}
+      {% else %}
       <p>
         {% if data['cwAppStatus'] == "Granted" %}
           <strong class="govuk-tag govuk-tag--green">Granted</strong>
