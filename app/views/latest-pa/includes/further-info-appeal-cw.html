@@ -65,7 +65,13 @@
     <h2 class="govuk-heading-m">Appeal updates</h2>
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title" id="review-further-info">Referred to ICA 21 May 2025</h3>
+        <h3 class="govuk-summary-card__title" id="review-further-info">
+          {% if data['icaDecision']== "Yes"%}
+            ICA information request 21 May 2025
+            {% else %}
+            Further information request 21 May 2025
+          {% endif %}
+        </h3>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -79,10 +85,19 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Reasons for referral
+              Further information request
             </dt>
             <dd class="govuk-summary-list__value">
-              <p>{{data['icaReason'] or "Appeal referred to ICA due to questions over the expert used and rates requested by provider."}}</p>
+              {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Provider response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['providerFurtherInfo'] or "Relevant documents attached as requested" }}<br>
+              <a href="">AnotherCaourtDocs1.pdf</a><br>
             </dd>
           </div>
         </dl>       
@@ -96,7 +111,7 @@
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 17 May 2025</h3>
+        <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 19 May 2025</h3>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -129,9 +144,10 @@
         </dl>       
       </div>
     </div>
+
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h3 class="govuk-summary-card__title" id="review-further-info">Further information request 14 May 2025</h3>
+        <h3 class="govuk-summary-card__title" id="review-further-info">Further information request 18 May 2025</h3>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
