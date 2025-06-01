@@ -428,7 +428,7 @@
         <h3 class="govuk-heading-m" id="additional1ID">Additional cost 1</h3>
         {% if data['add1Adjust'] == "Yes" %}
           <div class="govuk-inset-text">
-            {{data['addCost1Adjust']}}
+            {{data['addCost1Adjust'] or "Waiting rate reduced accordingly."}}
           </div>
           {% else %}
         {% endif %}
@@ -445,11 +445,11 @@
           <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">Amount</td>
-              <td class="govuk-table__cell">4 hours 0 minutes</td>
+              <td class="govuk-table__cell">3 hours 0 minutes</td>
               {% if data['add1Adjust'] == "No" or data['add1Adjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">{{data['addTime1-hours'] or ""}} hours {{data['addTime1-mins'] or "0"}} minutes</td>
+                <td class="govuk-table__cell">{{data['addTime1-hours'] or "3"}} hours {{data['addTime1-mins'] or "0"}} minutes</td>
               {% endif %}
             </tr>
              <tr class="govuk-table__row">
@@ -458,7 +458,7 @@
               {% if data['add1Adjust'] == "No" or data['add1Adjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['addCostTime1'] or ""}} per hour</td>
+                <td class="govuk-table__cell">£{{data['addCostTime1'] or "30.00"}} per hour</td>
               {% endif %}
             </tr>
              <tr class="govuk-table__row">
@@ -467,7 +467,7 @@
               {% if data['add1Adjust'] == "No" or data['add1Adjust'] == null %}
                 <td class="govuk-table__cell"></td>
                 {% else %}
-                <td class="govuk-table__cell">£{{data['actualAdd1Total'] or ""}}.00</td>
+                <td class="govuk-table__cell">£{{data['actualAdd1Total'] or "90.00"}}.00</td>
               {% endif %}
             </tr>
           </tbody>
