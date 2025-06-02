@@ -1,5 +1,5 @@
  {% if data['Appeal'] == "Yes" %}
-  {% if data['appealStatus'] !== "" or  data['cwAppStatus'] == "New" or  data['cwAppStatus'] == "Review"  %}
+  {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "Referred"  %}
 
     {{ mojSubNavigation({
       label: 'Sub navigation',
@@ -15,8 +15,8 @@
         active: + activeAppNav[2]
       }, 
       {
-        text: 'Allowed costs',
-        href: 'application-details-adjust-appeal',
+        text: 'Adjust costs',
+        href: 'application-details-adjust',
         active: + activeAppNav[1]
       }, 
       {
@@ -48,8 +48,8 @@
         active: + activeAppNav[2]
       }, 
       {
-        text: 'Adjust costs',
-        href: 'application-details-adjust-appeal',
+        text: 'Allowed costs',
+        href: 'application-details-adjust-appeal-readonly',
         active: + activeAppNav[1]
       }, 
       {
