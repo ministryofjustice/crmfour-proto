@@ -46,7 +46,7 @@
                   <label class="govuk-label govuk-date-input__label" for="addTime1-hours">
                     Hours
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-hours" name="addTime1-hours" type="text" inputmode="numeric" value="{{data['addTime1-hours'] or "4"}}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-hours" name="addTime1-hours" type="text" inputmode="numeric" value="{{data['addTime1-hours'] or "3"}}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -64,7 +64,7 @@
         {{ govukInput({
           id: "addCostTime1",
           name: "addCostTime1",
-          value: data['addCostTime1'] or "30",
+          value: data['addCostTime1'] or "30.00",
           label: {
             text: "Cost per hour",
             classes: "govuk-fieldset__legend--s"
@@ -89,7 +89,7 @@
         {{ govukTextarea({
           name: "addCost1Adjust",
           id: "addCost1Adjust",
-          value: data['addCost1Adjust'],
+          value: data['addCost1Adjust'] or "Waiting rate reduced accordingly.",
           label: {
             text: "Explain your decision",
             classes: "govuk-label--s",

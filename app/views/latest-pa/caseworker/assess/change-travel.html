@@ -78,7 +78,7 @@
                   <label class="govuk-label govuk-date-input__label" for="travelTime-hours">
                     Hours
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-hours" name="travelTime-hours" type="text" inputmode="numeric" value="{{data['travelTime-hours'] or ""}}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-hours" name="travelTime-hours" type="text" inputmode="numeric" value="{{data['travelTime-hours'] or "0"}}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -86,7 +86,7 @@
                   <label class="govuk-label govuk-date-input__label" for="travelTime-mins">
                     Minutes
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-mins" name="travelTime-mins" type="text" inputmode="numeric" value="{{data['travelTime-mins'] or ''}}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-mins" name="travelTime-mins" type="text" inputmode="numeric" value="{{data['travelTime-mins'] or '00'}}">
                 </div>
               </div>
             </div>
@@ -96,7 +96,7 @@
         {{ govukInput({
           id: "travelCostTime",
           name: "travelCostTime",
-          value: data['travelCostTime'] or "",
+          value: data['travelCostTime'] or "40.00",
           label: {
             text: "Cost per hour",
             classes: "govuk-label--s"
@@ -120,7 +120,7 @@
         {{ govukTextarea({
           name: "travelAdjustField",
           id: "travelAdjustField",
-          value: data['travelAdjustField'],
+          value: data['travelAdjustField'] or "Travel costs not allowed for this service",
           label: {
             text: "Explain your decision",
             classes: "govuk-label--s",
