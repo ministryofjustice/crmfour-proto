@@ -300,40 +300,11 @@
             {% endif %}
         </tbody>
       </table>
-
-      {% if data['cwAppStatus'] =="In progress" %}
-        {% if data['serviceAdjust'] == "Yes" or data['Appeal'] =="Yes" %}
-          <div class="govuk-button-group">
-            {{ govukButton({
-              text: "Adjust service cost",
-              href: "change-service",
-              classes: "govuk-button--secondary"
-            }) }}
-
-            <a class="govuk-link govuk-link--no-visited-state" href="delete-adjustment?deleteAdjust=service">Delete service cost adjustment</a>
-          </div>
-          {% else %}
-          {{ govukButton({
-            text: "Adjust service cost",
-            href: "change-service",
-            classes: "govuk-button--secondary"
-          }) }}
-        {% endif %}
-      {% endif %}
           
       <!--Travel -->
       <h3 class="govuk-heading-m" id="travelID">Travel cost</h3>
       {% if data['addTravel'] =="No" and data['primaryTravel'] =="No" and data['travelRemove'] == "No" %}
         <p>No travel costs were added</p>
-        {% if data['cwAppStatus'] =="In progress" %}
-          <div class="govuk-button-group">
-            {{ govukButton({
-              text: "Adjust travel cost",
-              href: "change-travel",
-              classes: "govuk-button--secondary"
-            }) }}
-          </div>
-        {% endif %}
         {% else %}
 
         {% if data['travelAdjust'] == 'Yes' or data['travelRemove'] == "Yes" or data['Appeal'] =="Yes"  %}
@@ -398,39 +369,12 @@
             </tr>
           </tbody>
         </table>
-
-        {% if data['cwAppStatus'] =="In progress" %}
-          <div class="govuk-button-group">
-            {{ govukButton({
-              text: "Adjust travel cost",
-              href: "change-travel",
-              classes: "govuk-button--secondary"
-            }) }}
-              
-            {% if data['travelAdjust'] == "Yes" %}
-              <a class="govuk-link govuk-link--no-visited-state" href="delete-adjustment?deleteAdjust=travel">Delete travel cost adjustment</a>
-              {% elseif data['travelRemove'] == "Yes" %}
-              <!--Can't be undone-->
-              {% else %}
-              <a class="govuk-link govuk-link--no-visited-state" href="delete-cost?removeCost=travel">Remove requested travel cost</a>
-            {% endif %}  
-          </div>
-        {% endif %}       
-
       {% endif %}
 
       <!--Additional-->
       {% if data['addAdd'] =="0" %}
       <h3 class="govuk-heading-m">Additional costs</h3>
         <p>No additional costs added</p>
-        <!----<div class="govuk-button-group">
-          {{ govukButton({
-            text: "Adjust additional cost",
-            href: "change-additionalCost1",
-            classes: "govuk-button--secondary"
-          }) }}
-        </div>
-        --->
         {% else %}
 
         <h3 class="govuk-heading-m" id="additional1ID">Additional cost 1</h3>
@@ -480,25 +424,6 @@
             </tr>
           </tbody>
         </table>
-        {% if data['cwAppStatus'] =="In progress" %}
-          <div class="govuk-button-group">
-            {{ govukButton({
-            text: "Adjust additional cost 1",
-            href: "change-additionalCost1",
-              classes: "govuk-button--secondary"
-            }) }}
-
-            {% if data['add1Adjust'] == "Yes" %}
-              <a class="govuk-link govuk-link--no-visited-state" href="delete-adjustment?deleteAdjust=add1">Delete additional cost 1 adjustment</a>
-            {% endif %}
-          </div>
-
-          {{ govukButton({
-          text: "Add additional cost",
-          href: "change-additionalCost1",
-            classes: "govuk-button--secondary"
-          }) }}
-        {% endif %}
           
       {% endif %}
 
