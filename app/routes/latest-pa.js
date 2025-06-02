@@ -132,7 +132,7 @@ router.post('/appeal-decision', function(request, response) {
   if (appealStatus == "Part upheld"){
       response.redirect('/' + version + "/caseworker/assess/send-confirmation?cwAppStatus=Part granted")
   }
-  if (appealStatus == "Denied"){
+  if (appealStatus == "Dismissed"){
       response.redirect('/' + version + "/caseworker/assess/send-confirmation?cwAppStatus=Part granted")
   }
 })

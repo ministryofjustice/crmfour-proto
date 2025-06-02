@@ -325,46 +325,46 @@
             </tbody>
           </table>
         {% else %}
-        <!--All other service types-->
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Details</th>
-              <th scope="col" class="govuk-table__header">Requested</th>
-              <th scope="col" class="govuk-table__header">Allowed</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Amount</td>
-              <td class="govuk-table__cell">2 hour 0 minutes</td>
-              {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
-                <td class="govuk-table__cell"></td>
-              {% else %}
-                <td class="govuk-table__cell">{{ data['generalNoHours-hours'] or "2" }} hours
-                  {{ data['generalNoHours-mins'] or "0" }} minutes</td>
-              {% endif %}
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Rate</td>
-              <td class="govuk-table__cell">£200 per hour</td>
-              {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
-                <td class="govuk-table__cell"></td>
-              {% else %}
-                <td class="govuk-table__cell">£{{ data['generalCost'] or "200" }} per hour</td>
-              {% endif %}
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell">Total</td>
-              <td class="govuk-table__cell">£400.00</td>
-              {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
-                <td class="govuk-table__cell"></td>
-              {% else %}
-                <td class="govuk-table__cell">£{{ data['actualGeneralTotal'] or "" }}.00</td>
-              {% endif %}
-            </tr>
-          </tbody>
-        </table>
+          <!--All other service types-->
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Details</th>
+                <th scope="col" class="govuk-table__header">Requested</th>
+                <th scope="col" class="govuk-table__header">Allowed</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Amount</td>
+                <td class="govuk-table__cell">2 hour 0 minutes</td>
+                {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
+                  <td class="govuk-table__cell"></td>
+                {% else %}
+                  <td class="govuk-table__cell">{{ data['generalNoHours-hours'] or "2" }} hours
+                    {{ data['generalNoHours-mins'] or "0" }} minutes</td>
+                {% endif %}
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Rate</td>
+                <td class="govuk-table__cell">£200 per hour</td>
+                {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
+                  <td class="govuk-table__cell"></td>
+                {% else %}
+                  <td class="govuk-table__cell">£{{ data['generalCost'] or "200" }} per hour</td>
+                {% endif %}
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Total</td>
+                <td class="govuk-table__cell">£400.00</td>
+                {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
+                  <td class="govuk-table__cell"></td>
+                {% else %}
+                  <td class="govuk-table__cell">£{{ data['actualGeneralTotal'] or "200" }}.00</td>
+                {% endif %}
+              </tr>
+            </tbody>
+          </table>
       {% endif %}
 
       <h3 class="govuk-heading-m">Travel cost</h3>

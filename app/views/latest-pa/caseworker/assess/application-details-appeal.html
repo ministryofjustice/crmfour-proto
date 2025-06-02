@@ -42,7 +42,7 @@
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h4 class="govuk-summary-card__title" id="review-provider-appeal">Appeal 18 May 2025</h4>
+        <h4 class="govuk-summary-card__title" id="review-provider-appeal">Appeal overview</h4>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -51,20 +51,20 @@
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 {% if data['icaDecision']== "Yes"%}
-                  ICA appeal decision
+                  ICA decision
                   {% else %}
-                  Appeal decision
+                  Decision
                 {% endif %}
               </dt>
               <dd class="govuk-summary-list__value">
-                <p>Appeal status: {{data['appealStatus']}} 21 May 2025</p>
+                <p>{{data['appealStatus']}} 21 May 2025</p>
                 <p>
                   {% if data['appealStatus']== "Upheld"%}
                     {{data['upheldConfirm'] or "We have upheld your appeal due to supporting evidence."}}
                     {% elseif data['appealStatus']== "Part upheld"%}
                       {{data['partUpheldConfirm'] or "We have parially upheld your appeal due to supporting evidence and made appropriate adjustments to some of your costs."}}
-                    {% elseif data['appealStatus']== "Denied"%}
-                      {{data['deniedConfirm'] or "Your appeal has been denied as the travel costs are not permissionable for this type of expert."}}
+                    {% elseif data['appealStatus']== "Dismissed"%}
+                      {{data['dismissedConfirm'] or "Your appeal has been dismissed as the travel costs are not permissionable for this type of expert."}}
                   {% endif %}
                 </p>
               </dd>
@@ -72,9 +72,10 @@
           {% endif %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Provider evidence
+              Reason for appeal
             </dt>
             <dd class="govuk-summary-list__value">
+              <p>Appealed 18 May 2025
               <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost.
               </p>
               <ul class="govuk-list">
@@ -84,7 +85,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Appealed decision
+              Decision being appealed
             </dt>
             <dd class="govuk-summary-list__value">
               <p>Part granted 7 May 2025</p>

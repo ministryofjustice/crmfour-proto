@@ -37,7 +37,7 @@
           name: "icaDecision",
           fieldset: {
             legend: {
-              text: "Is this an ICA decsion?",
+              text: "Is this an ICA or caseworker decsion?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--s"
             }
@@ -45,14 +45,11 @@
           items: [
             {
               value: "Yes",
-              text: "Yes",
-              hint: {
-                text: "You’ll need to provide the relavant information from the ICA as decsions are final"
-              }
+              text: "ICA"
             },
             {
               value: "No",
-              text: "No"
+              text: "Caseworker"
             }
           ]
         }) }}
@@ -62,7 +59,7 @@
             name: "upheldConfirm",
             id: "upheldConfirm",
             label: {
-              text: "Explain your decision",
+              text: "Explain the decision",
               isPageHeading: false
             },
             hint: {
@@ -76,7 +73,7 @@
             name: "partUpheldConfirm",
             id: "partUpheldConfirm",
             label: {
-              text: "Explain your decision",
+              text: "Explain the decision",
               isPageHeading: false
             },
             hint: {
@@ -85,12 +82,12 @@
           }) }}    
         {% endset %}
 
-         {% set deniedHtml %}
+         {% set dismissedHtml %}
           {{ govukTextarea({
-            name: "deniedConfirm",
-            id: "deniedConfirm",
+            name: "dismissedConfirm",
+            id: "dismissedConfirm",
             label: {
-              text: "Explain your decision",
+              text: "Explain the decision",
               isPageHeading: false
             },
             hint: {
@@ -103,7 +100,7 @@
           name: "appealStatus",
           fieldset: {
             legend: {
-              text: "What is decision on the providers appeal?",
+              text: "What is the appeal decision?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--s"
             }
@@ -124,10 +121,10 @@
               }
             },
             {
-              value: "Denied",
-              text: "Denied",
+              value: "Dismissed",
+              text: "Dismissed",
               conditional: {
-                html: deniedHtml
+                html: dismissedHtml
               }
             }
           ]
