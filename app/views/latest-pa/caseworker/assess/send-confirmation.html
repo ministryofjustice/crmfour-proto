@@ -113,7 +113,7 @@
                 Reason for referal
             </dt>
               <dd class="govuk-summary-list__value">
-                {{data['icaReferredReason'] or ""}}
+                {{data['icaReferredReason'] or "Your appeal has been referred to the ICA for a final decision."}}
             </dd>
           </div>
         </dl>
@@ -123,6 +123,22 @@
            You must send this appeal to the ICA to get a decision.
           </li>
         </ul>
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Download PDF",
+            classes: "govuk-button--secondary",
+            href: ""
+          }) }}
+          {{ govukButton({
+          text: "Download documentation",
+          classes: "govuk-button--secondary",
+          href: ""
+          }) }}
+          
+        </div>
+        <div class="govuk-button-group">
+          <a class="govuk-link" href="application-details">Return to the application</a>
+        </div>
 
         <!--If it is an appeal 'Make a decision'--->
         {% elseif data['Appeal'] =="Yes" %}
@@ -176,6 +192,8 @@
             </dd>
           </div>
         </dl>
+          <a class="govuk-link" href="application-details">Return to the application</a>
+        </div>
         
         
         <!--If it is as normal'Make a decision'--->
@@ -225,15 +243,17 @@
           </div>
         </dl>
 
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Assess next application",
+            href: "application-details?cwAppStatus=In progress&Appeal=No&reviewPrimary=&reviewAltQuote1=&reviewWhyPA"
+          }) }}
+          <a class="govuk-link" href="application-details">Return to the application</a>
+        </div>
+
       {% endif %}
 
-      <div class="govuk-button-group">
-        {{ govukButton({
-          text: "Assess next application",
-          href: "application-details?cwAppStatus=In progress&Appeal=No&reviewPrimary=&reviewAltQuote1=&reviewWhyPA"
-        }) }}
-        <a class="govuk-link" href="application-details">Return to the application</a>
-      </div>
+      
     </div>
   </div>
 

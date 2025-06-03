@@ -39,7 +39,23 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-l">Overview</h2>
+      <div class="moj-page-header-actions">
+        <div class="moj-page-header-actions__title">
+          <h2 class="govuk-heading-l">Overview</h2>
+        </div>
+        <div class="moj-page-header-actions__actions">
+          <div class="moj-button-group moj-button-group--inline">
+            <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Download PDF
+            </button>
+            <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+              Download documentation
+            </button>
+          </div>
+        </div>
+      </div>
+
+      
         
       {% include version + "/includes/decision-details-cw.html"%}
 
@@ -174,7 +190,29 @@
             </thead>
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Service</td>
+                <td class="govuk-table__cell">Service - rate 1</td>
+                {% if data['serviceType'] == "Transcription" %}
+                  <td class="govuk-table__cell">10 minutes</td>
+                  {% elseif data['serviceType'] == "Translation and transcription"%}
+                  <td class="govuk-table__cell">10 minutes</td>
+                  {% elseif data['serviceType'] == "Translation"%}
+                  <td class="govuk-table__cell">10000 words</td>
+                  {% elseif data['serviceType'] == "Photocopying"%}
+                  <td class="govuk-table__cell">100 pages</td>
+                  {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%}
+                  <td class="govuk-table__cell">1 hour 0 minutes</td>
+                  {% elseif data['serviceType'] == "Other" %}
+                  <td class="govuk-table__cell">1 items</td>
+                  {% elseif data['serviceType'] == "DNA report" %}
+                  <td class="govuk-table__cell">1 reports</td>
+                  {% else %}
+                  <td class="govuk-table__cell">1 hours 0 minutes</td>
+                {% endif%}
+                <td class="govuk-table__cell">£200.00</td>
+                <td class="govuk-table__cell">£200.00</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Service - rate 2</td>
                 {% if data['serviceType'] == "Transcription" %}
                   <td class="govuk-table__cell">20 minutes</td>
                   {% elseif data['serviceType'] == "Translation and transcription"%}
@@ -192,9 +230,8 @@
                   {% else %}
                   <td class="govuk-table__cell">2 hours 0 minutes</td>
                 {% endif%}
+                <td class="govuk-table__cell">£100.00</td>
                 <td class="govuk-table__cell">£200.00</td>
-                <td class="govuk-table__cell">£400.00</td>
-
               </tr>
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Travel</td>
@@ -229,7 +266,7 @@
               </tr>
             </tbody>
           </table> 
-          {% if data['cwAppStatus'] == "In progress" %}
+          {% if  data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "Referred" %}
             <p><a href="application-details-adjust">Adust cost figures</a></p>   
             {% else %}
             <p><a href="application-details-adjust-readonly">View allowed costs</a></p>
