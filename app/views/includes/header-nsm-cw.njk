@@ -38,7 +38,7 @@
       <nav class="moj-header__navigation" aria-label="Account navigation">
         <ul class="moj-header__navigation-list">
           <li class="moj-header__navigation-item">
-            {{data['providerEmail1']}}
+            {{data['caseworker1']}}
           </li>
           <li class="moj-header__navigation-item header-navigation-link">
             <a class="moj-header__navigation-link govuk-!-font-weight-bold" href="#">Sign out</a>
@@ -51,31 +51,31 @@
 
 {{ govukServiceNavigation({
   navigationClasses: "service-switch-navigation_flex-grow",
-  serviceName: "Assess for prior authority to incur disbursements",
+  serviceName: "Assess a non-standard magistrates' court payment",
   serviceUrl: "#",
   slots: {
     navigationEnd: '<li class="govuk-service-navigation__item service-switch-navigation_item"><a class="govuk-link--no-visited-state" href="/latest-portal/nscc-caseworker-portal">Change service</a></li>'
   },
   navigation: [
     {
-      text: 'Your applications',
+      text: 'Your claims',
       href: '/' + version + '/caseworker/crm-assess',
       active: + activePrimeNav[0] | default('true')
     },
     {
-      text: 'Open applications',
-      href: '/' + version + '/caseworker/crm-open',
+      text: 'Open claims',
+      href: '/' + version + '/caseworker/crm-assess-open',
       active: + activePrimeNav[1]
     },
     {
-      text: 'Closed applications',
-      href: '/' + version + '/caseworker/crm-closed',
-      active: + activePrimeNav[1]
+      text: 'Closed claims',
+      href: '/' + version + '/caseworker/crm-assess-closed',
+      active: + activePrimeNav[2]
     },
     {
       text: 'Search',
-      href: '/' + version + '/caseworker/crm-search',
-      active: + activePrimeNav[2]
+      href: '/' + version + '/caseworker/crm-assess-search',
+      active: + activePrimeNav[3]
     }
   ]
 }) }}
