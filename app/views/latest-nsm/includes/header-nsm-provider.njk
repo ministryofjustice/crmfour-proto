@@ -51,8 +51,23 @@
 
 {{ govukServiceNavigation({
   navigationClasses: "service-switch-navigation_flex-grow",
-  serviceName: "Submit a crime form",
-  serviceUrl: '/' + version + '/nscc-provider-portal'
+  serviceName: "Claim a non-standard magistrates' court payment",
+  serviceUrl: '/' + version + '/provider/crm-claims-reviewed',
+  slots: {
+    navigationEnd: '<li class="govuk-service-navigation__item service-switch-navigation_item"><a class="govuk-link--no-visited-state" href="/latest-portal/nscc-provider-portal">Change service</a></li>'
+  },
+  navigation: [
+    {
+      text: 'Your claims',
+      href: '/' + version + '/provider/crm-claims-reviewed',
+      active: + activePrimeNav[0] | default('true')
+    },
+    {
+      text: 'Search',
+      href: '/' + version + '/provider/crm-claims-search',
+      active: + activePrimeNav[1]
+    }
+  ]
 }) }}
 
 

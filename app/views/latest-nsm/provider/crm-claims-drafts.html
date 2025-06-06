@@ -1,10 +1,11 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
+
 {% set version = "latest-nsm" %}
 {% set activePrimeNav = [true, false] %}
 {% set activeSubNav = [false, false, true] %}
 
 {% block header %}
-  {% include version +"/includes/header-provider.html"%}
+  {% include version +"/includes/header-nsm-provider.njk" %}  
 {% endblock %}
 
 
@@ -14,7 +15,6 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% include version + "/includes/nav-prime-provider.njk" %}
 {% endblock %}
 
 {% block content %}
