@@ -1,4 +1,4 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
 
@@ -13,7 +13,7 @@ Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} 
 
 {% block beforeContent %}
 {% include "includes/banner.html"%}
-
+{% include version + "/includes/nav-prime-provider.njk" %}
 
 {{ govukBackLink({
 text: "Back",
@@ -23,7 +23,7 @@ href: "javascript:window.history.back()"
 
 {% block content %}
 
-<!--Stage 2 - app appealed - no response yet > (part granted, following RFI)-->
+<!--The original application has been part granted-->
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -46,26 +46,27 @@ href: "javascript:window.history.back()"
               Status
             </dt>
             <dd class="govuk-summary-list__value">
-              <p><strong class="govuk-tag govuk-tag--grey">Appealed</strong></p>
+              <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
+             
               <p>22 August 2023</p>
-              <p>Awaiting LAA response</p>
-              <p>£5,000 requested</p>
-              <p>£0 allowed</p>
+          
+              <p>£5,000.00 requested</p>
+              <p>£3,400.00 allowed</p>
 
             </dd>
           </div>
           <div class="govuk-summary-list__row">
-                 </dd>
+             </dd>
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Latest appeal decision
+              LAA response
             </dt>
             <dd class="govuk-summary-list__value">
-
-              <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
-              <p><a href="">See reason for part grant</a>.</p>
-   
+               <p>This application was part granted due to travel costs and an unregulated provider. The costs of the alternative quote were more acceptable.</p>
+               <p>You can <a href="">appeal the decision</a>.</p>
+               <p><a href="">Review allowed costs</a>.</p>
+               
             </dd>
           </div>
         </dl>
@@ -100,10 +101,10 @@ href: "javascript:window.history.back()"
 
         <ul class="moj-sub-navigation__list">
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="#1">Appeal</a>
+            <a class="moj-sub-navigation__link" aria-current="page" href="#1">Overview</a>
           </li>
           <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="#2">Overview</a>
+            <a class="moj-sub-navigation__link" href="#2">Costs</a>
           </li>
          
         
@@ -112,32 +113,9 @@ href: "javascript:window.history.back()"
       </nav>
 
 
-      <h2 class="govuk-heading-l">Appeal</h2>
-              
+      <h2 class="govuk-heading-l">Overview</h2>
 
-      <div class="govuk-inset-text">
-        <p><strong>Appealed 21 May 2025 </strong></p>
-        <ul class="govuk-list">
-          <li>
-            <a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">View update</a>
-          </li>
-        </ul>
-      </div>
 
-      <div class="govuk-inset-text">
-
-      </div>
-
-      <h3 class="govuk-heading-s">Your appeal: 22 August 2023</h3>
-
-                <p>I disagree with the rejection of my application. The expert is pre-eminent. I have attached their certificates for practice.
-                </p>
-                <ul class="govuk-list">
-                  <li>Uploads:<a href="">evidence1.pdf</a></li>
-                </ul>
-      
-
-     
       <!--App ref-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
