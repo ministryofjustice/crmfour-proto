@@ -38,7 +38,7 @@
       <nav class="moj-header__navigation" aria-label="Account navigation">
         <ul class="moj-header__navigation-list">
           <li class="moj-header__navigation-item">
-            {{data['providerEmail1']}}
+            {{data['caseworker1']}}
           </li>
           <li class="moj-header__navigation-item header-navigation-link">
             <a class="moj-header__navigation-link govuk-!-font-weight-bold" href="#">Sign out</a>
@@ -48,30 +48,11 @@
     </div>
   </div>
 </header>
-
 {{ govukServiceNavigation({
   navigationClasses: "service-switch-navigation_flex-grow",
-  serviceName: "Apply for prior authority to incur disbursements",
-  serviceUrl: "#",
+  serviceName: "User management",
+  serviceUrl: '/' + version + '/user-management',
   slots: {
     navigationEnd: '<li class="govuk-service-navigation__item service-switch-navigation_item"><a class="govuk-link--no-visited-state" href="/latest-portal/nscc-caseworker-portal">Change service</a></li>'
-  },
-  navigation: [
-    {
-      text: 'Your applications',
-      href: '/' + version + '/provider/crm-apps-reviewed',
-      active: + activePrimeNav[0] | default('true')
-    },
-    {
-      text: 'Search',
-      href: '/' + version + '/provider/crm-apps-search',
-      active: + activePrimeNav[2]
-    }
-  ]
+  }
 }) }}
-
-
-
-
-
-

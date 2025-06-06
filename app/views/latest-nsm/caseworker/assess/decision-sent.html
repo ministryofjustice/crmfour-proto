@@ -1,4 +1,5 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
+
 {% set version = "latest-nsm" %}
 {% if data['cwAppStatus'] == "In progress"%}
   {% set activePrimeNav = [true, false, false, false] %}
@@ -11,7 +12,7 @@
 {% endif %}
 
 {% block header %}
-  {% include version + "/includes/header-cw.html"%}
+  {% include version +"/includes/header-nsm-cw.njk" %}
 {% endblock %}
 
 {% block pageTitle %}

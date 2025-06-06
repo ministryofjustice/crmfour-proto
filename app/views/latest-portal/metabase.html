@@ -1,8 +1,9 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
 {% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false, false] %}
 
 {% block header %}
-    {% include version + "/includes/header-cw4.html"%}
+    {% include version + "/includes/header-portal-cw3.html"%}
 {% endblock %}
 
 {% block pageTitle %}
@@ -12,107 +13,13 @@
 {% block beforeContent %}
   {% include "includes/banner2.html"%}
 
-  {% if data['app'] == "5" %}
-    {{ mojPrimaryNavigation({
-      label: 'Primary navigation',
-      items: [
-        {
-          text: 'Prior authority',
-          href: 'metabase?app=4',
-          active: false
-        },
-        {
-          text: 'Non-standard magistrates',
-          href: 'metabase?app=7',
-          active: false
-        },
-        {
-          text: 'Search',
-          href: 'metabase-search?app=search',
-          active: false
-        }
-      ]
-    }) }}
-    {% elif data['app'] == "7" %}
-    {{ mojPrimaryNavigation({
-      label: 'Primary navigation',
-      items: [
-        {
-          text: 'Prior authority',
-          href: 'metabase?app=4',
-          active: false
-        },
-        {
-          text: 'Non-standard magistrates',
-          href: 'metabase?app=7',
-          active: true
-        },
-        {
-          text: 'Search',
-          href: 'metabase-search?app=search',
-          active: false
-        }
-      ]
-    }) }}
-
-    {% elif data['app'] == "search" %}
-    {{ mojPrimaryNavigation({
-      label: 'Primary navigation',
-      items: [
-        {
-          text: 'Prior authority',
-          href: 'metabase?app=4',
-          active: false
-        },
-        {
-          text: 'Non-standard magistrates',
-          href: 'metabase?app=7',
-          active: false
-        },
-        {
-          text: 'Search',
-          href: 'metabase-search?app=search',
-          active: true
-        }
-      ]
-    }) }}
-
-    {% else %}
-    {{ mojPrimaryNavigation({
-      label: 'Primary navigation',
-      items: [
-        {
-          text: 'Prior authority',
-          href: 'metabase?app=4',
-          active: true
-        },
-        {
-          text: 'Non-standard magistrates',
-          href: 'metabase?app=7',
-          active: false
-        },
-        {
-          text: 'Search',
-          href: 'metabase-search',
-          active: false
-        }
-      ]
-    }) }}
-  {% endif %}
-
 {% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-       {% if data['app'] == "4" %}
-        <h1 class="govuk-heading-xl">Prior authority</h1>
-        {% elif data['app'] == "5" %}
-        <h1 class="govuk-heading-xl">CRM5 dashboard</h1>
-        {% elif data['app'] == "7" %}
-        <h1 class="govuk-heading-xl">Non-standard magistrates</h1>
-      {% endif %}
+      <h1 class="govuk-heading-xl">Prior authority</h1>
      
       <table role="presentation" width="100%" style="border-collapse: collapse;min-width: 100%;width: 100% !important;" cellpadding="0" cellspacing="0" border="0">
       <tbody>

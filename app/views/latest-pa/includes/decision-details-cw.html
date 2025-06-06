@@ -21,7 +21,7 @@
           {% else %}
           <p>{{data['partConfirm']}}</p>
         {% endif %}
-        </p><a href="application-details-adjust-readonly" class="govuk-link--no-visited-state">Review quote adjustments</a></p>
+        </p><a href="application-details-adjust-readonly" class="govuk-link--no-visited-state">Review cost adjustments</a></p>
       </div>
     {% elseif data['cwAppStatus'] == "Referred" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred")%}
       <div class="govuk-inset-text">
@@ -103,16 +103,18 @@
       {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" %}
         <div class="govuk-inset-text">
           <p><strong>
-            {% if data['icaDecision']== "Yes"%}
-              ICA appeal decision
-              {% else %}
-              Appeal decision
+           Appeal: {{data['appealStatus']}} 21 May 2025</strong>
+          </p>
+          <p>
+            {% if data['appealStatus']== "Upheld"%}
+              {{data['upheldConfirm'] or "We have upheld your appeal due to supporting evidence."}}
+              {% elseif data['appealStatus']== "Part upheld"%}
+                {{data['partUpheldConfirm'] or "We have parially upheld your appeal due to supporting evidence and made appropriate adjustments to some of your costs."}}
+              {% elseif data['appealStatus']== "Dismissed"%}
+                {{data['dismissedConfirm'] or "Your appeal has been dismissed as the travel costs are not permissionable for this type of expert."}}
             {% endif %}
-            21 May 2025</strong>
           </p>
-          <p>Appeal status: {{data['appealStatus']}}
-          </p>
-           </p><a href="application-details-appeal" class="govuk-link--no-visited-state">Review appeal details</a></p>
+          <p><a href="application-details-appeal" class="govuk-link--no-visited-state">Review appeal details</a></p>
         </div>
         {% endif %}
 {% endif %}

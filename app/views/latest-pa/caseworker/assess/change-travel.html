@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
 {% set version = "latest-pa" %}
 {% if data['cwAppStatus'] == "In progress"%}
   {% set activePrimeNav = [true, false, false, false] %}
@@ -22,7 +22,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% include version + "/includes/nav-prime-cw.html"%}
+  
 {% endblock %}
 
 {% block content %}
@@ -30,8 +30,11 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Adjust travel cost</h1>
-
-      <form class="form" action="application-details-adjust?travelAdjust=Yes&addTravel=Yes#travelID" method="post">      
+      {% if data['Appeal'] =="Yes" %}
+        <form class="form" action="application-details-adjust-appeal?travelAdjust=Yes&addTravel=Yes#travelID" method="post">      
+          {% else %}
+          <form class="form" action="application-details-adjust?travelAdjust=Yes&addTravel=Yes#travelID" method="post">  
+      {% endif %}
         
         <table class="govuk-table">
           <caption class="govuk-table__caption govuk-table__caption--m">Quotes for travel cost</caption>
@@ -78,7 +81,7 @@
                   <label class="govuk-label govuk-date-input__label" for="travelTime-hours">
                     Hours
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-hours" name="travelTime-hours" type="text" inputmode="numeric" value="{{data['travelTime-hours'] or "0"}}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-hours" name="travelTime-hours" type="text" inputmode="numeric" value="{{data['travelTime-hours'] or ""}}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -86,7 +89,7 @@
                   <label class="govuk-label govuk-date-input__label" for="travelTime-mins">
                     Minutes
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-mins" name="travelTime-mins" type="text" inputmode="numeric" value="{{data['travelTime-mins'] or '00'}}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-mins" name="travelTime-mins" type="text" inputmode="numeric" value="{{data['travelTime-mins'] or ''}}">
                 </div>
               </div>
             </div>
@@ -96,7 +99,7 @@
         {{ govukInput({
           id: "travelCostTime",
           name: "travelCostTime",
-          value: data['travelCostTime'] or "40.00",
+          value: data['travelCostTime'] or "",
           label: {
             text: "Cost per hour",
             classes: "govuk-label--s"
@@ -120,7 +123,7 @@
         {{ govukTextarea({
           name: "travelAdjustField",
           id: "travelAdjustField",
-          value: data['travelAdjustField'] or "Travel costs not allowed for this service",
+          value: data['travelAdjustField'],
           label: {
             text: "Explain your decision",
             classes: "govuk-label--s",

@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [false, false, false, false, true] %}
 
@@ -15,7 +15,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% include version + "/includes/nav-prime-cw.njk" %}
+  
 {% endblock %}
 
 {% block content %}
@@ -160,7 +160,8 @@
 
     <div id="resultsTable2">
       <h2 class="govuk-heading-m">
-        22 search results
+        {% set itemNo ="10" %} 
+        {{itemNo}} search results
       </h2>
       <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
         <thead class="govuk-table__head">
@@ -255,9 +256,11 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Sent back</strong></td>
           </tr>
         </body>
-      </table>     
-      
-     {% include "includes/pagination-search.html"%}
+      </table>   
+
+    {% set pageNo ="0" %}  
+    {% set itemNo ="10" %}  
+    {% include "includes/pagination-search.html"%}
 
     </div>     
      

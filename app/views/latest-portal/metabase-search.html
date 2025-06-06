@@ -1,8 +1,10 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
 {% set version = "latest-portal" %}
+{% set activePrimeNav = [false, false, true] %}
+
 
 {% block header %}
-    {% include version + "/includes/header-cw4.html"%}
+    {% include version + "/includes/header-portal-cw3.html"%}
 {% endblock %}
 
 
@@ -14,28 +16,6 @@
 
 {% block beforeContent %}
   {% include "includes/banner2.html"%}
-
-  {{ mojPrimaryNavigation({
-    label: 'Primary navigation',
-    items: [
-      {
-        text: 'Prior authority',
-        href: 'metabase?app=4',
-        active: false
-      },
-      {
-        text: 'Non-standard magistrates',
-        href: 'metabase?app=7',
-        active: false
-      },
-      {
-        text: 'Search',
-        href: 'metabase-search',
-        active: true
-      }
-    ]
-  }) }}
-
 {% endblock %}
 
 {% block content %}
@@ -221,7 +201,8 @@
 
     <div id="resultsTable2">
       <h2 class="govuk-heading-m">
-       22 search results
+        {% set itemNo ="7" %} 
+        {{itemNo}} search results
       </h2>
       <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
         <thead class="govuk-table__head">
@@ -317,9 +298,8 @@
           </tr>
         </body>
       </table>    
-
-      {% include "includes/pagination-search.html"%}
-
+      {% set pageNo ="0" %}  
+      {% include "includes/pagination-search.html"%} 
     </div>     
      
   </div>

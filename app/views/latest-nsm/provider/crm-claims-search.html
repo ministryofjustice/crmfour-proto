@@ -1,12 +1,12 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
+
 {% set version = "latest-nsm" %}
 {% set activePrimeNav = [false, true] %}
 
 
 {% block header %}
-  {% include version + "/includes/header-provider.html"%}
+  {% include version +"/includes/header-nsm-provider.njk" %}
 {% endblock %}
-
 
 {% block pageTitle %}
   Search applications – {{data['serviceName1'] }} - GOV.UK
@@ -14,7 +14,6 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% include version + "/includes/nav-prime-provider.njk" %}
 {% endblock %}
 
 {% block content %}
@@ -156,7 +155,8 @@
 
     <div id="resultsTable2">
       <h2 class="govuk-heading-m">
-        22 search results
+        {% set itemNo ="7" %} 
+        {{itemNo}} search results
       </h2>
       <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
         <thead class="govuk-table__head">
@@ -230,9 +230,8 @@
           </tr>
         </body>
       </table>    
-
+      {% set pageNo ="0" %}  
       {% include "includes/pagination-search.html"%} 
-
     </div>     
      
   </div>

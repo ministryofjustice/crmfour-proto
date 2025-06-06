@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
 {% set version = "latest-pa" %}
 {% if data['cwAppStatus'] == "In progress"%}
   {% set activePrimeNav = [true, false, false, false, false] %}
@@ -20,7 +20,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  {% include version + "/includes/nav-prime-cw.html"%}
+  
 {% endblock %}
 
 {% block content %}
@@ -31,11 +31,9 @@
       <!---If the CW is adding the app to their queue, it still sometimes needs to show comment from the previous status-->
       {% if data['Appeal'] =="Yes" and data['cwAppStatus'] =="Referred" %}
         <form class="form" action="application-details-appeal?appAssigned=yes&cwAppStatus=In progress&statusComment=Referred" method="post">
-          {% elseif data['Appeal'] =="Yes" and data['cwAppStatus'] =="Returned" %}
-            <form class="form" action="application-details-appeal?appAssigned=yes&cwAppStatus=In progress&statusComment=Returned" method="post">
           {% elseif data['Appeal'] =="Yes" and data['cwAppStatus'] =="New" %}
-            <form class="form" action="application-details-appeal?appAssigned=yes&cwAppStatus=In progress&statusComment=None" method="post">
-          {% elseif data['Appeal'] =="No" and data['cwAppStatus'] =="Returned" %}
+            <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=None" method="post">
+          {% elseif data['cwAppStatus'] =="Returned" %}
             <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Returned" method="post">
           {% else %}
           <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress" method="post">
