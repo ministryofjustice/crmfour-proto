@@ -1,0 +1,59 @@
+{% extends "layouts/main-latest.html" %}
+
+{% block pageTitle %}
+CIS problem – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+
+   
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Has the work been completed?</h1>
+
+        </legend>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="england">
+            <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="whereDoYouLive-2" name="whereDoYouLive" type="radio" value="scotland">
+            <label class="govuk-label govuk-radios__label" for="whereDoYouLive-2">
+              No
+            </label>
+          </div>
+     
+         
+        </div>
+      </fieldset>
+    </div>
+
+
+  
+
+      <div class="govuk-button-group"><button type="submit" formnovalidate="formnovalidate" class="govuk-button"
+          data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Save and
+          continue</button><button type="submit" formnovalidate="formnovalidate"
+          class="govuk-button govuk-button--secondary" data-module="govuk-button" data-prevent-double-click="true"
+          name="commit_draft" data-govuk-button-init="">Save and come back later</button></div>
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}
