@@ -122,8 +122,8 @@ router.post('/question3-add-info', function(request, response) {
   }
 })
 
-//Refer to ICA yes/No
-router.post('/appeal-decision', function(request, response) {
+//Appela decision v1
+router.post('/appeal-decision1', function(request, response) {
 
   var appealStatus = request.session.data['appealStatus']
   if (appealStatus == "Upheld"){
@@ -134,5 +134,19 @@ router.post('/appeal-decision', function(request, response) {
   }
   if (appealStatus == "Dismissed"){
       response.redirect('/' + version + "/caseworker/assess/send-confirmation?cwAppStatus=Part granted")
+  }
+})
+
+router.post('/appeal-decision', function(request, response) {
+
+  var cwAppStatus = request.session.data['cwAppStatus']
+  if (cwAppStatus == "Granted"){
+      response.redirect('/' + version + "/caseworker/assess/send-confirmation?appealStatus=Upheld")
+  } 
+  if (cwAppStatus == "Part granted"){
+      response.redirect('/' + version + "/caseworker/assess/send-confirmation?appealStatus=Part upheld")
+  }
+  if (cwAppStatus == "Rejected"){
+      response.redirect('/' + version + "/caseworker/assess/send-confirmation?appealStatus=Dismissed")
   }
 })

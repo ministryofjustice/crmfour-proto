@@ -91,7 +91,7 @@
           {% endif %}
         </dl>
 
-        <!--If it is an appeal 'Make a decision'--->
+        <!--If it is an appeal 'Refer'--->
         {% elseif data['cwAppStatus'] =="Referred" %}
         <div class="govuk-panel govuk-panel--confirmation">
           <h1 class="govuk-panel__title">
@@ -154,22 +154,22 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              {% if data['icaDecision']== "Yes"%}
-                ICA appeal decision
-                {% else %}
-                Appeal decision
-            {% endif %}
-            </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['appealStatus'] or "Upheld"}}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
               Application status
             </dt>
               <dd class="govuk-summary-list__value">
                 {{data['cwAppStatus']}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {% if data['icaDecision']== "Yes"%}
+                ICA appeal outcome
+                {% else %}
+                Appeal outcome
+            {% endif %}
+            </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['appealStatus'] or "Upheld"}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -181,7 +181,7 @@
                   {{data['upheldConfirm'] or "We have upheld your appeal due to supporting evidence."}}
                   {% elseif data['appealStatus']== "Part upheld"%}
                     {{data['partUpheldConfirm'] or "We have parially upheld your appeal due to supporting evidence and made appropriate adjustments to some of your costs."}}
-                  {% elseif data['appealStatus']== "Denied"%}
+                  {% elseif data['appealStatus']== "Dismissed"%}
                     {{data['dismissedConfirm'] or "Your appeal has been dismissed as the travel costs are not permissionable for this type of expert."}}
                 {% endif %}
             </dd>

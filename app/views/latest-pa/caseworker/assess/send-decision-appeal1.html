@@ -31,7 +31,7 @@
 
         <h1 class="govuk-heading-xl">Make a decision</h1>
 
-         {{ govukRadios({
+        {{ govukRadios({
           name: "icaDecision",
           fieldset: {
             legend: {
@@ -52,12 +52,12 @@
           ]
         }) }}
 
-        {% set grantedHtml %}
+        {% set upheldHtml %}
           {{ govukTextarea({
-            name: "grantedConfirm",
-            id: "grantedConfirm",
+            name: "upheldConfirm",
+            id: "upheldConfirm",
             label: {
-              text: "Enter additional comments (optional)",
+              text: "Explain the decision",
               isPageHeading: false
             },
             hint: {
@@ -66,12 +66,12 @@
           }) }}    
         {% endset %}
         
-        {% set partGrantedHtml %}
+        {% set partUpheldHtml %}
           {{ govukTextarea({
-            name: "partConfirm",
-            id: "partConfirm",
+            name: "partUpheldConfirm",
+            id: "partUpheldConfirm",
             label: {
-              text: "Explain your decision",
+              text: "Explain the decision",
               isPageHeading: false
             },
             hint: {
@@ -80,12 +80,12 @@
           }) }}    
         {% endset %}
 
-        {% set rejectedHtml %}
+         {% set dismissedHtml %}
           {{ govukTextarea({
-            name: "rejectedConfirm",
-            id: "rejectedConfirm",
+            name: "dismissedConfirm",
+            id: "dismissedConfirm",
             label: {
-              text: "Explain your decision",
+              text: "Explain the decision",
               isPageHeading: false
             },
             hint: {
@@ -95,41 +95,39 @@
         {% endset %}
 
         {{ govukRadios({
-          name: "cwAppStatus",
+          name: "appealStatus",
           fieldset: {
             legend: {
-              text: "What is the decision on the application as a result of the appeal?",
+              text: "What is the appeal decision?",
               isPageHeading: false,
               classes: "govuk-fieldset__legend--s"
             }
           },
           items: [
             {
-              value: "Granted",
-              text: "Granted",
-              checked: checked("cwAppStatus", "Granted"),
+              value: "Upheld",
+              text: "Upheld",
               conditional: {
-                html: grantedHtml
+                html: upheldHtml
               }
             },
             {
-              value: "Part granted",
-              text: "Part granted",
-              checked: checked("cwAppStatus", "Part granted"),
+              value: "Part upheld",
+              text: "Part upheld",
               conditional: {
-                html: partGrantedHtml
+                html: partUpheldHtml
               }
             },
             {
-              value: "Rejected",
-              text: "Rejected",
-              checked: checked("cwAppStatus", "Rejected"),
+              value: "Dismissed",
+              text: "Dismissed",
               conditional: {
-                html: rejectedHtml
+                html: dismissedHtml
               }
             }
           ]
         }) }}
+
       
         <div class="govuk-button-group">
           {{ govukButton({
