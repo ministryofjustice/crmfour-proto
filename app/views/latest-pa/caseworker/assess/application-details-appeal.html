@@ -111,7 +111,6 @@
       </dl>       
 
       {% include version + "/includes/further-info-appeal-cw.html"%}
-      {% include version + "/includes/application-buttons.html"%}
     {% endset %}
 
     {% set appealMayHtml %}
@@ -275,59 +274,43 @@
 
     {% endset %}
 
-    {% if data['appealStatus'] =="Dismissed" %}
-      {{ govukTabs({
-        items: [
-          {
-            label: "Appeal 18 May 2025",
-            id: "appealCurrent",
-            panel: {
-              html: appealCurrentHtml
-            }
-          },
-          {
-            label: "Appeal 2 May 2025",
-            id: "MayAppeal",
-            panel: {
-              html: appealMayHtml
-            }
-          },
-          {
-            label: "Application 10 April 2025",
-            id: "AprilAppeal",
-            panel: {
-              html: appealAprilHtml
-            }
-          }
-        ]
-      }) }} 
+
+    {% if data['cwAppStatus'] == "Part granted" %}
+      {% set appealLabel %}
+        Appeal 18 May 2025
+      {% endset%}
       {% else %}
-      {{ govukTabs({
-        items: [
-          {
-            label: "Appeal in progress",
-            id: "appealCurrent",
-            panel: {
-              html: appealCurrentHtml
-            }
-          },
-          {
-            label: "Appeal 2 May 2025",
-            id: "MayAppeal",
-            panel: {
-              html: appealMayHtml
-            }
-          },
-          {
-            label: "Application 10 April 2025",
-            id: "AprilAppeal",
-            panel: {
-              html: appealAprilHtml
-            }
+      {% set appealLabel %}
+        Appeal in progress
+      {% endset%}
+    {% endif %}    
+    
+    {{ govukTabs({
+      items: [
+        {
+          label: appealLabel,
+          id: "appealCurrent",
+          panel: {
+            html: appealCurrentHtml
           }
-        ]
-      }) }} 
-    {% endif %}
+        },
+        {
+          label: "Appeal 2 May 2025",
+          id: "MayAppeal",
+          panel: {
+            html: appealMayHtml
+          }
+        },
+        {
+          label: "Application 10 April 2025",
+          id: "AprilAppeal",
+          panel: {
+            html: appealAprilHtml
+          }
+        }
+      ]
+    }) }} 
+    {% include version + "/includes/application-buttons.html"%}
 
   </div>
 </div>

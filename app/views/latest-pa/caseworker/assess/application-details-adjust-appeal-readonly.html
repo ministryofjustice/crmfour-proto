@@ -43,7 +43,12 @@
       {% include version + "/includes/adjust-info.html"%}
 
       {% set appealCurrentCostHtml %}
-        <h3 class="govuk-heading-m">Allowed costs</h3>
+
+        {% if data['cwAppStatus'] == "Part granted" %}
+          <h3 class="govuk-heading-m">Appeal 18 May 2025</h3>
+          {% else %}
+          <h3 class="govuk-heading-m">Appeal in progress</h3>
+        {% endif %}
         <details class="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
@@ -636,10 +641,20 @@
         {% endif %}
       {% endset%}
 
+      {% if data['cwAppStatus'] == "Part granted" %}
+        {% set appealLabel %}
+          Appeal 18 May 2025
+        {% endset%}
+        {% else %}
+        {% set appealLabel %}
+          Appeal in progress
+        {% endset%}
+      {% endif %}
+
       {{ govukTabs({
         items: [
           {
-            label: "Allowed costs",
+            label: appealLabel,
             id: "appealCurrentCost",
             panel: {
               html: appealCurrentCostHtml

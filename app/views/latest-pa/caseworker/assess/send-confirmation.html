@@ -95,7 +95,7 @@
         {% elseif data['cwAppStatus'] =="Referred" %}
         <div class="govuk-panel govuk-panel--confirmation">
           <h1 class="govuk-panel__title">
-            Update sent
+            Application updated
           </h1>
         </div>
         <p>Your appeal update has been sent to the provider.</p>
@@ -110,7 +110,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-                Reason for referal
+                Reason for referal to ICA
             </dt>
               <dd class="govuk-summary-list__value">
                 {{data['icaReferredReason'] or "Your appeal has been referred to the ICA for a final decision."}}
@@ -118,24 +118,19 @@
           </div>
         </dl>
         <h2 class="govuk-heading-m">Next steps</h2>
-        <ul class="govuk-list">
+        <p>You must send the application to the ICA.</p>
+        <ul class="govuk-list govuk-list--number">
           <li>
-           You must send this appeal to the ICA to get a decision.
+           <a href="1">Download this application (PDF) </a>
+          </li>
+          <li>
+           <a href="2">Download attachments application (Zip folder)</a>
+          </li>
+          <li>
+           Email the detials to the ICA
           </li>
         </ul>
-        <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Download PDF",
-            classes: "govuk-button--secondary",
-            href: ""
-          }) }}
-          {{ govukButton({
-          text: "Download documentation",
-          classes: "govuk-button--secondary",
-          href: ""
-          }) }}
-          
-        </div>
+
         <div class="govuk-button-group">
           <a class="govuk-link" href="application-details">Return to the application</a>
         </div>
