@@ -12,7 +12,7 @@
 {% set activeAppNav = [false, true, false, false, false] %}
 
 {% block header %}
-  {% include version + "/includes/header-cw.html"%}
+  {% include version + "/includes/header-cw.html" %}
 {% endblock %}
 
 {% block pageTitle %}
@@ -41,56 +41,8 @@
     {% include version + "/includes/adjust-info.html"%}
 
     {% set appealCurrentCostHtml %}
-      <h3 class="govuk-heading-m">Adjust costs</h3>
+      <h3 class="govuk-heading-m">Allowed costs</h3>
       
-      <details class="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Cost summary
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          <table class="govuk-table">
-            <caption class="govuk-visually-hidden">Requested and allowed costs</caption>
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Cost type</th>
-                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Requested</th>
-                <th scope="col" class="govuk-table__header govuk-table__header--numeric">Allowed</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Service - rate 1</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Service - rate 2</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Travel</td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Waiting time</td>
-                
-                <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"></td>
-              </tr>
-                <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header" colspan="1">Total</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£640.00</strong></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong></strong></td>
-              </tr>
-            </tbody>
-          </table> 
-        </div>
-      </details>
-
       {% include version + "/includes/adjust-costs.html"%}            
     {% endset%}
 
@@ -457,7 +409,7 @@
     {{ govukTabs({
       items: [
         {
-          label: "Adust costs",
+          label: "Allowed costs",
           id: "appealCurrentCost",
           panel: {
             html: appealCurrentCostHtml

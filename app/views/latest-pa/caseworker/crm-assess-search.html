@@ -3,7 +3,7 @@
 {% set activePrimeNav = [false, false, false, false, true] %}
 
 {% block header %}
-  {% include version + "/includes/header-cw.html"%}
+  {% include version + "/includes/header-cw.html" %}
 {% endblock %}
 
 
@@ -135,6 +135,19 @@
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <label class="govuk-label govuk-label--s" for="filterbuttonContainer">
+              Appeal
+            </label>
+            <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
+              <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
+              <option value="Not" onclick="filterSelection('Open')">Open</option>
+              <option value="Justice" onclick="filterSelection('Closed')">Closed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="filterbuttonContainer">
               Caseworker
             </label>
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
@@ -175,8 +188,8 @@
           </tr>
         </thead>
         <tbody class="govuk-table__body">                
-          <tr class="govuk-table__row hideTR all part-granted">
-            <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-1z5f7w&cwAppStatus=New&Appeal=No" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
+          <tr class="govuk-table__row hideTR all part-granted Closed">
+            <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-1z5f7w&cwAppStatus=Part granted&Appeal=Yes" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
             <td class="govuk-table__cell">Law Fans</td>
             <td class="govuk-table__cell">Roger Catapult</td>
             <td class="govuk-table__cell">Not assigned</td>
@@ -207,13 +220,13 @@
             <td class="govuk-table__cell" data-sort-value="230801">1 Aug 2023</td>
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all none Not">
-            <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-1z5f76&cwAppStatus=New&Appeal=No" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>
+          <tr class="govuk-table__row hideTR all none Not Open">
+            <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-1z5f76&cwAppStatus=Referred&Appeal=Yes" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>
             <td class="govuk-table__cell">Big Law</td>
             <td class="govuk-table__cell">Ishia Melta</td>
             <td class="govuk-table__cell">Not assigned</td>
             <td class="govuk-table__cell" data-sort-value="230903">3 Sept 2023</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">Not assigned</strong></td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Referred</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all in-progress Wolf">
             <td class="govuk-table__cell"><a href="assess/application-details?laa-ref=LAA-2d9t4j&cwAppStatus=In progress&Appeal=No" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
@@ -258,9 +271,9 @@
         </body>
       </table>   
 
-    {% set pageNo ="0" %}  
-    {% set itemNo ="10" %}  
-    {% include "includes/pagination-search.html"%}
+      {% set pageNo ="0" %}  
+      {% set itemNo ="10" %}  
+      {% include "includes/pagination-search.html"%}
 
     </div>     
      
