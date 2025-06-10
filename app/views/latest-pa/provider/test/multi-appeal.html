@@ -1,0 +1,389 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+{% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+
+{% block pageTitle %}
+Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/banner.html"%}
+{% include version + "/includes/nav-app-provider.njk" %}
+
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<!--The original application has been part granted-->
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Application details
+    </h1>
+  </div>
+
+  <!--Status of application-->
+
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Application status</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
+             
+              <p>22 August 2023</p>
+          
+              <p>£5,000.00 requested</p>
+              <p>£3,400.00 allowed</p>
+
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+             </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              LAA response
+            </dt>
+            <dd class="govuk-summary-list__value">
+               <p>This application was part granted due to travel costs and an unregulated provider. The costs of the alternative quote were more acceptable.</p>
+               <p><a href="">Review allowed costs</a>.</p>
+               <p>You can <a href="appeal-start.html">appeal this decision</a>.</p>
+              </p>  
+               
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+    </div>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-s" id="subsection-title">Email the LAA case team</h2>
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link govuk-body-s govuk-link--no-visited-state"
+            href="mailto:magsbilling@justice.gov.uk">magsbilling@justice.gov.uk</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-s" id="subsection-title">Print a PDF of this claim</h2>
+      <p class="govuk-body-s">It will include the answers you input into this claim and its current status.</p>
+
+      <a href="claim-details-print3" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+        data-module="govuk-button" data-govuk-button-init="">
+        Create a printable PDF
+      </a>
+
+    </aside>
+  </div>
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    
+    {% include version + "/includes/nav-app-provider.njk"%}
+  </div>
+</div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    
+      <h2 class="govuk-heading-l" id="appeal-details">Appeal</h2>
+
+
+    {% set appealCurrentHtml %}
+      {% if data['appealStatus'] =="Dismissed" %}
+        <h3 class="govuk-heading-m" id="appeal-details">Appeal 18 May 2025</h3>
+        {% else %}
+        <h3 class="govuk-heading-m" id="appeal-details">Appeal in progress</h3>
+      {% endif %}
+
+      <dl class="govuk-summary-list">
+        {% if data['appealStatus'] == "" or data['appealStatus'] == null  %}
+        {% else %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {% if data['icaDecision']== "Yes"%}
+                ICA decision
+                {% else %}
+                Decision
+              {% endif %}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p>{{data['appealStatus']}} 21 May 2025</p>
+              <p>
+                {% if data['appealStatus']== "Upheld"%}
+                  {{data['upheldConfirm'] or "We have upheld your appeal due to supporting evidence."}}
+                  {% elseif data['appealStatus']== "Part upheld"%}
+                    {{data['partUpheldConfirm'] or "We have parially upheld your appeal due to supporting evidence and made appropriate adjustments to some of your costs."}}
+                  {% elseif data['appealStatus']== "Dismissed"%}
+                    {{data['dismissedConfirm'] or "Your appeal has been dismissed as the travel costs are not permissionable for this type of expert."}}
+                {% endif %}
+              </p>
+              <ul class="govuk-list">
+                <li>Application: Part granted</li>
+                <li>Requested: £640.00</li>
+                <li>Allowed: £520.00</li>
+                <li>Caseworker: {{data['caseworker2']}}</li>
+              </ul>
+            </dd>
+          </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reason for appeal
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Appeal 18 May 2025</p>
+            <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost.
+            </p>
+            <ul class="govuk-list">
+              <li><a href="">even-more-evidence.pdf</a></li>
+            </ul>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision being appealed
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Part upheld 7 May 2025</p>
+            <p>We have parially upheld your appeal due to the new supporting evidence and made appropriate adjustments to some of your costs. Your application remains part granted.</p>
+            <ul class="govuk-list">
+              <li>Application: Part granted</li>
+              <li>Requested: £{{data['actualdistTotalCost'] or "640"}}.00</li>
+              <li>Allowed: £520.00</li>
+              <li>Caseworker: {{data['caseworker2']}}</li>
+            </ul>
+          </dd>
+        </div>
+      </dl>       
+
+      {% include version + "/includes/further-info-appeal-cw.html"%}
+    {% endset %}
+
+    {% set appealMayHtml %}
+      <h3 class="govuk-heading-m" id="appeal-details">Appeal 2 May 2025</h3>
+      
+      <dl class="govuk-summary-list ">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Part upheld 7 May 2025</p>
+            <p>We have parially upheld your appeal due to the new supporting evidence and made appropriate adjustments to some of your costs. Your application remains part granted.</p>
+            <ul class="govuk-list">
+              <li>Application: Part granted</li>
+              <li>Requested: £{{data['actualdistTotalCost'] or "640"}}.00</li>
+              <li>Allowed: £480.00</li>
+              <li>Caseworker: {{data['caseworker2']}}</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reason for appeal
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Appeal 2 May 2025</p>
+            <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost.
+            </p>
+            <ul class="govuk-list">
+              <li><a href="">even-more-evidence.pdf</a></li>
+            </ul>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision being appealed
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list">
+              <li>Part granted 14 April 2025</li>
+              <li>Requested: £640.00</li>
+              <li>Allowed: £480.00</li>
+              <li>Caseworker: {{data['caseworker2']}}</li>
+            </ul>
+            <p>This application was part granted due to disallowed travel costs.</p>
+          </dd>
+        </div>
+      </dl>       
+
+      <h3 class="govuk-heading-m">Updates</h3>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h4 class="govuk-summary-card__title" id="review-further-info">ICA further information request 4 May 2025</h4>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list ">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Caseworker
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['caseworker1']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                ICA request
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['ICAResponse'] or "Please provide further evidence from the expert in question regarding their licencing to carry out this type of report" }}<br>
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h4 class="govuk-summary-card__title" id="review-further-info">Referred to ICA 3 May 2025</h4>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list ">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Caseworker
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['caseworker1']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Reasons for referral
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <p>{{data['icaReason'] or "Appeal referred to ICA due to questions over the expert used and rates requested by provider."}}</p>
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h4 class="govuk-summary-card__title" id="review-further-info2">Further information request 2 May 2025</h4>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list ">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Caseworker
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['caseworker1']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Information request
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Please provide counsel's advice, providing information as to why further funding is necessary & ATTACH IT ELECTRONICALLY. CBAM 7.2.6a
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Provider response
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['providerFurtherInfo'] or "Relevant documents attached as requested" }}<br>
+                <a href="">courtDocs1.pdf</a><br>
+                <a href="">courtDocs2.pdf</a>
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
+    {% endset %}
+
+    {% set appealAprilHtml %}
+      <h3 class="govuk-heading-m" id="appeal-details">Application 10 April 2025</h3>
+
+      <dl class="govuk-summary-list ">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Application decision
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <ul class="govuk-list">
+              <li>Part granted 14 April 2025</li>
+              <li>Requested: £640.00</li>
+              <li>Allowed: £480.00</li>
+              <li>Caseworker: {{data['caseworker2']}}</li>
+            </ul>
+            <p>This application was part granted due to disallowed travel costs.</p>
+          </dd>
+        </div>
+      </dl>     
+
+    {% endset %}
+
+
+    {% if data['cwAppStatus'] == "Part granted" %}
+      {% set appealLabel %}
+        Appeal 18 May 2025
+      {% endset%}
+      {% else %}
+      {% set appealLabel %}
+        Appeal in progress
+      {% endset%}
+    {% endif %}    
+    
+    {{ govukTabs({
+      items: [
+        {
+          label: appealLabel,
+          id: "appealCurrent",
+          panel: {
+            html: appealCurrentHtml
+          }
+        },
+        {
+          label: "Appeal 2 May 2025",
+          id: "MayAppeal",
+          panel: {
+            html: appealMayHtml
+          }
+        },
+        {
+          label: "Application 10 April 2025",
+          id: "AprilAppeal",
+          panel: {
+            html: appealAprilHtml
+          }
+        }
+      ]
+    }) }} 
+    {% include version + "/includes/application-buttons.html"%}
+
+  </div>
+</div>
+
+{% endblock %}
