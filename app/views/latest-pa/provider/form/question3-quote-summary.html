@@ -78,7 +78,7 @@
       {% if data['changeQuote'] == "change" %}
         <form class="form" action="check-answers?deleteTravelBanner=no&deleteAddBanner=no" onclick="primaryTotals()" method="post">
         {% else %}
-        <form class="form" action="task-list?question3-quote=complete&deleteTravelBanner=no&deleteAddBanner=no method="post">
+        <form class="form" action="task-list?question3-quote=complete&deleteTravelBanner=no&deleteAddBanner=no" method="post">
       {% endif %}
 
         <input type="hidden" id="actualdistTotalCost" name="actualdistTotalCost" value="{{data['actualdistTotalCost']}}" />
@@ -302,9 +302,9 @@
                 </thead>
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{data['travelTime-hours'] or "2"}} hours {{data['travelTime-mins'] or "0"}} minutes</td>
-                    <td class="govuk-table__cell">£{{data['travelCostTime'] or "60"}}.00 per hour</td>
-                    <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120"}}.00</td>
+                    <td class="govuk-table__cell">{{data['travelTime-hours'] or "2.00"}} hours {{data['travelTime-mins'] or "0"}} minutes</td>
+                    <td class="govuk-table__cell">£{{data['travelCostTime'] or "60.00"}} per hour</td>
+                    <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120.oo"}}</td>
                   </tr>
                 </tbody>
               </table>

@@ -33,93 +33,49 @@
 
       {% if data['deleteAdjust'] =="service"%}
         <p>This will delete adjustments made for <strong>{{ data['serviceType'] or "Interpreter"}} costs</strong> and cannot be undone. </p> 
-        {% if data['Appeal'] =="Yes" %}
           <div class="govuk-button-group">
-            {{ govukButton({
-              text: "Yes, delete it",
-              classes: "govuk-button--warning",
-              href: "application-details-adjust-appeal?serviceAdjust=No&generalNoHours-hours=1&general2NoHours-hours=2&generalNoHours-mins=0&general2NoHours-mins=0&generalCost=200.00&general2Cost=100.00&serviceAdjustField=&rate1GeneralTotal=200.00&rate2GeneralTotal=200.00&actualGeneralTotal=400.00#serviceID"
-            }) }}
-            {{ govukButton({
-              text: "No, do not delete it",
-              classes: "govuk-button--secondary",
-              href: "application-details-adjust-appeal#serviceID"
-            }) }}
-          </div>
-          {% else%}
-          <div class="govuk-button-group">
-            {{ govukButton({
-              text: "Yes, delete it",
-              classes: "govuk-button--warning",
-              href: "application-details-adjust?serviceAdjust=No#serviceID"
-            }) }}
-            {{ govukButton({
-              text: "No, do not delete it",
-              classes: "govuk-button--secondary",
-              href: "application-details-adjust#serviceID"
-            }) }}
-          </div>
-        {% endif %}
+          {{ govukButton({
+            text: "Yes, delete it",
+            classes: "govuk-button--warning",
+            href: "application-details-adjust?serviceAdjust=No&generalNoHours-hours=1&general2NoHours-hours=2&generalNoHours-mins=0&general2NoHours-mins=0&generalCost=200.00&general2Cost=100.00&serviceAdjustField=&rate1GeneralTotal=200.00&rate2GeneralTotal=200.00&actualGeneralTotal=400.00#serviceID"
+          }) }}
+          {{ govukButton({
+            text: "No, do not delete it",
+            classes: "govuk-button--secondary",
+            href: "application-details-adjust-appeal#serviceID"
+          }) }}
+        </div>
+          
 
         {% elseif data['deleteAdjust'] =="travel"%}
           <p>This will delete adjustments made for <strong>Travel costs</strong> and cannot be undone. </p>
-          {% if data['Appeal'] =="Yes" %}
-            <div class="govuk-button-group">
-              {{ govukButton({
-                text: "Yes, delete it",
-                classes: "govuk-button--warning",
-                href: "application-details-adjust-appeal?travelAdjust=No&travelRemove=No&addTravel=No#travelID"
-              }) }}
-              {{ govukButton({
-                text: "No, do not delete it",
-                classes: "govuk-button--secondary",
-                href: "application-details-adjust#travelID"
-              }) }}
-            </div>
-            {% else %}
-            <div class="govuk-button-group">
-              {{ govukButton({
-                text: "Yes, delete it",
-                classes: "govuk-button--warning",
-                href: "application-details-adjust-appeal?travelAdjust=No&travelRemove=No&addTravel=No#travelID"
-              }) }}
-              {{ govukButton({
-                text: "No, do not delete it",
-                classes: "govuk-button--secondary",
-                href: "application-details-adjust#travelID"
-              }) }}
-            </div>
-          {% endif %}
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Yes, delete it",
+              classes: "govuk-button--warning",
+              href: "application-details-adjust-appeal?travelAdjust=No&travelRemove=No&addTravel=No&travelTime-hours=&travelTime-mins=&travelCostTime=&travelAdjustField=#travelID"
+            }) }}
+            {{ govukButton({
+              text: "No, do not delete it",
+              classes: "govuk-button--secondary",
+              href: "application-details-adjust#travelID"
+            }) }}
+          </div>
 
         {% elseif data['deleteAdjust'] =="add1"%}
           <p>This will delete adjustments made for <strong>Additional cost 1</strong> and cannot be undone. </p>
-          {% if data['Appeal'] =="Yes" %}
-            <div class="govuk-button-group">
-              {{ govukButton({
-                text: "Yes, delete it",
-                classes: "govuk-button--warning",
-                href: "application-details-adjust-appeal?add1Adjust=No#additional1ID"
-              }) }}
-              {{ govukButton({
-                text: "No, do not delete it",
-                classes: "govuk-button--secondary",
-                href: "application-details-adjust-appeal#saddtional1ID"
-              }) }}
-            </div>
-            {% else %}
-            <div class="govuk-button-group">
-              {{ govukButton({
-                text: "Yes, delete it",
-                classes: "govuk-button--warning",
-                href: "application-details-adjust?add1Adjust=No#additional1ID"
-              }) }}
-              {{ govukButton({
-                text: "No, do not delete it",
-                classes: "govuk-button--secondary",
-                href: "application-details-adjust#saddtional1ID"
-              }) }}
-            </div>
-          {% endif%}
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Yes, delete it",
+              classes: "govuk-button--warning",
+              href: "application-details-adjust?add1Adjust=No#additional1ID"
+            }) }}
+            {{ govukButton({
+              text: "No, do not delete it",
+              classes: "govuk-button--secondary",
+              href: "application-details-adjust#saddtional1ID"
+            }) }}
+          </div>
       {% endif %}
     </div>
   </div>

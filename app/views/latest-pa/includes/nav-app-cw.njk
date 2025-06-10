@@ -16,7 +16,7 @@
       }, 
       {
         text: 'Costs',
-        href: 'application-details-adjust-appeal',
+        href: 'application-details-adjust',
         active: + activeAppNav[1]
       }, 
       {
@@ -49,7 +49,7 @@
       }, 
       {
         text: 'Costs',
-        href: 'application-details-adjust-appeal-readonly',
+        href: 'application-details-adjust-readonly',
         active: + activeAppNav[1]
       }, 
       {
@@ -69,7 +69,7 @@
   
   {% else %}
   
-    {% if data['cwAppStatus'] == "In progress" %}
+    {% if data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "Referred" %}
       {{ mojSubNavigation({
         label: 'Sub navigation',
         items: [

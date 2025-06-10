@@ -28,8 +28,8 @@
       <h1 class="govuk-heading-xl">Travel cost</h1>
       <p>Only include the hourly rate cost. Any other travel expenditure (such as mileage, parking and travel fares) can be added later as additional costs.
       </p>
-      <form class="form" action="question3-quote-summary?addTravel=Yes" method="post">
-       
+      <form class="form" onsubmit="calTravelCost()" action="question3-quote-summary?addTravel=Yes" method="post">
+
         {% if data['detained'] == "Yes" or data['prisonLaw'] == "Yes" %}
           {% else %}
           {{ govukTextarea({
@@ -94,7 +94,7 @@
 
         <h2 class="govuk-heading-l">
           <span class="govuk-caption-l">Total cost</span> £
-          <span id="showTravelTotal">0</span>.00
+          <span id="showTravelTotal">0.00</span>
         </h2>
 
         <div class="govuk-button-group">

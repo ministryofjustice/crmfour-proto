@@ -43,7 +43,11 @@
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Travel</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              {% if data['travelAdjust'] == "Yes" or data['travelRemove'] == "Yes" %}
+              £{{data['actualTravelTotal'] or "120.00"}}
+              {% else %}
+            {% endif %}</td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Waiting time</td>
@@ -218,7 +222,7 @@
           <td class="govuk-table__cell">£40.00 per hour</td> 
         {% endif %}     
         {% if data['travelAdjust'] == "Yes" or data['travelRemove'] == "Yes" %}
-          <td class="govuk-table__cell">£{{data['travelCostTime'] or "40"}}.00 per hour</td>
+          <td class="govuk-table__cell">£{{data['travelCostTime'] or "40.00"}} per hour</td>
           {% else %}
             <td class="govuk-table__cell"></td>
         {% endif %}
@@ -231,7 +235,7 @@
           <td class="govuk-table__cell">£120.00</td> 
         {% endif %}  
         {% if data['travelAdjust'] == "Yes" or data['travelRemove'] == "Yes" %}
-          <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "0"}}.00</td>
+          <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120.00"}}</td>
           {% else %}
             <td class="govuk-table__cell"></td>
         {% endif %}
