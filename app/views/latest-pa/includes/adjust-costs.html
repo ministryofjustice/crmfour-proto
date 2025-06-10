@@ -1,3 +1,8 @@
+<ul class="govuk-list">
+  <li>Requested: £640.00</li>
+  <li>Allowed: £{{data['actualGeneralTotal'] or "520.00"}}</li>
+</ul>
+      
 <details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
@@ -18,12 +23,22 @@
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Service - rate 1</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
+              £{{data['rate1GeneralTotal'] or "200.00"}}
+              {% else %}
+            {% endif %}
+          </td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Service - rate 2</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric"></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
+              £{{data['rate2GeneralTotal'] or "200.00"}}
+              {% else %}
+            {% endif %}
+          </td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Travel</td>
@@ -81,12 +96,12 @@
       <td class="govuk-table__cell">1 hour 0 minutes</td>
       <td class="govuk-table__cell">2 hour 0 minutes</td>
       {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
-        <td class="govuk-table__cell">{{data['general1NoHours-hours'] or "1"}} hours {{data['general1NoHours-mins'] or "0"}} minutes</td>
+        <td class="govuk-table__cell">{{data['generalNoHours-hours'] or "1"}} hours {{data['generalNoHours-mins'] or "0"}} minutes</td>
         {% else %}
         <td class="govuk-table__cell"></td>
       {% endif %}
       {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
-        <td class="govuk-table__cell">{{data['general2NoHours-hours'] or "1"}} hours {{data['general2NoHours-mins'] or "0"}} minutes</td>
+        <td class="govuk-table__cell">{{data['general2NoHours-hours'] or "2"}} hours {{data['general2NoHours-mins'] or "0"}} minutes</td>
         {% else %}
         <td class="govuk-table__cell"></td>
       {% endif %}
@@ -96,7 +111,7 @@
       <td class="govuk-table__cell">£100 per hour</td>
       <td class="govuk-table__cell">£200 per hour</td>
       {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
-        <td class="govuk-table__cell">£{{data['general1Cost'] or "100.00"}} per hour</td>
+        <td class="govuk-table__cell">£{{data['generalCost'] or "100.00"}} per hour</td>
         {% else %}
         <td class="govuk-table__cell"></td>
       {% endif %}
@@ -111,12 +126,12 @@
       <td class="govuk-table__cell">£200.00</td>
       <td class="govuk-table__cell">£200.00</td>
       {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
-        <td class="govuk-table__cell">£{{data['actualGeneral1Total'] or "200.00"}}</td>
+        <td class="govuk-table__cell">£{{data['rate1GeneralTotal'] or "200.00"}}</td>
         {% else %}
         <td class="govuk-table__cell"></td>
       {% endif %}
       {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
-        <td class="govuk-table__cell">£{{data['actualGeneral2Total'] or "200.00"}}</td>
+        <td class="govuk-table__cell">£{{data['rate2GeneralTotal'] or "200.00"}}</td>
         {% else %}
         <td class="govuk-table__cell"></td>
       {% endif %} 
@@ -128,7 +143,7 @@
   <div class="govuk-button-group">
     {{ govukButton({
       text: "Adjust service cost",
-      href: "change-service",
+      href: "change-service-rate",
       classes: "govuk-button--secondary"
     }) }}
 
@@ -137,7 +152,7 @@
   {% else %}
   {{ govukButton({
     text: "Adjust service cost",
-    href: "change-service",
+    href: "change-service-rate",
     classes: "govuk-button--secondary"
   }) }}
 {% endif %}
