@@ -97,7 +97,7 @@
         </tbody>
       </table>
 
-      <form class="form" action="application-details-adjust?serviceAdjust=Yes#serviceID" method="post">
+      <form class="form" onsubmit="submitGeneralCost()" action="application-details-adjust?serviceAdjust=Yes#serviceID" method="post">
 
         <h3 class="govuk-heading-m">Rate 1 - amount allowed</h3>
          <!--General-->                    
@@ -112,7 +112,7 @@
                   <label class="govuk-label govuk-date-input__label" for="generalNoHours-hours">
                     Hours
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="generalNoHours-hours" name="generalNoHours-hours" type="text" inputmode="numeric" value="{{data['generalNoHours-hours'] or "2"}}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="generalNoHours-hours" name="generalNoHours-hours" type="text" inputmode="numeric" value="{{data['generalNoHours-hours'] or "1"}}">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -133,7 +133,7 @@
           </label>
           <div class="govuk-input__wrapper">
             <div class="govuk-input__prefix" aria-hidden="true">£</div>
-            <input class="govuk-input govuk-input--width-5" id="generalCost" name="generalCost" type="text" spellcheck="false" value="{{data['generalCost'] or "200"}}" aria-describedby="generalCost-hint">
+            <input class="govuk-input govuk-input--width-5" id="generalCost" name="generalCost" type="text" spellcheck="false" value="{{data['generalCost'] or "200.00"}}" aria-describedby="generalCost-hint">
           </div>
         </div>
 
@@ -171,21 +171,24 @@
           </label>
           <div class="govuk-input__wrapper">
             <div class="govuk-input__prefix" aria-hidden="true">£</div>
-            <input class="govuk-input govuk-input--width-5" id="general2Cost" name="general2Cost" type="text" spellcheck="false" value="{{data['general2Cost'] or "200"}}" aria-describedby="general2Cost-hint">
+            <input class="govuk-input govuk-input--width-5" id="general2Cost" name="general2Cost" type="text" spellcheck="false" value="{{data['general2Cost'] or "100.00"}}" aria-describedby="general2Cost-hint">
           </div>
         </div>
 
         <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">Calculate cost</button> 
+        <input type="hidden" id="rate1GeneralTotal" name="rate1GeneralTotal" value="{{data['rate1GeneralTotal']}}" />
+        <input type="hidden" id="rate2GeneralTotal" name="rate2GeneralTotal" value="{{data['rate2GeneralTotal']}}" />
         <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
+        
         <p class="govuk-heading-l">
           <span class="govuk-caption-m">Adjusted cost</span> £
-          <span id="showGeneralTotal">0</span>.00
+          <span id="showGeneralTotal">0.00</span>         
         </p>
 
         {{ govukTextarea({
           name: "serviceAdjustField",
           id: "serviceAdjustField",
-          value: data['serviceAdjustField'] or "Adjusted the allowed hours",
+          value: data['serviceAdjustField'],
           label: {
             text: "Explain your decision",
             classes: "govuk-label--s",

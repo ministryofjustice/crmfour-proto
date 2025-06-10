@@ -1,16 +1,53 @@
 // Disbursement type calculator
 function calGeneralCost() {
 
-  var generalCost = parseInt(document.getElementById("generalCost").value)
+  var generalCost = parseFloat(document.getElementById("generalCost").value)
   var numberHours = parseInt(document.getElementById("generalNoHours-hours").value)
-  var numberMins = parseInt(document.getElementById("generalNoHours-mins").value),
+  var numberMins = parseInt(document.getElementById("generalNoHours-mins").value)
+  var general2Cost = parseFloat(document.getElementById("general2Cost").value)
+  var numberHours2 = parseInt(document.getElementById("general2NoHours-hours").value)
+  var numberMins2 = parseInt(document.getElementById("general2NoHours-mins").value),
 
-  minsHours = numberMins / 60;
-  totalTime = minsHours + numberHours;
-  timeCost = generalCost * totalTime;
-  document.getElementById("showGeneralTotal").innerHTML = timeCost;
-  document.getElementById("actualGeneralTotal").value = timeCost;
+  rate1minsHours = numberMins / 60;
+  rate1Cost = generalCost * (rate1minsHours + numberHours);
+
+  rate2minHours = numberMins2 / 60;
+  rate2Cost = general2Cost * (rate2minHours + numberHours2);
+  timeCost = rate1Cost + rate2Cost
+
+  // Forces it to be a number and 2 decimal places
+  document.getElementById("rate1GeneralTotal").value = Number(rate1Cost).toFixed(2);
+  document.getElementById("rate2GeneralTotal").value = Number(rate2Cost).toFixed(2);
+  document.getElementById("showGeneralTotal").innerHTML = Number(timeCost).toFixed(2);
+  document.getElementById("actualGeneralTotal").value = Number(timeCost).toFixed(2);
 }
+
+function submitGeneralCost() {
+
+  var generalCost = parseFloat(document.getElementById("generalCost").value)
+  var numberHours = parseInt(document.getElementById("generalNoHours-hours").value)
+  var numberMins = parseInt(document.getElementById("generalNoHours-mins").value)
+  var general2Cost = parseFloat(document.getElementById("general2Cost").value)
+  var numberHours2 = parseInt(document.getElementById("general2NoHours-hours").value)
+  var numberMins2 = parseInt(document.getElementById("general2NoHours-mins").value),
+
+  rate1minsHours = numberMins / 60;
+  rate1Cost = generalCost * (rate1minsHours + numberHours);
+
+  rate2minHours = numberMins2 / 60;
+  rate2Cost = general2Cost * (rate2minHours + numberHours2);
+  timeCost = rate1Cost + rate2Cost
+  
+  // Forces it to be a number and 2 decimal places
+  document.getElementById("rate1GeneralTotal").value = Number(rate1Cost).toFixed(2);
+  document.getElementById("rate2GeneralTotal").value = Number(rate2Cost).toFixed(2);
+  document.getElementById("showGeneralTotal").innerHTML = Number(timeCost).toFixed(2);
+  document.getElementById("actualGeneralTotal").value = Number(timeCost).toFixed(2);
+  location.href = 'application-details-adjust?serviceAdjust=Yes#serviceID';
+
+}
+
+
 
 function calalt1GeneralCost() {
 
