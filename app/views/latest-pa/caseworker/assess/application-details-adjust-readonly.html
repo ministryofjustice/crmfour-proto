@@ -24,21 +24,430 @@
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      {% include version + "/includes/app-status-cw.html" %}
-      {% include version + "/includes/nav-app-cw.njk" %}
-    </div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include version + "/includes/app-status-cw.html" %}
+    {% include version + "/includes/nav-app-cw.njk" %}
   </div>
+</div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-      <h2 class="govuk-heading-l">Costs</h2>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h2 class="govuk-heading-l">Costs</h2>
 
-      {% include version + "/includes/adjust-info.html" %}
+    {% include version + "/includes/adjust-info.html" %}
 
-      {% include version + "/includes/adjust-costs-readonly.html"%}
+    {% if data['Appeal'] == "Yes"%}
 
-    </div>
+      {% set appealCurrentCostHtml %}  
+        {% if data['cwAppStatus'] == "Part granted" %}
+          <h3 class="govuk-heading-m">Appeal 18 May 2025</h3>
+          {% else %}
+          <h3 class="govuk-heading-m">Appeal in progress</h3>
+        {% endif %}      
+        {% include version + "/includes/adjust-costs-readonly.html"%}            
+      {% endset%}
+
+      {% set appealMayCostHtml %}
+        <h3 class="govuk-heading-m">Appeal 2 May 2025</h3> 
+        <ul class="govuk-list">
+          <li>Requested: £640.00</li>
+          <li>Allowed: £520.00</li>
+        </ul>
+
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Cost summary
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <table class="govuk-table">
+              <caption class="govuk-visually-hidden">Requested and allowed costs</caption>
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Cost type</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Requested</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Allowed</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Service - rate 1</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Service - rate 2</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Travel</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Waiting time</td>
+                  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£80.00</td>
+                </tr>
+                  <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header" colspan="1">Total</th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£640.00</strong></td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£480.00</strong></td>
+                </tr>
+              </tbody>
+            </table> 
+          </div>
+        </details>
+
+        <!--Service -->
+        {% if data['Appeal'] =="Yes" %}  
+          <h4 class="govuk-heading-s" id="serviceID">Service cost</h4>
+          {% else %}
+          <h3 class="govuk-heading-m" id="serviceID">Service cost</h3>
+        {% endif %}
+
+        <p>Service: {{data['serviceType'] or "Interpreter"}}</p>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" rowspan="2" class="govuk-table__header">Details</th>
+              <th scope="col" colspan="2" class="govuk-table__header">Requested</th>
+              <th scope="col" colspan="2" class="govuk-table__header">Allowed</th>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Rate 1</th>
+              <th scope="col" class="govuk-table__header">Rate 2</th>
+              <th scope="col" class="govuk-table__header">Rate 1</th>
+              <th scope="col" class="govuk-table__header">Rate 2</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">          
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">Amount</th>
+              <td class="govuk-table__cell">1 hour 0 minutes</td>
+              <td class="govuk-table__cell">2 hour 0 minutes</td>
+              <td class="govuk-table__cell">1 hour 0 minutes</td>
+              <td class="govuk-table__cell">2 hour 0 minutes</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">Rate</th>
+              <td class="govuk-table__cell">£100 per hour</td>
+              <td class="govuk-table__cell">£200 per hour</td>
+              <td class="govuk-table__cell">£100 per hour</td>
+              <td class="govuk-table__cell">£200 per hour</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">Total</th>
+              <td class="govuk-table__cell">£200.00</td>
+              <td class="govuk-table__cell">£200.00</td>
+              <td class="govuk-table__cell">£200.00</td>
+              <td class="govuk-table__cell">£200.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4 class="govuk-heading-s">Travel cost</h4> 
+        {% if data['primaryTravel'] =="No"%}
+          <p>No travel costs were added</p>
+          {% else %}      
+            <div class="govuk-inset-text">
+              Travel costs not allowed for this service
+            </div>
+
+            <p>Reason for travel cost: The expert lives in Ireland</p>
+        
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Details</th>
+                  <th scope="col" class="govuk-table__header">Requested</th>
+                  <th scope="col" class="govuk-table__header">Allowed</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Amount</td>
+                  <td class="govuk-table__cell">3 hours 0 minutes</td> 
+                  <td class="govuk-table__cell">0 hours 0 minutes</td> 
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Rate</td>
+                  <td class="govuk-table__cell">£40.00 per hour</td> 
+                  <td class="govuk-table__cell">£40.00 per hour</td> 
+                </tr>
+                  <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Total</td>
+                  <td class="govuk-table__cell">£120.00</td> 
+                  <td class="govuk-table__cell">£0.00</td> 
+                </tr>
+              </tbody>
+            </table>
+        {% endif %}
+
+        <h4 class="govuk-heading-s" id="add1ID">Additional cost 1</h4>
+
+        {% if data['addAdd'] =="0" %}
+          <p>No additional costs added</p>
+          <!----<div class="govuk-button-group">
+            {{ govukButton({
+              text: "Adjust additional cost",
+              href: "change-additionalCost1",
+              classes: "govuk-button--secondary"
+            }) }}
+          </div>
+          --->
+          {% else %}
+
+            <div class="govuk-inset-text">
+              {{data['addCost1Adjust'] or "Waiting rate reduced accordingly."}}
+            </div>
+          <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
+
+          <table class="govuk-table">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Details</th>
+                <th scope="col" class="govuk-table__header">Requested</th>
+                <th scope="col" class="govuk-table__header">Allowed</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Amount</td>
+                <td class="govuk-table__cell">3 hours 0 minutes</td>
+                <td class="govuk-table__cell">3 hours 0 minutes</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Rate</td>
+                <td class="govuk-table__cell">£40.00 per hour</td>
+                <td class="govuk-table__cell">£40.00 per hour</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Total</td>
+                <td class="govuk-table__cell">£120.00</td>
+                <td class="govuk-table__cell">£120.00</td>
+              </tr>
+            </tbody>
+          </table>
+            
+        {% endif %}
+      {% endset%}
+
+      {% set appealAprilCostHtml %}
+        <h3 class="govuk-heading-m">Application 10 April 2025</h3> 
+        <ul class="govuk-list">
+          <li>Requested: £640.00</li>
+          <li>Allowed: £480.00</li>
+        </ul>
+
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Cost summary
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <table class="govuk-table">
+              <caption class="govuk-visually-hidden">Requested and allowed costs</caption>
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Cost type</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Requested</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Allowed</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Service - rate 1</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Service - rate 2</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Travel</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Waiting time</td>
+                  
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£80.00</td>
+                </tr>
+                  <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header" colspan="1">Total</th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£640.00</strong></td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£480.00</strong></td>
+                </tr>
+              </tbody>
+            </table> 
+          </div>
+        </details>
+        
+        <!--Service -->
+        {% if data['Appeal'] =="Yes" %}  
+          <h4 class="govuk-heading-s" id="serviceID">Service cost</h4>
+          {% else %}
+          <h3 class="govuk-heading-m" id="serviceID">Service cost</h3>
+        {% endif %}
+
+        <p>Service: {{data['serviceType'] or "Interpreter"}}</p>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" rowspan="2" class="govuk-table__header">Details</th>
+              <th scope="col" colspan="2" class="govuk-table__header">Requested</th>
+              <th scope="col" colspan="2" class="govuk-table__header">Allowed</th>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Rate 1</th>
+              <th scope="col" class="govuk-table__header">Rate 2</th>
+              <th scope="col" class="govuk-table__header">Rate 1</th>
+              <th scope="col" class="govuk-table__header">Rate 2</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">          
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">Amount</th>
+              <td class="govuk-table__cell">1 hour 0 minutes</td>
+              <td class="govuk-table__cell">2 hour 0 minutes</td>
+              <td class="govuk-table__cell">1 hour 0 minutes</td>
+              <td class="govuk-table__cell">2 hour 0 minutes</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">Rate</th>
+              <td class="govuk-table__cell">£100 per hour</td>
+              <td class="govuk-table__cell">£200 per hour</td>
+              <td class="govuk-table__cell">£100 per hour</td>
+              <td class="govuk-table__cell">£200 per hour</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__cell">Total</th>
+              <td class="govuk-table__cell">£200.00</td>
+              <td class="govuk-table__cell">£200.00</td>
+              <td class="govuk-table__cell">£200.00</td>
+              <td class="govuk-table__cell">£200.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4 class="govuk-heading-s">Travel cost</h4>     
+        <div class="govuk-inset-text">
+          Travel costs not allowed for this service
+        </div>
+
+        <p>Reason for travel cost: The expert lives in Ireland</p>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Details</th>
+              <th scope="col" class="govuk-table__header">Requested</th>
+              <th scope="col" class="govuk-table__header">Allowed</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Amount</td>
+              <td class="govuk-table__cell">3 hours 0 minutes</td> 
+              <td class="govuk-table__cell">0 hours 0 minutes</td> 
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Rate</td>
+              <td class="govuk-table__cell">£40.00 per hour</td> 
+              <td class="govuk-table__cell">£40.00 per hour</td> 
+            </tr>
+              <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Total</td>
+              <td class="govuk-table__cell">£120.00</td> 
+              <td class="govuk-table__cell">£0.00</td> 
+            </tr>
+          </tbody>
+        </table>
+
+        <h4 class="govuk-heading-s" id="add1ID">Additional cost 1</h4>
+
+        <div class="govuk-inset-text">
+          Waiting time reduced accordingly.
+        </div>
+        <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Details</th>
+              <th scope="col" class="govuk-table__header">Requested</th>
+              <th scope="col" class="govuk-table__header">Allowed</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Amount</td>
+              <td class="govuk-table__cell">3 hours 0 minutes</td>
+              <td class="govuk-table__cell">2 hours 0 minutes</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Rate</td>
+              <td class="govuk-table__cell">£40.00 per hour</td>
+              <td class="govuk-table__cell">£40.00 per hour</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Total</td>
+              <td class="govuk-table__cell">£120.00</td>
+              <td class="govuk-table__cell">£80.00</td>
+            </tr>
+          </tbody>
+        </table>
+            
+      {% endset%}
+
+            {% if data['cwAppStatus'] == "Part granted" %}
+        {% set appealLabel %}
+          Appeal 18 May 2025
+        {% endset%}
+        {% else %}
+        {% set appealLabel %}
+          Appeal in progress
+        {% endset%}
+      {% endif %}
+
+      {{ govukTabs({
+        items: [
+          {
+            label: appealLabel,
+            id: "appealCurrentCost",
+            panel: {
+              html: appealCurrentCostHtml
+            }
+          },
+          {
+            label: "Appeal 2 May 2025",
+            id: "appealMayCost",
+            panel: {
+              html: appealMayCostHtml
+            }
+          },
+          {
+            label: "Application 10 April 2025",
+            id: "appealAprilCost",
+            panel: {
+              html: appealAprilCostHtml
+            }
+          }
+        ]
+      }) }}  
+
+      {% else %}
+        {% include version + "/includes/adjust-costs-readonly.html"%}
+    {% endif %} 
+
   </div>
+</div>
   {% endblock %}
