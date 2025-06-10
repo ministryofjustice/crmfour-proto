@@ -1,4 +1,4 @@
-// PA type calculator
+// PA calculator
 function calGeneralCost() {
 
   var generalCost = parseFloat(document.getElementById("generalCost").value)
@@ -30,10 +30,13 @@ function calTravelCost() {
 
   travelminsHours = travelMins / 60;
   travelTime = travelminsHours + travelHours;
-  travelCost = travelCostTime * (travelminsHours + travelHours);
+  travelCost = travelCostTimeDec * (travelminsHours + travelHours);
+
   document.getElementById("showTravelTotal").innerHTML = Number(travelCost).toFixed(2);
   document.getElementById("actualTravelTotal").value = Number(travelCost).toFixed(2);
+
 }
+
 
 function calalt1GeneralCost() {
 
@@ -123,8 +126,6 @@ function calDNACost() {
   document.getElementById("actualDNATotal").value = dnaCost;
 }
 
-
-
 function calAdd1Cost() {
   let Add1Cost = 0
   var addCostTime1 = parseInt(document.getElementById("addCostTime1").value)
@@ -168,7 +169,6 @@ function calAdd2Cost() {
     document.getElementById("actualAdd2Total").value = Add2Cost;
   } 
 }
-
 
 function calAddTotal() {
   addTotalCost = Add1Cost + Add2Cost;  
