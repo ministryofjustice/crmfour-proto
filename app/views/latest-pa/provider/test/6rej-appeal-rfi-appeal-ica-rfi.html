@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
 
@@ -13,7 +13,7 @@ Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} 
 
 {% block beforeContent %}
 {% include "includes/banner.html"%}
-{% include version + "/includes/nav-prime-provider.njk" %}
+
 
 {{ govukBackLink({
 text: "Back",
@@ -23,7 +23,7 @@ href: "javascript:window.history.back()"
 
 {% block content %}
 
-<!--Stage 2 - app appealed - no response yet > (part granted, following RFI)-->
+<!--Stage 3 - CW has responded to appeal with RFI> (part granted, following RFI)-->
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -46,27 +46,38 @@ href: "javascript:window.history.back()"
               Status
             </dt>
             <dd class="govuk-summary-list__value">
-              <p><strong class="govuk-tag govuk-tag--grey">Appeal</strong> <strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
+              <p><strong class="govuk-tag govuk-tag--grey">Appealed</strong> <strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
+              <p>21 September 2023</p>
              
-              <p>22 May 2023</p>
-          
               <p>£5,000 requested</p>
-              <p>£3,200 allowed</p>
+              <p>£0 allowed</p>
 
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
-             </dd>
-          </div>
+            
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              LAA response
+              ICA response
             </dt>
             <dd class="govuk-summary-list__value">
-               <p>This application is part granted with an increase in the amounts allowed following evidence being sent in for an alternative provider. </p>
-               <p>You can <a href="">appeal this decision</a>.</p>
-            </dd>
+              
+                <h3 class="govuk-heading-s">Further information request from ICA</h3>
+          
+                <p>Please provide counsel's advice, providing information as to why further funding is necessary & ATTACH IT ELECTRONICALLY. CBAM 7.2.6a.</p>
+                <p>The application will be closed if you do not respond by 30 Mary 2025.</p>
+                <a href="form/question3-further-info?changeFI=change&amp;ufn=301222/003&amp;laa-ref=LAA-6p4f0r&amp;first-use=no&amp;app-state=all&amp;question-ufn=complete&amp;question1-org=complete&amp;question2-client=complete&amp;question2-case=complete&amp;question3-why-pa=complete&amp;question3-quote=complete&amp;question3-alt-quote=complete&amp;question3-further-info=notStarted&amp;app-task=Review&amp;Appeal=No&amp;serviceType=Translation&amp;expert-first-name=John&amp;expert-last-name=Smith&amp;expert-org-name=Walkers Crips&amp;expert-postcode=BS6 4RF&amp;rep-order-day=12&amp;rep-order-month=04&amp;rep-order-year=2024&amp;maat=123456578&amp;detained=No&amp;prisons=&amp;poca=No&amp;main-offence=Conspire to supply a class A controlled drug - cocaine&amp;hearing=No&amp;plea=Not guilty&amp;courtType=Crown court (excluding Central Criminal Court)&amp;&amp;addTravel=Yes&amp;addAdd=0&amp;travelTime-hours=2&amp;travelTime-mins=0&amp;travelCostTime=12&amp;client-first-name=Dami&amp;client-last-name=Olu&amp;client-dob-day=12&amp;client-dob-month=June&amp;client-dob-year=2001" role="button" draggable="false" class="govuk-button" data-module="govuk-button" data-govuk-button-init="">
+                  Update application
+                </a> 
+  
+              </dd>
+
+                      
+                    
           </div>
+
+        
+    
+          
         </dl>
       </div>
 
@@ -95,93 +106,58 @@ href: "javascript:window.history.back()"
 
     <div class="govuk-grid-column-two-thirds" id="nav">
 
-      <nav class="moj-sub-navigation" aria-label="Sub navigation">
-
-        <ul class="moj-sub-navigation__list">
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="#1">Appeal</a>
-          </li>
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="#2">Overview</a>
-          </li>
-         
-        
-        </ul>
       
-      </nav>
 
-
-      <h2 class="govuk-heading-l">Appeal</h2>
-
-      <dl class="govuk-summary-list">
+        <nav class="moj-sub-navigation" aria-label="Sub navigation">
+  
+          <ul class="moj-sub-navigation__list">
+            <li class="moj-sub-navigation__item">
+              <a class="moj-sub-navigation__link" aria-current="page" href="#1">Appeal</a>
+            </li>
+            <li class="moj-sub-navigation__item">
+              <a class="moj-sub-navigation__link" href="#2">Overview</a>
+            </li>
             
-            
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Reason for appeal
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <p>18 May 2025</p>
-            <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost.
-            </p>
-            <ul class="govuk-list">
-              <li><a href="">even-more-evidence.pdf</a></li>
-            </ul>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Decision being appealed
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <p>Part granted 7 May 2025</p>
-            <p>We can only part grant this request as there is not sufficient evidence to grant the full amount.</p>
-            <ul class="govuk-list">
-              
-      
+           
+          
+          </ul>
         
-            </ul>
-          </dd>
-        </div>
-      </dl>
-      <h3 class="govuk-heading-m">Updates</h3>
-      <div class="govuk-summary-card">
+        </nav>
+  
+  
+        <h2 class="govuk-heading-l">Appeal</h2>
+
+
+        <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h4 class="govuk-summary-card__title" id="review-further-info">Further information request 15 May 2025</h4>
+          <h3 class="govuk-summary-card__title">Appeal: 12 September 2024</h3>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-          
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Information request
+                LAA response
               </dt>
               <dd class="govuk-summary-list__value">
-                There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time.
-              </dd>
+            <p>Referred to ICA    </p>     </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Your response
+                Your appeal
               </dt>
               <dd class="govuk-summary-list__value">
-                Please see the attached documetents that show why this expert is needed.<br>
+                <p>I have attached the correct certificates for practice from the required body. Please consider this appeal.</p>
+             
                 <a href="">courtDocs1.pdf</a><br>
-                <a href="">courtDocs2.pdf</a>
+              <a href="">courtDocs2.pdf</a>
               </dd>
             </div>
           </dl>       
         </div>
       </div>
 
-    </div>
-
-    
-
-
-
-
-
+     
+     
 
     </div>
 
