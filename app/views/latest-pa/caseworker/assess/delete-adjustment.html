@@ -49,33 +49,18 @@
 
         {% elseif data['deleteAdjust'] =="travel"%}
           <p>This will delete adjustments made for <strong>Travel costs</strong> and cannot be undone. </p>
-          {% if data['Appeal'] =="Yes" %}
-            <div class="govuk-button-group">
-              {{ govukButton({
-                text: "Yes, delete it",
-                classes: "govuk-button--warning",
-                href: "application-details-adjust-appeal?travelAdjust=No&travelRemove=No&addTravel=No#travelID"
-              }) }}
-              {{ govukButton({
-                text: "No, do not delete it",
-                classes: "govuk-button--secondary",
-                href: "application-details-adjust#travelID"
-              }) }}
-            </div>
-            {% else %}
-            <div class="govuk-button-group">
-              {{ govukButton({
-                text: "Yes, delete it",
-                classes: "govuk-button--warning",
-                href: "application-details-adjust-appeal?travelAdjust=No&travelRemove=No&addTravel=No#travelID"
-              }) }}
-              {{ govukButton({
-                text: "No, do not delete it",
-                classes: "govuk-button--secondary",
-                href: "application-details-adjust#travelID"
-              }) }}
-            </div>
-          {% endif %}
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Yes, delete it",
+              classes: "govuk-button--warning",
+              href: "application-details-adjust-appeal?travelAdjust=No&travelRemove=No&addTravel=No&travelTime-hours=&travelTime-mins=&travelCostTime=&travelAdjustField=#travelID"
+            }) }}
+            {{ govukButton({
+              text: "No, do not delete it",
+              classes: "govuk-button--secondary",
+              href: "application-details-adjust#travelID"
+            }) }}
+          </div>
 
         {% elseif data['deleteAdjust'] =="add1"%}
           <p>This will delete adjustments made for <strong>Additional cost 1</strong> and cannot be undone. </p>
