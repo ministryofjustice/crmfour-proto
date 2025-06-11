@@ -1,6 +1,7 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
+{% set activeAppNav = [true, false, false] %}
 
 {% block header %}
 {% include version + "/includes/header-provider.html" %}
@@ -13,7 +14,7 @@ Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} 
 
 {% block beforeContent %}
 {% include "includes/banner.html"%}
-{% include version + "/includes/nav-prime-provider.njk" %}
+
 
 {{ govukBackLink({
 text: "Back",
@@ -33,89 +34,12 @@ href: "javascript:window.history.back()"
   </div>
 
   <!--Status of application-->
-
-  <div class="govuk-grid-column-two-thirds">
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Application status</h2>
-      </div>
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Status
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
-             
-              <p>22 August 2023</p>
-          
-              <p>£5,000.00 requested</p>
-              <p>£3,400.00 allowed</p>
-
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-             </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              LAA response
-            </dt>
-            <dd class="govuk-summary-list__value">
-               <p>This application was part granted due to travel costs and an unregulated provider. The costs of the alternative quote were more acceptable.</p>
-               <p><a href="">Review allowed costs</a>.</p>
-               <p>You can <a href="appeal-start.html">appeal this decision</a>.</p>
-              </p>  
-               
-            </dd>
-          </div>
-        </dl>
-      </div>
-
-    </div>
-  </div>
-  <div class="govuk-grid-column-one-third">
-    <aside class="app-related-items" role="complementary">
-      <h2 class="govuk-heading-s" id="subsection-title">Email the LAA case team</h2>
-      <ul class="govuk-list">
-        <li>
-          <a class="govuk-link govuk-body-s govuk-link--no-visited-state"
-            href="mailto:magsbilling@justice.gov.uk">magsbilling@justice.gov.uk</a>
-        </li>
-      </ul>
-
-      <h2 class="govuk-heading-s" id="subsection-title">Print a PDF of this claim</h2>
-      <p class="govuk-body-s">It will include the answers you input into this claim and its current status.</p>
-
-      <a href="claim-details-print3" role="button" draggable="false" class="govuk-button govuk-button--secondary"
-        data-module="govuk-button" data-govuk-button-init="">
-        Create a printable PDF
-      </a>
-
-    </aside>
-  </div>
+  {% include version + "/includes/app-status-provider.html" %}
 
     <div class="govuk-grid-column-two-thirds" id="nav">
-
-      <nav class="moj-sub-navigation" aria-label="Sub navigation">
-
-        <ul class="moj-sub-navigation__list">
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="#1">Overview</a>
-          </li>
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="#2">Costs</a>
-          </li>
-         
-        
-        </ul>
-      
-      </nav>
-
+      {% include version + "/includes/nav-app-provider.njk" %}
 
       <h2 class="govuk-heading-l">Overview</h2>
-
 
       <!--App ref-->
       <div class="govuk-summary-card">
