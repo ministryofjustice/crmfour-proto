@@ -30,11 +30,20 @@ function calTravelCost() {
 
   travelminsHours = travelMins / 60;
   travelTime = travelminsHours + travelHours;
-  travelCost = travelCostTimeDec * (travelminsHours + travelHours);
+  travelCost = travelCostTime * (travelminsHours + travelHours);
 
   document.getElementById("showTravelTotal").innerHTML = Number(travelCost).toFixed(2);
   document.getElementById("actualTravelTotal").value = Number(travelCost).toFixed(2);
+  calTotalTotal();
+}
 
+function calTotalTotal() {
+  var travelCost = parseFloat(document.getElementById("actualTravelTotal").value);
+  var timeCost = parseFloat(document.getElementById("actualGeneralTotal").value);
+
+  totalTotal = travelCost + timeCost;
+
+  document.getElementById("actualTotalTotal").value = Number(totalTotal).toFixed(2);
 }
 
 

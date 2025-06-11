@@ -91,12 +91,12 @@
                   <td class="govuk-table__cell">Waiting time</td>
                   
                   <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">£80.00</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
                 </tr>
                   <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header" colspan="1">Total</th>
                   <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£640.00</strong></td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£480.00</strong></td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£520.00</strong></td>
                 </tr>
               </tbody>
             </table> 
@@ -190,22 +190,7 @@
 
         <h4 class="govuk-heading-s" id="add1ID">Additional cost 1</h4>
 
-        {% if data['addAdd'] =="0" %}
-          <p>No additional costs added</p>
-          <!----<div class="govuk-button-group">
-            {{ govukButton({
-              text: "Adjust additional cost",
-              href: "change-additionalCost1",
-              classes: "govuk-button--secondary"
-            }) }}
-          </div>
-          --->
-          {% else %}
-
-            <div class="govuk-inset-text">
-              {{data['addCost1Adjust'] or "Waiting rate reduced accordingly."}}
-            </div>
-          <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
+          <p>Cost description: Waited at police station for client to be interviewed</p>
 
           <table class="govuk-table">
             <thead class="govuk-table__head">
@@ -234,7 +219,6 @@
             </tbody>
           </table>
             
-        {% endif %}
       {% endset%}
 
       {% set appealAprilCostHtml %}

@@ -5,7 +5,7 @@
       
 <ul class="govuk-list">
   <li>Requested: £640.00</li>
-  <li>Allowed: £{{data['actualTotalTotal'] or "520.00"}}</li>
+  <li>Allowed: £{{data['actualGeneralTotal'] or "520.00"}}</li>
 </ul>
       
 <details class="govuk-details">
@@ -28,23 +28,40 @@
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Service - rate 1</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['rate1GeneralTotal'] or "200.00"}}</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+              {% if data['serviceAdjust'] == "Yes" or data['travelAdjust'] == "Yes" or data['add1Adjust'] == "Yes" or data['serviceRemove'] == "Yes" or data['travelRemove'] == "Yes"  %}
+              £{{data['rate1GeneralTotal'] or "200.00"}}
+              {% else %}
+            {% endif %}
+          </td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Service - rate 2</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['rate2GeneralTotal'] or "200.00"}}
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+              {% if data['serviceAdjust'] == "Yes" or data['travelAdjust'] == "Yes" or data['add1Adjust'] == "Yes" or data['serviceRemove'] == "Yes" or data['travelRemove'] == "Yes"  %}
+              £{{data['rate2GeneralTotal'] or "200.00"}}
+              {% else %}
+            {% endif %}
           </td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Travel</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['actualTravelTotal'] or "120.00"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">
+              {% if data['serviceAdjust'] == "Yes" or data['travelAdjust'] == "Yes" or data['add1Adjust'] == "Yes" or data['serviceRemove'] == "Yes" or data['travelRemove'] == "Yes"  %}
+                £{{data['actualTravelTotal'] or "120.00"}}
+                {% else %}
+              {% endif %}</td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Waiting time</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['actualAdd1Total'] or "120.00"}}</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+              {% if data['serviceAdjust'] == "Yes" or data['travelAdjust'] == "Yes" or data['add1Adjust'] == "Yes" or data['serviceRemove'] == "Yes" or data['travelRemove'] == "Yes"  %}
+                £{{data['actualAdd1Total'] or "120.00"}}
+                {% else %}
+              {% endif %}</td>
           </td>
         </tr>
           <tr class="govuk-table__row">
@@ -52,7 +69,12 @@
           <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£640.00</strong></td>
           <td class="govuk-table__cell govuk-table__cell--numeric">
             <span class="govuk-visually-hidden">Sum of total requested: </span>
-            <strong>£{{data['actualTotalTotal'] or "520.00"}}</strong>
+            <strong>
+              {% if data['serviceAdjust'] == "Yes" or data['travelAdjust'] == "Yes" or data['add1Adjust'] == "Yes" or data['serviceRemove'] == "Yes" or data['travelRemove'] == "Yes"  %}
+                £{{data['actualTotalTotal'] or "520.00"}}
+                {% else %}
+              {% endif %}</td>
+            </strong>
           </td>
         </tr>
       </tbody>
@@ -94,22 +116,46 @@
       <th scope="row" class="govuk-table__cell">Amount</th>
       <td class="govuk-table__cell">1 hour 0 minutes</td>
       <td class="govuk-table__cell">2 hour 0 minutes</td>
-      <td class="govuk-table__cell">{{data['generalNoHours-hours'] or "1"}} hours {{data['generalNoHours-mins'] or "0"}} minutes</td>
-      <td class="govuk-table__cell">{{data['general2NoHours-hours'] or "2"}} hours {{data['general2NoHours-mins'] or "0"}} minutes</td>
+      {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
+        <td class="govuk-table__cell">{{data['generalNoHours-hours'] or "1"}} hours {{data['generalNoHours-mins'] or "0"}} minutes</td>
+        {% else %}
+        <td class="govuk-table__cell"></td>
+      {% endif %}
+      {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
+        <td class="govuk-table__cell">{{data['general2NoHours-hours'] or "2"}} hours {{data['general2NoHours-mins'] or "0"}} minutes</td>
+        {% else %}
+        <td class="govuk-table__cell"></td>
+      {% endif %}
     </tr>
     <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__cell">Rate</th>
       <td class="govuk-table__cell">£100 per hour</td>
       <td class="govuk-table__cell">£200 per hour</td>
-      <td class="govuk-table__cell">£{{data['generalCost'] or "100.00"}} per hour</td>
-      <td class="govuk-table__cell">£{{data['general2Cost'] or "200.00"}} per hour</td> 
+      {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
+        <td class="govuk-table__cell">£{{data['generalCost'] or "100.00"}} per hour</td>
+        {% else %}
+        <td class="govuk-table__cell"></td>
+      {% endif %}
+      {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
+        <td class="govuk-table__cell">£{{data['general2Cost'] or "200.00"}} per hour</td>
+        {% else %}
+        <td class="govuk-table__cell"></td>
+      {% endif %} 
     </tr>
     <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__cell">Total</th>
       <td class="govuk-table__cell">£200.00</td>
       <td class="govuk-table__cell">£200.00</td>
-      <td class="govuk-table__cell">£{{data['rate1GeneralTotal'] or "200.00"}}</td>
-      <td class="govuk-table__cell">£{{data['rate2GeneralTotal'] or "200.00"}}</td>
+      {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
+        <td class="govuk-table__cell">£{{data['rate1GeneralTotal'] or "200.00"}}</td>
+        {% else %}
+        <td class="govuk-table__cell"></td>
+      {% endif %}
+      {% if data['serviceAdjust'] == "Yes" or data['serviceRemove'] == "Yes" %}
+        <td class="govuk-table__cell">£{{data['rate2GeneralTotal'] or "200.00"}}</td>
+        {% else %}
+        <td class="govuk-table__cell"></td>
+      {% endif %} 
     </tr>
   </tbody>
 </table>
@@ -179,25 +225,37 @@
           {% else %}    
           <td class="govuk-table__cell">3 hours 0 minutes</td> 
         {% endif %}  
-        <td class="govuk-table__cell">{{data['travelTime-hours'] or "0"}} hours {{data['travelTime-mins'] or "0"}} minutes</td>
+        {% if data['travelAdjust'] == "Yes" or data['travelRemove'] == "Yes" %}
+          <td class="govuk-table__cell">{{data['travelTime-hours'] or "0"}} hours {{data['travelTime-mins'] or "0"}} minutes</td>
+          {% else %}
+          <td class="govuk-table__cell"></td>
+        {% endif %}
       </tr>
         <tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__cell">Rate</th>  
+        <th scope="row" class="govuk-table__cell">Rate</th>
         {% if data['primaryTravel'] == "No"%}
           <td class="govuk-table__cell"></td>
           {% else %}    
-          <td class="govuk-table__cell">£40.00</td> 
-        {% endif %}  
-        <td class="govuk-table__cell">£{{data['travelCostTime'] or "40.00"}} per hour</td>
+          <td class="govuk-table__cell">£40.00 per hour</td> 
+        {% endif %}     
+        {% if data['travelAdjust'] == "Yes" or data['travelRemove'] == "Yes" %}
+          <td class="govuk-table__cell">£{{data['travelCostTime'] or "40.00"}} per hour</td>
+          {% else %}
+            <td class="govuk-table__cell"></td>
+        {% endif %}
       </tr>
-      <tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__cell">Total</th>   
+        <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__cell">Total</th>
         {% if data['primaryTravel'] == "No"%}
           <td class="govuk-table__cell"></td>
           {% else %}    
           <td class="govuk-table__cell">£120.00</td> 
-        {% endif %} 
-        <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120.00"}}</td>
+        {% endif %}  
+        {% if data['travelAdjust'] == "Yes" or data['travelRemove'] == "Yes" %}
+          <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120.00"}}</td>
+          {% else %}
+            <td class="govuk-table__cell"></td>
+        {% endif %}
       </tr>
     </tbody>
   </table>
@@ -241,6 +299,7 @@
     <div class="govuk-inset-text">
       {{data['addCost1Adjust'] or "Waiting rate reduced accordingly."}}
     </div>
+    {% else %}
   {% endif %}
   
   <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
@@ -257,17 +316,29 @@
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__cell">Amount</th>
         <td class="govuk-table__cell">3 hours 0 minutes</td>
-         <td class="govuk-table__cell">{{data['addTime1-hours'] or "3"}} hours {{data['addTime1-mins'] or "0"}} minutes</td>
+        {% if data['add1Adjust'] == "No" or data['add1Adjust'] == null %}
+          <td class="govuk-table__cell"></td>
+          {% else %}
+          <td class="govuk-table__cell">{{data['addTime1-hours'] or "3"}} hours {{data['addTime1-mins'] or "0"}} minutes</td>
+        {% endif %}
       </tr>
         <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__cell">Rate</th>
         <td class="govuk-table__cell">£40.00 per hour</td>
-        <td class="govuk-table__cell">£{{data['addCostTime1'] or "40.00"}} per hour</td>
+        {% if data['add1Adjust'] == "No" or data['add1Adjust'] == null %}
+          <td class="govuk-table__cell"></td>
+          {% else %}
+          <td class="govuk-table__cell">£{{data['addCostTime1'] or "40.00"}} per hour</td>
+        {% endif %}
       </tr>
         <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__cell">Total</th>
         <td class="govuk-table__cell">£120.00</td>
-        <td class="govuk-table__cell">£{{data['actualAdd1Total'] or "120.00"}}</td>
+        {% if data['add1Adjust'] == "No" or data['add1Adjust'] == null %}
+          <td class="govuk-table__cell"></td>
+          {% else %}
+          <td class="govuk-table__cell">£{{data['actualAdd1Total'] or "120.00"}}.00</td>
+        {% endif %}
       </tr>
     </tbody>
   </table>
@@ -283,4 +354,5 @@
       <a class="govuk-link govuk-link--no-visited-state" href="delete-adjustment?deleteAdjust=add1">Delete additional cost 1 adjustment</a>
     {% endif %}
   </div>
-  {% endif %}
+          
+{% endif %}
