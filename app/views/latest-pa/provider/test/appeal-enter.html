@@ -1,10 +1,18 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
 
-{% block pageTitle %}
-CIS problem – {{ serviceName }} – GOV.UK Prototype Kit
+{% block header %}
+{% include version + "/includes/header-provider.html" %}
 {% endblock %}
 
+{% block pageTitle %}
+ – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+
 {% block beforeContent %}
+{% include "includes/banner.html"%}
 {{ govukBackLink({
 text: "Back",
 href: "javascript:window.history.back()"
@@ -21,12 +29,22 @@ href: "javascript:window.history.back()"
     <p class="govuk-body">Explain your grounds for appeal and upload supporting evidence.
       
       <h2 class="govuk-heading-m">LAA decision</h2>
-    <div class="govuk-inset-text">
-      <p><strong class="govuk-tag govuk-tag--red">Rejected</strong> </p>
-      <p>The service provider seems to have over-estimated their rates. They also have some poor reviews and references
-        from other providers.</p>
-    </div>
-    <form class="edit_prior_authority_steps_further_information_form"
+      
+      {% if data['app-task']=="Part granted"%}
+        <div class="govuk-inset-text">
+          <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
+          <p>The service provider seems to have over-estimated their rates. They also have some poor reviews and references
+          from other providers.</p>
+        </div>
+        {% else %}
+        <div class="govuk-inset-text">
+          <p><strong class="govuk-tag govuk-tag--red">Rejected</strong> </p>
+          <p>The service provider seems to have over-estimated their rates. They also have some poor reviews and references
+          from other providers.</p>
+        </div>  
+      {% endif %}
+
+        <form class="edit_prior_authority_steps_further_information_form"
       id="new_prior_authority_steps_further_information_form" enctype="multipart/form-data"
       action="https://dev.submit-crime-forms.service.justice.gov.uk/prior-authority/applications/8e8d41bd-ce20-49e8-b6a8-ce998918468b/steps/further_information"
       accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="put" autocomplete="off"><input

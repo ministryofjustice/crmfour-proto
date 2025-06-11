@@ -1,10 +1,18 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
 
-{% block pageTitle %}
-{{ serviceName }} – GOV.UK Prototype Kit
+{% block header %}
+{% include version + "/includes/header-provider.html" %}
 {% endblock %}
 
+{% block pageTitle %}
+Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+
 {% block beforeContent %}
+{% include "includes/banner.html"%}
 {{ govukBackLink({
 text: "Back",
 href: "javascript:window.history.back()"
@@ -66,11 +74,13 @@ Do not appeal for:</p>
 
 
 
-
+      {{ govukButton({
+        text: "Continue",
+        href: "appeal-check1",
+        isStartButton: false
+      }) }}
       
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
+      
 
     </form>
   </div>
