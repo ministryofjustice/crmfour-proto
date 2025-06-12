@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
 
@@ -71,28 +71,17 @@ href: "javascript:window.history.back()"
       </div>
 
       <div class="govuk-button-group">
-          
-  
-    
-  
-
-        <a href="application-submitted" role="button" draggable="false" class="govuk-button" data-module="govuk-button" data-govuk-button-init="">
-          Accept and send
-        </a>
-        
-        
-                  
-          
-        
-          
-            
-          
-        
-        <a href="../crm-apps-reviewed?cwAppState=all" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button" data-govuk-button-init="">
-          Save and come back later
-        </a>
-        
-                </div>
+        {{ govukButton({
+          text: "Accept and send",
+          href: "appeal-submitted"
+        }) }}
+      
+        {{ govukButton({
+          text: "Save and come back later",
+          href: "",
+          classes: "govuk-button--secondary"
+        }) }}
+      </div>
 
 
     </div>
