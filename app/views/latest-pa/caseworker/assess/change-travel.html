@@ -85,7 +85,7 @@
                   <label class="govuk-label govuk-date-input__label" for="travelTime-mins">
                     Minutes
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-mins" name="travelTime-mins" type="text" inputmode="numeric" value="{{data['travelTime-mins'] or '0'}}">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-mins" name="travelTime-mins" type="text" inputmode="numeric" value="{{data['travelTime-mins'] or "0"}}">
                 </div>
               </div>
             </div>
@@ -107,7 +107,7 @@
           spellcheck: false
         }) }}
       
-        <input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal'] or ""}}">                        
+        <input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal'] or "0"}}">                        
                 
         <button class="govuk-button govuk-button--secondary" type="button" onclick="calTravelCost()">Calculate cost</button>
 
