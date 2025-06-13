@@ -150,3 +150,26 @@ router.post('/appeal-decision', function(request, response) {
       response.redirect('/' + version + "/caseworker/assess/send-confirmation?appealStatus=Dismissed")
   }
 })
+
+//Provider appeal check screen routes
+
+// Show the form page
+router.get('provider/test//appeal-check1', function (req, res) {
+  res.render('provider/test/appeal-check1');
+});
+
+// Handle the form submission
+router.post('appeal-check-routing', function (req, res) {
+  const appealChoice = req.body['appeal-more'];
+
+  if (appealChoice === 'yes') {
+    res.redirect('provider/test/appeal-check2');
+  } else if (appealChoice === 'no') {
+    res.redirect('provider/test/appeal-check2out');
+  } else {
+    // Optional: handle missing choice
+    res.redirect('provider/test/appeal-check1');
+  }
+});
+
+
