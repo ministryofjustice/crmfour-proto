@@ -27,20 +27,59 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-       <form class="form" action="send-confirmation?cwAppStatus=Referred" method="post">
+       {% if data['cwAppStatus'] =="In progress"%}
+       <form class="form" action="send-confirmation?cwAppStatus=Hold" method="post">
 
         {{ govukTextarea({
-            name: "icaReferredReason",
-            id: "icaReferredReason",
-            label: {
-              text: "Explain why you referred this decision to the ICA",
-              isPageHeading: true,
-              classes: "govuk-label--xl"
-            },
-            hint: {
-            text: "We'll share this information with the provider"
-            }
-          }) }}   
+          name: "icaReferredReason",
+          id: "icaReferredReason",
+          label: {
+            text: "Explain why you are referring this decision to the ICA",
+            isPageHeading: true,
+            classes: "govuk-label--xl"
+          },
+          hint: {
+          text: "We'll share this information with the provider"
+          }
+        }) }}   
+
+        {% elseif data['cwAppStatus'] =="Hold"  %}
+          <form class="form" action="send-confirmation?cwAppStatus=Referred" method="post">
+            <h1 class="govuk-heading-xl">Details of the ICA referral</h1>
+
+              {{ govukInput({
+                label: {
+                  text: "First name",
+                  classes: "govuk-label--s"
+                },
+                classes: "govuk-input--width-20",
+                id: "ICA-first-name",
+                name: "ICA-first-name"
+              }) }}
+
+              {{ govukInput({
+                label: {
+                  text: "Last name",
+                  classes: "govuk-label--s"
+                },
+                classes: "govuk-input--width-20",
+                id: "ICA-last-name",
+                name: "ICA-last-name"
+              }) }}
+
+              {{ mojDatePicker({
+                id: "dateSentICA",
+                name: "dateSentICA",
+                label: {
+                  text: "Date sent",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 17/5/2025"
+                }
+              }) }}                  
+          
+        {% endif %}
       
         <div class="govuk-button-group">
           {{ govukButton({
@@ -49,7 +88,7 @@
 
           {{ govukButton({
             text: "Save and come back later",
-              classes: "govuk-button--secondary",
+            classes: "govuk-button--secondary",
             href: "application-details"
           }) }}
         </div>

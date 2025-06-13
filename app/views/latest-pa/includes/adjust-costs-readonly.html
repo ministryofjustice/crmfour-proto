@@ -1,6 +1,6 @@
 <ul class="govuk-list">
   <li>Requested: £640.00</li>
-  <li>Allowed: £{{data['actualGeneralTotal'] or "520.00"}}</li>
+  <li>Allowed: £{{allowedTotal}}</li>
 </ul>
 
 <details class="govuk-details">
@@ -23,23 +23,23 @@
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Service - rate 1</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['rate1GeneralTotal'] or "200.00"}}</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£{{rate1total}}</td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Service - rate 2</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['rate2GeneralTotal'] or "200.00"}}
+          <td class="govuk-table__cell govuk-table__cell--numeric">£{{rate2total}}
           </td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Travel</td>
             <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['actualTravelTotal'] or "120.00"}}</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£{{traveltotal}}</td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Waiting time</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['actualAdd1Total'] or "120.00"}}</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£{{add1total}}</td>
           </td>
         </tr>
           <tr class="govuk-table__row">
@@ -47,7 +47,7 @@
           <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£640.00</strong></td>
           <td class="govuk-table__cell govuk-table__cell--numeric">
             <span class="govuk-visually-hidden">Sum of total requested: </span>
-            <strong>£{{data['actualTotalTotal'] or "520.00"}}</strong>
+            <strong>£{{allowedTotal}}</strong>
           </td>
         </tr>
       </tbody>
@@ -91,22 +91,22 @@
       <th scope="row" class="govuk-table__cell">Amount</th>
       <td class="govuk-table__cell">1 hour 0 minutes</td>
       <td class="govuk-table__cell">2 hour 0 minutes</td>
-      <td class="govuk-table__cell">{{data['generalNoHours-hours'] or "1"}} hours {{data['generalNoHours-mins'] or "0"}} minutes</td>
-      <td class="govuk-table__cell">{{data['general2NoHours-hours'] or "2"}} hours {{data['general2NoHours-mins'] or "0"}} minutes</td>
+      <td class="govuk-table__cell">{{rate1hour}} hours {{rate1min}} minutes</td>
+      <td class="govuk-table__cell">{{rate2hour}} hours {{rate2min}} minutes</td>
     </tr>
     <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__cell">Rate</th>
       <td class="govuk-table__cell">£100 per hour</td>
       <td class="govuk-table__cell">£200 per hour</td>
-      <td class="govuk-table__cell">£{{data['generalCost'] or "100.00"}} per hour</td>
-      <td class="govuk-table__cell">£{{data['general2Cost'] or "200.00"}} per hour</td> 
+      <td class="govuk-table__cell">£{{rate1cost}} per hour</td>
+      <td class="govuk-table__cell">£{{rate2cost}} per hour</td> 
     </tr>
     <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__cell">Total</th>
       <td class="govuk-table__cell">£200.00</td>
       <td class="govuk-table__cell">£200.00</td>
-      <td class="govuk-table__cell">£{{data['rate1GeneralTotal'] or "200.00"}}</td>
-      <td class="govuk-table__cell">£{{data['rate2GeneralTotal'] or "200.00"}}</td>
+      <td class="govuk-table__cell">£{{rate1total}}</td>
+      <td class="govuk-table__cell">£{{rate2total}}</td>
     </tr>
   </tbody>
 </table>
@@ -148,7 +148,7 @@
           {% else %}    
           <td class="govuk-table__cell">3 hours 0 minutes</td> 
         {% endif %}  
-        <td class="govuk-table__cell">{{data['travelTime-hours'] or "0"}} hours {{data['travelTime-mins'] or "0"}} minutes</td>
+        <td class="govuk-table__cell">{{travelhour}} hours {{travelmin}} minutes</td>
       </tr>
         <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__cell">Rate</th>  
@@ -157,7 +157,7 @@
           {% else %}    
           <td class="govuk-table__cell">£40.00</td> 
         {% endif %}  
-        <td class="govuk-table__cell">£{{data['travelCostTime'] or "40.00"}} per hour</td>
+        <td class="govuk-table__cell">£{{travelcost}} per hour</td>
       </tr>
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__cell">Total</th>   
@@ -166,7 +166,7 @@
           {% else %}    
           <td class="govuk-table__cell">£120.00</td> 
         {% endif %} 
-        <td class="govuk-table__cell">£{{data['actualTravelTotal'] or "120.00"}}</td>
+        <td class="govuk-table__cell">£{{traveltotal}}</td>
       </tr>
     </tbody>
   </table>
@@ -196,17 +196,17 @@
       <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__cell">Amount</th>
         <td class="govuk-table__cell">3 hours 0 minutes</td>
-         <td class="govuk-table__cell">{{data['addTime1-hours'] or "3"}} hours {{data['addTime1-mins'] or "0"}} minutes</td>
+         <td class="govuk-table__cell">{{add1hour}} hours {{add1min}} minutes</td>
       </tr>
         <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__cell">Rate</th>
         <td class="govuk-table__cell">£40.00 per hour</td>
-        <td class="govuk-table__cell">£{{data['addCostTime1'] or "40.00"}} per hour</td>
+        <td class="govuk-table__cell">£{{add1cost}} per hour</td>
       </tr>
         <tr class="govuk-table__row">
         <th scope="row" class="govuk-table__cell">Total</th>
         <td class="govuk-table__cell">£120.00</td>
-        <td class="govuk-table__cell">£{{data['actualAdd1Total'] or "120.00"}}</td>
+        <td class="govuk-table__cell">£{{add1total}}</td>
       </tr>
     </tbody>
   </table>

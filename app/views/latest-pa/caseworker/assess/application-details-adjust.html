@@ -38,14 +38,14 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <h2 class="govuk-heading-l">Costs</h2>
+    <h2 class="govuk-heading-l" id="allowedCosts">Costs</h2>
 
     {% include version + "/includes/adjust-info.html"%}
 
     {% if data['Appeal'] == "Yes"%}
 
       {% set appealCurrentCostHtml %}
-        <h3 class="govuk-heading-m">Appeal in progress</h3>
+        <h3 class="govuk-heading-m">Appeal in progress</h3>        
         {% include version + "/includes/adjust-costs.html"%}            
       {% endset%}
 
@@ -427,4 +427,23 @@
   </div>
 </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    var rate1GeneralTotal = parseInt(document.getElementById("rate1GeneralTotal").value) | 0
+    var rate2GeneralTotal = parseInt(document.getElementById("rate2GeneralTotal").value) | 0
+    var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
+    var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
+    var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
+    var allowedTotalCost = parseInt(document.getElementById("allowedTotalCost").value) | 0
+
+    window.onload = function(){  
+      allowedTotalCost = actualTravelTotal + actualAdd1Total + rate1GeneralTotal + rate2GeneralTotal;
+      document.getElementById("showallowedTotalCost").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost2").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost3").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("allowedTotalCost").value = Number(allowedTotalCost).toFixed(2);
+    }
+  </script>
 {% endblock %}

@@ -316,3 +316,22 @@
 </div>
 
 {% endblock %}
+
+{% block pageScripts %}
+  <script>
+    var rate1GeneralTotal = parseInt(document.getElementById("rate1GeneralTotal").value) | 0
+    var rate2GeneralTotal = parseInt(document.getElementById("rate2GeneralTotal").value) | 0
+    var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
+    var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
+    var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
+    var allowedTotalCost = parseInt(document.getElementById("allowedTotalCost").value) | 0
+
+    window.onload = function(){  
+      allowedTotalCost = actualTravelTotal + actualAdd1Total + rate1GeneralTotal + rate2GeneralTotal;
+      document.getElementById("showallowedTotalCost").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost2").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost3").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("allowedTotalCost").value = Number(allowedTotalCost).toFixed(2);
+    }
+  </script>
+{% endblock %}

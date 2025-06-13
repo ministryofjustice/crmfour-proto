@@ -1,3 +1,11 @@
+<input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal'] or "120.00"}}" />
+<input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total'] or "120.00"}}" />
+<input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal'] or "400.00"}}" />
+<input type="hidden" id="rate1GeneralTotal" name="rate1GeneralTotal" value="{{data['rate1GeneralTotal'] or "200.00"}}" />
+<input type="hidden" id="rate2GeneralTotal" name="rate2GeneralTotal" value="{{data['rate2GeneralTotal'] or "200.00"}}" />
+<input type="hidden" id="allowedTotalCost" name="allowedTotalCost" value="{{data['allowedTotalCost'] or "640.00"}}" />   
+    
+    
 <span class="govuk-caption-xl">Crime Busters Legal</span>
 <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
 
@@ -26,7 +34,7 @@
     {% endif %}
   </p>
  
-    {% elseif data['Appeal'] == "Yes" and (data['appealStatus'] == "" or data['appealStatus'] == null) %}
+    {% elseif data['Appeal'] == "Yes" %}
      <p>
       <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
       {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "" %}
@@ -37,7 +45,9 @@
           <strong class="govuk-tag govuk-tag--yellow">Appeal: Sent back</strong>
         {% elseif data['cwAppStatus'] == "Returned" %}
           <strong class="govuk-tag govuk-tag--grey">Appeal: Updated</strong>
-        {% elseif data['cwAppStatus'] == "Referred" %}
+        {% elseif data['cwAppStatus'] == "Hold" %}
+          <strong class="govuk-tag govuk-tag--yellow">Appeal: ICA Hold</strong>
+          {% elseif data['cwAppStatus'] == "Referred" %}
           <strong class="govuk-tag govuk-tag--yellow">Appeal: Referred</strong>
       {% endif %}
       </p>
@@ -55,17 +65,12 @@
 {% endif %}
 
 
-  <p class="govuk-body-l"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00<br>
-    {% if data['cwAppStatus'] == "Part granted" or data['Appeal'] == "Yes" %}
-      <strong>Allowed: </strong>£520.00<br>
-    {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}
-      <strong>Allowed: </strong>£{{data['actualdistTotalCost'] or "640"}}.00<br>
-    {% elseif data['cwAppStatus'] == "Rejected" %}
-      <strong>Allowed: </strong>£0.00<br>
-    {% elseif data['serviceAdjust'] == null %}
-    {% else %}
-      <strong>Allowed: </strong>£440.00<br>
-  {% endif %}
+  <p class="govuk-body-l"><strong>Requested:</strong> £640.00<br>
+    {% if data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}<strong>Allowed:</strong> £0.00
+      {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}<strong>Allowed:</strong> £640.00     
+      {% elseif data['serviceAdjust'] == "No" and data['travelAdjust'] == "No" and data['add1Adjust'] == "No" %}
+      {% elseif data['serviceAdjust'] == "Yes" or data['travelAdjust'] == "Yes" or data['add1Adjust'] == "Yes" %}<strong>Allowed:</strong> £<span id="showallowedTotalCost">520.00</span>
+    {% endif %}
 
   <p class="govuk-body-m">
     {% if data['Appeal'] =="Yes"%}

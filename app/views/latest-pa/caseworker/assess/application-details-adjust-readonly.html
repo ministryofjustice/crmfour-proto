@@ -34,6 +34,28 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <h2 class="govuk-heading-l">Costs</h2>
+    <!--Setting up lots of cost variables-->
+    {% if data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
+      {% set allowedTotal = "0.00" %} 
+      {% set rate1total = "0.00" %} {% set rate1hour = "0" %} {% set rate1min = "0" %} {% set rate1cost = "0.00" %}
+      {% set rate2total = "0.00" %} {% set rate2hour = "0" %} {% set rate2min = "0" %} {% set rate2cost = "0.00" %}
+      {% set traveltotal = "0.00" %} {% set travelhour = "0" %} {% set travelmin = "0" %} {% set travelcost = "0.00" %}
+      {% set add1total = "0.00" %} {% set add1hour = "0" %} {% set add1min = "0" %} {% set add1cost = "0.00" %}
+
+      {% elseif data['cwAppStatus'] == "Granted" %}
+        {% set allowedTotal = "640.00" %}
+        {% set rate1total = "200.00" %} {% set rate1hour = "1" %} {% set rate1min = "0" %} {% set rate1cost = "200.00" %}
+        {% set rate2total = "200.00" %} {% set rate2hour = "2" %} {% set rate2min = "0" %} {% set rate2cost = "200.00" %}
+        {% set traveltotal = "120.00" %} {% set travelhour = "3" %} {% set travelmin = "0" %} {% set travelcost = "40.00" %}
+        {% set add1total = "120.00" %} {% set add1hour = "3" %} {% set add1min = "0" %} {% set add1cost = "40.00" %}
+
+      {% else %}
+        {% set allowedTotal = "520.00" %}
+        {% set rate1total = "200.00" %} {% set rate1hour = "1" %} {% set rate1min = "0" %} {% set rate1cost = "200.00" %}
+        {% set rate2total = "200.00" %} {% set rate2hour = "2" %} {% set rate2min = "0" %} {% set rate2cost = "200.00" %}
+        {% set traveltotal = "0.00" %} {% set travelhour = "0" %} {% set travelmin = "0" %} {% set travelcost = "40.00" %}
+        {% set add1total = "120.00" %} {% set add1hour = "3" %} {% set add1min = "0" %} {% set add1cost = "40.00" %}
+    {% endif %}
 
     {% include version + "/includes/adjust-info.html" %}
 
@@ -434,4 +456,23 @@
 
   </div>
 </div>
-  {% endblock %}
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    var rate1GeneralTotal = parseInt(document.getElementById("rate1GeneralTotal").value) | 0
+    var rate2GeneralTotal = parseInt(document.getElementById("rate2GeneralTotal").value) | 0
+    var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
+    var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
+    var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
+    var allowedTotalCost = parseInt(document.getElementById("allowedTotalCost").value) | 0
+
+    window.onload = function(){  
+      allowedTotalCost = actualTravelTotal + actualAdd1Total + rate1GeneralTotal + rate2GeneralTotal;
+      document.getElementById("showallowedTotalCost").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost2").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost3").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("allowedTotalCost").value = Number(allowedTotalCost).toFixed(2);
+    }
+  </script>
+{% endblock %}

@@ -15,10 +15,10 @@
       <dl class="govuk-summary-list govuk-!-margin-bottom-6">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Caseworker
+            ICA contact
           </dt>
           <dd class="govuk-summary-list__value">
-            {{data['caseworker1']}}
+            Judith Brennen
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -33,7 +33,35 @@
     </div>
   </div>
 
-  {% elseif data['cwAppStatus'] == "Referred"%} 
+  {% if data['icaDecision'] == "Yes" %}
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h4 class="govuk-summary-card__title" id="review-further-info">Referred to ICA 21 May 2025</h4>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Caseworker
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['caseworker1']}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Reasons for referral
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p>{{data['icaReason'] or "Appeal referred to ICA due to questions over the expert used and rates requested by provider."}}</p>
+            </dd>
+          </div>
+        </dl>       
+      </div>
+    </div>
+  {% endif %}
+
+  {% elseif data['cwAppStatus'] == "Referred" %} 
     <h3 class="govuk-heading-m">Updates</h3>
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
