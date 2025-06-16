@@ -8,13 +8,7 @@
     {% endif %}
   </li>
 </ul>
-
-{% if data['cwAppStatus'] == "Reject" or data['cwAppStatus'] == "Expired" %}
-  {% set data['rate1GeneralTotal'] %}
-  £0.00
-  {% endset %}
-{% endif %}
-      
+     
 <details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
@@ -35,7 +29,7 @@
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Service - rate 1</td>
           <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
-          <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['rate1GeneralTotal']}}</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['rate1GeneralTotal'] or "200.00"}}</td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Service - rate 2</td>
@@ -79,7 +73,7 @@
   </div>
 </details>
       
-      <!--Service -->
+<!--Service -->
 {% if data['Appeal'] =="Yes" %}  
   <h4 class="govuk-heading-s" id="serviceID">Service cost</h4>
   {% else %}
