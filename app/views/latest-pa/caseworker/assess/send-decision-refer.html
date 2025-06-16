@@ -29,23 +29,24 @@
 
        {% if data['cwAppStatus'] =="In progress"%}
        <form class="form" action="send-confirmation?cwAppStatus=Hold" method="post">
-
+        
         {{ govukTextarea({
           name: "icaReferredReason",
           id: "icaReferredReason",
           label: {
-            text: "Explain why you are referring this decision to the ICA",
+            text: "Why you are referring this decision to the ICA?",
             isPageHeading: true,
             classes: "govuk-label--xl"
           },
           hint: {
-          text: "We'll share this information with the provider"
+            text: "The provider will be informed that their appeal will be sent to the ICA on the following Monday."
           }
         }) }}   
 
         {% elseif data['cwAppStatus'] =="Hold"  %}
           <form class="form" action="send-confirmation?cwAppStatus=Referred" method="post">
-            <h1 class="govuk-heading-xl">Details of the ICA referral</h1>
+
+            <h1 class="govuk-heading-xl">Which ICA was it sent to?</h1>
 
               {{ govukInput({
                 label: {

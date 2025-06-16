@@ -127,20 +127,7 @@
               </dd>
             </div>
           </dl>
-          <h2 class="govuk-heading-m">Next steps</h2>
-          <p>You must send the application to the ICA.</p>
-          <ul class="govuk-list govuk-list--number">
-            <li><a href="1">Download this application (PDF) </a></li>
-            <li><a href="2">Download attachments application (Zip folder)</a></li>
-            <li>Email the details to the ICA</li>
-            <li>Mark the application as being 'Sent to ICA' once the steps above are complete</li>
-          </ul>
-
           <div class="govuk-button-group">
-            {{ govukButton({
-              text: "Mark as sent to ICA",
-              href: "send-decision-refer"
-            }) }}
             <a class="govuk-link" href="application-details">Return to the application</a>
           </div>
 
@@ -214,14 +201,14 @@
                   Comments
                 {% endif %}
               </dt>
-                <dd class="govuk-summary-list__value">
-                  {% if data['appealStatus']== "Upheld"%}
-                    {{data['upheldConfirm'] or "We have upheld your appeal due to supporting evidence."}}
-                    {% elseif data['appealStatus']== "Part upheld"%}
-                      {{data['partUpheldConfirm'] or "We have parially upheld your appeal due to supporting evidence and made appropriate adjustments to some of your costs."}}
-                    {% elseif data['appealStatus']== "Dismissed"%}
-                      {{data['dismissedConfirm'] or "Your appeal has been dismissed as the travel costs are not permissionable for this type of expert."}}
-                  {% endif %}
+              <dd class="govuk-summary-list__value">
+                {% if data['cwAppStatus']== "Granted"%}
+                  {{data['grantedConfirm'] or "We have upheld your appeal due to supporting evidence and full reisntate your travel costs. Your applciation is fully grastned."}}
+                  {% elseif data['cwAppStatus']== "Part granted"%}
+                    {{data['partConfirm'] or "Your application remains part granted as travel costs are now allowable for this type of service as stated in the policy guidance"}}
+                  {% elseif data['cwAppStatus']== "Rejected"%}
+                    {{data['rejectedConfirm'] or "We are unable to change the decisions made due to clear policy guidance nad your application remains rejected."}}
+                {% endif %}
               </dd>
             </div>
           </dl>

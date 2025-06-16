@@ -38,16 +38,22 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    
-      <h2 class="govuk-heading-l" id="appeal-details">Appeal</h2>
+    <h2 class="govuk-heading-l" id="appeal-details">Appeal</h2>
+
+    {% if data['cwAppStatus'] == "Part granted" %}
+      {% set appealLabel %}
+        Appeal 18 May 2025
+      {% endset%}
+      {% else %}
+      {% set appealLabel %}
+        Appeal in progress
+      {% endset%}
+    {% endif %}    
 
 
     {% set appealCurrentHtml %}
-      {% if data['appealStatus'] =="Dismissed" %}
-        <h3 class="govuk-heading-m" id="appeal-details">Appeal 18 May 2025</h3>
-        {% else %}
-        <h3 class="govuk-heading-m" id="appeal-details">Appeal in progress</h3>
-      {% endif %}
+
+      <h3 class="govuk-heading-m" id="appeal-details">{{appealLabel}}</h3>
 
       <dl class="govuk-summary-list">
         {% if data['appealStatus'] == "" or data['appealStatus'] == null  %}
@@ -61,20 +67,20 @@
               {% endif %}
             </dt>
             <dd class="govuk-summary-list__value">
-              <p>{{data['appealStatus']}} 21 May 2025</p>
+              <p>{{data['cwAppStatus']}} 21 May 2025</p>
               <p>
-                {% if data['appealStatus']== "Upheld"%}
-                  {{data['upheldConfirm'] or "We have upheld your appeal due to supporting evidence."}}
-                  {% elseif data['appealStatus']== "Part upheld"%}
-                    {{data['partUpheldConfirm'] or "We have parially upheld your appeal due to supporting evidence and made appropriate adjustments to some of your costs."}}
-                  {% elseif data['appealStatus']== "Dismissed"%}
-                    {{data['dismissedConfirm'] or "Your appeal has been dismissed as the travel costs are not permissionable for this type of expert."}}
+                {% if data['cwAppStatus']== "Granted"%}
+                  {{data['grantedConfirm'] or "We have upheld your appeal due to supporting evidence and full reisntate your travel costs. Your applciation is fully grastned."}}
+                  {% elseif data['cwAppStatus']== "Part granted"%}
+                    {{data['partConfirm'] or "Your application remains part granted as travel costs are now allowable for this type of service as stated in the policy guidance"}}
+                  {% elseif data['cwAppStatus']== "Rejected"%}
+                    {{data['rejectedConfirm'] or "We are unable to change the decisions made due to clear policy guidance nad your application remains rejected."}}
                 {% endif %}
               </p>
               <ul class="govuk-list">
                 <li>Application: Part granted</li>
                 <li>Requested: £640.00</li>
-                <li>Allowed: £520.00</li>
+                <li>Allowed: £480.00</li>
                 <li>Caseworker: {{data['caseworker2']}}</li>
               </ul>
             </dd>
@@ -86,7 +92,7 @@
           </dt>
           <dd class="govuk-summary-list__value">
             <p>Appeal 18 May 2025</p>
-            <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost.
+            <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost. Please refer to the ICA.
             </p>
             <ul class="govuk-list">
               <li><a href="">even-more-evidence.pdf</a></li>
@@ -98,12 +104,12 @@
             Decision being appealed
           </dt>
           <dd class="govuk-summary-list__value">
-            <p>Part upheld 7 May 2025</p>
-            <p>We have parially upheld your appeal due to the new supporting evidence and made appropriate adjustments to some of your costs. Your application remains part granted.</p>
+            <p>Part granted 7 May 2025</p>
+            <p>Your new evidence does not allow us to approve the travel costs. Your application remains part granted.</p>
             <ul class="govuk-list">
               <li>Application: Part granted</li>
               <li>Requested: £{{data['actualdistTotalCost'] or "640"}}.00</li>
-              <li>Allowed: £520.00</li>
+              <li>Allowed: £480.00</li>
               <li>Caseworker: {{data['caseworker2']}}</li>
             </ul>
           </dd>
@@ -122,8 +128,8 @@
             Decision
           </dt>
           <dd class="govuk-summary-list__value">
-            <p>Part upheld 7 May 2025</p>
-            <p>We have parially upheld your appeal due to the new supporting evidence and made appropriate adjustments to some of your costs. Your application remains part granted.</p>
+            <p>Part granted 7 May 2025</p>
+            <p>Your new evidence does not allow us to approve the travel costs. Your application remains part granted.</p>
             <ul class="govuk-list">
               <li>Application: Part granted</li>
               <li>Requested: £{{data['actualdistTotalCost'] or "640"}}.00</li>
@@ -138,7 +144,7 @@
           </dt>
           <dd class="govuk-summary-list__value">
             <p>Appeal 2 May 2025</p>
-            <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost.
+            <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost. Please refer to the ICA..
             </p>
             <ul class="govuk-list">
               <li><a href="">even-more-evidence.pdf</a></li>
@@ -156,7 +162,7 @@
               <li>Allowed: £480.00</li>
               <li>Caseworker: {{data['caseworker2']}}</li>
             </ul>
-            <p>This application was part granted due to disallowed travel costs.</p>
+            <p>This application was part granted due to disallowed travel costs and reduced waiting costs.</p>
           </dd>
         </div>
       </dl>       
@@ -267,23 +273,12 @@
               <li>Allowed: £480.00</li>
               <li>Caseworker: {{data['caseworker2']}}</li>
             </ul>
-            <p>This application was part granted due to disallowed travel costs.</p>
+            <p>This application was part granted due to disallowed travel costs and reduced waiting costs.</p>
           </dd>
         </div>
       </dl>     
 
     {% endset %}
-
-
-    {% if data['cwAppStatus'] == "Part granted" %}
-      {% set appealLabel %}
-        Appeal 18 May 2025
-      {% endset%}
-      {% else %}
-      {% set appealLabel %}
-        Appeal in progress
-      {% endset%}
-    {% endif %}    
     
     {{ govukTabs({
       items: [

@@ -68,8 +68,8 @@
   <p class="govuk-body-l"><strong>Requested:</strong> £640.00<br>
     {% if data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}<strong>Allowed:</strong> £0.00
       {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}<strong>Allowed:</strong> £640.00     
-      {% elseif data['serviceAdjust'] == "No" and data['travelAdjust'] == "No" and data['add1Adjust'] == "No" %}
-      {% elseif data['serviceAdjust'] == "Yes" or data['travelAdjust'] == "Yes" or data['add1Adjust'] == "Yes" %}<strong>Allowed:</strong> £<span id="showallowedTotalCost">520.00</span>
+      {% elseif data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+      {% else %} <strong>Allowed:</strong> £<span id="showallowedTotalCost">520.00</span>
     {% endif %}
 
   <p class="govuk-body-m">

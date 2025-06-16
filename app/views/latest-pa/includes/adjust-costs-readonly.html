@@ -182,6 +182,12 @@
   <p>No additional costs added</p>
   {% else %}
     <h3 class="govuk-heading-m">Additional cost 1</h3>
+
+    {% if data['add1Adjust'] == "Yes" or data['add1Remove'] == "Yes" %}
+      <div class="govuk-inset-text">
+        {{data['addCost1Adjust'] or "Waiting rate reduced accordingly."}}
+      </div>
+    {% endif %}
     <p>Cost description: "{{ data['addCost1'] or "Waiting time" }} - {{ data['whyAdd1'] or "Waited at police station for client to be interviewed" }}"</p>
 
   <table class="govuk-table">

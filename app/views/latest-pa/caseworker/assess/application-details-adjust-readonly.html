@@ -50,23 +50,29 @@
         {% set add1total = "120.00" %} {% set add1hour = "3" %} {% set add1min = "0" %} {% set add1cost = "40.00" %}
 
       {% else %}
-        {% set allowedTotal = "520.00" %}
+        {% set allowedTotal = "480.00" %}
         {% set rate1total = "200.00" %} {% set rate1hour = "1" %} {% set rate1min = "0" %} {% set rate1cost = "200.00" %}
         {% set rate2total = "200.00" %} {% set rate2hour = "2" %} {% set rate2min = "0" %} {% set rate2cost = "200.00" %}
         {% set traveltotal = "0.00" %} {% set travelhour = "0" %} {% set travelmin = "0" %} {% set travelcost = "40.00" %}
-        {% set add1total = "120.00" %} {% set add1hour = "3" %} {% set add1min = "0" %} {% set add1cost = "40.00" %}
+        {% set add1total = "80.00" %} {% set add1hour = "2" %} {% set add1min = "0" %} {% set add1cost = "40.00" %}
     {% endif %}
 
     {% include version + "/includes/adjust-info.html" %}
 
+    {% if data['cwAppStatus'] == "Part granted" %}
+      {% set appealLabel %}
+        Appeal 18 May 2025
+      {% endset%}
+      {% else %}
+      {% set appealLabel %}
+        Appeal in progress
+      {% endset%}
+    {% endif %}
+
     {% if data['Appeal'] == "Yes"%}
 
       {% set appealCurrentCostHtml %}  
-        {% if data['cwAppStatus'] == "Part granted" %}
-          <h3 class="govuk-heading-m">Appeal 18 May 2025</h3>
-          {% else %}
-          <h3 class="govuk-heading-m">Appeal in progress</h3>
-        {% endif %}      
+        <h3 class="govuk-heading-m">{{appealLabel}}</h3>
         {% include version + "/includes/adjust-costs-readonly.html"%}            
       {% endset%}
 
@@ -74,7 +80,7 @@
         <h3 class="govuk-heading-m">Appeal 2 May 2025</h3> 
         <ul class="govuk-list">
           <li>Requested: £640.00</li>
-          <li>Allowed: £520.00</li>
+          <li>Allowed: £480.00</li>
         </ul>
 
         <details class="govuk-details">
@@ -413,16 +419,6 @@
         </table>
             
       {% endset%}
-
-            {% if data['cwAppStatus'] == "Part granted" %}
-        {% set appealLabel %}
-          Appeal 18 May 2025
-        {% endset%}
-        {% else %}
-        {% set appealLabel %}
-          Appeal in progress
-        {% endset%}
-      {% endif %}
 
       {{ govukTabs({
         items: [

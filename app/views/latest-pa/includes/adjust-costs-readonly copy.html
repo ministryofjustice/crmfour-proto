@@ -1,6 +1,6 @@
 <ul class="govuk-list">
   <li>Requested: £640.00</li>
-  <li>Allowed: £{{data['actualGeneralTotal'] or "520.00"}}</li>
+  <li>Allowed: £{{data['actualGeneralTotal'] or "480.00"}}</li>
 </ul>
 
 <details class="govuk-details">
@@ -26,7 +26,6 @@
           <td class="govuk-table__cell govuk-table__cell--numeric">
             {% if data['cwAppStatus'] == "Part granted" %}
               £200.00
-              {% else %}
             {% endif %}
           </td>
         </tr>
@@ -36,7 +35,6 @@
           <td class="govuk-table__cell govuk-table__cell--numeric">
             {% if data['cwAppStatus'] == "Part granted" %}
               £200.00
-              {% else %}
             {% endif %}
           </td>
         </tr>
@@ -46,7 +44,6 @@
           <td class="govuk-table__cell govuk-table__cell--numeric">
             {% if data['cwAppStatus'] == "Part granted" %}
               £120.00
-              {% else %}
             {% endif %}
           </td>
         </tr>
@@ -56,7 +53,6 @@
           <td class="govuk-table__cell govuk-table__cell--numeric">
             {% if data['cwAppStatus'] == "Part granted" %}
               £120.00
-              {% else %}
             {% endif %}
           </td>
         </tr>
@@ -66,8 +62,7 @@
           <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span>
             <strong>
               {% if data['cwAppStatus'] == "Part granted" %}
-                £520.00
-                {% else %}
+                £480.00
               {% endif %}
             </strong>
           </td>
