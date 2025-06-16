@@ -31,33 +31,12 @@
 
         <h1 class="govuk-heading-xl">Make a decision</h1>
 
-         {{ govukRadios({
-          name: "icaDecision",
-          fieldset: {
-            legend: {
-              text: "Is this an ICA or caseworker decsion?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "Yes",
-              text: "ICA"
-            },
-            {
-              value: "No",
-              text: "Caseworker"
-            }
-          ]
-        }) }}
-
         {% set grantedHtml %}
           {{ govukTextarea({
             name: "grantedConfirm",
             id: "grantedConfirm",
             label: {
-              text: "Enter additional comments (optional)",
+              text: "Explain your decision",
               isPageHeading: false
             },
             hint: {
