@@ -30,7 +30,7 @@
       <h1 class="govuk-heading-xl">Are you sure you want to add this application to your list?</h1>
       <!---If the CW is adding the app to their queue, it still sometimes needs to show comment from the previous status-->
       {% if data['Appeal'] =="Yes" and data['cwAppStatus'] =="Referred" %}
-        <form class="form" action="application-details-appeal?appAssigned=yes&cwAppStatus=In progress&statusComment=Referred" method="post">
+        <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Referred" method="post">
           {% elseif data['Appeal'] =="Yes" and data['cwAppStatus'] =="New" %}
             <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=None" method="post">
           {% elseif data['cwAppStatus'] =="Returned" %}
