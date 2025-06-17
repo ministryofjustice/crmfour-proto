@@ -29,8 +29,6 @@
 
       <form class="form" action="/{{version}}/appeal-decision" method="post">
 
-        <h1 class="govuk-heading-xl">Make a decision</h1>
-
         {% set grantedHtml %}
           {{ govukTextarea({
             name: "grantedConfirm",
@@ -77,9 +75,9 @@
           name: "cwAppStatus",
           fieldset: {
             legend: {
-              text: "What is the decision on the application as a result of the appeal?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--s"
+              text: "What is the overall decision?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
             }
           },
           items: [
