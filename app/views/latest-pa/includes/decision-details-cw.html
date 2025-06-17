@@ -1,12 +1,19 @@
 {% if data['cwAppStatus'] == "Referred" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred")%}
   <div class="govuk-inset-text">
     <p><strong>Referred to ICA 21 May 2025</strong></p>
+    <p>ICA: {{data['ICA-first-name']}} {{data['ICA-last-name']}}</p>
     <p>{{data['icaReferredReason'] or "Appeal referred to ICA due to questions over the expert used and rates requested by provider."}}</p>
   </div>
-  {% elseif data['cwAppStatus'] == "Hold" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Hold") %}
+  {% elseif data['cwAppStatus'] == "Hold" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred") %}
     <div class="govuk-inset-text">
       <p><strong>ICA Hold 21 May 2025 </strong></p>
-      <p>Waiting to be sent to the ICA for referral</p>
+      <p>Caseworker comment: {{data['icaReferredReason'] or "Appeal referred to ICA due to questions over the expert used and rates requested by provider."}}</p>
+      <p>This appeal needs to be sent to the ICA</p>
+      <ul class="govuk-list govuk-list--number">
+        <li><a href="1">Download this application and attachments (Zip) </a></li>
+        <li>Email the download to the ICA</li>
+        <li>Mark as sent to ICA</li>
+      </ul>
       {{ govukButton({
         text: "Mark as sent to ICA",
         href: "send-decision-refer"
