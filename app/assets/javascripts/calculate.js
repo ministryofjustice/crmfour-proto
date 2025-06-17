@@ -34,18 +34,21 @@ function calTravelCost() {
 
   document.getElementById("showTravelTotal").innerHTML = Number(travelCost).toFixed(2);
   document.getElementById("actualTravelTotal").value = Number(travelCost).toFixed(2);
-  calTotalTotal();
 }
 
-function calTotalTotal() {
-  var travelCost = parseFloat(document.getElementById("actualTravelTotal").value);
-  var timeCost = parseFloat(document.getElementById("actualGeneralTotal").value);
+function calAdd1CWCost() {
+  let Add1Cost = 0.00
+  var addCostTime1 = parseFloat(document.getElementById("addCostTime1").value)
+  var addHours1 = parseInt(document.getElementById("addTime1-hours").value)
+  var addMins1 = parseInt(document.getElementById("addTime1-mins").value)
 
-  totalTotal = travelCost + timeCost;
+  addminsHours1 = addMins1 / 60;
+  addTotalTime1 = addminsHours1 + addHours1;
+  Add1Cost = addCostTime1 * addTotalTime1;
 
-  document.getElementById("actualTotalTotal").value = Number(totalTotal).toFixed(2);
+  document.getElementById("showAdd1Total").innerHTML = Number(Add1Cost).toFixed(2);
+  document.getElementById("actualAdd1Total").value = Number(Add1Cost).toFixed(2);
 }
-
 
 function calalt1GeneralCost() {
 
@@ -135,28 +138,6 @@ function calDNACost() {
   document.getElementById("actualDNATotal").value = dnaCost;
 }
 
-function calAdd1Cost() {
-  let Add1Cost = 0
-  var addCostTime1 = parseInt(document.getElementById("addCostTime1").value)
-  var addHours1 = parseInt(document.getElementById("addTime1-hours").value)
-  var addMins1 = parseInt(document.getElementById("addTime1-mins").value)
-
-  var addQuantity1 = parseInt(document.getElementById("addQuantity1").value)
-  var addNonhourRate1 = parseInt(document.getElementById("addNonhourRate1").value)
-
-  if (addChargeType1 == "Charged by the hour"){
-    addminsHours1 = addMins1 / 60;
-    addTotalTime1 = addminsHours1 + addHours1;
-    Add1Cost = addCostTime1 * addTotalTime1;
-    document.getElementById("showAdd1Total").innerHTML = Add1Cost;
-    document.getElementById("actualAdd1Total").value = Add1Cost;
-  } else {
-    Add1Cost = addQuantity1 * addNonhourRate1;
-    document.getElementById("showAdd1Total").innerHTML = Add1Cost;
-    document.getElementById("actualAdd1Total").value = Add1Cost;
-  }
-}
-
 function calAdd2Cost() {
   let Add2Cost = 0
   var addCostTime2 = parseInt(document.getElementById("addCostTime2").value)
@@ -179,22 +160,31 @@ function calAdd2Cost() {
   } 
 }
 
-function calAddTotal() {
-  addTotalCost = Add1Cost + Add2Cost;  
-  document.getElementById("actualAddTotalCost").value = addTotalCost;
-}
-
-function calAdd1CWCost() {
-  let Add1Cost = 0
-  var addCostTime1 = parseInt(document.getElementById("addCostTime1").value)
+function calAdd1Cost() {
+ 
+  var addCostTime1 = parseFloat(document.getElementById("addCostTime1").value)
   var addHours1 = parseInt(document.getElementById("addTime1-hours").value)
   var addMins1 = parseInt(document.getElementById("addTime1-mins").value)
 
-  addminsHours1 = addMins1 / 60;
-  addTotalTime1 = addminsHours1 + addHours1;
-  Add1Cost = addCostTime1 * addTotalTime1;
-  document.getElementById("showAdd1Total").innerHTML = Add1Cost;
-  document.getElementById("actualAdd1Total").value = Add1Cost;
+  var addQuantity1 = parseInt(document.getElementById("addQuantity1").value)
+  var addNonhourRate1 = parseFloat(document.getElementById("addNonhourRate1").value)
+
+  if (addChargeType1 == "Charged by the hour"){
+    addminsHours1 = addMins1 / 60;
+    addTotalTime1 = addminsHours1 + addHours1;
+    Add1Cost = addCostTime1 * addTotalTime1;
+    document.getElementById("showAdd1Total").innerHTML = Number(Add1Cost).toFixed(2);
+    document.getElementById("actualAdd1Total").value = Number(Add1Cost).toFixed(2);
+  } else {
+    Add1Cost = addQuantity1 * addNonhourRate1;
+    document.getElementById("showAdd1Total").innerHTML = Number(Add1Cost).toFixed(2);
+    document.getElementById("actualAdd1Total").value = Number(Add1Cost).toFixed(2);
+  }
+}
+
+function calAddTotal() {
+  addTotalCost = Add1Cost + Add2Cost;  
+  document.getElementById("actualAddTotalCost").value = addTotalCost;
 }
 
 function calAlt1Cost() {
