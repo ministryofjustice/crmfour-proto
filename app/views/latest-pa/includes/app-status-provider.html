@@ -21,7 +21,7 @@
               <strong class="govuk-tag govuk-tag--light-blue">Submitted</strong></p>
               <p>09 March 2024</p>
               <p>Awaiting LAA review</p>
-              <br>
+              
               <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
               {% elseif data['app-task'] == "Granted" %}
                 <strong class="govuk-tag govuk-tag--green">Granted</strong></p>
@@ -38,7 +38,7 @@
               {% elseif data['app-task'] == "Referred" %}
                 <strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
                 <p>22 August 2023</p>
-                <br>
+                <p>Awaiting ICA response</p>
                 <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
               {% elseif data['app-task'] == "Part granted" %}
                 <strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
@@ -54,7 +54,8 @@
               {% elseif data['app-task'] == "Returned" %}
                 <strong class="govuk-tag govuk-tag--light-blue">Resubmitted</strong></p>
                 <p><span id="date"></span></p>
-                <br>
+                <p>Awaiting LAA review</p>
+                
                 <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
               {% elseif data['app-task'] == "Expired" %}
                <strong class="govuk-tag govuk-tag--red">Expired</strong></p>
@@ -64,7 +65,27 @@
             {% endif %} 
           </dd>
         </div>
-        {% if data['app-task'] == "Submitted" or data['app-task'] == "Returned" %}
+        {% if data['Appeal'] == "Yes" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Initial decision
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {% if data['app-task'] == "Rejected" %}
+                <p><strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
+                <p>Refused as proposed cost exceeds what is considered reasonable. Section 4.4.2 of the CBAM states that expert fees must reflect market rates. You have not demonstrated why this expert is necessary over others who may provide the service at a lower cost.</p>
+              {% elseif data['app-task'] == "Part granted" %}
+                <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
+                <p>In line with CBAM section 4.4.2, we have approved funding based on the lower quote you provided, which reflects a more proportionate use of public funds.</p>
+             {% endif %}
+             <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
+              <p>{{ data['initialDecisionText'] or "In line with CBAM section 4.4.2, we have approved funding based on the lower quote you provided, which reflects a more proportionate use of public funds." }}</p>
+          
+            </dd>
+          </div>
+        {% endif %}
+
+        {% if data['app-task'] == "Submitted" or data['app-task'] == "Returned" or data ['Appeal'] =="Yes" %}
           {% else %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
@@ -87,7 +108,7 @@
                   <p>You can <a href="appeal-start.html">appeal this decision</a>.</p>
 
                   {% elseif data['app-task'] == "Rejected" %}
-                  <p> This application has been fully rejected as the correct form has not been used. Please use CRM5.</p>
+                  <p>This application has been fully rejected as the correct form has not been used. Please use CRM5.</p>
                   <p>You can <a href="appeal-start.html">appeal this decision</a>.</p>
                   
                   {% elseif data['app-task'] == "Review" %}
