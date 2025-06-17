@@ -42,61 +42,165 @@
       <h2 class="govuk-heading-l">Application history</h2>
       {% if data['cwAppStatus'] == "In progress"%}
         <p><strong><a href="application-note" class="govuk-link--no-visited-state">Add a note to the application history</a><br></strong></p>
-        {% endif %}
+      {% endif %}
 
-      <table class="govuk-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Date</th>
-            <th scope="col" class="govuk-table__header">Caseworker</th>
-            <th scope="col" class="govuk-table__header">Update</th>
-          </tr>
-        </thead>
-        <tbody class="govuk-table__body">
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">14 Nov 2023 <br>04:00pm</td>
-            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
-            <td class="govuk-table__cell"><strong>Received</strong><br>Received from Provider with further information and changes to data.</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">14 Nov 2023 <br>09:14am</td>
-            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
-            <td class="govuk-table__cell"><strong>Sent back</strong><br>Sent back to Provider for further information and for changes to data.</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">13 Nov 2023 <br>03:23</td>
-            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
-            <td class="govuk-table__cell"><strong>Received</strong><br>Received from Provider with further information.</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">10 Nov 2023 <br>01:47pm</td>
-            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
-            <td class="govuk-table__cell"><strong>Sent back</strong><br>Sent back to Provider for further information.</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">7 Nov 2023 <br>01:43pm</td>
-            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
-            <td class="govuk-table__cell"><strong>Self-assigned by {{data['caseworker1']}}</strong><br>The magistrate on this case requested this application</td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">7 Nov 2023 <br>11:02am</td>
-            <td class="govuk-table__cell">{{data['caseworker2']}}</td>
-            <td class="govuk-table__cell"><strong>Unassigned by {{data['caseworker2']}}</strong><br>Unable to assess as the application is Prison Law
-            </td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">7 Mar 2023 <br>11:01am</td>
-            <td class="govuk-table__cell">{{data['caseworker2']}}</td>
-            <td class="govuk-table__cell"><strong>Assigned to {{data['caseworker2']}}</strong></td>
-          </tr>
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">5 Mar 2023 <br>09:00</td>
-            <td class="govuk-table__cell">N/A</td>
-            <td class="govuk-table__cell"><strong>Received</strong></td>
-          </tr>
-        </tbody>
-      </table>
+      {% if data['Appeal'] == "No"%}
 
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Date</th>
+              <th scope="col" class="govuk-table__header">Caseworker</th>
+              <th scope="col" class="govuk-table__header">Update</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">14 Nov 2023 <br>04:00pm</td>
+              <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+              <td class="govuk-table__cell"><strong>Received</strong><br>Received from Provider with further information and changes to data.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">14 Nov 2023 <br>09:14am</td>
+              <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+              <td class="govuk-table__cell"><strong>Sent back</strong><br>Sent back to Provider for further information and for changes to data.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">13 Nov 2023 <br>03:23</td>
+              <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+              <td class="govuk-table__cell"><strong>Received</strong><br>Received from Provider with further information.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">10 Nov 2023 <br>01:47pm</td>
+              <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+              <td class="govuk-table__cell"><strong>Sent back</strong><br>Sent back to Provider for further information.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">7 Nov 2023 <br>01:43pm</td>
+              <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+              <td class="govuk-table__cell"><strong>Self-assigned by {{data['caseworker1']}}</strong><br>The magistrate on this case requested this application</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">7 Nov 2023 <br>11:02am</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Unassigned by {{data['caseworker2']}}</strong><br>Unable to assess as the application is Prison Law
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">7 Mar 2023 <br>11:01am</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Assigned to {{data['caseworker2']}}</strong></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">5 Mar 2023 <br>09:00</td>
+              <td class="govuk-table__cell">N/A</td>
+              <td class="govuk-table__cell"><strong>Received</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        {% set pageNo ="0" %}  
+        {% set itemNo ="8" %}
+          
+
+        {% elseif data['Appeal'] == "Yes"%}
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Date</th>
+              <th scope="col" class="govuk-table__header">Caseworker</th>
+              <th scope="col" class="govuk-table__header">Update</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">21 May 2025 <br>11:02am</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>ICA Part granted </strong><br>This application remains part granted as travel costs are not allowable for this type of service as stated in the policy guidance.
+              </td>
+            </tr>     
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">20 May 2025 <br>03:23pm</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Received</strong><br>Received from Provider with further information and changes to data.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">19 May 2025 <br>03:23pm</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>ICA information request</strong><br>Sent back to Provider for further information</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">19 May 2025 <br>03:23pm</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Sent to ICA</strong></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">18 May 2025 <br>03:23pm</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Held for ICA referral</strong></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">18 May 2025 <br>03:23pm</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Received</strong><br>The provider has appealed the application decision</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">7 May 2025 <br>11:02am</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Part granted </strong><br>Your new evidence does not allow us to approve the travel costs. Your application remains part granted.
+              </td>
+            </tr>     
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">18 May 2025 <br>01:43pm</td>
+              <td class="govuk-table__cell">N/A</td>
+              <td class="govuk-table__cell"><strong>Received </strong><br>The provider has appealed the application decision</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">7 May 2025 <br>11:02am</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Part granted </strong><br>Your new evidence does not allow us to approve the travel costs. Your application remains part granted.
+              </td>
+            </tr>          
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">4 May 2025 <br>03:23pm</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Received</strong><br>Received from Provider with further information.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">2 May 2025 <br>09:14am</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Sent back</strong><br>Sent back to Provider for further information and for changes to data.</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">2 May 2025 <br>01:47pm</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Self-assigned by {{data['caseworker2']}}</strong><br>Application appeal</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">2 May 2025 <br>01:43pm</td>
+              <td class="govuk-table__cell">N/A</td>
+              <td class="govuk-table__cell"><strong>Received </strong><br>The provider has appealed the application decision</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">14 April 2025 <br>11:02am</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Part granted </strong><br>This application was part granted due to disallowed travel costs and reduced waiting costs.
+              </td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">11 April 2025 <br>11:01am</td>
+              <td class="govuk-table__cell">{{data['caseworker2']}}</td>
+              <td class="govuk-table__cell"><strong>Assigned to {{data['caseworker2']}}</strong></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">10 April 2025 <br>09:00</td>
+              <td class="govuk-table__cell">N/A</td>
+              <td class="govuk-table__cell"><strong>Received</strong></td>
+            </tr>
+          </tbody>
+        </table>
+        {% set pageNo ="0" %}  
+        {% set itemNo ="16" %}
+      {% endif %}
       {% include "includes/pagination.html"%}
   
      <!--

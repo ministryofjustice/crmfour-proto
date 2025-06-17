@@ -68,8 +68,8 @@
   {% elseif data['cwAppStatus'] == "Rejected"%}
     <div class="govuk-inset-text">
       <h3 class="govuk-heading-s">Rejected 21 May 2025</h3>
-      {% if data['Appeal'] == "Yes" %}
-        <p>Appeal decision:</p>
+      {% if data['icaDecision'] == "Yes" %}
+        <p>ICA decision:</p>
       {% endif %}
       <p>{{data['rejectedConfirm'] or "This application has been rejected as the correct form has not been used. Please use CRM5."}}</p>        
     </div>
@@ -77,9 +77,13 @@
     <div class="govuk-inset-text">
       <h3 class="govuk-heading-s">Part granted 21 May 2025</h3>
       {% if data['Appeal'] == "Yes" %}
-        <p>Appeal decision:</p>
+        {% if data['icaDecision'] == "Yes"%}
+          <p>ICA decision:</p>
+        {% endif %}
+        <p>{{data['partConfirm'] or "This application remains part granted as travel costs are not allowable for this type of service as stated in the policy guidance."}}</p>
+        {% else %}
+        <p>{{data['partConfirm'] or "This application was part granted due to disallowed travel costs and reduced waiting costs."}}</p>
       {% endif %}
-      <p>{{data['partConfirm'] or "This application was part granted due to disallowed travel costs."}}</p>
       <p><a href="application-details-adjust-readonly" class="govuk-link--no-visited-state">Review cost adjustments</a></p>
     </div>
     {% elseif data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New"%}
