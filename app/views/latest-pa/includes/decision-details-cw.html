@@ -20,6 +20,20 @@
       }) }}
 
     </div>
+    {% elseif (data['cwAppStatus'] == "Returned" and data['Appeal'] =="Yes" ) or data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned" and data['Appeal'] =="Yes" %}
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
+      <p>The provider's response needs to be sent to the ICA.</p>
+      <ul class="govuk-list govuk-list--number">
+        <li><a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">Review update</a></li>
+        <li>Email the provider's response to the ICA.</li>
+        <li>Mark as sent to ICA.</li>
+      </ul>
+      {{ govukButton({
+        text: "Mark as sent to ICA",
+        href: "send-decision-refer"
+      }) }}
+    </div>
   {% elseif data['cwAppStatus'] == "Returned" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned") %}
     <div class="govuk-inset-text">
       <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
