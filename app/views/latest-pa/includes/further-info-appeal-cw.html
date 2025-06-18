@@ -34,61 +34,6 @@
   </div>
 
   {% if data['icaDecision'] == "Yes" %}
-     <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h4 class="govuk-summary-card__title" id="review-further-info">Sent to ICA 19 May 2025</h4>
-      </div>
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Caseworker
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['caseworker2']}}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              ICA
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['ICA-first-name'] or "John"}} {{data['ICA-last-name'] or "Smith"}}
-            </dd>
-          </div>
-        </dl>       
-      </div>
-    </div>
-
-     <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h4 class="govuk-summary-card__title" id="review-further-info">Held for ICA 18 May 2025</h4>
-      </div>
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Caseworker
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['caseworker2']}}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Reasons for referral
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p>{{data['icaReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>
-            </dd>
-          </div>
-        </dl>       
-      </div>
-    </div>
-  {% endif %}
-
-  {% elseif  data['cwAppStatus'] == "Referred" %} 
-    <h3 class="govuk-heading-m">Updates</h3>
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h4 class="govuk-summary-card__title" id="review-further-info">Sent to ICA 19 May 2025</h4>
@@ -111,13 +56,24 @@
               {{data['ICA-first-name'] or "John"}} {{data['ICA-last-name'] or "Smith"}}
             </dd>
           </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Reasons for referral
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p>{{data['icaReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>
+            </dd>
+          </div>
         </dl>       
       </div>
     </div>
+  {% endif %}
 
-     <div class="govuk-summary-card">
+  {% elseif  data['cwAppStatus'] == "Referred" %} 
+    <h3 class="govuk-heading-m">Updates</h3>
+        <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h4 class="govuk-summary-card__title" id="review-further-info">Held for ICA 18 May 2025</h4>
+        <h4 class="govuk-summary-card__title" id="review-further-info">Sent to ICA 19 May 2025</h4>
       </div>
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list govuk-!-margin-bottom-6">
@@ -127,6 +83,14 @@
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['caseworker2']}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              ICA
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['ICA-first-name'] or "John"}} {{data['ICA-last-name'] or "Smith"}}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -232,24 +196,6 @@
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['ICA-first-name'] or "John"}} {{data['ICA-last-name'] or "Smith"}}
-              </dd>
-            </div>
-          </dl>       
-        </div>
-      </div>
-
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h4 class="govuk-summary-card__title" id="review-further-info">Held for ICA 18 May 2025</h4>
-        </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Caseworker
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['caseworker2']}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">

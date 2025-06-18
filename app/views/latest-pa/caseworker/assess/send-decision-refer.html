@@ -25,25 +25,9 @@
 {% block content %}
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-two-thirds"> 
 
-       {% if data['cwAppStatus'] =="In progress"%}
-       <form class="form" action="send-confirmation?cwAppStatus=Hold" method="post">
-        
-        {{ govukTextarea({
-          name: "icaReferredReason",
-          id: "icaReferredReason",
-          label: {
-            text: "Why are you referring this decision to the ICA?",
-            isPageHeading: true,
-            classes: "govuk-label--xl"
-          },
-          hint: {
-            text: "We’ll share this information with the provider."
-          }
-        }) }}   
-
-        {% elseif data['cwAppStatus'] =="Hold"  %}
+        {% if data['cwAppStatus'] =="Hold" or data['cwAppStatus'] =="Returned"  %}
           <form class="form" action="send-confirmation?cwAppStatus=Referred" method="post">
 
             <h1 class="govuk-heading-xl">Which ICA was it sent to?</h1>
@@ -55,7 +39,8 @@
                 },
                 classes: "govuk-input--width-20",
                 id: "ICA-first-name",
-                name: "ICA-first-name"
+                name: "ICA-first-name",
+                value: data['ICA-first-name']
               }) }}
 
               {{ govukInput({
@@ -65,7 +50,8 @@
                 },
                 classes: "govuk-input--width-20",
                 id: "ICA-last-name",
-                name: "ICA-last-name"
+                name: "ICA-last-name",
+                value: data['ICA-last-name']
               }) }}
 
               {{ mojDatePicker({
@@ -78,8 +64,23 @@
                 hint: {
                   text: "For example, 17/5/2025"
                 }
-              }) }}                  
-          
+              }) }}   
+
+            {% elseif data['cwAppStatus'] =="In progress"%}
+              <form class="form" action="send-confirmation?cwAppStatus=Hold" method="post">
+                
+                {{ govukTextarea({
+                  name: "icaReferredReason",
+                  id: "icaReferredReason",
+                  label: {
+                    text: "Why are you sending this to the ICA? ",
+                    isPageHeading: true,
+                    classes: "govuk-label--xl"
+                  },
+                  hint: {
+                    text: "We’ll share this information with the provider."
+                  }
+                }) }}  
         {% endif %}
       
         <div class="govuk-button-group">

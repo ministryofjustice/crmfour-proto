@@ -1,9 +1,14 @@
-{% if data['cwAppStatus'] == "Referred" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred")%}
+{% if (data['cwAppStatus'] == "Referred" and data['statusComment'] == "Referred") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred")%}
   <div class="govuk-inset-text">
     <h3 class="govuk-heading-s">Sent to ICA 21 May 2025</h3>
-    <p>ICA: {{data['ICA-first-name'] or "John"}} {{data['ICA-last-name'] or "Smith"}}</p>
     <p>{{data['icaReferredReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>
   </div>
+  {% elseif (data['cwAppStatus'] == "Referred" and data['statusComment'] == "Returned") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned") %}
+    <div class="govuk-inset-text">
+    <h3 class="govuk-heading-s">Sent to ICA 21 May 2025</h3>
+      <p>Provider response to information request sent to ICA</p>
+
+    </div>
   {% elseif data['cwAppStatus'] == "Hold" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred") %}
     <div class="govuk-inset-text">
       <h3 class="govuk-heading-s">Held for ICA 21 May 2025 </h3>
@@ -18,14 +23,13 @@
         text: "Mark as sent to ICA",
         href: "send-decision-refer"
       }) }}
-
     </div>
-    {% elseif (data['cwAppStatus'] == "Returned" and data['Appeal'] =="Yes" ) or data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned" and data['Appeal'] =="Yes" %}
+    {% elseif (data['cwAppStatus'] == "Returned" and data['icaDecision'] =="Yes" ) or data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned" and data['icaDecision'] == "Yes" %}
     <div class="govuk-inset-text">
       <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
       <p>The provider's response needs to be sent to the ICA.</p>
       <ul class="govuk-list govuk-list--number">
-        <li><a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">Review update</a></li>
+        <li><a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">View update</a></li>
         <li>Email the provider's response to the ICA.</li>
         <li>Mark as sent to ICA.</li>
       </ul>
@@ -37,15 +41,7 @@
   {% elseif data['cwAppStatus'] == "Returned" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned") %}
     <div class="govuk-inset-text">
       <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
-      <ul class="govuk-list">
-        <li>
-          {% if data['Appeal'] == "Yes" %}
-            <a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">View update</a>
-          {% else %}
-            <a href="#review-further-info" class="govuk-link--no-visited-state">View update</a>
-          {% endif %}
-        </li>
-      </ul>
+      <p><a href="#review-further-info" class="govuk-link--no-visited-state">View update</a></p>
     </div>
   {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Expired"%}
     <div class="govuk-inset-text">
