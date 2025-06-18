@@ -31,7 +31,7 @@
                 <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                 <p>£0.00 allowed</p>
               {% elseif data['app-task'] == "Referred" %}
-                <p><strong class="govuk-tag govuk-tag--yellow">Referred</strong></p>
+                <p><strong class="govuk-tag govuk-tag--yellow">Sent to ICA</strong></p>
                 <p>22 August 2023</p>
                 <br>
                 <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
@@ -71,7 +71,7 @@
                 <p>The application has been fully granted.</p>
                 {% else %}
                 {% if data['app-task'] == "Referred" %}
-                  <p>The application has been refered to the ICA.</p>
+                  <p>The application has been sent to the ICA.</p>
                   {% else %}
                   {% if data['app-task'] == "Part granted" %}
                     <p>This application was part granted due to disallowed travel costs. </p>

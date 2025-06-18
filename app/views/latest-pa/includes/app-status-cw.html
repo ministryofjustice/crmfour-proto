@@ -30,7 +30,7 @@
         {% elseif data['cwAppStatus'] == "Returned" %}
       <strong class="govuk-tag govuk-tag--grey">Provider updated</strong>
       {% elseif data['cwAppStatus'] == "Referred" %}
-      <strong class="govuk-tag govuk-tag--yellow">Referred</strong>
+      <strong class="govuk-tag govuk-tag--yellow">Sent to ICA</strong>
     {% endif %}
   </p>
  
@@ -48,7 +48,7 @@
         {% elseif data['cwAppStatus'] == "Hold" %}
           <strong class="govuk-tag govuk-tag--yellow">Appeal: ICA Hold</strong>
           {% elseif data['cwAppStatus'] == "Referred" %}
-          <strong class="govuk-tag govuk-tag--yellow">Appeal: Referred</strong>
+          <strong class="govuk-tag govuk-tag--yellow">Appeal: Sent to ICA</strong>
       {% endif %}
       </p>
       {% else %}
@@ -81,7 +81,7 @@
   {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Auto granted" %}
     <strong>Decision:</strong> 21 May 2025
     {% elseif data['cwAppStatus'] == "Referred" %}
-      <strong>Referred to ICA:</strong> 21 May 2025
+      <strong>Sent to ICA:</strong> 21 May 2025
     {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
      <strong>Sent back:</strong> 21 May 2025
     {% elseif data['cwAppStatus'] == "Returned" %}

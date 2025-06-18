@@ -120,10 +120,10 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                  Reason for referral to ICA
+                  Reason sent to ICA
               </dt>
                 <dd class="govuk-summary-list__value">
-                  {{data['icaReferredReason'] or "Your appeal has been referred to the ICA for a final decision."}}
+                  {{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}
               </dd>
             </div>
           </dl>
@@ -148,7 +148,7 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Referred to
+                Sent to
               </dt>
                 <dd class="govuk-summary-list__value">
                 {{data['ICA-first-name'] or "John"}} {{data['ICA-last-name'] or "Smith"}}
@@ -156,7 +156,7 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                  Date of referral
+                  Date sent
               </dt>
                 <dd class="govuk-summary-list__value">
                   {{data['dateSentICA'] or "13/06/2025"}}
@@ -257,7 +257,7 @@
                     {% elseif data['cwAppStatus'] == "Rejected" %}
                       {{data['rejectedConfirm'] or "Please use a CRM5 form"}}
                     {% elseif data['cwAppStatus'] == "Referred" %}
-                      {{data['icaReferredReason'] or "Your appeal has been referred to the ICA for a final decision."}}
+                      {{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}
                   {% endif %}
               </dd>
             </div>
