@@ -1,47 +1,9 @@
-{% if (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "ReturnedICA") %}
+{% if (data['Appeal'] == "Yes" and data['cwAppStatus'] == "In progress") %}
   <br>
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
   <div class="govuk-button-group">
-    {% if data['Appeal'] == "Yes"%}
-      {{ govukButton({
-        text: "Make a decision",
-        href: "send-decision-appeal"
-      }) }}
-
-      {{ govukButton({
-        text: "Send back to provider",
-        classes: "govuk-button--secondary",
-        href: "send-further-info-appeal"
-      }) }}
-      
-      {% else %}
-
-      {{ govukButton({
-        text: "Make a decision",
-        href: "send-decision"
-      }) }}
-      
-      {{ govukButton({
-        text: "Send back to provider",
-        classes: "govuk-button--secondary",
-        href: "send-further-info"
-      }) }}
-    {% endif %}
     
-    {{ govukButton({
-      text: "Back to your applications",
-      classes: "govuk-button--secondary",
-      href: "../crm-assess?cwAppState=all"
-    }) }}
-  </div>
-
-  {% elseif (data['cwAppStatus'] == "In progress"  ) or (data['Appeal'] == "No" and data['cwAppStatus'] == "Returned") %}
-    <br>
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-    <div class="govuk-button-group">
-
-      {% if data['Appeal'] == "Yes"%}
-        {{ govukButton({
+      {{ govukButton({
           text: "Make a decision",
           href: "send-decision-appeal"
         }) }}
@@ -52,32 +14,44 @@
           href: "send-further-info-appeal"
         }) }}
 
-        {{ govukButton({
-          text: "Hold for ICA referral",
-          classes: "govuk-button--secondary",
-          href: "send-decision-refer"
-        }) }}
-
-      {% else %}
-
-        {{ govukButton({
-          text: "Make a decision",
-          href: "send-decision"
-        }) }}
-        
-        {{ govukButton({
-          text: "Send back to provider",
-          classes: "govuk-button--secondary",
-          href: "send-further-info"
-        }) }}
+      {% if (data['statusComment'] == "Hold" or data['statusComment'] == "Referred" or data['statusComment'] == "ReturnedICA") or (data['statusComment'] == "Returned" and data['icaDecision'] == "Yes" ) %}
+        {% else %}
+          {{ govukButton({
+            text: "Hold for ICA referral",
+            classes: "govuk-button--secondary",
+            href: "send-decision-refer"
+          }) }}
       {% endif %}
+      
+    {{ govukButton({
+      text: "Back to your applications",
+      classes: "govuk-button--secondary",
+      href: "../crm-assess?cwAppState=all"
+    }) }}
+  </div>
+{% endif %}
 
+{% if data['Appeal'] == "No" and data['cwAppStatus'] == "In progress" %}
+  <br>
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  <div class="govuk-button-group">
       {{ govukButton({
-        text: "Back to your applications",
-        classes: "govuk-button--secondary",
-        href: "../crm-assess?cwAppState=all"
+        text: "Make a decision",
+        href: "send-decision"
       }) }}
-    </div>
+      
+      {{ govukButton({
+        text: "Send back to provider",
+        classes: "govuk-button--secondary",
+        href: "send-further-info"
+      }) }}
+
+    {{ govukButton({
+      text: "Back to your applications",
+      classes: "govuk-button--secondary",
+      href: "../crm-assess?cwAppState=all"
+    }) }}
+  </div>
 {% endif %}
 
       
