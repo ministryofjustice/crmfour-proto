@@ -1,4 +1,4 @@
-{% if data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred" %}
+{% if (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "ReturnedICA") %}
   <br>
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
   <div class="govuk-button-group">
@@ -35,7 +35,7 @@
     }) }}
   </div>
 
-  {% elseif data['cwAppStatus'] == "In progress" or (data['Appeal'] == "No" and data['cwAppStatus'] == "Returned") %}
+  {% elseif (data['cwAppStatus'] == "In progress"  ) or (data['Appeal'] == "No" and data['cwAppStatus'] == "Returned") %}
     <br>
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
     <div class="govuk-button-group">

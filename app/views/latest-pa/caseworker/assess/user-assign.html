@@ -27,18 +27,9 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress" method="post">
       
-      <!---If the CW is adding the app to their queue, it still sometimes needs to show comment from the previous status-->
-      {% if data['Appeal'] =="Yes" and data['cwAppStatus'] =="Referred" %}
-        <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Referred" method="post">
-          {% elseif data['Appeal'] =="Yes" and data['cwAppStatus'] =="New" %}
-            <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=None" method="post">
-          {% elseif data['cwAppStatus'] =="Returned" %}
-            <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Returned" method="post">
-          {% else %}
-          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress" method="post">
-      {% endif %}
-
+      
         <h1 class="govuk-heading-xl">Are you sure you want to add this application to your list?</h1>
 
         {{ govukTextarea({
@@ -67,3 +58,20 @@
   </div>
 
 {% endblock %}
+
+<!---If the CW is adding the app to their queue, it still sometimes needs to show comment from the previous status-->
+
+      {% if data['cwAppStatus'] =="Referred" and data['statusComment'] =="ReturnedICA"  %}
+        <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress" method="post">
+        {% elseif data['cwAppStatus'] =="Referred" %}
+          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Referred" method="post">{% elseif data['cwAppStatus'] =="Hold" %}
+          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Hold" method="post">
+        {% elseif data['Appeal'] =="Yes" and data['cwAppStatus'] =="New" %}
+          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=None" method="post">
+        {% elseif data['cwAppStatus'] =="Returned" and data['icaDecision'] == "No" %}
+          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Returned" method="post">
+        {% elseif data['cwAppStatus'] =="Returned" and data['icaDecision'] == "Yes" %}
+          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Returned" method="post">
+        {% else %}
+        <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress" method="post">
+      {% endif %}

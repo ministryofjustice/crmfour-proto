@@ -1,19 +1,24 @@
-{% if (data['cwAppStatus'] == "Referred" and data['statusComment'] == "Referred") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred")%}
-  <div class="govuk-inset-text">
-    <h3 class="govuk-heading-s">Sent to ICA 21 May 2025</h3>
-    <p>{{data['icaReferredReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>
-  </div>
-  {% elseif (data['cwAppStatus'] == "Referred" and data['statusComment'] == "Returned") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned") %}
-    <div class="govuk-inset-text">
-    <h3 class="govuk-heading-s">Sent to ICA 21 May 2025</h3>
-      <p>Provider response to information request sent to ICA</p>
-
-    </div>
-  {% elseif data['cwAppStatus'] == "Hold" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred") %}
+{% if data['cwAppStatus'] == "Hold" and data['statusComment'] == "Hold" %}
     <div class="govuk-inset-text">
       <h3 class="govuk-heading-s">Held for ICA 21 May 2025 </h3>
-      <p>Caseworker comment: {{data['icaReferredReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>
-      <p>This appeal needs to be sent to the ICA.</p>
+      <p>This appeal needs to be sent to the ICA: </p>
+      <p>{{data['icaReferredReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>    
+       <ul class="govuk-list govuk-list--number">
+        <li><a href="1">Download this application and attachments (Zip).</a></li>
+        <li>Email the download to the ICA.</li>
+        <li>Mark as sent to ICA.</li>
+      </ul>
+      {{ govukButton({
+        text: "Add to my list",
+        href: "user-assign",
+        classes: "govuk-button--secondary"
+      }) }}
+    </div>
+  {% elseif (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Hold") %}
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Held for ICA 21 May 2025 </h3>
+      <p>This appeal needs to be sent to the ICA: </p>
+      <p>{{data['icaReferredReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>
       <ul class="govuk-list govuk-list--number">
         <li><a href="1">Download this application and attachments (Zip).</a></li>
         <li>Email the download to the ICA.</li>
@@ -21,10 +26,35 @@
       </ul>
       {{ govukButton({
         text: "Mark as sent to ICA",
-        href: "send-decision-refer"
+        href: "send-decision-refer?"
       }) }}
     </div>
-    {% elseif (data['cwAppStatus'] == "Returned" and data['icaDecision'] =="Yes" ) or data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned" and data['icaDecision'] == "Yes" %}
+  {% elseif (data['cwAppStatus'] == "Referred" and data['statusComment'] == "Referred") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred")%}
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Sent to ICA 21 May 2025</h3>
+      <p>{{data['icaReferredReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>
+    </div>
+  {% elseif (data['cwAppStatus'] == "Referred" and data['statusComment'] == "ReturnedICA") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "ReturnedICA")  %}
+    <div class="govuk-inset-text">
+    <h3 class="govuk-heading-s">Sent to ICA 21 May 2025</h3>
+      <p>Provider response to information request sent to ICA</p>
+    </div>
+  {% elseif data['cwAppStatus'] == "Returned" and data['statusComment'] == "Returned" and data['icaDecision'] =="Yes" %}
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
+      <p>The provider's response needs to be sent to the ICA.</p>
+      <ul class="govuk-list govuk-list--number">
+        <li><a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">View update</a></li>
+        <li>Email the provider's response to the ICA.</li>
+        <li>Mark as sent to ICA.</li>
+      </ul>
+      {{ govukButton({
+        text: "Add to my list",
+        href: "user-assign",
+        classes: "govuk-button--secondary"
+      }) }}
+    </div>
+  {% elseif data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned" and data['icaDecision'] == "Yes" %}
     <div class="govuk-inset-text">
       <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
       <p>The provider's response needs to be sent to the ICA.</p>
@@ -38,7 +68,13 @@
         href: "send-decision-refer"
       }) }}
     </div>
-  {% elseif data['cwAppStatus'] == "Returned" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned") %}
+  
+  {% elseif (data['cwAppStatus'] == "Returned" and data['statusComment'] == "Returned" and data['icaDecision'] =="No") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned" and data['icaDecision'] =="No") %}
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
+      <p><a href="#review-further-info" class="govuk-link--no-visited-state">View update</a></p>
+    </div>
+  {% elseif (data['cwAppStatus'] == "Returned" and data['Appeal'] =="No") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned" and data['Appeal'] =="No") %}
     <div class="govuk-inset-text">
       <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
       <p><a href="#review-further-info" class="govuk-link--no-visited-state">View update</a></p>
@@ -96,7 +132,7 @@
       {% endif %}
       <p><a href="application-details-adjust-readonly" class="govuk-link--no-visited-state">Review cost adjustments</a></p>
     </div>
-    {% elseif data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New"%}
+  {% elseif data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New"%}
       {% if data['Appeal'] == "Yes" %}
         <div class="govuk-inset-text">
           <h3 class="govuk-heading-s">Appealed 18 May 2025</h3>

@@ -5,7 +5,10 @@
 <input type="hidden" id="rate2GeneralTotal" name="rate2GeneralTotal" value="{{data['rate2GeneralTotal'] or "200.00"}}" />
 <input type="hidden" id="allowedTotalCost" name="allowedTotalCost" value="{{data['allowedTotalCost'] or "640.00"}}" />   
     
-    
+   {{data['cwAppStatus']}} 
+      {{data['icaDecision']}} 
+         {{data['statusComment']}} 
+   
 <span class="govuk-caption-xl">Crime Busters Legal</span>
 <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
 
@@ -80,7 +83,9 @@
   {% endif %}
   {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Auto granted" %}
     <strong>Decision:</strong> 21 May 2025
-    {% elseif data['cwAppStatus'] == "Referred" %}
+    {% elseif data['cwAppStatus'] == "Hold" %}
+      <strong>ICA Hold:</strong> 21 May 2025
+      {% elseif data['cwAppStatus'] == "Referred" %}
       <strong>Sent to ICA:</strong> 21 May 2025
     {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
      <strong>Sent back:</strong> 21 May 2025
@@ -114,7 +119,7 @@
       href: "user-unassign",
       classes: "govuk-button--secondary"
     }) }}
-    {% elseif data['cwAppStatus'] == "New" or data ['cwAppStatus'] == "Referred"  or data['cwAppStatus'] == "Returned" %}
+    {% elseif data['cwAppStatus'] == "New" or data ['cwAppStatus'] == "Referred"  or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Hold" %}
       {{ govukButton({
         text: "Add to my list",
         href: "user-assign",
