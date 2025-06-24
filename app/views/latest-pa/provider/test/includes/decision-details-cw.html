@@ -1,0 +1,118 @@
+{% if data['Appeal'] == "No"%}
+  {% if data['cwAppStatus'] == "Granted" %}
+    <div class="govuk-inset-text">
+      <p><strong>Granted 21 May 2025</strong></p>
+      <p>{{data['grantedConfirm'] or "This is an optional comment from the caseworker"}}</p>  
+    </div>      
+    {% elseif data['cwAppStatus'] == "Rejected"%}
+      <div class="govuk-inset-text">
+        <p><strong>Rejected 21 May 2025</strong></p>
+        {% if data['rejectedConfirm'] == null %}
+          <p>This application has been rejected as the correct form has not been used. Please use CRM5.</p>
+        {% else %}
+        <p>{{data['rejectedConfirm']}}</p>        
+        {% endif %}
+      </div>
+    {% elseif data['cwAppStatus'] == "Part granted"%}
+      <div class="govuk-inset-text">
+        <p><strong>Part granted 21 May 2025</strong></p>
+        {% if data['partConfirm'] == null %}
+          <p>This application was part granted due to disallowed travel costs.</p>
+          {% else %}
+          <p>{{data['partConfirm']}}</p>
+        {% endif %}
+        </p><a href="application-details-adjust-readonly" class="govuk-link--no-visited-state">Review quote adjustments</a></p>
+      </div>
+    {% elseif data['cwAppStatus'] == "Referred" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred")%}
+      <div class="govuk-inset-text">
+        <p><strong>Referred to ICA 21 May 2025</strong></p>
+        {% if data['icaReason'] == null %}
+          <p>Appeal referred to ICA due to questions over the expert used and rates requested by provider.</p>
+          {% else %}
+          <p>{{data['icaReason']}}</p>
+        {% endif %}
+      </div>
+    {% elseif data['cwAppStatus'] == "Returned" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned") %}
+      <div class="govuk-inset-text">
+        <p><strong>Provider update 21 May 2025 </strong></p>
+        <ul class="govuk-list">
+          <li>
+            <a href="#review-further-info" class="govuk-link--no-visited-state">View update</a>
+          </li>
+        </ul>
+      </div>
+    {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Expired"%}
+      <div class="govuk-inset-text">
+        <p><strong>Sent back to provider 21 May 2025</strong></p>
+        {% if data['reviewApp'] == "further" %}
+          <p>Further information request: <br>
+            {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+          </p>
+          {% elseif data['reviewApp'] == "incorrect" %}
+            <p>Amendment request: <br>
+              {{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
+            </p>
+          {% else %}
+            <p>Further information request: <br>
+              {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+            </p>
+            <p>Amendment request: <br>
+              {{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
+            </p>
+        {% endif %}
+      </div>
+    {% elseif data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New"%}
+  {% endif %}
+{% endif %}
+
+
+{% if data['Appeal'] == "Yes" %}
+
+    {% if data['cwAppStatus'] == "Referred" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred")%}
+      <div class="govuk-inset-text">
+        <p><strong>Referred to ICA 21 May 2025</strong></p>
+        <p>{{data['icaReferredReason'] or "Appeal referred to ICA due to questions over the expert used and rates requested by provider."}}</p>
+      </div>
+      {% elseif data['cwAppStatus'] == "Returned" or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned") %}
+        <div class="govuk-inset-text">
+          <p><strong>Provider update 21 May 2025 </strong></p>
+          <ul class="govuk-list">
+            <li>
+              <a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">View update</a>
+            </li>
+          </ul>
+        </div>
+      {% elseif data['cwAppStatus'] == "Review" %}
+        <div class="govuk-inset-text">
+          <p><strong>Sent back to provider 21 May 2025</strong></p>
+          {% if data['icaDecision']== "Yes"%}
+            <p>ICA information request: <br>
+            {% else %}
+            <p>Further information request: <br>
+          {% endif %}
+          {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+          </p>
+        </div>
+      {% elseif data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New"%}
+        <div class="govuk-inset-text">
+          <p><strong>Appeal 18 May 2025</strong></p>
+          <p>The provider has appealed this part granted application</p>
+          <p><a href="application-details-appeal">View appeal details</a></p>
+          </p>
+        </div>
+      {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" %}
+        <div class="govuk-inset-text">
+          <p><strong>
+            {% if data['icaDecision']== "Yes"%}
+              ICA appeal decision
+              {% else %}
+              Appeal decision
+            {% endif %}
+            21 May 2025</strong>
+          </p>
+          <p>Appeal status: {{data['appealStatus']}}
+          </p>
+           </p><a href="application-details-appeal" class="govuk-link--no-visited-state">Review appeal details</a></p>
+        </div>
+        {% endif %}
+{% endif %}

@@ -1,0 +1,334 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Case details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">About the case</span>
+      {% if data['prisonLaw'] == "Yes" %}
+        <h1 class="govuk-heading-xl">Case and hearing details</h1>
+        {% else %}
+        <h1 class="govuk-heading-xl">Case details</h1>
+      {% endif %}
+      
+      <!--Is it Prison law? Is it a Check asnswers update?-->
+      {% if data['prisonLaw'] == "Yes" %}
+        {% if data['changeCase'] == "change" %}
+          <form class="form" action="check-answers" method="post">
+          {% else %}
+          <form class="form" action="task-list?question2-case=complete" method="post">
+        {% endif %}
+        {% else %}
+        {% if data['prisonLaw'] == "No" or data['prisonLaw'] == null %}
+          {% if data['interrupt'] == "detainedYestoNo" or data['interrupt'] == "detainedNotoYes" %}
+            <form class="form" action="question-interrupt" method="post">
+            {% else %}
+            {% if data['changeCase'] == "change" %}
+              <form class="form" action="check-answers" method="post">
+              {% else %}
+              <form class="form" action="question2-case-hearing" method="post">
+            {% endif %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+
+      {% if data['prisonLaw'] == "No" or data['prisonLaw'] == null %}
+
+        {% include version + "/includes/main-offence-list.html" %}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="rep-order-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              <h1 class="govuk-fieldset__heading">
+                Date of representation order
+              </h1>
+            </legend>
+            <div id="rep-order-hint" class="govuk-hint">
+              For example, 27 3 2007
+            </div>
+            <div class="govuk-date-input" id="rep-order">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rep-order-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-day" name="rep-order-day" type="text" inputmode="numeric" value="{{data['rep-order-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rep-order-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="rep-order-month" name="rep-order-month" type="text" inputmode="numeric" value="{{data['rep-order-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="rep-order-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="rep-order-year" name="rep-order-year" type="text" inputmode="numeric" value="{{data['rep-order-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukInput({
+          label: {
+            text: "MAAT ID number",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "This is a 7 digit number, for example 1234567"
+          },
+          classes: "govuk-input--width-10",
+          id: "maat",
+          name: "maat",
+          value: data['maat']
+        }) }}
+
+        
+
+
+        {% set prisonHtml %}
+          {% include version + "/includes/prison-list.html" %}
+        {% endset %}
+
+          {{ govukRadios({
+            name: "detained",
+            fieldset: {
+              legend: {
+                text: "Is your client detained?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("detained", "Yes"),
+              conditional: {
+                html: prisonHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("detained", "No")
+            }
+            ]
+          }) }}
+
+          {{ govukRadios({
+            name: "poca",
+            fieldset: {
+              legend: {
+                text: "Is this case subject to POCA (Proceeds of Crime Act 2002)?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                checked: checked("poca", "Yes")
+              },
+              {
+                value: "No",
+                text: "No",
+                checked: checked("poca", "No")
+              }
+            ]
+          }) }}  
+         
+        {% endif %}
+
+         
+
+        {% if data['prisonLaw'] == "Yes" %}
+          
+          {% set hearingHtml %}
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hearing-hint">
+                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  <h1 class="govuk-fieldset__heading">
+                    Date of next hearing
+                  </h1>
+                </legend>
+                <div id="date-hearing-hint" class="govuk-hint">
+                  For example, 27 3 2007
+                </div>
+                <div class="govuk-date-input" id="date-hearing">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="date-hearing-day">
+                        Day
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-day" name="date-hearing-day" type="text" inputmode="numeric" value="{{data['date-hearing-day']}}">
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="date-hearing-month">
+                        Month
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-month" name="date-hearing-month" type="text" inputmode="numeric" value="{{data['date-hearing-month']}}">
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="date-hearing-year">
+                        Year
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-hearing-year" name="date-hearing-year" type="text" inputmode="numeric" value="{{data['date-hearing-year']}}">
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          {% endset %}
+
+          {{ govukRadios({
+            name: "contact",
+            fieldset: {
+              legend: {
+                text: "Do you know the date of the next hearing?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes",
+                checked: checked("hearing", "Yes"),
+                conditional: {
+                  html: hearingHtml
+                }
+              },
+              {
+                value: "No",
+                text: "No",
+                checked: checked("hearing", "No")
+              }
+            ]
+          }) }}     
+
+        {% endif %}
+
+
+        <div class="govuk-button-group">
+
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps-reviewed?claims-state=draft"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps-reviewed?claims-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+        let selectElements = $('.autocomplete-select')
+        let placeholder = ''
+
+        selectElements.each(function (index) {
+          let selectElement = $(this)
+          if (selectElement.length) {
+            if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+
+            accessibleAutocomplete.enhanceSelectElement({
+              confirmOnBlur: false,
+              autoSelect: true,
+              displayMenu: 'overlay',
+              minLength: 1,
+              showNoOptionsFound: true,
+              showAllValues: false,
+              placeholder: placeholder,
+              selectElement: selectElement[0],
+            })
+          }
+        })
+
+        $(function() {
+        $("input[name='courtType']").click(function() {
+          if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        });
+      });
+
+      window.onload = function(){  
+        if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        }
+
+       
+         
+    </script>
+
+{% endblock %}

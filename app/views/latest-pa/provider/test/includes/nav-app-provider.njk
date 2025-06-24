@@ -1,0 +1,57 @@
+ {% if data['Appeal'] == "Yes" %}
+  {{ mojSubNavigation({
+    label: 'Sub navigation',
+    items: [
+    {
+      text: 'Overview',
+      href: 'application-details#nav',
+      active: + activeAppNav[0] | default('true')
+    }, 
+    {
+      text: 'Appeal',
+      href: 'application-details-appeal#nav',
+      active: + activeAppNav[1]
+    },
+    {
+      text: 'Allowed costs',
+      href: 'application-details-adjusted#nav',
+      active: + activeAppNav[2]
+    }
+    ]
+  }) }}
+
+  {% else %}
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [
+      {
+        text: 'Overview',
+        href: 'application-details#nav',
+        active: + activeAppNav[0] | default('true')
+      }, 
+      {
+        text: 'Allowed costs',
+        href: 'application-details-adjusted#nav',
+        active: + activeAppNav[2]
+      }
+      ]
+    }) }}
+
+{% endif %}
+
+<!-- Application history nav
+{{ mojSubNavigation({
+  label: 'Sub navigation',
+  items: [
+  {
+    text: 'Overview',
+    href: 'application-details2#nav',
+    active: true
+  }, 
+  {
+    text: 'Application history',
+    href: 'application-details-history#nav',
+    active: false
+  }
+  ]
+}) }}-->
