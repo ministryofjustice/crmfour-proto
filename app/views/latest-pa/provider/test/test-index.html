@@ -1,0 +1,347 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "latest-pa" %}
+
+{% block pageTitle %}
+Provider appeals index– {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Appeals - provider screens index
+    </h1> 
+    
+    <h2 class="govuk-heading-m">
+      Stage 1 - first opportunity to appeal</h2>
+
+      <div class="govuk-inset-text">
+        No appeals yet. Provider can appeal a rejected or pg decision.</div>
+
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="1rejected-originaldecision?Appeal=No&app-task=Rejected">Rejected</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="2pg-originaldecision?Appeal=No&app-task=Part granted">Part granted</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-m">
+        Stage 2 - submit appeal</h2>
+  
+        <div class="govuk-inset-text">
+          Provider submits appeal form.</div>
+
+          <ol class="govuk-list govuk-list--number">
+          <li>
+            <a class="govuk-link" href="appeal-start">Start page - what to do</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="appeal-check1">Warning check out page1</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="appeal-check1out">kick out page 1</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="appeal-check2">Warning check out page 2</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="appeal-check2out">kick out page 2</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="appeal-enter">Enter appeal</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="appeal-check-answers">Check appeal</a>
+          </li>
+          <li>
+            <a class="govuk-link" href="appeal-submitted">
+              Confirmation</a>
+          </li>
+        </ol>
+
+        <h2 class="govuk-heading-m">
+          Stage 3 - appeal submitted</h2>
+    
+          <div class="govuk-inset-text">
+            Provider can see appeal submitted.</div>
+
+            <ol class="govuk-list govuk-list--number">
+            <li>
+              <a class="govuk-link" href="appeal-start">Part grant > appealed</a> (TBC)
+            </li>
+            <li>
+              <a class="govuk-link" href="appeal-check1">Rejected > appealed</a> (TBC)
+            </li>
+          </ol>
+
+
+          <h2 class="govuk-heading-m">
+            Stage 4 - Caseworker responds to first appeal</h2>
+      
+            <div class="govuk-inset-text">
+              Caseworker has responded to the first appeal with a RFI, part grant, reject, grant or refer to ICA.</div>
+  
+              <ol class="govuk-list govuk-list--number">
+                <li>
+                  <a class="govuk-link" href="3pg-updateneeded-firstappeal">Part grant > Appeal > RFI</a>
+                </li>
+                <li>
+                  <a class="govuk-link" href="3rej-updateneeded-firstappeal">Reject> Appeal > RFI</a>
+                </li>
+            </ol>
+
+            <ol class="govuk-list govuk-list--number">
+              <li>
+                <a class="govuk-link" href="appeal-start">Part grant > appealed > Grant</a> (TBC)
+              </li>
+              <li>
+                <a class="govuk-link" href="appeal-check1">Rejected > appealed > Grant</a> (TBC)
+              </li>
+            </ol>
+
+            <ol class="govuk-list govuk-list--number">
+              <li>
+                <a class="govuk-link" href="appeal-start">Part grant > appealed > PG</a> (TBC)
+              </li>
+              <li>
+                <a class="govuk-link" href="appeal-check1">Rejected > appealed > PG</a> (TBC)
+              </li>
+            </ol>
+
+            <ol class="govuk-list govuk-list--number">
+             
+              <li>
+                <a class="govuk-link" href="appeal-check1">Rejected > appealed > Rej</a> (TBC)
+              </li>
+            </ol>
+
+            <ol class="govuk-list govuk-list--number">
+              <li>
+                <a class="govuk-link" href="appeal-start">Part grant > appealed > Refer to ICA</a> (TBC)
+              </li>
+              <li>
+                <a class="govuk-link" href="appeal-check1">Rejected > appealed > Refer to ICA</a> (TBC)
+              </li>
+            </ol>
+
+            <h2 class="govuk-heading-m">
+              Stage 4a - Provider responds to appeal RFI</h2>
+        
+              <div class="govuk-inset-text">
+                Provider adds further information.</div>
+
+                <ol class="govuk-list govuk-list--number">
+                  <li>
+                    <a class="govuk-link" href="appeal-start">Part grant > appealed > RFI > update</a> (TBC)
+                  </li>
+                  <li>
+                    <a class="govuk-link" href="appeal-check1">Rejected > appealed > RFI > update</a> (TBC)
+                  </li>
+                </ol>
+
+                <div class="govuk-inset-text">
+                  Caseworker responds to further information.</div>
+
+                <ol class="govuk-list govuk-list--number">
+                      <li>
+                    <a class="govuk-link" href="4rej-appeal-rfi-us-rej">Reject > Appeal > RFI > Update sent > Rejected</a>
+                  </li>
+                  <li>
+                    <a class="govuk-link" href="4rej-appeal-rfi-us-pg">Reject > Appeal > RFI > Update sent > PG</a>
+                  </li>
+                  <li>
+                    <a class="govuk-link" href="5pg-firstappeal">PG > Appeal > RFI > Update sent > PG</a>
+                  </li>
+                </ol>
+
+
+
+                <h2 class="govuk-heading-m">
+                  Stage 4b - Provider appeals pg appeal</h2>
+            
+                      <ol class="govuk-list govuk-list--number">
+                  <li>
+                    <a class="govuk-link" href="appeal-start">Part grant > appealed > PG > appealed</a> (TBC)
+                  </li>
+                  <li>
+                    <a class="govuk-link" href="appeal-check1">Rejected > appealed > PG > appealed</a> (TBC)
+                  </li>
+                </ol>
+
+                <h2 class="govuk-heading-m">
+                  Stage 4c - Provider appeals rej appeal</h2>
+                  
+                  <li>
+                    <a class="govuk-link" href="appeal-check1">Rejected > appealed > Rej > appealed</a> (TBC)
+                  </li>
+                  <br>
+                
+                  <h2 class="govuk-heading-m">
+                    Stage 5 - ICA</h2> 
+
+                    <div class="govuk-inset-text">
+                      First appeal sent to ICA.</div>
+    
+                      <ol class="govuk-list govuk-list--number">
+                    <li>
+                      <a class="govuk-link" href="6rej-appeal-rfi-appeal-ica-rfi">Rej > Appeal > RFI > Update sent > Rej > Appeal > Refer ICA > ICA RFI </a>
+                                       </li>
+                   <li>
+                      <a class="govuk-link" href="6rej-appeal-rfi-appeal-rfi-ica">Rej > Appeal > RFI > Update sent > Rej > Appeal > RFI > Update sent > Refer ICA > ICA decision </a>
+                    </li>
+                    <li>
+                      <a class="govuk-link" href="6rej-appeal-rfi-appeal-ica">Rej > Appeal > RFI > Update sent > Rej > Appeal > Refer ICA > ICA decision </a>
+                    </li>
+                  </ol>
+
+                    <div class="govuk-inset-text">
+                      Second appeal sent to ICA.</div>
+
+                      <ol class="govuk-list govuk-list--number">
+                      <li>
+                        <a class="govuk-link" href="6rej-appeal-rfi-appeal-ica-rfi">Rej > Appeal > RFI > Update sent > Rej > Appeal > Refer ICA > ICA RFI </a>
+                        <p>(Needs link to first appeal)</p>
+                      </li>
+                
+                
+                      <li>
+                        <a class="govuk-link" href="6rej-appeal-rfi-appeal-ica">Rej > Appeal > RFI > Update sent > Rej > Appeal > Refer ICA > ICA decision </a>
+                        <p>(Needs link to first appeal)</p>
+                      </li>
+                
+                      <li>
+                        <a class="govuk-link" href="6rej-appeal-rfi-appeal-rfi-ica">Rej > Appeal > RFI > Update sent > Rej > Appeal > RFI > Update sent > Refer ICA > ICA decision </a>
+                        <p>(Needs link to first appeal)</p>
+                      </li>
+                    </ol>
+
+                  <h2 class="govuk-heading-m">
+                    To Be Tidied</h2> 
+
+                                     <p>
+                      <a class="govuk-link" href="multi-appeal">Multi appeal</a> (needs tweaks to fit provider)</p>
+                   
+
+                  <ol class="govuk-list govuk-list--number">
+                    <li>
+                      <a class="govuk-link" href="appeal-start">Part grant > appealed > PG > appealed > refer to ICA > RFI</a>
+                    </li>
+                    <li>
+                      <a class="govuk-link" href="appeal-check1">Rejected > appealed > PG > appealed > refer to ICA > RFI > update provided</a>
+                    </li>
+                    <li>
+                      <a class="govuk-link" href="appeal-check1">Rejected > appealed > PG > appealed > refer to ICA > RFI > update provided > ICA decison</a>
+                    </li>
+                  </ol>
+
+    <ol class="govuk-list govuk-list--number">
+              <li>
+                <a class="govuk-link" href="appeal-start">Part grant > appealed > Refer to ICA</a>
+              </li>
+              <li>
+                <a class="govuk-link" href="appeal-check1">Rejected > appealed > Refer to ICA</a>
+              </li>
+            </ol>
+
+
+      <h3 class="govuk-heading-s">If 2 appeal + ICA</h3>
+
+
+   
+
+      
+
+      <li>
+        <a class="govuk-link" href="#">2. Appealed and update needed from ICA</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">3. Appealed and rejected and possible to appeal again</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">4. Appealed and rejected and not possible to appeal again (ICA)</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">5. Appealed and part granted and possible to appeal again/a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">6. Appealed and part granted and not possible to appeal again (ICA)</a>
+      </li>
+    </ul>
+    
+    <h3 class="govuk-heading-s">If 2+ appeal</h3>
+
+    <ul class="govuk-list">
+      <li>
+        <a class="govuk-link" href="#">1. Appealed and update needed </a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">2. Appealed and update needed from ICA</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">3. Appealed and rejected and possible to appeal again</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">4. Appealed and rejected and not possible to appeal again (ICA)</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">5. Appealed and part granted and possible to appeal again/a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">6. Appealed and part granted and not possible to appeal again (ICA)</a>
+      </li>
+    </ul>
+
+    <h2 class="govuk-heading-m">
+      Submitted apps</h2>    
+ 
+      <h3 class="govuk-heading-s">
+        No appeals yet</h3>
+
+
+        <h3 class="govuk-heading-s">
+          If 1 appeal</h3>
+
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link" href="#">1. Appealed and submitted</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">2. Appealed and resubmitted - further information given</a>
+        </li>
+        <li>
+          <a class="govuk-link" href="#">3. Appealed and resubmitted - further information given to ICA</a>
+        </li>
+      </ul>
+
+
+      <h3 class="govuk-heading-s">
+        If 2 plus appeal</h3>
+
+    <ul class="govuk-list">
+      <li>
+        <a class="govuk-link" href="#">1. Appealed and submitted</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">2. Appealed and resubmitted - further information given</a>
+      </li>
+      <li>
+        <a class="govuk-link" href="#">3. Appealed and resubmitted - further information given to ICA</a>
+      </li>
+    </ul>
+
+    
+
+  </div>
+</div>
+
+
+{% endblock %}

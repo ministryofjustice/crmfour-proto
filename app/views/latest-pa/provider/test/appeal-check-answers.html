@@ -1,0 +1,97 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+{% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+
+{% block pageTitle %}
+Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/banner.html"%}
+{% include version + "/includes/nav-prime-provider.njk" %}
+
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<!--Stage 2 - app appealed - no response yet > (part granted, following RFI)-->
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Check your appeal</h1>
+  </div>
+
+
+
+  <div class="govuk-grid-column-two-thirds">
+    
+     
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Your appeal</h2>
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <!--For the proto make links show as not yet selected until the user does the action-->
+              
+                <a class="govuk-link--no-visited-state" href="question1-org?changeOrg=change">Change<span class="govuk-visually-hidden"> your details</span></a>
+               
+            </li>
+          </ul>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Reason for appeal
+              </dt>
+              <dd class="govuk-summary-list__value">
+                I am appealing the decision to reject prior authority for £1,500 to fund a DNA expert because this expert is among the most qualified available and their input is crucial to the case. Without expert analysis, we will have no way to properly challenge or interpret the DNA evidence, which is central to the issues in dispute. The cost is reasonable for the level of expertise required, and no suitable alternative is available at a lower rate. Denying funding risks undermining the fairness of the proceedings and my client’s ability to present an effective defence. This expert is essential
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Documents
+              </dt>
+              <dd class="govuk-summary-list__value">
+                expert-credentials.pdf<br> 
+                case-summary.docx<br> 
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Accept and send",
+          href: "appeal-submitted"
+        }) }}
+      
+        {{ govukButton({
+          text: "Save and come back later",
+          href: "",
+          classes: "govuk-button--secondary"
+        }) }}
+      </div>
+
+
+    </div>
+
+    <script>
+      const date = new Date();
+      const formattedDate = date.toLocaleDateString('en-GB', {
+        day: '2-digit', month: 'short', year: 'numeric'
+      }).replace(/ /g, ' ');
+      document.getElementById("date").innerHTML = formattedDate;
+    </script>
+
+    {% endblock %}

@@ -1,0 +1,345 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Additional cost – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl">About the request </span>
+    <h1 class="govuk-heading-xl">Additional cost</h1>
+
+    
+    {% if data['addAdd'] == "0" %}
+      <form class="form" action="question3-quote-add-summary?addAdd=1" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "What is the additional cost for?",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "Only add one type of cost. Further costs can be added later."
+          },
+          id: "addCost1",
+          name: "addCost1",
+          value: data['addCost1']
+        }) }}
+        
+        {{ govukTextarea({
+          label: {
+            text: "Why is the additional cost required?",
+            classes: "govuk-label--s"
+          },
+            name: "whyAdd1",
+            id: "whyAdd1",
+            value: data['whyAdd1']
+        }) }}
+
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h1 class="govuk-fieldset__heading">
+              Costs
+            </h1>
+          </legend>
+
+          {% set hourlyHtml %}
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset" role="group">
+                <legend class="govuk-fieldset__legend">
+                  Time
+                </legend>
+                <div class="govuk-date-input" id="addTime1">
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="addTime1-hours">
+                        Hours
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-hours" name="addTime1-hours" type="text" inputmode="numeric" value="{{data['addTime1-hours']}}">
+                    </div>
+                  </div>
+                  <div class="govuk-date-input__item">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label govuk-date-input__label" for="addTime1-mins">
+                        Minutes
+                      </label>
+                      <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime1-mins" name="addTime1-mins" type="text" inputmode="numeric" value="{{data['addTime1-mins']}}">
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            {{ govukInput({
+              id: "addCostTime1",
+              name: "addCostTime1",
+              value: data['addCostTime1'],
+              label: {
+                text: "What is the cost per hour?"
+              },
+              prefix: {
+                text: "£"
+              },
+              hint: {
+                text: "Costs should be exclusive of VAT "
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+    
+          {% endset %}
+
+          {% set nonhourHtml %}
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="addQuantity1">
+                Number of items
+              </label>
+              <div class="govuk-input__wrapper">
+                <input class="govuk-input govuk-input--width-5" id="addQuantity1" name="addQuantity1" type="text" spellcheck="false" value="{{data['addQuantity1']}}">
+              </div>
+            </div>
+            
+            {{ govukInput({
+              id: "addNonhourRate1",
+              name: "addNonhourRate1",
+              value: data['addNonhourRate1'],
+              label: {
+                text: "What is the cost per item?"
+              },
+              prefix: {
+                text: "£"
+              },
+              hint: {
+                text: "Costs should be exclusive of VAT "
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+          {% endset %}
+
+          {{ govukRadios({
+            name: "addChargeType1",
+            fieldset: {
+              legend: {
+                text: "How are you being charged?",
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Charged per item",
+                text: "Charged per item",
+                checked: checked("addChargeType1", "Charged per item"),
+                conditional: {
+                  html: nonhourHtml
+                }
+              },
+              {
+                value: "Charged by the hour",
+                text: "Charged by the hour",
+                checked: checked("addChargeType1", "Charged by the hour"),
+                conditional: {
+                  html: hourlyHtml
+                }
+              }
+            ]
+          }) }}
+
+        </fieldset>
+
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd1Cost()">
+          Update calculation
+        </button>
+
+        <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total']}}" />
+
+        <h2 class="govuk-heading-l">
+          <span class="govuk-caption-l">Total cost</span> £
+          <span id="showAdd1Total">0</span>.00
+        </h2>
+
+        {% elseif data['addAdd'] == "1" %}
+        <form class="form" action="question3-quote-add-summary?addAdd=2" method="post">
+
+          {{ govukInput({
+            label: {
+              text: "What is the additional cost for?",
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: "Only add one type of cost. Further costs can be added later."
+            },
+            id: "addCost2",
+            name: "addCost2",
+            value: data['addCost2']
+          }) }}
+        
+          {{ govukTextarea({
+            label: {
+              text: "Why is the additional cost required?",
+              classes: "govuk-label--s"
+            },
+              name: "whyAdd2",
+              id: "whyAdd2",
+              value: data['whyAdd2']
+          }) }}
+
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h2 class="govuk-fieldset__heading">
+                Costs
+              </h2>
+            </legend>
+
+            {% set hourlyHtml %}
+              <div class="govuk-form-group">
+                <fieldset class="govuk-fieldset" role="group">
+                  <legend class="govuk-fieldset__legend">
+                    Time
+                  </legend>
+                  <div class="govuk-date-input" id="addTime2">
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="addTime2-hours">
+                          Hours
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime2-hours" name="addTime2-hours" type="text" inputmode="numeric" value="{{data['addTime2-hours']}}">
+                      </div>
+                    </div>
+                    <div class="govuk-date-input__item">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label govuk-date-input__label" for="addTime2-mins">
+                          Minutes
+                        </label>
+                        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="addTime2-mins" name="addTime2-mins" type="text" inputmode="numeric" value="{{data['addTime2-mins']}}">
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              {{ govukInput({
+                id: "addCostTime2",
+                name: "addCostTime2",
+                value: data['addCostTime2'],
+                label: {
+                  text: "What is the cost per hour?"
+                },
+                prefix: {
+                  text: "£"
+                },
+                hint: {
+                  text: "Costs should be exclusive of VAT "
+                },
+                classes: "govuk-input--width-5",
+                spellcheck: false
+              }) }}
+      
+            {% endset %}
+
+            {% set nonhourHtml %}
+              <div class="govuk-form-group">
+                <h2 class="govuk-label-wrapper">
+                  <label class="govuk-label" for="addQuantity2">
+                    Quantity
+                  </label>
+                </h2>
+                <div class="govuk-input__wrapper">
+                  <input class="govuk-input govuk-input--width-5" id="addQuantity2" name="addQuantity2" type="text" spellcheck="false" value="{{data['addQuantity2']}}">
+                </div>
+              </div>
+              
+              {{ govukInput({
+                id: "addNonhourRate2",
+                name: "addNonhourRate2",
+                value: data['addNonhourRate2'],
+                label: {
+                  text: "What is the cost per item?"
+                },
+                prefix: {
+                  text: "£"
+                },
+                hint: {
+                  text: "Costs should be exclusive of VAT "
+                },
+                classes: "govuk-input--width-5",
+                spellcheck: false
+              }) }}
+            {% endset %}
+
+            {{ govukRadios({
+              name: "addChargeType2",
+              fieldset: {
+                legend: {
+                  text: "How are you being charged?",
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Charged per item",
+                  text: "Charged per item",
+                  checked: checked("addChargeType2", "Charged per item"),
+                  conditional: {
+                    html: nonhourHtml
+                  }
+                },
+                {
+                  value: "Charged by the hour",
+                  text: "Charged by the hour",
+                  checked: checked("addChargeType2", "Charged by the hour"),
+                  conditional: {
+                    html: hourlyHtml
+                  }
+                }
+              ]
+            }) }}
+
+          </fieldset>
+          <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd2Cost()">
+            Update calculation
+          </button>
+  
+          <input type="hidden" id="actualAdd2Total" name="actualAdd2Total" value="{{data['actualAdd2Total']}}" />
+  
+          <h2 class="govuk-heading-l">
+            <span class="govuk-caption-l">Total cost</span> £
+            <span id="showAdd2Total">0</span>.00
+          </h2>
+      {% endif %}
+
+      <div class="govuk-button-group">
+    
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+      </div>
+    
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}

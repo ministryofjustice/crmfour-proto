@@ -1,0 +1,125 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Client details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">About the case</span>
+      <h1 class="govuk-heading-xl">Client details</h1>
+      {% if data['changeClient'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form class="form" action="task-list?question2-client=complete" method="post">
+      {% endif %}
+        
+        {{ govukInput({
+          label: {
+            text: "First name",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "client-first-name",
+          name: "client-first-name",
+          value: data['client-first-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Last name",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "client-last-name",
+          name: "client-last-name",
+          value: data['client-last-name']
+        }) }}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="client-dob-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              <h1 class="govuk-fieldset__heading">
+                Date of birth
+              </h1>
+            </legend>
+            <div id="client-dob-hint" class="govuk-hint">
+              For example, 27 3 2007
+            </div>
+            <div class="govuk-date-input" id="client-dob">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="client-dob-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="client-dob-day" name="client-dob-day" type="text" inputmode="numeric" value="{{data['client-dob-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="client-dob-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="client-dob-month" name="client-dob-month" type="text" inputmode="numeric" value="{{data['client-dob-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="client-dob-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="client-dob-year" name="client-dob-year" type="text" inputmode="numeric" value="{{data['client-dob-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps-reviewed?claims-state=draft"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps-reviewed?claims-state=all"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
