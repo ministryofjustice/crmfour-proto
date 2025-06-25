@@ -4,7 +4,7 @@
 
 
 {% block header %}
-    {% include version + "/includes/header-portal-payments.html"%}
+   {% include version + "/includes/header-portal-payments.njk"%}
 {% endblock %}
 
 
@@ -127,9 +127,7 @@
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
               <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
               <option value="Granted" onclick="filterSelection('granted')">Granted</option>
-              <option value="Auto-granted" onclick="filterSelection('auto-granted')">Auto-granted</option>
               <option value="Part granted" onclick="filterSelection('part-granted')">Part granted</option>
-              <option value="Rejected" onclick="filterSelection('rejected')">Rejected</option>
             </select>
           </div>
         </div>
@@ -178,7 +176,7 @@
         </thead>
         <tbody class="govuk-table__body">                
           <tr class="govuk-table__row hideTR all part-granted Medium highValue">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f7w&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f7w&cwAppStatus=Part granted" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
             <td class="govuk-table__cell">Law Fans</td>
             <td class="govuk-table__cell">Roger Catapult</td>
             <td class="govuk-table__cell">Not assigned</td>
@@ -186,7 +184,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all none Not Medium">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-9p4f0e&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="9p4f0e">LAA-9p4f0e</a></td>
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-9p4f0e&cwAppStatus=Part granted" class="govuk-link--no-visited-state" data-sort-value="9p4f0e">LAA-9p4f0e</a></td>
             <td class="govuk-table__cell">Legal Aiders Ltd</td>
             <td class="govuk-table__cell">Jamie Innes</td>
             <td class="govuk-table__cell">Not assigned</td>
@@ -194,7 +192,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all none Not Medium">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-6p4f0r&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-6p4f0r&cwAppStatus=Part granted" class="govuk-link--no-visited-state" data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
             <td class="govuk-table__cell">Crime Busters Legal</td>
             <td class="govuk-table__cell">Dami Olu</td>
             <td class="govuk-table__cell">Not assigned</td>
@@ -202,7 +200,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all Granted Wolf Medium">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-8p3h0e&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-8p3h0e&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
             <td class="govuk-table__cell">Legal Aiders Ltd</td>
             <td class="govuk-table__cell">Bobby Brownie</td>
             <td class="govuk-table__cell">{{data['caseworker1']}}</td>
@@ -210,7 +208,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all none Not Low">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>
             <td class="govuk-table__cell">Big Law</td>
             <td class="govuk-table__cell">Ishia Melta</td>
             <td class="govuk-table__cell">Not assigned</td>
@@ -218,7 +216,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all in-progress Wolf High highValue">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-2d9t4j&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-2d9t4j&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
             <td class="govuk-table__cell">Boss Lawyers Inc</td>
             <td class="govuk-table__cell">Arnie Swartz</td>
             <td class="govuk-table__cell">{{data['caseworker1']}}</td>
@@ -226,7 +224,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all auto-granted Justice Medium">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>  
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f76&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>  
             <td class="govuk-table__cell">Big Law</td>          
             <td class="govuk-table__cell">Bob Holness</td>
             <td class="govuk-table__cell">{{data['caseworker2']}}</td>
@@ -234,7 +232,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all rejected Hussein Low">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-6j4k6k&cwAppStatus=In progress" class="govuk-link--no-visited-state" data-sort-value="6j4k6k">LAA-6j4k6k</a></td>
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-6j4k6k&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="6j4k6k">LAA-6j4k6k</a></td>
             <td class="govuk-table__cell">Griffins Grifting Grifters Law</td>
             <td class="govuk-table__cell">Melanie Longname Griffins</td>
             <td class="govuk-table__cell">{{data['caseworker3']}}</td>
@@ -242,7 +240,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all cancelled Not Low">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-7j8s9s&cwAppStatus=Returned" class="govuk-link--no-visited-state" data-sort-value="7j8s9s">LAA-7j8s9s</a></td>
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-7j8s9s&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="7j8s9s">LAA-7j8s9s</a></td>
             <td class="govuk-table__cell">Music Solicitors</td>
             <td class="govuk-table__cell">Alecia Pink</td>
             <td class="govuk-table__cell">Not assigned</td>
@@ -250,7 +248,7 @@
             <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
           <tr class="govuk-table__row hideTR all sent-back Not High">
-            <td class="govuk-table__cell"><a href="assess/application-details-readonly?laa-ref=LAA-4m4m4m&cwAppStatus=Review" class="govuk-link--no-visited-state" data-sort-value="4m4m4m">LAA-4m4m4m</a></td>
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-4m4m4m&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="4m4m4m">LAA-4m4m4m</a></td>
             <td class="govuk-table__cell">Griffins Grifting Grifters Law</td>
             <td class="govuk-table__cell">Simone Gutter</td>
             <td class="govuk-table__cell">Not assigned</td>
