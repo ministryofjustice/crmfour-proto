@@ -1,69 +1,16 @@
-<!-- Nav -->
-
-{% if (data['serviceAdjust'] == "Yes" and data['cwAppStatus'] == "In progress") or data['cwAppStatus'] == "Part granted" %}
+<!-- Sub-Nav -->
 
   {{ mojSubNavigation({
-    label: 'Sub navigation',
-    items: [{
-      text: 'Overview',
-      href: 'claim-details',
-      active: + activeSubNav[0] | default('true')
-    }, 
-    {
-      text: 'Review and adjust',
-      href: 'claim-details-review',
-      active: + activeSubNav[1]
-    }, 
-    {
-      text: 'Adjusted costs',
-      href: 'claim-details-adjust',
-      active: + activeSubNav[2]
-    }, 
-    {
-      text: 'Supporting evidence',
-      href: 'claim-details-evidence',
-      active: + activeSubNav[3]
-    }, 
-    {
-      text: 'CIS summary',
-      href: 'claim-details-cis',
-      active: + activeSubNav[4]
-    }, 
-    {
-      text: 'Claim history',
-      href: 'claim-details-history',
-      active: + activeSubNav[5]
-    }]
-  }) }}
-
-  {% else %}
-
-  {{ mojSubNavigation({
-    label: 'Sub navigation',
-    items: [{
-      text: 'Overview',
-      href: 'claim-details',
-       active: + activeSubNav[0] | default('true')
-    }, 
-    {
-      text: 'Review and adjust',
-      href: 'claim-details-review',
-      active: + activeSubNav[1]
-    }, 
-    {
-      text: 'Supporting evidence',
-      href: 'claim-details-evidence',
-      active: + activeSubNav[2]
-    }, 
-    {
-      text: 'CIS summary',
-      href: 'claim-details-cis',
-      active: + activeSubNav[3]
-    }, 
-    {
-      text: 'Claim history',
-      href: 'claim-details-history',
-      active: + activeSubNav[4]
-    }]
-  }) }}
-{% endif %}
+  label: 'Sub navigation',
+  items: [{
+    text: 'Overview',
+    href: 'payment-details',
+    active: + activeSubNav[0] | default('true')
+  }, 
+  {
+    text: 'Related payments',
+    href: 'related-payments',
+    active: + activeSubNav[1]
+  } 
+  ]
+}) }}
