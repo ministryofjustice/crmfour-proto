@@ -1,0 +1,86 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "portal-1-1" %}
+
+{% block header %}
+  {% include version + "/includes/header-portal-cw2.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  LAA Online Portal – Assess a crime form - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner2.html"%}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full">
+		{{ mojPageHeaderActions({
+			heading: {
+				text: "User management"
+			},
+			items: [{
+				text: "Add new user",
+				classes: "govuk-button--secondary",
+				href: "user?manageUser=new"
+			}]
+		}) }}
+
+		<table class="govuk-table" data-module="moj-sortable-table">
+			<caption class="govuk-table__caption govuk-table__caption--m">User accounts</caption>
+			<thead class="govuk-table__head">
+				<tr class="govuk-table__row">
+					<th class="govuk-table__header" aria-sort="ascending">Name</th>
+					<th class="govuk-table__header" aria-sort="none">Email</th>
+					<th class="govuk-table__header" aria-sort="none">Role</th>					
+					<th class="govuk-table__header" aria-sort="none">Service</th>
+				</tr>
+			</thead>
+				<tbody class="govuk-table__body">
+					<tr class="govuk-table__row">
+						<td class="govuk-table__cell"><a href="user?manageUser=edit" class="govuk-link">John Doe</a></td>
+						<td class="govuk-table__cell">john.doe@example.com</td>
+						<td class="govuk-table__cell">Supervisor</td>
+						<td class="govuk-table__cell">All</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<td class="govuk-table__cell"><a href="user?manageUser=edit" class="govuk-link">Jane Smith</a></td>
+						<td class="govuk-table__cell">jane.smith@example.com</td>
+						<td class="govuk-table__cell">Caseworker</td>
+						<td class="govuk-table__cell">PA</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<td class="govuk-table__cell"><a href="user?manageUser=edit" class="govuk-link">Alice Brown</a></td>
+						<td class="govuk-table__cell">alice.brown@example.com</td>
+						<td class="govuk-table__cell">Viewer</td>
+						<td class="govuk-table__cell">All</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<td class="govuk-table__cell"><a href="user?manageUser=edit" class="govuk-link">Bob White</a></td>
+						<td class="govuk-table__cell">bob.white@example.com</td>
+						<td class="govuk-table__cell">Supervisor</td>
+						<td class="govuk-table__cell">All</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<td class="govuk-table__cell"><a href="user?manageUser=edit" class="govuk-link">Charlie Green</a></a></td>
+						<td class="govuk-table__cell">charlie.green@example.com</td>
+						<td class="govuk-table__cell">Caseworker</td>
+						<td class="govuk-table__cell">NSM</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<td class="govuk-table__cell"><a href="user?manageUser=edit" class="govuk-link">James Hansford</a></a></td>
+						<td class="govuk-table__cell">jimmy@example.com</td>
+						<td class="govuk-table__cell">No access</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+			</tbody>
+		</table>
+		{% include "includes/pagination.html"%}
+	</div>
+</div>
+    
+    
+        
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "portal-1-1" %}
+
+{% block header %}
+  {% include version + "/includes/header-portal-cw2.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  LAA Online Portal – Assess a crime form - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner2.html"%}
+
+	{{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">User details</h1>
+		<form class="form" action="user-management" method="post">
+			{{ govukInput({
+				label: {
+					text: "First name",
+					classes: "govuk-fieldset__legend--s"
+				},
+				id: "firstName",
+				name: "firstName",
+				classes: "govuk-input--width-20"
+			}) }}
+			{{ govukInput({
+				label: {
+					text: "Last name",
+					classes: "govuk-fieldset__legend--s"
+				},
+				id: "lastName",
+				name: "lastName",
+				classes: "govuk-input--width-20"
+			}) }}
+
+			{% if data ['manageUser'] =="new"%}
+				{{ govukInput({
+					label: {
+						text: "Email address",
+						classes: "govuk-fieldset__legend--s"
+					},
+					hint: {
+						text: "This should be the email address they use to access the system"
+					},
+					id: "email",
+					name: "email",
+					classes: "govuk-input--width-20",
+					type: "email",
+					autocomplete: "email",
+					spellcheck: false
+				}) }}
+				{% elseif data ['manageUser'] =="edit" %}
+				
+				<p><strong>Email address</strong> <br>emo@example.com</p>
+			{% endif %}
+			
+
+			{% set serviceHtml %}
+				{{ govukRadios({
+					name: "service",
+					fieldset: {
+						legend: {
+							text: "Select service",
+							isPageHeading: false
+						}
+					},
+					items: [
+						{
+							value: "All",
+							text: "All"
+						},
+						{
+							value: "PA",
+							text: "PA - Prior authority"
+						},
+						{
+							value: "NSM",
+							text: "NSM - Non-standard magistrates' court payment"
+						}
+					]
+				}) }}
+
+			{% endset %}
+			
+
+			{{ govukRadios({
+				name: "permissions",
+				fieldset: {
+					legend: {
+						text: "Select role",
+						isPageHeading: false,
+						classes: "govuk-fieldset__legend--s"
+					}
+				},
+				items: [
+					{
+						value: "Supervisor",
+						text: "Supervisor",
+						hint: {
+							html: "User management, analytics and all services"
+						}
+					},
+					{
+						value: "Caseworker",
+						text: "Caseworker",
+						hint: {
+							html: "View and assess claims or applications"
+						},
+						conditional: {
+							html: serviceHtml
+						}
+					},
+					{
+						value: "Viewer",
+						text: "Viewer",
+						hint: {
+							html: "View but not assess claims or applications"
+						},
+						conditional: {
+							html: serviceHtml
+						}
+					},
+					{
+						divider: "or"
+					},
+					{
+						value: "Disabled",
+						text: "Remove access"
+					}
+				]
+			}) }}
+
+			<div class="govuk-button-group">
+				{{ govukButton({
+					text: "Save and continue"
+				}) }}
+
+			</div>
+
+		</form>
+	</div>
+</div>
+    
+    
+        
+{% endblock %}
