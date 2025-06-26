@@ -38,14 +38,14 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <h2 class="govuk-heading-l">Costs</h2>
+    <h2 class="govuk-heading-l" id="allowedCosts">Costs</h2>
 
     {% include version + "/includes/adjust-info.html"%}
 
     {% if data['Appeal'] == "Yes"%}
 
       {% set appealCurrentCostHtml %}
-        <h3 class="govuk-heading-m">Appeal in progress</h3>
+        <h3 class="govuk-heading-m">Appeal in progress</h3>        
         {% include version + "/includes/adjust-costs.html"%}            
       {% endset%}
 
@@ -53,7 +53,7 @@
         <h3 class="govuk-heading-m">Appeal 2 May 2025</h3> 
         <ul class="govuk-list">
           <li>Requested: £640.00</li>
-          <li>Allowed: £520.00</li>
+          <li>Allowed: £480.00</li>
         </ul>
 
         <details class="govuk-details">
@@ -91,12 +91,12 @@
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Waiting time</td>
                   <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£80.00</td>
                 </tr>
                   <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header" colspan="1">Total</th>
                   <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£640.00</strong></td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£520.00</strong></td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£480.00</strong></td>
                 </tr>
               </tbody>
             </table> 
@@ -189,6 +189,9 @@
         {% endif %}
 
         <h4 class="govuk-heading-s" id="add1ID">Additional cost 1</h4>
+        <div class="govuk-inset-text">
+          Waiting rate reduced accordingly
+        </div>
 
         <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
 
@@ -204,7 +207,7 @@
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">Amount</td>
               <td class="govuk-table__cell">3 hours 0 minutes</td>
-              <td class="govuk-table__cell">3 hours 0 minutes</td>
+              <td class="govuk-table__cell">2 hours 0 minutes</td>
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">Rate</td>
@@ -214,7 +217,7 @@
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">Total</td>
               <td class="govuk-table__cell">£120.00</td>
-              <td class="govuk-table__cell">£120.00</td>
+              <td class="govuk-table__cell">£80.00</td>
             </tr>
           </tbody>
         </table>
@@ -427,4 +430,23 @@
   </div>
 </div>
 
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    var rate1GeneralTotal = parseFloat(document.getElementById("rate1GeneralTotal").value) | 0
+    var rate2GeneralTotal = parseFloat(document.getElementById("rate2GeneralTotal").value) | 0
+    var actualTravelTotal = parseFloat(document.getElementById("actualTravelTotal").value) | 0
+    var actualAdd1Total = parseFloat(document.getElementById("actualAdd1Total").value) | 0
+    var actualGeneralTotal = parseFloat(document.getElementById("actualGeneralTotal").value) | 0
+    var allowedTotalCost = parseFloat(document.getElementById("allowedTotalCost").value) | 0
+
+    window.onload = function(){  
+      allowedTotalCost = actualTravelTotal + actualAdd1Total + rate1GeneralTotal + rate2GeneralTotal;
+      document.getElementById("showallowedTotalCost").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost2").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost3").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("allowedTotalCost").value = (allowedTotalCost);
+    }
+  </script>
 {% endblock %}

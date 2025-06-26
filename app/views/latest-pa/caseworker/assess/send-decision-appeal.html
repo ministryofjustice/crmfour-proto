@@ -29,35 +29,12 @@
 
       <form class="form" action="/{{version}}/appeal-decision" method="post">
 
-        <h1 class="govuk-heading-xl">Make a decision</h1>
-
-         {{ govukRadios({
-          name: "icaDecision",
-          fieldset: {
-            legend: {
-              text: "Is this an ICA or caseworker decsion?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "Yes",
-              text: "ICA"
-            },
-            {
-              value: "No",
-              text: "Caseworker"
-            }
-          ]
-        }) }}
-
         {% set grantedHtml %}
           {{ govukTextarea({
             name: "grantedConfirm",
             id: "grantedConfirm",
             label: {
-              text: "Enter additional comments (optional)",
+              text: "Explain your decision",
               isPageHeading: false
             },
             hint: {
@@ -98,9 +75,9 @@
           name: "cwAppStatus",
           fieldset: {
             legend: {
-              text: "What is the decision on the application as a result of the appeal?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--s"
+              text: "What is the overall decision?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
             }
           },
           items: [

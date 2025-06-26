@@ -31,7 +31,7 @@
     <div class="govuk-grid-column-two-thirds">
       <h1 class="govuk-heading-xl">Adjust additional cost 1</h1>
 
-      <form class="form" action="application-details-adjust?add1Adjust=Yes#additional1ID" method="post">      
+      <form class="form" action="application-details-adjust?add1Adjust=Yes#allowedCosts" method="post">      
         <p>Adjust the providers' costs by changing the values.</p>
 
         <!--Additonal cost 1-->
@@ -64,7 +64,7 @@
         {{ govukInput({
           id: "addCostTime1",
           name: "addCostTime1",
-          value: data['addCostTime1'] or "30.00",
+          value: data['addCostTime1'] or "40.00",
           label: {
             text: "Cost per hour",
             classes: "govuk-fieldset__legend--s"
@@ -75,21 +75,21 @@
           classes: "govuk-input--width-5",
           spellcheck: false
         }) }}
-      
-        <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total'] or "120"}}.00">                        
+
+        <input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total'] or "120.00"}}">                        
                 
-        <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd1CWCost()">Calculate my changes</button>
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calAdd1CWCost()">Calculate cost</button>
       
 
         <p class="govuk-heading-l">
           <span class="govuk-caption-m">Adjusted cost</span> £
-          <span id="showAdd1Total">0</span>.00
+          <span id="showAdd1Total">0.00</span>
         </p>
 
         {{ govukTextarea({
           name: "addCost1Adjust",
           id: "addCost1Adjust",
-          value: data['addCost1Adjust'] or "Waiting rate reduced accordingly.",
+          value: data['addCost1Adjust'] or "Waiting rate reduced accordingly",
           label: {
             text: "Explain your decision",
             classes: "govuk-label--s",
@@ -99,7 +99,6 @@
             text: "For example, why you made adjustments to the cost or time. We'll share this explanation with the provider."
           }
         }) }}
-
         
         <div class="govuk-button-group">
           {{ govukButton({

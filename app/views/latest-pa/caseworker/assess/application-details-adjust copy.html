@@ -19,6 +19,8 @@
   {{data['laa-ref'] or "LAA-5a7d3c"}} - Application details – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
+
+
 {% block beforeContent %}
   {% include "includes/banner.html"%}
   
@@ -52,7 +54,7 @@
         <h3 class="govuk-heading-m">Appeal 2 May 2025</h3> 
         <ul class="govuk-list">
           <li>Requested: £640.00</li>
-          <li>Allowed: £520.00</li>
+          <li>Allowed: £480.00</li>
         </ul>
 
         <details class="govuk-details">
@@ -89,14 +91,13 @@
                 </tr>
                 <tr class="govuk-table__row">
                   <td class="govuk-table__cell">Waiting time</td>
-                  
                   <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">£80.00</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
                 </tr>
                   <tr class="govuk-table__row">
                   <th scope="row" class="govuk-table__header" colspan="1">Total</th>
                   <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£640.00</strong></td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£480.00</strong></td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£520.00</strong></td>
                 </tr>
               </tbody>
             </table> 
@@ -190,51 +191,35 @@
 
         <h4 class="govuk-heading-s" id="add1ID">Additional cost 1</h4>
 
-        {% if data['addAdd'] =="0" %}
-          <p>No additional costs added</p>
-          <!----<div class="govuk-button-group">
-            {{ govukButton({
-              text: "Adjust additional cost",
-              href: "change-additionalCost1",
-              classes: "govuk-button--secondary"
-            }) }}
-          </div>
-          --->
-          {% else %}
+        <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
 
-            <div class="govuk-inset-text">
-              {{data['addCost1Adjust'] or "Waiting rate reduced accordingly."}}
-            </div>
-          <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
-
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Details</th>
-                <th scope="col" class="govuk-table__header">Requested</th>
-                <th scope="col" class="govuk-table__header">Allowed</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Amount</td>
-                <td class="govuk-table__cell">3 hours 0 minutes</td>
-                <td class="govuk-table__cell">3 hours 0 minutes</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Rate</td>
-                <td class="govuk-table__cell">£40.00 per hour</td>
-                <td class="govuk-table__cell">£40.00 per hour</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Total</td>
-                <td class="govuk-table__cell">£120.00</td>
-                <td class="govuk-table__cell">£120.00</td>
-              </tr>
-            </tbody>
-          </table>
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Details</th>
+              <th scope="col" class="govuk-table__header">Requested</th>
+              <th scope="col" class="govuk-table__header">Allowed</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Amount</td>
+              <td class="govuk-table__cell">3 hours 0 minutes</td>
+              <td class="govuk-table__cell">3 hours 0 minutes</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Rate</td>
+              <td class="govuk-table__cell">£40.00 per hour</td>
+              <td class="govuk-table__cell">£40.00 per hour</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Total</td>
+              <td class="govuk-table__cell">£120.00</td>
+              <td class="govuk-table__cell">£120.00</td>
+            </tr>
+          </tbody>
+        </table>
             
-        {% endif %}
       {% endset%}
 
       {% set appealAprilCostHtml %}
@@ -377,7 +362,7 @@
         <div class="govuk-inset-text">
           Waiting time reduced accordingly.
         </div>
-        <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
+        <p>Cost description: Waited at police station for client to be interviewed</p>
 
         <table class="govuk-table">
           <thead class="govuk-table__head">
@@ -438,7 +423,7 @@
       {% include version + "/includes/adjust-costs.html"%}
     {% endif %}   
 
-    {% include version + "/includes/application-buttons.html"%}
+      {% include version + "/includes/application-buttons.html"%}
 
   </div>
 </div>
