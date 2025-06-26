@@ -1,0 +1,281 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
+  {% set activeAppNav = [false, false, true] %}
+}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Applications details - allowed costs: {{data['laa-ref'] or "LAA-5a7d3c"}}  – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">
+      Application details
+    </h1>  
+  </div>
+
+  <!--Status of application-->
+  {% include version + "/includes/app-status-provider.html" %}
+
+  <div class="govuk-grid-column-two-thirds" id="nav">
+
+    <!--2nd nav-->
+    {% include version + "/includes/nav-app-provider.njk" %}
+
+
+    <h2 class="govuk-heading-l" id="review-adjustments">Allowed costs</h2>
+    <p class="govuk-body-m"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00</p>
+    <p class="govuk-body-m"><strong>Allowed: </strong>£520.00</p>
+    
+    <!--Service -->
+    <h3 class="govuk-heading-m">{{data['serviceType'] or "Interpreter"}} cost</h3>
+    
+    <div class="govuk-inset-text">
+      Costs reduced according to correct fee amounts</div>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Details</th>
+          <th scope="col" class="govuk-table__header">Requested</th>
+          <th scope="col" class="govuk-table__header">Allowed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% if data['serviceType'] == "Transcription" %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Amount</td>
+            <td class="govuk-table__cell">20 minutes</td>
+            <td class="govuk-table__cell">10 minutes</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rate</td>
+            <td class="govuk-table__cell">£20.00 per minute</td>
+            <td class="govuk-table__cell">£20.00 per minute</td>
+          </tr>
+          {% elseif data['serviceType'] == "Translation and transcription" %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Amount</td>
+            <td class="govuk-table__cell">20 minutes</td>
+            <td class="govuk-table__cell">10 minutes</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rate</td>
+            <td class="govuk-table__cell">£20.00 per minute</td>
+            <td class="govuk-table__cell">£20.00 per minute</td>
+          </tr>
+          {% elseif data['serviceType'] == "Translation" %} 
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Amount</td>
+            <td class="govuk-table__cell">20000 words</td>
+            <td class="govuk-table__cell">10000 words</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rate</td>
+            <td class="govuk-table__cell">£20.00 per 1000 words</td>
+            <td class="govuk-table__cell">£20.00 per 1000 words</td>
+          </tr>
+          {% elseif data['serviceType'] == "Photocopying" %} 
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Amount</td>
+            <td class="govuk-table__cell">20 pages</td>
+            <td class="govuk-table__cell">10 pages</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rate</td>
+            <td class="govuk-table__cell">£20.00 per page</td>
+            <td class="govuk-table__cell">£20.00 per page</td>
+          </tr>
+          {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%} 
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Amount</td>
+            <td class="govuk-table__cell">2 hours 0 minutes</td>
+            <td class="govuk-table__cell">1 hours 0 minutes</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rate</td>
+            <td class="govuk-table__cell">£400 per hour</td>
+            <td class="govuk-table__cell">£200 per hour</td>
+          </tr>
+          {% elseif data['serviceType'] == "Other"%} 
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Amount</td>
+            <td class="govuk-table__cell">2 items</td>
+            <td class="govuk-table__cell">1 items</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rate</td>
+            <td class="govuk-table__cell">£400.00 per item</td>
+            <td class="govuk-table__cell">£400.00 per item</td>
+          </tr>
+          {% elseif data['serviceType'] == "DNA report" %}
+          <!--All other service types-->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Amount</td>
+            <td class="govuk-table__cell">1 report</td>
+            <td class="govuk-table__cell">1 report</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rate</td>
+            <td class="govuk-table__cell">£400 per report</td>
+            <td class="govuk-table__cell">£200 per report</td>
+          </tr>
+          
+         
+          {% else %}
+          <!--All other service types-->
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Amount</td>
+            <td class="govuk-table__cell">2 hour 0 minutes</td>
+            <td class="govuk-table__cell">1 hour 0 minutes</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Rate</td>
+            <td class="govuk-table__cell">£200 per hour</td>
+            <td class="govuk-table__cell">£200 per hour</td>
+          </tr>
+         
+        {% endif %}
+         <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Total</td>
+          <td class="govuk-table__cell">£400.00</td>
+          <td class="govuk-table__cell">£200.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <!--Travel-->
+    <h3 class="govuk-heading-m">Travel cost</h3>
+    <div class="govuk-inset-text">
+      Travel added according to requiremennts
+    </div>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Details</th>
+          <th scope="col" class="govuk-table__header">Requested</th>
+          <th scope="col" class="govuk-table__header">Allowed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Amount</td>
+          <td class="govuk-table__cell"></td> 
+          <td class="govuk-table__cell">3 hours 0 minutes</td> 
+        </tr>
+          <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Rate</td>
+          <td class="govuk-table__cell"></td> 
+          <td class="govuk-table__cell">£40.00 per hour</td> 
+        </tr>
+          <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Total</td>
+          <td class="govuk-table__cell"></td> 
+          <td class="govuk-table__cell">£120.00</td> 
+        </tr>
+      </tbody>
+    </table>
+
+    <!--Alt costs-->
+    <h3 class="govuk-heading-m">Additional cost 1</h3>
+    <!--<div class="govuk-inset-text">
+      Words here
+    </div>
+    -->
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Details</th>
+          <th scope="col" class="govuk-table__header">Requested</th>
+          <th scope="col" class="govuk-table__header">Allowed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Amount</td>
+          <td class="govuk-table__cell">4 hours 0 minutes</td>
+          <td class="govuk-table__cell">4 hours 0 minutes</td>
+        </tr>
+          <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Rate</td>
+          <td class="govuk-table__cell">£40.00 per hour</td>
+          <td class="govuk-table__cell">£40.00 per hour</td>
+        </tr>
+          <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Total</td>
+          <td class="govuk-table__cell">£120.00</td>
+          <td class="govuk-table__cell">£120.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!--Alt costs-->
+    <h3 class="govuk-heading-m">Additional cost 2</h3>
+    <div class="govuk-inset-text">
+      Hotel not allowed as travel distance is acceptable
+    </div>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Details</th>
+          <th scope="col" class="govuk-table__header">Requested</th>
+          <th scope="col" class="govuk-table__header">Allowed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Amount</td>
+          <td class="govuk-table__cell">1 item</td>
+          <td class="govuk-table__cell">0 items</td>
+        </tr>
+          <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Rate</td>
+          <td class="govuk-table__cell">£120.00 per hour</td>
+          <td class="govuk-table__cell">£120.00 per hour</td>
+        </tr>
+          <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Total</td>
+          <td class="govuk-table__cell">£120.00</td>
+          <td class="govuk-table__cell">£0.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    
+
+  </div>
+
+  <script>
+    const date = new Date();
+    const formattedDate = date.toLocaleDateString('en-GB', {
+      day: '2-digit', month: 'short', year: 'numeric'
+    }).replace(/ /g, ' ');
+    document.getElementById("date").innerHTML = formattedDate;
+  </script>  
+
+{% endblock %}
+
