@@ -1,0 +1,127 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Additional information – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">About the request </span>
+      {% if data['question3-add-info'] == "complete" or data['changeAddInfo'] == "change" %}
+        <form class="form" action="check-answers" method="post">
+        {% else %}
+        <form action="/{{version}}/question3-add-info" method="post" >
+      {% endif %}
+
+        {{ govukTextarea({
+          name: "addInfo",
+          id: "addInfo",
+          label: {
+            text: "Additional information (optional)",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Add any additional information pertinent to this application."
+          }
+        }) }}
+
+        <div class="moj-multi-file-upload">
+          <div class="moj-multi-file__uploaded-files ">
+            <h2 class="govuk-heading-m">Supporting documentation</h2>
+            <p>Friendly file names make it easier for us to assess your case. For example, Client-case.pdf instead of File23.PDF.</p>
+            <p>The maximum size for each file is 10MB. Files must be a DOC, DOCX, RTF, ODT, JPG, BMP, PNG, TIF or PDF.</p>
+            <div class="govuk-summary-list moj-multi-file-upload__list">
+            </div>
+          </div>
+
+          <div class="moj-multi-file-upload__upload">
+
+            <div class="govuk-form-group">
+              <label class="govuk-label govuk-label--s" for="documents">
+                Upload files
+              </label>
+
+              <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple="">
+            </div>
+
+            <button class="govuk-button govuk-button--secondary moj-multi-file-upload__button" data-module="govuk-button">
+              Upload file
+            </button>
+
+          </div>
+        </div>
+
+        {% if data['question3-add-info'] == "complete" or data['changeAddInfo'] =="change" %}
+
+          {% else %}
+          {{ govukRadios({
+            name: "haveYouCompletedThisSection",
+            fieldset: {
+              legend: {
+                text: "Have you completed this section?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--m"
+              }
+            },
+            items: [
+              {
+                value: "Yes",
+                text: "Yes, I’ve completed this section",
+                checked: checked("haveYouCompletedThisSection", "Yes")
+              },
+              {
+                value: "No",
+                text: "No, I’ll come back to it later",
+                checked: checked("haveYouCompletedThisSection", "No")
+              }
+            ]
+          }) }}
+        {% endif %}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    if (typeof MOJFrontend.MultiFileUpload !== "undefined") {
+      new MOJFrontend.MultiFileUpload({
+        container: $(".moj-multi-file-upload"),
+        uploadUrl: "/ajax-upload",
+        deleteUrl: "/ajax-delete",
+      });
+    }
+
+  </script>
+{% endblock %}
+
+
+

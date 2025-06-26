@@ -6,12 +6,14 @@
 {% include version + "/includes/header-provider.html" %}
 {% endblock %}
 
+
 {% block pageTitle %}
 Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
 {% include "includes/banner.html"%}
+
 
 {{ govukBackLink({
 text: "Back",
@@ -21,7 +23,7 @@ href: "javascript:window.history.back()"
 
 {% block content %}
 
-<!-- The original application has been rejected-->
+<!--Stage 2 - app appealed - no response yet > (part granted, following RFI)-->
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -62,7 +64,7 @@ href: "javascript:window.history.back()"
             </dt>
             <dd class="govuk-summary-list__value">
                <p>This application was rejected due to unrealistic costs claimed and an unregulated provider. </p>
-               <p>You can <a href="appeal-start.html">appeal this decision</a>.</p>
+               <p>You can <a href="">appeal the decision</a>.</p>
             </dd>
           </div>
         </dl>
@@ -93,10 +95,38 @@ href: "javascript:window.history.back()"
 
     <div class="govuk-grid-column-two-thirds" id="nav">
 
+      <nav class="moj-sub-navigation" aria-label="Sub navigation">
+
+        <ul class="moj-sub-navigation__list">
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" aria-current="page" href="#1">Appeal</a>
+          </li>
+          <li class="moj-sub-navigation__item">
+            <a class="moj-sub-navigation__link" href="#2">Overview</a>
+          </li>
+         
+        
+        </ul>
+      
+      </nav>
 
 
-      <h2 class="govuk-heading-l">Overview</h2>
+      <h2 class="govuk-heading-l">Appeal</h2>
 
+
+      <h3 class="govuk-heading-s">LAA review - 25 August 2023</h3>
+
+                <p>You must provide even more evidence including a certificate and a letter of recommendation.
+                </p>
+                
+
+      <h3 class="govuk-heading-s">Your appeal - 22 August 2023</h3>
+
+                <p>I disagree with the rejection of my application. The expert is pre-eminent. I have attached their certificates for practice.
+                </p>
+                <ul class="govuk-list">
+                  <li>Uploads:<a href="">evidence1.pdf</a></li>
+                </ul>
       
 
      

@@ -13,7 +13,7 @@ Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} 
 
 {% block beforeContent %}
 {% include "includes/banner.html"%}
-
+{% include version + "/includes/nav-prime-provider.njk" %}
 
 {{ govukBackLink({
 text: "Back",
@@ -42,7 +42,7 @@ href: "javascript:window.history.back()"
           <li class="govuk-summary-card__action">
             <!--For the proto make links show as not yet selected until the user does the action-->
 
-            <a class="govuk-link--no-visited-state" href="appeal-enter">Change<span
+            <a class="govuk-link--no-visited-state" href="question1-org?changeOrg=change">Change<span
                 class="govuk-visually-hidden"> your details</span></a>
 
           </li>
@@ -83,6 +83,11 @@ href: "javascript:window.history.back()"
       href: "appeal-submitted"
       }) }}
 
+      {{ govukButton({
+      text: "Save and come back later",
+      href: "",
+      classes: "govuk-button--secondary"
+      }) }}
     </div>
 
 

@@ -1,0 +1,153 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
+{% if data['Appeal'] == "Yes" %}
+{% set activeAppNav = [false, true, false] %}
+{% else %}
+{% set activeAppNav = [false, true, false] %}
+{% endif %}
+
+{% block header %}
+{% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/banner.html"%}
+
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<!-- The original application has been rejected-->
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+      Application details
+    </h1>
+  </div>
+
+  <!--Status of application-->
+
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Application status</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Status
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p><strong class="govuk-tag govuk-tag--light-blue">Appealed</strong> </p>
+              <p>25 June 2025</p>
+              <p>Awaiting LAA decision</p>
+              <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested</p>
+              <p>£480.00 allowed</p>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Initial decision
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
+              <p>This application was part granted due to unrealistic costs claimed and an unregulated provider. </p>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+    </div>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-s" id="subsection-title">Email the LAA case team</h2>
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-link govuk-body-s govuk-link--no-visited-state"
+            href="mailto:magsbilling@justice.gov.uk">magsbilling@justice.gov.uk</a>
+        </li>
+      </ul>
+
+      <h2 class="govuk-heading-s" id="subsection-title">Print a PDF of this claim</h2>
+      <p class="govuk-body-s">It will include the answers you input into this claim and its current status.</p>
+
+      <a href="claim-details-print3" role="button" draggable="false" class="govuk-button govuk-button--secondary"
+        data-module="govuk-button" data-govuk-button-init="">
+        Create a printable PDF
+      </a>
+
+    </aside>
+  </div>
+
+  <div class="govuk-grid-column-two-thirds" id="nav">
+
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [
+      {
+        text: 'Overview',
+        href: 'application-details-1-submitted#nav',
+        active: + activeAppNav[0] | default('true')
+      }, 
+      {
+        text: 'Appeal',
+        href: 'application-details-1-submitted-appeal#nav',
+        active: + activeAppNav[1]
+      },
+      {
+        text: 'Costs',
+        href: 'application-details-adjusted#nav',
+        active: + activeAppNav[2]
+      }
+      ]
+    }) }}
+
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+
+        <h2 class="govuk-heading-l" id="appeal-details">Appeal</h2>
+
+        <div class="govuk-summary-card">
+          <div class="govuk-summary-card__title-wrapper">
+            <h2 class="govuk-summary-card__title">Appealed 25 June 2025</h2>
+
+          </div>
+          <div class="govuk-summary-card__content">
+            <dl class="govuk-summary-list">
+                            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Your appeal</dt>
+                <dd class="govuk-summary-list__value">
+                  <p>This expert is critical to the case and they are also the best dna expert in the land
+                    available at short notice</p><br><a class="govuk-link"
+                    href="62a30fef-7908-42e2-9ea3-f9419ba0fa68">important-evidence.pdf</a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+  {% endblock %}
