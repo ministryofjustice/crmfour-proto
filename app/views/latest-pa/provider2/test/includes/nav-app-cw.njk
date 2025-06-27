@@ -1,0 +1,126 @@
+ {% if data['Appeal'] == "Yes" %}
+  {% if data['appealStatus'] !== "" or  data['cwAppStatus'] == "New" or  data['cwAppStatus'] == "Review"  %}
+
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [
+      {
+        text: 'Overview',
+        href: 'application-details',
+        active: + activeAppNav[0] | default('true')
+      }, 
+      {
+        text: 'Appeal details',
+        href: 'application-details-appeal',
+        active: + activeAppNav[2]
+      }, 
+      {
+        text: 'Allowed costs',
+        href: 'application-details-adjust-appeal',
+        active: + activeAppNav[1]
+      }, 
+      {
+        text: 'Related applications',
+        href: 'application-details-related',
+        active: + activeAppNav[3]
+      }, 
+      {
+        text: 'Application history',
+        href: 'application-details-history',
+        active: + activeAppNav[4]
+      }
+      ]
+    }) }}
+
+
+    {% else %}
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [
+      {
+        text: 'Overview',
+        href: 'application-details',
+        active: + activeAppNav[0] | default('true')
+      }, 
+      {
+        text: 'Appeal details',
+        href: 'application-details-appeal',
+        active: + activeAppNav[2]
+      }, 
+      {
+        text: 'Adjust costs',
+        href: 'application-details-adjust-appeal',
+        active: + activeAppNav[1]
+      }, 
+      {
+        text: 'Related applications',
+        href: 'application-details-related',
+        active: + activeAppNav[3]
+      }, 
+      {
+        text: 'Application history',
+        href: 'application-details-history',
+        active: + activeAppNav[4]
+      }
+      ]
+    }) }}
+      
+  {% endif %}
+  
+  {% else %}
+  
+    {% if data['cwAppStatus'] == "In progress" %}
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [
+        {
+          text: 'Overview',
+          href: 'application-details',
+          active: + activeAppNav[0] | default('true')
+        }, 
+        {
+          text: 'Adjust costs',
+          href: 'application-details-adjust',
+          active: + activeAppNav[1]
+        }, 
+        {
+          text: 'Related applications',
+          href: 'application-details-related',
+          active: + activeAppNav[3]
+        }, 
+        {
+          text: 'Application history',
+          href: 'application-details-history',
+          active: + activeAppNav[4]
+        }
+        ]
+      }) }}
+
+      {% else %}
+        {{ mojSubNavigation({
+          label: 'Sub navigation',
+          items: [
+          {
+            text: 'Overview',
+            href: 'application-details',
+            active: + activeAppNav[0] | default('true')
+          }, 
+          {
+            text: 'Allowed costs',
+            href: 'application-details-adjust-readonly',
+            active: + activeAppNav[1]
+          },  
+          {
+            text: 'Related applications',
+            href: 'application-details-related',
+            active: + activeAppNav[3]
+          }, 
+          {
+            text: 'Application history',
+            href: 'application-details-history',
+            active: + activeAppNav[4]
+          }
+          ]
+        }) }}
+  {% endif %}
+{% endif %}

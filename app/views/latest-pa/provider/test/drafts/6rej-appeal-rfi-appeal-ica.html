@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main-latest.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
 
@@ -13,7 +13,7 @@ Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} 
 
 {% block beforeContent %}
 {% include "includes/banner.html"%}
-{% include version + "/includes/nav-prime-provider.njk" %}
+
 
 {{ govukBackLink({
 text: "Back",
@@ -23,7 +23,7 @@ href: "javascript:window.history.back()"
 
 {% block content %}
 
-<!--Stage 2 - app appealed - no response yet > (part granted, following RFI)-->
+<!-- Provider has appealed > CW referred to ICA > ICA made decision -->
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -46,27 +46,30 @@ href: "javascript:window.history.back()"
               Status
             </dt>
             <dd class="govuk-summary-list__value">
-              <p><strong class="govuk-tag govuk-tag--grey">Appeal</strong> <strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
+              <p><strong class="govuk-tag govuk-tag--grey">Appealed</strong> <strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
+              <p>21 September 2023</p>
              
-              <p>22 May 2023</p>
-          
-              <p>£5,000.00 requested</p>
-              <p>£3,200.00 allowed</p>
+              <p>£5,000 requested</p>
+              <p>£0 allowed</p>
 
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
-             </dd>
-          </div>
+            
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              LAA response
+              ICA decision 
             </dt>
             <dd class="govuk-summary-list__value">
-               <p>Following appeal, this app is part granted as the further evidence showed that the service could be provided more cost effectively. </p>
-               <p>You can <a href="">appeal this decision</a>.</p>
-            </dd>
+              <p><strong class="govuk-tag govuk-tag--red">Rejected</strong> </p>
+                       <p>Not enough evidence to support the use of this expert at this rate.</p>
+                       <p>You cannot appeal an ICA decision.</p>
+             
+                      </dd>
           </div>
+
+        
+    
+          
         </dl>
       </div>
 
@@ -95,91 +98,55 @@ href: "javascript:window.history.back()"
 
     <div class="govuk-grid-column-two-thirds" id="nav">
 
-      <nav class="moj-sub-navigation" aria-label="Sub navigation">
+      
 
-        <ul class="moj-sub-navigation__list">
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" aria-current="page" href="#1">Appeal</a>
-          </li>
-          <li class="moj-sub-navigation__item">
-            <a class="moj-sub-navigation__link" href="#2">Overview</a>
-          </li>
-         
+        <nav class="moj-sub-navigation" aria-label="Sub navigation">
+  
+          <ul class="moj-sub-navigation__list">
+            <li class="moj-sub-navigation__item">
+              <a class="moj-sub-navigation__link" aria-current="page" href="#1">Appeal</a>
+            </li>
+            <li class="moj-sub-navigation__item">
+              <a class="moj-sub-navigation__link" href="#2">Overview</a>
+            </li>
+            
+           
+          
+          </ul>
         
-        </ul>
-      
-      </nav>
+        </nav>
+  
+  
+        <h2 class="govuk-heading-l">Appeal</h2>
 
 
-      <h2 class="govuk-heading-l">Appeal</h2>
-
-      <dl class="govuk-summary-list">
-            
-            
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Reason for appeal
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <p>18 May 2025</p>
-            <p>I disagree with the rejection of my application and have provided further evidence to prove the need for travel cost.
-            </p>
-            <ul class="govuk-list">
-              <li><a href="">even-more-evidence.pdf</a></li>
-            </ul>
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Decision being appealed
-          </dt>
-          <dd class="govuk-summary-list__value">
-              <ul class="govuk-list">
-                <p>Rejected 7 May 2025</p>
-                <p>Rejected because the evidence wasn't sufficient and there was no justification as to why the expertise is required.</p>
-              
-      
-            </ul>
-          </dd>
-        </div>
-      </dl>
-      <h3 class="govuk-heading-m">Updates</h3>
-      <div class="govuk-summary-card">
+        <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h4 class="govuk-summary-card__title" id="review-further-info">Further information request 15 May 2025</h4>
+          <h3 class="govuk-summary-card__title">Appeal: 12 September 2024</h3>
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-          
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Information request
+                LAA response
               </dt>
               <dd class="govuk-summary-list__value">
-                There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time.
-              </dd>
+            <p>Referred to ICA    </p>     </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Your response
+                Your appeal
               </dt>
               <dd class="govuk-summary-list__value">
-                Please see the attached documetents that show why this expert is needed.<br>
+                <p>I have attached the correct certificates for practice from the required body. Please consider this appeal.</p>
+             
                 <a href="">courtDocs1.pdf</a><br>
-                <a href="">courtDocs2.pdf</a>
+              <a href="">courtDocs2.pdf</a>
               </dd>
             </div>
           </dl>       
         </div>
       </div>
-
-    </div>
-
-    
-
-
-
-
 
 
     </div>

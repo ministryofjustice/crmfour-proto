@@ -3,69 +3,47 @@
 {% set activePrimeNav = [true, false] %}
 
 {% block header %}
-  {% include version + "/includes/header-provider.html" %}
+{% include version + "/includes/header-provider.html" %}
 {% endblock %}
 
 {% block pageTitle %}
-  Application complete – {{ serviceName }} – GOV.UK Prototype Kit
+Application complete – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
-      <div class="govuk-panel govuk-panel--confirmation">
-          <h1 class="govuk-panel__title">
-            Appeal submitted
-          </h1>
-          <div class="govuk-panel__body">
-            Your LAA reference number<br><strong>{{data['laa-ref'] or "LAA-5a7d3c"}}</strong>
-          </div>
-        </div>
-
-      <p>We have sent you a confirmation email.</p>
-
-      <h2 class="govuk-heading-m">
-        What happens next
-      </h2>
-
-      <p>We'll assess your appeal.</p>
-      <p>We’ll send you an email to let you know the outcome of your appeal or to ask for more information.</p>
-      <p>It normally takes up to 5 working days to assess an application. After this you can contact us to check the status of your application:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>telephone: 0300 200 2020</li>
-        <li>email: <a href="mailto:magsbilling@justice.gov.uk" class="govuk-link">magsbilling@justice.gov.uk</a></li>
-      </ul>
-
-      <h2 class="govuk-heading-s">
-        View, save and print your application
-      </h2>
-      <p>You can view your submitted application and save it as a printable PDF.</p>
-
-       <p>
-        <a href="#">
-          What did you think of this service?
-        </a> (takes 30 seconds)
-      </p>
-
-       <div class="govuk-button-group">
-          {{ govukButton({
-            text: "View your applications",
-            href: "../crm-apps-reviewed?app-state=all&app-task=Submitted&Appeal=No#manage-submitted"
-
-          }) }}
-        
-          {{ govukButton({
-            text: "Start new application",
-            classes: "govuk-button--secondary",
-            href: "question-prison"
-          }) }}
-
-        </div>
-
-
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Appeal submitted
+      </h1>
+      <div class="govuk-panel__body">
+        Your LAA reference number<br><strong>{{data['laa-ref'] or "LAA-5a7d3c"}}</strong>
+      </div>
     </div>
+
+    <p>We have sent you a confirmation email.</p>
+
+    <h2 class="govuk-heading-m">
+      What happens next
+    </h2>
+
+    <p>It usually takes up to 5 working days to assess.</p>
+    <p>We'll let you know the outcome by updating this application and sending you an email.</p>
+
+    <p>
+      <a href="https://www.smartsurvey.co.uk/s/JCMEZ8/">
+        What did you think of this service?
+      </a> (takes 30 seconds)
+    </p>
+    <p>
+      <a href="/latest-pa/provider/crm-apps-submitted">
+        Back to your applications
+      </a>
+    </p>
   </div>
+</div>
 
 {% endblock %}

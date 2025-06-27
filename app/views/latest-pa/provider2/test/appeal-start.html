@@ -1,0 +1,90 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+{% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+
+{% block beforeContent %}
+{% include "includes/banner.html"%}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="moj-multi-file-upload__message"></div>
+
+    <h1 class="govuk-heading-xl">How to appeal</h1>
+
+    <h2 class="govuk-heading-m">Before you appeal</h2>
+
+
+<p class="govuk-body">
+Do not appeal for:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li class="govuk-body">more funding than you originally applied for</li>
+    <li class="govuk-body">funding for work already done</li>
+      <li class="govuk-body">making changes to your application</li>
+
+    </ul>
+
+    <p class="govuk-body">If you need to make changes, make a new application or explain the change at the billing stage.</p> 
+
+<h2 class="govuk-heading-m">What to include</h2>
+
+<p class="govuk-body">Explain the grounds of your appeal, for example:</p>
+  
+      <ul class="govuk-list govuk-list--bullet">
+
+        <li class="govuk-body">the expert's evidence is key to the case</li>
+        <li class="govuk-body">the expert needs to be very experienced</li>
+        <li class="govuk-body">the material is so unusual that few experts qualify to help</li>
+      </ul>
+
+     
+      <p class="govuk-body">Upload evidence, for example:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li class="govuk-body">prosecution case summary</li>
+        <li class="govuk-body">defence statement</li>
+        <li class="govuk-body">proof of evidence</li>
+        <li class="govuk-body">counsel’s opinion as to why the expert is needed</li>
+        <li class="govuk-body">expert reports already obtained in the same or a related area of
+          expertise for the same matter</li>
+
+      </ul>
+
+      <h2 class="govuk-heading-m">After you appeal</h2>
+
+<p>
+
+      
+      An LAA caseworker will respond to your appeal. If you disagree with the decision, it can be
+      sent to an independent costs assessor (ICA). The ICA’s decision is final (Criminal Bills
+      Assessment Manual (CBAM) rule 4.4.1).</p>
+
+
+
+      {{ govukButton({
+        text: "Continue",
+        href: "appeal-check1",
+        isStartButton: false
+      }) }}
+      
+      
+
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}
