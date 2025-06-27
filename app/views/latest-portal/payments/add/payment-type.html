@@ -1,0 +1,77 @@
+{% extends "layouts/main-latest.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Type of payment – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="existing-claim-question" method="post">
+
+        {{ govukRadios({
+          name: "paymentType",
+          fieldset: {
+            legend: {
+              text: "Payment type",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Standard NSM payment",
+              text: "Standard NSM payment",
+              checked: checked("paymentType", "Standard NSM payment")
+            },
+            {
+              value: "Supplemental payment",
+              text: "Supplemental payment",
+              checked: checked("paymentType", "Supplemental payment")
+            },
+            {
+              value: "Appeal",
+              text: "Appeal",
+              checked: checked("paymentType", "Appeal")
+            },
+            {
+              value: "Assigned Counsel's fee (CRM8)",
+              text: "Assigned Counsel's fee (CRM8)",
+              checked: checked("paymentType", "Assigned Counsel's fee (CRM8)")
+            }
+          ]
+        }) }}  
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

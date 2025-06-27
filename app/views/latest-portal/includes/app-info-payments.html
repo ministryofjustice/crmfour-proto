@@ -1,49 +1,16 @@
-<span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
-<h1 class="govuk-heading-xl">{{data['client'] or "Roger Blackbeard"}}</h1>
+<span class="govuk-caption-xl">Laywers Inc</span>
+<h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
 <p>
-  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
+{% if data['cwAppStatus'] == "Part granted" %}
+  <strong class="govuk-tag govuk-tag--blue">Part granted</strong><br><br>
   {% else %}
-  {% if data['cwAppStatus'] == "In progress" %}
-    <strong class="govuk-tag govuk-tag--purple">In progress</strong><br><br>
-    {% else %}
-    {% if data['cwAppStatus'] == "Granted" %}
-      <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
-      {% else %}
-      {% if data['cwAppStatus'] == "Rejected" %}
-        <strong class="govuk-tag govuk-tag--red">Rejected</strong><br><br>
-        {% else %}
-        {% if data['cwAppStatus'] == "Review" %}
-          <strong class="govuk-tag govuk-tag--yellow">Sent back</strong><br><br>
-          {% else %}
-          {% if data['cwAppStatus'] == "Part granted" %}
-            <strong class="govuk-tag govuk-tag--blue">Part granted</strong><br><br>
-            {% else %}
-            {% if data['cwAppStatus'] == "Returned" %}
-              <strong class="govuk-tag govuk-tag--grey">Provider updated</strong><br><br>
-              {% else %}
-              {% if data['cwAppStatus'] == "Referred" %}
-                <strong class="govuk-tag govuk-tag--yellow">Referred</strong><br><br>
-                {% else %}
-                {% if data['cwAppStatus'] == "Auto granted" %}
-                  <strong class="govuk-tag govuk-tag--green">Auto granted</strong><br><br>
-                    {% else %}
-                  {% if data['cwAppStatus'] == "Expired" %}
-                    <strong class="govuk-tag govuk-tag--red">Expired</strong><br><br>
-                  {% endif %}
-                {% endif %}
-              {% endif %}
-            {% endif %}
-          {% endif %}
-        {% endif %}
-      {% endif %}
-    {% endif %}
-  {% endif %}
+  <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
 {% endif %}
 </p>
 <p>
-  <span class="govuk-body-l"><strong>Allowed:</strong> £1352.00<br>
+  <span class="govuk-body-l"><strong>Allowed:</strong> £4872.20<br>
 </p> 
- <span class="govuk-body-m"><strong>Payment submitted:</strong> 21 June 2025</span><br>
+ <span class="govuk-body-m"><strong>Payment submitted:</strong> 30 June 2025</span><br>
  <p><span class="govuk-body-m"><strong>Caseworker:</strong> {{data['caseworker1']}}</span>
 </p>
 <div class="govuk-button-group">

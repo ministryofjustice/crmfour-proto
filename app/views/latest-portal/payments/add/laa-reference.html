@@ -1,0 +1,113 @@
+{% extends "layouts/main-latest.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Enter Laa reference – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="claim-details" method="post">
+
+        {% include version + "/includes/list-laa-ref.html" %}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps-reviewed?claims-state=all"
+          }) }}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+        let selectElements = $('.autocomplete-select')
+        let placeholder = ''
+
+        selectElements.each(function (index) {
+          let selectElement = $(this)
+          if (selectElement.length) {
+            if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+
+            accessibleAutocomplete.enhanceSelectElement({
+              confirmOnBlur: false,
+              autoSelect: true,
+              displayMenu: 'overlay',
+              minLength: 1,
+              showNoOptionsFound: true,
+              showAllValues: false,
+              placeholder: placeholder,
+              selectElement: selectElement[0],
+            })
+          }
+        })
+
+        $(function() {
+        $("input[name='courtType']").click(function() {
+          if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        });
+      });
+
+      window.onload = function(){  
+        if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        }
+
+       
+         
+    </script>
+
+{% endblock %}

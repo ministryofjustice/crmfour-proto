@@ -2,7 +2,7 @@
 
 {% set version = "latest-portal" %}
 {% set activePrimeNav = [true, false] %}
-{% set activeSubNav = [true, false] %}
+{% set activeSubNav = [true, false, false] %}
 
 
 {% block header %}
@@ -31,25 +31,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-l">Overview</h2>
+      <h2 class="govuk-heading-l">Claim</h2>
 
+      <!--Cost summary -->
       <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m">Costs summary</caption>
+        <caption class="govuk-table__caption govuk-table__caption--m">Claim costs</caption>
         <thead class="govuk-table__head">
-          <th scope="col" class="govuk-table__header">Assessment</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
-          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
+          <th scope="col" class="govuk-table__header"></th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Claimed</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Allowed</th>
         </thead>
         <tbody class="govuk-table__body">
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">Profit costs</th>
             <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£341.20</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£331.20</td>
           </tr>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">Disbursements</th>
             <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£840.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
           </tr>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">Travel</th>
@@ -59,12 +60,74 @@
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">Waiting</th>
             <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
-          </tr>        
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Counsel's fee</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£3000.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£3000.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Counsel's fee VAT</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£600.00</td> 
+            <td class="govuk-table__cell govuk-table__cell--numeric">£600.00</td>
+          </tr>       
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Total</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost claimed </span><strong>£4892.00</strong></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost claimed </span><strong>£4872.20</strong></td>
+          </tr>
+              
         </tbody>
       </table> 
-      
+
       <!--Claim summmary-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Claim summary</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                LAA reference
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['laa-ref'] or "LAA-5a7d3c"}}
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="/latest-nsm/caseworker/assess/claim-details?&cwAppStatus=Part granted">View claim</a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Unique file number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['ufnNSM'] or "100323/234"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Stage reached
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['stage'] or "PROM" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Outcome code
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['hearingOutcome'] or "CP02 - Change of solicitor"}}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      
+      <!--Firm details-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">Firm details</h3>
@@ -73,7 +136,7 @@
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Firm office account number (Supplier number)
+                Firm office account number
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['org-acc'] or "1A3B23E4" }}
@@ -100,39 +163,15 @@
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Defendant 1 (lead) last name
+                Defendant last name
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['defendant-last-name'] or "Blackbeard" }}<br>
               </dd>
             </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Defendant 1 (lead) first name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['defendant-first-name'] or "Roger" }}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Defendant 2 last name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['defendant2-last-name'] or "Blackbeard" }}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Defendant 2 first name
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['defendant2-first-name'] or "Rufus" }}
-              </dd>
-            </div>
              <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Number of defendant 2
+                Number of defendants
               </dt>
               <dd class="govuk-summary-list__value">
                 2
@@ -142,33 +181,7 @@
         </div>
       </div>
 
-      <!--Claim summmary-->
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h3 class="govuk-summary-card__title">Claim summary</h3>
-        </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Unique file number
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['ufnNSM'] or "100323/234"}}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Stage reached (Claim code)
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['stage'] or "PROM" }}
-              </dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-
+     
       <!--Hearing details-->
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -176,17 +189,10 @@
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
+            
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Hearing outcome (Outcome code)
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['hearingOutcome'] or "CP02 - Change of solicitor"}}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Matter type
+                Matter type NEEDED???
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['matterType'] or "12 - Theft (including taking vehicle without consent)"}}
@@ -197,7 +203,15 @@
                 Date work was completed
               </dt>
               <dd class="govuk-summary-list__value">
-                1 January 2024
+                24 June 2025
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                  Court
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['mag-court'] or "Aberconwy PSD - C3237" }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -210,18 +224,71 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                  Magistrates Court (ID)
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['mag-court'] or "Aberconwy PSD - C3237" }}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
                 Youth court matter
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['youthCourt'] or "No"}}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+       <!--Counsel details-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Counsel details</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Account number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['counsel-acc'] or "1A3B23E4" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Full name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Judge Judy
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Address
+              </dt>
+              <dd class="govuk-summary-list__value">
+                54 Doughty Street
+                London 
+                WC1N 2LS 
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Telephone number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                0171 345 3456
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Email
+              </dt>
+              <dd class="govuk-summary-list__value">
+                thejudge@judy.com
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Counsel's own reference
+              </dt>
+              <dd class="govuk-summary-list__value">
+                1234RF456
               </dd>
             </div>
           </dl>

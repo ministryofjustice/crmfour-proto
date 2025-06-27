@@ -1,0 +1,323 @@
+{% extends "layouts/main-latest.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Claim details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="claimed-costs" method="post">
+
+        <h1 class="govuk-heading-xl">Claim details</h1>  
+        {{ govukInput({
+          label: {
+            text: "Client name",
+            classes: "govuk-label--s"
+          },
+          id: "clientName",
+          name: "clientName",
+          classes: "govuk-input--width-20"
+        }) }}  
+
+        {{ govukInput({
+          label: {
+            text: "Unique file number",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "For example, 120223/001"
+          },
+          id: "ufn",
+          name: "ufn",
+          classes: "govuk-input--width-20"
+        }) }}  
+
+        {{ govukInput({
+          label: {
+            text: "Firm office account number",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "For example, A123G123"
+          },
+          id: "officeAccount",
+          name: "officeAccount",
+          classes: "govuk-input--width-20"
+        }) }}  
+
+        {{ govukInput({
+          label: {
+            text: "MAAT ID number",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "This is a 7 digit number, for example 1234567"
+          },
+          classes: "govuk-input--width-10",
+          id: "maat",
+          name: "maat",
+          value: data['maat']
+        }) }}      
+
+        {{ mojDatePicker({
+          id: "date-reporder",
+          name: "date-reporder",
+          label: {
+            text: "Date of representation order",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "For example, 17/5/2025."
+          }
+        }) }}  
+
+        {{ govukRadios({
+          name: "stageReached",
+          fieldset: {
+            legend: {
+              text: "Stage reached",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "PROG",
+              text: "PROG",
+              checked: checked("stageReached", "PROG")
+            },
+            {
+              value: "PROM",
+              text: "PROM",
+              checked: checked("stageReached", "PROM")
+            }
+          ]
+        }) }} 
+
+        {% include version +"/includes/list-hearing.njk"%}  
+        {% include version +"/includes/list-matter-type.njk"%} 
+         
+        {{ mojDatePicker({
+          id: "date-completed",
+          name: "date-completed",
+          label: {
+            text: "Date work completed",
+            classes: "govuk-label--s"
+          },
+          hint: {
+            text: "For example, 17/5/2025."
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Number of defendants",
+            classes: "govuk-label--s"
+          },
+          id: "defendants",
+          name: "defendants",
+          classes: "govuk-input--width-5"
+        }) }}  
+
+        {{ govukInput({
+          label: {
+            text: "Number of court attendances",
+            classes: "govuk-label--s"
+          },
+          id: "attendances",
+          name: "attendances",
+          classes: "govuk-input--width-5"
+        }) }}  
+
+        {% include version +"/includes/list-court.njk"%} 
+
+        {{ govukRadios({
+          name: "youthCourt",
+          fieldset: {
+            legend: {
+              text: "Is this court a youth court?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("youthCourt", "Yes")
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("youthCourt", "No")
+            }
+          ]
+        }) }} 
+
+        {% set accountHtml %}
+          {{ govukInput({
+            id: "counselAccount",
+            name: "counselAccount",
+            classes: "govuk-!-width-one-third",
+            label: {
+              text: "Counsel account"
+            }
+          }) }}
+          {% endset -%}
+
+        {{ govukRadios({
+          name: "counselAssigned",
+          fieldset: {
+            legend: {
+              text: "Was counsel assigned?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("counselAssigned", "Yes"),
+              conditional: {
+                html: accountHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("counselAssigned", "No")
+            }
+          ]
+        }) }} 
+
+        {{ govukRadios({
+          name: "claimDecision",
+          fieldset: {
+            legend: {
+              text: "What was the last claim decision?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Granted",
+              text: "Granted",
+              checked: checked("claimDecision", "Granted")
+            },
+            {
+              value: "Part granted",
+              text: "Part granted",
+              checked: checked("claimDecision", "Part granted")
+            },
+            {
+              value: "Rejected",
+              text: "Rejected",
+              checked: checked("claimDecision", "Rejected")
+            }
+          ]
+        }) }} 
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps-reviewed?claims-state=all"
+          }) }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+        let selectElements = $('.autocomplete-select')
+        let placeholder = ''
+
+        selectElements.each(function (index) {
+          let selectElement = $(this)
+          if (selectElement.length) {
+            if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+
+            accessibleAutocomplete.enhanceSelectElement({
+              confirmOnBlur: false,
+              autoSelect: true,
+              displayMenu: 'overlay',
+              minLength: 1,
+              showNoOptionsFound: true,
+              showAllValues: false,
+              placeholder: placeholder,
+              selectElement: selectElement[0],
+            })
+          }
+        })
+
+        $(function() {
+        $("input[name='courtType']").click(function() {
+          if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        });
+      });
+
+      window.onload = function(){  
+        if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        }
+
+       
+         
+    </script>
+
+{% endblock %}
