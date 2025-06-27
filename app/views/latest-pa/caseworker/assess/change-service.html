@@ -153,7 +153,7 @@
 
             <p class="govuk-heading-l">
               <span class="govuk-caption-m">Adjusted cost</span> £
-              <span id="showTranslatorTotal">0</span>.00
+              <span id="showTranslatorTotal">0.00</span>
             </p>
 
           {% elseif data['serviceType'] == "Photocopying" %}
@@ -307,42 +307,42 @@
           <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransCost()">Calculate cost</button>
           <p class="govuk-heading-l">
             <span class="govuk-caption-m">Adjusted cost</span> £
-            <span id="showTransTotal">0</span>.00
+            <span id="showTransTotal">0.00</span>
           </p>
           {% elseif data['serviceType'] == "Translation and transcription" %}
             <input type="hidden" id="actualTransTransTotal" name="actualTransTransTotal" value="{{data['actualTransTransTotal'] or "20"}}" />
             <button class="govuk-button govuk-button--secondary" type="button" onclick="calTransTransCost()">Calculate cost</button>
             <h2 class="govuk-heading-l">
               <span class="govuk-caption-m">Adjusted cost</span> £
-              <span id="showTransTransTotal">0</span>.00
+              <span id="showTransTransTotal">0.00</span>
             </h2>
           {% elseif data['serviceType'] == "Photocopying" %}
             <input type="hidden" id="actualPhotoTotal" name="actualPhotoTotal" value="{{data['actualPhotoTotal'] or "20"}}" />
             <button class="govuk-button govuk-button--secondary" type="button" onclick="calPhotoCost()">Update calculation</button>
             <p class="govuk-heading-l">
               <span class="govuk-caption-m">Adjusted cost</span> £
-              <span class="govuk-captionlm" id="showPhotoTotal">0</span>.00
+              <span class="govuk-captionlm" id="showPhotoTotal">0.00</span>
             </p>
           {% elseif data['serviceType'] == "DNA report" %}
             <input type="hidden" id="actualDNATotal" name="actualDNATotal" value="{{data['actualDNATotal'] or "400"}}" />
             <button class="govuk-button govuk-button--secondary" type="button" onclick="calDNACost()">Calculate cost</button>
             <p class="govuk-heading-l">
               <span class="govuk-caption-m">Adjusted cost</span> £
-              <span id="showDNATotal">0</span>.00
+              <span id="showDNATotal">0.00</span>
             </p>
           {% elseif data['serviceType'] == "Other" %}
             <input type="hidden" id="actualOtherTotal" name="actualOtherTotal" value="{{data['actualOtherTotal']}}" />
             <button class="govuk-button govuk-button--secondary" type="button" onclick="calOtherCost()">Calculate cost</button>
             <p class="govuk-heading-l">
               <span class="govuk-caption-m">Adjusted cost</span> £
-              <span id="showOtherTotal">0</span>.00
+              <span id="showOtherTotal">0.00</span>
             </p>
           {% else %}
             <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">Calculate cost</button> 
             <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
             <p class="govuk-heading-l">
               <span class="govuk-caption-m">Adjusted cost</span> £
-              <span id="showGeneralTotal">0</span>.00
+              <span id="showGeneralTotal">0.00</span>
             </p>
         {% endif %}
 
