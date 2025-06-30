@@ -56,7 +56,7 @@ function calPaymentClaimedTotal() {
   var claimedWaiting = parseFloat(document.getElementById("claimedWaiting").value)|| 0
   var claimedDisbursement = parseFloat(document.getElementById("claimedDisbursement").value)|| 0
   var claimedCounselNet = parseFloat(document.getElementById("claimedCounselNet").value) || 0
-  var claimedCounselVAT = parseFloat(document.getElementById("claimedCounselVAT").value)|| 0
+  var claimedCounselVAT = parseFloat(document.getElementById("claimedCounselVAT").value)|| 0,
 
   ClaimedTotal = claimedProfit + claimedTravel + claimedWaiting + claimedDisbursement + claimedCounselNet + claimedCounselVAT ;
 

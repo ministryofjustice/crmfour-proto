@@ -92,7 +92,11 @@
           spellcheck: false
         }) }}
 
-        {% if data['counselAssigned'] =="Yes" %}
+        {% if data['counselAssigned'] =="No" %}
+          <!--Hidden input to make the JS calc still work -->
+          <input type="hidden" id="claimedCounselNet" name="claimedCounselNet" value="{{data['claimedCounselNet']}}" />
+          <input type="hidden" id="claimedCounselVAT" name="claimedCounselVAT" value="{{data['claimedCounselVAT']}}" />
+          {% else %}
 
           {{ govukInput({
             id: "claimedCounselNet",

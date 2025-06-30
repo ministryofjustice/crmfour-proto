@@ -15,8 +15,7 @@
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  
-  
+
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
@@ -31,16 +30,7 @@
       <form class="form" action="claimed-costs" method="post">
 
         <h1 class="govuk-heading-xl">Claim details</h1>  
-        {{ govukInput({
-          label: {
-            text: "Client name",
-            classes: "govuk-label--s"
-          },
-          id: "clientName",
-          name: "clientName",
-          classes: "govuk-input--width-20"
-        }) }}  
-
+       
         {{ govukInput({
           label: {
             text: "Unique file number",
@@ -51,7 +41,8 @@
           },
           id: "ufn",
           name: "ufn",
-          classes: "govuk-input--width-20"
+          classes: "govuk-input--width-10",
+          value: data['ufn']
         }) }}  
 
         {{ govukInput({
@@ -64,27 +55,14 @@
           },
           id: "officeAccount",
           name: "officeAccount",
-          classes: "govuk-input--width-20"
-        }) }}  
-
-        {{ govukInput({
-          label: {
-            text: "MAAT ID number",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          },
-          hint: {
-            text: "This is a 7 digit number, for example 1234567"
-          },
           classes: "govuk-input--width-10",
-          id: "maat",
-          name: "maat",
-          value: data['maat']
-        }) }}      
+          value: data['officeAccount']
+        }) }}     
 
         {{ mojDatePicker({
           id: "date-reporder",
           name: "date-reporder",
+          value: data['date-reporder'],
           label: {
             text: "Date of representation order",
             classes: "govuk-label--s"
@@ -117,12 +95,50 @@
           ]
         }) }} 
 
+        {{ govukInput({
+          label: {
+            text: "Client last name",
+            classes: "govuk-label--s"
+          },
+          id: "clientName",
+          name: "clientName",
+          classes: "govuk-input--width-20",
+          value: data['clientName']
+        }) }}  
+
+        {{ govukInput({
+          label: {
+            text: "MAAT ID number",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "This is a 7 digit number, for example 1234567"
+          },
+          classes: "govuk-input--width-10",
+          id: "maat",
+          name: "maat",
+          value: data['maat']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Number of defendants",
+            classes: "govuk-label--s"
+          },
+          id: "defendants",
+          name: "defendants",
+          classes: "govuk-input--width-5",
+          value: data['defendants']
+        }) }}     
+
         {% include version +"/includes/list-hearing.njk"%}  
         {% include version +"/includes/list-matter-type.njk"%} 
          
         {{ mojDatePicker({
           id: "date-completed",
           name: "date-completed",
+          value: data['defendants'],
           label: {
             text: "Date work completed",
             classes: "govuk-label--s"
@@ -134,22 +150,13 @@
 
         {{ govukInput({
           label: {
-            text: "Number of defendants",
-            classes: "govuk-label--s"
-          },
-          id: "defendants",
-          name: "defendants",
-          classes: "govuk-input--width-5"
-        }) }}  
-
-        {{ govukInput({
-          label: {
             text: "Number of court attendances",
             classes: "govuk-label--s"
           },
           id: "attendances",
           name: "attendances",
-          classes: "govuk-input--width-5"
+          classes: "govuk-input--width-5",
+          value: data['attendances'],
         }) }}  
 
         {% include version +"/includes/list-court.njk"%} 
@@ -177,17 +184,6 @@
           ]
         }) }} 
 
-        {% set accountHtml %}
-          {{ govukInput({
-            id: "counselAccount",
-            name: "counselAccount",
-            classes: "govuk-!-width-one-third",
-            label: {
-              text: "Counsel account"
-            }
-          }) }}
-          {% endset -%}
-
         {{ govukRadios({
           name: "counselAssigned",
           fieldset: {
@@ -201,10 +197,8 @@
             {
               value: "Yes",
               text: "Yes",
-              checked: checked("counselAssigned", "Yes"),
-              conditional: {
-                html: accountHtml
-              }
+              checked: checked("counselAssigned", "Yes")
+
             },
             {
               value: "No",
