@@ -1,12 +1,12 @@
 // PA calculator
 function calGeneralCost() {
 
-  var generalCost = parseFloat(document.getElementById("generalCost").value)
-  var numberHours = parseInt(document.getElementById("generalNoHours-hours").value)
-  var numberMins = parseInt(document.getElementById("generalNoHours-mins").value)
-  var general2Cost = parseFloat(document.getElementById("general2Cost").value)
-  var numberHours2 = parseInt(document.getElementById("general2NoHours-hours").value)
-  var numberMins2 = parseInt(document.getElementById("general2NoHours-mins").value),
+  var generalCost = parseFloat(document.getElementById("generalCost").value) || 0
+  var numberHours = parseInt(document.getElementById("generalNoHours-hours").value) || 0
+  var numberMins = parseInt(document.getElementById("generalNoHours-mins").value) || 0
+  var general2Cost = parseFloat(document.getElementById("general2Cost").value) || 0
+  var numberHours2 = parseInt(document.getElementById("general2NoHours-hours").value) || 0
+  var numberMins2 = parseInt(document.getElementById("general2NoHours-mins").value) || 0
 
   rate1minsHours = numberMins / 60;
   rate1Cost = generalCost * (rate1minsHours + numberHours);
@@ -24,9 +24,9 @@ function calGeneralCost() {
 
 function calTravelCost() {
 
-  var travelCostTime = parseFloat(document.getElementById("travelCostTime").value)
-  var travelHours = parseInt(document.getElementById("travelTime-hours").value)
-  var travelMins = parseInt(document.getElementById("travelTime-mins").value),
+  var travelCostTime = parseFloat(document.getElementById("travelCostTime").value) || 0
+  var travelHours = parseInt(document.getElementById("travelTime-hours").value) || 0
+  var travelMins = parseInt(document.getElementById("travelTime-mins").value) || 0
 
   travelminsHours = travelMins / 60;
   travelTime = travelminsHours + travelHours;
@@ -38,9 +38,9 @@ function calTravelCost() {
 
 function calAdd1CWCost() {
   let Add1Cost = 0.00
-  var addCostTime1 = parseFloat(document.getElementById("addCostTime1").value)
-  var addHours1 = parseInt(document.getElementById("addTime1-hours").value)
-  var addMins1 = parseInt(document.getElementById("addTime1-mins").value)
+  var addCostTime1 = parseFloat(document.getElementById("addCostTime1").value) || 0
+  var addHours1 = parseInt(document.getElementById("addTime1-hours").value) || 0
+  var addMins1 = parseInt(document.getElementById("addTime1-mins").value) || 0
 
   addminsHours1 = addMins1 / 60;
   addTotalTime1 = addminsHours1 + addHours1;
@@ -48,6 +48,34 @@ function calAdd1CWCost() {
 
   document.getElementById("showAdd1Total").innerHTML = Number(Add1Cost).toFixed(2);
   document.getElementById("actualAdd1Total").value = Number(Add1Cost).toFixed(2);
+}
+
+function calPaymentClaimedTotal() {
+  var claimedProfit = parseFloat(document.getElementById("claimedProfit").value) || 0
+  var claimedTravel = parseFloat(document.getElementById("claimedTravel").value)|| 0
+  var claimedWaiting = parseFloat(document.getElementById("claimedWaiting").value)|| 0
+  var claimedDisbursement = parseFloat(document.getElementById("claimedDisbursement").value)|| 0
+  var claimedCounselNet = parseFloat(document.getElementById("claimedCounselNet").value) || 0
+  var claimedCounselVAT = parseFloat(document.getElementById("claimedCounselVAT").value)|| 0
+
+  ClaimedTotal = claimedProfit + claimedTravel + claimedWaiting + claimedDisbursement + claimedCounselNet + claimedCounselVAT ;
+
+  document.getElementById("showpaymentClaimedTotal").innerHTML = Number(ClaimedTotal).toFixed(2);
+  document.getElementById("paymentClaimedTotal").value = Number(ClaimedTotal).toFixed(2);
+}
+
+function calPaymentAllowedTotal() {
+  var allowedProfit = parseFloat(document.getElementById("allowedProfit").value) || 0
+  var allowedTravel = parseFloat(document.getElementById("allowedTravel").value)|| 0
+  var allowedWaiting = parseFloat(document.getElementById("allowedWaiting").value)|| 0
+  var allowedDisbursement = parseFloat(document.getElementById("allowedDisbursement").value)|| 0
+  var allowedCounselNet = parseFloat(document.getElementById("allowedCounselNet").value) || 0
+  var allowedCounselVAT = parseFloat(document.getElementById("allowedCounselVAT").value)|| 0
+
+  AllowedTotal = allowedProfit + allowedTravel + allowedWaiting + allowedDisbursement + allowedCounselNet + allowedCounselVAT ;
+
+  document.getElementById("showpaymentAllowedTotal").innerHTML = Number(AllowedTotal).toFixed(2);
+  document.getElementById("paymentAllowedTotal").value = Number(ClaimedTotal).toFixed(2);
 }
 
 function calalt1GeneralCost() {

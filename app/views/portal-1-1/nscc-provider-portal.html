@@ -1,23 +1,20 @@
 {% extends "layouts/main-latest.html" %}
-{% set activePrimeNav = [true, false] %}
-{% set activeSubNav = [true, false, false] %}
+{% set version = "portal-1-1" %}
 
 {% block header %}
-  {% include "/includes/header-portal-provider.njk" %}
+  {% include version + "/includes/header-portal-provider.html"%}
 {% endblock %}
 
-
 {% block pageTitle %}
-  Header test – {{ serviceName }} - GOV.UK
+  LAA Online Portal – Submit a crime form - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-  {% include "/includes/banner.html"%}
 {% endblock %}
 
 {% block content %}
 
- <div class="govuk-grid-row">
+<div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">Submit a crime form
     </h1>
@@ -36,4 +33,3 @@
 </div>
 
 {% endblock %}
-

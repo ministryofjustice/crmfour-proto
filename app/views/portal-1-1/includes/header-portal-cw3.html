@@ -48,21 +48,26 @@
 
 {{ govukServiceNavigation({
   navigationClasses: "service-switch-navigation_flex-grow",
-  serviceName: "Payments",
-  serviceUrl: '/' + version + '/payments/payments-home',
+  serviceName: "Analytics dashboard",
+  serviceUrl: '/' + version + '/metabase',
   slots: {
     navigationEnd: '<li class="govuk-service-navigation__item service-switch-navigation_item"><a class="govuk-link--no-visited-state" href="/latest-portal/nscc-caseworker-portal">Change service</a></li>'
   },
   navigation: [
     {
-      text: 'Payment requests',
-      href: '/' + version + '/payments/payment-requests',
+      text: 'Prior authority',
+      href: '/' + version + '/metabase',
       active: + activePrimeNav[0] | default('true')
     },
     {
-      text: 'Search',
-      href: '/' + version + '/payments/payments-search',
+      text: 'Non-standard magistrates',
+      href: '/' + version + '/metabase1',
       active: + activePrimeNav[1]
+    },
+    {
+      text: 'Search',
+      href: '/' + version + '/metabase-search',
+      active: + activePrimeNav[2]
     }
   ]
 }) }}

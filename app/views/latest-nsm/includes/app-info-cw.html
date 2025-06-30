@@ -1,31 +1,33 @@
-{% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
+<span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
+<h1 class="govuk-heading-xl">{{data['client'] or "Roger Blackbeard"}}</h1>
+<p>{% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
   {% else %}
   {% if data['cwAppStatus'] == "In progress" %}
-    <strong class="govuk-tag govuk-tag--purple">In progress</strong><br><br>
+    <strong class="govuk-tag govuk-tag--purple">In progress</strong>
     {% else %}
     {% if data['cwAppStatus'] == "Granted" %}
-      <strong class="govuk-tag govuk-tag--green">Granted</strong><br><br>
+      <strong class="govuk-tag govuk-tag--green">Granted</strong>
       {% else %}
       {% if data['cwAppStatus'] == "Rejected" %}
-        <strong class="govuk-tag govuk-tag--red">Rejected</strong><br><br>
+        <strong class="govuk-tag govuk-tag--red">Rejected</strong>
         {% else %}
         {% if data['cwAppStatus'] == "Review" %}
-          <strong class="govuk-tag govuk-tag--yellow">Sent back</strong><br><br>
+          <strong class="govuk-tag govuk-tag--yellow">Sent back</strong>
           {% else %}
           {% if data['cwAppStatus'] == "Part granted" %}
-            <strong class="govuk-tag govuk-tag--blue">Part granted</strong><br><br>
+            <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
             {% else %}
             {% if data['cwAppStatus'] == "Returned" %}
-              <strong class="govuk-tag govuk-tag--grey">Provider updated</strong><br><br>
+              <strong class="govuk-tag govuk-tag--grey">Provider updated</strong>
               {% else %}
               {% if data['cwAppStatus'] == "Referred" %}
                 <strong class="govuk-tag govuk-tag--yellow">Referred</strong><br><br>
                 {% else %}
                 {% if data['cwAppStatus'] == "Auto granted" %}
-                  <strong class="govuk-tag govuk-tag--green">Auto granted</strong><br><br>
+                  <strong class="govuk-tag govuk-tag--green">Auto granted</strong>
                     {% else %}
                   {% if data['cwAppStatus'] == "Expired" %}
-                    <strong class="govuk-tag govuk-tag--red">Expired</strong><br><br>
+                    <strong class="govuk-tag govuk-tag--red">Expired</strong>
                   {% endif %}
                 {% endif %}
               {% endif %}
@@ -35,9 +37,7 @@
       {% endif %}
     {% endif %}
   {% endif %}
-{% endif %}
-<span class="govuk-caption-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</span>
-<h1 class="govuk-heading-xl">{{data['client'] or "Roger Blackbeard"}}</h1>
+{% endif %}</p>
 <p>
   <span class="govuk-body-l"><strong>Claimed:</strong> £{{data['actualdistTotalCost'] or "1352"}}.00<br>
   {% if data['cwAppStatus'] == "Part granted" %}
