@@ -47,7 +47,7 @@ href: "javascript:window.history.back()"
               Status
             </dt>
             <dd class="govuk-summary-list__value">
-              <p><strong class="govuk-tag govuk-tag--light-blue">Appealed</strong></p>
+              <p><strong class="govuk-tag govuk-tag--sblue">Part granted</strong></p>
              <p>18 May 2025</p>
              <p>Awaiting LAA review</p>
              <p>£640 requested</p>
@@ -126,6 +126,124 @@ href: "javascript:window.history.back()"
     
       <h2 class="govuk-heading-l" id="appeal-details">Appeal</h2>
 
+      {% from "govuk/components/tabs/macro.njk" import govukTabs %}
+      {% from "govuk/components/table/macro.njk" import govukTable %}
+      
+      {% set appealprogHtml %}
+      <h2 class="govuk-heading-l">Appeal in progress</h2>
+      {{ govukTable({
+        head: [
+          {
+            text: "Case manager"
+          },
+          {
+            text: "Cases opened"
+          },
+          {
+            text: "Cases closed"
+          }
+        ],
+        rows: [
+          [
+            {
+              text: "David Francis"
+            },
+            {
+              text: "3"
+            },
+            {
+              text: "0"
+            }
+          ],
+          [
+            {
+              text: "Paul Farmer"
+            },
+            {
+              text: "1"
+            },
+            {
+              text: "0"
+            }
+          ],
+          [
+            {
+              text: "Rita Patel"
+            },
+            {
+              text: "2"
+            },
+            {
+              text: "0"
+            }
+          ]
+        ]
+      }) }}
+      {% endset -%}
+      
+      {% set appeal10aprHtml %}
+      <h2 class="govuk-heading-l">Appeal 10 April</h2>
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "Sarah Philips"
+            }
+          },
+          {
+            key: {
+              text: "Date of birth"
+            },
+            value: {
+              text: "5 January 1978"
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "72 Guild Street<br>London<br>SE23 6FH"
+            }
+          },
+          {
+            key: {
+              text: "Contact details"
+            },
+            value: {
+              html: '<p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p>'
+            }
+          }
+        ]
+ 
+      }) }}
+      {% endset -%}
+      
+
+      
+      {{ govukTabs({
+        items: [
+          {
+            label: "Appeal in progress",
+            id: "appeal-prog",
+            panel: {
+              html: appealprogHtml
+            }
+          },
+          {
+            label: "Appeal 10 April",
+            id: "appeal-104",
+            panel: {
+              html: appeal10aprHtml
+            }
+          }
+        
+          
+        ]
+      }) }}
 
    
       <h3 class="govuk-heading-m" id="appeal-details">Appeal 2 May 2025</h3>
@@ -142,7 +260,7 @@ href: "javascript:window.history.back()"
               <li>Application: Part granted</li>
               <li>Requested: £{{data['actualdistTotalCost'] or "640"}}.00</li>
               <li>Allowed: £480.00</li>
-              <li>Caseworker: {{data['caseworker2']}}</li>
+            
             </ul>
           </dd>
         </div>
@@ -168,7 +286,7 @@ href: "javascript:window.history.back()"
               <li>Part granted 14 April 2025</li>
               <li>Requested: £640.00</li>
               <li>Allowed: £480.00</li>
-              <li>Caseworker: {{data['caseworker2']}}</li>
+             
             </ul>
             <p>This application was part granted due to disallowed travel costs.</p>
           </dd>
@@ -183,14 +301,7 @@ href: "javascript:window.history.back()"
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list ">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Caseworker
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['caseworker1']}}
-              </dd>
-            </div>
+         
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 ICA request
@@ -209,14 +320,7 @@ href: "javascript:window.history.back()"
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list ">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Caseworker
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['caseworker1']}}
-              </dd>
-            </div>
+           
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Reasons for referral
@@ -235,14 +339,7 @@ href: "javascript:window.history.back()"
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list ">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Caseworker
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['caseworker1']}}
-              </dd>
-            </div>
+          
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Information request
@@ -264,9 +361,7 @@ href: "javascript:window.history.back()"
           </dl>       
         </div>
       </div>
-    {% endset %}
-
-    {% set appealAprilHtml %}
+  
       <h3 class="govuk-heading-m" id="appeal-details">Application 10 April 2025</h3>
 
       <dl class="govuk-summary-list ">
@@ -279,52 +374,13 @@ href: "javascript:window.history.back()"
               <li>Part granted 14 April 2025</li>
               <li>Requested: £640.00</li>
               <li>Allowed: £480.00</li>
-              <li>Caseworker: {{data['caseworker2']}}</li>
-            </ul>
+                    </ul>
             <p>This application was part granted due to disallowed travel costs.</p>
           </dd>
         </div>
       </dl>     
 
-    {% endset %}
-
-
-    {% if data['cwAppStatus'] == "Part granted" %}
-      {% set appealLabel %}
-        Appeal 18 May 2025
-      {% endset%}
-      {% else %}
-      {% set appealLabel %}
-        Appeal in progress
-      {% endset%}
-    {% endif %}    
-    
-    {{ govukTabs({
-      items: [
-        {
-          label: appealLabel,
-          id: "appealCurrent",
-          panel: {
-            html: appealCurrentHtml
-          }
-        },
-        {
-          label: "Appeal 2 May 2025",
-          id: "MayAppeal",
-          panel: {
-            html: appealMayHtml
-          }
-        },
-        {
-          label: "Application 10 April 2025",
-          id: "AprilAppeal",
-          panel: {
-            html: appealAprilHtml
-          }
-        }
-      ]
-    }) }} 
-    {% include version + "/includes/application-buttons.html"%}
+  
 
   </div>
 </div>
