@@ -28,13 +28,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="claim-details" method="post">
+      <form class="form" action="check-answers" method="post">
 
         <h1 class="govuk-heading-xl">Allowed costs</h1>  
 
         {{ govukInput({
           id: "allowedProfit",
           name: "allowedProfit",
+          value: data['allowedProfit'] or "",
           label: {
             text: "Profit costs with VAT",
             classes: "govuk-label--s",
@@ -50,6 +51,7 @@
         {{ govukInput({
           id: "allowedTravel",
           name: "allowedTravel",
+          value: data['allowedTravel'] or "",
           label: {
             text: "Travel with VAT",
             classes: "govuk-label--s",
@@ -65,6 +67,7 @@
         {{ govukInput({
           id: "allowedWaiting",
           name: "allowedWaiting",
+          value: data['allowedWaiting'] or "",
           label: {
             text: "Waiting with VAT",
             classes: "govuk-label--s",
@@ -80,6 +83,7 @@
         {{ govukInput({
           id: "allowedDisbursement",
           name: "allowedDisbursement",
+          value: data['allowedDisbursement'] or "",
           label: {
             text: "Disbursements with VAT",
             classes: "govuk-label--s",
@@ -92,11 +96,16 @@
           spellcheck: false
         }) }}
 
-        {% if data['counselAssigned'] =="Yes" %}
+        {% if data['counselAssigned'] =="No" %}
+          <!--Hidden input to make the JS calc still work -->
+          <input type="hidden" id="allowedCounselNet" name="allowedCounselNet" value="{{data['allowedCounselNet']}}" />
+          <input type="hidden" id="allowedCounselVAT" name="allowedCounselVAT" value="{{data['allowedCounselVAT']}}" />
+          {% else %}
 
           {{ govukInput({
             id: "allowedCounselNet",
             name: "allowedCounselNet",
+           value: data['allowedCounselNet'] or "",
             label: {
               text: "Assigned counsel total (NET)",
               classes: "govuk-label--s",
@@ -112,6 +121,7 @@
           {{ govukInput({
             id: "allowedCounselVAT",
             name: "allowedCounselVAT",
+            value: data['allowedCounselVAT'] or "",
             label: {
               text: "VAT on assigned counsel costs",
               classes: "govuk-label--s",
