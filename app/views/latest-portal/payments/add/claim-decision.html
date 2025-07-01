@@ -1,0 +1,168 @@
+{% extends "layouts/main-latest.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Claim outcome – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="claimed-costs" method="post">
+
+       
+        {% if data['paymentType'] == "Appeal" %}
+          <h1 class="govuk-heading-l">Claim decision</h1>
+          {{ govukRadios({
+            name: "originalClaimDecision",
+            fieldset: {
+              legend: {
+                text: "Claim decision being appealed",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Granted",
+                text: "Granted",
+                checked: checked("originalClaimDecision", "Granted")
+              },
+              {
+                value: "Part granted",
+                text: "Part granted",
+                checked: checked("originalClaimDecision", "Part granted")
+              },
+              {
+                value: "Rejected",
+                text: "Rejected",
+                checked: checked("originalClaimDecision", "Rejected")
+              }
+            ]
+          }) }}
+          {{ govukRadios({
+            name: "claimDecision",
+            fieldset: {
+              legend: {
+                text: "Appealed claim decision",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Granted",
+                text: "Granted",
+                checked: checked("claimDecision", "Granted")
+              },
+              {
+                value: "Part granted",
+                text: "Part granted",
+                checked: checked("claimDecision", "Part granted")
+              }
+            ]
+          }) }}          
+          {% elseif data['paymentType'] =="Supplemental" %}
+            <h1 class="govuk-heading-l">Claim decision</h1>
+            {{ govukRadios({
+              name: "originalClaimDecision",
+              fieldset: {
+                legend: {
+                  text: "Original claim decision",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Granted",
+                  text: "Granted",
+                  checked: checked("originalClaimDecision", "Granted")
+                },
+                {
+                  value: "Part granted",
+                  text: "Part granted",
+                  checked: checked("originalClaimDecision", "Part granted")
+                }
+              ]
+            }) }} 
+            {{ govukRadios({
+              name: "claimDecision",
+                fieldset: {
+                  legend: {
+                    text: "Appealed claim decision",
+                    isPageHeading: false,
+                    classes: "govuk-fieldset__legend--s"
+                  }
+                },
+                items: [
+                  {
+                    value: "Granted",
+                    text: "Granted",
+                    checked: checked("claimDecision", "Granted")
+                  },
+                  {
+                    value: "Part granted",
+                    text: "Part granted",
+                    checked: checked("claimDecision", "Part granted")
+                  }
+                ]
+              }) }}         
+
+          {% else %}
+            {{ govukRadios({
+              name: "claimDecision",
+              fieldset: {
+                legend: {
+                  text: "Appealed claim decision",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Granted",
+                  text: "Granted",
+                  checked: checked("claimDecision", "Granted")
+                },
+                {
+                  value: "Part granted",
+                  text: "Part granted",
+                  checked: checked("claimDecision", "Part granted")
+                }
+              ]
+            }) }}        
+          {% endif %}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

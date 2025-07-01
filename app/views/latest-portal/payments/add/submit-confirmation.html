@@ -1,0 +1,78 @@
+{% extends "layouts/main-latest.html" %}
+{% set version = "latest-pa" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false, false] %}
+  {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
+    {% set activePrimeNav = [false, false, false, true, false] %}
+  {% elseif data['Appeal'] == "Yes" %}
+    {% set activePrimeNav = [false, false, true, false, false] %}
+  {% else %}
+    {% set activePrimeNav = [false, true, false, false, false] %}
+{% endif %}
+
+
+{% block header %}
+  {% include version + "/includes/header-cw.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Decision sent to provider – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <!--If it was 'Send back to Provider' request--->
+      <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">
+          Request sent
+        </h1>
+      </div>
+      <p>Your request has been sent to the provider.</p>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Payment type
+          </dt>
+            <dd class="govuk-summary-list__value">
+            {{data['paymentType'] or "NSM payment"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Claim decision
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['claimDecision'] or "Part granted"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Allowed costs
+          </dt>
+          <dd class="govuk-summary-list__value">
+            £{{data['paymentAllowedTotal'] or "4872.20" }}
+          </dd>
+        </div>
+      </dl>
+      
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Create payment request",
+          href: "../add/payment-type"
+        }) }}
+        <a class="govuk-link" href="../payment-details">Return to the payment request</a>
+      </div>      
+    </div>
+  </div>
+
+{% endblock %}
