@@ -27,7 +27,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="claimed-costs" method="post">
+      <form class="form" action="claim-decision" method="post">
 
         <h1 class="govuk-heading-xl">Claim details</h1>  
        
@@ -207,35 +207,6 @@
             }
           ]
         }) }} 
-
-        {{ govukRadios({
-          name: "claimDecision",
-          fieldset: {
-            legend: {
-              text: "What was the last claim decision?",
-              isPageHeading: false,
-              classes: "govuk-fieldset__legend--s"
-            }
-          },
-          items: [
-            {
-              value: "Granted",
-              text: "Granted",
-              checked: checked("claimDecision", "Granted")
-            },
-            {
-              value: "Part granted",
-              text: "Part granted",
-              checked: checked("claimDecision", "Part granted")
-            },
-            {
-              value: "Rejected",
-              text: "Rejected",
-              checked: checked("claimDecision", "Rejected")
-            }
-          ]
-        }) }} 
-
 
         <div class="govuk-button-group">
           {{ govukButton({
