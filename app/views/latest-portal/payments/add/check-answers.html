@@ -237,15 +237,13 @@
         </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
-            {% if data['paymentType'] == "Appeal" or data['paymentType'] =="Supplemental" %}
+            {% if data['paymentType'] == "Amendment" or data['paymentType'] =="Supplemental" %}
               <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">
                   {% if data['paymentType'] == "Appeal" %}
                     Claim decision being appealed
                     {% elseif data['paymentType'] =="Supplemental" %}
                       Original claim decision
-                    {% else %}
-                    Claim decision
                   {% endif %}
                 </dt>
                 <dd class="govuk-summary-list__value">
@@ -255,7 +253,7 @@
             {% endif %}
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                {% if data['paymentType'] == "Appeal" %}
+                {% if data['paymentType'] == "Amendment" %}
                   Appealed claim decision
                   {% elseif data['paymentType'] =="Supplemental" %}
                   Supplemental claim decision
