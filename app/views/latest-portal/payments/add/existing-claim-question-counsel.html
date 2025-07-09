@@ -27,13 +27,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/{{version}}/question-existing-claim-ref" method="post">
+      <form class="form" action="/{{version}}/question-existing-counsel-ref" method="post">
 
         {{ govukRadios({
-          name: "existingRef",
+          name: "existingRefCounsel",
           fieldset: {
             legend: {
-              text: "Do you have an LAA reference for the original claim?",
+              html: 'Is this an assigned counsel claim for LAA-5a7d3c',
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -42,12 +42,12 @@
             {
               value: "Yes",
               text: "Yes",
-              checked: checked("existingRef", "Yes")
+              checked: checked("existingRefCounsel", "Yes")
             },
             {
               value: "No",
               text: "No",
-              checked: checked("existingRef", "No")
+              checked: checked("existingRefCounsel", "No")
             }
           ]
         }) }}  

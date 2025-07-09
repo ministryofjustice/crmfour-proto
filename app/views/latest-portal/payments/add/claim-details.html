@@ -58,7 +58,24 @@
           name: "officeAccount",
           classes: "govuk-input--width-10",
           value: data['officeAccount']
-        }) }}   
+        }) }} 
+
+        <!--Counsel acc-->
+        {% if data['paymentType'] =="Assigned counsel" %}
+          {{ govukInput({
+            label: {
+              text: "Counsel office account number",
+              classes: "govuk-label--s"
+            },
+            hint: {
+              text: "For example,  2Q282Z"
+            },
+            id: "counselOfficeAccount",
+            name: "counselOfficeAccount",
+            classes: "govuk-input--width-10",
+            value: data['counselOfficeAccount']
+          }) }}   
+        {% endif %}
         
         <!--UFN-->
         {{ govukInput({

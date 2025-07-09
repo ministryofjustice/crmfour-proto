@@ -38,7 +38,7 @@
 
         <h2 class="govuk-label-wrapper">
           <label class="govuk-label govuk-label--s" for="filterSearch">
-            Enter any combination of client or firm name, UFN or LAA reference
+            Enter any combination of defendant or firm name, UFN or LAA reference
           </label>
         </h2>
         <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Enter any combination of client or firm name, UFN or LAA reference">
@@ -46,7 +46,7 @@
 
       {% call govukFieldset({
         legend: {
-          text: "Payment date",
+          text: "Payment request sent",
           classes: "govuk-fieldset__legend--s",
           isPageHeading: false
         }
@@ -61,7 +61,7 @@
             <div class="moj-datepicker" data-module="moj-date-picker">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="sub-date-from">
-                  Payment date from
+                  Payment request date from
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="sub-date-from" name="sub-date-from" type="text" autocomplete="off">
               </div>
@@ -71,7 +71,7 @@
             <div class="moj-datepicker " data-module="moj-date-picker">
               <div class="govuk-form-group govuk-date-input__item">
                 <label class="govuk-label" for="sub-date-to">
-                  Payment date to
+                  Payment request date to
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="sub-date-to" name="sub-date-to" type="text"  autocomplete="off">
               </div>
@@ -82,7 +82,7 @@
 
       {% call govukFieldset({
         legend: {
-          text: "Claim last updated date",
+          text: "Claim received",
           classes: "govuk-fieldset__legend--s",
           isPageHeading: false
         }
@@ -98,7 +98,7 @@
             <div class="moj-datepicker" data-module="moj-date-picker">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="last-date-from">
-                  Last updated from
+                  Claim received from
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="last-date-from" name="last-date-from" type="text" autocomplete="off">
               </div>
@@ -108,7 +108,7 @@
             <div class="moj-datepicker" data-module="moj-date-picker">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="last-date-to">
-                  Last updated to
+                  Claim received to
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="last-date-to" name="last-date-to" type="text"  autocomplete="off">
               </div>
@@ -139,7 +139,7 @@
             </label>
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
               <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
-              <option value="NSM" onclick="filterSelection('NSM')">NSM</option>
+              <option value="NSM" onclick="filterSelection('NSM')">Non-standard magistrates'</option>
               <option value="AC" onclick="filterSelection('AC')">Assigned counsel</option>
             </select>
           </div>

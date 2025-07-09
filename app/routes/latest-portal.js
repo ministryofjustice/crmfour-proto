@@ -11,11 +11,20 @@ router.post('/question-existing-claim-ref', function(request, response) {
     if (existingRef == "Yes"){
         response.redirect('/' + version + "/payments/add/laa-reference")
     } 
-
     else {
         response.redirect('/' + version + "/payments/add/claim-details")
     } 
-    
   })
 
-  
+//Payments - Existing claim - counsel assigned?
+router.post('/question-existing-counsel-ref', function(request, response) {
+
+    var existingRefCounsel = request.session.data['existingRefCounsel']
+
+    if (existingRefCounsel == "Yes"){
+        response.redirect('/' + version + "/payments/add/claim-details")
+    } 
+    else {
+        response.redirect('/' + version + "/payments/add/laa-reference")
+    } 
+  })

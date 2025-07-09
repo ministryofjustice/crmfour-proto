@@ -26,19 +26,18 @@
     <div class="govuk-grid-column-two-thirds">
 
       <!--If it was 'Send back to Provider' request--->
-      <div class="govuk-panel govuk-panel--confirmation">
-        <h1 class="govuk-panel__title">
-          Request sent
-        </h1>
-      </div>
-      <p>Your request has been sent to the provider.</p>
+      {{ govukPanel({
+          titleText: "Payment request sent",
+          html: "LAA reference: <strong>LAA-5a7d3c</strong>"
+        }) }}
+
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Payment type
           </dt>
             <dd class="govuk-summary-list__value">
-            {{data['paymentType'] or "NSM payment"}}
+            {{data['paymentType'] or "Non-standard Magistrates'"}}
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -60,10 +59,17 @@
       </dl>
       
       <div class="govuk-button-group">
-        {{ govukButton({
-          text: "Create payment request",
-          href: "../add/payment-type"
-        }) }}
+        {% if data['paymentType'] == "Non-standard Magistrates'" %}
+          {{ govukButton({
+            text: "Create assigned counsel payment",
+            href: "existing-claim-question-counsel?paymentType=Assigned counsel"
+          }) }}
+          {% else %}
+          {{ govukButton({
+            text: "Create payment request",
+            href: "../add/payment-type"
+          }) }}
+        {% endif %}
         <a class="govuk-link" href="../payment-details">Return to the payment request</a>
       </div>      
     </div>
