@@ -28,7 +28,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="allowed-costs" method="post">
+      <form class="form" action="costs-allowed" method="post">
 
         <h1 class="govuk-heading-xl">Claimed costs</h1>  
 
@@ -91,44 +91,6 @@
           classes: "govuk-input--width-5",
           spellcheck: false
         }) }}
-
-        {% if data['counselAssigned'] =="No" %}
-          <!--Hidden input to make the JS calc still work -->
-          <input type="hidden" id="claimedCounselNet" name="claimedCounselNet" value="{{data['claimedCounselNet']}}" />
-          <input type="hidden" id="claimedCounselVAT" name="claimedCounselVAT" value="{{data['claimedCounselVAT']}}" />
-          {% else %}
-
-          {{ govukInput({
-            id: "claimedCounselNet",
-            name: "claimedCounselNet",
-            label: {
-              text: "Assigned counsel total (NET)",
-              classes: "govuk-label--s",
-              isPageHeading: false
-            },
-            prefix: {
-              text: "£"
-            },
-            classes: "govuk-input--width-5",
-            spellcheck: false
-          }) }}
-
-          {{ govukInput({
-            id: "claimedCounselVAT",
-            name: "claimedCounselVAT",
-            label: {
-              text: "VAT on assigned counsel costs",
-              classes: "govuk-label--s",
-              isPageHeading: false
-            },
-            prefix: {
-              text: "£"
-            },
-            classes: "govuk-input--width-5",
-            spellcheck: false
-          }) }}
-
-        {% endif %}
 
         <input type="hidden" id="paymentClaimedTotal" name="paymentClaimedTotal" value="{{data['paymentClaimedTotal']}}" />
         <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentClaimedTotal()">Calculate cost</button>

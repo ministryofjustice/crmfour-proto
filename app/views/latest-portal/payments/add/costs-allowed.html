@@ -96,46 +96,6 @@
           spellcheck: false
         }) }}
 
-        {% if data['counselAssigned'] =="No" %}
-          <!--Hidden input to make the JS calc still work -->
-          <input type="hidden" id="allowedCounselNet" name="allowedCounselNet" value="{{data['allowedCounselNet']}}" />
-          <input type="hidden" id="allowedCounselVAT" name="allowedCounselVAT" value="{{data['allowedCounselVAT']}}" />
-          {% else %}
-
-          {{ govukInput({
-            id: "allowedCounselNet",
-            name: "allowedCounselNet",
-           value: data['allowedCounselNet'] or "",
-            label: {
-              text: "Assigned counsel total (NET)",
-              classes: "govuk-label--s",
-              isPageHeading: false
-            },
-            prefix: {
-              text: "£"
-            },
-            classes: "govuk-input--width-5",
-            spellcheck: false
-          }) }}
-
-          {{ govukInput({
-            id: "allowedCounselVAT",
-            name: "allowedCounselVAT",
-            value: data['allowedCounselVAT'] or "",
-            label: {
-              text: "VAT on assigned counsel costs",
-              classes: "govuk-label--s",
-              isPageHeading: false
-            },
-            prefix: {
-              text: "£"
-            },
-            classes: "govuk-input--width-5",
-            spellcheck: false
-          }) }}
-
-        {% endif %}
-
         <input type="hidden" id="paymentAllowedTotal" name="paymentAllowedTotal" value="{{data['paymentAllowedTotal']}}" />
         <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentAllowedTotal()">Calculate cost</button>
         <p class="govuk-heading-l">

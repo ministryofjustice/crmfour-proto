@@ -1,0 +1,103 @@
+{% extends "layouts/main-latest.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Allowed costs – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="check-answers" method="post">
+
+        <h1 class="govuk-heading-xl">Allowed costs</h1>  
+
+        <!--Hidden input to make the JS calc still work -->
+        <input type="hidden" id="allowedProfit" name="allowedProfit" value="{{data['allowedProfit']}}" />
+        <input type="hidden" id="allowedTravel" name="allowedTravel" value="{{data['allowedTravel']}}" />
+        <input type="hidden" id="allowedWaiting" name="allowedWaiting" value="{{data['allowedWaiting']}}" />
+        <input type="hidden" id="allowedDisbursement" name="allowedDisbursement" value="{{data['allowedDisbursement']}}" />
+
+
+        {{ govukInput({
+          id: "allowedCounselNet",
+          name: "allowedCounselNet",
+          value: data['allowedCounselNet'] or "",
+          label: {
+            text: "Assigned counsel total (NET)",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          prefix: {
+            text: "£"
+          },
+          classes: "govuk-input--width-5",
+          spellcheck: false
+        }) }}
+
+        {{ govukInput({
+          id: "allowedCounselVAT",
+          name: "allowedCounselVAT",
+          value: data['allowedCounselVAT'] or "",
+          label: {
+            text: "VAT on assigned counsel costs",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          prefix: {
+            text: "£"
+          },
+          classes: "govuk-input--width-5",
+          spellcheck: false
+        }) }}
+
+
+        <input type="hidden" id="paymentAllowedTotal" name="paymentAllowedTotal" value="{{data['paymentAllowedTotal']}}" />
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentAllowedTotal()">Calculate cost</button>
+        <p class="govuk-heading-l">
+          <span class="govuk-caption-m">Total allowed cost</span> £
+          <span id="showpaymentAllowedTotal">0.00</span>
+        </p>
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: ""
+          }) }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}
