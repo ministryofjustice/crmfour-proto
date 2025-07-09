@@ -50,18 +50,26 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Unique file number
+                Date claim received
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['ufnNSM'] or "100323/234"}}
+                24 June 2025
               </dd>
-            </div>
+            </div>            
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Firm office account number
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['org-acc'] or "1A3B23E4" }}
+                {{data['officeAccount'] or "1A3B23E4" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Unique file number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['ufnNSM'] or "100323/234"}}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -74,18 +82,10 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Defendant last name
+                Defendant name
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['defendant-last-name'] or "Blackbeard" }}<br>
-              </dd>
-            </div>
-             <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                MAAT number
-              </dt>
-              <dd class="govuk-summary-list__value">
-                1234567
+                {{data['defendantFirstName'] or "Roger" }} {{data['defendantLastName'] or "Blackbeard" }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -93,12 +93,20 @@
                 Number of defendants
               </dt>
               <dd class="govuk-summary-list__value">
-                2
+                {{data['defendants'] or "2" }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Outcome code
+                Number of hearing attendances
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['attendances'] or "5" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Hearing outcome code
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['hearingOutcome'] or "CP02 - Change of solicitor"}}
@@ -114,26 +122,10 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Date work was completed
-              </dt>
-              <dd class="govuk-summary-list__value">
-                24 June 2025
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                  Court
+                Court
               </dt>
               <dd class="govuk-summary-list__value">
                 {{data['mag-court'] or "Aberconwy PSD - C3237" }}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                  Number of attendances
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['no-hearings'] or "5" }}
               </dd>
             </div>
             <div class="govuk-summary-list__row">
@@ -146,85 +138,15 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Assigned counsel
+                Date work was completed
               </dt>
               <dd class="govuk-summary-list__value">
-                {{data['counselAssigned'] or "Yes"}}
+                24 June 2025
               </dd>
             </div>
           </dl>
         </div>
       </div>
-
-    
-      {% if data['counselAssigned'] == "No"%}
-      {% else %}
-        <!--Counsel details-->
-        <div class="govuk-summary-card">
-          <div class="govuk-summary-card__title-wrapper">
-            <h3 class="govuk-summary-card__title">Assigned counsel</h3>
-            <ul class="govuk-summary-card__actions">
-              <li class="govuk-summary-card__action">
-                <a class="govuk-link" href="assigned-counsel">Change <span class="govuk-visually-hidden"> costs</span></a>
-              </li>
-            </ul>
-          </div>
-          <div class="govuk-summary-card__content">
-            <dl class="govuk-summary-list">
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Firm office account number
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  {{data['counsel-acc'] or "1A3B23E4" }}
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Full name
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  Judge Judy
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Telephone number
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  0171 345 3456
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Email
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  thejudge@judy.com
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Address
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  54 Doughty Street
-                  London 
-                  WC1N 2LS 
-                </dd>
-              </div>
-              <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  Counsel's own reference
-                </dt>
-                <dd class="govuk-summary-list__value">
-                  1234RF456
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      {% endif %}
 
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -279,7 +201,6 @@
             </li>
           </ul>
         </div>
-        
         <div class="govuk-summary-card__content">
           <table class="govuk-table">
             <caption class="govuk-table__caption govuk-table__caption--s">Claimed and allowed costs</caption>
@@ -314,19 +235,16 @@
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselNet'] or "3000.00"}}</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselNet'] or "3000.00"}}</td>
               </tr>
-              {% if data['counselAssigned'] == "No" %}
-                {% else %}
-                <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header">Counsel's fee VAT</th>
-                  <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselVAT'] or "600.00"}}</td> 
-                  <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselVAT'] or "600.00"}}</td>
-                </tr>       
-                <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header">Total</th>
-                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost claimed </span><strong>£{{data['paymentClaimedTotal'] or "4892.00"}}</strong></td>
-                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost allowed </span><strong>£{{data['paymentAllowedTotal'] or "4872.20"}}</strong></td>
-                </tr>
-              {% endif %}
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">Counsel's fee VAT</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselVAT'] or "600.00"}}</td> 
+                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselVAT'] or "600.00"}}</td>
+              </tr>       
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">Total</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost claimed </span><strong>£{{data['paymentClaimedTotal'] or "4892.00"}}</strong></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost allowed </span><strong>£{{data['paymentAllowedTotal'] or "4872.20"}}</strong></td>
+              </tr>
             </tbody>
           </table> 
         </div>
