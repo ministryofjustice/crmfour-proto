@@ -28,76 +28,130 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      <form class="form" action="check-answers" method="post">
+       <h1 class="govuk-heading-l">Allowed costs</h1>  
 
-        <h1 class="govuk-heading-l">Allowed costs</h1>  
+      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
 
-        {{ govukInput({
-          id: "allowedProfit",
-          name: "allowedProfit",
-          value: data['allowedProfit'] or "",
-          label: {
-            text: "Profit costs with VAT",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
-        }) }}
+        <form class="form" action="check-answers" onsubmit="calCounselPaymentAllowedTotal()" method="post">
 
-        {{ govukInput({
-          id: "allowedTravel",
-          name: "allowedTravel",
-          value: data['allowedTravel'] or "",
-          label: {
-            text: "Travel with VAT",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
-        }) }}
+          <!-- hidden input-->
+          <input type="hidden" id="paymentAllowedTotal" name="paymentAllowedTotal" value="{{data['paymentAllowedTotal']}}" />
 
-        {{ govukInput({
-          id: "allowedWaiting",
-          name: "allowedWaiting",
-          value: data['allowedWaiting'] or "",
-          label: {
-            text: "Waiting with VAT",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
-        }) }}
+          <!--Counsel net-->
+          {{ govukInput({
+            id: "allowedCounselNet",
+            name: "allowedCounselNet",
+            value: data['allowedCounselNet'] or "",
+            label: {
+              text: "Assigned counsel total (NET)",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+          }) }}
 
-        {{ govukInput({
-          id: "allowedDisbursement",
-          name: "allowedDisbursement",
-          value: data['allowedDisbursement'] or "",
-          label: {
-            text: "Disbursements with VAT",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
-        }) }}
+          <!--Counsel VAT-->
+          {{ govukInput({
+            id: "allowedCounselVAT",
+            name: "allowedCounselVAT",
+            value: data['allowedCounselVAT'] or "",
+            label: {
+              text: "VAT on assigned counsel costs",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+          }) }}
 
-        <input type="hidden" id="paymentAllowedTotal" name="paymentAllowedTotal" value="{{data['paymentAllowedTotal']}}" />
-        <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentAllowedTotal()">Calculate cost</button>
+          <button class="govuk-button govuk-button--secondary" type="button" onclick="calCounselPaymentAllowedTotal()">Calculate cost</button>
+
+        {% else %}
+
+          <form class="form" action="check-answers" onsubmit="calPaymentAllowedTotal()" method="post">
+
+            <!-- hidden input-->
+            <input type="hidden" id="paymentAllowedTotal" name="paymentAllowedTotal" value="{{data['paymentAllowedTotal']}}" />
+
+            <!--Profit-->
+            {{ govukInput({
+              id: "allowedProfit",
+              name: "allowedProfit",
+              value: data['allowedProfit'] or "",
+              label: {
+                text: "Profit costs with VAT",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Travel-->
+            {{ govukInput({
+              id: "allowedTravel",
+              name: "allowedTravel",
+              value: data['allowedTravel'] or "",
+              label: {
+                text: "Travel with VAT",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Waiting-->
+            {{ govukInput({
+              id: "allowedWaiting",
+              name: "allowedWaiting",
+              value: data['allowedWaiting'] or "",
+              label: {
+                text: "Waiting with VAT",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Disbursements-->
+            {{ govukInput({
+              id: "allowedDisbursement",
+              name: "allowedDisbursement",
+              value: data['allowedDisbursement'] or "",
+              label: {
+                text: "Disbursements with VAT",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentAllowedTotal()">Calculate cost</button>
+      {% endif %}
+
+        
         <p class="govuk-heading-l">
           <span class="govuk-caption-m">Total allowed cost</span> £
           <span id="showpaymentAllowedTotal">0.00</span>

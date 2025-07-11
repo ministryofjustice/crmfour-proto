@@ -27,78 +27,134 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      
-      <form class="form" action="costs-allowed" method="post">
+      <h1 class="govuk-heading-l">Claimed costs</h1> 
 
-        <h1 class="govuk-heading-l">Claimed costs</h1>  
+      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
 
-        {{ govukInput({
-          id: "claimedProfit",
-          name: "claimedProfit",
-          label: {
-            text: "Profit costs with VAT",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
-        }) }}
+        <form class="form" action="costs-allowed" onsubmit="calCounselPaymentClaimedTotal()" method="post">
+        
+          <!-- hidden input-->
+          <input type="hidden" id="paymentClaimedTotal" name="paymentClaimedTotal" value="{{data['paymentClaimedTotal']}}" />
 
-        {{ govukInput({
-          id: "claimedTravel",
-          name: "claimedTravel",
-          label: {
-            text: "Travel with VAT",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
-        }) }}
+          <!--Counsel net-->
+          {{ govukInput({
+            id: "claimedCounselNet",
+            name: "claimedCounselNet",
+            value: data['claimedCounselNet'],
+            label: {
+              text: "Assigned counsel total (NET)",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+          }) }}
 
-        {{ govukInput({
-          id: "claimedWaiting",
-          name: "claimedWaiting",
-          label: {
-            text: "Waiting with VAT",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
-        }) }}
+          <!--Counsel VAT-->
+          {{ govukInput({
+            id: "claimedCounselVAT",
+            name: "claimedCounselVAT",
+            value: data['claimedCounselVAT'],
+            label: {
+              text: "VAT on assigned counsel costs",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+          }) }}
 
-        {{ govukInput({
-          id: "claimedDisbursement",
-          name: "claimedDisbursement",
-          label: {
-            text: "Disbursements with VAT",
-            classes: "govuk-label--s",
-            isPageHeading: false
-          },
-          prefix: {
-            text: "£"
-          },
-          classes: "govuk-input--width-5",
-          spellcheck: false
-        }) }}
+          <button class="govuk-button govuk-button--secondary" type="button" onclick="calCounselPaymentClaimedTotal()">Calculate cost</button>
 
-        <input type="hidden" id="paymentClaimedTotal" name="paymentClaimedTotal" value="{{data['paymentClaimedTotal']}}" />
-        <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentClaimedTotal()">Calculate cost</button>
+        {% else %}
+
+          <form class="form" action="costs-allowed" onsubmit="calPaymentClaimedTotal()" method="post">
+          
+            <!-- hidden input-->
+            <input type="hidden" id="paymentClaimedTotal" name="paymentClaimedTotal" value="{{data['paymentClaimedTotal']}}" />
+
+            <!--Profit-->
+            {{ govukInput({
+              id: "claimedProfit",
+              name: "claimedProfit",
+              value: data['claimedProfit'],
+              label: {
+                text: "Profit costs with VAT",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Travel-->
+            {{ govukInput({
+              id: "claimedTravel",
+              name: "claimedTravel",
+              value: data['claimedTravel'],
+              label: {
+                text: "Travel with VAT",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Waiting-->
+            {{ govukInput({
+              id: "claimedWaiting",
+              name: "claimedWaiting",
+              value: data['claimedWaiting'],
+              label: {
+                text: "Waiting with VAT",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Disbursement-->
+            {{ govukInput({
+              id: "claimedDisbursement",
+              name: "claimedDisbursement",
+              value: data['claimedDisbursement'],
+              label: {
+                text: "Disbursements with VAT",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentClaimedTotal()">Calculate cost</button>
+
+      {% endif %}
+        
         <p class="govuk-heading-l">
           <span class="govuk-caption-m">Total claimed cost</span> £
           <span id="showpaymentClaimedTotal">0.00</span>
         </p>
-
 
         <div class="govuk-button-group">
           {{ govukButton({

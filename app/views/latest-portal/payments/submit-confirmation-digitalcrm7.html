@@ -1,12 +1,12 @@
 {% extends "layouts/main-latest.html" %}
 
-{% set version = "latest-portal" %}
+{% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
 {% set activeSubNav = [false, true, false] %}
 
 
 {% block header %}
-  {% include version +"/includes/header-portal-payments.njk"%}  
+  {% include version +"/includes/header-cw.njk"%}  
 {% endblock %}
 
 {% block pageTitle %}
@@ -27,25 +27,18 @@
 
       <!--If it was 'Send back to Provider' request--->
       {{ govukPanel({
-          titleText: "Payment request sent",
-          html: "Reference: LAA-5a7d3c"
+          titleText: "Payment request sent"
+          
         }) }}
+        <p>Your payment request for this claim has been sent.</p>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            Payment type
+            Claim reference
           </dt>
             <dd class="govuk-summary-list__value">
-            {{data['paymentType'] or "Non-standard Magistrates'"}}
-          </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Claim decision
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{data['claimDecision'] or "Part granted"}}
+            {{data['laa-ref'] or "LAA-5a7d3c"}}
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -57,20 +50,16 @@
           </dd>
         </div>
       </dl>
+      <h2 class="govuk-heading-m">What happens next</h2>
+      <p>You must complete the payment request for assign counsel.</p>
       
       <div class="govuk-button-group">
-        {% if data['paymentType'] == "Non-standard Magistrates'" %}
           {{ govukButton({
-            text: "Create assigned counsel payment",
-            href: "existing-claim-question-counsel?paymentType=Assigned counsel"
+            text: "Create assigned counsel payment request",
+            href: "add/existing-claim-question-counsel?paymentType=Assigned counsel&dateReceived=17/7/2025&officeAccount=1A33E4&ufn=100323&defendantLastName=Blackbeard&counselOfficeAccount=4A33E9"
           }) }}
-          {% else %}
-          {{ govukButton({
-            text: "Create payment request",
-            href: "../add/payment-type"
-          }) }}
-        {% endif %}
-        <a class="govuk-link" href="../payment-details">Return to the payment request</a>
+
+        <a class="govuk-link" href="../payment-details">Return to the claim</a>
       </div>      
     </div>
   </div>

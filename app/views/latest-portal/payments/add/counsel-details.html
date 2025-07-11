@@ -10,13 +10,12 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Enter Laa reference – {{ serviceName }} – GOV.UK Prototype Kit
+  Counsel office account number – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
   {% include "includes/banner.html"%}
-  
-  
+
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
@@ -27,15 +26,26 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      
+      <form class="form" action="costs-allowed" method="post">
 
-      {% if data['paymentType'] =="Assigned counsel" %}
-        <form class="form" action="counsel-details" method="post">
-        {% else %}
-        <form class="form" action="costs-claimed" method="post">
-      {% endif %}
+        <!--Counsel acc-->
+        {{ govukInput({
+          label: {
+            text: "Counsel office account number",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example,  2Q282Z"
+          },
+          id: "counselOfficeAccount",
+          name: "counselOfficeAccount",
+          classes: "govuk-input--width-10",
+          value: data['counselOfficeAccount']
+        }) }}   
 
-        {% include version + "/includes/list-laa-ref.html" %}
-
+        <!--buttons-->
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Save and continue"
@@ -49,7 +59,6 @@
         </div>
 
       </form>
-
     </div>
   </div>
 
