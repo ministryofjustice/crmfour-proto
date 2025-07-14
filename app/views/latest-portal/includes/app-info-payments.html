@@ -1,19 +1,9 @@
-<span class="govuk-caption-xl">Laywers Inc</span>
 <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
 <p>
- {% if data['paymentType'] == "Appeal" %}
-  <strong class="govuk-tag govuk-tag--blue">{{data['appealClaimDecision'] or "Part granted"}}</strong><br><br>
-  {% elseif data['paymentType'] == "Supplemental" %}
-    <strong class="govuk-tag govuk-tag--blue">{{data['supplementalDecision'] or "Part granted"}}</strong><br><br>
-  {% else %}
-    <strong class="govuk-tag govuk-tag--blue">{{data['originalClaimDecision'] or "Part granted"}}</strong><br><br>
-{% endif %}
-
-</p>
-<p>
-  <span class="govuk-body-l"><strong>Allowed:</strong> £4872.20<br>
-</p> 
- <span class="govuk-body-m"><strong>Payment submitted:</strong> 30 June 2025</span><br>
+  <span class="govuk-body-m"><strong>Allowed:</strong>£1372.20<br>
+ <span class="govuk-body-m"><strong>Claim:</strong> {{data['paymentType']}}</span>
+<br>
+ <span class="govuk-body-m"><strong>Last updated:</strong> 30 June 2025</span><br>
  <p><span class="govuk-body-m"><strong>Caseworker:</strong> {{data['caseworker1']}}</span>
 </p>
 <div class="govuk-button-group">

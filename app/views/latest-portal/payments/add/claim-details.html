@@ -49,7 +49,7 @@
           <!--Firm acc-->
           {{ govukInput({
             label: {
-              text: "Firm office account number",
+              text: "Solicitor office account number",
               classes: "govuk-label--s"
             },
             hint: {
@@ -59,7 +59,7 @@
             name: "officeAccount",
             classes: "govuk-input--width-10",
             value: data['officeAccount']
-          }) }} 
+          }) }}  
 
           <!--UFN-->
           {{ govukInput({
@@ -87,6 +87,22 @@
             classes: "govuk-input--width-20",
             value: data['defendantLastName']
           }) }} 
+
+          <!--Counsel acc-->
+          {{ govukInput({
+            label: {
+              text: "Counsel office account number",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example,  2Q282Z"
+            },
+            id: "counselOfficeAccount",
+            name: "counselOfficeAccount",
+            classes: "govuk-input--width-10",
+            value: data['counselOfficeAccount']
+          }) }}   
  
         {% else %}
        
