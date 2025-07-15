@@ -30,8 +30,10 @@
 
       {% if data['paymentType'] =="Supplemental Non-standard Magistrates'"%}
         <h1 class="govuk-heading-l">Supplemental allowed costs</h1>
+        {% elseif data['paymentType'] =="Amendment to Non-standard Magistrates'"%}
+          <h1 class="govuk-heading-l">Amended costs</h1>
         {% else %}
-        <h1 class="govuk-heading-l">Allowed costs</h1>
+          <h1 class="govuk-heading-l">Allowed costs</h1>
       {% endif %}
 
       {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
@@ -157,7 +159,14 @@
 
         
         <p class="govuk-heading-l">
+          {% if data['paymentType'] =="Supplemental Non-standard Magistrates'"%}
           <span class="govuk-caption-m">Total allowed cost</span> £
+          {% elseif data['paymentType'] =="Amendment to Non-standard Magistrates'"%}
+            <span class="govuk-caption-m">Total amended cost</span> £
+         {% else %}
+          <span class="govuk-caption-m">Total allowed cost</span> £
+          {% endif %}
+
           <span id="showpaymentAllowedTotal">0.00</span>
         </p>
 
