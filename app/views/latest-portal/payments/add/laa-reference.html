@@ -30,10 +30,8 @@
 
       {% if data['paymentType'] =="Assigned counsel" %}
         <form class="form" action="counsel-details" method="post">
-        {% elseif data['paymentType'] =="Non-standard Magistrates'" or data['paymentType'] =="Supplemental Non-standard Magistrates'" %}
-          <form class="form" action="costs-claimed" method="post">
         {% else %}
-        <form class="form" action="costs-allowed" method="post">
+        <form class="form" action="claim-details" method="post">
       {% endif %}
 
         {% include version + "/includes/list-laa-ref.html" %}

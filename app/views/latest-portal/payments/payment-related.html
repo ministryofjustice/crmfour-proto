@@ -34,66 +34,42 @@
       <h2 class="govuk-heading-l">Related claims</h2>
 
       <!--Related payments -->
-      {% if data['paymentType'] == "Assigned counsel"%}
-        <table class="govuk-table" id="table-header" data-module="moj-sortable-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
-              <th scope="col" class="govuk-table__header" aria-sort="none">Firm name</th>
-              <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
-              <th scope="col" class="govuk-table__header" aria-sort="none">Claim</th>
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">                
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f76&officeAccount=9E3R6E&paymentType=Assigned counsel&defendantLastName=Blackbeard">LAA-1z5f76</a></td>
-              <td class="govuk-table__cell">9E3R6E</td>
-              <td class="govuk-table__cell">Blackbeard</td>
-              <td class="govuk-table__cell">Assigned counsel</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-2d9t4j&cwAppStatus=Granted&paymentType=Assigned counsel&defendantLastName=Blackbeard" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
-              <td class="govuk-table__cell">7Y8Y6T6</td>
-              <td class="govuk-table__cell">Blackbeard</td>
-              <td class="govuk-table__cell">Assigned counsel</td>
-            </tr>
-            <tr class="govuk-table__row">
-              <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&officeAccount=1A3BE4&paymentType=Non-standard Magistrates'&defendantLastName=Blackbeard" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td>
-              <td class="govuk-table__cell">1A3BE4</td>
-              <td class="govuk-table__cell">Blackbeard</td>
-              <td class="govuk-table__cell">Non-standard Magistrates'</td>
-            </tr>
-          </body>
-        </table>  
-        {% else %}
-          <table class="govuk-table" id="table-header" data-module="moj-sortable-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
-                <th scope="col" class="govuk-table__header" aria-sort="none">Firm name</th>
-                <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
-                <th scope="col" class="govuk-table__header" aria-sort="none">Claim</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">                
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f76&officeAccount=9E3R6E&paymentType=Assigned counsel&defendantLastName=Blackbeard">LAA-1z5f76</a></td>
-                <td class="govuk-table__cell">9E3R6E</td>
-                <td class="govuk-table__cell">Blackbeard</td>
-                <td class="govuk-table__cell">Assigned counsel</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-2d9t4j&cwAppStatus=Granted&paymentType=Assigned counsel&defendantLastName=Blackbeard" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
-                <td class="govuk-table__cell">7Y8Y6T6</td>
-                <td class="govuk-table__cell">Blackbeard</td>
-                <td class="govuk-table__cell">Assigned counsel</td>
-              </tr>
-            </body>
-          </table> 
-      {% endif %}
-
-
-
+      <table class="govuk-table" id="table-header" data-module="moj-sortable-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Firm name</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Claim</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Payment request</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">                
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f76&officeAccount=9E3R6E&paymentType=Assigned counsel&defendantLastName=Blackbeard">LAA-1z5f76</a></td>
+            <td class="govuk-table__cell">1A3BE4</td>
+            <td class="govuk-table__cell">Blackbeard</td>
+            <td class="govuk-table__cell">Assigned counsel</td>
+            <td class="govuk-table__cell">26 June 2025</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-2d9t4j&cwAppStatus=Granted&paymentType=Assigned counsel&defendantLastName=Blackbeard" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
+            <td class="govuk-table__cell">1A3BE4</td>
+            <td class="govuk-table__cell">Blackbeard</td>
+            <td class="govuk-table__cell">Assigned counsel</td>
+            <td class="govuk-table__cell">26 June 2025</td>
+          </tr>
+          {% if data['paymentType'] == "Assigned counsel"%}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&officeAccount=1A3BE4&paymentType=Non-standard Magistrates'&defendantLastName=Blackbeard" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td>
+            <td class="govuk-table__cell">1A3BE4</td>
+            <td class="govuk-table__cell">Blackbeard</td>
+            <td class="govuk-table__cell">Non-standard Magistrates'</td>
+            <td class="govuk-table__cell">26 June 2025</td>
+          </tr>
+          {% endif %}
+        </body>
+      </table>  
     </div>
   </div>
 
