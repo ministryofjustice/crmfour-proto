@@ -32,10 +32,9 @@
         {% else %}
         <form class="form" action="costs-claimed" method="post">
       {% endif %}
-      
-        <h1 class="govuk-heading-xl">Claim details</h1>  
-
-        {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
+    
+        {% if data['paymentType'] =="Assigned counsel"  %}
+          <h1 class="govuk-heading-xl">Claim details</h1>  
 
           <!--Date received-->
           {{ mojDatePicker({
@@ -109,224 +108,222 @@
             value: data['counselOfficeAccount']
           }) }}   
  
-          {% else %}
-            <!--Fee category-->
+          {% elseif data['paymentType'] =="Amendment to Non-standard Magistrates'"  or data['paymentType'] =="Amendment to assigned counsel" %}
+                
+            <!--Appeal-->
             {{ govukRadios({
-              name: "feeCategory",
+              name: "appealYes",
               fieldset: {
                 legend: {
-                  text: "After all cost changes what is the fee category? ",
+                  text: "Is this an appeal?",
                   isPageHeading: false,
                   classes: "govuk-fieldset__legend--s"
                 }
               },
               items: [
                 {
-                  value: "Non-standard",
-                  text: "Non-standard",
-                  checked: checked("feeCategory", "Non-standard")
+                  value: "Yes",
+                  text: "Yes",
+                  checked: checked("appealYes", "Yes")
                 },
                 {
-                  value: "Higher",
-                  text: "Higher",
-                  checked: checked("feeCategory", "Higher")
-                },
-                {
-                  value: "Lower",
-                  text: "Lower",
-                  checked: checked("feeCategory", "Lower")
+                  value: "No",
+                  text: "No",
+                  checked: checked("appealYes", "No")
                 }
               ]
             }) }}
-          
-            {% if data['paymentType'] =="Non-standard Magistrates'"  %}
-
-          
-              <!--Date received-->
-              {{ mojDatePicker({
-                id: "dateReceived",
-                name: "dateReceived",
-                value: data['dateReceived'],
-                label: {
-                  text: "Date claim received",
-                  classes: "govuk-label--s"
-                },
-                hint: {
-                  text: "For example, 17/5/2025."
-                }
-              }) }}
-
-              <!--Firm acc-->
-              {{ govukInput({
-                label: {
-                  text: "Firm office account number",
-                  classes: "govuk-label--s"
-                },
-                hint: {
-                  text: "For example,  2Q282Z"
-                },
-                id: "officeAccount",
-                name: "officeAccount",
-                classes: "govuk-input--width-10",
-                value: data['officeAccount']
-              }) }} 
             
-              <!--UFN-->
-              {{ govukInput({
-                label: {
-                  text: "Unique file number",
-                  classes: "govuk-label--s"
-                },
-                hint: {
-                  text: "For example, 120223/001"
-                },
-                id: "ufn",
-                name: "ufn",
-                classes: "govuk-input--width-10",
-                value: data['ufn']
-              }) }}    
-
-              <!--Stage-->
-              {{ govukRadios({
-                name: "stageReached",
-                fieldset: {
-                  legend: {
-                    text: "Stage reached",
-                    isPageHeading: false,
-                    classes: "govuk-fieldset__legend--s"
-                  }
-                },
-                items: [
-                  {
-                    value: "PROG",
-                    text: "PROG",
-                    checked: checked("stageReached", "PROG")
-                  },
-                  {
-                    value: "PROM",
-                    text: "PROM",
-                    checked: checked("stageReached", "PROM")
-                  }
-                ]
-              }) }} 
-
-              <!--Defendant first name-->
-              {{ govukInput({
-                label: {
-                  text: "Defendant first name",
-                  classes: "govuk-label--s"
-                },
-                id: "defendantFirstName",
-                name: "defendantFirstName",
-                classes: "govuk-input--width-20",
-                value: data['defendantFirstName']
-              }) }}    
-
-              <!--Defendant last name-->
-              {{ govukInput({
-                label: {
-                  text: "Defendant last name",
-                  classes: "govuk-label--s"
-                },
-                id: "defendantLastName",
-                name: "defendantLastName",
-                classes: "govuk-input--width-20",
-                value: data['defendantLastName']
-              }) }} 
-
-              <!--No defendant-->
-              {{ govukInput({
-                label: {
-                  text: "Number of defendants",
-                  classes: "govuk-label--s"
-                },
-                id: "defendants",
-                name: "defendants",
-                classes: "govuk-input--width-5",
-                value: data['defendants']
-              }) }}   
-
-              <!--Hearing attendance-->
-              {{ govukInput({
-                label: {
-                  text: "Number of hearing attendances",
-                  classes: "govuk-label--s"
-                },
-                id: "attendances",
-                name: "attendances",
-                classes: "govuk-input--width-5",
-                value: data['attendances']
-              }) }}  
-
-              {% include version +"/includes/list-hearing.njk"%}
-              {% include version +"/includes/list-matter-type.njk"%}   
-              {% include version +"/includes/list-court.njk"%}  
-
-              <!--Yuoth Court-->
-              {{ govukRadios({
-                name: "youthCourt",
-                fieldset: {
-                  legend: {
-                    text: "Is this court a youth court?",
-                    isPageHeading: false,
-                    classes: "govuk-fieldset__legend--s"
-                  }
-                },
-                items: [
-                  {
-                    value: "Yes",
-                    text: "Yes",
-                    checked: checked("youthCourt", "Yes")
-                  },
-                  {
-                    value: "No",
-                    text: "No",
-                    checked: checked("youthCourt", "No")
-                  }
-                ]
-              }) }}
-              
-              <!--Date completed-->
-              {{ mojDatePicker({
-                id: "date-completed",
-                name: "date-completed",
-                value: data['date-completed'],
-                label: {
-                  text: "Date work completed",
-                  classes: "govuk-label--s"
-                },
-                hint: {
-                  text: "For example, 17/5/2025."
-                }
-              }) }}
-
-              {% elseif data['paymentType'] =="Amendment to Non-standard Magistrates'"  %}
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              value: data['dateReceived'],
+              label: {
+                text: "Date amendment received",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
                 
-                <!--Appeal-->
-                {{ govukRadios({
-                  name: "appealYes",
-                  fieldset: {
-                    legend: {
-                      text: "Is this an appeal?",
-                      isPageHeading: false,
-                      classes: "govuk-fieldset__legend--s"
-                    }
-                  },
-                  items: [
-                    {
-                      value: "Yes",
-                      text: "Yes",
-                      checked: checked("appealYes", "Yes")
-                    },
-                    {
-                      value: "No",
-                      text: "No",
-                      checked: checked("appealYes", "No")
-                    }
-                  ]
-                }) }}
+          {% elseif data['paymentType'] =="Supplemental Non-standard Magistrates'"  %}
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              value: data['dateReceived'],
+              label: {
+                text: "Date supplemental claim received",
+                classes: "govuk-label--xl",
+                isPageHeading: true
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+          
+          {% elseif data['paymentType'] =="Non-standard Magistrates'"  %}
+            <h1 class="govuk-heading-xl">Claim details</h1>  
 
-            {% endif  %}
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              value: data['dateReceived'],
+              label: {
+                text: "Date claim received",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+
+            <!--Firm acc-->
+            {{ govukInput({
+              label: {
+                text: "Firm office account number",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example,  2Q282Z"
+              },
+              id: "officeAccount",
+              name: "officeAccount",
+              classes: "govuk-input--width-10",
+              value: data['officeAccount']
+            }) }} 
+          
+            <!--UFN-->
+            {{ govukInput({
+              label: {
+                text: "Unique file number",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 120223/001"
+              },
+              id: "ufn",
+              name: "ufn",
+              classes: "govuk-input--width-10",
+              value: data['ufn']
+            }) }}    
+
+            <!--Stage-->
+            {{ govukRadios({
+              name: "stageReached",
+              fieldset: {
+                legend: {
+                  text: "Stage reached",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "PROG",
+                  text: "PROG",
+                  checked: checked("stageReached", "PROG")
+                },
+                {
+                  value: "PROM",
+                  text: "PROM",
+                  checked: checked("stageReached", "PROM")
+                }
+              ]
+            }) }} 
+
+            <!--Defendant first name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant first name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantFirstName",
+              name: "defendantFirstName",
+              classes: "govuk-input--width-20",
+              value: data['defendantFirstName']
+            }) }}    
+
+            <!--Defendant last name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant last name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantLastName",
+              name: "defendantLastName",
+              classes: "govuk-input--width-20",
+              value: data['defendantLastName']
+            }) }} 
+
+            <!--No defendant-->
+            {{ govukInput({
+              label: {
+                text: "Number of defendants",
+                classes: "govuk-label--s"
+              },
+              id: "defendants",
+              name: "defendants",
+              classes: "govuk-input--width-5",
+              value: data['defendants']
+            }) }}   
+
+            <!--Hearing attendance-->
+            {{ govukInput({
+              label: {
+                text: "Number of hearing attendances",
+                classes: "govuk-label--s"
+              },
+              id: "attendances",
+              name: "attendances",
+              classes: "govuk-input--width-5",
+              value: data['attendances']
+            }) }}  
+
+            {% include version +"/includes/list-hearing.njk"%}
+            {% include version +"/includes/list-matter-type.njk"%}   
+            {% include version +"/includes/list-court.njk"%}  
+
+            <!--Yuoth Court-->
+            {{ govukRadios({
+              name: "youthCourt",
+              fieldset: {
+                legend: {
+                  text: "Is this court a youth court?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes",
+                  checked: checked("youthCourt", "Yes")
+                },
+                {
+                  value: "No",
+                  text: "No",
+                  checked: checked("youthCourt", "No")
+                }
+              ]
+            }) }}
+              
+            <!--Date completed-->
+            {{ mojDatePicker({
+              id: "date-completed",
+              name: "date-completed",
+              value: data['date-completed'],
+              label: {
+                text: "Date work completed",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
 
         {% endif  %}
 
