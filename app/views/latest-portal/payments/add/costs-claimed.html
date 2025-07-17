@@ -1,0 +1,186 @@
+{% extends "layouts/main-latest.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Claimed costs – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if data['paymentType'] =="Supplemental Non-standard Magistrates'"%}
+        <h1 class="govuk-heading-xl">Supplemental claimed costs</h1>
+        {% else %}
+          <h1 class="govuk-heading-xl">Claimed costs</h1>
+      {% endif %}
+       
+
+      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
+
+        <form class="form" action="costs-allowed" onsubmit="calCounselPaymentClaimedTotal()" method="post">
+        
+          <!-- hidden input-->
+          <input type="hidden" id="paymentClaimedTotal" name="paymentClaimedTotal" value="{{data['paymentClaimedTotal']}}" />
+
+          <!--Counsel net-->
+          {{ govukInput({
+            id: "claimedCounselNet",
+            name: "claimedCounselNet",
+            value: data['claimedCounselNet'],
+            label: {
+              text: "Assigned counsel total (NET)",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+          }) }}
+
+          <!--Counsel VAT-->
+          {{ govukInput({
+            id: "claimedCounselVAT",
+            name: "claimedCounselVAT",
+            value: data['claimedCounselVAT'],
+            label: {
+              text: "VAT on assigned counsel costs",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+          }) }}
+
+          <button class="govuk-button govuk-button--secondary" type="button" onclick="calCounselPaymentClaimedTotal()">Calculate cost</button>
+
+        {% else %}
+
+          <form class="form" action="costs-allowed" onsubmit="calPaymentClaimedTotal()" method="post">
+          
+            <!-- hidden input-->
+            <input type="hidden" id="paymentClaimedTotal" name="paymentClaimedTotal" value="{{data['paymentClaimedTotal']}}" />
+
+            <!--Profit-->
+            {{ govukInput({
+              id: "claimedProfit",
+              name: "claimedProfit",
+              value: data['claimedProfit'],
+              label: {
+                text: "Profit costs",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Travel-->
+            {{ govukInput({
+              id: "claimedTravel",
+              name: "claimedTravel",
+              value: data['claimedTravel'],
+              label: {
+                text: "Travel",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Waiting-->
+            {{ govukInput({
+              id: "claimedWaiting",
+              name: "claimedWaiting",
+              value: data['claimedWaiting'],
+              label: {
+                text: "Waiting",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Disbursement-->
+            {{ govukInput({
+              id: "claimedDisbursement",
+              name: "claimedDisbursement",
+              value: data['claimedDisbursement'],
+              label: {
+                text: "Disbursements",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentClaimedTotal()">Calculate cost</button>
+
+      {% endif %}
+        
+        <p class="govuk-heading-l">
+          <span class="govuk-caption-m">Total claimed cost</span> £
+          <span id="showpaymentClaimedTotal">0.00</span>
+        </p>
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps-reviewed?claims-state=all"
+          }) }}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}
+

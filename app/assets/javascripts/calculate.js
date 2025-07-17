@@ -51,14 +51,23 @@ function calAdd1CWCost() {
 }
 
 function calPaymentClaimedTotal() {
-  var claimedProfit = parseFloat(document.getElementById("claimedProfit").value) || 0
-  var claimedTravel = parseFloat(document.getElementById("claimedTravel").value)|| 0
-  var claimedWaiting = parseFloat(document.getElementById("claimedWaiting").value)|| 0
-  var claimedDisbursement = parseFloat(document.getElementById("claimedDisbursement").value)|| 0
+  var claimedProfit = parseFloat(document.getElementById("claimedProfit").value) || 0.00
+  var claimedTravel = parseFloat(document.getElementById("claimedTravel").value)|| 0.00
+  var claimedWaiting = parseFloat(document.getElementById("claimedWaiting").value)|| 0.00
+  var claimedDisbursement = parseFloat(document.getElementById("claimedDisbursement").value)|| 0.00
+
+  ClaimedTotal = claimedProfit + claimedTravel + claimedWaiting + claimedDisbursement ;
+
+  document.getElementById("claimedDisbursement").innerHTML = Number(claimedDisbursement).toFixed(2);
+  document.getElementById("showpaymentClaimedTotal").innerHTML = Number(ClaimedTotal).toFixed(2);
+  document.getElementById("paymentClaimedTotal").value = Number(ClaimedTotal).toFixed(2);
+}
+
+function calCounselPaymentClaimedTotal() {
   var claimedCounselNet = parseFloat(document.getElementById("claimedCounselNet").value) || 0
   var claimedCounselVAT = parseFloat(document.getElementById("claimedCounselVAT").value)|| 0,
 
-  ClaimedTotal = claimedProfit + claimedTravel + claimedWaiting + claimedDisbursement + claimedCounselNet + claimedCounselVAT ;
+  ClaimedTotal = claimedCounselNet + claimedCounselVAT ;
 
   document.getElementById("showpaymentClaimedTotal").innerHTML = Number(ClaimedTotal).toFixed(2);
   document.getElementById("paymentClaimedTotal").value = Number(ClaimedTotal).toFixed(2);
@@ -69,13 +78,21 @@ function calPaymentAllowedTotal() {
   var allowedTravel = parseFloat(document.getElementById("allowedTravel").value)|| 0
   var allowedWaiting = parseFloat(document.getElementById("allowedWaiting").value)|| 0
   var allowedDisbursement = parseFloat(document.getElementById("allowedDisbursement").value)|| 0
+
+  AllowedTotal = allowedProfit + allowedTravel + allowedWaiting + allowedDisbursement  ;
+
+  document.getElementById("showpaymentAllowedTotal").innerHTML = Number(AllowedTotal).toFixed(2);
+  document.getElementById("paymentAllowedTotal").value = Number(AllowedTotal).toFixed(2);
+}
+
+function calCounselPaymentAllowedTotal() {
   var allowedCounselNet = parseFloat(document.getElementById("allowedCounselNet").value) || 0
   var allowedCounselVAT = parseFloat(document.getElementById("allowedCounselVAT").value)|| 0
 
-  AllowedTotal = allowedProfit + allowedTravel + allowedWaiting + allowedDisbursement + allowedCounselNet + allowedCounselVAT ;
+  AllowedTotal = allowedCounselNet + allowedCounselVAT ;
 
   document.getElementById("showpaymentAllowedTotal").innerHTML = Number(AllowedTotal).toFixed(2);
-  document.getElementById("paymentAllowedTotal").value = Number(ClaimedTotal).toFixed(2);
+  document.getElementById("paymentAllowedTotal").value = Number(AllowedTotal).toFixed(2);
 }
 
 function calalt1GeneralCost() {

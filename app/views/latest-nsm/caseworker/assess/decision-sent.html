@@ -107,10 +107,17 @@
         </dl>
 
         <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Assess next claim",
-            href: "claim-details?cwAppStatus=In progress"
-          }) }}
+          {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" %}
+            {{ govukButton({
+              text: "Create payment request",
+              href: "/latest-portal/payments/add/check-answers"
+            }) }}
+            {% else %}
+            {{ govukButton({
+              text: "Assess next claim",
+              href: "claim-details?cwAppStatus=In progress"
+            }) }}
+          {%endif %}
           <a class="govuk-link" href="claim-details-readonly">Return to the claim</a>
         </div>
       {% endif %}

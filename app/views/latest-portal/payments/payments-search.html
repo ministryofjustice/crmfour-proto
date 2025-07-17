@@ -26,7 +26,7 @@
     <h1 class="govuk-heading-xl">
       Search for a payment
     </h1>
-    <p class="govuk-hint">Enter details in at least one field to search a paid claim</p>
+    <p class="govuk-hint">Enter details in at least one field to search a payment request</p>
   </div>
 </div>
 
@@ -38,7 +38,7 @@
 
         <h2 class="govuk-label-wrapper">
           <label class="govuk-label govuk-label--s" for="filterSearch">
-            Enter any combination of client or firm name, UFN or LAA reference
+            Enter any combination of defendant, firm account, UFN or LAA reference
           </label>
         </h2>
         <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Enter any combination of client or firm name, UFN or LAA reference">
@@ -46,7 +46,7 @@
 
       {% call govukFieldset({
         legend: {
-          text: "Payment date",
+          text: "Payment request sent",
           classes: "govuk-fieldset__legend--s",
           isPageHeading: false
         }
@@ -61,7 +61,7 @@
             <div class="moj-datepicker" data-module="moj-date-picker">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="sub-date-from">
-                  Payment date from
+                  Payment request date from
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="sub-date-from" name="sub-date-from" type="text" autocomplete="off">
               </div>
@@ -71,7 +71,7 @@
             <div class="moj-datepicker " data-module="moj-date-picker">
               <div class="govuk-form-group govuk-date-input__item">
                 <label class="govuk-label" for="sub-date-to">
-                  Payment date to
+                  Payment request date to
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="sub-date-to" name="sub-date-to" type="text"  autocomplete="off">
               </div>
@@ -82,7 +82,7 @@
 
       {% call govukFieldset({
         legend: {
-          text: "Claim last updated date",
+          text: "Claim received",
           classes: "govuk-fieldset__legend--s",
           isPageHeading: false
         }
@@ -98,7 +98,7 @@
             <div class="moj-datepicker" data-module="moj-date-picker">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="last-date-from">
-                  Last updated from
+                  Claim received from
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="last-date-from" name="last-date-from" type="text" autocomplete="off">
               </div>
@@ -108,7 +108,7 @@
             <div class="moj-datepicker" data-module="moj-date-picker">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="last-date-to">
-                  Last updated to
+                  Claim received to
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="last-date-to" name="last-date-to" type="text"  autocomplete="off">
               </div>
@@ -119,30 +119,16 @@
       {% endcall %}
 
       <div id="filters" class="govuk-date-input">       
-        <div class="govuk-date-input__item">
-          <div class="govuk-form-group">
-            <label class="govuk-label govuk-label--s" for="filterbuttonContainer">
-              Status
-            </label>
-            <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
-              <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
-              <option value="Granted" onclick="filterSelection('granted')">Granted</option>
-              <option value="Part granted" onclick="filterSelection('part-granted')">Part granted</option>
-            </select>
-          </div>
-        </div>
 
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <label class="govuk-label govuk-label--s" for="filterbuttonContainer">
-              Caseworker
+              Claim
             </label>
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
               <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
-              <option value="Not" onclick="filterSelection('Not')">Not assigned</option>
-              <option value="Justice" onclick="filterSelection('Justice')">Johanna Justice</option>
-              <option value="Wolf" onclick="filterSelection('Wolf')">Tattina Wolf</option>
-              <option value="Hussein" onclick="filterSelection('Hussein')">Ishmale Hussein</option>
+              <option value="NSM" onclick="filterSelection('NSM')">Non-standard magistrates'</option>
+              <option value="AC" onclick="filterSelection('AC')">Assigned counsel</option>
             </select>
           </div>
         </div>
@@ -163,97 +149,87 @@
         {% set itemNo ="7" %} 
         {{itemNo}} search results
       </h2>
+
       <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
-            <th scope="col" class="govuk-table__header" aria-sort="none">Firm name</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Firm account</th>
             <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
-            <th scope="col" class="govuk-table__header" aria-sort="descending">Payment submitted</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric" aria-sort="none">Payment</th>
-            <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
+             <th scope="col" class="govuk-table__header" aria-sort="none">Claim</th>
+            <th scope="col" class="govuk-table__header" aria-sort="descending">Submitted</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">                
-          <tr class="govuk-table__row hideTR all part-granted Medium highValue">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&cwAppStatus=Part granted" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-5a7d3c</a></td>
-            <td class="govuk-table__cell">Laywers Inc</td>
-            <td class="govuk-table__cell">Roger Blackbeard</td>
+          <tr class="govuk-table__row hideTR all NSM">
+           <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&paymentType=Non-standard Magistrates'&date=30 June 2025&officeAccount=1A3BE4" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td> 
+            <td class="govuk-table__cell">1A3BE4</td>
+            <td class="govuk-table__cell">Blackbeard</td>
+            <td class="govuk-table__cell">Non-standard Magistrates' supplemental</td>
             <td class="govuk-table__cell" data-sort-value="250630">30 June 2025</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£4872.20</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all none Not Medium">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-9p4f0e&cwAppStatus=Part granted" class="govuk-link--no-visited-state" data-sort-value="9p4f0e">LAA-9p4f0e</a></td>
-            <td class="govuk-table__cell">Legal Aiders Ltd</td>
-            <td class="govuk-table__cell">Jamie Innes</td>
-            <td class="govuk-table__cell" data-sort-value="231029">29 June 2025</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£345.00</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
-          </tr>
-          <tr class="govuk-table__row hideTR all none Not Medium">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-6p4f0r&cwAppStatus=Part granted" class="govuk-link--no-visited-state" data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
-            <td class="govuk-table__cell">Crime Busters Legal</td>
-            <td class="govuk-table__cell">Dami Olu</td>
-            <td class="govuk-table__cell" data-sort-value="250629">29 June 2025</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£6345.77</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
-          </tr>
-          <tr class="govuk-table__row hideTR all Granted Wolf Medium">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-8p3h0e&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
-            <td class="govuk-table__cell">Legal Aiders Ltd</td>
-            <td class="govuk-table__cell">Bobby Brownie</td>
+          <tr class="govuk-table__row hideTR all NSM">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&paymentType=Non-standard Magistrates'&date=28 June 2025&officeAccount=1A3BE4" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td> 
+            <td class="govuk-table__cell">1A3BE4</td>
+            <td class="govuk-table__cell">Blackbeard</td>
+            <td class="govuk-table__cell">Non-standard Magistrates' amendment</td>
             <td class="govuk-table__cell" data-sort-value="250628">28 June 2025</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£2385.68</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all none Not Low">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f76&cwAppStatus=New" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>
-            <td class="govuk-table__cell">Big Law</td>
-            <td class="govuk-table__cell">Ishia Melta</td>
-            <td class="govuk-table__cell" data-sort-value="250627">27 June 2025</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£2345.78</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
-          </tr>
-          <tr class="govuk-table__row hideTR all in-progress Wolf High highValue">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-2d9t4j&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
-            <td class="govuk-table__cell">Boss Lawyers Inc</td>
-            <td class="govuk-table__cell">Arnie Swartz</td>
-            <td class="govuk-table__cell" data-sort-value="250627">27 June 2025</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£2311.33</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
-          </tr>
-          <tr class="govuk-table__row hideTR all auto-granted Justice Medium">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f76&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="1z5f76">LAA-1z5f76</a></td>  
-            <td class="govuk-table__cell">Big Law</td>          
-            <td class="govuk-table__cell">Bob Holness</td>
+          <tr class="govuk-table__row hideTR all AC">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f76&paymentType=Assigned counsel&defendantLastName=Blackbeard&date=26 June 2025">LAA-1z5f76</a></td>
+            <td class="govuk-table__cell">1A3BE4</td>
+            <td class="govuk-table__cell">Blackbeard</td>
+            <td class="govuk-table__cell">Assigned counsel</td>
             <td class="govuk-table__cell" data-sort-value="250626">26 June 2025</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£2345.78</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all rejected Hussein Low">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-6j4k6k&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="6j4k6k">LAA-6j4k6k</a></td>
-            <td class="govuk-table__cell">Griffins Grifting Grifters Law</td>
-            <td class="govuk-table__cell">Melanie Longname Griffins</td>
+          <tr class="govuk-table__row hideTR all AC">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-2d9t4j&paymentType=Assigned counsel&defendantLastName=Blackbeard&date=26 June 2025" class="govuk-link--no-visited-state">LAA-2d9t4j</a></td>          
+            <td class="govuk-table__cell">1A3BE4</td>
+            <td class="govuk-table__cell">Blackbeard</td>
+            <td class="govuk-table__cell">Assigned counsel</td>
             <td class="govuk-table__cell" data-sort-value="250626">26 June 2025</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£22345.45</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all cancelled Not Low">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-7j8s9s&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="7j8s9s">LAA-7j8s9s</a></td>
-            <td class="govuk-table__cell">Music Solicitors</td>
-            <td class="govuk-table__cell">Alecia Pink</td>
+          <tr class="govuk-table__row hideTR all NSM">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&paymentType=Non-standard Magistrates'&date=30 June 2025&officeAccount=1A3BE4" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td>  
+            <td class="govuk-table__cell">1A3BE4</td>          
+            <td class="govuk-table__cell">Blackbeard</td>
+            <td class="govuk-table__cell">Non-standard Magistrates'</td>
+            <td class="govuk-table__cell" data-sort-value="250626">26 June 2025</td>
+          </tr>
+           <tr class="govuk-table__row hideTR all NMS">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-9p4f0e&paymentType=Non-standard Magistrates'&date=29 June 2025">LAA-9p4f0e</a></td>
+            <td class="govuk-table__cell">5T6H7J</td>
+            <td class="govuk-table__cell">Innes</td>
+            <td class="govuk-table__cell">Non-standard Magistrates' </td>
+            <td class="govuk-table__cell" data-sort-value="250629">29 June 2025</td>
+          </tr>
+          <tr class="govuk-table__row hideTR all NSM">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-6p4f0r&paymentType=Non-standard Magistrates'&date=29 June 2025">LAA-6p4f0r</a></td>
+            <td class="govuk-table__cell">6H5V4R</td>
+            <td class="govuk-table__cell">Olu</td>
+            <td class="govuk-table__cell">Non-standard Magistrates'</td>
+            <td class="govuk-table__cell" data-sort-value="250629">29 June 2025</td>
+          </tr>
+          <tr class="govuk-table__row hideTR all AC">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-6j4k6k&paymentType=Non-standard Magistrates'&date=26 June 2025" class="govuk-link--no-visited-state">LAA-6j4k6k</a></td>
+            <td class="govuk-table__cell">J7Y4B5</td>
+            <td class="govuk-table__cell">Chiclue</td>
+            <td class="govuk-table__cell">Amendment to assigned counsel</td>
+            <td class="govuk-table__cell" data-sort-value="250626">26 June 2025</td>
+          </tr>
+          <tr class="govuk-table__row hideTR all NSM">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-7j8s9s&paymentType=Non-standard Magistrates'&date=25 June 2025" class="govuk-link--no-visited-state">LAA-7j8s9s</a></td>
+            <td class="govuk-table__cell">4T6D2W</td>
+            <td class="govuk-table__cell">Pink</td>
+            <td class="govuk-table__cell">Non-standard Magistrates'</td>
             <td class="govuk-table__cell" data-sort-value="250625">25 June 2025</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£23123.00</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
-          <tr class="govuk-table__row hideTR all sent-back Not High">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-4m4m4m&cwAppStatus=Granted" class="govuk-link--no-visited-state" data-sort-value="4m4m4m">LAA-4m4m4m</a></td>
-            <td class="govuk-table__cell">Griffins Grifting Grifters Law</td>
-            <td class="govuk-table__cell">Simone Gutter</td>
+          <tr class="govuk-table__row hideTR all NMS">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-4m4m4m&paymentType=Non-standard Magistrates'&date=21 June 2025" class="govuk-link--no-visited-state">LAA-4m4m4m</a></td>
+            <td class="govuk-table__cell">5R5R4R</td>
+            <td class="govuk-table__cell">Gutter</td>
+            <td class="govuk-table__cell">Non-standard Magistrates'</td>
             <td class="govuk-table__cell" data-sort-value="250621">21 June 2025</td>
-            <td class="govuk-table__cell govuk-table__cell--numeric">£345.78</td>
-            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
           </tr>
         </body>
       </table>    

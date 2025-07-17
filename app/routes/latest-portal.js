@@ -3,19 +3,26 @@ const router = govukPrototypeKit.requests.setupRouter('/latest-portal')
 
 const version = 'latest-portal'
 
-//Payments - Existing claim?
-router.post('/question-existing-claim-ref', function(request, response) {
+//Payment type?
+router.post('/question-payment-type', function(request, response) {
 
-    var existingRef = request.session.data['existingRef']
+    var paymentType = request.session.data['paymentType']
 
-    if (existingRef == "Yes"){
+    if (paymentType == "Non-standard Magistrates'"){
+        response.redirect('/' + version + "/payments/add/claim-details")
+    } 
+
+    if (paymentType == "Supplemental Non-standard Magistrates'"){
         response.redirect('/' + version + "/payments/add/laa-reference")
     } 
 
-    else {
-        response.redirect('/' + version + "/payments/add/claim-details")
+    if (paymentType == "Amendment to Non-standard Magistrates'"){
+        response.redirect('/' + version + "/payments/add/laa-reference")
     } 
-    
+     if (paymentType == "Assigned counsel"){
+        response.redirect('/' + version + "/payments/add/laa-reference")
+    } 
+    if (paymentType == "Amendment to assigned counsel"){
+        response.redirect('/' + version + "/payments/add/laa-reference")
+    } 
   })
-
-  
