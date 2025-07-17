@@ -109,6 +109,7 @@
           }) }}   
  
           {% elseif data['paymentType'] =="Amendment to Non-standard Magistrates'"  or data['paymentType'] =="Amendment to assigned counsel" %}
+            <h1 class="govuk-heading-xl">Claim details</h1> 
                 
             <!--Appeal-->
             {{ govukRadios({
@@ -140,7 +141,7 @@
               name: "dateReceived",
               value: data['dateReceived'],
               label: {
-                text: "Date amendment received",
+                text: "Date amendment to claim received",
                 classes: "govuk-label--s"
               },
               hint: {
