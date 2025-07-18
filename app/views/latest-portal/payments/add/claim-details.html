@@ -27,129 +27,45 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      {% if data['paymentType'] =="Amendment to Non-standard Magistrates'" %}
-        <form class="form" action="costs-allowed" method="post">
-        {% else %}
+      {% if data['paymentType'] =="Non-standard Magistrates'" or data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Non-standard Magistrates' supplemental" %}
         <form class="form" action="costs-claimed" method="post">
+        {% else %}
+        <form class="form" action="costs-allowed" method="post">
       {% endif %}
     
-        {% if data['paymentType'] =="Assigned counsel"  %}
-          <h1 class="govuk-heading-xl">Claim details</h1>  
-
-          <!--Date received-->
-          {{ mojDatePicker({
-            id: "dateReceived",
-            name: "dateReceived",
-            value: data['dateReceived'],
-            label: {
-              text: "Date claim received",
-              classes: "govuk-label--s"
-            },
-            hint: {
-              text: "For example, 17/5/2025."
-            }
-          }) }}
-
-          <!--Firm acc-->
-          {{ govukInput({
-            label: {
-              text: "Solicitor office account number",
-              classes: "govuk-label--s"
-            },
-            hint: {
-              text: "For example,  2Q282Z"
-            },
-            id: "officeAccount",
-            name: "officeAccount",
-            classes: "govuk-input--width-10",
-            value: data['officeAccount']
-          }) }}  
-
-          <!--UFN-->
-          {{ govukInput({
-            label: {
-              text: "Unique file number",
-              classes: "govuk-label--s"
-            },
-            hint: {
-              text: "For example, 120223/001"
-            },
-            id: "ufn",
-            name: "ufn",
-            classes: "govuk-input--width-10",
-            value: data['ufn']
-          }) }}   
-
-          <!--Defendant last name-->
-          {{ govukInput({
-            label: {
-              text: "Defendant last name",
-              classes: "govuk-label--s"
-            },
-            id: "defendantLastName",
-            name: "defendantLastName",
-            classes: "govuk-input--width-20",
-            value: data['defendantLastName']
-          }) }} 
-
-          <!--Counsel acc-->
-          {{ govukInput({
-            label: {
-              text: "Counsel office account number",
-              classes: "govuk-label--s",
-              isPageHeading: false
-            },
-            hint: {
-              text: "For example,  2Q282Z"
-            },
-            id: "counselOfficeAccount",
-            name: "counselOfficeAccount",
-            classes: "govuk-input--width-10",
-            value: data['counselOfficeAccount']
-          }) }}   
- 
-          {% elseif data['paymentType'] =="Amendment to Non-standard Magistrates'"  or data['paymentType'] =="Amendment to assigned counsel" %}
-            <h1 class="govuk-heading-xl">Claim details</h1> 
-                
-            <!--Appeal-->
-            {{ govukRadios({
-              name: "appealYes",
-              fieldset: {
-                legend: {
-                  text: "Is this an appeal?",
-                  isPageHeading: false,
-                  classes: "govuk-fieldset__legend--s"
-                }
-              },
-              items: [
-                {
-                  value: "Yes",
-                  text: "Yes",
-                  checked: checked("appealYes", "Yes")
-                },
-                {
-                  value: "No",
-                  text: "No",
-                  checked: checked("appealYes", "No")
-                }
-              ]
-            }) }}
-            
+      {% if data['paymentType'] =="Non-standard Magistrates' appeal"  or data['paymentType'] =="Assigned counsel appeal" %}                            
             <!--Date received-->
             {{ mojDatePicker({
               id: "dateReceived",
               name: "dateReceived",
               value: data['dateReceived'],
               label: {
-                text: "Date amendment to claim received",
-                classes: "govuk-label--s"
+                text: "Date appeal received",
+                classes: "govuk-label--xl",
+                isPageHeading: true
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+            
+            {% elseif data['paymentType'] =="Non-standard Magistrates' amendment"  or data['paymentType'] =="Assigned counsel amendment" %}                            
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              value: data['dateReceived'],
+              label: {
+                text: "Date claim amended",
+                classes: "govuk-label--xl",
+                isPageHeading: true
               },
               hint: {
                 text: "For example, 17/5/2025."
               }
             }) }}
                 
-          {% elseif data['paymentType'] =="Supplemental Non-standard Magistrates'"  %}
+          {% elseif data['paymentType'] =="Non-standard Magistrates' supplemental"  %}
             <!--Date received-->
             {{ mojDatePicker({
               id: "dateReceived",
@@ -164,6 +80,81 @@
                 text: "For example, 17/5/2025."
               }
             }) }}
+
+          {% elseif data['paymentType'] =="Assigned counsel"  %}
+            <h1 class="govuk-heading-xl">Claim details</h1>  
+
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              value: data['dateReceived'],
+              label: {
+                text: "Date claim received",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+
+            <!--Firm acc-->
+            {{ govukInput({
+              label: {
+                text: "Solicitor office account number",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example,  2Q282Z"
+              },
+              id: "officeAccount",
+              name: "officeAccount",
+              classes: "govuk-input--width-10",
+              value: data['officeAccount']
+            }) }}  
+
+            <!--UFN-->
+            {{ govukInput({
+              label: {
+                text: "Unique file number",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 120223/001"
+              },
+              id: "ufn",
+              name: "ufn",
+              classes: "govuk-input--width-10",
+              value: data['ufn']
+            }) }}   
+
+            <!--Defendant last name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant last name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantLastName",
+              name: "defendantLastName",
+              classes: "govuk-input--width-20",
+              value: data['defendantLastName']
+            }) }} 
+
+            <!--Counsel acc-->
+            {{ govukInput({
+              label: {
+                text: "Counsel office account number",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              hint: {
+                text: "For example,  2Q282Z"
+              },
+              id: "counselOfficeAccount",
+              name: "counselOfficeAccount",
+              classes: "govuk-input--width-10",
+              value: data['counselOfficeAccount']
+            }) }} 
           
           {% elseif data['paymentType'] =="Non-standard Magistrates'"  %}
             <h1 class="govuk-heading-xl">Claim details</h1>  
@@ -334,11 +325,6 @@
             text: "Save and continue"
           }) }}
 
-          {{ govukButton({
-            text: "Save and come back later",
-            classes: "govuk-button--secondary",
-            href: "../crm-apps-reviewed?claims-state=all"
-          }) }}
         </div>
 
       </form>

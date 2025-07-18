@@ -28,15 +28,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if data['paymentType'] =="Supplemental Non-standard Magistrates'"%}
-        <h1 class="govuk-heading-xl">Supplemental allowed costs</h1>
-        {% elseif data['paymentType'] =="Amendment to Non-standard Magistrates'"%}
-          <h1 class="govuk-heading-xl">Amended costs</h1>
-        {% else %}
+      {% if data['paymentType'] =="Non-standard Magistrates'" or data['paymentType'] =="Assigned counsel"%}
           <h1 class="govuk-heading-xl">Allowed costs</h1>
+        {% else %}
+          <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+          <p>Amend the totals to show the new allowed costs.</p>
       {% endif %}
 
-      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
+      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel amendment" %}
 
         <form class="form" action="check-answers" onsubmit="calCounselPaymentAllowedTotal()" method="post">
 
@@ -159,9 +158,9 @@
 
         
         <p class="govuk-heading-l">
-          {% if data['paymentType'] =="Supplemental Non-standard Magistrates'"%}
+          {% if data['paymentType'] =="Non-standard Magistrates' supplemental"%}
           <span class="govuk-caption-m">Total allowed cost</span> £
-          {% elseif data['paymentType'] =="Amendment to Non-standard Magistrates'"%}
+          {% elseif data['paymentType'] =="Non-standard Magistrates' amendment"%}
             <span class="govuk-caption-m">Total amended cost</span> £
          {% else %}
           <span class="govuk-caption-m">Total allowed cost</span> £
@@ -176,11 +175,6 @@
             text: "Save and continue"
           }) }}
 
-          {{ govukButton({
-            text: "Save and come back later",
-            classes: "govuk-button--secondary",
-            href: ""
-          }) }}
         </div>
 
       </form>

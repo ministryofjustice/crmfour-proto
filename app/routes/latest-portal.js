@@ -8,21 +8,15 @@ router.post('/question-payment-type', function(request, response) {
 
     var paymentType = request.session.data['paymentType']
 
-    if (paymentType == "Non-standard Magistrates'"){
-        response.redirect('/' + version + "/payments/add/claim-details")
+    if (paymentType == "Non-standard Magistrates'" ){
+        response.redirect('/' + version + "/payments/add/claim-details?claimedProfit=&claimedTravel=&claimedWaiting=&claimedDisbursement=&allowedProfit=&allowedTravel=&allowedWaiting=&allowedDisbursement=")
     } 
 
-    if (paymentType == "Supplemental Non-standard Magistrates'"){
-        response.redirect('/' + version + "/payments/add/laa-reference")
+    if (paymentType == "Non-standard Magistrates' supplemental"){
+        response.redirect('/' + version + "/payments/add/laa-reference?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00")
     } 
 
-    if (paymentType == "Amendment to Non-standard Magistrates'"){
-        response.redirect('/' + version + "/payments/add/laa-reference")
-    } 
-     if (paymentType == "Assigned counsel"){
-        response.redirect('/' + version + "/payments/add/laa-reference")
-    } 
-    if (paymentType == "Amendment to assigned counsel"){
-        response.redirect('/' + version + "/payments/add/laa-reference")
+    else {
+        response.redirect('/' + version + "/payments/add/laa-reference?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=10.00&claimedDisbursement=890.00&allowedProfit=342.00&allowedTravel=0.00&allowedWaiting=10.00&allowedDisbursement=890.00")
     } 
   })

@@ -1,5 +1,5 @@
 <div class="govuk-summary-card__content">
-  {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
+  {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel amendment" %}
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -9,7 +9,7 @@
           {{data['paymentType'] or "Non-standard magistrates'"}}
         </dd>
       </div>
-      {% if data['paymentType'] == "Amendment to assigned counsel" %}
+      {% if data['paymentType'] == "Assigned counsel amendment" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Appeal
@@ -27,7 +27,7 @@
           {{data['dateReceived'] or "24 July 2025"}}
         </dd>
       </div> 
-      {% if data['paymentType'] == "Amendment to assigned counsel" %}
+      {% if data['paymentType'] == "Assigned counsel amendment" %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Assigned counsel claim reference
@@ -77,10 +77,10 @@
             Claim type
           </dt>
           <dd class="govuk-summary-list__value">
-            {{data['paymentType']}}
+            {{data['paymentType'] or "Non-standard Magistrates'"}}
           </dd>
         </div>
-        {% if data['paymentType'] == "Amendment to Non-standard Magistrates'" %}
+        {% if data['paymentType'] == "Non-standard Magistrates' amendment" %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Appeal
