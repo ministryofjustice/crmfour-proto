@@ -1,6 +1,7 @@
 {% extends "layouts/main-latest.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
+{% set activeAppNav = [true, false] %}
 
 {% block header %}
 {% include version + "/includes/header-provider.html" %}
@@ -41,31 +42,17 @@ href: "javascript:window.history.back()"
         <dl class="govuk-summary-list">
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Status
+              Decision
             </dt>
             <dd class="govuk-summary-list__value">
               <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
-
               <p>24 June 2025</p>
-
               <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested</p>
               <p>£480.00 allowed</p>
-
+              <a href="#decision">View decision</a> 
             </dd>
           </div>
-          <div class="govuk-summary-list__row">
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              LAA response
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p>This application was part granted due to unrealistic costs claimed and an unregulated provider. </p>
-              <p>You can <a href="appeal-start.html">appeal this decision</a>.</p>
-            </dd>
-          </div>
-        </dl>
+         </dl>
       </div>
 
     </div>
@@ -92,7 +79,38 @@ href: "javascript:window.history.back()"
   </div>
   <div class="govuk-grid-column-two-thirds" id="nav">
 
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [
+      {
+        text: 'Overview',
+        href: 'application-details-3-reviewed#nav',
+        active: + activeAppNav[0] | default('true')
+      }, 
+
+      {
+        text: 'Costs',
+        href: 'application-details-adjusted#nav?Appeal=Yes',
+        active: + activeAppNav[2]
+      }
+      ]
+    }) }}
+
     <h2 class="govuk-heading-l">Overview</h2>
+
+    <div class="govuk-inset-text">
+      <h3 id="decision" class="govuk-heading-s">LAA decision 24 June 2025</h3>
+      <p>This application was part granted due to unrealistic costs claimed and an unregulated provider. </p>
+   
+      <ul class="govuk-list">
+        <li>
+          <a href="application-details-adjusted.html">Review adjustments</a>
+        </li>
+        <li>
+          <a href="appeal-start.html">Appeal this decision</a>
+        </li>
+       </ul>
+    </div>
 
     <!--App ref-->
     <div class="govuk-summary-card">
