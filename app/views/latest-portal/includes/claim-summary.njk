@@ -1,5 +1,5 @@
 <div class="govuk-summary-card__content">
-  {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel amendment" %}
+  {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel amendment" or data['paymentType'] =="Assigned counsel appeal" %}
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -9,16 +9,6 @@
           {{data['paymentType'] or "Non-standard magistrates'"}}
         </dd>
       </div>
-      {% if data['paymentType'] == "Assigned counsel amendment" %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Appeal
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{data['appealYes'] or "Yes"}}
-          </dd>
-        </div>
-      {% endif %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Date claim received
@@ -27,7 +17,7 @@
           {{data['dateReceived'] or "24 July 2025"}}
         </dd>
       </div> 
-      {% if data['paymentType'] == "Assigned counsel amendment" %}
+      {% if data['paymentType'] == "Assigned counsel amendment" or data['paymentType'] == "Assigned counsel appeal"  %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Assigned counsel claim reference
@@ -80,16 +70,6 @@
             {{data['paymentType'] or "Non-standard Magistrates'"}}
           </dd>
         </div>
-        {% if data['paymentType'] == "Non-standard Magistrates' amendment" %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Appeal
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['appealYes'] or "Yes"}}
-            </dd>
-          </div>
-        {% endif %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Date claim received
