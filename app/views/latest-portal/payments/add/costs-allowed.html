@@ -35,7 +35,7 @@
           <p>Amend the totals to show the new allowed costs.</p>
       {% endif %}
 
-      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel amendment" %}
+      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel amendment" or data['paymentType'] =="Assigned counsel appeal" %}
 
         <form class="form" action="check-answers" onsubmit="calCounselPaymentAllowedTotal()" method="post">
 
@@ -158,15 +158,8 @@
 
         
         <p class="govuk-heading-l">
-          {% if data['paymentType'] =="Non-standard Magistrates' supplemental"%}
-          <span class="govuk-caption-m">Total allowed cost</span> £
-          {% elseif data['paymentType'] =="Non-standard Magistrates' amendment"%}
-            <span class="govuk-caption-m">Total amended cost</span> £
-         {% else %}
-          <span class="govuk-caption-m">Total allowed cost</span> £
-          {% endif %}
-
-          <span id="showpaymentAllowedTotal">0.00</span>
+        <span class="govuk-caption-m">Total allowed cost</span> £
+        <span id="showpaymentAllowedTotal">0.00</span>
         </p>
 
 

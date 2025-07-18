@@ -188,7 +188,7 @@
       {% endset%}
 
       <!--Tabs to show any history if needed-->
-      {% if data['paymentType'] == "Assigned counsel" %}
+      {% if data['paymentType'] == "Assigned counsel appeal" or data['paymentType'] == "Assigned counsel amendment" %}
         {{ govukTabs({
           items: [
             {
@@ -239,7 +239,7 @@
             <caption class="govuk-table__caption govuk-table__caption--s">Claimed and allowed costs</caption>
             <thead class="govuk-table__head">
               <th scope="col" class="govuk-table__header"></th>
-              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Original claim</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
               <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
             </thead>
             <tbody class="govuk-table__body">

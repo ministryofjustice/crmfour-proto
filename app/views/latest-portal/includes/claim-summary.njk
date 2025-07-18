@@ -16,17 +16,7 @@
         <dd class="govuk-summary-list__value">
           {{data['dateReceived'] or "24 July 2025"}}
         </dd>
-      </div> 
-      {% if data['paymentType'] == "Assigned counsel amendment" or data['paymentType'] == "Assigned counsel appeal"  %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
-            Assigned counsel claim reference
-          </dt>
-          <dd class="govuk-summary-list__value">
-            <a href="/latest-nsm/caseworker/assess/claim-details-readonly?laa-ref=LAA-5a7d3c&cwAppStatus=Part granted">{{data['laa-ref'] or "LAA-5a7d3c"}}</a>
-          </dd>
-        </div>   
-      {% endif %}        
+      </div>      
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Solicitor office account number
@@ -77,18 +67,7 @@
           <dd class="govuk-summary-list__value">
             {{data['dateReceived'] or "20 June 2025"}}
           </dd>
-        </div>
-        {% if data['paymentType'] == "Non-standard Magistrates'" %}
-        {% else %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Original claim reference
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <a href="/latest-nsm/caseworker/assess/claim-details-readonly?laa-ref=LAA-5a7d3c&cwAppStatus=Part granted">{{data['laa-ref'] or "LAA-5a7d3c"}}</a>
-            </dd>
-          </div>
-        {% endif %}           
+        </div>         
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Firm office account number
