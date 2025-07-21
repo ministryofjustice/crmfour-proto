@@ -102,6 +102,23 @@
               spellcheck: false
             }) }}
 
+            <!--Disbursements-->
+            {{ govukInput({
+              id: "allowedDisbursement",
+              name: "allowedDisbursement",
+              value: data['allowedDisbursement'] or "",
+              label: {
+                text: "Disbursements",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
             <!--Travel-->
             {{ govukInput({
               id: "allowedTravel",
@@ -126,23 +143,6 @@
               value: data['allowedWaiting'] or "",
               label: {
                 text: "Waiting ",
-                classes: "govuk-label--s",
-                isPageHeading: false
-              },
-              prefix: {
-                text: "£"
-              },
-              classes: "govuk-input--width-5",
-              spellcheck: false
-            }) }}
-
-            <!--Disbursements-->
-            {{ govukInput({
-              id: "allowedDisbursement",
-              name: "allowedDisbursement",
-              value: data['allowedDisbursement'] or "",
-              label: {
-                text: "Disbursements",
                 classes: "govuk-label--s",
                 isPageHeading: false
               },

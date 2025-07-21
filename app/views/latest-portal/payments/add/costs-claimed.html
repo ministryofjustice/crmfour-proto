@@ -102,6 +102,23 @@
               spellcheck: false
             }) }}
 
+            <!--Disbursement-->
+            {{ govukInput({
+              id: "claimedDisbursement",
+              name: "claimedDisbursement",
+              value: data['claimedDisbursement'],
+              label: {
+                text: "Disbursements",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
             <!--Travel-->
             {{ govukInput({
               id: "claimedTravel",
@@ -136,22 +153,6 @@
               spellcheck: false
             }) }}
 
-            <!--Disbursement-->
-            {{ govukInput({
-              id: "claimedDisbursement",
-              name: "claimedDisbursement",
-              value: data['claimedDisbursement'],
-              label: {
-                text: "Disbursements",
-                classes: "govuk-label--s",
-                isPageHeading: false
-              },
-              prefix: {
-                text: "£"
-              },
-              classes: "govuk-input--width-5",
-              spellcheck: false
-            }) }}
 
             <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentClaimedTotal()">Calculate cost</button>
 
