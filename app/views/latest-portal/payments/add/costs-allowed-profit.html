@@ -31,6 +31,10 @@
       <form class="form" action="check-answers" onsubmit="calPaymentAllowedTotal()" method="post">
 
         <!-- hidden input-->
+        <input type="hidden" id="allowedDisbursement" name="allowedDisbursement" value="{{data['allowedDisbursement']}}" />
+        <input type="hidden" id="allowedTravel" name="allowedTravel" value="{{data['allowedTravel']}}" />
+        <input type="hidden" id="allowedWaiting" name="allowedWaiting" value="{{data['allowedWaiting']}}" />
+        <input type="hidden" id="showpaymentAllowedTotal" name="showpaymentAllowedTotal" value="{{data['showpaymentAllowedTotal']}}" />
         <input type="hidden" id="paymentAllowedTotal" name="paymentAllowedTotal" value="{{data['paymentAllowedTotal']}}" />
 
         <!--Profit-->
@@ -39,7 +43,7 @@
           name: "allowedProfit",
           value: data['allowedProfit'] or "",
           label: {
-            text: "Allowed profit costs",
+            text: "Amend profit costs",
             classes: "govuk-label--xl",
             isPageHeading: true
           },
@@ -54,7 +58,6 @@
           {{ govukButton({
             text: "Save and continue"
           }) }}
-
         </div>
 
       </form>
