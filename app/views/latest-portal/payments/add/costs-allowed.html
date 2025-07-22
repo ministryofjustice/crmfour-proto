@@ -28,14 +28,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if data['paymentType'] =="Non-standard Magistrates'" or data['paymentType'] =="Assigned counsel"%}
+      {% if data['paymentType'] =="Non-standard magistrates'" or data['paymentType'] =="Assigned counsel"%}
           <h1 class="govuk-heading-xl">Allowed costs</h1>
         {% else %}
           <h1 class="govuk-heading-xl">Amend allowed costs</h1>
           <p>Amend the totals to show the new allowed costs.</p>
       {% endif %}
 
-      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel amendment" or data['paymentType'] =="Assigned counsel appeal" %}
+      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
 
         <form class="form" action="check-answers" onsubmit="calCounselPaymentAllowedTotal()" method="post">
 
@@ -48,7 +48,7 @@
             name: "allowedCounselNet",
             value: data['allowedCounselNet'] or "",
             label: {
-              text: "Assigned counsel total (NET)",
+              text: "Net counsel fees",
               classes: "govuk-label--s",
               isPageHeading: false
             },
@@ -65,7 +65,7 @@
             name: "allowedCounselVAT",
             value: data['allowedCounselVAT'] or "",
             label: {
-              text: "VAT on assigned counsel costs",
+              text: "VAT on counsel fees",
               classes: "govuk-label--s",
               isPageHeading: false
             },

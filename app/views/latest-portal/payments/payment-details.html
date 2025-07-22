@@ -44,14 +44,14 @@
             <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
           </thead>
           <tbody class="govuk-table__body">
-            {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel amendment" or data['paymentType'] =="Assigned counsel appeal" %}
+            {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
               <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Assigned counsel's fee (NET)</th>
+                <th scope="row" class="govuk-table__header">Net counsel fees</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselNet'] or "3000.00"}}</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselNet'] or "3000.00"}}</td>
               </tr>
               <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">VAT on assigned counsel's fee</th>
+                <th scope="row" class="govuk-table__header">VAT on counsel fees</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselVAT'] or "600.00"}}</td> 
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselVAT'] or "600.00"}}</td>
               </tr> 
@@ -140,14 +140,14 @@
             <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
           </thead>
           <tbody class="govuk-table__body">
-            {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel amendment" or data['paymentType'] =="Assigned counsel appeal" %}
+            {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
               <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Assigned counsel's fee (NET)</th>
+                <th scope="row" class="govuk-table__header">Net counsel fees</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselNet'] or "3000.00"}}</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselNet'] or "3000.00"}}</td>
               </tr>
               <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">VAT on assigned counsel's fee</th>
+                <th scope="row" class="govuk-table__header">VAT on counsel fees</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselVAT'] or "600.00"}}</td> 
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselVAT'] or "600.00"}}</td>
               </tr> 
@@ -188,7 +188,7 @@
       {% endset%}
 
       <!--Tabs to show any history if needed-->
-      {% if data['paymentType'] == "Assigned counsel appeal" or data['paymentType'] == "Assigned counsel amendment" %}
+      {% if data['paymentType'] == "Assigned counsel - appeal" or data['paymentType'] == "Assigned counsel - amendment" %}
         {{ govukTabs({
           items: [
             {
@@ -243,14 +243,14 @@
               <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
             </thead>
             <tbody class="govuk-table__body">
-              {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel amendment" %}
+              {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" %}
                 <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header">Assigned counsel's fee (NET)</th>
+                  <th scope="row" class="govuk-table__header">Net counsel fees</th>
                   <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselNet'] or "3000.00"}}</td>
                   <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselNet'] or "3000.00"}}</td>
                 </tr>
                 <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header">VAT on assigned counsel's fee</th>
+                  <th scope="row" class="govuk-table__header">VAT on counsel fees</th>
                   <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselVAT'] or "600.00"}}</td> 
                   <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselVAT'] or "600.00"}}</td>
                 </tr> 

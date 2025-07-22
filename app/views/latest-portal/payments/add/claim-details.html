@@ -27,13 +27,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
-      {% if data['paymentType'] =="Non-standard Magistrates'" or data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Non-standard Magistrates' supplemental" %}
+      {% if data['paymentType'] =="Non-standard magistrates'" or data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Non-standard magistrates' - supplemental" %}
         <form class="form" action="costs-claimed" method="post">
         {% else %}
         <form class="form" action="costs-allowed" method="post">
       {% endif %}
     
-      {% if data['paymentType'] =="Non-standard Magistrates' appeal"  or data['paymentType'] =="Assigned counsel appeal" %}                            
+      {% if data['paymentType'] =="Non-standard magistrates' - appeal"  or data['paymentType'] =="Assigned counsel - appeal" %}                            
             <!--Date received-->
             {{ mojDatePicker({
               id: "dateReceived",
@@ -49,7 +49,7 @@
               }
             }) }}
             
-            {% elseif data['paymentType'] =="Non-standard Magistrates' amendment"  or data['paymentType'] =="Assigned counsel amendment" %}                            
+            {% elseif data['paymentType'] =="Non-standard magistrates' - amendment"  or data['paymentType'] =="Assigned counsel - amendment" %}                            
             <!--Date received-->
             {{ mojDatePicker({
               id: "dateReceived",
@@ -65,7 +65,7 @@
               }
             }) }}
                 
-          {% elseif data['paymentType'] =="Non-standard Magistrates' supplemental"  %}
+          {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental"  %}
             <!--Date received-->
             {{ mojDatePicker({
               id: "dateReceived",
@@ -156,7 +156,7 @@
               value: data['counselOfficeAccount']
             }) }} 
           
-          {% elseif data['paymentType'] =="Non-standard Magistrates'"  %}
+          {% elseif data['paymentType'] =="Non-standard magistrates'"  %}
             <h1 class="govuk-heading-xl">Claim details</h1>  
 
             <!--Date received-->
