@@ -1,0 +1,68 @@
+{% extends "layouts/main-latest.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Allowed profit costs – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="check-answers" onsubmit="calPaymentAllowedTotal()" method="post">
+
+        <!-- hidden input-->
+        <input type="hidden" id="paymentAllowedTotal" name="paymentAllowedTotal" value="{{data['paymentAllowedTotal']}}" />
+
+        <!--Profit-->
+        {{ govukInput({
+          id: "allowedProfit",
+          name: "allowedProfit",
+          value: data['allowedProfit'] or "",
+          label: {
+            text: "Allowed profit costs",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          prefix: {
+            text: "£"
+          },
+          classes: "govuk-input--width-5",
+          spellcheck: false
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}
