@@ -1,14 +1,9 @@
 <span class="govuk-caption-xl">{{data['defendant'] or "Blackbeard"}}</span>
 <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
 <p class="govuk-body-m">
-  <strong>Allowed: </strong>£1382.00
+  <strong>Allowed: </strong>£{{data['paymentAllowedTotal'] or "£1382.00"}}
 </p>
 <p class="govuk-body-m">
-  <strong>Claim type: </strong>{{data['paymentType'] or "Non-standard magistrates'"}}<br>
-  
-  <strong>Payment request:</strong> {{data['date'] or "30 June 2025"}}<br>
-  <strong>Caseworker:</strong> {{data['caseworker1']}}</span>
-</p>
-
-<p class="govuk-body-m"><strong>Link to claim: </strong><a href="/latest-nsm/caseworker/assess/claim-details-readonly?laa-ref=LAA-5a7d3c&cwAppStatus=Part granted">{{data['laa-ref'] or "LAA-5a7d3c"}}</a>
+  <strong>Original claim: </strong>{{data['claimType'] or "Non-standard magistrates'"}}<br>
+  <strong>Last updated:</strong> {{data['date'] or "30 June 2025"}}<br>
 </p>

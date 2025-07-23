@@ -31,11 +31,12 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-l">Payment details</h2>
+      <h2 class="govuk-heading-l">Payment request</h2>
 
       <!--Cost summary -->
       {% set paymentJulyCostHtml %}
         <h3 class="govuk-heading-m">30 June 2025</h3> 
+        
         <table class="govuk-table">
           <caption class="govuk-table__caption govuk-table__caption--s">Allowed costs after appeal</caption>
           <thead class="govuk-table__head">
@@ -89,6 +90,14 @@
               {% endif %}
           </tbody>
         </table> 
+
+        <!--Payment summmary-->
+        <p class="govuk-body-m">
+          <strong> Payment type: </strong>Non-standard magistrates' - appeal<br>
+          <strong>Date appeal received:</strong> 29 June 2025<br>
+           <strong>Caseworker:</strong> {{data['caseworker2']}}
+        </p>
+
       {% endset%}
             
       {% set paymentMayCostHtml %}
@@ -128,6 +137,13 @@
             </tr>
           </tbody>
         </table>  
+
+        <!--Payment summmary-->
+        <p class="govuk-body-m">
+          <strong>Payment type: </strong>Non-standard magistrates' - supplemental<br>
+          <strong>Date supplemental claim received:</strong> 27 June 2025<br>
+           <strong>Caseworker:</strong> {{data['caseworker2']}}
+        </p>
       {% endset%}
 
       {% set paymentAprilCostHtml %}
@@ -185,6 +201,13 @@
             {% endif %}
           </tbody>
         </table> 
+
+        <!--Payment summmary-->
+        <p class="govuk-body-m">
+          <strong>Payment type: </strong>Non-standard magistrates' - supplemental<br>
+          <strong>Date claim received:</strong> {{data['dateReceived'] or "12 June 2025"}}<br>
+          <strong>Caseworker:</strong> {{data['caseworker1']}}
+        </p>
       {% endset%}
 
       <!--Tabs to show any history if needed-->
@@ -288,15 +311,14 @@
               {% endif %}
             </tbody>
           </table> 
+          <!--Payment summmary-->
+          <p class="govuk-body-m">
+            <strong>Payment type: </strong>Non-standard magistrates'<br>
+            <strong>Date claim received:</strong> {{data['dateReceived'] or "12 June 2025"}}<br>
+            <strong>Caseworker:</strong> {{data['caseworker1']}}
+          </p>
       {% endif %}
 
-      <!--Claim summmary-->
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Claim details</h2>
-        </div>
-        {% include version +"/includes/claim-summary.njk"%} 
-      </div>
     </div>
   </div>
 

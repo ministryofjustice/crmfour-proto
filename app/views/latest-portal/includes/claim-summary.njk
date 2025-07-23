@@ -1,12 +1,11 @@
-<div class="govuk-summary-card__content">
+
   {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
-    <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           Claim type
         </dt>
         <dd class="govuk-summary-list__value">
-          {{data['paymentType'] or "Non-standard magistrates'"}}
+          {{data['paymentType']}}
         </dd>
       </div>
       <div class="govuk-summary-list__row">
@@ -49,15 +48,13 @@
           {{data['counselOfficeAccount'] or "4A33E9" }}
         </dd>
       </div>
-    </dl>
     {% else %}
-      <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
             Claim type
           </dt>
           <dd class="govuk-summary-list__value">
-            {{data['paymentType'] or "Non-standard magistrates'"}}
+            {{data['paymentType']}}
           </dd>
         </div>
         <div class="govuk-summary-list__row">
@@ -156,6 +153,4 @@
             {{data['date-completed'] or "24 June 2025"}}
           </dd>
         </div>
-      </dl>
   {% endif %}
-</div>

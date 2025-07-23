@@ -41,7 +41,22 @@
             </ul>
           {% endif %}
         </div>
-        {% include version +"/includes/claim-summary.njk"%} 
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
+                {% else %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Original claim
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['laa-ref'] or "LAA-5a7d3c" }}
+                </dd>
+              </div>
+            {% endif %}
+            {% include version +"/includes/claim-summary.njk"%} 
+          </dl>
+        </div>
       </div>
 
        <!--Cost summary -->
