@@ -93,7 +93,11 @@
 
         <!--Payment summmary-->
         <p class="govuk-body-m">
-          <strong> Payment type: </strong>Non-standard magistrates' - appeal<br>
+          {% if data['paymentType'] == "Non-standard magistrates'" %}
+            <strong> Payment type: </strong>Non-standard magistrates' - appeal<br>
+            {%else %}
+            <strong> Payment type: </strong>Assigned counsel - appeal<br>
+          {% endif %}
           <strong>Date appeal received:</strong> 29 June 2025<br>
            <strong>Caseworker:</strong> {{data['caseworker2']}}
         </p>
@@ -204,14 +208,18 @@
 
         <!--Payment summmary-->
         <p class="govuk-body-m">
-          <strong>Payment type: </strong>Non-standard magistrates' - supplemental<br>
+          {% if data['paymentType'] == "Non-standard magistrates'" %}
+            <strong> Payment type: </strong>Non-standard magistrates'<br>
+            {%else %}
+            <strong> Payment type: </strong>Assigned counsel<br>
+          {% endif %}
           <strong>Date claim received:</strong> {{data['dateReceived'] or "12 June 2025"}}<br>
           <strong>Caseworker:</strong> {{data['caseworker1']}}
         </p>
       {% endset%}
 
       <!--Tabs to show any history if needed-->
-      {% if data['paymentType'] == "Assigned counsel - appeal" or data['paymentType'] == "Assigned counsel - amendment" %}
+      {% if data['paymentType'] == "Assigned counsel" or data['paymentType'] == "Assigned counsel - appeal" or data['paymentType'] == "Assigned counsel - amendment" %}
         {{ govukTabs({
           items: [
             {

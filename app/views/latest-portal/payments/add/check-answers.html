@@ -32,7 +32,7 @@
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h2 class="govuk-summary-card__title">Claim details</h2>
-          {%if data['digitalPaper'] =="Digital"%}
+          {%if data['digitalPaper'] =="started"%}
           {% else%}
             <ul class="govuk-summary-card__actions">
               <li class="govuk-summary-card__action">
@@ -65,7 +65,7 @@
           <h2 class="govuk-summary-card__title">Cost summary</h2>
           <ul class="govuk-summary-card__actions">
             <li class="govuk-summary-card__action">
-              {% if data['paymentType'] =="Non-standard magistrates'" and data['digitalPaper'] =="Digital"%}
+              {% if data['paymentType'] =="Non-standard magistrates'" and data['digitalPaper'] =="started"%}
                   <a class="govuk-link" href="costs-allowed-profit">Change profit cost <span class="govuk-visually-hidden"> costs</span></a>
                 {% elseif data['paymentType'] =="Non-standard magistrates'" or data['paymentType'] =="Non-standard magistrates' - supplemental"or data['paymentType'] =="Assigned counsel"  %}
                 <a class="govuk-link" href="costs-claimed">Change <span class="govuk-visually-hidden"> costs</span></a>
@@ -255,7 +255,7 @@
       <div class="govuk-button-group">
         {{ govukButton({
           text: "Submit payment request",
-          href: "submit-confirmation"
+          href: "submit-confirmation?digitalPaper=complete"
         }) }}
       </div>
 
