@@ -10,6 +10,18 @@
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
+          Linked claim
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if data['linkedCRM7'] =="No"%}
+            Not linked to a non-standard magistrates' claim
+            {% else %}
+            {{data['laa-ref'] or "24 July 2025"}}
+          {% endif %}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
           Date claim received
         </dt>
         <dd class="govuk-summary-list__value">

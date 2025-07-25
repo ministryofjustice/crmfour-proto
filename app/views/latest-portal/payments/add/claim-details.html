@@ -82,77 +82,75 @@
           {% elseif data['paymentType'] =="Assigned counsel"  %}
             <h1 class="govuk-heading-xl">Claim details</h1>  
 
-            <!--Date received-->
-            {{ mojDatePicker({
-              id: "dateReceived",
-              name: "dateReceived",
-              label: {
-                text: "Date claim received",
-                classes: "govuk-label--s"
-              },
-              hint: {
-                text: "For example, 17/5/2025."
-              }
-            }) }}
 
-            <!--UFN
-            {{ govukInput({
-              label: {
-                text: "Unique file number",
-                classes: "govuk-label--s"
-              },
-              hint: {
-                text: "For example, 120223/001"
-              },
-              id: "ufn",
-              name: "ufn",
-              classes: "govuk-input--width-10",
-              value: data['ufn']
-            }) }}   
-            -->
+            {% if data['linkedCRM7'] == "No" %}
+
+              <!--Date received-->
+              {{ mojDatePicker({
+                id: "dateReceived",
+                name: "dateReceived",
+                label: {
+                  text: "Date claim received",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 17/5/2025."
+                }
+              }) }}
+
+              <!--UFN-->
+              {{ govukInput({
+                label: {
+                  text: "Unique file number",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 120223/001"
+                },
+                id: "ufn",
+                name: "ufn",
+                classes: "govuk-input--width-10",
+                value: data['ufn']
+              }) }}   
             
-            <!--Firm acc
-            {{ govukInput({
-              label: {
-                text: "Solicitor office account number",
-                classes: "govuk-label--s"
-              },
-              hint: {
-                text: "For example,  2Q282Z"
-              },
-              id: "officeAccount",
-              name: "officeAccount",
-              classes: "govuk-input--width-10",
-              value: data['officeAccount']
-            }) }}  
+              <!--Firm acc-->
+              {{ govukInput({
+                label: {
+                  text: "Solicitor office account number",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example,  2Q282Z"
+                },
+                id: "officeAccount",
+                name: "officeAccount",
+                classes: "govuk-input--width-10",
+                value: data['officeAccount']
+              }) }}  
 
-            -->
+              <!--Firm name-->
+              {{ govukInput({
+                label: {
+                  text: "Solicitor firm name",
+                  classes: "govuk-label--s"
+                },
+                id: "firmName",
+                name: "firmName",
+                classes: "govuk-input--width-20"
+              }) }} 
 
-            <!--Firm name-
-            {{ govukInput({
-              label: {
-                text: "Solicitor firm name",
-                classes: "govuk-label--s"
-              },
-              id: "firmName",
-              name: "firmName",
-              classes: "govuk-input--width-20"
-            }) }} 
-
-            -->
-
-            <!--Defendant last name
-            {{ govukInput({
-              label: {
-                text: "Defendant last name",
-                classes: "govuk-label--s"
-              },
-              id: "defendantLastName",
-              name: "defendantLastName",
-              classes: "govuk-input--width-20",
-              value: data['defendantLastName']
-            }) }} 
-            -->
+              <!--Defendant last name-->
+              {{ govukInput({
+                label: {
+                  text: "Defendant last name",
+                  classes: "govuk-label--s"
+                },
+                id: "defendantLastName",
+                name: "defendantLastName",
+                classes: "govuk-input--width-20",
+                value: data['defendantLastName']
+              }) }} 
+            {% endif %}
 
             <!--Counsel acc-->
             {{ govukInput({
