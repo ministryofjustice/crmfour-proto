@@ -98,20 +98,18 @@
                   <p>The application has been sent to the ICA.</p>
                 {% elseif data['app-task'] == "Part granted" %}
                   <p>This application was part granted due to disallowed travel costs. </p>
-                  <div class="govuk-error-summary__body">
-                    <ul class="govuk-list">
-                      <li>
-                        <a href="application-details-adjusted#review-adjustments" class="govuk-link--no-visited-state">Review allowed costs</a>
-                      </li>
-                    </ul>
-                  </div>
+                  <ul class="govuk-list">
+                    <li>
+                      <a href="application-details-adjusted#review-adjustments" class="govuk-link--no-visited-state">Review allowed costs</a>
+                    </li>
+                  </ul>
                   <p>You can <a href="appeal-start.html">appeal this decision</a>.</p>
 
-                  {% elseif data['app-task'] == "Rejected" %}
+                {% elseif data['app-task'] == "Rejected" %}
                   <p>This application has been fully rejected as the correct form has not been used. Please use CRM5.</p>
                   <p>You can <a href="appeal-start.html">appeal this decision</a>.</p>
                   
-                  {% elseif data['app-task'] == "Review" %}
+                {% elseif data['app-task'] == "Review" %}
                   <p>Updates are needed to proceed with your application.<p>
                   <p>Review the requests and resubmit your application by <strong>21 March 2024</strong>. </p>
                   <p>After this date your application will be automatically closed.</p>
