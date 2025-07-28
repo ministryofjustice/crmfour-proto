@@ -1,0 +1,38 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "pa-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  You do not need to apply – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version + "/includes/nav-prime-provider.njk" %}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">You do not need to apply</h1>
+      {% if data['prisonLaw'] =="Yes" %}
+        <p>You do not need to apply for prior authority to incur disbursements for a Prison Law matter if the total authority is less than £500.</p>
+        {% else %}
+         <p>You do not need to apply for prior authority to incur disbursements if the total authority is less than £100.</p>
+      {% endif %}
+      
+      {{ govukButton({
+      text: "Finish",
+      href: "../crm-apps-reviewed"
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}
