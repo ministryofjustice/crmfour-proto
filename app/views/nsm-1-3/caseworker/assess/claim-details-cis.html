@@ -1,0 +1,254 @@
+{% extends "layouts/main-latest.html" %}
+
+{% set version = "nsm-1-3" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+{% if (data['serviceAdjust'] == "Yes" and data['cwAppStatus'] == "In progress") or data['cwAppStatus'] == "Part granted" %}
+  {% set activeSubNav = [false, false, false, false, true, false] %}
+  {% else %}
+  {% set activeSubNav = [false, false, false, true, false] %}
+{% endif %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - CIS summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include version +"/includes/app-info-cw.html"%}
+      
+      <!-- Nav -->
+      {% include version +"/includes/nav-sub-cw.html"%}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h2 class="govuk-heading-l">CIS summary</h2>
+      
+      <!--Claim summmary-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Firm details</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Firm office account number (Supplier number)
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['org-acc'] or "1A3B23E4" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Firm name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['org-name'] or "Laywers Inc" }} 
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <!--Defendant details-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Defendant details</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Defendant 1 (lead) last name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['defendantLastName'] or "Blackbeard" }}<br>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Defendant 1 (lead) first name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['defendantFirstName'] or "Roger" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Defendant 2 last name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['defendant2-last-name'] or "Blackbeard" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Defendant 2 first name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['defendant2-first-name'] or "Rufus" }}
+              </dd>
+            </div>
+             <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Number of defendant 2
+              </dt>
+              <dd class="govuk-summary-list__value">
+                2
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <!--Claim summmary-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Claim summary</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Unique file number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['ufnNSM'] or "100323/234"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Stage reached (Claim code)
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['stage'] or "PROM" }}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <!--Hearing details-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">Hearing details</h3>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Hearing outcome (Outcome code)
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['hearingOutcome'] or "CP02 - Change of solicitor"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Matter type
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['matterType'] or "12 - Theft (including taking vehicle without consent)"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Date work was completed
+              </dt>
+              <dd class="govuk-summary-list__value">
+                1 January 2024
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                  Number of attendances
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['no-hearings'] or "5" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                  Magistrates Court (ID)
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['mag-court'] or "Aberconwy PSD - C3237" }}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Youth court matter
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['youthCourt'] or "No"}}
+              </dd>
+            </div>
+            
+            
+          </dl>
+        </div>
+      </div>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Costs summary</caption>
+        <thead class="govuk-table__head">
+          <th scope="col" class="govuk-table__header">Assessment</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Profit costs</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£341.20</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Disbursements</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£840.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Travel</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Waiting</th>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
+          </tr>        
+        </tbody>
+      </table> 
+
+      {% if data ['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Review"%}
+        {% else %}
+        {% include version +"/includes/claim-buttons.html"%}
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}
