@@ -1,7 +1,7 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
-const router = govukPrototypeKit.requests.setupRouter('/pa-1-0')
+const router = govukPrototypeKit.requests.setupRouter('/pa-1-1')
 
-const version = 'pa-1-0'
+const version = 'pa-1-1'
 
 
 //Autocomplete example for bringing in select lists

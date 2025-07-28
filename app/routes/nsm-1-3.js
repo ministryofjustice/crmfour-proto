@@ -1,7 +1,7 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
-const router = govukPrototypeKit.requests.setupRouter('/nsm-1-1')
+const router = govukPrototypeKit.requests.setupRouter('/nsm-1-3')
 
-const version = 'nsm-1-1'
+const version = 'nsm-1-3'
 
 
 //Additional work item second time (CRM7) version 1 from review
