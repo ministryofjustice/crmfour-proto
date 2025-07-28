@@ -1,0 +1,118 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "nsm-1-2" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, false, true] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}  
+{% endblock %}
+
+
+{% block pageTitle %}
+  Your draft applications – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-provider"%}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row"> 
+  <div class="govuk-grid-column-full">
+
+    {% if data['deleteDraftC'] =="yes"%}
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            You deleted the claim
+          </h3>
+        </div>
+      </div>
+    {% endif %}
+   
+    <h1 class="govuk-heading-xl">
+      Your claims
+    </h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Make a new claim",
+        href: "form/question-claim?question-org=&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal=&ufnNSM=&laa-ref=&claimType=&stageProvider=&stageCourt=&stage=&showImportMessage=No"
+      }) }}
+
+      {% if data['showImport'] == "Yes" %}
+        {{ govukButton({
+          text: "Import a claim",
+          classes: "govuk-button--secondary",
+          href: "form/question-xml-import?showImportMessage=Yes"
+        }) }}
+      {% endif %}
+    </div>
+
+    {% include version + "/includes/nav-sub-provider.njk" %}
+
+    {% if data['app-state'] == "empty"  %}
+      <p>You do not have any draft claims.</p>
+      {% else %}
+      <h2 class="govuk-heading-m">Drafts</h2>
+
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" aria-sort="none">UFN</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Defendant</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Account</th>
+            <th scope="col" class="govuk-table__header" aria-sort="descending">Last updated</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
+            <th scope="col" class="govuk-table__header">Action</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">    
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="form/task-list?question-claimType=complete&question-ufnNSM=complete&question-org=complete&question-client=&question-case-details=&question-hearing=&question-case-disposal=&question-just=&question-claim=&question-work=&question-letters=&question-disburse=&question-payment=&question-other=&question-upload=&question-check=&question-equal=&ufnNSM=210724/631&laa-ref=LAA-54ty5e" data-sort-value="311222002">311222/002</a></td>
+            <td class="govuk-table__cell">Unknown</td>
+            <td class="govuk-table__cell">A1E3W1</td>
+            <td class="govuk-table__cell" data-sort-value="230824">24 Aug 2023</td>
+            <td class="govuk-table__cell">LAA-9p4f0d</td>
+            <td class="govuk-table__cell"><a href="crm-apps-claims?laa-ref=LAA-9p4f0d" 
+            class="govuk-link--no-visited-state">Delete <span class="govuk-visually-hidden">claim LAA-9p4f0d</span></a></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="form/task-list?question-claimType=complete&question-org=complete&question-client=complete&question-case-details=complete&question-hearing=complete&question-case-disposal=complete&question-just=complete&question-claim=complete&question-work=complete&question-letters=complete&question-disburse=complete&question-payment=complete&question-other=complete&question-upload=complete&question-check=complete&question-equal=complete&ufnNSM=210724/631&laa-ref=LAA-1z5f76&claimType=Non-standard magistrates' court payment&stageProvider=Undesignated area&stageCourt=Undesignated area&stage=PROG" class="govuk-link--no-visited-state" data-sort-value="210724631">210724/631</a></td>
+            <td class="govuk-table__cell">Ishia Melta</td>
+            <td class="govuk-table__cell">B1E3W1</td>
+            <td class="govuk-table__cell" data-sort-value="240721">21 July 2024</td>
+            <td class="govuk-table__cell">LAA-1z5f76</td>
+            <td class="govuk-table__cell"><a href="crm-claims-delete?laa-ref=LAA-1z5f76" class="govuk-link--no-visited-state">Delete <span class="govuk-visually-hidden">claim LAA-1z5f76</span></a></td>
+          </tr>
+        </body>
+      </table>  
+      {% set pageNo ="0" %} 
+      {% set itemNo ="2" %}  
+      {% include "includes/pagination.html"%}  
+    {% endif %}   
+
+  </div>
+</div>
+
+<script>
+  const date = new Date();
+  const formattedDate = date.toLocaleDateString('en-GB', {
+    day: '2-digit', month: 'short', year: 'numeric'
+  }).replace(/ /g, ' ');
+  document.getElementById("date").innerHTML = formattedDate;
+</script>  
+
+{% endblock %}

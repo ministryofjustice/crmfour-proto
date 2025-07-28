@@ -1,0 +1,97 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "nsm-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Confirm the following – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-provider"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <form class="form" action="claim-submitted" method="post">
+
+    <form class="form" action="task-listFI?app-task=Review" method="post">
+      <h1 class="govuk-heading-xl">Confirm the following</h1>
+      <p>You agree that</p>
+      <ul class="govuk-list govuk-list--bullet">
+         <li>
+          you've provided correct and complete information in this claim
+        </li> 
+        <li>
+          the work you are claiming for  has not been, and will not be, part of any other claim for remuneration from criminal legal aid
+        </li> 
+      </ul>
+
+      <!-- <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          If you provide wrong or incomplete information, or are found to have committed benefit fraud, you may:
+          <ul class="govuk-list govuk-list--bullet govuk-!-font-weight-bold">
+            <li>
+              be prosecuted
+            </li> 
+            <li>
+              need to pay a financial penalty
+            </li> 
+          </ul>
+        </strong>
+      </div>
+      -->
+
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Legal representative</legend>
+        <div class="govuk-form-group">
+          <label for="nsm-steps-solicitor-declaration-form-signatory-name-field" class="govuk-label">Full name</label>
+          <input id="nsm-steps-solicitor-declaration-form-signatory-name-field" class="govuk-input govuk-!-width-two-thirds" autocomplete="off" type="text" name="nsm_steps_solicitor_declaration_form[signatory_name]">
+        </div>
+      </fieldset>
+
+      <div class="govuk-button-group">
+        
+        {{ govukButton({
+          text: "Save and submit"
+        }) }}
+
+        {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+      
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps?app-state=draft"
+          }) }}
+
+          {% else %}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "task-list"
+          }) }}
+
+        {% endif %}
+      </div>
+
+    </form>
+
+  </div>
+{% endblock %}

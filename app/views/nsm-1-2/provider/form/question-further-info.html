@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "nsm-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}
+{% endblock %}
+
+
+{% block pageTitle %}
+  Primary quote – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-provider"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <form class="form" action="question-confirm-submission" method="post">
+
+    <form class="form" action="task-listFI?app-task=Review" method="post">
+      <h1 class="govuk-heading-xl">Further information request</h1>
+
+      <div class="govuk-inset-text">
+        <p><strong>Your claim needs the following further information to proceed</strong></p>
+        <p>{{data['fieldFurtherInfo'] or "There is little justification within the claim regarding the amount of preparation requested, as this is much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+        </p>
+      </div>
+
+      {{ govukTextarea({
+        name: "providerFurtherInfo",
+        id: "providerFurtherInfo",
+        label: {
+          text: "Enter the information requested",
+          classes: "govuk-label--s"
+        }
+      }) }}
+
+      <div class="moj-multi-file-upload">
+        <div class="moj-multi-file__uploaded-files ">
+          <h2 class="govuk-heading-s">Supporting documentation (optional)</h2>
+          <p>Friendly file names make it easier for us to assess your case. For example, Client-case.pdf instead of File23.pdf.</p>
+          <p>The maximum size for each file is 20MB. Files must be a DOC, DOCX, RTF, ODT, JPG, BMP, PNG, TIF or PDF.</p>
+          <div class="govuk-summary-list moj-multi-file-upload__list">
+          </div>
+        </div>
+        <div class="moj-multi-file-upload__upload">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="documents">
+              Upload files
+            </label>
+            <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple="">
+          </div>
+          <button class="govuk-button govuk-button--secondary moj-multi-file-upload__button" data-module="govuk-button">
+            Upload file
+          </button>
+        </div>
+      </div>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "task-list"
+        }) }}
+      </div>
+
+    </form>
+
+  </div>
+{% endblock %}
+{% block pageScripts %}
+  <script>
+    if (typeof MOJFrontend.MultiFileUpload !== "undefined") {
+      new MOJFrontend.MultiFileUpload({
+        container: $(".moj-multi-file-upload"),
+        uploadUrl: "/ajax-upload",
+        deleteUrl: "/ajax-delete",
+      });
+    }
+
+  </script>
+{% endblock %}
