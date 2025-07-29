@@ -49,7 +49,7 @@
               }
             }) }}
             
-            {% elseif data['paymentType'] =="Non-standard magistrates' - amendment"  or data['paymentType'] =="Assigned counsel - amendment" %}                            
+          {% elseif data['paymentType'] =="Non-standard magistrates' - amendment"  or data['paymentType'] =="Assigned counsel - amendment" %}                            
             <!--Date received-->
             {{ mojDatePicker({
               id: "dateReceived",
@@ -82,10 +82,7 @@
           {% elseif data['paymentType'] =="Assigned counsel"  %}
             <h1 class="govuk-heading-xl">Claim details</h1>  
 
-
-            {% if data['linkedCRM7'] == "No" %}
-
-              <!--Date received-->
+            <!--Date received-->
               {{ mojDatePicker({
                 id: "dateReceived",
                 name: "dateReceived",
@@ -97,6 +94,9 @@
                   text: "For example, 17/5/2025."
                 }
               }) }}
+
+
+            {% if data['linkedCRM7'] == "No" %}
 
               <!--UFN-->
               {{ govukInput({
@@ -114,30 +114,7 @@
               }) }}   
             
               <!--Firm acc-->
-              {{ govukInput({
-                label: {
-                  text: "Solicitor office account number",
-                  classes: "govuk-label--s"
-                },
-                hint: {
-                  text: "For example,  2Q282Z"
-                },
-                id: "officeAccount",
-                name: "officeAccount",
-                classes: "govuk-input--width-10",
-                value: data['officeAccount']
-              }) }}  
-
-              <!--Firm name-->
-              {{ govukInput({
-                label: {
-                  text: "Solicitor firm name",
-                  classes: "govuk-label--s"
-                },
-                id: "firmName",
-                name: "firmName",
-                classes: "govuk-input--width-20"
-              }) }} 
+              {% include version +"/includes/list-office-provider.njk"%}
 
               <!--Defendant last name-->
               {{ govukInput({
@@ -153,31 +130,8 @@
             {% endif %}
 
             <!--Counsel acc-->
-            {{ govukInput({
-              label: {
-                text: "Counsel account number",
-                classes: "govuk-label--s",
-                isPageHeading: false
-              },
-              hint: {
-                text: "For example,  2Q282Z"
-              },
-              id: "counselOfficeAccount",
-              name: "counselOfficeAccount",
-              classes: "govuk-input--width-10",
-              value: data['counselOfficeAccount']
-            }) }} 
+            {% include version +"/includes/list-office-counsel.njk"%}
 
-            <!--Counsel name-->
-            {{ govukInput({
-              label: {
-                text: "Counsel name",
-                classes: "govuk-label--s"
-              },
-              id: "counselName",
-              name: "counselName",
-              classes: "govuk-input--width-20"
-            }) }} 
           
           {% elseif data['paymentType'] =="Non-standard magistrates'"  %}
             <h1 class="govuk-heading-xl">Claim details</h1>  
@@ -196,29 +150,7 @@
             }) }}
 
             <!--Firm acc-->
-            {{ govukInput({
-              label: {
-                text: "Firm office account number",
-                classes: "govuk-label--s"
-              },
-              hint: {
-                text: "For example,  2Q282Z"
-              },
-              id: "officeAccount",
-              name: "officeAccount",
-              classes: "govuk-input--width-10"
-            }) }} 
-
-            <!--Firm name-->
-            {{ govukInput({
-              label: {
-                text: "Firm name",
-                classes: "govuk-label--s"
-              },
-              id: "firmName",
-              name: "firmName",
-              classes: "govuk-input--width-20"
-            }) }} 
+            {% include version +"/includes/list-office-provider.njk"%}
           
             <!--UFN-->
             {{ govukInput({
@@ -385,36 +317,6 @@
           }
         })
 
-        $(function() {
-        $("input[name='courtType']").click(function() {
-          if ($("#courtType").is(":checked")) {
-            $("#div1").show();
-          } else {
-            $("#div1").hide();
-          }
-          if ($("#courtType-3").is(":checked")) {
-            $("#div2").show();
-          } else {
-            $("#div2").hide();
-          }
-        });
-      });
-
-      window.onload = function(){  
-        if ($("#courtType").is(":checked")) {
-            $("#div1").show();
-          } else {
-            $("#div1").hide();
-          }
-          if ($("#courtType-3").is(":checked")) {
-            $("#div2").show();
-          } else {
-            $("#div2").hide();
-          }
-        }
-
-       
-         
     </script>
 
 {% endblock %}

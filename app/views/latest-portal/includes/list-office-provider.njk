@@ -1,0 +1,22 @@
+<div class="govuk-form-group">
+  <label class="govuk-heading-s" for="officeAccount">
+    {% if data['paymentType'] == "Assigned counsel" %}
+      Solicitor office account number
+      {% else %}
+       Firm office account number
+    {% endif %}
+  </label>
+  <div id="officeAccount-hint" class="govuk-hint">
+      Enter the office account number or firm name, or select from the suggestions that appear when you start typing.
+  </div>
+  <select class="govuk-select autocomplete-select" id="officeAccount" name="officeAccount" aria-describedby="officeAccount-hint">
+    <option {{ "selected" if data["officeAccount"] == "0" }} value=""></option>
+    <option {{ "selected" if data["officeAccount"] == "1W2E3R - Blackhorse Law"}} value="1W2E3R - Blackhorse Law">1W2E3R - Blackhorse Law</option>
+    <option {{ "selected" if data["officeAccount"] == "2R3T4Y - Jumper Laywers" }} value="2R3T4Y - Jumper Laywers">2R3T4Y - Jumper Laywers</option>
+    <option {{ "selected" if data["officeAccount"] == "3H4J5K - Goodboy Partners" }} value="3H4J5K - Goodboy Partners">3H4J5K - Goodboy Partners</option>
+    <option {{ "selected" if data["officeAccount"] == "4T5Y6U - Stallion & Sons" }} value="4T5Y6U - Stallion & Sons">4T5Y6U - Stallion & Sons</option>
+    <option {{ "selected" if data["officeAccount"] == "7U8Y9F - The Giddy Partnership" }} value="7U8Y9N - The Giddy Partnership">7U8Y9N - The Giddy Partnership</option>
+    <option {{ "selected" if data["officeAccount"] == "9C8V9G - Horsey Law" }} value="9C8V9G - Horsey Law">9C8V9G - Horsey Law</option>
+  </select>
+</div>
+
