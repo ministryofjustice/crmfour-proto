@@ -1,0 +1,117 @@
+{% extends "layouts/main-old.html" %}
+
+{% set version = "nsm-1-2" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+{% if (data['serviceAdjust'] == "Yes" and data['cwAppStatus'] == "In progress") or data['cwAppStatus'] == "Part granted" %}
+  {% set activeSubNav = [false, false, false, true, false, false] %}
+  {% else %}
+  {% set activeSubNav = [false, false, true, false, false] %}
+{% endif %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.njk"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Supporting evidence – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-cw"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include version +"/includes/app-info-cw.html" %}
+
+      <!-- Nav -->
+      {% include version +"/includes/nav-sub-cw.html"%}
+    </div>
+  </div>
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h2 class="govuk-heading-m">Supporting evidence</h2>
+
+      {% if data['cwAppStatus'] =="Expired" %}
+        {{ govukInsetText({
+          text: "Uploaded files deleted. Uploads are deleted after 6 months to keep the provider’s data safe."
+        }) }} 
+        {% else %}
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">File name</th>
+              <th scope="col" class="govuk-table__header">Date received</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="">important-document.xls</a></td>
+              <td class="govuk-table__cell">Friday<br>14 Nov 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="">important-document.xls</a></td>
+              <td class="govuk-table__cell">Friday<br>14 Nov 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="">important-document.xls</a></td>
+              <td class="govuk-table__cell">Friday<br>14 Nov 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="">important-document.xls</a></td>
+              <td class="govuk-table__cell">Friday<br>14 Nov 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="">important-document.xls</a></td>
+              <td class="govuk-table__cell">Friday<br>14 Nov 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="">important-document.xls</a></td>
+              <td class="govuk-table__cell">Friday<br>14 Nov 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="">important-document.xls</a></td>
+              <td class="govuk-table__cell">Friday<br>14 Nov 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="">important-document.xls</a></td>
+              <td class="govuk-table__cell">Friday<br>14 Nov 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="">important-document.xls</a></td>
+              <td class="govuk-table__cell">Friday<br>14 Nov 2024</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="">important-document.xls</a></td>
+              <td class="govuk-table__cell">Friday<br>14 Nov 2024</td>
+            </tr>
+          </tbody>
+        </table>
+        {% include "includes/pagination.html"%}
+      {% endif %}
+
+
+      {% if data ['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Review"%}
+        {% else %}
+        {% include version +"/includes/claim-buttons.html"%}
+      {% endif %}
+
+    </div>
+
+  </div>
+
+{% endblock %}

@@ -1,34 +1,13 @@
-<div class="moj-page-header-actions">
-  <div class="moj-page-header-actions__title">
+<span class="govuk-caption-xl">{{data['firmName'] or "Law Laywers"}}</span>
 <h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
-  </div>
-  <div class="moj-page-header-actions__actions">
-    <div class="moj-button-group moj-button-group--inline">
-
-        {{ govukButton({
-          text: "Add supplemental payment",
-          classes: "govuk-button--secondary",
-          href: "add/laa-reference?paymentType=Supplemental Non-standard Magistrates'"
-        }) }}
-        
-        {{ govukButton({
-          text: "Amend payment",
-          classes: "govuk-button--secondary",
-          href: "add/laa-reference?paymentType=Amendment to Non-standard Magistrates'"
-        }) }}
-
-
-
-
-    </div>
-  </div>
-</div>
-<p>
-  <span class="govuk-body-m"><strong>Allowed:</strong> £1352.00<br>
- <span class="govuk-body-m"><strong>Claim:</strong> {{data['paymentType']}}</span>
-<br>
- <span class="govuk-body-m"><strong>Last updated:</strong> {{data['date'] or "30 June 2025"}}</span><br>
- <p><span class="govuk-body-m"><strong>Caseworker:</strong> {{data['caseworker1']}}</span>
+<p class="govuk-body-m">
+  <strong>Allowed: </strong>£{{data['paymentAllowedTotal'] or "1382.00"}}
 </p>
-<div class="govuk-button-group">
-</div>
+<p class="govuk-body-m">
+{% if data['paymentType'] == "Non-standard magistrates'" %}
+  <strong> Claim type: </strong>Non-standard magistrates'<br>
+  {%else %}
+  <strong> Claim type: </strong>Assigned counsel<br>
+{% endif %}
+  <strong>Last updated:</strong> {{data['date'] or "30 June 2025"}}<br>
+</p>

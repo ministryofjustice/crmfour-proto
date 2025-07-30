@@ -1,0 +1,151 @@
+{% extends "layouts/main-old.html" %}
+
+{% set version = "nsm-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Why are you claiming – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-provider"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <form class="form" action="question-claim-details" method="post">
+
+      {% set repOrderWithdrawnHtml %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="dateWithdrawn-hint">
+            <legend class="govuk-fieldset__legend">
+              Withdrawn date
+            </legend>
+            <div id="dateWithdrawn-hint" class="govuk-hint">
+              For example, 27 03 2025
+            </div>
+            <div class="govuk-date-input" id="dateWithdrawn">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="dateWithdrawn-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dateWithdrawn-day" name="dateWithdrawn-day" type="text" inputmode="numeric" value="{{data['dateWithdrawn-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="dateWithdrawn-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dateWithdrawn-month" name="dateWithdrawn-month" type="text" inputmode="numeric" value="{{data['dateWithdrawn-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="dateWithdrawn-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dateWithdrawn-year" name="dateWithdrawn-year" type="text" inputmode="numeric" value="{{data['dateWithdrawn-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div> 
+      {% endset %}
+
+      {% set otherHtml %}
+        {{ govukTextarea({
+          name: "otherDetail",
+          id: "otherDetail",
+          label: {
+            text: "Enter details",
+            isPageHeading: false
+          }
+        }) }}
+      {% endset %}
+
+      {{ govukCheckboxes({
+        name: "whyNSM",
+        fieldset: {
+          legend: {
+            text: "Why are you claiming a non-standard magistrate court payment?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Select all that apply"
+        },
+        items: [
+          {
+            value: "coreCosts",
+            text: "Core costs exceed higher limit",
+            checked: checked("whyNSM", "coreCosts")
+          },
+          {
+            value: "enhancedRates",
+            text: "Enhanced rates claimed",
+            checked: checked("whyNSM", "enhancedRates")
+          },
+          {
+            value: "counselAssigned",
+            text: "Counsel assigned",
+            checked: checked("whyNSM", "counselAssigned")
+          },
+          {
+            value: "repOrderWithdrawn",
+            text: "Representation order withdrawn",
+            checked: checked("whyNSM", "repOrderWithdrawn"),
+            conditional: {
+              html: repOrderWithdrawnHtml
+            }
+          },
+          {
+            value: "extradition",
+            text: "Extradition",
+            checked: checked("whyNSM", "Extradition")
+          },
+          {
+            value: "other",
+            text: "Other",
+            checked: checked("whyNSM", "other"),
+            conditional: {
+              html: otherHtml
+            }
+          }
+        ]
+      }) }}
+     
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "task-list"
+          }) }}
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

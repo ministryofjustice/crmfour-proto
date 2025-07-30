@@ -1,0 +1,110 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "nsm-1-3" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  What you are claiming for – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      <h1 class="govuk-heading-xl">Breach of injunction</h1>
+
+        <form class="form" action="question-firm" method="post">
+
+        {{ govukInput({
+          label: {
+            text: "What is your unique file number (UFN)?",
+            isPageHeading: false
+          },
+          hint: {
+            text: "For example 310223/001"
+          },
+          classes: "govuk-input--width-10",
+          id: "ufnNSM",
+          name: "ufnNSM",
+          value: data['ufnNSM']
+        }) }}
+        {{ govukInput({
+            label: {
+              text: "Client's CNTP (contempt) number"
+            },
+            classes: "govuk-input--width-10",
+            hint: {
+              text: "Must be between 6 and 8 digits long"
+            },
+            id: "contemptNumber",
+            name: "contemptNumber",
+            inputmode: "numeric",
+            value: data['contemptNumber']
+          }) }}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="dateContempt-hint">
+            <legend class="govuk-fieldset__legend">
+              <h1 class="govuk-fieldset__heading">
+                Date the CNTP representation order was issued
+              </h1>
+            </legend>
+            <div id="dateContempt-hint" class="govuk-hint">
+              For example, 27 03 2025
+            </div>
+            <div class="govuk-date-input" id="dateContempt">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="dateContempt-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dateContempt-day" name="dateContempt-day" type="text" inputmode="numeric" value="{{data['dateContempt-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="dateContempt-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dateContempt-month" name="dateContempt-month" type="text" inputmode="numeric" value="{{data['dateContempt-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="dateContempt-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dateContempt-year" name="dateContempt-year" type="text" inputmode="numeric" value="{{data['dateContempt-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div> 
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

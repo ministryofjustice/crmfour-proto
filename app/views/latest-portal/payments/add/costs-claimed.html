@@ -1,4 +1,4 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
 
 {% set version = "latest-portal" %}
 {% set activePrimeNav = [true, false] %}
@@ -27,14 +27,15 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      {% if data['paymentType'] =="Supplemental Non-standard Magistrates'"%}
-        <h1 class="govuk-heading-xl">Supplemental claimed costs</h1>
+      {% if data['paymentType'] =="Non-standard magistrates' - supplemental"%}
+        <h1 class="govuk-heading-xl">Amend claimed costs</h1>
+        <p>Amend the totals to include the supplemental costs</p>
         {% else %}
           <h1 class="govuk-heading-xl">Claimed costs</h1>
       {% endif %}
        
 
-      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
+      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" %}
 
         <form class="form" action="costs-allowed" onsubmit="calCounselPaymentClaimedTotal()" method="post">
         
@@ -47,7 +48,7 @@
             name: "claimedCounselNet",
             value: data['claimedCounselNet'],
             label: {
-              text: "Assigned counsel total (NET)",
+              text: "Net counsel fees",
               classes: "govuk-label--s",
               isPageHeading: false
             },
@@ -64,7 +65,7 @@
             name: "claimedCounselVAT",
             value: data['claimedCounselVAT'],
             label: {
-              text: "VAT on assigned counsel costs",
+              text: "VAT on counsel fees",
               classes: "govuk-label--s",
               isPageHeading: false
             },
@@ -101,13 +102,30 @@
               spellcheck: false
             }) }}
 
+            <!--Disbursement-->
+            {{ govukInput({
+              id: "claimedDisbursement",
+              name: "claimedDisbursement",
+              value: data['claimedDisbursement'],
+              label: {
+                text: "Disbursement costs",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
             <!--Travel-->
             {{ govukInput({
               id: "claimedTravel",
               name: "claimedTravel",
               value: data['claimedTravel'],
               label: {
-                text: "Travel",
+                text: "Travel costs",
                 classes: "govuk-label--s",
                 isPageHeading: false
               },
@@ -124,7 +142,7 @@
               name: "claimedWaiting",
               value: data['claimedWaiting'],
               label: {
-                text: "Waiting",
+                text: "Waiting costs",
                 classes: "govuk-label--s",
                 isPageHeading: false
               },
@@ -135,22 +153,6 @@
               spellcheck: false
             }) }}
 
-            <!--Disbursement-->
-            {{ govukInput({
-              id: "claimedDisbursement",
-              name: "claimedDisbursement",
-              value: data['claimedDisbursement'],
-              label: {
-                text: "Disbursements",
-                classes: "govuk-label--s",
-                isPageHeading: false
-              },
-              prefix: {
-                text: "£"
-              },
-              classes: "govuk-input--width-5",
-              spellcheck: false
-            }) }}
 
             <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentClaimedTotal()">Calculate cost</button>
 
@@ -164,12 +166,6 @@
         <div class="govuk-button-group">
           {{ govukButton({
             text: "Save and continue"
-          }) }}
-
-          {{ govukButton({
-            text: "Save and come back later",
-            classes: "govuk-button--secondary",
-            href: "../crm-apps-reviewed?claims-state=all"
           }) }}
         </div>
 

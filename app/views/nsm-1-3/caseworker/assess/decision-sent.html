@@ -1,0 +1,131 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "nsm-1-3" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.njk"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Decision sent to provider – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      
+      {% if data['cwAppStatus'] =="Review" %}
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title">
+            Claim sent back
+          </h1>
+        </div>
+        <p>Your request has been sent to the provider.</p>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Claim reference 
+            </dt>
+              <dd class="govuk-summary-list__value">
+              {{data['laa-ref'] or "LAA-5a7d3c"}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Further information request
+            </dt>
+              <dd class="govuk-summary-list__value">
+              {{data['fieldFurtherInfo'] or "There is little justification within the claim regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+            </dd>
+          </div>
+        </dl>
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Assess next claim",
+            href: "claim-details?cwAppStatus=In progress"
+          }) }}
+          <a class="govuk-link" href="claim-details-readonly">Return to the claim</a>
+        </div>
+
+        {% else %}
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title">
+            Decision sent
+          </h1>
+        </div>
+        <p>Your decision has been sent to the provider. </p>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Claim reference
+            </dt>
+              <dd class="govuk-summary-list__value">
+              {{data['laa-ref'] or "LAA-5a7d3c"}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              LAA decision
+            </dt>
+              <dd class="govuk-summary-list__value">
+              {{data['cwAppStatus'] or "Granted"}}
+            </dd>
+          </div>
+           <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Comments
+            </dt>
+              <dd class="govuk-summary-list__value">
+                {% if data['cwAppStatus'] == "Granted" %}
+                  {{data['grantedConfirm'] or "Granted with thanks for such an excellent claim"}}
+                  {% else %}
+                  {% if data['cwAppStatus'] == "Part granted" %}
+                    {{data['partConfirm'] or "A number of your claimed costs were not permissible."}}
+                    {% else %}
+                    {% if data['cwAppStatus'] == "Rejected" %}
+                      {{data['rejectedConfirm'] or "Please use a CRM5 form"}}
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+            </dd>
+          </div>
+        </dl>
+
+        <div class="govuk-button-group">
+          {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" %}
+            {{ govukButton({
+              text: "Create payment request",
+              href: "/latest-portal/payments/add/check-answers?paymentType=Non-standard magistrates'&digitalPaper=started&claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=10.00&claimedDisbursement=890.00&paymentClaimedTotal=1242.00&allowedProfit=342.00&allowedTravel=0.00&allowedWaiting=10.00&allowedDisbursement=890.00&paymentAllowedTotal=1242.00"
+            }) }}
+            {% else %}
+            {{ govukButton({
+              text: "Assess next claim",
+              href: "claim-details?cwAppStatus=In progress"
+            }) }}
+          {%endif %}
+          <a class="govuk-link" href="claim-details-readonly">Return to the claim</a>
+        </div>
+      {% endif %}
+
+  
+      
+
+    </div>
+  </div>
+
+{% endblock %}

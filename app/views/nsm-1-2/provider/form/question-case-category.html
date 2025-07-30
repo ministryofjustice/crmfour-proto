@@ -1,0 +1,112 @@
+{% extends "layouts/main-old.html" %}
+
+{% set version = "nsm-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  What is the case category – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-provider"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/{{version}}/question-case-category" method="post">
+
+      {% if data['youthCourt'] == "Yes" %}
+
+        {{ govukRadios({
+          name: "caseCategoryYouth",
+          fieldset: {
+            legend: {
+              text: "Select the case category",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Category 1A",
+              text: "Category 1A",
+              checked: checked("claimType", "Category 1A")
+            },
+            {
+              value: "Category 1B",
+              text: "Category 1B",
+              checked: checked("claimType", "Category 1B")
+            },
+            {
+              value: "Category 2A",
+              text: "Category 2A",
+              checked: checked("claimType", "Category 2A")
+            },
+            {
+              value: "Category 2B",
+              text: "Category 2B",
+              checked: checked("claimType", "Category 2B")
+            }
+          ]
+        }) }}  
+          
+        {% else %}
+        {{ govukRadios({
+          name: "caseCategoryNotYouth",
+          fieldset: {
+            legend: {
+              text: "Select the case category",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Category 1A",
+              text: "Category 1A",
+              checked: checked("claimType", "Category 1A")
+            },
+            {
+              value: "Category 1B",
+              text: "Category 1B",
+              checked: checked("claimType", "Category 1B")
+            },
+            {
+              value: "Category 2",
+              text: "Category 2",
+              checked: checked("claimType", "Category 2")
+            }
+          ]
+        }) }}  
+
+      {% endif %}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "task-list"
+        }) }}
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

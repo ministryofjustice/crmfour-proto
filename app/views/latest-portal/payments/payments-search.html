@@ -1,4 +1,4 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
 {% set version = "latest-portal" %}
 {% set activePrimeNav = [false, true] %}
 
@@ -26,7 +26,7 @@
     <h1 class="govuk-heading-xl">
       Search for a payment
     </h1>
-    <p class="govuk-hint">Enter details in at least one field to search a payment request</p>
+    <p class="govuk-hint">Enter details in at least one field to search for a payment request </p>
   </div>
 </div>
 
@@ -38,7 +38,7 @@
 
         <h2 class="govuk-label-wrapper">
           <label class="govuk-label govuk-label--s" for="filterSearch">
-            Enter any combination of defendant, firm account, UFN or LAA reference
+            Enter a defendant, firm account, UFN or LAA reference
           </label>
         </h2>
         <input class="govuk-input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Enter any combination of client or firm name, UFN or LAA reference">
@@ -46,7 +46,7 @@
 
       {% call govukFieldset({
         legend: {
-          text: "Payment request sent",
+          text: "Date of payment request submission",
           classes: "govuk-fieldset__legend--s",
           isPageHeading: false
         }
@@ -61,7 +61,7 @@
             <div class="moj-datepicker" data-module="moj-date-picker">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="sub-date-from">
-                  Payment request date from
+                  Submission date from
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="sub-date-from" name="sub-date-from" type="text" autocomplete="off">
               </div>
@@ -71,7 +71,7 @@
             <div class="moj-datepicker " data-module="moj-date-picker">
               <div class="govuk-form-group govuk-date-input__item">
                 <label class="govuk-label" for="sub-date-to">
-                  Payment request date to
+                  Submission date to
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="sub-date-to" name="sub-date-to" type="text"  autocomplete="off">
               </div>
@@ -82,7 +82,7 @@
 
       {% call govukFieldset({
         legend: {
-          text: "Claim received",
+          text: "Date claim received ",
           classes: "govuk-fieldset__legend--s",
           isPageHeading: false
         }
@@ -98,7 +98,7 @@
             <div class="moj-datepicker" data-module="moj-date-picker">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="last-date-from">
-                  Claim received from
+                  Received from
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="last-date-from" name="last-date-from" type="text" autocomplete="off">
               </div>
@@ -108,7 +108,7 @@
             <div class="moj-datepicker" data-module="moj-date-picker">
               <div class="govuk-form-group">
                 <label class="govuk-label" for="last-date-to">
-                  Claim received to
+                  Received to
                 </label>
                 <input class="govuk-input moj-js-datepicker-input " id="last-date-to" name="last-date-to" type="text"  autocomplete="off">
               </div>
@@ -123,12 +123,17 @@
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <label class="govuk-label govuk-label--s" for="filterbuttonContainer">
-              Claim
+              Claim type
             </label>
             <select class="govuk-select" id="filterbuttonContainer" name="filterbuttonContainer">
               <option value="Show all" selected onclick="filterSelection('all')">Show all</option>
-              <option value="NSM" onclick="filterSelection('NSM')">Non-standard magistrates'</option>
-              <option value="AC" onclick="filterSelection('AC')">Assigned counsel</option>
+              <option value="Non" onclick="filterSelection('Non')">Non-standard magistrates'</option>
+              <option value="NSMS" onclick="filterSelection('NSMS')">Non-standard magistrates' - supplemental</option>
+              <option value="NSMAP" onclick="filterSelection('NSMAP')">Non-standard magistrates' - appeal</option>
+              <option value="NSMAM" onclick="filterSelection('NSMAM')">Non-standard magistrates' - amendment</option>
+              <option value="Coun" onclick="filterSelection('Coun')">Assigned counsel</option>  
+              <option value="ACAP" onclick="filterSelection('ACAP')">Assigned counsel - appeal</option>  
+              <option value="ACAM" onclick="filterSelection('ACAM')">Assigned counsel - amendment</option>            
             </select>
           </div>
         </div>
@@ -155,80 +160,80 @@
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
             <th scope="col" class="govuk-table__header" aria-sort="none">Firm account</th>
-            <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
-             <th scope="col" class="govuk-table__header" aria-sort="none">Claim</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Defendant</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Payment type</th>
             <th scope="col" class="govuk-table__header" aria-sort="descending">Submitted</th>
           </tr>
         </thead>
         <tbody class="govuk-table__body">                
-          <tr class="govuk-table__row hideTR all NSM">
-           <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&paymentType=Non-standard Magistrates'&date=30 June 2025&officeAccount=1A3BE4" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td> 
+          <tr class="govuk-table__row hideTR all NSMAP">
+           <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&paymentType=Non-standard magistrates'&date=30 June 2025&officeAccount=1A3BE4" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td> 
             <td class="govuk-table__cell">1A3BE4</td>
             <td class="govuk-table__cell">Blackbeard</td>
-            <td class="govuk-table__cell">Non-standard Magistrates' supplemental</td>
+            <td class="govuk-table__cell">Non-standard magistrates' - appeal</td>
             <td class="govuk-table__cell" data-sort-value="250630">30 June 2025</td>
           </tr>
-          <tr class="govuk-table__row hideTR all NSM">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&paymentType=Non-standard Magistrates'&date=28 June 2025&officeAccount=1A3BE4" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td> 
+          <tr class="govuk-table__row hideTR all NSMS">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&paymentType=Non-standard magistrates'&date=28 June 2025&officeAccount=1A3BE4" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td> 
             <td class="govuk-table__cell">1A3BE4</td>
             <td class="govuk-table__cell">Blackbeard</td>
-            <td class="govuk-table__cell">Non-standard Magistrates' amendment</td>
+            <td class="govuk-table__cell">Non-standard magistrates' - supplemental</td>
             <td class="govuk-table__cell" data-sort-value="250628">28 June 2025</td>
           </tr>
-          <tr class="govuk-table__row hideTR all AC">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f76&paymentType=Assigned counsel&defendantLastName=Blackbeard&date=26 June 2025">LAA-1z5f76</a></td>
+          <tr class="govuk-table__row hideTR all ACAM">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-1z5f76&paymentType=Assigned counsel&defendantLastName=Blackbeard&date=30 June 2025&officeAccount=1A3BE4">LAA-1z5f76</a></td>
             <td class="govuk-table__cell">1A3BE4</td>
             <td class="govuk-table__cell">Blackbeard</td>
-            <td class="govuk-table__cell">Assigned counsel</td>
-            <td class="govuk-table__cell" data-sort-value="250626">26 June 2025</td>
+            <td class="govuk-table__cell">Assigned counsel - amendment</td>
+            <td class="govuk-table__cell" data-sort-value="300626">30 June 2025</td>
           </tr>
-          <tr class="govuk-table__row hideTR all AC">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-2d9t4j&paymentType=Assigned counsel&defendantLastName=Blackbeard&date=26 June 2025" class="govuk-link--no-visited-state">LAA-2d9t4j</a></td>          
+          <tr class="govuk-table__row hideTR all ACAP">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-2d9t4j&paymentType=Assigned counsel&defendantLastName=Blackbeard&date=26 June 2025&officeAccount=1A3BE4" class="govuk-link--no-visited-state">LAA-2d9t4j</a></td>          
             <td class="govuk-table__cell">1A3BE4</td>
             <td class="govuk-table__cell">Blackbeard</td>
-            <td class="govuk-table__cell">Assigned counsel</td>
+            <td class="govuk-table__cell">Assigned counsel - appeal</td>
             <td class="govuk-table__cell" data-sort-value="250626">26 June 2025</td>
           </tr>
-          <tr class="govuk-table__row hideTR all NSM">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&paymentType=Non-standard Magistrates'&date=30 June 2025&officeAccount=1A3BE4" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td>  
+          <tr class="govuk-table__row hideTR all Non">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-5a7d3c&paymentType=Non-standard magistrates'&date=26 June 2025&officeAccount=1A3BE4" class="govuk-link--no-visited-state">LAA-5a7d3c</a></td>  
             <td class="govuk-table__cell">1A3BE4</td>          
             <td class="govuk-table__cell">Blackbeard</td>
-            <td class="govuk-table__cell">Non-standard Magistrates'</td>
+            <td class="govuk-table__cell">Non-standard magistrates'</td>
             <td class="govuk-table__cell" data-sort-value="250626">26 June 2025</td>
           </tr>
-           <tr class="govuk-table__row hideTR all NMS">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-9p4f0e&paymentType=Non-standard Magistrates'&date=29 June 2025">LAA-9p4f0e</a></td>
+           <tr class="govuk-table__row hideTR all Non">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-9p4f0e&paymentType=Non-standard magistrates'&date=29 June 2025&officeAccount=5T6H7J">LAA-9p4f0e</a></td>
             <td class="govuk-table__cell">5T6H7J</td>
             <td class="govuk-table__cell">Innes</td>
-            <td class="govuk-table__cell">Non-standard Magistrates' </td>
+            <td class="govuk-table__cell">Non-standard magistrates' </td>
             <td class="govuk-table__cell" data-sort-value="250629">29 June 2025</td>
           </tr>
-          <tr class="govuk-table__row hideTR all NSM">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-6p4f0r&paymentType=Non-standard Magistrates'&date=29 June 2025">LAA-6p4f0r</a></td>
+          <tr class="govuk-table__row hideTR all NSMAM">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-6p4f0r&paymentType=Non-standard magistrates'&date=29 June 2025&officeAccount=6H5V4R">LAA-6p4f0r</a></td>
             <td class="govuk-table__cell">6H5V4R</td>
             <td class="govuk-table__cell">Olu</td>
-            <td class="govuk-table__cell">Non-standard Magistrates'</td>
+            <td class="govuk-table__cell">Non-standard magistrates' - amendment</td>
             <td class="govuk-table__cell" data-sort-value="250629">29 June 2025</td>
           </tr>
-          <tr class="govuk-table__row hideTR all AC">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-6j4k6k&paymentType=Non-standard Magistrates'&date=26 June 2025" class="govuk-link--no-visited-state">LAA-6j4k6k</a></td>
+          <tr class="govuk-table__row hideTR all ACAP">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-6j4k6k&paymentType=Assigned counsel - appeal&date=26 June 2025&officeAccount=J7Y4B5" class="govuk-link--no-visited-state">LAA-6j4k6k</a></td>
             <td class="govuk-table__cell">J7Y4B5</td>
             <td class="govuk-table__cell">Chiclue</td>
-            <td class="govuk-table__cell">Amendment to assigned counsel</td>
+            <td class="govuk-table__cell">Assigned counsel - appeal</td>
             <td class="govuk-table__cell" data-sort-value="250626">26 June 2025</td>
           </tr>
-          <tr class="govuk-table__row hideTR all NSM">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-7j8s9s&paymentType=Non-standard Magistrates'&date=25 June 2025" class="govuk-link--no-visited-state">LAA-7j8s9s</a></td>
+          <tr class="govuk-table__row hideTR all Non">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-7j8s9s&paymentType=Non-standard magistrates'&date=25 June 2025&officeAccount=4T6D2W" class="govuk-link--no-visited-state">LAA-7j8s9s</a></td>
             <td class="govuk-table__cell">4T6D2W</td>
             <td class="govuk-table__cell">Pink</td>
-            <td class="govuk-table__cell">Non-standard Magistrates'</td>
+            <td class="govuk-table__cell">Non-standard magistrates'</td>
             <td class="govuk-table__cell" data-sort-value="250625">25 June 2025</td>
           </tr>
-          <tr class="govuk-table__row hideTR all NMS">
-            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-4m4m4m&paymentType=Non-standard Magistrates'&date=21 June 2025" class="govuk-link--no-visited-state">LAA-4m4m4m</a></td>
+          <tr class="govuk-table__row hideTR all Coun">
+            <td class="govuk-table__cell"><a href="payment-details?laa-ref=LAA-4m4m4m&paymentType=Non-standard magistrates'&date=21 June 2025&officeAccount=5R5R4R" class="govuk-link--no-visited-state">LAA-4m4m4m</a></td>
             <td class="govuk-table__cell">5R5R4R</td>
             <td class="govuk-table__cell">Gutter</td>
-            <td class="govuk-table__cell">Non-standard Magistrates'</td>
+            <td class="govuk-table__cell">Assigned counsel</td>
             <td class="govuk-table__cell" data-sort-value="250621">21 June 2025</td>
           </tr>
         </body>

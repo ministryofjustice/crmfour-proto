@@ -1,4 +1,4 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
 
 {% set version = "latest-portal" %}
 {% set activePrimeNav = [true, false] %}
@@ -31,72 +31,143 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-      <h2 class="govuk-heading-l">Payment details</h2>
+      <h2 class="govuk-heading-l">Payment request</h2>
 
       <!--Cost summary -->
       {% set paymentJulyCostHtml %}
         <h3 class="govuk-heading-m">30 June 2025</h3> 
+        
         <table class="govuk-table">
-          <caption class="govuk-table__caption govuk-table__caption--s">Supplemental costs</caption>
+          <caption class="govuk-table__caption govuk-table__caption--s">Allowed costs after appeal</caption>
           <thead class="govuk-table__head">
             <th scope="col" class="govuk-table__header"></th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Supplemental claim</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Supplemental allowed</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
             <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
           </thead>
           <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Profit costs</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
+            {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">Net counsel fees</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselNet'] or "3000.00"}}</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselNet'] or "3000.00"}}</td>
               </tr>
               <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Travel</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Waiting</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Disbursements</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£90.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£910.00</td>
-              </tr>
+                <th scope="row" class="govuk-table__header">VAT on counsel fees</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselVAT'] or "600.00"}}</td> 
+                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselVAT'] or "600.00"}}</td>
+              </tr> 
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__header">Total</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost claimed </span><strong>£120.00</strong></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost claimed </span><strong>£90.00</strong></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost allowed </span><strong>£1352.00</strong></td>
-              </tr>
+                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost claimed </span><strong>£4892.00</strong></td>
+                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost allowed </span><strong>£4872.20</strong></td>
+              </tr>      
+              {% else %}
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Profit costs</th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedProfit'] or "342.00"}}</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedProfit'] or "342.00"}}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Disbursements</th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedDisbursement'] or "990.00"}}</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedDisbursement'] or "990.00"}}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Travel</th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedTravel'] or "0.00"}}</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedTravel'] or "50.00"}}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Waiting</th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedWaiting'] or "60.00"}}</td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedWaiting'] or "0.00"}}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <th scope="row" class="govuk-table__header">Total</th>
+                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost claimed </span><strong>£1392.00</strong></td>
+                  <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost allowed </span><strong>£1382.00</strong></td>
+                </tr>
+              {% endif %}
           </tbody>
         </table> 
+
+        <!--Payment summmary-->
+        <p class="govuk-body-m">
+          {% if data['paymentType'] == "Non-standard magistrates'" %}
+            <strong> Payment type: </strong>Non-standard magistrates' - appeal<br>
+            {%else %}
+            <strong> Payment type: </strong>Assigned counsel - appeal<br>
+          {% endif %}
+          <strong>Date appeal received:</strong> 29 June 2025<br>
+           <strong>Caseworker:</strong> {{data['caseworker2']}}
+        </p>
+
       {% endset%}
             
       {% set paymentMayCostHtml %}
         <h3 class="govuk-heading-m">28 June 2025</h3> 
         <table class="govuk-table">
-          <caption class="govuk-table__caption govuk-table__caption--s">Amended costs</caption>
+          <caption class="govuk-table__caption govuk-table__caption--s">Allowed costs after supplemental claim</caption>
           <thead class="govuk-table__head">
             <th scope="col" class="govuk-table__header"></th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Amendment</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
             <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
           </thead>
           <tbody class="govuk-table__body">
-            {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Profit costs</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedProfit'] or "342.00"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedProfit'] or "332.00"}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Disbursements</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedDisbursement'] or "990.00"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedDisbursement'] or "990.00"}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Travel</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedTravel'] or "0.00"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedTravel'] or "50.00"}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Waiting</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedWaiting'] or "60.00"}}</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedWaiting'] or "0.00"}}</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Total</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost claimed </span><strong>£1392.00</strong></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost allowed </span><strong>£1372.00</strong></td>
+            </tr>
+          </tbody>
+        </table>  
+
+        <!--Payment summmary-->
+        <p class="govuk-body-m">
+          <strong>Payment type: </strong>Non-standard magistrates' - supplemental<br>
+          <strong>Date supplemental claim received:</strong> 27 June 2025<br>
+           <strong>Caseworker:</strong> {{data['caseworker2']}}
+        </p>
+      {% endset%}
+
+      {% set paymentAprilCostHtml %}
+        <h3 class="govuk-heading-m">26 June 2025</h3> 
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--s">Claimed and allowed costs</caption>
+          <thead class="govuk-table__head">
+            <th scope="col" class="govuk-table__header"></th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
+            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
+          </thead>
+          <tbody class="govuk-table__body">
+            {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
               <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Counsel's fee</th>
+                <th scope="row" class="govuk-table__header">Net counsel fees</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselNet'] or "3000.00"}}</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselNet'] or "3000.00"}}</td>
               </tr>
               <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Counsel's fee VAT</th>
+                <th scope="row" class="govuk-table__header">VAT on counsel fees</th>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselVAT'] or "600.00"}}</td> 
                 <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselVAT'] or "600.00"}}</td>
               </tr> 
@@ -108,8 +179,13 @@
               {% else %}
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__header">Profit costs</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">-£100.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£231.20</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£342.00</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£332.00</td>
+              </tr>
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header">Disbursements</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
               </tr>
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__header">Travel</th>
@@ -118,70 +194,8 @@
               </tr>
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__header">Waiting</th>
+                <td class="govuk-table__cell govuk-table__cell--numeric">£60.00</td>
                 <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Disbursements</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£890.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Total</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost allowed </span><strong>-£100.00</strong></td>
-                 <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost allowed </span><strong>£1172.00</strong></td>
-              </tr>
-            {% endif %}
-          </tbody>
-        </table> 
-      {% endset%}
-
-      {% set paymentAprilCostHtml %}
-        <h3 class="govuk-heading-m">Payment 26 June 2025</h3> 
-        <table class="govuk-table">
-          <caption class="govuk-table__caption govuk-table__caption--s">Claimed and allowed costs</caption>
-          <thead class="govuk-table__head">
-            <th scope="col" class="govuk-table__header"></th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Original claim</th>
-            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
-          </thead>
-          <tbody class="govuk-table__body">
-            {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Counsel's fee</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselNet'] or "3000.00"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselNet'] or "3000.00"}}</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Counsel's fee VAT</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselVAT'] or "600.00"}}</td> 
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselVAT'] or "600.00"}}</td>
-              </tr> 
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Total</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost claimed </span><strong>£4892.00</strong></td>
-                <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Total cost allowed </span><strong>£4872.20</strong></td>
-              </tr>      
-              {% else %}
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Profit costs</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedProfit'] or "342.00"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedProfit'] or "332.00"}}</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Travel</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedTravel'] or "0.00"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedTravel'] or "50.00"}}</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Waiting</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedWaiting'] or "60.00"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedWaiting'] or "0.00"}}</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <th scope="row" class="govuk-table__header">Disbursements</th>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedDisbursement'] or "890.00"}}</td>
-                <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedDisbursement'] or "890.00"}}</td>
               </tr>
               <tr class="govuk-table__row">
                 <th scope="row" class="govuk-table__header">Total</th>
@@ -191,17 +205,28 @@
             {% endif %}
           </tbody>
         </table> 
+
+        <!--Payment summmary-->
+        <p class="govuk-body-m">
+          {% if data['paymentType'] == "Non-standard magistrates'" %}
+            <strong> Payment type: </strong>Non-standard magistrates'<br>
+            {%else %}
+            <strong> Payment type: </strong>Assigned counsel<br>
+          {% endif %}
+          <strong>Date claim received:</strong> {{data['dateReceived'] or "12 June 2025"}}<br>
+          <strong>Caseworker:</strong> {{data['caseworker1']}}
+        </p>
       {% endset%}
 
       <!--Tabs to show any history if needed-->
-      {% if data['paymentType'] == "Assigned counsel" %}
+      {% if data['paymentType'] == "Assigned counsel" or data['paymentType'] == "Assigned counsel - appeal" or data['paymentType'] == "Assigned counsel - amendment" %}
         {{ govukTabs({
           items: [
             {
-              label: "Amendment 28 June 2025",
-              id: "paymentMayCost",
+              label: "28 June 2025",
+              id: "paymentJulyCost",
               panel: {
-                html: paymentMayCostHtml
+                html: paymentJulyCostHtml
               }
             },
             {
@@ -245,18 +270,18 @@
             <caption class="govuk-table__caption govuk-table__caption--s">Claimed and allowed costs</caption>
             <thead class="govuk-table__head">
               <th scope="col" class="govuk-table__header"></th>
-              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Original claim</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
               <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
             </thead>
             <tbody class="govuk-table__body">
-              {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
+              {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" %}
                 <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header">Counsel's fee</th>
+                  <th scope="row" class="govuk-table__header">Net counsel fees</th>
                   <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselNet'] or "3000.00"}}</td>
                   <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselNet'] or "3000.00"}}</td>
                 </tr>
                 <tr class="govuk-table__row">
-                  <th scope="row" class="govuk-table__header">Counsel's fee VAT</th>
+                  <th scope="row" class="govuk-table__header">VAT on counsel fees</th>
                   <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['claimedCounselVAT'] or "600.00"}}</td> 
                   <td class="govuk-table__cell govuk-table__cell--numeric">£{{data['allowedCounselVAT'] or "600.00"}}</td>
                 </tr> 
@@ -294,17 +319,14 @@
               {% endif %}
             </tbody>
           </table> 
+          <!--Payment summmary-->
+          <p class="govuk-body-m">
+            <strong>Payment type: </strong>Non-standard magistrates'<br>
+            <strong>Date claim received:</strong> {{data['dateReceived'] or "12 June 2025"}}<br>
+            <strong>Caseworker:</strong> {{data['caseworker1']}}
+          </p>
       {% endif %}
 
-      
-     
-      <!--Claim summmary-->
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Claim details</h2>
-        </div>
-        {% include version +"/includes/claim-summary.njk"%} 
-      </div>
     </div>
   </div>
 

@@ -1,0 +1,150 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "pa-1-2" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Adjust travel cost – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Adjust travel cost</h1>
+      <form class="form" onsubmit="calTravelCost()" action="application-details-adjust?travelAdjust=Yes#allowedCosts" method="post">
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Quotes for travel cost</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Quote</th>
+              <th scope="col" class="govuk-table__header">Amount</th>
+              <th scope="col" class="govuk-table__header">Rate</th>
+              <th scope="col" class="govuk-table__header">Total</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">Primary</td>
+              {% if data['primaryTravel'] == "No" %}
+                <td class="govuk-table__cell"></td>
+                <td class="govuk-table__cell"></td>
+                <td class="govuk-table__cell"></td>
+                {% else %}
+                <td class="govuk-table__cell">3 hours 0 minutes</td>
+                <td class="govuk-table__cell">£40.00 per hour</td>
+                <td class="govuk-table__cell">£120.00</td>
+              {% endif %}
+            </tr>            
+            <tr class="govuk-table__row">
+              <td scope="row" class="govuk-table__header">Alternative 3</td>
+              <td class="govuk-table__cell">3 hours 0 minutes</td>
+                <td class="govuk-table__cell">£40.00 per hour</td>
+                <td class="govuk-table__cell">£120.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 class="govuk-heading-m">Amount allowed</h2>
+        <!--Travel-->
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" >
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Time
+            </legend>
+            <div class="govuk-date-input" id="travelTime">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="travelTime-hours">
+                    Hours
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-hours" name="travelTime-hours" type="text" inputmode="numeric" value="{{data['travelTime-hours'] or "3"}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="travelTime-mins">
+                    Minutes
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="travelTime-mins" name="travelTime-mins" type="text" inputmode="numeric" value="{{data['travelTime-mins'] or "0"}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      
+        {{ govukInput({
+          id: "travelCostTime",
+          name: "travelCostTime",
+          value: data['travelCostTime'] or "40",
+          label: {
+            text: "Cost per hour",
+            classes: "govuk-label--s"
+          },
+          prefix: {
+            text: "£"
+          },
+          classes: "govuk-input--width-5",
+          spellcheck: false
+        }) }}
+      
+        <input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal'] or "0"}}">                        
+                
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calTravelCost()">Calculate cost</button>
+
+        <p class="govuk-heading-l">
+          <span class="govuk-caption-m">Adjusted cost</span> £
+          <span id="showTravelTotal">0.00</span>
+        </p>
+
+        {{ govukTextarea({
+          name: "travelAdjustField",
+          id: "travelAdjustField",
+          value: data['travelAdjustField'],
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "For example, why you made adjustments to the travel cost or time. We'll share this explanation with the provider."
+          }
+        }) }}
+
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save changes"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-details-adjust">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}

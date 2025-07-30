@@ -1,0 +1,250 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "pa-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Hearing details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">About the case</span>
+      <h1 class="govuk-heading-xl">Hearing details</h1>
+      
+      <form class="form" action="/{{version}}/question2-case-hearing" method="post"> 
+        
+        {% set hearingHtml %}
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="date-hearing-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                <h1 class="govuk-fieldset__heading">
+                  Date of next hearing
+                </h1>
+              </legend>
+              <div id="date-hearing-hint" class="govuk-hint">
+                For example, 27 03 2025
+              </div>
+              <div class="govuk-date-input" id="date-hearing">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-hearing-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-day" name="date-hearing-day" type="text" inputmode="numeric" value="{{data['date-hearing-day']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-hearing-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="date-hearing-month" name="date-hearing-month" type="text" inputmode="numeric" value="{{data['date-hearing-month']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="date-hearing-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="date-hearing-year" name="date-hearing-year" type="text" inputmode="numeric" value="{{data['date-hearing-year']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        {% endset %}
+
+        {{ govukRadios({
+          name: "contact",
+          fieldset: {
+            legend: {
+              text: "Do you know the date of the next hearing?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("hearing", "Yes"),
+              conditional: {
+                html: hearingHtml
+              }
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("hearing", "No")
+            }
+          ]
+        }) }}     
+
+
+        {{ govukRadios({
+          name: "plea",
+          fieldset: {
+            legend: {
+              text: "Likely or actual plea",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+          {
+            value: "Guilty",
+            text: "Guilty",
+            checked: checked("plea", "Guilty")
+          },
+          {
+            value: "Not guilty",
+            text: "Not guilty",
+            checked: checked("plea", "Not guilty")
+          },
+          {
+            value: "Mixed plea",
+            text: "Mixed plea",
+            checked: checked("plea", "Mixed plea")
+          },
+          {
+            value: "Unknown",
+            text: "Unknown",
+            checked: checked("plea", "Unknown")
+          }
+          ]
+        }) }}
+
+
+        {{ govukRadios({
+          name: "courtType",
+          fieldset: {
+            legend: {
+              text: "Type of court",
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+          {
+            value: "Magistrates' court",
+            text: "Magistrates' court",
+            checked: checked("courtType", "Magistrates' court")
+          },
+          {
+            value: "Central Criminal Court",
+            text: "Central Criminal Court",
+            checked: checked("courtType", "Central Criminal Court")
+          },
+          {
+            value: "Crown Court (excluding Central Criminal Court)",
+            text: "Crown Court (excluding Central Criminal Court)",
+            checked: checked("courtType", "Crown court (excluding Central Criminal Court)")
+          }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+          {% if data['app-state'] =="empty" or data['app-state'] ==null %}
+        
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps-reviewed?app-state=draft"
+            }) }}
+
+            {% else %}
+
+            {{ govukButton({
+              text: "Save and come back later",
+              classes: "govuk-button--secondary",
+              href: "../crm-apps-reviewed?app-state=all#manage-drafts"
+            }) }}
+
+          {% endif %}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+        let selectElements = $('.autocomplete-select')
+        let placeholder = ''
+
+        selectElements.each(function (index) {
+          let selectElement = $(this)
+          if (selectElement.length) {
+            if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+
+            accessibleAutocomplete.enhanceSelectElement({
+              confirmOnBlur: false,
+              autoSelect: true,
+              displayMenu: 'overlay',
+              minLength: 1,
+              showNoOptionsFound: false,
+              placeholder: placeholder,
+              selectElement: selectElement[0],
+            })
+          }
+        })
+
+        $(function() {
+        $("input[name='courtType']").click(function() {
+          if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        });
+      });
+
+      window.onload = function(){  
+        if ($("#courtType").is(":checked")) {
+            $("#div1").show();
+          } else {
+            $("#div1").hide();
+          }
+          if ($("#courtType-3").is(":checked")) {
+            $("#div2").show();
+          } else {
+            $("#div2").hide();
+          }
+        }
+
+       
+         
+    </script>
+
+{% endblock %}

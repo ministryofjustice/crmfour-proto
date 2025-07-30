@@ -1,0 +1,73 @@
+{% extends "layouts/main-old.html" %}
+
+{% set version = "nsm-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  What stage has been reached? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-provider"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['changeClaim'] =="change" %}
+        <form class="form" action="/{{version}}/change-stageCourt" method="post">
+        {% else %}
+         <form class="form" action="/{{version}}/question-stageCourt" method="post">
+      {% endif %}
+
+         {{ govukRadios({
+          name: "stageCourt",
+          fieldset: {
+            legend: {
+              text: "Is the first court that heard this case in an undesignated area?",
+              classes: "govuk-fieldset__legend--xl",
+              isPageHeading: true            
+              }
+          },
+           hint: {
+            text: "You can claim travel time and waiting time if the first court that heard this case is in an undesignated area"
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("stageCourt", "Yes")
+            },
+            {
+              value: "No",
+              text: "No",
+              checked: checked("stageCourt", "No")
+            }
+          ]
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

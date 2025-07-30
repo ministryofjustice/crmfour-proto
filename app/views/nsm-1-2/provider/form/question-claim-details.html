@@ -1,0 +1,402 @@
+{% extends "layouts/main-old.html" %}
+
+{% set version = "nsm-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Claim details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-provider"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Claim details</h1>
+
+    <form class="form" action="add-work-item2?add1=1&&banner2=0" method="post">
+
+      {{ govukInput({
+        label: {
+          text: "Number of pages of prosecution evidence",
+          classes: "govuk-label--s",
+          isPageHeading: false
+        },
+        hint: {
+          text: "Where applicable, give the approximate number of pages"
+        },
+        id: "procEvidence",
+        name: "procEvidence",
+        classes: "govuk-input--width-4"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Number of pages of defence statements",
+          classes: "govuk-label--s",
+          isPageHeading: false
+        },
+        hint: {
+          text: "This can be the total number of pages of defence evidence including any statements by the defendant and defence witnesses"
+        },
+        id: "defEvidence",
+        name: "defEvidence",
+        classes: "govuk-input--width-4"
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Number of witnesses",
+          classes: "govuk-label--s",
+          isPageHeading: false
+        },
+        id: "defEvidence",
+        name: "defEvidence",
+        classes: "govuk-input--width-4"
+      }) }}
+    
+
+
+      {{ govukRadios({
+        name: "suppClaim",
+        fieldset: {
+          legend: {
+            text: "Does this bill represent a supplemental claim?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: checked("suppClaim", "Yes"),
+            hint: {
+              text: "We’ll ask you to upload evidence of this before you submit this claim"
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("suppClaim", "No")
+          }
+        ]
+      }) }} 
+
+       {% set runningTimeHtml %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="running-time-hint">
+            <legend class="govuk-fieldset__legend">
+              Running time of the recording
+            <div id="running-time-hint" class="govuk-hint">
+              For example, 1 hour and 30 minutes
+            </div>
+            <div class="govuk-date-input" id="date-rep">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="running-time-day">
+                    Hours
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="running-time-day" name="running-time-day" type="text" inputmode="numeric" value="{{data['running-time-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="running-time-month">
+                    Minutes
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="running-time-month" name="running-time-month" type="text" inputmode="numeric" value="{{data['running-time-month']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      {% endset %}
+
+      {{ govukRadios({
+        name: "recordedEvidence",
+        fieldset: {
+          legend: {
+            text: "Did you spend time watching or listening to recorded evidence?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: checked("recordedEvidence", "Yes"),
+            
+            conditional: {
+              html: runningTimeHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("recordedEvidence", "No")
+          }
+        ]
+      }) }} 
+
+      {% set startedWorkHtml %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="running-time-hint">
+            <legend class="govuk-fieldset__legend">
+              Date you started this work
+            <div id="running-time-hint" class="govuk-hint">
+              For example, 27 03 2024
+            </div>
+            <div class="govuk-date-input" id="date-rep">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="running-time-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="running-time-day" name="running-time-day" type="text" inputmode="numeric" value="{{data['running-time-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="running-time-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="running-time-month" name="running-time-month" type="text" inputmode="numeric" value="{{data['running-time-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="running-time-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="running-time-year" name="running-time-year" type="text" inputmode="numeric" value="{{data['running-time-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      {% endset %}
+
+      {{ govukRadios({
+        name: "furtherWorkRep",
+        fieldset: {
+          legend: {
+            text: "Did you do any work before the representation order date?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: checked("furtherWorkRep", "Yes"),
+            
+            conditional: {
+              html: startedWorkHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("furtherWorkRep", "No")
+          }
+        ]
+      }) }}
+
+      {% set lastHearingHtml %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="running-time-hint">
+            <legend class="govuk-fieldset__legend">
+              Date of last court hearing
+            <div id="running-time-hint" class="govuk-hint">
+              For example, 27 03 2024
+            </div>
+            <div class="govuk-date-input" id="date-rep">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="running-time-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="running-time-day" name="running-time-day" type="text" inputmode="numeric" value="{{data['running-time-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="running-time-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="running-time-month" name="running-time-month" type="text" inputmode="numeric" value="{{data['running-time-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="running-time-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="running-time-year" name="running-time-year" type="text" inputmode="numeric" value="{{data['running-time-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      {% endset %}
+
+      {{ govukRadios({
+        name: "furtherWorkHearing",
+        fieldset: {
+          legend: {
+            text: "Did you do further work after the last court hearing?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: checked("furtherWorkHearing", "Yes"),
+            
+            conditional: {
+              html: lastHearingHtml
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("furtherWorkHearing", "No")
+          }
+        ]
+      }) }}
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="work-complete-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+              Date work was completed
+            </h1>
+          <div id="work-complete-hint" class="govuk-hint">
+            For example, 27 03 2024
+          </div>
+          <div class="govuk-date-input" id="date-rep">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="work-complete-day">
+                  Day
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="work-complete-day" name="work-complete-day" type="text" inputmode="numeric" value="{{data['work-complete-day']}}">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="work-complete-month">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="work-complete-month" name="work-complete-month" type="text" inputmode="numeric" value="{{data['work-complete-month']}}">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="work-complete-year">
+                  Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="work-complete-year" name="work-complete-year" type="text" inputmode="numeric" value="{{data['work-complete-year']}}">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      {{ govukRadios({
+        name: "wastedCosts",
+        fieldset: {
+          legend: {
+            text: "Have wasted costs been applied to this case?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        hint: {
+            text: "Wasted costs are applied when a judge has determined that the lawyer (solicitor or barrister) or a third party has wasted the court‘s time."
+          },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: checked("wastedCosts", "Yes"),
+            hint: {
+              text: "We’ll ask you to upload the court order before you submit the claim"
+            }
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("wastedCosts", "No")
+          }
+        ]
+      }) }}
+      
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "task-list"
+        }) }}
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+      let selectElements = $('.autocomplete-select')
+      let placeholder = ''
+
+
+      selectElements.each(function (index) {
+        let selectElement = $(this)
+        if (selectElement.length) {
+          if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+          
+          accessibleAutocomplete.enhanceSelectElement({
+            defaultValue: '',
+            placeholder: placeholder,
+            minLength: 1,
+            showNoOptionsFound: false,
+            showAllValues: true,
+            autoselect: false,
+            selectElement: selectElement[0],
+          })
+        }
+
+      })
+    
+    </script>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+  <div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="matterType">
+     Matter type
+    </label>
+    <div id="matterType-hint" class="govuk-hint">
+      Select a matter type from the suggestions that appear when you start to enter it, for example, offences against the person
+    </div>
+    <select class="govuk-select autocomplete-select" id="matterType" name="offenceType" aria-describedby="matterType-hint">
+      <option></option>
+      <option value="1 - Offences against the person" {{ "selected" if data["matterType"] == "1 - Offences against the person" }}>1 - Offences against the person</option>
+      <option value="2 - Homicide and related grave offences" {{ "selected" if data["matterType"] == "2 - Homicide and related grave offences" }}>2 - Homicide and related grave offences</option>
+      <option value="3 - Sexual offences and associated offences against children" {{ "selected" if data["matterType"] == "3 - Sexual offences and associated offences against children" }}>3 - Sexual offences and associated offences against children</option>
+    </select>
+  </div>

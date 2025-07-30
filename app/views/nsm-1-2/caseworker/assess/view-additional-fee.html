@@ -1,0 +1,88 @@
+{% extends "layouts/main-old.html" %}
+
+{% set version = "nsm-1-2" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Adjust service cost – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-cw"%}
+  {% if data['cwAppStatus'] == "In progress"%}
+    
+    {% else %}
+    
+  {% endif %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        Additional fees
+      </h1>  
+
+      <h2 class="govuk-heading-l">Provider submission</h2>
+      <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Claimed costs summary</caption>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Additional fee</th>
+            <td class="govuk-table__cell">Youth court fee</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Net cost claimed</th>
+            {% if data['cwAppStatus'] == "Part granted" or data['serviceAdjust'] == "Yes" or data['caseDisposal'] == "youthCatANo" %}
+              <td class="govuk-table__cell">£0.00</td>
+              {% else %}
+              <td class="govuk-table__cell">£598.59</td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table> 
+      
+      {% if data['adjustedClaim'] =="Yes" %}
+         
+        <h2 class="govuk-heading-l">
+          LAA adjustments
+        </h2>  
+        <table class="govuk-table">
+          <caption class="govuk-visually-hidden">Allowed costs summary</caption>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Net cost allowed</th>
+              <td class="govuk-table__cell">£0.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header govuk-!-width-one-half">Reason for adjustments</th>
+              <td class="govuk-table__cell">{{data['additionalAdjustField'] or "Case disposal category incorrectly chosen"}}</td>
+            </tr>
+          </tbody>
+        </table> 
+
+      {% endif%} 
+    </div>
+  </div>
+
+{% endblock %}

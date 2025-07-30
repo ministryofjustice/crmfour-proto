@@ -1,0 +1,170 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "pa-1-2" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Adjust service cost – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Adjust service cost</h1>
+      <h2 class="govuk-heading-l">{{data['serviceType'] or "Interpreter"}} </h2>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Quotes for service cost</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Quote</th>
+            <th scope="col" class="govuk-table__header">Amount</th>
+            <th scope="col" class="govuk-table__header">Rate</th>
+            <th scope="col" class="govuk-table__header">Total</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Primary</th>
+            <td class="govuk-table__cell">
+              1 hour 0 minutes
+            </td>
+            <td class="govuk-table__cell">
+              £200.00 per hour
+            </td>
+            <td class="govuk-table__cell">£200.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Alternative 1</th>
+            <td class="govuk-table__cell">
+              2 hour 0 minutes
+            </td>
+            <td class="govuk-table__cell">
+              £195.00 per hour
+            </td>
+            <td class="govuk-table__cell">£380.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Alternative 2</th>
+            <td class="govuk-table__cell">
+              2 hour 40 minutes
+            </td>
+            <td class="govuk-table__cell">
+              £200.00 per hour
+            </td>
+            <td class="govuk-table__cell">£510.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Alternative 3</th>
+            <td class="govuk-table__cell">
+              1 hour 50 minutes
+            </td>
+            <td class="govuk-table__cell">
+              £250.00 per hour
+            </td>
+            <td class="govuk-table__cell">£500.00</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <form class="form" onsubmit="calGeneralCost()" action="application-details-adjust?serviceAdjust=Yes#allowedCosts" method="post">
+
+        <h3 class="govuk-heading-m">Amount allowed</h3>
+         <!--General-->                    
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" >
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Time
+            </legend>
+            <div class="govuk-date-input" id="generalNoHours">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="generalNoHours-hours">
+                    Hours
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="generalNoHours-hours" name="generalNoHours-hours" type="text" inputmode="numeric" value="{{data['generalNoHours-hours'] or "1"}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="generalNoHours-mins">
+                    Minutes
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="generalNoHours-mins" name="generalNoHours-mins" type="text" inputmode="numeric" value="{{data['generalNoHours-mins'] or "0"}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+                  
+        <div class="govuk-form-group">
+          <label class="govuk-label govuk-label--s" for="generalCost">
+            Cost per hour
+          </label>
+          <div class="govuk-input__wrapper">
+            <div class="govuk-input__prefix" aria-hidden="true">£</div>
+            <input class="govuk-input govuk-input--width-5" id="generalCost" name="generalCost" type="text" spellcheck="false" value="{{data['generalCost'] or "200.00"}}" aria-describedby="generalCost-hint">
+          </div>
+        </div>
+
+        <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">Calculate cost</button> 
+        <input type="hidden" id="rate1GeneralTotal" name="rate1GeneralTotal" value="{{data['rate1GeneralTotal']}}" />
+        <input type="hidden" id="rate2GeneralTotal" name="rate2GeneralTotal" value="{{data['rate2GeneralTotal']}}" />
+        <input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal']}}" />
+        
+        <p class="govuk-heading-l">
+          <span class="govuk-caption-m">Adjusted cost</span> £
+          <span id="showGeneralTotal">0.00</span>         
+        </p>
+
+        {{ govukTextarea({
+          name: "serviceAdjustField",
+          id: "serviceAdjustField",
+          value: data['serviceAdjustField'],
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "For example, why you made adjustments to the cost or time. We'll share this explanation with the provider."
+          }
+        }) }}
+
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save changes"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-details-adjust">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}

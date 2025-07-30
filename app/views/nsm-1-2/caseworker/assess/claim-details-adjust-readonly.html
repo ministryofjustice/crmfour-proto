@@ -1,0 +1,231 @@
+{% extends "layouts/main-old.html" %}
+
+{% set version = "nsm-1-2" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+{% if (data['serviceAdjust'] == "Yes" and data['cwAppStatus'] == "In progress") or data['cwAppStatus'] == "Part granted" %}
+  {% set activeSubNav = [false, true, false, false, false] %}
+  {% else %}
+  {% set activeSubNav = [false, true, false, false] %}
+{% endif %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Application details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% set bodyClasses = 'caseworker-width' %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-cw"%}
+  
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    {% include version +"/includes/app-info-cw.html" %}
+
+    <!-- Nav -->
+    {% include version +"/includes/nav-sub-cw.html"%}
+
+    <h2 class="govuk-heading-l">Adjusted costs</h2>
+
+    <!--TAbs items -->
+    {% set workItemsHtml %} 
+    
+      <h3 class="govuk-heading-m">Adjusted work items</h3>
+
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <caption class="govuk-visually-hidden">Adjusted work items</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col" aria-sort="ascending" id="itemTitle">Item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+            <th class="govuk-table__header" scope="col">Reason for adjustment</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Time allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Uplift allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="item5">5</th>
+            <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workType5" aria-labelledby="itemTitle item5 workType5" href="view-work-item?adjustedClaim=Yes">Travel</a></span> <sup><a href="#fn1" id="r1">[1]</th>
+            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">3<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£75.00</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="item15">15</th>
+            <th scope="row" class="govuk-table__header"><span title="This item was adjusted to be a different work item type."><a id="workType15" aria-labelledby="itemTitle item15 workType15" href="view-work-item?adjustedClaim=Yes">Travel</a></span> <sup><a href="#fn2" id="r2">[2]</th>
+            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0<span class="govuk-visually-hidden"> hour </span>:00<span class="govuk-visually-hidden"> minutes</span></td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+      <nav class="moj-pagination" aria-label="Pagination navigation">
+        <ul class="moj-pagination__list">
+        </ul>
+        <p class="moj-pagination__results">Showing <b>1</b> to <b>2</b> of <b>2</b> work items</p>
+      </nav>
+
+      {% if data['cwAppStatus'] == "In progress" %}
+        <section class="govuk-!-margin-top-9">
+          <p class="govuk-body-s" id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item?adjustedClaim=Yes">Item 5</a></a></p>
+          <p class="govuk-body-s" id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="change-work-item?adjustedClaim=Yes">Item 15</a></a></p>
+        </section>
+        {% elseif data['cwAppStatus'] == "Part granted" %}
+        <section class="govuk-!-margin-top-9">
+          <p id="fn1"><a href="#r1">[1]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 5</a></a></p>
+          <p id="fn2"><a href="#r2">[2]</a> This item was adjusted to be a different work item type. See: <a href="view-work-item?adjustedClaim=Yes">Item 15</a></a></p>
+        </section>
+      {% endif %}
+      
+    {% endset %}
+
+    {% set lettersCallsHtml %}
+      <h3 class="govuk-heading-m">Adjusted letters and calls</h3>
+      <!--<p>There are no adjusted letters and calls</p>-->
+       <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Adjusted letters and calls</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Line item</th>
+            <th class="govuk-table__header" scope="col">Cost type</th>
+            <th class="govuk-table__header" scope="col">Reason for adjustment</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Number allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Uplift allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">1</th>
+            <th scope="row" class="govuk-table__header"><a href="1">Letters</a></th>
+            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">4</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">0%</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£16.00</td> 
+          </tr>
+        </tbody>
+      </table>
+      
+    {% endset %}
+
+    {% set additionalFeesHtml %}
+      <h3 class="govuk-heading-m">Additional fees</h3>
+      <!--<p>There are no adjusted letters and calls</p>-->
+      <table class="govuk-table">
+        <caption class="govuk-visually-hidden">Adjusted additional fees</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Fee type</th>
+            <th class="govuk-table__header" scope="col">Reason for adjustment</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col">Net cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header"><a href="view-additional-fee?adjustedClaim=Yes">Youth court fee</a></th>
+            <td class="govuk-table__cell">{{data['additionalAdjustField'] or "Incorrectly selected that the court was a youth court"}}</td> 
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+          </tr>
+        </tbody>
+      </table>
+    {% endset %}
+
+    {% set disbursementsHtml %} 
+    
+      <h3 class="govuk-heading-m">Adjusted disbursements</h3>
+
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <caption class="govuk-visually-hidden">Adjusted disbursements</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col" aria-sort="ascending" id="disburseTitle">Item</th>
+            <th class="govuk-table__header" scope="col" aria-sort="none">Cost type</th>
+            <th class="govuk-table__header" scope="col">Reason for adjustment</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Net cost allowed </th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">VAT on allowed</th>
+            <th class="govuk-table__header govuk-table__header--numeric" scope="col" aria-sort="none">Total cost allowed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header" id="disburseItem4">4</td>
+            <th scope="row" class="govuk-table__header"><a id="disbursement4" aria-labelledby="disburseTitle disburseItem4 disbursement4" href="1">Car milage</a></td>
+            <td class="govuk-table__cell">As the time claimed for the letter was 12 minutes or under, the preparation time claimed has been disallowed and a standard rate letter substituted. See 3.8.9 CBAM</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric">£0.00</td>
+            <td class="govuk-table__cell govuk-table__cell--numeric" data-sort-value="120">£0.00</td>
+          </tr>
+        </tbody>
+      </table>
+      <nav class="moj-pagination" aria-label="Pagination navigation">
+        <ul class="moj-pagination__list">
+        </ul>
+        <p class="moj-pagination__results">Showing <b>1</b> of <b>1</b> disbursements</p>
+      </nav>
+    {% endset %}
+
+    {{ govukTabs({
+      items: [
+        {
+          label: "Adjusted work items",
+          id: "workItems",
+          panel: {
+            html: workItemsHtml
+          }
+        },
+        {
+          label: "Adjusted letters and calls",
+          id: "lettersCalls",
+          panel: {
+            html: lettersCallsHtml
+          }
+        },
+        {
+          label: "Adjusted additional fees",
+          id: "additionalFees",
+          panel: {
+            html: additionalFeesHtml
+          }
+        },
+        {
+          label: "Adjusted disbursements",
+          id: "disbursements",
+          panel: {
+            html: disbursementsHtml
+          }
+        }
+      ]
+    }) }}
+
+    {% if data ['cwAppStatus'] == "Part granted"%}
+      {% else %}
+      {% include version +"/includes/claim-buttons.html"%}
+    {% endif %}
+
+
+  </div>
+</div>
+
+{% endblock %}

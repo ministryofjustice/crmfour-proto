@@ -1,4 +1,4 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
 
 {% set version = "latest-nsm" %}
 {% if data['cwAppStatus'] == "In progress"%}
@@ -12,7 +12,7 @@
 {% endif %}
 
 {% block header %}
-  {% include version +"/includes/header-nsm-cw.njk" %}
+  {% include version +"/includes/header-cw.njk"%}
 {% endblock %}
 
 {% block pageTitle %}
@@ -110,7 +110,7 @@
           {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" %}
             {{ govukButton({
               text: "Create payment request",
-              href: "/latest-portal/payments/add/check-answers"
+              href: "/latest-portal/payments/add/check-answers?paymentType=Non-standard magistrates'&digitalPaper=started&claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=10.00&claimedDisbursement=890.00&paymentClaimedTotal=1242.00&allowedProfit=342.00&allowedTravel=0.00&allowedWaiting=10.00&allowedDisbursement=890.00&paymentAllowedTotal=1242.00"
             }) }}
             {% else %}
             {{ govukButton({

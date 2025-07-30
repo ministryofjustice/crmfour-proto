@@ -1,0 +1,91 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "nsm-1-3" %}
+{% set activePrimeNav = [true, false, false, false] %}
+{% set activeSubNav = [true, false, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-cw.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Your claims – {{data['serviceName1'] }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row"> 
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">
+      Your claims
+    </h1>
+    
+    {{ govukButton({
+      text: "Assess next claim",
+      href: "assess/claim-details?cwAppStatus=In progress"
+    }) }}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% if data['cwAppState'] == "empty"  %}
+      <p>There are not any claims for you to assess.</p>
+      {% else %}
+      {% if data['cwAppState'] == "all" %}
+        <table class="govuk-table" data-module="moj-sortable-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Firm name</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Defendant</th>
+              <th scope="col" class="govuk-table__header" aria-sort="descending">Last updated</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Risk</th>
+              <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">                
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="assess/claim-details?laa-ref=LAA-1z5f7w&cwAppStatus=In progress&adjustDelete=No&adjustDeleteAll=No&serviceAdjust=Yes" class="govuk-link--no-visited-state" data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
+              <td class="govuk-table__cell">Law Fans</td>
+              <td class="govuk-table__cell">Roger Catapult</td>
+              <td class="govuk-table__cell" data-sort-value="230801">1 Aug 2023</td>
+              <td class="govuk-table__cell">High</td>
+              <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">In progress</strong></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="assess/claim-details?laa-ref=LAA-6p4f0r&cwAppStatus=In progress&adjustDelete=No&adjustDeleteAll=No" class="govuk-link--no-visited-state" data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
+              <td class="govuk-table__cell">Crime Busters Legal</td>
+              <td class="govuk-table__cell">Dami Olu</td>
+              <td class="govuk-table__cell" data-sort-value="230913">13 Sept 2023</td>
+              <td class="govuk-table__cell">High</td>
+              <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">In progress</strong></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a href="assess/claim-details?laa-ref=LAA-8p3h0e&cwAppStatus=In progress&adjustDelete=No&adjustDeleteAll=No&serviceAdjust=No" class="govuk-link--no-visited-state" data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
+              <td class="govuk-table__cell">Legal Aiders Ltd</td>
+              <td class="govuk-table__cell">Bobby Brownie</td>
+              <td class="govuk-table__cell" data-sort-value="230703">3 July 2023</td>
+              <td class="govuk-table__cell">Low</td>
+              <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--purple">In progress</strong></td>
+            </tr>
+          </body>
+        </table>     
+        {% set pageNo ="0" %} 
+        {% set itemNo ="3" %}  
+        {% include "includes/pagination.html"%}   
+      {% endif %} 
+    {% endif %}  
+  </div>
+  <div class="govuk-grid-column-one-third">
+      
+  </div>
+</div>
+
+{% endblock %}

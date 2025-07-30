@@ -1,0 +1,51 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Related payment requests – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {% include version +"/includes/app-info-payments.html"%}
+      
+      <!-- Nav -->
+      {% include version +"/includes/nav-sub-payments.html"%}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h2 class="govuk-heading-l">Claim details</h2>
+      <dl class="govuk-summary-list">
+        {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
+          {% else %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Original claim
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a href="/latest-nsm/caseworker/assess/claim-details-readonly?laa-ref=LAA-5a7d3c&cwAppStatus=Part granted">Link to: {{data['laa-ref'] or "LAA-5a7d3c" }}</a>
+            </dd>
+          </div>
+        {% endif %}
+        {% include version +"/includes/claim-summary.njk"%} 
+      </dl>
+  </div>
+
+{% endblock %}

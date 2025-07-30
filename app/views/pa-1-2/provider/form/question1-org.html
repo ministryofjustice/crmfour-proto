@@ -1,0 +1,113 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "pa-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  Case contact – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl">Contact details</span>
+    <h1 class="govuk-heading-xl">Case contact</h1>
+    <p>We’ll use these contact details if we need to ask you for more information or to tell you the outcome of your application.</p>
+    {% if data['changeOrg'] == "change" %}
+      <form class="form" action="check-answers" method="post">
+      {% else %}
+      <form class="form" action="question1-firm" method="post">
+    {% endif %}
+
+      {{ govukInput({
+        label: {
+          text: "First name",
+          classes: "govuk-label--s"
+        },
+        classes: "govuk-input--width-20",
+        id: "contact-first-name",
+        name: "contact-first-name",
+        value: data['contact-first-name']
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Last name",
+          classes: "govuk-label--s"
+        },
+        classes: "govuk-input--width-20",
+        id: "contact-last-name",
+        name: "contact-last-name",
+        value: data['contact-last-name']
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Email address",
+          classes: "govuk-label--s"
+        },
+        classes: "govuk-input--width-20",
+        id: "contact-email",
+        name: "contact-email",
+        autocomplete: "email",
+        type: "email",
+        value: data['contact-email']
+      }) }}
+
+      {{ govukInput({
+        label: {
+          text: "Firm name",
+          classes: "govuk-label--s"
+        },
+        classes: "govuk-input--width-20",
+        id: "org-name",
+        name: "org-name",
+        value: data['org-name']
+      }) }}   
+     
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {% if data['claims-state'] =="empty" or data['claims-state'] ==null %}
+      
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps-reviewed?claims-state=draft"
+          }) }}
+
+          {% else %}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "../crm-apps-reviewed?claims-state=all"
+          }) }}
+
+        {% endif %}
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,4 +1,4 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
 
 {% set version = "latest-portal" %}
 {% set activePrimeNav = [true, false] %}
@@ -28,15 +28,14 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if data['paymentType'] =="Supplemental Non-standard Magistrates'"%}
-        <h1 class="govuk-heading-xl">Supplemental allowed costs</h1>
-        {% elseif data['paymentType'] =="Amendment to Non-standard Magistrates'"%}
-          <h1 class="govuk-heading-xl">Amended costs</h1>
-        {% else %}
+      {% if data['paymentType'] =="Non-standard magistrates'" or data['paymentType'] =="Assigned counsel"%}
           <h1 class="govuk-heading-xl">Allowed costs</h1>
+        {% else %}
+          <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+          <p>Amend the totals to show the new allowed costs.</p>
       {% endif %}
 
-      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Amendment to assigned counsel" %}
+      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
 
         <form class="form" action="check-answers" onsubmit="calCounselPaymentAllowedTotal()" method="post">
 
@@ -49,7 +48,7 @@
             name: "allowedCounselNet",
             value: data['allowedCounselNet'] or "",
             label: {
-              text: "Assigned counsel total (NET)",
+              text: "Net counsel fees",
               classes: "govuk-label--s",
               isPageHeading: false
             },
@@ -66,7 +65,7 @@
             name: "allowedCounselVAT",
             value: data['allowedCounselVAT'] or "",
             label: {
-              text: "VAT on assigned counsel costs",
+              text: "VAT on counsel fees",
               classes: "govuk-label--s",
               isPageHeading: false
             },
@@ -103,13 +102,30 @@
               spellcheck: false
             }) }}
 
+            <!--Disbursements-->
+            {{ govukInput({
+              id: "allowedDisbursement",
+              name: "allowedDisbursement",
+              value: data['allowedDisbursement'] or "",
+              label: {
+                text: "Disbursement costs",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
             <!--Travel-->
             {{ govukInput({
               id: "allowedTravel",
               name: "allowedTravel",
               value: data['allowedTravel'] or "",
               label: {
-                text: "Travel ",
+                text: "Travel costs",
                 classes: "govuk-label--s",
                 isPageHeading: false
               },
@@ -126,24 +142,7 @@
               name: "allowedWaiting",
               value: data['allowedWaiting'] or "",
               label: {
-                text: "Waiting ",
-                classes: "govuk-label--s",
-                isPageHeading: false
-              },
-              prefix: {
-                text: "£"
-              },
-              classes: "govuk-input--width-5",
-              spellcheck: false
-            }) }}
-
-            <!--Disbursements-->
-            {{ govukInput({
-              id: "allowedDisbursement",
-              name: "allowedDisbursement",
-              value: data['allowedDisbursement'] or "",
-              label: {
-                text: "Disbursements",
+                text: "Waiting costs",
                 classes: "govuk-label--s",
                 isPageHeading: false
               },
@@ -159,15 +158,8 @@
 
         
         <p class="govuk-heading-l">
-          {% if data['paymentType'] =="Supplemental Non-standard Magistrates'"%}
-          <span class="govuk-caption-m">Total allowed cost</span> £
-          {% elseif data['paymentType'] =="Amendment to Non-standard Magistrates'"%}
-            <span class="govuk-caption-m">Total amended cost</span> £
-         {% else %}
-          <span class="govuk-caption-m">Total allowed cost</span> £
-          {% endif %}
-
-          <span id="showpaymentAllowedTotal">0.00</span>
+        <span class="govuk-caption-m">Total allowed cost</span> £
+        <span id="showpaymentAllowedTotal">0.00</span>
         </p>
 
 
@@ -176,11 +168,6 @@
             text: "Save and continue"
           }) }}
 
-          {{ govukButton({
-            text: "Save and come back later",
-            classes: "govuk-button--secondary",
-            href: ""
-          }) }}
         </div>
 
       </form>

@@ -1,0 +1,454 @@
+{% extends "layouts/main-old.html" %}
+
+{% set version = "nsm-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}  
+{% endblock %}
+
+
+{% block pageTitle %}
+  Disbursements - {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-provider"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="add-disbursement-details2" method="post">
+
+      {% set banner %}
+        {% if data['bannerD2'] =="5" %}
+          <h3 class="govuk-notification-banner__heading">You've added 21 disbursements</h3>
+          {% elseif data['bannerD2'] =="4" %}
+          <h3 class="govuk-notification-banner__heading">You've added 4 disbursements</h3>
+          {% elseif data['bannerD2'] =="3" %}
+          <h3 class="govuk-notification-banner__heading">You've added 3 disbursements</h3>
+          {% elseif data['bannerD2'] =="2" %}
+          <h3 class="govuk-notification-banner__heading">You've added 2 disbursements</h3>
+          {% elseif data['bannerD2'] =="1" %}
+          <h3 class="govuk-notification-banner__heading">You've added 1 disbursement</h3>
+        {% endif %}
+      {% endset %}
+
+      {% if data['bannerD2'] == Null or data['bannerD2'] =="0"  %}
+        {% else %}
+        {{ govukNotificationBanner({
+          html: banner,
+          type: "success"
+        }) }}
+      {% endif %}
+    
+      <h1 class="govuk-heading-l">Disbursement type</h1>
+
+      {% if data['addD2'] == "4" %}
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="Date-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Date
+              </h1>
+            <div id="Date-hint" class="govuk-hint">
+              For example, 27 3 2024
+            </div>
+            <div class="govuk-date-input" id="Date4">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="Date4-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="Date4-day" name="Date4-day" type="text" inputmode="numeric" value="{{data['Date4-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="Date4-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="Date4-month" name="Date4-month" type="text" inputmode="numeric" value="{{data['Date4-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="Date4-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="Date4-year" name="Date4-year" type="text" inputmode="numeric" value="{{data['Date4-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukRadios({
+          name: "disbursementType4",
+          value: data['disbursementType4'],
+          fieldset: {
+            legend: {
+              text: "Which disbursement type is this is for?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Car mileage",
+              text: "Car mileage",
+              checked: checked('disbursementType4','Car mileage'),
+              hint: {
+                text: "£0.45 per mile"
+              }
+            },
+            {
+              value: "Motorcycle mileage",
+              text: "Motorcycle mileage",
+              checked: checked('disbursementType4','Motorcycle mileage'),
+              hint: {
+                text: "£0.45 per mile"
+              }
+            },
+            {
+              value: "Bike mileage",
+              text: "Bike mileage",
+              checked: checked('disbursementType4','Bike mileage'),
+              hint: {
+                text: "£0.25 per mile"
+              }
+            },
+            {
+              value: "Other",
+              text: "Other",
+              checked: checked('disbursementType4','Other'),
+              hint: {
+                text: "£56.89 per hour"
+              },
+              conditional: {
+                html: other2Html
+              }
+            }
+          ]
+        }) }}
+
+        {% elseif data['addD2'] == "3"%}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="Date-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Date
+              </h1>
+            <div id="Date-hint" class="govuk-hint">
+              For example, 27 3 2024
+            </div>
+            <div class="govuk-date-input" id="Date3">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="Date3-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="Date3-day" name="Date3-day" type="text" inputmode="numeric" value="{{data['Date3-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="Date3-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="Date3-month" name="Date3-month" type="text" inputmode="numeric" value="{{data['Date3-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="Date3-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="Date3-year" name="Date3-year" type="text" inputmode="numeric" value="{{data['Date3-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukRadios({
+          name: "disbursementType3",
+          value: data['disbursementType3'],
+          fieldset: {
+            legend: {
+              text: "Which disbursement type is this is for?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Car mileage",
+              text: "Car mileage",
+              checked: checked('disbursementType3','Car mileage'),
+              hint: {
+                text: "£0.45 per mile"
+              }
+            },
+            {
+              value: "Motorcycle mileage",
+              text: "Motorcycle mileage",
+              checked: checked('disbursementType3','Motorcycle mileage'),
+              hint: {
+                text: "£0.45 per mile"
+              }
+            },
+            {
+              value: "Bike mileage",
+              text: "Bike mileage",
+              checked: checked('disbursementType3','Bike mileage'),
+              hint: {
+                text: "£0.25 per mile"
+              }
+            },
+            {
+              value: "Other",
+              text: "Other",
+              checked: checked('disbursementType3','Other'),
+              hint: {
+                text: "£56.89 per hour"
+              },
+              conditional: {
+                html: other2Html
+              }
+            }
+          ]
+        }) }}
+
+        {% elseif data['addD2'] == "2"%}
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset" role="group" aria-describedby="Date-hint">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                  Date
+                </h1>
+              <div id="Date-hint" class="govuk-hint">
+                For example, 27 3 2024
+              </div>
+              <div class="govuk-date-input" id="Date2">
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="Date2-day">
+                      Day
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="Date2-day" name="Date2-day" type="text" inputmode="numeric" value="{{data['Date2-day']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="Date2-month">
+                      Month
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="Date2-month" name="Date2-month" type="text" inputmode="numeric" value="{{data['Date2-month']}}">
+                  </div>
+                </div>
+                <div class="govuk-date-input__item">
+                  <div class="govuk-form-group">
+                    <label class="govuk-label govuk-date-input__label" for="Date2-year">
+                      Year
+                    </label>
+                    <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="Date2-year" name="Date2-year" type="text" inputmode="numeric" value="{{data['Date2-year']}}">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+
+          {{ govukRadios({
+            name: "disbursementType2",
+            value: data['disbursementType2'],
+            fieldset: {
+              legend: {
+                text: "Which disbursement type is this is for?",
+                isPageHeading: false,
+                classes: "govuk-fieldset__legend--s"
+              }
+            },
+            items: [
+              {
+                value: "Car mileage",
+                text: "Car mileage",
+                checked: checked('disbursementType2','Car mileage'),
+                hint: {
+                  text: "£0.45 per mile"
+                }
+              },
+              {
+                value: "Motorcycle mileage",
+                text: "Motorcycle mileage",
+                checked: checked('disbursementType2','Motorcycle mileage'),
+                hint: {
+                  text: "£0.45 per mile"
+                }
+              },
+              {
+                value: "Bike mileage",
+                text: "Bike mileage",
+                checked: checked('disbursementType2','Bike mileage'),
+                hint: {
+                  text: "£0.25 per mile"
+                }
+              },
+              {
+                value: "Other",
+                text: "Other",
+                checked: checked('disbursementType2','Other'),
+                hint: {
+                  text: "£56.89 per hour"
+                }
+              }
+            ]
+          }) }}
+
+        {% else %}
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="Date-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                Date
+              </h1>
+            <div id="Date-hint" class="govuk-hint">
+              For example, 27 3 2024
+            </div>
+            <div class="govuk-date-input" id="Date1">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="Date1-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="Date1-day" name="Date1-day" type="text" inputmode="numeric" value="{{data['Date1-day']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="Date1-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="Date1-month" name="Date1-month" type="text" inputmode="numeric" value="{{data['Date1-month']}}">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="Date1-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="Date1-year" name="Date1-year" type="text" inputmode="numeric" value="{{data['Date1-year']}}">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {% set other1Html %}
+          {% include version + "/includes/list-service.html" %}
+        {% endset %}
+
+        {{ govukRadios({
+          name: "disbursementType1",
+          value: data['disbursementType1'],
+          fieldset: {
+            legend: {
+              text: "Which disbursement type is this is for?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Car mileage",
+              text: "Car mileage",
+              checked: checked('disbursementType1','Car mileage'),
+              hint: {
+                text: "£0.45 per mile"
+              }
+            },
+            {
+              value: "Motorcycle mileage",
+              text: "Motorcycle mileage",
+              checked: checked('disbursementType1','Motorcycle mileage'),
+              hint: {
+                text: "£0.45 per mile"
+              }
+            },
+            {
+              value: "Bike mileage",
+              text: "Bike mileage",
+              checked: checked('disbursementType1','Bike mileage'),
+              hint: {
+                text: "£0.25 per mile"
+              }
+            },
+            {
+              value: "Other",
+              text: "Other",
+              checked: checked('disbursementType1','Other'),
+              conditional: {
+                html: other1Html
+              }
+            }
+          ]
+        }) }}
+      {% endif %}
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "task-list"
+        }) }}
+
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+      let selectElements = $('.autocomplete-select')
+      let placeholder = ''
+
+
+      selectElements.each(function (index) {
+        let selectElement = $(this)
+        if (selectElement.length) {
+          if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+          
+          accessibleAutocomplete.enhanceSelectElement({
+            defaultValue: '',
+            placeholder: placeholder,
+            minLength: 1,
+            showNoOptionsFound: false,
+            showAllValues: true,
+            autoselect: true,
+            selectElement: selectElement[0],
+          })
+        }
+
+      })
+    
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,295 @@
+{% extends "layouts/main-old.html" %}
+
+{% set version = "nsm-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}  
+{% endblock %}
+
+
+{% block pageTitle %}
+  Disbursements - {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-provider"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form class="form" action="/{{version}}/add-another-disbursement2" method="post">
+    
+      <h1 class="govuk-heading-l">Disbursement cost</h1>
+
+      {% if data['addD2'] == "4" %}
+
+        {{ govukInput({
+          label: {
+            text: "Number of miles",
+            classes: "govuk-label--s"
+          },
+            hint: {
+              text: "For example, 2.5 miles"
+            },
+          classes: "govuk-input--width-5",
+          id: "miles4",
+          name: "miles4",
+          suffix: {
+            text: "miles"
+          },
+          spellcheck: false
+        }) }}
+
+        {{ govukTextarea({
+          name: "moreDetail4",
+          id: "more-detail4",
+          label: {
+            text: "Enter details of this disbursement",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "For example, why this disbursement was needed"
+          }
+        }) }}
+
+        {{ govukCheckboxes({
+          name: "vat4",
+          fieldset: {
+            legend: {
+              text: "Should VAT be applied to this cost",
+              isPageHeading: false,
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "VAT",
+              text: "Apply 20% VAT to this work"
+            }
+          ]
+        }) }}
+
+        {% elseif data['addD2'] == "3"%}
+
+          {{ govukInput({
+            label: {
+              text: "Number of miles",
+              classes: "govuk-label--s"
+            },
+              hint: {
+                text: "For example, 2.5 miles"
+              },
+            classes: "govuk-input--width-5",
+            id: "miles3",
+            name: "miles3",
+            suffix: {
+              text: "miles"
+            },
+            spellcheck: false
+          }) }}
+
+          {{ govukTextarea({
+            name: "moreDetail3",
+            id: "more-detail3",
+            label: {
+              text: "Enter details of this disbursement",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example, why this disbursement was needed"
+            }
+          }) }}
+
+          {{ govukCheckboxes({
+            name: "vat3",
+            fieldset: {
+              legend: {
+                text: "Should VAT be applied to this cost",
+                isPageHeading: false,
+                classes: "govuk-visually-hidden"
+              }
+            },
+            items: [
+              {
+                value: "VAT",
+                text: "Apply 20% VAT to this work"
+              }
+            ]
+          }) }}
+
+      
+
+        {% elseif data['addD2'] == "2"%}
+
+          {{ govukInput({
+            label: {
+              text: "Number of miles",
+              classes: "govuk-label--s"
+            },
+              hint: {
+                text: "For example, 2.5 miles"
+              },
+            classes: "govuk-input--width-5",
+            id: "miles2",
+            name: "miles2",
+            suffix: {
+              text: "miles"
+            },
+            spellcheck: false
+          }) }}
+
+          {{ govukTextarea({
+            name: "moreDetail2",
+            id: "more-detail2",
+            label: {
+              text: "Enter details of this disbursement",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example, why this disbursement was needed"
+            }
+          }) }}
+
+          {{ govukCheckboxes({
+            name: "vat23",
+            fieldset: {
+              legend: {
+                text: "Should VAT be applied to this cost",
+                isPageHeading: false,
+                classes: "govuk-visually-hidden"
+              }
+            },
+            items: [
+              {
+                value: "VAT",
+                text: "Apply 20% VAT to this work"
+              }
+            ]
+          }) }}
+
+        {% else %}
+
+          {{ govukInput({
+            label: {
+              text: "Number of miles",
+              classes: "govuk-label--s"
+            },
+              hint: {
+                text: "For example, 2.5 miles"
+              },
+            classes: "govuk-input--width-5",
+            id: "miles1",
+            name: "miles1",
+            suffix: {
+              text: "miles"
+            },
+            spellcheck: false
+          }) }}
+
+          {{ govukTextarea({
+            name: "moreDetail1",
+            id: "more-detail1",
+            label: {
+              text: "Enter details of this disbursement",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            hint: {
+              text: "For example, why this disbursement was needed"
+            }
+          }) }}
+
+          {{ govukCheckboxes({
+            name: "vat1",
+            fieldset: {
+              legend: {
+                text: "Should VAT be applied to this cost",
+                isPageHeading: false,
+                classes: "govuk-visually-hidden"
+              }
+            },
+            items: [
+              {
+                value: "VAT",
+                text: "Apply 20% VAT to this work"
+              }
+            ]
+          }) }}
+       
+      {% endif %}
+    
+       <button class="govuk-button govuk-button--secondary" type="button" onclick="calGeneralCost()">
+        Update calculation
+      </button> 
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">Calculations</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th class="govuk-table__header" scope="col">Net cost claimed</th>
+            <th class="govuk-table__header" scope="col">VAT on claimed</th>
+            <th class="govuk-table__header" scope="col">Total cost claimed</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">£</td>
+            <td class="govuk-table__cell">£</td>
+            <td class="govuk-table__cell">£</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" >
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend govuk-fieldset__legend--m">
+            Do you need to add another disbursement?
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-anotherD" name="add-anotherD" type="radio" value="Yes">
+              <label class="govuk-label govuk-radios__label" for="add-anotherD">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="add-anotherD-2" name="add-anotherD" type="radio" value="No">
+              <label class="govuk-label govuk-radios__label" for="add-anotherD-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+          text: "Save and come back later",
+          classes: "govuk-button--secondary",
+          href: "task-list"
+        }) }}
+
+      </div>
+    </form>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

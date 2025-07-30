@@ -1,4 +1,4 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false, false, false] %}
 
@@ -107,17 +107,29 @@
 
             {% elseif data['cwAppStatus'] =="In progress"%}
               <form class="form" action="send-confirmation?cwAppStatus=Hold&statusComment=Hold&icaDecision=Yes" method="post">
+                <h1 class="govuk-heading-xl">Why are you referring this to the ICA?</h1>
                 
                 {{ govukTextarea({
-                  name: "icaReferredReason",
-                  id: "icaReferredReason",
+                  name: "icaReferredReasonCW",
+                  id: "icaReferredReasonCW",
                   label: {
-                    text: "Why are you referring this to the ICA? ",
-                    isPageHeading: true,
-                    classes: "govuk-label--xl"
+                    text: "Reason for referal",
+                    isPageHeading: false,
+                    classes: "govuk-label--s"
                   },
                   hint: {
-                    text: "We’ll share this information with the provider."
+                  text: "This will not be shared with the provider"
+                  }
+                }) }}  
+
+                {{ govukTextarea({
+                  name: "icaReferredReasonProvider",
+                  id: "icaReferredReasonProvider",
+                  value: data['icaReferredReasonProvider'] or "Your appeal has been sent to the ICA for a final decision.",
+                  label: {
+                    text: "Message to be sent to the provider",
+                    isPageHeading: false,
+                    classes: "govuk-label--s"
                   }
                 }) }}  
         {% endif %}

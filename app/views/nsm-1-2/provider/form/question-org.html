@@ -1,0 +1,174 @@
+{% extends "layouts/main-old.html" %}
+
+{% set version = "nsm-1-2" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Firm details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  {% include version +"/includes/nav-prime-provider"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Firm details</h1>
+    
+    <form class="form" action="question-org-contact" method="post">
+
+      {{ govukRadios({
+        name: "vatRegistered",
+        fieldset: {
+          legend: {
+            text: "Is your firm VAT registered?",
+            classes: "govuk-fieldset__legend--s",
+            isPageHeading: false            
+            }
+        },
+        hint: {
+          html: "We will add VAT to your work items, letters and calls if your firm is registered for VAT. <br><br>You can also add VAT to any disbursements you claim."
+        },
+        items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: checked("vatRegistered", "Yes")
+          },
+          {
+            value: "No",
+            text: "No",
+            checked: checked("vatRegistered", "No")
+          }
+        ]
+      }) }}
+
+      {% call govukFieldset({
+          legend: {
+            text: "Correspondence address",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+
+        {{ govukInput({
+          label: {
+            text: "Firm name",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "firm-name",
+          name: "firm-name",
+          value: data['firm-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Address line 1",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "address-line-1",
+          name: "addressLine1",
+          autocomplete: "address-line1"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Address line 2 (optional)",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "address-line-2",
+          name: "addressLine2",
+          autocomplete: "address-line2"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Town or city",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "address-town",
+          name: "addressTown",
+          autocomplete: "address-level2"
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Postcode",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-10",
+          id: "address-postcode",
+          name: "addressPostcode",
+          autocomplete: "postal-code"
+        }) }}
+
+      {% endcall %}
+
+      {% call govukFieldset({
+          legend: {
+            text: "Solicitor details",
+            classes: "govuk-fieldset__legend--m",
+            isPageHeading: false
+          }
+        }) %}
+        
+        <p>Enter the details of the solicitor managing this case</p>
+
+        {{ govukInput({
+          label: {
+            text: "Solicitor full name",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-20",
+          id: "solicitor-full-name",
+          name: "solicitor-full-name",
+          value: data['solicitor-full-name']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Solicitor reference number",
+            classes: "govuk-label--s"
+          },
+          classes: "govuk-input--width-10",
+          id: "solicitor-ref",
+          name: "solicitor-ref",
+          value: data['solicitor-ref']
+        }) }}
+
+      {% endcall %}   
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "task-list"
+          }) }}
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "pa-1-2" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Application details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% include version + "/includes/app-info.html"%}
+
+      {{ mojSubNavigation({
+        label: 'Sub navigation',
+        items: [{
+          text: 'Overview',
+          href: 'application-details',
+          active: false
+        },  
+        {
+          text: 'Adjust quote',
+          href: 'application-details-adjust',
+          active: true
+        }, 
+        {
+          text: 'Related applications',
+          href: 'application-details-related',
+          active: false
+        },
+        {
+          text: 'Application history',
+          href: 'application-details-history',
+          active: false
+        }]
+      }) }}
+
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h2 class="govuk-heading-m">Adjust quote</h2>
+
+      {% include version + "/includes/adjust-info.html"%}
+
+      {% include version + "/includes/adjust-costs.html"%}
+
+      {% include version + "/includes/application-buttons.html"%}
+
+    </div>
+  </div>
+
+{% endblock %}

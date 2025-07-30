@@ -1,13 +1,13 @@
 <div class="govuk-form-group">
   <label class="govuk-heading-xl" for="laa-ref">
-    {% if data['paymentType'] == "Amendment to assigned counsel" %}
+    {% if data['paymentType'] == "Assigned counsel - amendment" or data['paymentType'] == "Assigned counsel - appeal" %}
       LAA reference for the assigned counsel claim 
       {% else %}
        LAA reference for the original claim 
     {% endif %}
   </label>
   <div id="laa-ref-hint" class="govuk-hint">
-     Enter the LAA reference or the defendant name, or select one from the suggestions that appear when you start typing
+      Start typing the LAA reference or the defendant last name and select one of the suggestions that appear
   </div>
   <select class="govuk-select autocomplete-select" id="laa-ref" name="laa-ref" aria-describedby="offence-hint">
     <option {{ "selected" if data["laa-ref"] == "0" }} value=""></option>
