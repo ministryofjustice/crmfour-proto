@@ -26,16 +26,17 @@ href: "javascript:window.history.back()"
 
     <h1 class="govuk-heading-xl">Your appeal</h1>
 
-    <p class="govuk-body">Explain your grounds for appeal and upload supporting evidence.
+    
 
-    <h2 class="govuk-heading-m">LAA decision</h2>
+     
+                    <h2 class="govuk-heading-m">LAA decision</h2>
 
     {% if data['app-task']=="Part granted"%}
     <div class="govuk-inset-text">
       <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
-      <p>This application was part granted due to unrealistic costs claimed and an unregulated provider.</p>
-      <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested</p>
-      <p>£480.00 allowed</p>
+      <p>This application was part granted due to unrealistic costs claimed and an unregulated provider.</br></br>
+      £{{data['actualdistTotalCost'] or "640"}}.00 requested</br>
+      £480.00 allowed</p>
     </div>
     {% else %}
     <div class="govuk-inset-text">
@@ -64,7 +65,17 @@ href: "javascript:window.history.back()"
               <li class="govuk-body">the expert needs to be very experienced</li>
               <li class="govuk-body">the material is so unusual that few experts qualify to help</li>
             </ul>
+            <p class="govuk-body">
+              Do not appeal for:</p>
+              <ul class="govuk-list govuk-list--bullet">
+                <li class="govuk-body">more funding than you originally applied for</li>
+                  <li class="govuk-body">funding for work already done</li>
+                    <li class="govuk-body">making changes to your application</li>
+                          </ul>
+                          <p class="govuk-body">If you need to make changes, make a new application or explain the change at the billing stage.</p> 
+      
           </div>
+          
         </details>
 
         <textarea id="appeal-reason" class="govuk-textarea"
