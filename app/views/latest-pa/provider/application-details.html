@@ -1,4 +1,4 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
 {% set activeAppNav = [true, false, false] %}
@@ -40,6 +40,9 @@
     {% include version + "/includes/nav-app-provider.njk" %}
 
     <h2 class="govuk-heading-l">Overview</h2>
+
+    {% include version + "/includes/decision-details-provider.html"%}
+
     {% if data['app-task'] == "Submitted" or data['app-task'] == "Returned" or data ['Appeal'] =="Yes" %}
           {% else %}
           <div class="govuk-summary-list__row">
