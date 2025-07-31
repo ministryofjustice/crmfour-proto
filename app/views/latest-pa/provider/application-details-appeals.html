@@ -5,22 +5,22 @@
 
 
 {% block header %}
-  {% include version + "/includes/header-provider.html" %}
+{% include version + "/includes/header-provider.html" %}
 {% endblock %}
 
 
 {% block pageTitle %}
-  Application details - history {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+Application details - history {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
-  {% include "includes/banner.html"%}
-  
+{% include "includes/banner.html"%}
 
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
+
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
 {% endblock %}
 
 {% block content %}
@@ -29,7 +29,7 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">
       Application details
-    </h1>  
+    </h1>
   </div>
 
   <!--Status of application-->
@@ -38,12 +38,36 @@
   <div class="govuk-grid-column-full" id="nav">
     <!--2nd nav-->
     {% include version + "/includes/nav-app-provider.njk" %}
-    
+
     <h2 class="govuk-heading-l">Appeals</h2>
 
+      {%if data['app-task'] == "Submitted" %}
+            <dl class="govuk-summary-list">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Your appeal</dt>
+                <dd class="govuk-summary-list__value">
+                  <p>Appealed 25 June 2025</p>
+                  <p>This expert is critical to the case and they are also the best dna expert in the land
+                    available at short notice.</p><a class="govuk-link"
+                    href="62a30fef-7908-42e2-9ea3-f9419ba0fa68">important-evidence.pdf</a>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Decision being appealed
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <p>Part granted 25 June 2025</p>
+                  <p>This application was part granted due to unrealistic costs claimed and an unregulated provider. </p>
+                  <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested</p>
+                  <p>£480.00 allowed</p>
+                  <a href="application-details-adjusted.html">Review adjustments</a>
+                </dd>
+              </div>
+            </dl>
+      {%endif %}
 
   </div>
 </div>
 
 {% endblock %}
-

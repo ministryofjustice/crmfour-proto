@@ -33,7 +33,7 @@
                       <br>
                       <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                       <p>£0.00 allowed</p>
-                      <p><a href="">View decision</a></p>
+                      <p><a href="application-details#overview">View decision</a></p>
                     {% elseif data['app-task'] == "Referred" %}
                       <strong class="govuk-tag govuk-tag--yellow">Sent to ICA</strong></p>
                       <p>22 August 2023</p>
@@ -46,13 +46,13 @@
                       <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                       <p>£520.00 allowed</p>
                       <p>
-                      <p><a href="">View decision</a></p>
+                      <p><a href="application-details#overview">View decision</a></p>
                     {% elseif data['app-task'] == "Review" %}
                       <strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
                       <p>7 March 2024</p>
                       <br>
                       <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-                      <a href="">View request</a></p>
+                      <p><a href="application-details-appeals#overview">View request</a></p>
                     {% elseif data['app-task'] == "Returned" %}
                       <strong class="govuk-tag govuk-tag--light-blue">Resubmitted</strong></p>
                       <p><span id="date"></span></p>
@@ -88,25 +88,25 @@
                 <strong class="govuk-tag govuk-tag--light-blue">Submitted</strong></p>
                 <p>09 March 2024</p>
                 <p>Awaiting LAA review</p>
-                <p><a href="">View appeal</a></p>
+                <p><a href="application-details-appeals#nav">View appeal</a></p>
             
                 {% elseif data['app-task'] == "Referred" %}
                 <strong class="govuk-tag govuk-tag--light-blue">Submitted</strong></p>
                   <p>22 August 2023</p>
                   <p>Awaiting ICA response</p>
-                  <p><a href="">View appeal</a></p>
+                  <p><a href="application-details-appeals#nav">View appeal</a></p>
            
                 {% elseif data['app-task'] == "Review" %}
                   <strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
                   <p>Request sent 7 March 2025</p>
                   <p>Respond by 21 March 2025</p>
-                  <p><a href="">View request</a></p>
+                  <p><a href="application-details-appeals#overview">View request</a></p>
 
                 {% elseif data['app-task'] == "Returned" or data['app-task'] == "Re-submitted" %}
                   <strong class="govuk-tag govuk-tag--light-blue">Resubmitted</strong></p>
                   <p><span id="date"></span></p>
                   <p>Awaiting LAA response</p>
-                  <p><a href="">View appeal</a></p>                  
+                  <p><a href="application-details-appeals#nav">View appeal</a></p>                  
 
               {% endif %} 
             </dd>
@@ -127,7 +127,10 @@
                 <br>
                 <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                 <p>£520.00 allowed</p>
-                <p><a href="">View decision</a></p>
+                {% if data['app-task'] == "Part granted" %}
+                
+                <p><a href="application-details#overview">View decision</a></p>
+                {% endif %}
             </dd>
           </div>
         {% endif %}
