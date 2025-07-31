@@ -42,7 +42,7 @@
 
               {% elseif data['app-task'] == "Part granted" %}
                 <strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
-                <p>24 August 2025</p>
+                <p>1 August 2025</p>
                 <br>
                 <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                 <p>£520.00 allowed</p>
@@ -72,12 +72,27 @@
         </dl>
       {% endif %}
  
-      
-      <dl class="govuk-summary-list">
+      {% if data['Appeal'] == "Yes" %}
+        <dl class="govuk-summary-list">
 
-        {% if data['Appeal'] == "Yes" %}
           {% if data['app-task'] == "Part granted" %}
+            <!--if app-task is part granted just show this--->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Decision
+              </dt>
+              <dd class="govuk-summary-list__value">           
+                <strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
+                  <p>24 August 2025</p>
+                  <br>
+                  <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+                  <p>£520.00 allowed</p>
+                  <p><a href="application-details#nav">View decision</a></p>
+              </dd>
+            </div>
+
             {% else %}
+            <!--otherwise show the appeal and the decision-->
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
                 Appeal
@@ -109,27 +124,22 @@
                 {% endif %} 
               </dd>
             </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Decision
+              </dt>
+              <dd class="govuk-summary-list__value">           
+                <strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
+                  <p>1 August 2025</p>
+                  <br>
+                  <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+                  <p>£520.00 allowed</p>
+              </dd>
+            </div>
           {% endif %}
-        {% endif %}
+        </dl>
+      {% endif %}
         
-        {% if data['Appeal'] == "Yes" %}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Decision
-            </dt>
-            <dd class="govuk-summary-list__value">           
-              <strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
-              <p>1 August 2025</p>
-              <br>
-              <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
-              <p>£520.00 allowed</p>
-              {% if data['app-task'] == "Part granted" %}
-                <p><a href="application-details#nav">View decision</a></p>
-              {% endif %}
-            </dd>
-          </div>
-        {% endif %}
-      </dl>
     </div>
   </div>
 </div>

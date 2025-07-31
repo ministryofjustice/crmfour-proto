@@ -1,26 +1,26 @@
 {% if data['Appeal'] == "Yes" %}
 
-    {% if data['app-task'] == "Referred" %}
+  {% if data['app-task'] == "Referred" %}
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-s">Sent to ICA 21 August 2025</h3>
+        <p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>
+      </section>
+    </article>
+
+    {% elseif data['app-task'] == "Part granted" %}
       <article class="moj-ticket-panel" aria-label="Sub navigation 1">
         <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-          <h3 class="govuk-heading-s">Sent to ICA 21 August 2025</h3>
-          <p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>
+          <h3 class="govuk-heading-s">Part granted 24 August 2025</h3>
+          <p>This application was part granted due to disallowed travel costs.</p>
+          <ul class="govuk-list">
+            <li>
+              <a href="application-details-adjusted#review-adjustments" class="govuk-link--no-visited-state">Review allowed costs</a>
+            </li>
+          </ul>
+          <p>You can <a href="appeal-start.html">appeal this decision</a>.</p>
         </section>
-      </article>
-
-      {% elseif data['app-task'] == "Part granted" %}
-        <article class="moj-ticket-panel" aria-label="Sub navigation 1">
-          <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-            <h3 class="govuk-heading-s">Part granted 24 August 2025</h3>
-            <p>This application was part granted due to disallowed travel costs.</p>
-            <ul class="govuk-list">
-              <li>
-                <a href="application-details-adjusted#review-adjustments" class="govuk-link--no-visited-state">Review allowed costs</a>
-              </li>
-            </ul>
-            <p>You can <a href="appeal-start.html">appeal this decision</a>.</p>
-          </section>
-        </article>      
+      </article>      
 
     {% elseif data['app-task'] == "Review" %}
       <article class="moj-ticket-panel" aria-label="Sub navigation 1">
@@ -68,7 +68,7 @@
     {% elseif data['app-task'] == "Part granted" %}
       <article class="moj-ticket-panel" aria-label="Sub navigation 1">
         <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-          <h3 class="govuk-heading-s">Part granted 24 August 2025</h3>
+          <h3 class="govuk-heading-s">Part granted 1 August 2025</h3>
           <p>This application was part granted due to disallowed travel costs.</p>
           <ul class="govuk-list">
             <li>
