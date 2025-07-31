@@ -1,7 +1,7 @@
 {% if data['cwAppStatus'] == "Part granted"%}
     <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Part granted</h2>
+        <h3 class="govuk-heading-s">Part granted</h3>
         {% if data['partConfirm'] == null %}
           <p>This application was part granted due to disallowed travel costs.</p>
           {% else %}
@@ -30,7 +30,7 @@
   {% elseif data['cwAppStatus'] == "Rejected"%}
     <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Rejected</h2>
+        <h3 class="govuk-heading-s">Rejected</h3>
       {% if data['rejectedConfirm'] == null %}
         <p>This application has been rejected as the correct form has not been used. Please use CRM5.</p>
       {% else %}
@@ -41,7 +41,7 @@
   {% elseif data['cwAppStatus'] == "Referred"%}
    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Referred</h2>
+        <h3 class="govuk-heading-s">Referred</h3>
       {% if data['referredConfirm'] == null %}
         <p>Referred to ICA due to questions over the expert used and rates requested by provider.</p>
         {% else %}
@@ -52,7 +52,7 @@
   {% elseif data['cwAppStatus'] == "Returned" %}
     <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Provider updated 20 Oct 2024</h2>
+        <h3 class="govuk-heading-s">Provider updated 20 Oct 2024</h3>
       <ul class="govuk-list">
         <li>
           <a href="#review-further-info2" class="govuk-link--no-visited-state">Further information</a>
@@ -63,8 +63,8 @@
   {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Expired"%}
     <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Sent back to provider 7 Oct 2024</h2>
-      <p>Further information request: <br>
+        <h3 class="govuk-heading-s">Sent back to provider 7 Oct 2024</h3>
+      <p>Further information request:<br>
           {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
       </p>   
       </section>
@@ -72,7 +72,7 @@
   {% elseif data['cwAppStatus'] == "Granted" %}
     <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Granted</h2>
+        <h3 class="govuk-heading-s">Granted</h3>
         <p>{{data['grantedConfirm'] or "This is an optional comment from the caseworker"}}</p>
         {{ govukButton({
           text: "Create payment request",
