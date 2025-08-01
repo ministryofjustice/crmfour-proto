@@ -1,144 +1,180 @@
 {% if data['cwAppStatus'] == "Hold" and data['statusComment'] == "Hold" %}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Held for ICA 21 May 2025 </h3>
-      <p>This appeal needs to be sent to the ICA: </p>
-      <p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>    
-       <ul class="govuk-list govuk-list--number">
-        <li><a href="1">Download this application and attachments (Zip).</a></li>
-        <li>Email the download to the ICA.</li>
-        <li>Mark as sent to ICA.</li>
-      </ul>
-      {{ govukButton({
-        text: "Add to my list",
-        href: "user-assign",
-        classes: "govuk-button--secondary"
-      }) }}
-    </div>
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Held for ICA 21 May 2025</h3>
+        <p>This appeal needs to be sent to the ICA:</p>
+        <p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>    
+        <ul class="govuk-list govuk-list--number">
+          <li><a href="1">Download this application and attachments (Zip).</a></li>
+          <li>Email the download to the ICA.</li>
+          <li>Mark as sent to ICA.</li>
+        </ul>
+        {{ govukButton({
+          text: "Add to my list",
+          href: "user-assign"
+        }) }}
+      </section>
+    </article> 
+
   {% elseif (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Hold") %}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Held for ICA 21 May 2025 </h3>
-      <p>This appeal needs to be sent to the ICA: </p>
-      <p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>
-      <ul class="govuk-list govuk-list--number">
-        <li><a href="1">Download this application and attachments (Zip).</a></li>
-        <li>Email the download to the ICA.</li>
-        <li>Mark as sent to ICA.</li>
-      </ul>
-      {{ govukButton({
-        text: "Mark as sent to ICA",
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Held for ICA 21 May 2025 </h3>
+        <p>This appeal needs to be sent to the ICA:</p>
+       <p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>
+        <ul class="govuk-list govuk-list--number">
+          <li><a href="1">Download this application and attachments (Zip).</a></li>
+          <li>Email the download to the ICA.</li>
+          <li>Mark as sent to ICA.</li>
+        </ul>
+        {{ govukButton({
+          text: "Mark as sent to ICA",
         href: "send-decision-refer?"
-      }) }}
-    </div>
+        }) }}
+      </section>
+    </article> 
+
   {% elseif (data['cwAppStatus'] == "Referred" and data['statusComment'] == "Referred") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Referred")%}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Sent to ICA 21 May 2025</h3>
-      <p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>
-    </div>
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Sent to ICA 21 May 2025</h3>
+        <p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>
+      </section>
+    </article> 
+
   {% elseif (data['cwAppStatus'] == "Referred" and data['statusComment'] == "ReturnedICA") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "ReturnedICA")  %}
-    <div class="govuk-inset-text">
-    <h3 class="govuk-heading-s">Sent to ICA 21 May 2025</h3>
-      <p>Provider response to information request sent to ICA</p>
-    </div>
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Sent to ICA 21 May 2025</h3>
+        <p>Provider response to information request sent to ICA</p>
+      </section>
+    </article> 
+
   {% elseif data['cwAppStatus'] == "Returned" and data['statusComment'] == "Returned" and data['icaDecision'] =="Yes" %}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
-      <p>The provider's response needs to be sent to the ICA.</p>
-      <ul class="govuk-list govuk-list--number">
-        <li><a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">View update</a></li>
-        <li>Email the provider's response to the ICA.</li>
-        <li>Mark as sent to ICA.</li>
-      </ul>
-      {{ govukButton({
-        text: "Add to my list",
-        href: "user-assign",
-        classes: "govuk-button--secondary"
-      }) }}
-    </div>
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Provider updated 21 May 2025</h3>
+        <p>The provider's response needs to be sent to the ICA.</p>
+        <ul class="govuk-list govuk-list--number">
+          <li><a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">View update</a></li>
+          <li>Email the provider's response to the ICA.</li>
+          <li>Mark as sent to ICA.</li>
+        </ul>
+        {{ govukButton({
+          text: "Add to my list",
+          href: "user-assign"
+        }) }}
+      </section>
+    </article> 
+
   {% elseif data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned" and data['icaDecision'] == "Yes" %}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
-      <p>The provider's response needs to be sent to the ICA.</p>
-      <ul class="govuk-list govuk-list--number">
-        <li><a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">View update</a></li>
-        <li>Email the provider's response to the ICA.</li>
-        <li>Mark as sent to ICA.</li>
-      </ul>
-      {{ govukButton({
-        text: "Mark as sent to ICA",
-        href: "send-decision-refer"
-      }) }}
-    </div>
-  
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Provider updated 21 May 2025</h3>
+        <p>The provider's response needs to be sent to the ICA.</p>
+        <ul class="govuk-list govuk-list--number">
+          <li><a href="application-details-appeal?#review-further-info" class="govuk-link--no-visited-state">View update</a></li>
+          <li>Email the provider's response to the ICA.</li>
+          <li>Mark as sent to ICA.</li>
+        </ul>
+        {{ govukButton({
+          text: "Mark as sent to ICA",
+          href: "send-decision-refer"
+        }) }}
+      </section>
+    </article> 
+
   {% elseif (data['cwAppStatus'] == "Returned" and data['statusComment'] == "Returned" and data['icaDecision'] =="No") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned" and data['icaDecision'] =="No") %}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
-      <p><a href="#review-further-info" class="govuk-link--no-visited-state">View update</a></p>
-    </div>
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Provider updated 21 May 2025</h3>
+        <p><a href="#review-further-info" class="govuk-link--no-visited-state">View update</a></p>
+      </section>
+    </article> 
+
   {% elseif (data['cwAppStatus'] == "Returned" and data['Appeal'] =="No") or (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Returned" and data['Appeal'] =="No") %}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Provider updated 21 May 2025 </h3>
-      <p><a href="#review-further-info" class="govuk-link--no-visited-state">View update</a></p>
-    </div>
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Provider updated 21 May 2025</h3>
+        <p><a href="#review-further-info" class="govuk-link--no-visited-state">View update</a></p>
+      </section>
+    </article> 
+
   {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "Expired"%}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Sent back to provider 21 May 2025</h3>
-      {% if data['reviewApp'] == "further" %}
-        {% if data['icaDecision']== "Yes"%}
-          <p>ICA information request: <br>
-          {% else %}
-          <p>Further information request: <br>
-        {% endif %}
-          {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
-        </p>
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Sent back to provider 21 May 2025</h3>
+          {% if data['reviewApp'] == "further" %}
+            {% if data['icaDecision']== "Yes"%}
+            <h4 class="govuk-heading-s">ICA information request</h4>
+            {% else %}
+            <h4 class="govuk-heading-s">Further information request</h4>
+          {% endif %}
+          <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+          </p>
+        
         {% elseif data['reviewApp'] == "incorrect" %}
-          <p>Amendment request: <br>
-            {{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
+          <h4 class="govuk-heading-s">Amendment request</h4>
+          <p>{{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
           </p>
+
         {% else %}
-          <p>Further information request: <br>
-            {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+          <h4 class="govuk-heading-s">Further information request</h4>
+          <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
           </p>
-          <p>Amendment request: <br>
-            {{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
+          <h4 class="govuk-heading-s">Amendment request</h4>
+          <p>{{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
           </p>
       {% endif %}
-    </div>
+      </section>
+    </article> 
+
   {% elseif data['cwAppStatus'] == "Granted" %}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Granted 21 May 2025</h3>
-      {% if data['Appeal'] == "Yes" %}
-        <p>Appeal decision:</p>
-      {% endif %}
-      <p>{{data['grantedConfirm'] or "This application has been fully granted."}}</p>  
-    </div>      
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Granted 21 May 2025</h3>
+          {% if data['Appeal'] == "Yes" %}
+            <p>Appeal decision:</p>
+          {% endif %}
+        <p>{{data['grantedConfirm'] or "This application has been fully granted."}}</p>  
+      </section>
+    </article>
+
   {% elseif data['cwAppStatus'] == "Rejected"%}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Rejected 21 May 2025</h3>
-      {% if data['icaDecision'] == "Yes" %}
-        <p>ICA decision:</p>
-      {% endif %}
-      <p>{{data['rejectedConfirm'] or "This application has been rejected as the correct form has not been used. Please use CRM5."}}</p>        
-    </div>
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Rejected 21 May 2025</h3>
+        {% if data['icaDecision'] == "Yes" %}
+          <h4 class="govuk-heading-s">ICA decision</h4>
+        {% endif %}
+        <p>{{data['rejectedConfirm'] or "This application has been rejected as the correct form has not been used. Please use CRM5."}}</p>
+      </section>
+    </article>
+
   {% elseif data['cwAppStatus'] == "Part granted"%}
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Part granted 21 May 2025</h3>
-      {% if data['Appeal'] == "Yes" %}
-        {% if data['icaDecision'] == "Yes"%}
-          <p>ICA decision:</p>
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Part granted 21 May 2025</h3>
+        {% if data['Appeal'] == "Yes" %}
+          {% if data['icaDecision'] == "Yes"%}
+            <h4 class="govuk-heading-s">ICA decision</h4>
         {% endif %}
         <p>{{data['partConfirm'] or "This application remains part granted as travel costs are not allowable for this type of service as stated in the policy guidance."}}</p>
         {% else %}
         <p>{{data['partConfirm'] or "This application was part granted due to disallowed travel costs and reduced waiting costs."}}</p>
-      {% endif %}
+        {% endif %}
       <p><a href="application-details-adjust-readonly" class="govuk-link--no-visited-state">Review cost adjustments</a></p>
-    </div>
+      </section>
+    </article>
+
   {% elseif data['cwAppStatus'] == "In progress" or data['cwAppStatus'] == "New"%}
-      {% if data['Appeal'] == "Yes" %}
-        <div class="govuk-inset-text">
-          <h3 class="govuk-heading-s">Appealed 18 May 2025</h3>
-          <p>The provider has appealed this part granted application</p>
-          <p><a href="application-details-appeal">View appeal details</a></p>
-          </p>
-        </div>
-      {% endif%}
+    {% if data['Appeal'] == "Yes" %}
+    <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+      <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+        <h3 class="govuk-heading-m">Appealed 18 May 2025</h3>
+        <p>The provider has appealed this part granted application</p>
+        <p><a href="application-details-appeal">View appeal details</a></p>
+      </section>
+    </article>
+    {% endif%}
 {% endif %}
