@@ -25,71 +25,15 @@
     </div>
   </div>
 
-  {% if data['icaDecision'] == "Yes" %}
-    <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h4 class="govuk-summary-card__title" id="review-further-info">Sent to ICA 19 August 2025</h4>
-      </div>
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              ICA
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['ICA-first-name'] or "John"}} {{data['ICA-last-name'] or "Smith"}}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Reasons for referral
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p>{{data['icaReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>
-            </dd>
-          </div>
-        </dl>       
-      </div>
-    </div>
-  {% endif %}
-
-  {% elseif  data['app-task'] == "Referred" %} 
-    <h3 class="govuk-heading-m">Updates</h3>
-        <div class="govuk-summary-card">
-      <div class="govuk-summary-card__title-wrapper">
-        <h4 class="govuk-summary-card__title" id="review-further-info">Sent to ICA 19 August 2025</h4>
-      </div>
-      <div class="govuk-summary-card__content">
-        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              ICA
-            </dt>
-            <dd class="govuk-summary-list__value">
-              {{data['ICA-first-name'] or "John"}} {{data['ICA-last-name'] or "Smith"}}
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Reasons for referral
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p>{{data['icaReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>
-            </dd>
-          </div>
-        </dl>       
-      </div>
-    </div>
-
-  {% elseif data['app-task'] == "Returned" or data['app-task'] == "Part granted" %} 
+ {% elseif data['app-task'] == "Part granted" or data['app-task'] == "Re-submitted" %} 
     <h3 class="govuk-heading-m">Updates</h3>
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h4 class="govuk-summary-card__title" id="review-further-info">
           {% if data['icaDecision']== "Yes"%}
-            ICA information request 21 August 2025
+            ICA Update requested 21 August 2025
             {% else %}
-            Further information request 21 August 2025
+            Update requested 21 August 2025
           {% endif %}
         </h4>
       </div>
@@ -105,7 +49,7 @@
           </div>
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              Provider response
+              Your response
             </dt>
             <dd class="govuk-summary-list__value">
               {{data['providerFurtherInfo'] or "Relevant documents attached as requested" }}<br>
@@ -115,32 +59,5 @@
         </dl>       
       </div>
     </div>
-    {% if data['icaDecision']== "Yes"%}
-      <div class="govuk-summary-card">
-        <div class="govuk-summary-card__title-wrapper">
-          <h4 class="govuk-summary-card__title" id="review-further-info">Sent to ICA 19 August 2025</h4>
-        </div>
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                ICA
-              </dt>
-              <dd class="govuk-summary-list__value">
-                {{data['ICA-first-name'] or "John"}} {{data['ICA-last-name'] or "Smith"}}
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-                Reasons for referral
-              </dt>
-              <dd class="govuk-summary-list__value">
-                <p>{{data['icaReason'] or "Appeal sent to ICA due to questions over the expert used and rates requested by provider."}}</p>
-              </dd>
-            </div>
-          </dl>       
-        </div>
-      </div>
-    {% endif %}
   
 {% endif %}

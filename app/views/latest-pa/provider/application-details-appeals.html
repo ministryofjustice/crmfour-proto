@@ -41,8 +41,52 @@ href: "javascript:window.history.back()"
 
     <h2 class="govuk-heading-l">Appeal</h2>
 
+
+
+    
       {% if data['app-task'] == "Part granted" %}
         <!-- Show the version that has the appeal decision  - if there an ICA version will need to use an if statement--->
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Decision
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if data['icaDecision']== "Yes"%}
+                <p>ICA Part granted 18 May 2025</p>
+                {% else %}
+                <p>Part granted 18 May 2025</p>
+                {%endif %}
+                <p>Your new evidence does not allow us to approve the travel costs. Your application remains part granted.</p>
+                <ul class="govuk-list">
+                  <li>Requested: £640.00</li>
+                  <li>Allowed: £480.00</li>
+                </ul>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Your appeal</dt>
+              <dd class="govuk-summary-list__value">
+                <p>Appealed 15 August 2025</p>
+                <p>This expert is critical to the case and they are also the best dna expert in the land
+                  available at short notice.</p><a class="govuk-link"
+                  href="62a30fef-7908-42e2-9ea3-f9419ba0fa68">important-evidence.pdf</a>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Decision being appealed
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <p>Part granted 1 August 2025</p>
+                <p>This application was part granted due to unrealistic costs claimed and an unregulated provider. </p>
+                <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested</p>
+                <p>£480.00 allowed</p>
+                
+              </dd>
+            </div>
+          </dl>
+
         {% else %}
         <!---all other appeals just show this --->
           <dl class="govuk-summary-list">
@@ -64,7 +108,7 @@ href: "javascript:window.history.back()"
                 <p>This application was part granted due to unrealistic costs claimed and an unregulated provider. </p>
                 <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested</p>
                 <p>£480.00 allowed</p>
-                <a href="application-details-adjusted#nav">Review allowed costs</a>
+          
               </dd>
             </div>
           </dl>

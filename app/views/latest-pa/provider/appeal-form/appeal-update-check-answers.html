@@ -1,0 +1,94 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+{% include version + "/includes/header-provider.html" %}
+{% endblock %}
+
+
+{% block pageTitle %}
+Applications details: {{data['laa-ref'] or "LAA-5a7d3c"}} – {{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+{% include "includes/banner.html"%}
+
+
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<!--Stage 2 - app appealed - no response yet > (part granted, following RFI)-->
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Check your appeal</h1>
+  </div>
+
+
+
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Your appeal</h2>
+        <ul class="govuk-summary-card__actions">
+          <li class="govuk-summary-card__action">
+            <!--For the proto make links show as not yet selected until the user does the action-->
+
+            <a class="govuk-link--no-visited-state" href="appeal-enter-lite">Change<span
+                class="govuk-visually-hidden"> your details</span></a>
+
+          </li>
+        </ul>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Update
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{ data['appealproviderFurtherInfo'] or 
+              "Relevant documents attached as requested."}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Documents
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <a class="govuk-link" href="">courtdocs1.pdf</a><br>
+              <a class="govuk-link" href="">courtdocs2.docx</a><br>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="govuk-button-group">
+      {{ govukButton({
+      text: "Accept and send",
+      href: "appeal-submitted"
+      }) }}
+
+    </div>
+
+
+  </div>
+
+  <script>
+    const date = new Date();
+    const formattedDate = date.toLocaleDateString('en-GB', {
+      day: '2-digit', month: 'short', year: 'numeric'
+    }).replace(/ /g, ' ');
+    document.getElementById("date").innerHTML = formattedDate;
+  </script>
+
+  {% endblock %}
