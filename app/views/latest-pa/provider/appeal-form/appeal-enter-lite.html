@@ -1,4 +1,4 @@
-{% extends "layouts/main-latest.html" %}
+{% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
 
@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-– {{ serviceName }} - GOV.UK
+Enter appeal – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 
@@ -78,8 +78,7 @@ href: "javascript:window.history.back()"
           
         </details>
 
-        <textarea id="appeal-reason" class="govuk-textarea"
-          rows="5" name="appeal-reason"></textarea>
+        <textarea value="{{data['appeal-reason']}}" id="appeal-reason" class="govuk-textarea" rows="5" name="appeal-reason"></textarea>
       </div>
 
       <h2 class="govuk-heading-s">Upload documents to support your appeal (optional)</h2>
