@@ -51,15 +51,12 @@ href: "javascript:window.history.back()"
         </dt>
         <dd class="govuk-summary-list__value">
           {% if data['icaDecision']== "Yes"%}
-          <p>ICA Part granted 24 August 2025</p>
+          <p><strong>ICA Part granted 24 August 2025</strong></p>
           {% else %}
-          <p>Part granted 24 August 2025</p>
+          <p><strong>Part granted 24 August 2025</strong></p>
           {%endif %}
           <p>Your new evidence does not allow us to approve the travel costs. Your application remains part granted.</p>
-          <ul class="govuk-list">
-            <li>Requested: £640.00</li>
-            <li>Allowed: £480.00</li>
-          </ul>
+          <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested <br>£480.00 allowed</p>
         </dd>
       </div>
       {% endif %}
@@ -67,7 +64,7 @@ href: "javascript:window.history.back()"
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Your appeal</dt>
         <dd class="govuk-summary-list__value">
-          <p>Appealed 15 August 2025</p>
+          <p><strong>Appealed 15 August 2025</strong></p>
           <p>{{ data['appeal-reason'] or 
           "I am appealing the decision to reject prior authority for £1,500 to fund a DNA expert because this expert
           is among the most qualified available and their input is crucial to the case. Without expert analysis, we
@@ -85,10 +82,9 @@ href: "javascript:window.history.back()"
           Decision being appealed
         </dt>
         <dd class="govuk-summary-list__value">
-          <p>Part granted 1 August 2025</p>
+          <p><strong>Part granted 1 August 2025</strong></p>
           <p>This application was part granted due to unrealistic costs claimed and an unregulated provider. </p>
-          <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested</p>
-          <p>£480.00 allowed</p>
+          <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested <br>£480.00 allowed</p>
         </dd>
       </div>
     </dl>

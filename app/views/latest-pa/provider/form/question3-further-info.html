@@ -8,7 +8,7 @@
 
 
 {% block pageTitle %}
-  Primary quote – {{ serviceName }} - GOV.UK
+  Update application – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -33,10 +33,10 @@
     {% endif %}
 
     <form class="form" action="task-listFI?app-task=Review" method="post">
-      <h1 class="govuk-heading-xl">Further information</h1>
+      <h1 class="govuk-heading-xl">Update application</h1>
 
       <div class="govuk-inset-text">
-        <p><strong>Your application needs the following further information to proceed</strong></p>
+        <p><strong>Further information needed</strong></p>
         <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this is much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
         </p>
       </div>
@@ -101,6 +101,7 @@
 
   </div>
 {% endblock %}
+
 {% block pageScripts %}
   <script>
     if (typeof MOJFrontend.MultiFileUpload !== "undefined") {
@@ -110,6 +111,17 @@
         deleteUrl: "/ajax-delete",
       });
     }
+
+    import { MultiFileUpload } from '/javascripts/moj-frontend.min.js'
+
+    const $multiFileUpload = document.querySelector(
+      '[data-module="moj-multi-file-upload"]'
+    )
+
+    new MultiFileUpload($multiFileUpload, {
+      uploadUrl: '/ajax-upload',
+      deleteUrl: '/ajax-delete'
+    })
 
   </script>
 {% endblock %}

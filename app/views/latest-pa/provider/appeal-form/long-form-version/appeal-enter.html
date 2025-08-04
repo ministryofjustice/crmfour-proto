@@ -7,15 +7,15 @@
 {% endblock %}
 
 {% block pageTitle %}
-Your appeal – {{ serviceName }} - GOV.UK
+– {{ serviceName }} - GOV.UK
 {% endblock %}
 
 
 {% block beforeContent %}
 {% include "includes/banner.html"%}
 {{ govukBackLink({
-text: "Back",
-href: "javascript:window.history.back()"
+  text: "Back",
+  href: "javascript:window.history.back()"
 }) }}
 {% endblock %}
 
@@ -26,24 +26,29 @@ href: "javascript:window.history.back()"
 
     <h1 class="govuk-heading-xl">Your appeal</h1>
 
+    <p class="govuk-body">Explain your grounds for appeal and upload supporting evidence.
+
+    <h2 class="govuk-heading-m">LAA decision</h2>
+
     {% if data['app-task']=="Part granted"%}
     <div class="govuk-inset-text">
-      <p><strong>Part granted 1 August 2025</strong></p>
+      <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
       <p>This application was part granted due to unrealistic costs claimed and an unregulated provider.</p>
-      <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested<br>£520.00 allowed</p>
+      <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested</p>
+      <p>£480.00 allowed</p>
     </div>
     {% else %}
     <div class="govuk-inset-text">
-      <p><strong>Rejected 1 August 2025</strong></p>
-      <p>This application has been fully rejected as the correct form has not been used. Please use CRM5.</p>
-      <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested<br>£0.00 allowed</p>
+      <p><strong class="govuk-tag govuk-tag--red">Rejected</strong> </p>
+      <p>This application was rejected due to unrealistic costs claimed and an unregulated provider. </p>
     </div>
     {% endif %}
 
     <form class="edit_prior_authority_steps_further_information_form"
       id="new_prior_authority_steps_further_information_form" action="appeal-check-answers" method="post">
        <div class="govuk-form-group">
-        <label for="appeal-reason" class="govuk-label govuk-label--s">Enter your appeal</label>
+        <label for="appeal-reason"
+          class="govuk-label govuk-label--s">Enter your appeal</label>
 
         <details class="govuk-details">
           <summary class="govuk-details__summary">
@@ -54,58 +59,65 @@ href: "javascript:window.history.back()"
           <div class="govuk-details__text">
             <p class="govuk-body">For example, tell us why:</p>
             <ul class="govuk-list govuk-list--bullet">
+
               <li class="govuk-body">the expert's evidence is key to the case</li>
               <li class="govuk-body">the expert needs to be very experienced</li>
               <li class="govuk-body">the material is so unusual that few experts qualify to help</li>
             </ul>
-            <p class="govuk-body">Do not appeal for:</p>
-              <ul class="govuk-list govuk-list--bullet">
-                <li class="govuk-body">more funding than you originally applied for</li>
-                <li class="govuk-body">funding for work already done</li>
-                <li class="govuk-body">making changes to your application</li>
-              </ul>
-              <p class="govuk-body">If you need to make changes, make a new application or explain the change at the billing stage.</p> 
-      
           </div>
-          
         </details>
 
-        <textarea value="{{data['appeal-reason']}}" id="appeal-reason" class="govuk-textarea" rows="5" name="appeal-reason"></textarea>
+        <textarea id="appeal-reason" class="govuk-textarea"
+          rows="5" name="appeal-reason"></textarea>
       </div>
 
-      <h2 class="govuk-heading-s">Documents to support your appeal (optional)</h2>
-      <p class="govuk-body"> Friendly file names make it easier for us to assess your case. For example, Client-case.pdf instead of File23.PDF.</p>
-      <p>The maximum file size is 10MB. Files must be a DOCX, XLSX, XLS, RTF, ODT, JPG, BMP, PNG, TIF or PDF.</p>
-            <details class="govuk-details">
+      <h2 class="govuk-heading-s">Upload documents to support your appeal (optional)</h2>
+
+      <details class="govuk-details">
         <summary class="govuk-details__summary">
           <span class="govuk-details__summary-text">
             Examples of supporting documents
           </span>
         </summary>
+
         <ul class="govuk-list govuk-list--bullet">
           <li class="govuk-body">prosecution case summary</li>
           <li class="govuk-body">defence statement</li>
           <li class="govuk-body">proof of evidence</li>
           <li class="govuk-body">counsel’s opinion as to why the expert is needed</li>
-          <li class="govuk-body">expert reports already obtained in the same or a related area of expertise for the same matter</li>
+          <li class="govuk-body">expert reports already obtained in the same or a related area of
+            expertise for the same matter</li>
+
         </ul>
+
       </details>
+      <p class="govuk-body"> Friendly file names make it easier for us to assess your case. For example, Client-case.pdf
+        instead of
+        File23.PDF.<br><br>
+        The maximum file size is 10MB. Files must be a DOCX, XLSX, XLS, RTF, ODT, JPG, BMP, PNG, TIF or PDF.</p>
 
       <div class="moj-multi-file-upload moj-multi-file-upload--enhanced" data-max-size="10485760"
         data-module="moj-multi-file-upload" data-moj-multi-file-upload-init="">
         <div class="moj-multi-file-upload__upload">
-          <div class="govuk-form-group">
-            <label for="prior-authority-steps-further-information-form-documents-field" class="govuk-label govuk-label--s">Upload files</label>
-            <input name="prior_authority_steps_further_information_form[documents][]" type="hidden" value="" autocomplete="off">
-            <div class="moj-multi-file-upload__dropzone">
-              <input id="prior-authority-steps-further-information-form-documents-field" class="govuk-file-upload moj-multi-file-upload__input" multiple="multiple" accept="application/msword,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,application/rtf,text/rtf,application/pdf,image/jpeg,image/bmp,image/png,image/tiff" type="file" name="prior_authority_steps_further_information_form[documents][]">
-              <p class="govuk-body">Drag and drop files here or</p>
-              <label for="prior-authority-steps-further-information-form-documents-field" class="govuk-button govuk-button--secondary">Choose files</label>
+          <div class="govuk-form-group"><label for="prior-authority-steps-further-information-form-documents-field"
+              class="govuk-label govuk-label--s">Upload files</label><input
+              name="prior_authority_steps_further_information_form[documents][]" type="hidden" value=""
+              autocomplete="off">
+            <div class="moj-multi-file-upload__dropzone"><input
+                id="prior-authority-steps-further-information-form-documents-field"
+                class="govuk-file-upload moj-multi-file-upload__input" multiple="multiple"
+                accept="application/msword,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,application/rtf,text/rtf,application/pdf,image/jpeg,image/bmp,image/png,image/tiff"
+                type="file" name="prior_authority_steps_further_information_form[documents][]">
+              <p class="govuk-body">Drag and drop files here or</p><label
+                for="prior-authority-steps-further-information-form-documents-field"
+                class="govuk-button govuk-button--secondary">Choose files</label>
               <div class="govuk-visually-hidden" aria-live="polite" role="status"></div>
             </div>
           </div>
           <button class="govuk-button govuk-button--secondary moj-multi-file-upload__button" data-module="govuk-button"
-            data-govuk-button-init=""> Choose files </button>
+            data-govuk-button-init="">
+            Choose files
+          </button>
         </div>
         <div class="moj-multi-file__uploaded-files moj-hidden">
           <table class="govuk-table">
@@ -125,6 +137,12 @@ href: "javascript:window.history.back()"
       <div class="govuk-button-group">
         {{ govukButton({
         text: "Save and continue"
+        }) }}
+
+        {{ govukButton({
+        text: "Save and come back later",
+        href: "appeal-check-answers",
+        classes: "govuk-button--secondary"
         }) }}
       </div>
     </form>

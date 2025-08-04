@@ -8,7 +8,7 @@
 
 
 {% block pageTitle %}
-  Update request – {{ serviceName }} - GOV.UK
+  Update appeal – {{ serviceName }} - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -27,10 +27,10 @@
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
     <form class="form" action="appeal-update-check-answers" method="post">
-      <h1 class="govuk-heading-xl">Update request</h1>
+      <h1 class="govuk-heading-xl">Update appeal</h1>
 
       <div class="govuk-inset-text">
-        <p><strong>Your appeal needs the following further information to proceed</strong></p>
+        <p><strong>Further information needed</strong></p>
         <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this is much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
         </p>
       </div>
@@ -52,16 +52,35 @@
           <div class="govuk-summary-list moj-multi-file-upload__list">
           </div>
         </div>
+       <div class="moj-multi-file-upload moj-multi-file-upload--enhanced" data-max-size="10485760"
+        data-module="moj-multi-file-upload" data-moj-multi-file-upload-init="">
         <div class="moj-multi-file-upload__upload">
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-label--s" for="documents">
-              Upload files
-            </label>
-            <input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple="">
+            <label for="prior-authority-steps-further-information-form-documents-field" class="govuk-label govuk-label--s">Upload files</label>
+            <input name="prior_authority_steps_further_information_form[documents][]" type="hidden" value="" autocomplete="off">
+            <div class="moj-multi-file-upload__dropzone">
+              <input id="prior-authority-steps-further-information-form-documents-field" class="govuk-file-upload moj-multi-file-upload__input" multiple="multiple" accept="application/msword,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,application/rtf,text/rtf,application/pdf,image/jpeg,image/bmp,image/png,image/tiff" type="file" name="prior_authority_steps_further_information_form[documents][]">
+              <p class="govuk-body">Drag and drop files here or</p>
+              <label for="prior-authority-steps-further-information-form-documents-field" class="govuk-button govuk-button--secondary">Choose files</label>
+              <div class="govuk-visually-hidden" aria-live="polite" role="status"></div>
+            </div>
           </div>
-          <button class="govuk-button govuk-button--secondary moj-multi-file-upload__button" data-module="govuk-button">
-            Upload file
-          </button>
+          <button class="govuk-button govuk-button--secondary moj-multi-file-upload__button" data-module="govuk-button"
+            data-govuk-button-init=""> Choose files </button>
+        </div>
+        <div class="moj-multi-file__uploaded-files moj-hidden">
+          <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--s">Uploaded files</caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">File name</th>
+                <th scope="col" class="govuk-table__header">Upload progress</th>
+                <th scope="col" class="govuk-table__header">Action</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body moj-multi-file-upload__list">
+            </tbody>
+          </table>
         </div>
       </div>
 
@@ -71,23 +90,6 @@
           text: "Save and continue"
         }) }}
 
-        {% if data['app-state'] =="empty" or data['app-state'] ==null %}
-      
-          {{ govukButton({
-            text: "Save and come back later",
-            classes: "govuk-button--secondary",
-            href: "../crm-apps-reviewed?app-state=draft"
-          }) }}
-
-          {% else %}
-
-          {{ govukButton({
-            text: "Save and come back later",
-            classes: "govuk-button--secondary",
-            href: "../crm-apps-reviewed?app-state=all#manage-drafts"
-          }) }}
-
-        {% endif %}
       </div>
 
     </form>
