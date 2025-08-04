@@ -15,14 +15,15 @@
             </dt>
             <dd class="govuk-summary-list__value">
 
-            {% if data['app-task'] == "Submitted" or data['app-task'] == "Re-submitted" %}
+            {% if data['app-task'] == "Submitted"  %}
               <strong class="govuk-tag govuk-tag--light-blue">Submitted</strong></p>
               <p>09 August 2025</p>
               <p>Awaiting LAA review</p>
               <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+
               {% elseif data['app-task'] == "Granted" %}
                 <strong class="govuk-tag govuk-tag--green">Granted</strong></p>
-                <p>1 August 2025</p>
+                <p>2 August 2025</p>
                 <br>
                 <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                 <p>£640.00 allowed</p>
@@ -50,8 +51,12 @@
 
               {% elseif data['app-task'] == "Review" %}
                 <strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
-                  <p>Requested 21 August 2025</p>
-                  <p>Respond by 4 September 2025</p>
+                <p>Requested 7 August 2025</p>
+                {% if data['icaDecision'] == "Yes"%}
+                  <p>Respond by 14 August 2025</p>
+                {% else %}
+                  <p>Respond by 21 August 2025</p>
+                {% endif %}
                 <br>
                 <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                 <p><a href="application-details#nav">View update request</a></p>
@@ -64,7 +69,7 @@
 
               {% elseif data['app-task'] == "Expired" %}
               <strong class="govuk-tag govuk-tag--red">Expired</strong></p>
-                <p>8 August 2025</p>
+                <p>14 August 2025</p>
                 <br>
                 <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
                 <p><a href="application-details#nav">View decision</a></p>
@@ -113,11 +118,15 @@
             
                   {% elseif data['app-task'] == "Review" %}
                     <strong class="govuk-tag govuk-tag--yellow">Update needed</strong></p>
-                    <p>Requested 7 August 2025</p>
-                    <p>Respond by 21 August 2025</p>
+                    <p>Requested 15 August 2025</p>
+                    {% if data['icaDecision'] == "Yes"%}
+                      <p>Respond by 22 August 2025</p>
+                    {% else %}
+                      <p>Respond by 29 August 2025</p>
+                    {% endif %}
                     <p><a href="application-details#nav">View update request</a></p>
 
-                  {% elseif data['app-task'] == "Returned" or data['app-task'] == "Re-submitted" %}
+                  {% elseif data['app-task'] == "Returned"  %}
                     <strong class="govuk-tag govuk-tag--light-blue">Resubmitted</strong></p>
                     <p><span id="date"></span></p>
                     <p>Awaiting LAA response</p>
