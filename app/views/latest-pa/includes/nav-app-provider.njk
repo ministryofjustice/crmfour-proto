@@ -1,3 +1,4 @@
+ <!--Only show the navigation if it is a) either an appeal or a part granted app-->
  {% if data['Appeal'] == "Yes" %}
   {{ mojSubNavigation({
     label: 'Sub navigation',
@@ -13,14 +14,14 @@
       active: + activeAppNav[1]
     },
     {
-      text: 'Costs',
-      href: 'application-details-adjusted#nav',
+      text: 'Allowed costs',
+      href: 'application-details-costs#nav',
       active: + activeAppNav[2]
     }
     ]
   }) }}
 
-  {% else %}
+  {% elseif data['app-task'] == "Part granted" %}
     {{ mojSubNavigation({
       label: 'Sub navigation',
       items: [
@@ -30,8 +31,8 @@
         active: + activeAppNav[0] | default('true')
       }, 
       {
-        text: 'Costs',
-        href: 'application-details-adjusted#nav',
+        text: 'Allowed costs',
+        href: 'application-details-costs#nav',
         active: + activeAppNav[2]
       }
       ]

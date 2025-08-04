@@ -17,7 +17,11 @@ Application complete – {{ serviceName }} – GOV.UK Prototype Kit
 
     <div class="govuk-panel govuk-panel--confirmation">
       <h1 class="govuk-panel__title">
-        Appeal submitted
+        {% if data['app-=-task'] == "Review" %}
+          Update submitted
+          {% else %}
+          Appeal submitted
+        {% endif %}
       </h1>
     </div>
 

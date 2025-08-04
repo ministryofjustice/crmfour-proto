@@ -42,14 +42,29 @@
 
 
     <h2 class="govuk-heading-l" id="review-adjustments">Allowed costs</h2>
-    <p class="govuk-body-m"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00</p>
-    <p class="govuk-body-m"><strong>Allowed: </strong>£520.00</p>
+    {% if data['app-task'] == "Granted" %}
+      <p><strong>Granted 1 August 2025</strong></p>
+      <p>The application has been fully granted.</p>
+      <p class="govuk-body-m">Requested: £{{data['actualdistTotalCost'] or "640"}}.00<br>
+      Allowed: £640.00</p>
+      {% elseif data['app-task'] == "Part granted" %}
+      <p><strong>Part granted 1 August 2025</strong></p>
+      <p>This application was part granted due to unrealistic costs claimed and an unregulated provider.</p>
+      <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested<br>£520.00 allowed</p>
+      {% elseif data['app-task'] == "Part granted" %}
+      <p><strong>Part granted 1 August 2025</strong></p>
+      <p>This application was part granted due to unrealistic costs claimed and an unregulated provider.</p>
+      <p class="govuk-body-m">Requested: £{{data['actualdistTotalCost'] or "640"}}.00<br>
+      Allowed: £520.00</p>
+    {% endif %}
+    
     
     <!--Service -->
     <h3 class="govuk-heading-m">{{data['serviceType'] or "Interpreter"}} cost</h3>
     
     <div class="govuk-inset-text">
-      Costs reduced according to correct fee amounts</div>
+      Costs reduced according to correct fee amounts
+    </div>
 
     <table class="govuk-table">
       <thead class="govuk-table__head">

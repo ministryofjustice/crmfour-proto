@@ -26,22 +26,19 @@ href: "javascript:window.history.back()"
 
     <h1 class="govuk-heading-xl">Your appeal</h1>
 
-    
-
-     
-                    <h2 class="govuk-heading-m">LAA decision</h2>
+    <h2 class="govuk-heading-m">LAA decision</h2>
 
     {% if data['app-task']=="Part granted"%}
     <div class="govuk-inset-text">
-      <p><strong class="govuk-tag govuk-tag--blue">Part granted</strong> </p>
-      <p>This application was part granted due to unrealistic costs claimed and an unregulated provider.</br></br>
-      £{{data['actualdistTotalCost'] or "640"}}.00 requested</br>
-      £480.00 allowed</p>
+      <p><strong>Part granted 1 August 2025</strong></p>
+      <p>This application was part granted due to unrealistic costs claimed and an unregulated provider.</p>
+      <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested<br>£520.00 allowed</p>
     </div>
     {% else %}
     <div class="govuk-inset-text">
-      <p><strong class="govuk-tag govuk-tag--red">Rejected</strong> </p>
-      <p>This application was rejected due to unrealistic costs claimed and an unregulated provider. </p>
+      <p><strong>Rejected 1 August 2025</strong></p>
+      <p>This application has been fully rejected as the correct form has not been used. Please use CRM5.</p>
+      <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested<br>£0.00 allowed</p>
     </div>
     {% endif %}
 

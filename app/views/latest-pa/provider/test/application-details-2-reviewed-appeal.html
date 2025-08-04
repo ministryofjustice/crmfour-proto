@@ -1,4 +1,4 @@
-{% extends "layouts/main-old.html" %}
+{% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
 {% set activeAppNav = [false, true, false] %}
@@ -116,8 +116,8 @@ href: "javascript:window.history.back()"
     active: + activeAppNav[1]
     },
     {
-    text: 'Costs',
-    href: 'application-details-adjusted#nav',
+    text: 'Allowed costs',
+    href: 'application-details-costs#nav',
     active: + activeAppNav[2]
     }
     ]
@@ -146,7 +146,7 @@ Decision being appealed
 <p>This application was part granted due to unrealistic costs claimed and an unregulated provider. </p>
 <p>£{{data['actualdistTotalCost'] or "640"}}.00 requested</p>
 <p>£480.00 allowed</p>
-<a href="application-details-adjusted.html">Review adjustments</a>
+<a href="application-details-costs.html">Review adjustments</a>
 </dd>
 </div>
 </dl>
