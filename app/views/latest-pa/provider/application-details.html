@@ -34,7 +34,7 @@
   <!--Status of application-->
   {% include version + "/includes/app-status-provider.html" %}
 
-  <div class="govuk-grid-column-two-thirds" id="nav">
+  <div class="govuk-grid-column-full" id="nav">
 
     <!--2nd nav-->
     {% include version + "/includes/nav-app-provider.njk" %}
@@ -355,73 +355,13 @@
               <th scope="col" class="govuk-table__header">Total requested</th>
             </tr>
           </thead>
-          {% if data['serviceType'] == "Transcription" %}
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{data['transNoMins'] or "20"}} minutes</td>
-                <td class="govuk-table__cell">£{{data['transCostMin'] or "20"}} per minute</td>
-                <td class="govuk-table__cell">£400.00</td>
-              </tr>
-            </tbody>
-            {% elseif data['serviceType'] == "Translation and transcription" %}
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{data['transtransNoMins'] or "20"}} minutes</td>
-                <td class="govuk-table__cell">£{{data['transtransCostMin'] or "20"}} per minute</td>
-                <td class="govuk-table__cell">£400.00</td>
-              </tr>
-            </tbody>
-            {% elseif data['serviceType'] == "Translation" %} 
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{data['translatorWords'] or "20000"}} words</td>
-                <td class="govuk-table__cell">£{{data['translatorCostWord'] or "20"}} per 1000 words</td>
-                <td class="govuk-table__cell">£400.00</td>
-              </tr>
-            </tbody>
-            {% elseif data['serviceType'] == "Photocopying" %} 
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{data['photoNoPages'] or "200"}} pages</td>
-                <td class="govuk-table__cell">£{{data['photoCostPage'] or "2"}} per page</td>
-                <td class="govuk-table__cell">£400.00</td>
-              </tr>
-            </tbody>
-            {% elseif data['serviceType'] == "Other" and  data['otherChargeType'] =="Charged by the hour"%} 
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{data['otherNoHours-hours'] or "2"}} hours {{data['otherNoHours-mins'] or "0"}}</td>
-                <td class="govuk-table__cell">£{{data['otherCost'] or "200"}} per hour</td>
-                <td class="govuk-table__cell">£400.00</td>
-              </tr>
-            </tbody>
-            {% elseif data['serviceType'] == "Other"%} 
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{data['otherNoItems'] or "1"}} items</td>
-                <td class="govuk-table__cell">£{{data['otherItemsCost'] or "400"}} per item</td>
-                <td class="govuk-table__cell">£400.00</td>
-              </tr>
-            </tbody>
-            {% elseif data['serviceType'] == "DNA report" %}
-             <!--All other service types-->    
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{data['dnaNoReport'] or "1"}} report</td>
-                <td class="govuk-table__cell">£{{data['dnaReportCost'] or "400"}}.00</td>
-                <td class="govuk-table__cell">£{{data['actualDNATotal'] or "400"}}.00</td>
-              </tr>
-            </tbody>
-            {% else %}
-            <!--All other service types-->     
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{data['generalNoHours-hours'] or "2"}} hours {{data['generalNoHours-mins'] or "0"}} minutes</td>
-                <td class="govuk-table__cell">£{{data['generalCost'] or "200"}} per hour</td>
-                <td class="govuk-table__cell">£400.00</td>
-              </tr>
-            </tbody>
-          {% endif %}
+         <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">{{data['generalNoHours-hours'] or "2"}} hours {{data['generalNoHours-mins'] or "30"}} minutes</td>
+              <td class="govuk-table__cell">£{{data['generalCost'] or "200"}} per hour</td>
+              <td class="govuk-table__cell">£500.00</td>
+            </tr>
+          </tbody>
         </table>
 
         <h4 class="govuk-heading-s" id="review-travel">Travel cost</h4>
@@ -455,27 +395,8 @@
         {% if data['addAdd'] =="0" %}
           <p>No additional costs added</p>
           {% else %}
-          <p>Cost description: {{data['addCost1'] or "Waiting time"}}</p>
-          <p>{{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}</p>
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Amount</th>
-                <th scope="col" class="govuk-table__header">Rate</th>
-                <th scope="col" class="govuk-table__header">Total requested</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{data['addTime1-hours'] or "4"}} hours {{data['addTime2-mins'] or "0"}} minutes</td>
-                <td class="govuk-table__cell">£{{data['addCostTime1'] or "30"}}.00 per hour</td>
-                <td class="govuk-table__cell">£120.00</td>
-              </tr>
-            </tbody>
-          </table>    
-          <h4 class="govuk-heading-s">Additional cost 2</h4>
           <p>Cost description: {{data['addCost2'] or "Hotel"}}</p>
-          <p>{{data['whyAdd2'] or "The expert traveled from Ireland and was unable to return the same day."}}</p>
+          <p>{{data['whyAdd2'] or "The expert needs to come from Ireland and is unable to return the same day."}}</p>
 
           <table class="govuk-table">
             <thead class="govuk-table__head">
@@ -492,7 +413,7 @@
                 <td class="govuk-table__cell">£120.00</td>
               </tr>
             </tbody>
-          </table>            
+          </table>                      
         {% endif %}
       </div>
     </div>

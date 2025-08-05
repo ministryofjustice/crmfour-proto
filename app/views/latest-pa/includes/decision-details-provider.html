@@ -1,4 +1,4 @@
-{% if data['Appeal'] == "No" %}
+{% if data['Appeal'] == "No" or data['Appeal'] == null  %}
 
   {% if data['app-task'] == "Granted" %}
     <article class="moj-ticket-panel" aria-label="Sub navigation 1">
@@ -20,12 +20,8 @@
       <article class="moj-ticket-panel" aria-label="Sub navigation 1">
         <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
           <h3 class="govuk-heading-m">Part granted 1 August 2025</h3>
-          <p>This application was part granted due to unrealistic costs claimed and an unregulated provider.</p>
-          <ul class="govuk-list">
-            <li>
-              <a href="application-details-costs#nav" class="govuk-link--no-visited-state">Review allowed costs</a>
-            </li>
-          </ul>
+          <p>This application was part granted due to disallowed travel costs</p>
+          <p><a href="application-details-costs#nav" class="govuk-link--no-visited-state">Review allowed costs</a></p>         
           <p>You can <a href="appeal-form/appeal-enter">appeal this decision</a>.</p>
         </section>
       </article> 
@@ -49,7 +45,7 @@
             {% else %}
             <h3 class="govuk-heading-m">Update requested 7 August 2025</h3>
             <p>Updates are needed to proceed with your application.<p>
-            <p>We will close the application if you do not respond by <strong>22 August 2025</strong>.</p>
+            <p>We will close the application if you do not respond by <strong>21 August 2025</strong>.</p>
           {% endif %}
 
             <h4 class="govuk-heading-s">Further information needed</h4>
@@ -82,7 +78,7 @@
   {% endif %}
 {% endif %}
 
-{% if data['Appeal'] == "Yes" %}
+{% if data['Appeal'] == "Yes" or data['Appeal'] == "Yes2"  %}
 
   {% if data['app-task'] == "Referred" %}
     <article class="moj-ticket-panel" aria-label="Sub navigation 1">
@@ -92,26 +88,34 @@
       </section>
     </article>
 
+    {% elseif data['app-task'] == "Granted" %}
+      <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+        <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+          {% if data['icaDecision']== "Yes"%}
+            <h3 class="govuk-heading-m">ICA Granted 24 August 2025</h3>
+            <p>On reconsideration of the evidence presented travel for the expert has been deemed necessary and all costs approved.</p>
+            <p><a href="application-details-costs#nav" class="govuk-link--no-visited-state">Review allowed costs</a></p>         
+
+            {% else %}  
+            <h3 class="govuk-heading-m">Part granted 24 August 2025</h3>
+            <p>On reconsideration of the evidence presented travel for the expert has been deemed necessary and all costs approved.</p>
+            <p><a href="application-details-costs#nav" class="govuk-link--no-visited-state">Review allowed costs</a></p>         
+          {% endif %}
+        </section>
+      </article>
+
     {% elseif data['app-task'] == "Part granted" %}
       <article class="moj-ticket-panel" aria-label="Sub navigation 1">
         <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
           {% if data['icaDecision']== "Yes"%}
-            <h3 class="govuk-heading-m">ICA Part granted 24 August 2025</h3>
+            <h3 class="govuk-heading-m">ICA Part granted 18 August 2025</h3>
             <p>Your new evidence does not allow us to approve the travel costs. Your application remains part granted.</p>
-            <ul class="govuk-list">
-              <li>
-                <a href="application-details-costs#review-adjustments" class="govuk-link--no-visited-state">Review allowed costs</a>
-              </li>
-            </ul>
+            <p><a href="application-details-costs#nav" class="govuk-link--no-visited-state">Review allowed costs</a></p>         
             <p>You cannot appeal an ICA decision.</p>
             {% else %}  
-            <h3 class="govuk-heading-m">Part granted 24 August 2025</h3>
+            <h3 class="govuk-heading-m">Part granted 18 August 2025</h3>
             <p>Your new evidence does not allow us to approve the travel costs. Your application remains part granted.</p>
-            <ul class="govuk-list">
-              <li>
-                <a href="application-details-costs#review-adjustments" class="govuk-link--no-visited-state">Review allowed costs</a>
-              </li>
-            </ul>          
+            <p><a href="application-details-costs#nav" class="govuk-link--no-visited-state">Review allowed costs</a></p>         
             <p>You can <a href="appeal-form/appeal-enter">appeal this decision</a>.</p>
           {% endif %}
         </section>

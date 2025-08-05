@@ -19,37 +19,37 @@
               <strong class="govuk-tag govuk-tag--light-blue">Submitted</strong></p>
               <p>09 August 2025</p>
               <p>Awaiting LAA review</p>
-              <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+              <p>£740.00 requested</p>
 
               {% elseif data['app-task'] == "Returned" or data['app-task'] == "Referred"  %}
                 <strong class="govuk-tag govuk-tag--light-blue">Resubmitted</strong></p>
                 <p>16 August 2025</p>
                 <p>Awaiting LAA review</p>
-                <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+                <p>£740.00 requested</p>
 
               {% elseif data['app-task'] == "Granted" %}
                 <strong class="govuk-tag govuk-tag--green">Granted</strong></p>
                 <p>2 August 2025</p>
                 <br>
-                <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested <br>£640.00 allowed</p>
+                <p>£740.00 requested <br>£740.00 allowed</p>
               {% elseif data['app-task'] == "Rejected" %}
                 <strong class="govuk-tag govuk-tag--red">Rejected</strong></p>
                 <p>12 August 2025</p>
                 <br>
-                <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested <br>£0.00 allowed</p>
+                <p>£740.00 requested <br>£0.00 allowed</p>
                 <p><a href="application-details#nav">View decision</a></p>
 
               {% elseif data['app-task'] == "Referred" %}
                 <strong class="govuk-tag govuk-tag--yellow">Sent to ICA</strong></p>
                 <p>22 August 2025</p>
                 <p>Awaiting ICA response</p>
-                <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+                <p>£740.00 requested</p>
 
               {% elseif data['app-task'] == "Part granted" %}
                 <strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
                 <p>1 August 2025</p>
                 <br>
-                <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested<br>£520.00 allowed</p>
+                <p>£740.00 requested<br>£500.00 allowed</p>
                 <p>
                 <p><a href="application-details#nav">View decision</a></p>
 
@@ -62,14 +62,14 @@
                   <p>Respond by 21 August 2025</p>
                 {% endif %}
                 <br>
-                <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+                <p>£740.00 requested</p>
                 <p><a href="application-details#nav">View update request</a></p>
 
               {% elseif data['app-task'] == "Expired" %}
               <strong class="govuk-tag govuk-tag--red">Expired</strong></p>
                 <p>14 August 2025</p>
                 <br>
-                <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested</p>
+                <p>£740.00 requested</p>
                 <p><a href="application-details#nav">View decision</a></p>
             {% endif %}
           </div>
@@ -87,9 +87,9 @@
               </dt>
               <dd class="govuk-summary-list__value">           
                 <strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
-                <p>24 August 2025</p>
+                <p>18 August 2025</p>
                 <br>
-                <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested <br>£520.00 allowed</p>
+                <p>£740.00 requested <br>£500.00 allowed</p>
                 <p><a href="application-details#nav">View decision</a></p>
               </dd>
             </div>
@@ -128,7 +128,6 @@
                       <p>Respond by 29 August 2025</p>
                     {% endif %}
                     <p><a href="application-details#nav">View update request</a></p>
-              
                 {% endif %} 
               </dd>
             </div>
@@ -140,9 +139,56 @@
                 <strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
                   <p>1 August 2025</p>
                   <br>
-                  <p>£{{data['actualdistTotalCost'] or ('640')}}.00 requested <br>£520.00 allowed</p>
+                  <p>£740.00 requested <br>£500.00 allowed</p>
               </dd>
             </div>
+          {% endif %}
+        </dl>
+      {% endif %}
+
+      {% if data['Appeal'] == "Yes2" %}
+        <dl class="govuk-summary-list">
+
+          {% if data['app-task'] == "Granted" %}
+            <!--if app-task is part granted just show this--->
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Decision
+              </dt>
+              <dd class="govuk-summary-list__value">           
+                <strong class="govuk-tag govuk-tag--green">Granted</strong></p>
+                <p>24 August 2025</p>
+                <br>
+                <p>£740.00 requested <br>£750.00 allowed</p>
+                <p><a href="application-details#nav">View decision</a></p>
+              </dd>
+            </div>
+
+            {% else %}
+              <!--otherwise show the appeal and the decision-->
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Appeal
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    <strong class="govuk-tag govuk-tag--light-blue">Submitted</strong></p>
+                    <p>19 August 2025</p>
+                    <p>Awaiting LAA review</p>
+                    <p><a href="application-details-appeals#nav">View appeal</a></p>
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Decision
+                </dt>
+                <dd class="govuk-summary-list__value">           
+                  <strong class="govuk-tag govuk-tag--blue">Part granted</strong></p>
+                  <p>18 August 2025</p>
+                  <br>
+                  <p>£740.00 requested <br>£500.00 allowed</p>
+                  <p><a href="application-details#nav">View decision</a></p>
+                </dd>
+              </div>
           {% endif %}
         </dl>
       {% endif %}

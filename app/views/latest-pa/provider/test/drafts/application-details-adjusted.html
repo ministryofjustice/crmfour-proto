@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 {% set version = "latest-pa" %}
 {% set activePrimeNav = [true, false] %}
-{% if data['Appeal'] == "Yes" %}
+{% if data['Appeal'] == "Yes" or data['Appeal'] == "Yes2"%}
   {% set activeAppNav = [false, false, true] %}
   {% else %}
   {% set activeAppNav = [false, true, false] %}
@@ -45,7 +45,7 @@
 
 
     <h2 class="govuk-heading-l" id="review-adjustments">Allowed costs</h2>
-    <p class="govuk-body-m"><strong>Requested:</strong> £{{data['actualdistTotalCost'] or "640"}}.00</p>
+    <p class="govuk-body-m"><strong>Requested:</strong> £740.00</p>
     <p class="govuk-body-m"><strong>Allowed: </strong>£520.00</p>
     
     <!--Service -->
