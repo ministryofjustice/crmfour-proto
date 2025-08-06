@@ -14,7 +14,7 @@
 </div>
 
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-column-full">
 
     <!--Rebrand-->
     <h2 class="govuk-heading-l">Rebrand</h2>
@@ -30,43 +30,61 @@
 
     <!--Variables-->
     <h2 class="govuk-heading-l">Variables</h2>
-      <p>
-        Variables are used in this prototype to store, remember and display data on the page. They can be seen in the URL and look like this: AppStatus=Rejected.
-      </p>
-
-      <p>
-        The ampersand '&' symbol can be used to seperate and apply multiple variables to a page, for example: cwAppStatus=Rejected&Appeal=Yes.
-      </p>
+      <p>Variables are used in this prototype to store, remember and display data on the page. They can be seen in the URL and look like this: AppStatus=Rejected</p>
+      <p>Variables can be added to any URL to see how it changes the page. They are always appended to the end of the page name using a single '?' e.g page1?variableName=value </p>
+      <p>The ampersand '&' symbol can be used to apply multiple variables to a page, for example: page1?cwAppStatus=Rejected&Appeal=Yes</p>
+      <p>Within a page, variables are used to display different values or content according to what is needed. The basic format is as follows:</p>
+      <p><code> 
+        if data variableName = value a <br>
+        do this <br>
+        else <br>
+        do this <br>
+        end
+      </code> </p>
 
       <p>Variables used in this prototype include:</p>
 
       <h3 class="govuk-heading-m">cwAppStatus</h3>
-      <p>Used to define the current state of a claim for caseworkers.</p>
+      <p>Used to define the current state of an application or claim for caseworkers.</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>cwAppStatus=New</li> 
-          <li>cwAppStatus=In progress</li>
-          <li>cwAppStatus=Part granted</li>
-          <li>cwAppStatus=Granted</li>
-          <li>cwAppStatus=Rejected</li>
-          <li>cwAppStatus=Expired</li>
-          <li>cwAppStatus=Hold</li>
-          <li>cwAppStatus=Referred</li>
-          <li>cwAppStatus=Review</li>
-          <li>cwAppStatus=Returned</li>
+          <li><strong>cwAppStatus=New</strong> :  an unassigned new app/claim</li> 
+          <li><strong>cwAppStatus=In progress</strong> :  an open app/ claim that is assigned to a CW and in progress</li>
+          <li><strong>cwAppStatus=Referred</strong> :  an open app/claim that was referred to the ICA</li>
+          <li><strong>cwAppStatus=Review</strong> :  an open app/claim that has been sent back to the provider for updates</li>
+          <li><strong>cwAppStatus=Returned</strong> :  an open app/claim that has been returned by the provider with updates</li>
+          <li><strong>cwAppStatus=Hold</strong> :  an open app/claim that is waiting to be sent to the ICA</li>
+          <li><strong>cwAppStatus=Part granted</strong> :  a closed app/claim that was part granted</li>
+          <li><strong>cwAppStatus=Granted</strong> :  a closed app/claim that was granted</li>
+          <li><strong>cwAppStatus=Rejected</strong> :  a closed app/claim that was rejected</li>
+          <li><strong>cwAppStatus=Expired</strong> :  a closed app/claim where the CW requested an update but the provider never responded</li>
+        </ul>
+
+      <h3 class="govuk-heading-m">app-task</h3>
+      <p>Used to define the current state of an application or claim for caseworkers.</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><strong>app-task=Referred</strong> :  an open app/claim that was referred to the ICA</li>
+          <li><strong>app-task=Review</strong> :  an open app/claim that has been sent to the provider for updates</li>
+          <li><strong>app-task=Submitted</strong> :  an 'Submitted' app/claim or appeal that has submitted by the provider</li>
+          <li><strong>app-task=Returned</strong> :  an 'Resubmitted' app/claim that has been returned by the provider with updates</li>
+          <li><strong>app-task=Part granted</strong> :  a closed app/claim that was part granted</li>
+          <li><strong>app-task=Granted</strong> :  a closed app/claim that was granted</li>
+          <li><strong>app-task=Rejected</strong> :  a closed app/claim that was rejected</li>
+          <li><strong>app-task=Expired</strong> :  a closed app/claim where the CW requested an update but the provider never responded</li>
         </ul>
 
       <h3 class="govuk-heading-m">Appeal</h3>
       <p>Used to display an appeal on the claim.</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>Appeal=Yes</li>
-          <li>Appeal=No</li>
+          <li><strong>Appeal=Yes</strong></li>
+          <li><strong>Appeal=Yes2</strong> :  provider when there is more than one appeal</li>
+          <li><strong>Appeal=No</strong></li>
         </ul>
 
       <h3 class="govuk-heading-m">icaDecision</h3>
       <p>icaDecision</p>
         <ul class="govuk-list govuk-list--bullet">
-          <li>icaDecision=Yes</li>
-          <li>icaDecision=No</li>
+          <li><strong>icaDecision=Yes</strong> :  the decision on the app/ claim was made by the ICA</li>
+          <li><strong>icaDecision=No</strong> :  the decision on the app/ claim was not made by the ICA</li>
         </ul>
 
 
