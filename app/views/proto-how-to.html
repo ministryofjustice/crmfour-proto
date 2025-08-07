@@ -16,36 +16,46 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
 
-    <!--Rebrand-->
-    <h2 class="govuk-heading-l">Rebrand</h2>
-    <p>The overall proto has been updated to use the new branding. The older versions of the service use a different layout template: main-old.html where the branding is switched off.</p>
+    <!--Tabs-->
+    <div class="govuk-tabs" data-module="govuk-tabs">
+      <h2 class="govuk-tabs__title">
+        Contents
+      </h2>
+      <ul class="govuk-tabs__list">
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#Variables">
+            Variables
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item">
+          <a class="govuk-tabs__tab" href="#Versioning">
+            Versioning
+          </a>
+        </li>
+        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+          <a class="govuk-tabs__tab" href="#Rebrand">
+            Rebrand
+          </a>
+        </li>
+      </ul>
 
-    <!--Versioning-->
-    <h2 class="govuk-heading-l">Versioning</h2>
-    <p></p>
+       <!--Variables-->
+      <div class="govuk-tabs__panel" id="Variables">
+        <h2 class="govuk-heading-l">Variables</h2>
+        <p>Variables are used in this prototype to store, remember and display data on the page. They can be seen in the URL and look like this: AppStatus=Rejected</p>
+        <p>Variables can be added to any URL to see how it changes the page. They are always appended to the end of the page name using a single '?' e.g page1?variableName=value </p>
+        <p>The ampersand '&' symbol can be used to apply multiple variables to a page, for example: page1?cwAppStatus=Rejected&Appeal=Yes</p>
+        <p>Within a page, variables are used to display different values or content according to the current status - this means not need to separate pages for version of a page.</p>
 
-    <p>When using routes for conditional questions, like radio's buttons, the form action needs to have {{version}} included so it will use the correct version as specfied in the page:
-      <code><form class="form" action="/{{version}}/name-of-route" method="post"><code>
-    </p>
+        <h3 class="govuk-heading-m">Forms and displaying of user entered data</h3>
+        <p>The majority of all forms in this prototype allow users to enter data and see it repeated back to them in pages like the 'Check your answers' page. This gives a sense of a real system.  </p>
+        <p>When displaying data on a page you can provide an alternative if there is no value available: 'or': {{data['userName'] or "John Smith"}}</p>
+       
 
-    <!--Variables-->
-    <h2 class="govuk-heading-l">Variables</h2>
-      <p>Variables are used in this prototype to store, remember and display data on the page. They can be seen in the URL and look like this: AppStatus=Rejected</p>
-      <p>Variables can be added to any URL to see how it changes the page. They are always appended to the end of the page name using a single '?' e.g page1?variableName=value </p>
-      <p>The ampersand '&' symbol can be used to apply multiple variables to a page, for example: page1?cwAppStatus=Rejected&Appeal=Yes</p>
-      <p>Within a page, variables are used to display different values or content according to what is needed. The basic format is as follows:</p>
-      <p><code> 
-        if data variableName = value a <br>
-        do this <br>
-        else <br>
-        do this <br>
-        end
-      </code> </p>
+        <p>Key variables used in this prototype include:</p>
 
-      <p>Variables used in this prototype include:</p>
-
-      <h3 class="govuk-heading-m">cwAppStatus</h3>
-      <p>Used to define the current state of an application or claim for caseworkers.</p>
+        <h3 class="govuk-heading-m">Caseworker: cwAppStatus</h3>
+        <p>Used to define the current state of an application or claim for caseworkers.</p>
         <ul class="govuk-list govuk-list--bullet">
           <li><strong>cwAppStatus=New</strong> :  an unassigned new app/claim</li> 
           <li><strong>cwAppStatus=In progress</strong> :  an open app/ claim that is assigned to a CW and in progress</li>
@@ -59,40 +69,68 @@
           <li><strong>cwAppStatus=Expired</strong> :  a closed app/claim where the CW requested an update but the provider never responded</li>
         </ul>
 
-      <h3 class="govuk-heading-m">app-task</h3>
-      <p>Used to define the current state of an application or claim for caseworkers.</p>
+        <h3 class="govuk-heading-m">Provider: app-task</h3>
+        <p>Used to define the current state of an application or claim for providers.</p>
         <ul class="govuk-list govuk-list--bullet">
           <li><strong>app-task=Referred</strong> :  an open app/claim that was referred to the ICA</li>
           <li><strong>app-task=Review</strong> :  an open app/claim that has been sent to the provider for updates</li>
-          <li><strong>app-task=Submitted</strong> :  an 'Submitted' app/claim or appeal that has submitted by the provider</li>
-          <li><strong>app-task=Returned</strong> :  an 'Resubmitted' app/claim that has been returned by the provider with updates</li>
+          <li><strong>app-task=Submitted</strong> :  a 'Submitted' app/claim or appeal that has submitted by the provider</li>
+          <li><strong>app-task=Returned</strong> :  a 'Resubmitted' app/claim that has been returned by the provider with updates</li>
           <li><strong>app-task=Part granted</strong> :  a closed app/claim that was part granted</li>
           <li><strong>app-task=Granted</strong> :  a closed app/claim that was granted</li>
           <li><strong>app-task=Rejected</strong> :  a closed app/claim that was rejected</li>
           <li><strong>app-task=Expired</strong> :  a closed app/claim where the CW requested an update but the provider never responded</li>
         </ul>
 
-      <h3 class="govuk-heading-m">Appeal</h3>
-      <p>Used to display an appeal on the claim.</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li><strong>Appeal=Yes</strong></li>
-          <li><strong>Appeal=Yes2</strong> :  provider when there is more than one appeal</li>
-          <li><strong>Appeal=No</strong></li>
-        </ul>
-
-      <h3 class="govuk-heading-m">icaDecision</h3>
-      <p>icaDecision</p>
+        <h3 class="govuk-heading-m">icaDecision</h3>
+        <p>Has the ICA been sent the claim or application and / or made a decision. For example, using the following combination would mean that the ICA has requested more information from the provider: cwAppStatus=Review&icaDecision=Yes</p>
         <ul class="govuk-list govuk-list--bullet">
           <li><strong>icaDecision=Yes</strong> :  the decision on the app/ claim was made by the ICA</li>
           <li><strong>icaDecision=No</strong> :  the decision on the app/ claim was not made by the ICA</li>
         </ul>
 
+        <h3 class="govuk-heading-m">Appeal</h3>
+        <p>Used to display appeal information on the aplication or claim.</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><strong>Appeal=Yes</strong></li>
+          <li><strong>Appeal=Yes2</strong> :  used on provider when there is more than one appeal</li>
+          <li><strong>Appeal=No</strong></li>
+        </ul>
 
+        <h3 class="govuk-heading-m">PA - toggling costs on/off</h3>
+         <ul class="govuk-list govuk-list--bullet">
+          <li><strong>addAdd=0</strong> :  No additional costs</li>
+          <li><strong>addAdd=1</strong> :  1 additional cost</li>
+          <li><strong>addAdd=2</strong> :  2 additional costs</li>
+        </ul>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><strong>addTravel=No</strong> :  No travel costs</li>
+          <li><strong>addTravel=Yes</strong> :  There are travel costs</li>
+        </ul>
+            
 
+        
 
+      </div>
 
+      <!--Versioning-->
+      <div class="govuk-tabs__panel" id="Versioning">
+        <h2 class="govuk-heading-l">Versioning</h2>
+        <p></p>
+        <p>When using routes for conditional questions, like radio's buttons, the form action needs to have {{version}} included so it will use the correct version as specfied in the page:
+          <code><form class="form" action="/{{version}}/name-of-route" method="post"><code>
+        </p>
+      </div>
 
+      <!--Rebrand-->
+      <div class="govuk-tabs__panel" id="Rebrand">
+        <h2 class="govuk-heading-l">Rebrand</h2>
+        <p>The overall proto has been updated to use the new branding. The older versions of the service use a different layout template: main-old.html where the branding is switched off.</p>
+      </div>
 
+    </div>
+
+  </div>
 </div>
 
 {% endblock %}
