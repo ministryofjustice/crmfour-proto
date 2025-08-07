@@ -67,11 +67,14 @@
           <p>On 31 July 2025 we asked you to update your application before we could complete the assessment. This was due by 14 August 2025.</p>
           <p>As this update was not made by the required date this application has been automatically closed.</p>
           <p>If you make a new application you should include the requested update.</p>
-          <ul class="govuk-list">
-            <li>
-              <a href="application-details#review-further-info2" class="govuk-link--no-visited-state">Requested application update</a>
-            </li>
-          </ul>
+          <p><a href="application-details#review-further-info2" class="govuk-link--no-visited-state">Requested application update</a></p>
+        </section>
+      </article>      
+    {% elseif data['app-task'] == "Returned" %}
+      <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+        <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+          <h3 class="govuk-heading-m">Resubmitted 16 August 2025</h3>
+          <p><a href="application-details#review-further-info2" class="govuk-link--no-visited-state">Requested application update</a></p>
         </section>
       </article>      
 
@@ -143,5 +146,13 @@
           }) }}
         </section>
       </article>
+
+      {% elseif data['app-task'] == "Returned" %}
+      <article class="moj-ticket-panel" aria-label="Sub navigation 1">
+        <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
+          <h3 class="govuk-heading-m">Resubmitted 16 August 2025</h3>
+          <p><a href="application-details-appeals#review-further-info2" class="govuk-link--no-visited-state">Requested appeal update</a></p>
+        </section>
+      </article>   
   {% endif %}
 {% endif %}
