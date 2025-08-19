@@ -1,14 +1,17 @@
+<!--Held for ICA and add to my list-->
 {% if data['cwAppStatus'] == "Hold" and data['statusComment'] == "Hold" %}
     <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
         <h3 class="govuk-heading-m">Held for ICA 21 May 2025</h3>
-        <p>This appeal needs to be sent to the ICA:</p>
-        <p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>    
+        <h4 class="govuk-heading-s">This appeal needs to be sent to the ICA</h4>
+<!--<p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>-->
         <ul class="govuk-list govuk-list--number">
           <li><a href="1">Download this application and attachments (Zip).</a></li>
           <li>Email the download to the ICA.</li>
           <li>Mark as sent to ICA.</li>
         </ul>
+        <h4 class="govuk-heading-s">Caseworker reason for referral</h4>
+        <p>{{data['icaReferredReasonCW'] or "This appeal needs to be sent to the ICA."}}</p>
         {{ govukButton({
           text: "Add to my list",
           href: "user-assign"
@@ -16,17 +19,20 @@
       </section>
     </article> 
 
+<!--Held for ICA-->
   {% elseif (data['cwAppStatus'] == "In progress" and data['statusComment'] == "Hold") %}
     <article class="moj-ticket-panel" aria-label="Sub navigation 1">
       <section class="moj-ticket-panel__content moj-ticket-panel__content--blue" aria-label="Section 1">
-        <h3 class="govuk-heading-m">Held for ICA 21 May 2025 </h3>
-        <p>This appeal needs to be sent to the ICA:</p>
-       <p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>
+        <h3 class="govuk-heading-m">Held for ICA 21 May 2025</h3>
+        <h4 class="govuk-heading-s">This appeal needs to be sent to the ICA</h4>
+<!--<p>{{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}</p>-->
         <ul class="govuk-list govuk-list--number">
           <li><a href="1">Download this application and attachments (Zip).</a></li>
           <li>Email the download to the ICA.</li>
           <li>Mark as sent to ICA.</li>
         </ul>
+        <h4 class="govuk-heading-s">Caseworker reason for referral</h4>
+        <p>{{data['icaReferredReasonCW'] or "This appeal needs to be sent to the ICA."}}</p>
         {{ govukButton({
           text: "Mark as sent to ICA",
         href: "send-decision-refer?"
