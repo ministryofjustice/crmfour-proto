@@ -3,7 +3,7 @@ const router = govukPrototypeKit.requests.setupRouter('/latest-portal')
 
 const version = 'latest-portal'
 
-//Payment type?
+//Ask for LAA reference if payment type is supplemental, appeal or amendment
 router.post('/question-payment-type', function(request, response) {
 
     var paymentType = request.session.data['paymentType']
@@ -13,12 +13,13 @@ router.post('/question-payment-type', function(request, response) {
     } 
 
     if (paymentType == "Non-standard magistrates' - supplemental"){
-        response.redirect('/' + version + "/payments/add/laa-reference?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00")
-    } 
+        response.redirect('/' + version + "/payments/add/original-reference?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00")
+    }
 
     if (paymentType == "Non-standard magistrates' - appeal" | paymentType == "Non-standard magistrates' - amendment") {
-        response.redirect('/' + version + "/payments/add/laa-reference?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=10.00&claimedDisbursement=890.00&allowedProfit=342.00&allowedTravel=0.00&allowedWaiting=10.00&allowedDisbursement=890.00")
+        response.redirect('/' + version + "/payments/add/original-reference?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=10.00&claimedDisbursement=890.00&allowedProfit=342.00&allowedTravel=0.00&allowedWaiting=10.00&allowedDisbursement=890.00")
     } 
+
 
     if (paymentType == "Assigned counsel"){
         response.redirect('/' + version + "/payments/add/linked-claim?officeAccount=&claimedCounselNet=&allowedCounselNet=&claimedCounselVAT=&allowedCounselVAT=")
@@ -29,7 +30,21 @@ router.post('/question-payment-type', function(request, response) {
     } 
   })
 
-  //Payment type?
+  //Skip LAA reference if no LAA reference for the original claim
+router.post('/question-original-reference', function(request, response) {
+
+    var originalReference = request.session.data['originalReference']
+
+    if (originalReference == "No" ){
+        response.redirect('/' + version + "/payments/add/claim-details")
+    } 
+
+    else {
+        response.redirect('/' + version + "/payments/add/laa-reference")
+    } 
+  })
+
+  //Skip LAA reference if assigned counsel claim is not linked to NSM claim
 router.post('/question-linked-claim', function(request, response) {
 
     var linkedCRM7 = request.session.data['linkedCRM7']
