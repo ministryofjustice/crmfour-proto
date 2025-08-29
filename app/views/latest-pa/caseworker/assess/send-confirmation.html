@@ -105,10 +105,11 @@
         {% elseif data['cwAppStatus'] =="Hold" %}
           <div class="govuk-panel govuk-panel--confirmation">
             <h1 class="govuk-panel__title">
-              Held for ICA referral
+              Held for referral to ICA
             </h1>
           </div>
-          <p>This appeal is waiting to be sent to the ICA.</p>
+          <p>Your message has been sent to the provider.</p>
+          <p>A caseworker will email the ICA with supporting documents next Monday.</p>
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
@@ -120,7 +121,7 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                  Caseworker message
+                  Message for ICA
               </dt>
                 <dd class="govuk-summary-list__value">
                   {{data['icaReferredReasonCW'] or "High rates"}}
@@ -128,18 +129,14 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                  Provider message
+                  Message for provider
               </dt>
                 <dd class="govuk-summary-list__value">
                   {{data['icaReferredReasonProvider']}}
               </dd>
             </div>
           </dl>
-          <h2 class="govuk-heading-m">Next steps</h2>
-          <p>Prepare the application so it can be sent to the ICA.</p>
-          <ul class="govuk-list">
-            <li><a href="1">Download the complete application and all attachments (Zip).</a></li>
-          </ul>
+          
           <div class="govuk-button-group">
             <a class="govuk-link" href="application-details">Return to the application</a>
           </div>
