@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Supplemental claim – {{ serviceName }} – GOV.UK Prototype Kit
+  Make supplemental claim – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -24,15 +24,86 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">Send supplemental claims by email</h1>
-      <p>You can no longer input supplemental claims into this service. To make a supplemental claim:</p>
-     
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Complete a <a href="https://www.gov.uk/government/publications/crm7-non-standard-fee-magistrates-court-claim-and-appeal-form">
-          non-standard magistrates' court payment</a>.</li>
-        <li>Include the original claim LAA reference or Unique Submission Number (USN) and email the form to <a href="mailto:magsbilling@justice.gov.uk">magsbilling@justice.gov.uk</a>.</p>
-          </li>
-       </ul>
+      <h1 class="govuk-heading-xl">Make a supplemental claim</h1>
+
+      <p>You must send supplemental claims by email or post.</p>
+
+      <h2 class="govuk-heading-m">What to include:</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Non-standard fee magistrates’ court claim form (CRM7)</li>
+          <li>A copy of the representation order, plus any new or amended orders</li>
+          <li>Evidence of extra work – for example, file notes or disbursement invoices</li>
+        </ul>
+
+
+{% if data.viewType == "table" %}
+  <!-- Render table version -->
+
+      <h2 class="govuk-heading-m">Additional information to include</h2>
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-visually-hidden">Supplemental claim requirements by submission method</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">Original claim method</th>
+            <th scope="col" class="govuk-table__header">Additional information</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Online (this service)</td>
+            <td class="govuk-table__cell">LAA reference and all supporting evidence if it’s been more than 6 months</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">eForms (Equiniti)</td>
+            <td class="govuk-table__cell">Unique submission number (USN) and a copy of the original claim</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">Paper</td>
+            <td class="govuk-table__cell">A copy of the original claim</td>
+          </tr>
+        </tbody>
+      </table>
+ {% else %}
+  <!-- Render bullet list version -->
+
+
+
+  <h2 class="govuk-heading-s">If the original claim was online on this service:</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>The LAA reference</li>
+    <li>All supporting evidence if it’s been more than 6 months</li>
+  </ul>
+
+  <h2 class="govuk-heading-s">If the original claim was on eForms (Equiniti):</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>Unique Submission Number (USN)</li>
+    <li>A copy of the original claim</li>
+  </ul>
+
+  <h2 class="govuk-heading-s">If the original claim was on paper:</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>A copy of the original claim</li>
+  </ul>
+
+
+{% endif %}
+   
+
+<h2 class="govuk-heading-m">Email</h2>
+<p class="govuk-body">Send to: <a href="mailto:magsbilling@justice.gov.uk">magsbilling@justice.gov.uk</a>.<p></p>
+          
+
+<p>Include the LAA reference or USN in the subject line if known.
+</p>
+
+<h2 class="govuk-heading-m">Post</h2>
+<p>
+  LAA Magistrates' Billing Team<br>
+  3rd Floor B3.20<br>
+  1 Unity Square<br>
+  Queensbridge Road<br>
+  Nottingham
+</p>
 
        <p><a href="/latest-nsm/provider/crm-claims-reviewed">Back to your claims</a></p>          
      
