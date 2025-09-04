@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "latest-nsm" %}
+{% set activePrimeNav = [true, false] %}
+
+{% block header %}
+  {% include version +"/includes/header-provider.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Make supplemental claim – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Make a supplemental claim</h1>
+
+      <p>You must send supplemental claims by email or post.</p>
+
+      <h2 class="govuk-heading-m">What to include</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Non-standard fee magistrates’ court claim form (CRM7)</li>
+          <li>A copy of the representation order, plus any new or amended orders</li>
+          <li>Evidence of extra work – for example, file notes or disbursement invoices</li>
+        </ul>
+
+  <p>Include additional information related to how the original claim was made.</p>
+
+   <h3 class="govuk-heading-s">If on this service on Portal</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>LAA reference</li>
+      <li>all supporting evidence if it’s been more than 6 months</li>
+    </ul>
+
+  <h3 class="govuk-heading-s">If eForms</h3>
+    <ul class="govuk-list govuk-list--bullet">
+     <li>Unique submission number (USN)</li>
+     <li>a copy of the original claim</li>
+    </ul>
+
+  <h3 class="govuk-heading-s">If by post</h3>
+    <ul class="govuk-list govuk-list--bullet">
+     <li>a copy of the original claim</li>
+    </ul>
+ 
+<h2 class="govuk-heading-m">Email</h2>
+<p><a href="mailto:magsbilling@justice.gov.uk">magsbilling@justice.gov.uk</a><p></p>
+        
+<p>Include the LAA reference or USN in the subject line unless the original claim was on paper.
+</p>
+
+<h2 class="govuk-heading-m">Post</h2>
+<p>
+  LAA Magistrates' Billing Team<br>
+  3rd Floor B3.20<br>
+  1 Unity Square<br>
+  Queensbridge Road<br>
+  Nottingham
+</p>
+
+       <p><a href="/latest-nsm/provider/crm-claims-reviewed">Back to your claims</a></p>          
+     
+    </div>
+  </div>
+
+{% endblock %}
