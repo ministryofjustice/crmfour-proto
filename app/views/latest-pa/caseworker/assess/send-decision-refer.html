@@ -107,7 +107,7 @@
 
             {% elseif data['cwAppStatus'] =="In progress"%}
               <form class="form" action="send-confirmation?cwAppStatus=Hold&statusComment=Hold&icaDecision=Yes" method="post">
-                <h1 class="govuk-heading-xl">Why are you referring this to the ICA?</h1>
+                <h1 class="govuk-heading-xl">Prepare ICA referral</h1>
                 
                 <p>Download the supporting information needed for the ICA from the application and add it to the relevant folder.</p>
                 <p>Another caseworker will email this information to the ICA with the referral message.</p>
@@ -116,12 +116,9 @@
                   name: "icaReferredReasonCW",
                   id: "icaReferredReasonCW",
                   label: {
-                    text: "Reason for referral",
+                    text: "Referral message for ICA",
                     isPageHeading: false,
                     classes: "govuk-label--s"
-                  },
-                  hint: {
-                  text: "This will not be shared with the provider"
                   }
                 }) }}  
 
@@ -130,9 +127,12 @@
                   id: "icaReferredReasonProvider",
                   value: data['icaReferredReasonProvider'] or "Your application for Prior Authority will be referred this following Monday to an Independent Cost Assessor who will make a decision. Once the ICA has made a decision we will confirm their decision via the online portal.",
                   label: {
-                    text: "Message to be sent to the provider",
+                    text: "Message for provider",
                     isPageHeading: false,
                     classes: "govuk-label--s"
+                  },
+                  hint: {
+                  text: "You can change this message if you think more detail is needed. It will go to the provider when you submit this hold for referral."
                   }
                 }) }}  
         {% endif %}
