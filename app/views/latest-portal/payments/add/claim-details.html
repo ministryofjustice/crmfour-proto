@@ -37,7 +37,7 @@
 <!--Payment type = Non-standard magistrates - Appeal or Assigned counsel appeal-->
       {% if data['paymentType'] =="Non-standard magistrates' - appeal"  or data['paymentType'] =="Assigned counsel - appeal" %}                            
 <!--Has an LAA ref for original claim-->
-      {% if data['originalReference'] == "Yes" %}
+      {% if data['linkedCRM'] == "Yes" %}
             <!--Date received-->
             {{ mojDatePicker({
               id: "dateReceived",
@@ -55,7 +55,7 @@
             {% endif  %}
 
 <!--Does not have an LAA ref for original reference-->
-          {% if data['originalReference'] == "No" %}
+          {% if data['linkedCRM'] == "No" %}
             
           <h1 class="govuk-heading-xl">Claim details</h1>  
 
@@ -204,7 +204,7 @@
 <!--Payment type = Non-standard magistrates - Amendment or Assigned counsel amendment-->            
           {% elseif data['paymentType'] =="Non-standard magistrates' - amendment"  or data['paymentType'] =="Assigned counsel - amendment" %}                            
 <!--Has an LAA ref for original claim-->
-          {% if data['originalReference'] == "Yes" %}  
+          {% if data['linkedCRM'] == "Yes" %}  
           <!--Date received-->
             {{ mojDatePicker({
               id: "dateReceived",
@@ -221,7 +221,7 @@
           {% endif  %}
 
 <!--Does not have an LAA ref for original reference-->
-          {% if data['originalReference'] == "No" %}
+          {% if data['linkedCRM'] == "No" %}
             
           <h1 class="govuk-heading-xl">Claim details</h1>  
 
@@ -371,7 +371,7 @@
           {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental"  %}
 
 <!--Has an LAA ref for original claim-->
-          {% if data['originalReference'] == "Yes" %}
+          {% if data['linkedCRM'] == "Yes" %}
 
             <!--Date received-->
             {{ mojDatePicker({
@@ -390,7 +390,7 @@
           {% endif  %}
 
 <!--Does not have an LAA ref for original reference-->
-          {% if data['originalReference'] == "No" %}
+          {% if data['linkedCRM'] == "No" %}
 
             <h1 class="govuk-heading-xl">Claim details</h1>  
 
@@ -551,7 +551,7 @@
               }) }}
 
 
-            {% if data['linkedCRM7'] == "No" %}
+            {% if data['linkedCRM'] == "No" %}
 
               <!--UFN-->
               {{ govukInput({
@@ -584,8 +584,32 @@
               }) }} 
             {% endif %}
 
-            <!--Counsel acc-->
-            {% include version +"/includes/list-office-counsel.njk"%}
+            <!--Counsel acc with suggestions
+            {% include version +"/includes/list-office-counsel.njk"%}-->
+
+            <!--Counsel office account number-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel office account number",
+                  classes: "govuk-label--s"
+                },
+                id: "officeAccount",
+                name: "officeAccount",
+                classes: "govuk-input--width-20",
+                value: data['officeAccount']
+              }) }} 
+
+            <!--Counsel name-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel name",
+                  classes: "govuk-label--s"
+                },
+                id: "counselName",
+                name: "counselName",
+                classes: "govuk-input--width-20",
+                value: data['counselName']
+              }) }} 
 
 <!--Payment type = Non-standard magistrates-->
           {% elseif data['paymentType'] =="Non-standard magistrates'"  %}
