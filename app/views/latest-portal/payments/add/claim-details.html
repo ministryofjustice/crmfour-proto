@@ -27,12 +27,68 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-<!--Payment type = Non-standard magistrates, Assigned counsel or Non-standard magistrates - Supplemental-->
-      {% if data['paymentType'] =="Non-standard magistrates'" or data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Non-standard magistrates' - supplemental" %}
-        <form class="form" action="costs-claimed" method="post">
-        {% else %}
-        <form class="form" action="costs-allowed" method="post">
-      {% endif %}
+<!--Routing to skip claimed costs for Appeals and Amendments, and Pre-populate the costs fields if the payment request has been linked to a claim-->
+
+    {% if data['paymentType'] =="Non-standard magistrates'"%}
+
+      <form class="form" action="costs-claimed" method="post">
+    
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-claimed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-claimed" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-claimed?claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-claimed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed??claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+    
+    {% else%}
+    
+      <form class="form" action="costs-claimed" method="post">
+    
+    {% endif %}
+
+
+
     
 <!--Payment type = Non-standard magistrates - Appeal or Assigned counsel appeal-->
       {% if data['paymentType'] =="Non-standard magistrates' - appeal"  or data['paymentType'] =="Assigned counsel - appeal" %}                            
