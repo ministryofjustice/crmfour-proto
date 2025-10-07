@@ -28,12 +28,68 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      {% if data['linkedCRM'] =="Yes"%}
-          <h1 class="govuk-heading-xl">Amend allowed costs</h1>
-          <p>Amend the totals to show the new allowed costs.</p>
-        {% else %}
-          <h1 class="govuk-heading-xl">Allowed costs</h1>
-      {% endif %}
+    {% if data['paymentType'] =="Non-standard magistrates'"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+    
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+      <p>Amend the totals to show the new allowed costs.</p>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+      <p>Amend the totals to show the new allowed costs.</p>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+      <p>Amend the totals to show the new allowed costs.</p>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+      <p>Amend the totals to show the new allowed costs.</p>
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+      <p>Amend the totals to show the new allowed costs.</p>
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+    
+    {% else%}
+    
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+    
+    {% endif %}
 
       {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
 
