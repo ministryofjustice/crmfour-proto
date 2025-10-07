@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  Enter Laa reference – {{ serviceName }} – GOV.UK Prototype Kit
+  Search for the claim – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
@@ -27,82 +27,247 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+        
+      {% if data['paymentType'] == "Assigned counsel"%}
+        <h1 class="govuk-heading-xl">Search for the linked non-standard magistrates claim</h1>
+      {% elseif data['paymentType'] == "Assigned counsel - appeal" or data['paymentType'] == "Assigned counsel - amendment"%}
+        <h1 class="govuk-heading-xl">Search for the original assigned counsel claim</h1>
+      {% else %}
+        <h1 class="govuk-heading-xl">Search for the original claim</h1>
+      {% endif %}
 
-      <form class="form" action="claim-details" method="post">
-
-        {% include version + "/includes/list-laa-ref.html" %}
-
-        <div class="govuk-button-group">
-          {{ govukButton({
-            text: "Save and continue"
-          }) }}
-
+      <div class="moj-search" style="margin-bottom: 20px;">
+        <div class="govuk-form-group" role="search">
+          <label class="govuk-label moj-search__label govuk-!-font-weight-bold" for="filterSearch">
+            Find a claim
+          </label>
+          <div id="search-hint" class="govuk-hint moj-search__hint ">
+            You can search by defendant, firm account, UFN or LAA reference
+          </div>
+          <input class="govuk-input moj-search__input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Enter any combination of client or firm name, UFN or LAA reference">
         </div>
-
-      </form>
+        <button type="submit" class="govuk-button moj-search__button" data-module="govuk-button" onclick="mySearch()" id="searchButton">
+          Search
+        </button>
+      </div>
 
     </div>
   </div>
 
-{% endblock %}
+    <form class="form" action="claim-details" method="post">
 
-{% block pageScripts %}
-    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+      <div id="resultsTable2" style="display:none;">
 
-    <script>
-        let selectElements = $('.autocomplete-select')
-        let placeholder = ''
+      <h2 class="govuk-heading-m" id="resultsHeading">
+        3 search results
+      </h2>
+      
+      <!-- Expose the count in the DOM (Option 2) -->
+      <span id="visibleCount" data-count="3" hidden></span>
 
-        selectElements.each(function (index) {
-          let selectElement = $(this)
-          if (selectElement.length) {
-            if (selectElement.attr('autocomplete-placeholder')) {
-              placeholder = selectElement.attr('autocomplete-placeholder')
-            }
+      <!-- Optional: message that shows when there are zero results -->
+      <div id="noResultsMessage" class="govuk-body" style="display:none;">
+        <p class="govuk-body">Check you've entered the correct details and search again, or create a new digital record for this payment.</p>
+        
+        {{ govukButton({
+          text: "Create new record",
+          name: "linkedCRM",
+          value: "No"
+        }) }}
 
-            accessibleAutocomplete.enhanceSelectElement({
-              confirmOnBlur: false,
-              autoSelect: true,
-              displayMenu: 'overlay',
-              minLength: 1,
-              showNoOptionsFound: true,
-              showAllValues: false,
-              placeholder: placeholder,
-              selectElement: selectElement[0],
-            })
-          }
-        })
+      </div>
 
-        $(function() {
-        $("input[name='courtType']").click(function() {
-          if ($("#courtType").is(":checked")) {
-            $("#div1").show();
-          } else {
-            $("#div1").hide();
-          }
-          if ($("#courtType-3").is(":checked")) {
-            $("#div2").show();
-          } else {
-            $("#div2").hide();
-          }
-        });
-      });
+      <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" aria-sort="none">LAA reference</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Firm account</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Firm name</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">UFN</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Defendant</th>
+            <th scope="col" class="govuk-table__header">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">                
+          <tr class="govuk-table__row hideTR">
+           <td class="govuk-table__cell">LAA-5a7d3c</td> 
+            <td class="govuk-table__cell">1A3BE4</td>
+            <td class="govuk-table__cell">Legal Aiders Ltd</td>
+            <td class="govuk-table__cell">207423/342</td>
+            <td class="govuk-table__cell">Blackbeard</td>
+            <td class="govuk-table__cell">
+              {{ govukButton({
+                text: "Select claim",
+                name: "linkedCRM",
+                value: "Yes"
+              }) }}
+            </td>
+          </tr>
+          <tr class="govuk-table__row hideTR">
+            <td class="govuk-table__cell">LAA-9p4f0e</td> 
+            <td class="govuk-table__cell">1A3BE4</td>
+            <td class="govuk-table__cell">Legal Aiders Ltd</td>
+            <td class="govuk-table__cell">100323/234</td>
+            <td class="govuk-table__cell">Innes</td>
+            <td class="govuk-table__cell">
+              {{ govukButton({
+                text: "Select claim",
+                name: "linkedCRM",
+                value: "Yes"
+              }) }}
+            </td>
+          </tr>
+          <tr class="govuk-table__row hideTR">
+            <td class="govuk-table__cell">LAA-6p4f0r</td>
+            <td class="govuk-table__cell">5T6H7J</td>
+            <td class="govuk-table__cell">Counsel 4U</td>
+            <td class="govuk-table__cell">100323/234</td>
+            <td class="govuk-table__cell">Olu</td>
+            <td class="govuk-table__cell">
+              {{ govukButton({
+                text: "Select claim",
+                name: "linkedCRM",
+                value: "Yes"
+              }) }}
+            </td>
+          </tr>
+        </body>
+      </table>
 
-      window.onload = function(){  
-        if ($("#courtType").is(":checked")) {
-            $("#div1").show();
-          } else {
-            $("#div1").hide();
-          }
-          if ($("#courtType-3").is(":checked")) {
-            $("#div2").show();
-          } else {
-            $("#div2").hide();
-          }
+      {% set pageNo ="0" %}
+      {% include "includes/pagination-search.html"%}
+
+    </div>
+
+    </form>   
+     
+  </div>
+
+</div>
+
+<script>
+  // Toggle results visibility and scroll into view
+  function mySearch() {
+    var searchResult = document.getElementById("resultsTable2");
+
+    if (searchResult.style.display === "none" || searchResult.style.display === "") {
+      searchResult.style.display = "inline";
+      updateVisibleCount(); // ensure initial count is correct when revealed
+    } else {
+      searchResult.style.display = "none";
+    }
+    window.location = '#resultsTable2';
+  }
+
+  // Search that filters rows in a table
+  // https://www.w3schools.com/howto/howto_js_filter_table.asp
+  function tablefilterSearch() {
+    var input = document.getElementById("filterSearch");
+    var filter = input.value.toUpperCase();
+    var table = document.getElementsByClassName("generic-filter")[0];
+    var tr = table.getElementsByTagName("tr");
+
+    for (var i = 0; i < tr.length; i++) {
+      var td = tr[i].getElementsByTagName("td");
+      if (td.length > 0) { // skip header rows
+        if (
+          td[0].innerHTML.toUpperCase().indexOf(filter) > -1 ||
+          td[1].innerHTML.toUpperCase().indexOf(filter) > -1 ||
+          td[2].innerHTML.toUpperCase().indexOf(filter) > -1
+        ) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
         }
+      }
+    }
+    updateVisibleCount(); // recalc after filtering
+  }
 
-       
-         
-    </script>
+  // Filters the table based on specific properties that are not in the table data.
+  // https://www.w3schools.com/howto/howto_js_filter_elements.asp
+  filterSelection("all");
+  function filterSelection(c) {
+    var x = document.getElementsByClassName("hideTR");
+    if (c == "all") c = "";
+    for (var i = 0; i < x.length; i++) {
+      w3RemoveClass(x[i], "showTR");
+      if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "showTR");
+    }
+    updateVisibleCount(); // recalc if you use class-based filtering too
+  }
 
+  function w3AddClass(element, name) {
+    var arr1 = element.className.split(" ");
+    var arr2 = name.split(" ");
+    for (var i = 0; i < arr2.length; i++) {
+      if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+    }
+  }
+
+  function w3RemoveClass(element, name) {
+    var arr1 = element.className.split(" ");
+    var arr2 = name.split(" ");
+    for (var i = 0; i < arr2.length; i++) {
+      while (arr1.indexOf(arr2[i]) > -1) {
+        arr1.splice(arr1.indexOf(arr2[i]), 1);
+      }
+    }
+    element.className = arr1.join(" ");
+  }
+
+  // Highlight the active filter button
+  var btnContainer = document.getElementById("filterbuttonContainer");
+  if (btnContainer) {
+    var btns = btnContainer.getElementsByClassName("govuk-button--secondary");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+        if (current[0]) current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
+  }
+
+  // ===== Shared count updater =====
+  function updateVisibleCount() {
+    var rows = document.querySelectorAll("#table-header tbody tr");
+    var visibleCount = 0;
+
+    rows.forEach(function(row) {
+      // count only data rows and only if actually visible (covers style or class hiding)
+      if (row.getElementsByTagName("td").length === 0) return;
+      var display = window.getComputedStyle(row).display;
+      if (display !== "none") visibleCount++;
+    });
+
+    // Update heading text
+    var resultHeading = document.getElementById("resultsHeading");
+    if (resultHeading) {
+      resultHeading.textContent = (visibleCount === 0)
+        ? "There are no results that match the search criteria"
+        : visibleCount + " search results";
+    }
+
+    // Expose count in the DOM (Option 2)
+    var countEl = document.getElementById("visibleCount");
+    if (countEl) {
+      countEl.setAttribute("data-count", visibleCount);
+    }
+
+    // Optional: show/hide "no results" helper text
+    var noMsg = document.getElementById("noResultsMessage");
+    if (noMsg) {
+      noMsg.style.display = (visibleCount === 0) ? "block" : "none";
+    }
+
+    // Also expose globally if you want to use elsewhere in JS
+    window.visibleRows = visibleCount;
+  }
+
+  // On initial load, compute the correct starting count
+  document.addEventListener("DOMContentLoaded", function() {
+    updateVisibleCount();
+  });
+</script>
 {% endblock %}
