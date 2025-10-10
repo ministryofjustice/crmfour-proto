@@ -90,8 +90,8 @@
 
 
     
-<!--Payment type = Non-standard magistrates - Appeal or Assigned counsel appeal-->
-      {% if data['paymentType'] =="Non-standard magistrates' - appeal"  or data['paymentType'] =="Assigned counsel - appeal" %}                            
+<!--Payment type = Non-standard magistrates - Appeal-->
+      {% if data['paymentType'] =="Non-standard magistrates' - appeal" %}                            
 <!--Has an LAA ref for original claim-->
       {% if data['linkedCRM'] == "Yes" %}
             <!--Date received-->
@@ -257,8 +257,8 @@
 
           {% endif  %}
             
-<!--Payment type = Non-standard magistrates - Amendment or Assigned counsel amendment-->            
-          {% elseif data['paymentType'] =="Non-standard magistrates' - amendment"  or data['paymentType'] =="Assigned counsel - amendment" %}                            
+<!--Payment type = Non-standard magistrates - Amendment-->            
+          {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" %}                            
 <!--Has an LAA ref for original claim-->
           {% if data['linkedCRM'] == "Yes" %}  
           <!--Date received-->
@@ -590,7 +590,7 @@
             {% endif %}
 
 <!--Payment type = Assigned counsel-->
-          {% elseif data['paymentType'] =="Assigned counsel"  %}
+          {% elseif data['paymentType'] =="Assigned counsel"  or data['paymentType'] =="Assigned counsel - appeal" or data['paymentType'] =="Assigned counsel - amendment"%}
             <h1 class="govuk-heading-xl">Claim details</h1>  
 
             <!--Date received-->
