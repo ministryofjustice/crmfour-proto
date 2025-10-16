@@ -52,6 +52,11 @@
                 <dd class="govuk-summary-list__value">
                   {% if data['linkedCRM'] =="Yes"%}
                   {{data['laa-ref'] or "LAA-5a7d3c" }}
+
+                  <!--If user makes payment request after making a decision-->
+                  {% elseif data['cwAppStatus'] =="Granted" or data['cwAppStatus'] =="Part granted"%}
+                  {{data['laa-ref'] or "LAA-5a7d3c" }}
+
                   {% else %}
                   Not linked to a non-standard magistrates' claim
                   {% endif %}
