@@ -590,7 +590,7 @@
             {% endif %}
 
 <!--Payment type = Assigned counsel-->
-          {% elseif data['paymentType'] =="Assigned counsel"  or data['paymentType'] =="Assigned counsel - appeal" or data['paymentType'] =="Assigned counsel - amendment"%}
+          {% elseif data['paymentType'] =="Assigned counsel"%}
             <h1 class="govuk-heading-xl">Claim details</h1>  
 
             <!--Date received-->
@@ -599,6 +599,162 @@
                 name: "dateReceived",
                 label: {
                   text: "Date claim received",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 17/5/2025."
+                }
+              }) }}
+
+
+            {% if data['linkedCRM'] == "No" %}
+
+              <!--UFN-->
+              {{ govukInput({
+                label: {
+                  text: "Unique file number",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 120223/001"
+                },
+                id: "ufn",
+                name: "ufn",
+                classes: "govuk-input--width-10",
+                value: data['ufn']
+              }) }}   
+            
+              <!--Firm acc-->
+              {% include version +"/includes/list-office-provider.njk"%}
+
+              <!--Defendant last name-->
+              {{ govukInput({
+                label: {
+                  text: "Defendant last name",
+                  classes: "govuk-label--s"
+                },
+                id: "defendantLastName",
+                name: "defendantLastName",
+                classes: "govuk-input--width-20",
+                value: data['defendantLastName']
+              }) }} 
+            {% endif %}
+
+            <!--Counsel acc with suggestions
+            {% include version +"/includes/list-office-counsel.njk"%}-->
+
+            <!--Counsel office account number-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel office account number",
+                  classes: "govuk-label--s"
+                },
+                id: "officeAccount",
+                name: "officeAccount",
+                classes: "govuk-input--width-20",
+                value: data['officeAccount']
+              }) }} 
+
+            <!--Counsel name-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel name",
+                  classes: "govuk-label--s"
+                },
+                id: "counselName",
+                name: "counselName",
+                classes: "govuk-input--width-20",
+                value: data['counselName']
+              }) }} 
+
+<!--Payment type = Assigned counsel - Appeal-->
+          {% elseif data['paymentType'] =="Assigned counsel - appeal"%}
+            <h1 class="govuk-heading-xl">Claim details</h1>  
+
+            <!--Date received-->
+              {{ mojDatePicker({
+                id: "dateReceived",
+                name: "dateReceived",
+                label: {
+                  text: "Date appeal received",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 17/5/2025."
+                }
+              }) }}
+
+
+            {% if data['linkedCRM'] == "No" %}
+
+              <!--UFN-->
+              {{ govukInput({
+                label: {
+                  text: "Unique file number",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 120223/001"
+                },
+                id: "ufn",
+                name: "ufn",
+                classes: "govuk-input--width-10",
+                value: data['ufn']
+              }) }}   
+            
+              <!--Firm acc-->
+              {% include version +"/includes/list-office-provider.njk"%}
+
+              <!--Defendant last name-->
+              {{ govukInput({
+                label: {
+                  text: "Defendant last name",
+                  classes: "govuk-label--s"
+                },
+                id: "defendantLastName",
+                name: "defendantLastName",
+                classes: "govuk-input--width-20",
+                value: data['defendantLastName']
+              }) }} 
+            {% endif %}
+
+            <!--Counsel acc with suggestions
+            {% include version +"/includes/list-office-counsel.njk"%}-->
+
+            <!--Counsel office account number-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel office account number",
+                  classes: "govuk-label--s"
+                },
+                id: "officeAccount",
+                name: "officeAccount",
+                classes: "govuk-input--width-20",
+                value: data['officeAccount']
+              }) }} 
+
+            <!--Counsel name-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel name",
+                  classes: "govuk-label--s"
+                },
+                id: "counselName",
+                name: "counselName",
+                classes: "govuk-input--width-20",
+                value: data['counselName']
+              }) }} 
+
+<!--Payment type = Assigned counsel - Amendment-->
+          {% elseif data['paymentType'] =="Assigned counsel - amendment"%}
+            <h1 class="govuk-heading-xl">Claim details</h1>  
+
+            <!--Date received-->
+              {{ mojDatePicker({
+                id: "dateReceived",
+                name: "dateReceived",
+                label: {
+                  text: "Date claim amended",
                   classes: "govuk-label--s"
                 },
                 hint: {
