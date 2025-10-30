@@ -669,6 +669,29 @@
 
 <!--Payment type = Assigned counsel - Appeal-->
           {% elseif data['paymentType'] =="Assigned counsel - appeal"%}
+
+<!--Has an LAA ref for original claim-->
+          {% if data['linkedCRM'] == "Yes" %}
+
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              label: {
+                text: "Date appeal received",
+                classes: "govuk-label--xl",
+                isPageHeading: true
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+            
+          {% endif  %}
+
+<!--Does not have an LAA ref for original reference-->
+          {% if data['linkedCRM'] == "No" %}
+
             <h1 class="govuk-heading-xl">Claim details</h1>  
 
             <!--Date received-->
@@ -684,9 +707,6 @@
                 }
               }) }}
 
-
-            {% if data['linkedCRM'] == "No" %}
-
               <!--UFN-->
               {{ govukInput({
                 label: {
@@ -715,8 +735,7 @@
                 name: "defendantLastName",
                 classes: "govuk-input--width-20",
                 value: data['defendantLastName']
-              }) }} 
-            {% endif %}
+              }) }}
 
             <!--Counsel acc with suggestions
             {% include version +"/includes/list-office-counsel.njk"%}-->
@@ -743,10 +762,34 @@
                 name: "counselName",
                 classes: "govuk-input--width-20",
                 value: data['counselName']
-              }) }} 
+              }) }}
+          {% endif %}
 
 <!--Payment type = Assigned counsel - Amendment-->
           {% elseif data['paymentType'] =="Assigned counsel - amendment"%}
+
+<!--Has an LAA ref for original claim-->
+          {% if data['linkedCRM'] == "Yes" %}
+
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              label: {
+                text: "Date claim amended",
+                classes: "govuk-label--xl",
+                isPageHeading: true
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+            
+          {% endif  %}
+
+<!--Does not have an LAA ref for original reference-->
+          {% if data['linkedCRM'] == "No" %}
+
             <h1 class="govuk-heading-xl">Claim details</h1>  
 
             <!--Date received-->
@@ -762,9 +805,6 @@
                 }
               }) }}
 
-
-            {% if data['linkedCRM'] == "No" %}
-
               <!--UFN-->
               {{ govukInput({
                 label: {
@@ -793,8 +833,7 @@
                 name: "defendantLastName",
                 classes: "govuk-input--width-20",
                 value: data['defendantLastName']
-              }) }} 
-            {% endif %}
+              }) }}
 
             <!--Counsel acc with suggestions
             {% include version +"/includes/list-office-counsel.njk"%}-->
@@ -821,7 +860,8 @@
                 name: "counselName",
                 classes: "govuk-input--width-20",
                 value: data['counselName']
-              }) }} 
+              }) }}
+          {% endif %}
 
 <!--Payment type = Non-standard magistrates-->
           {% elseif data['paymentType'] =="Non-standard magistrates'"  %}
