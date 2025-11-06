@@ -69,11 +69,19 @@
         
       <form class="form" action="costs-allowed?claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
 
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="Linked AC - No NSM"%}
+        
+      <form class="form" action="costs-allowed?claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
     {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="No"%}
 
       <form class="form" action="costs-allowed" method="post">
 
     {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed??claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+     {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="Linked AC - No NSM"%}
         
       <form class="form" action="costs-allowed??claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
 
@@ -671,7 +679,7 @@
           {% elseif data['paymentType'] =="Assigned counsel - appeal"%}
 
 <!--Has an LAA ref for original claim-->
-          {% if data['linkedCRM'] == "Yes" %}
+          {% if data['linkedCRM'] =="Yes" or data['linkedCRM'] =="Linked AC - No NSM"%}
 
             <!--Date received-->
             {{ mojDatePicker({
@@ -769,7 +777,7 @@
           {% elseif data['paymentType'] =="Assigned counsel - amendment"%}
 
 <!--Has an LAA ref for original claim-->
-          {% if data['linkedCRM'] == "Yes" %}
+          {% if data['linkedCRM'] =="Yes" or data['linkedCRM'] =="Linked AC - No NSM"%}
 
             <!--Date received-->
             {{ mojDatePicker({
