@@ -1,0 +1,95 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "nsm-1-4" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Type of payment – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/{{version}}/question-payment-type" method="post">
+
+        {{ govukRadios({
+          name: "paymentType",
+          fieldset: {
+            legend: {
+              text: "Claim type",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Non-standard magistrates'",
+              text: "Non-standard magistrates'",
+              checked: checked("paymentType", "Non-standard magistrates'")
+            },
+            {
+              value: "Non-standard magistrates' - supplemental",
+              text: "Non-standard magistrates' - supplemental",
+              checked: checked("paymentType", "Non-standard magistrates' - supplemental")
+            },
+            {
+              value: "Non-standard magistrates' - appeal",
+              text: "Non-standard magistrates' - appeal",
+              checked: checked("paymentType", "Non-standard magistrates' - appeal")
+            }, 
+            {
+              value: "Non-standard magistrates' - amendment",
+              text: "Non-standard magistrates' - amendment",
+              checked: checked("paymentType", "Non-standard magistrates' - amendment")
+            },
+            {
+              divider: "or"
+            },
+            {
+              value: "Assigned counsel",
+              text: "Assigned counsel",
+              checked: checked("paymentType", "Assigned counsel")
+            },
+            {
+              value: "Assigned counsel - appeal",
+              text: "Assigned counsel - appeal",
+              checked: checked("paymentType", "Assigned counsel - appeal")
+            },
+            {
+              value: "Assigned counsel - amendment",
+              text: "Assigned counsel - amendment",
+              checked: checked("paymentType", "Assigned counsel - amendment")
+            }
+          ]
+        }) }}  
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

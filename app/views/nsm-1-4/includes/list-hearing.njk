@@ -1,0 +1,17 @@
+<div class="govuk-form-group">
+  <label class="govuk-heading-s" for="hearingOutcome">
+    Hearing outcome code
+  </label>
+  <div id="hearingOutcome-hint" class="govuk-hint">
+      Start typing the hearing outcome and select one of the suggestions that appear
+  </div>
+  <select class="govuk-select autocomplete-select" id="hearingOutcome" name="hearingOutcome" aria-describedby="offence-hint">
+    <option {{ "selected" if data["hearingOutcome"] == "0" }} value=""></option>
+    <option {{ "selected" if data["hearingOutcome"] == "CP01 - Arrest warrant issued/adjourned indefinitely"}} value="CP01 - Arrest warrant issued/adjourned indefinitely">CP01 - Arrest warrant issued/adjourned indefinitely</option>
+    <option {{ "selected" if data["hearingOutcome"] == "CP02 - Change of solicitor" }} value="CP02 - Change of solicitor">CP02 - Change of solicitor</option>
+    <option {{ "selected" if data["hearingOutcome"] == "CP03 - Representation order withdrawn" }} value="CP03 - Representation order withdrawn">CP03 - Representation order withdrawn</option>
+    <option {{ "selected" if data["hearingOutcome"] == "CP04 - Trial: acquitted" }} value="CP04 - Trial: acquitted">CP04 - Trial: acquitted</option>
+    <option {{ "selected" if data["hearingOutcome"] == "CP05 - Trial: mixed verdicts" }} value="CP05 - Trial: mixed verdicts">CP05 - Trial: mixed verdicts</option>
+    <option {{ "selected" if data["hearingOutcome"] == "CP06 - Trial: convicted" }} value="CP06 - Trial: convicted">CP06 - Trial: convicted</option>
+  </select>
+</div>

@@ -1,0 +1,41 @@
+{% extends "layouts/main.html" %}
+{% set version = "portal-1-1" %}
+
+{% block header %}
+  {% include version + "/includes/header-portal-cw.html"%}
+{% endblock %}
+
+{% block pageTitle %}
+  LAA Online Portal – Assess a crime form - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner2.html"%}
+{% endblock %}
+
+{% block content %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Assess a crime form
+        </h1>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <p><a href="/latest-pa/caseworker/crm-assess" class="govuk-link--no-visited-state">Assess prior authority to incur disbursements, previously CRM4</a></p>       
+        <p><a href="/latest-nsm/caseworker/crm-assess" class="govuk-link--no-visited-state">Assess a non-standard magistrates''' court payment, previously CRM7</a></p>   
+        <p><a href="/nsm-1-4/payments/payment-requests" class="govuk-link--no-visited-state">Payments</a></p>
+        {% if data['permission'] == "supervisor" or data['permission'] == null %}
+          <p><a href="/nsm-1-4/metabase?version=1&app=4" class="govuk-link--no-visited-state">Analytics dashboard</a></p>
+          {% elseif data['permission'] == "caseworker"  %}
+        {% endif %}
+        {% if data['permission'] == "supervisor" or data['permission'] == null %}
+          <p><a href="/nsm-1-4/user-management" class="govuk-link--no-visited-state">User management</a></p>
+          {% elseif data['permission'] == "caseworker"  %}
+        {% endif %}
+      </div>
+    </div>
+
+{% endblock %}

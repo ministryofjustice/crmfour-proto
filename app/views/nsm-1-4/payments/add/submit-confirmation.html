@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "nsm-1-4" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Payment request complete – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <!--If it was 'Send back to Provider' request--->
+      {{ govukPanel({
+          titleText: "Payment request complete",
+          html: "Reference: LAA-5a7d3c"
+        }) }}
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Payment type
+          </dt>
+            <dd class="govuk-summary-list__value">
+            {{data['paymentType'] or "Non-standard magistrates'"}}
+          </dd>
+        </div>
+         <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Allowed costs
+          </dt>
+          <dd class="govuk-summary-list__value">
+            £{{data['paymentAllowedTotal'] or "4872.20" }}
+          </dd>
+        </div>
+      </dl>
+      
+      <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Create new payment request",
+            href: "payment-type"
+          }) }}
+         
+        <a class="govuk-link" href="/latest-nsm/caseworker/crm-assess">Return to Your claims</a>
+      </div>      
+    </div>
+  </div>
+
+{% endblock %}
