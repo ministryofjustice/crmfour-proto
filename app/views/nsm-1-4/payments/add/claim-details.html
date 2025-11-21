@@ -1,0 +1,1061 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "nsm-1-4" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Claim details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<!--Routing to skip claimed costs for Appeals and Amendments, and Pre-populate the costs fields if the payment request has been linked to a claim-->
+
+    {% if data['paymentType'] =="Non-standard magistrates'"%}
+
+      <form class="form" action="costs-claimed" method="post">
+    
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM7'] =="Yes"%}
+        
+      <form class="form" action="costs-claimed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=80.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM7'] =="No"%}
+
+      <form class="form" action="costs-claimed" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM7'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM7'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM7'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM7'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM7'] =="Yes"%}
+        
+      <form class="form" action="costs-claimed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM7'] =="No"%}
+
+      <form class="form" action="costs-claimed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM7'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM7'] =="Linked AC - No NSM"%}
+        
+      <form class="form" action="costs-allowed?claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM7'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM7'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed??claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+     {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM7'] =="Linked AC - No NSM"%}
+        
+      <form class="form" action="costs-allowed??claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM7'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+    
+    {% else%}
+    
+      <form class="form" action="costs-claimed" method="post">
+    
+    {% endif %}
+
+
+
+    
+<!--Payment type = Non-standard magistrates - Appeal-->
+      {% if data['paymentType'] =="Non-standard magistrates' - appeal" %}                            
+<!--Has an LAA ref for original claim-->
+      {% if data['linkedCRM7'] == "Yes" %}
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              value: data['dateReceived'],
+              label: {
+                text: "Date appeal received",
+                classes: "govuk-label--xl",
+                isPageHeading: true
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+            {% endif  %}
+
+<!--Does not have an LAA ref for original reference-->
+          {% if data['linkedCRM7'] == "No" %}
+            
+          <h1 class="govuk-heading-xl">Claim details</h1>  
+
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              label: {
+                text: "Date appeal received",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+
+            <!--Firm acc-->
+            {% include version +"/includes/list-office-provider.njk"%}
+          
+            <!--UFN-->
+            {{ govukInput({
+              label: {
+                text: "Unique file number",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 120223/001"
+              },
+              id: "ufn",
+              name: "ufn",
+              classes: "govuk-input--width-10"
+            }) }}    
+
+            <!--Stage-->
+            {{ govukRadios({
+              name: "stageReached",
+              fieldset: {
+                legend: {
+                  text: "Stage reached",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "PROG",
+                  text: "PROG"
+                },
+                {
+                  value: "PROM",
+                  text: "PROM"
+                }
+              ]
+            }) }} 
+
+            <!--Defendant first name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant first name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantFirstName",
+              name: "defendantFirstName",
+              classes: "govuk-input--width-20"
+            }) }}    
+
+            <!--Defendant last name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant last name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantLastName",
+              name: "defendantLastName",
+              classes: "govuk-input--width-20"
+            }) }} 
+
+            <!--No defendant-->
+            {{ govukInput({
+              label: {
+                text: "Number of defendants",
+                classes: "govuk-label--s"
+              },
+              id: "defendants",
+              name: "defendants",
+              classes: "govuk-input--width-5"
+            }) }}   
+
+            <!--Hearing attendance-->
+            {{ govukInput({
+              label: {
+                text: "Number of attendances",
+                classes: "govuk-label--s"
+              },
+              id: "attendances",
+              name: "attendances",
+              classes: "govuk-input--width-5"
+            }) }}  
+
+            <!--Hearing outcome not needed? {% include version +"/includes/list-hearing.njk"%}-->
+            <!--Matter type not needed? {% include version +"/includes/list-matter-type.njk"%}-->
+            {% include version +"/includes/list-court.njk"%}  
+
+            <!--Youth Court not needed?
+            {{ govukRadios({
+              name: "youthCourt",
+              fieldset: {
+                legend: {
+                  text: "Is this court a youth court?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes",
+                  checked: checked("youthCourt", "Yes")
+                },
+                {
+                  value: "No",
+                  text: "No",
+                  checked: checked("youthCourt", "No")
+                }
+              ]
+            }) }}-->
+              
+            <!--Date completed-->
+            {{ mojDatePicker({
+              id: "date-completed",
+              name: "date-completed",
+              value: data['date-completed'],
+              label: {
+                text: "Date work completed",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+            
+
+
+          {% endif  %}
+            
+<!--Payment type = Non-standard magistrates - Amendment-->            
+          {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" %}                            
+<!--Has an LAA ref for original claim-->
+          {% if data['linkedCRM7'] == "Yes" %}  
+          <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              label: {
+                text: "Date claim amended",
+                classes: "govuk-label--xl",
+                isPageHeading: true
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+          {% endif  %}
+
+<!--Does not have an LAA ref for original reference-->
+          {% if data['linkedCRM7'] == "No" %}
+            
+          <h1 class="govuk-heading-xl">Claim details</h1>  
+
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              label: {
+                text: "Date claim amended",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+
+            <!--Firm acc-->
+            {% include version +"/includes/list-office-provider.njk"%}
+          
+            <!--UFN-->
+            {{ govukInput({
+              label: {
+                text: "Unique file number",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 120223/001"
+              },
+              id: "ufn",
+              name: "ufn",
+              classes: "govuk-input--width-10"
+            }) }}    
+
+            <!--Stage-->
+            {{ govukRadios({
+              name: "stageReached",
+              fieldset: {
+                legend: {
+                  text: "Stage reached",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "PROG",
+                  text: "PROG"
+                },
+                {
+                  value: "PROM",
+                  text: "PROM"
+                }
+              ]
+            }) }} 
+
+            <!--Defendant first name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant first name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantFirstName",
+              name: "defendantFirstName",
+              classes: "govuk-input--width-20"
+            }) }}    
+
+            <!--Defendant last name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant last name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantLastName",
+              name: "defendantLastName",
+              classes: "govuk-input--width-20"
+            }) }} 
+
+            <!--No defendant-->
+            {{ govukInput({
+              label: {
+                text: "Number of defendants",
+                classes: "govuk-label--s"
+              },
+              id: "defendants",
+              name: "defendants",
+              classes: "govuk-input--width-5"
+            }) }}   
+
+            <!--Hearing attendance-->
+            {{ govukInput({
+              label: {
+                text: "Number of attendances",
+                classes: "govuk-label--s"
+              },
+              id: "attendances",
+              name: "attendances",
+              classes: "govuk-input--width-5"
+            }) }}  
+
+            <!--Hearing outcome not needed? {% include version +"/includes/list-hearing.njk"%}-->
+            <!--Matter type not needed? {% include version +"/includes/list-matter-type.njk"%}-->
+            {% include version +"/includes/list-court.njk"%}  
+
+            <!--Youth Court not needed?
+            {{ govukRadios({
+              name: "youthCourt",
+              fieldset: {
+                legend: {
+                  text: "Is this court a youth court?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes",
+                  checked: checked("youthCourt", "Yes")
+                },
+                {
+                  value: "No",
+                  text: "No",
+                  checked: checked("youthCourt", "No")
+                }
+              ]
+            }) }}-->
+              
+            <!--Date completed-->
+            {{ mojDatePicker({
+              id: "date-completed",
+              name: "date-completed",
+              value: data['date-completed'],
+              label: {
+                text: "Date work completed",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+            
+
+
+          {% endif  %}
+
+<!--Payment type = Non-standard magistrates - Supplemental-->                
+          {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental"  %}
+
+<!--Has an LAA ref for original claim-->
+          {% if data['linkedCRM7'] == "Yes" %}
+
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              label: {
+                text: "Date supplemental claim received",
+                classes: "govuk-label--xl",
+                isPageHeading: true
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+            
+          {% endif  %}
+
+<!--Does not have an LAA ref for original reference-->
+          {% if data['linkedCRM7'] == "No" %}
+
+            <h1 class="govuk-heading-xl">Claim details</h1>  
+
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              label: {
+                text: "Date supplemental claim received",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+
+            <!--Firm acc-->
+            {% include version +"/includes/list-office-provider.njk"%}
+          
+            <!--UFN-->
+            {{ govukInput({
+              label: {
+                text: "Unique file number",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 120223/001"
+              },
+              id: "ufn",
+              name: "ufn",
+              classes: "govuk-input--width-10"
+            }) }}    
+
+            <!--Stage-->
+            {{ govukRadios({
+              name: "stageReached",
+              fieldset: {
+                legend: {
+                  text: "Stage reached",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "PROG",
+                  text: "PROG"
+                },
+                {
+                  value: "PROM",
+                  text: "PROM"
+                }
+              ]
+            }) }} 
+
+            <!--Defendant first name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant first name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantFirstName",
+              name: "defendantFirstName",
+              classes: "govuk-input--width-20"
+            }) }}    
+
+            <!--Defendant last name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant last name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantLastName",
+              name: "defendantLastName",
+              classes: "govuk-input--width-20"
+            }) }} 
+
+            <!--No defendant-->
+            {{ govukInput({
+              label: {
+                text: "Number of defendants",
+                classes: "govuk-label--s"
+              },
+              id: "defendants",
+              name: "defendants",
+              classes: "govuk-input--width-5"
+            }) }}   
+
+            <!--Hearing attendance-->
+            {{ govukInput({
+              label: {
+                text: "Number of attendances",
+                classes: "govuk-label--s"
+              },
+              id: "attendances",
+              name: "attendances",
+              classes: "govuk-input--width-5"
+            }) }}  
+
+            <!--Hearing outcome not needed? {% include version +"/includes/list-hearing.njk"%}-->
+            <!--Matter type not needed? {% include version +"/includes/list-matter-type.njk"%}-->
+            {% include version +"/includes/list-court.njk"%}
+
+            <!--Youth Court not needed?
+            {{ govukRadios({
+              name: "youthCourt",
+              fieldset: {
+                legend: {
+                  text: "Is this court a youth court?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes",
+                  checked: checked("youthCourt", "Yes")
+                },
+                {
+                  value: "No",
+                  text: "No",
+                  checked: checked("youthCourt", "No")
+                }
+              ]
+            }) }}-->
+              
+            <!--Date completed-->
+            {{ mojDatePicker({
+              id: "date-completed",
+              name: "date-completed",
+              value: data['date-completed'],
+              label: {
+                text: "Date work completed",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+            {% endif %}
+
+<!--Payment type = Assigned counsel-->
+          {% elseif data['paymentType'] =="Assigned counsel"%}
+            <h1 class="govuk-heading-xl">Claim details</h1>  
+
+            <!--Date received-->
+              {{ mojDatePicker({
+                id: "dateReceived",
+                name: "dateReceived",
+                label: {
+                  text: "Date claim received",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 17/5/2025."
+                }
+              }) }}
+
+
+            {% if data['linkedCRM7'] == "No" %}
+
+              <!--UFN-->
+              {{ govukInput({
+                label: {
+                  text: "Unique file number",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 120223/001"
+                },
+                id: "ufn",
+                name: "ufn",
+                classes: "govuk-input--width-10",
+                value: data['ufn']
+              }) }}   
+            
+              <!--Firm acc-->
+              {% include version +"/includes/list-office-provider.njk"%}
+
+              <!--Defendant last name-->
+              {{ govukInput({
+                label: {
+                  text: "Defendant last name",
+                  classes: "govuk-label--s"
+                },
+                id: "defendantLastName",
+                name: "defendantLastName",
+                classes: "govuk-input--width-20",
+                value: data['defendantLastName']
+              }) }} 
+            {% endif %}
+
+            <!--Counsel acc with suggestions
+            {% include version +"/includes/list-office-counsel.njk"%}-->
+
+            <!--Counsel office account number-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel office account number",
+                  classes: "govuk-label--s"
+                },
+                id: "officeAccount",
+                name: "officeAccount",
+                classes: "govuk-input--width-20",
+                value: data['officeAccount']
+              }) }} 
+
+            <!--Counsel name-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel name",
+                  classes: "govuk-label--s"
+                },
+                id: "counselName",
+                name: "counselName",
+                classes: "govuk-input--width-20",
+                value: data['counselName']
+              }) }} 
+
+<!--Payment type = Assigned counsel - Appeal-->
+          {% elseif data['paymentType'] =="Assigned counsel - appeal"%}
+
+<!--Has an LAA ref for original claim-->
+          {% if data['linkedCRM7'] =="Yes" or data['linkedCRM7'] =="Linked AC - No NSM"%}
+
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              label: {
+                text: "Date appeal received",
+                classes: "govuk-label--xl",
+                isPageHeading: true
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+            
+          {% endif  %}
+
+<!--Does not have an LAA ref for original reference-->
+          {% if data['linkedCRM7'] == "No" %}
+
+            <h1 class="govuk-heading-xl">Claim details</h1>  
+
+            <!--Date received-->
+              {{ mojDatePicker({
+                id: "dateReceived",
+                name: "dateReceived",
+                label: {
+                  text: "Date appeal received",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 17/5/2025."
+                }
+              }) }}
+
+              <!--UFN-->
+              {{ govukInput({
+                label: {
+                  text: "Unique file number",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 120223/001"
+                },
+                id: "ufn",
+                name: "ufn",
+                classes: "govuk-input--width-10",
+                value: data['ufn']
+              }) }}   
+            
+              <!--Firm acc-->
+              {% include version +"/includes/list-office-provider.njk"%}
+
+              <!--Defendant last name-->
+              {{ govukInput({
+                label: {
+                  text: "Defendant last name",
+                  classes: "govuk-label--s"
+                },
+                id: "defendantLastName",
+                name: "defendantLastName",
+                classes: "govuk-input--width-20",
+                value: data['defendantLastName']
+              }) }}
+
+            <!--Counsel acc with suggestions
+            {% include version +"/includes/list-office-counsel.njk"%}-->
+
+            <!--Counsel office account number-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel office account number",
+                  classes: "govuk-label--s"
+                },
+                id: "officeAccount",
+                name: "officeAccount",
+                classes: "govuk-input--width-20",
+                value: data['officeAccount']
+              }) }} 
+
+            <!--Counsel name-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel name",
+                  classes: "govuk-label--s"
+                },
+                id: "counselName",
+                name: "counselName",
+                classes: "govuk-input--width-20",
+                value: data['counselName']
+              }) }}
+          {% endif %}
+
+<!--Payment type = Assigned counsel - Amendment-->
+          {% elseif data['paymentType'] =="Assigned counsel - amendment"%}
+
+<!--Has an LAA ref for original claim-->
+          {% if data['linkedCRM7'] =="Yes" or data['linkedCRM7'] =="Linked AC - No NSM"%}
+
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              label: {
+                text: "Date claim amended",
+                classes: "govuk-label--xl",
+                isPageHeading: true
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+            
+          {% endif  %}
+
+<!--Does not have an LAA ref for original reference-->
+          {% if data['linkedCRM7'] == "No" %}
+
+            <h1 class="govuk-heading-xl">Claim details</h1>  
+
+            <!--Date received-->
+              {{ mojDatePicker({
+                id: "dateReceived",
+                name: "dateReceived",
+                label: {
+                  text: "Date claim amended",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 17/5/2025."
+                }
+              }) }}
+
+              <!--UFN-->
+              {{ govukInput({
+                label: {
+                  text: "Unique file number",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 120223/001"
+                },
+                id: "ufn",
+                name: "ufn",
+                classes: "govuk-input--width-10",
+                value: data['ufn']
+              }) }}   
+            
+              <!--Firm acc-->
+              {% include version +"/includes/list-office-provider.njk"%}
+
+              <!--Defendant last name-->
+              {{ govukInput({
+                label: {
+                  text: "Defendant last name",
+                  classes: "govuk-label--s"
+                },
+                id: "defendantLastName",
+                name: "defendantLastName",
+                classes: "govuk-input--width-20",
+                value: data['defendantLastName']
+              }) }}
+
+            <!--Counsel acc with suggestions
+            {% include version +"/includes/list-office-counsel.njk"%}-->
+
+            <!--Counsel office account number-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel office account number",
+                  classes: "govuk-label--s"
+                },
+                id: "officeAccount",
+                name: "officeAccount",
+                classes: "govuk-input--width-20",
+                value: data['officeAccount']
+              }) }} 
+
+            <!--Counsel name-->
+              {{ govukInput({
+                label: {
+                  text: "Counsel name",
+                  classes: "govuk-label--s"
+                },
+                id: "counselName",
+                name: "counselName",
+                classes: "govuk-input--width-20",
+                value: data['counselName']
+              }) }}
+          {% endif %}
+
+<!--Payment type = Non-standard magistrates-->
+          {% elseif data['paymentType'] =="Non-standard magistrates'"  %}
+            <h1 class="govuk-heading-xl">Claim details</h1>  
+
+            <!--Date received-->
+            {{ mojDatePicker({
+              id: "dateReceived",
+              name: "dateReceived",
+              label: {
+                text: "Date claim received",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+
+            <!--Firm acc-->
+            {% include version +"/includes/list-office-provider.njk"%}
+          
+            <!--UFN-->
+            {{ govukInput({
+              label: {
+                text: "Unique file number",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 120223/001"
+              },
+              id: "ufn",
+              name: "ufn",
+              classes: "govuk-input--width-10"
+            }) }}    
+
+            <!--Stage-->
+            {{ govukRadios({
+              name: "stageReached",
+              fieldset: {
+                legend: {
+                  text: "Stage reached",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "PROG",
+                  text: "PROG"
+                },
+                {
+                  value: "PROM",
+                  text: "PROM"
+                }
+              ]
+            }) }} 
+
+            <!--Defendant first name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant first name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantFirstName",
+              name: "defendantFirstName",
+              classes: "govuk-input--width-20"
+            }) }}    
+
+            <!--Defendant last name-->
+            {{ govukInput({
+              label: {
+                text: "Defendant last name",
+                classes: "govuk-label--s"
+              },
+              id: "defendantLastName",
+              name: "defendantLastName",
+              classes: "govuk-input--width-20"
+            }) }} 
+
+            <!--No defendant-->
+            {{ govukInput({
+              label: {
+                text: "Number of defendants",
+                classes: "govuk-label--s"
+              },
+              id: "defendants",
+              name: "defendants",
+              classes: "govuk-input--width-5"
+            }) }}   
+
+            <!--Hearing attendance-->
+            {{ govukInput({
+              label: {
+                text: "Number of attendances",
+                classes: "govuk-label--s"
+              },
+              id: "attendances",
+              name: "attendances",
+              classes: "govuk-input--width-5"
+            }) }}  
+
+            {% include version +"/includes/list-hearing.njk"%}
+            {% include version +"/includes/list-matter-type.njk"%}   
+            {% include version +"/includes/list-court.njk"%}  
+
+            <!--Youth Court-->
+            {{ govukRadios({
+              name: "youthCourt",
+              fieldset: {
+                legend: {
+                  text: "Is this court a youth court?",
+                  isPageHeading: false,
+                  classes: "govuk-fieldset__legend--s"
+                }
+              },
+              items: [
+                {
+                  value: "Yes",
+                  text: "Yes",
+                  checked: checked("youthCourt", "Yes")
+                },
+                {
+                  value: "No",
+                  text: "No",
+                  checked: checked("youthCourt", "No")
+                }
+              ]
+            }) }}
+              
+            <!--Date completed-->
+            {{ mojDatePicker({
+              id: "date-completed",
+              name: "date-completed",
+              value: data['date-completed'],
+              label: {
+                text: "Date work completed",
+                classes: "govuk-label--s"
+              },
+              hint: {
+                text: "For example, 17/5/2025."
+              }
+            }) }}
+
+        {% endif  %}
+
+        <!--buttons-->
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+    <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script>
+        let selectElements = $('.autocomplete-select')
+        let placeholder = ''
+
+        selectElements.each(function (index) {
+          let selectElement = $(this)
+          if (selectElement.length) {
+            if (selectElement.attr('autocomplete-placeholder')) {
+              placeholder = selectElement.attr('autocomplete-placeholder')
+            }
+
+            accessibleAutocomplete.enhanceSelectElement({
+              confirmOnBlur: false,
+              autoSelect: true,
+              displayMenu: 'overlay',
+              minLength: 1,
+              showNoOptionsFound: true,
+              showAllValues: false,
+              placeholder: placeholder,
+              selectElement: selectElement[0],
+            })
+          }
+        })
+
+    </script>
+
+{% endblock %}

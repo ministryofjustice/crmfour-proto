@@ -1,0 +1,316 @@
+
+  {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - appeal" or data['paymentType'] =="Assigned counsel - amendment" %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Claim type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['paymentType']}}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          {% if data['paymentType'] =="Assigned counsel" %}
+            Date claim received
+          {% elseif data['paymentType'] =="Assigned counsel - appeal" %}
+            Date appeal received
+          {% elseif data['paymentType'] =="Assigned counsel - amendment" %}
+            Date claim amended
+          {% endif %}
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['dateReceived'] or "24 July 2025"}}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Solicitor office account number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['officeAccount'] or "1A33E4" }}
+        </dd>
+      </div> 
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Solicitor firm name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['firmName'] or "Law Lawyers" }}
+        </dd>
+      </div>      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Unique file number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['ufn'] or "100323/234"}}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Defendant last name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['defendantLastName'] or "Blackbeard" }}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Counsel account number
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['counselOfficeAccount'] or "4A33E9" }}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Counsel name
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['counselName'] or "Judge Judy" }}
+        </dd>
+      </div>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" or data['paymentType'] =="Non-standard magistrates' - appeal" or data['paymentType'] =="Non-standard magistrates' - amendment" %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Claim type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['paymentType'] or "Non-standard magistrates'"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {% if data['paymentType'] =="Non-standard magistrates' - supplemental" %}
+            Date supplemental claim received
+            {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" %}
+            Date appeal received
+            {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" %}
+            Date claim amended
+            {% endif %}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['dateReceived'] or "20 June 2025"}}
+          </dd>
+        </div>      
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Firm office account number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['officeAccount'] or "1A3BE4" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Firm name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['firmName'] or "Law Lawyers" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Unique file number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['ufn'] or "100323/234"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Stage reached
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['stageReached'] or "PROM" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Defendant name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['defendantFirstName'] or "Roger" }} {{data['defendantLastName'] or "Blackbeard" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of defendants
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['defendants'] or "2" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of attendances
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['attendances'] or "5" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Hearing outcome code
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['hearingOutcome'] or "CP02 - Change of solicitor"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Matter type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['matterType'] or "12 - Theft (including taking vehicle without consent)"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Court
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['hearingCourt'] or "Conwy - C3062" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Youth court matter
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['youthCourt'] or "No"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date work was completed
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['date-completed'] or "24 June 2025"}}
+          </dd>
+        </div>
+      {% else %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Claim type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['paymentType'] or "Non-standard magistrates'"}}
+          </dd>
+        </div>
+      {% if data['cwAppStatus'] =="Granted" or data['cwAppStatus'] =="Part granted"%} 
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Linked non-standard claim
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['laa-ref'] or "LAA-5a7d3c"}}
+          </dd>
+        </div>
+      {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date claim received
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['dateReceived'] or "20 June 2025"}}
+          </dd>
+        </div>         
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Firm office account number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['officeAccount'] or "1A3BE4" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Firm name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['firmName'] or "Law Lawyers" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Unique file number
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['ufn'] or "100323/234"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Stage reached
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['stageReached'] or "PROM" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Defendant name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['defendantFirstName'] or "Roger" }} {{data['defendantLastName'] or "Blackbeard" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of defendants
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['defendants'] or "2" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Number of attendances
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['attendances'] or "5" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Hearing outcome code
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['hearingOutcome'] or "CP02 - Change of solicitor"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Matter type
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['matterType'] or "12 - Theft (including taking vehicle without consent)"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Court
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['hearingCourt'] or "Conwy - C3062" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Youth court matter
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['youthCourt'] or "No"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Date work was completed
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['date-completed'] or "24 June 2025"}}
+          </dd>
+        </div>
+  {% endif %}

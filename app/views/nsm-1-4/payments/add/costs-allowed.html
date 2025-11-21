@@ -1,0 +1,237 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "nsm-1-4" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Allowed costs – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    {% if data['paymentType'] =="Non-standard magistrates'"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+    
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+      <p>Amend the totals to show the new allowed costs.</p>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+      <p>Amend the totals to show the new allowed costs.</p>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+      <p>Amend the totals to show the new allowed costs.</p>
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+      <p>Amend the totals to show the new allowed costs.</p>
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <h1 class="govuk-heading-xl">Amend allowed costs</h1>
+      <p>Amend the totals to show the new allowed costs.</p>
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="No"%}
+
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+    
+    {% else%}
+    
+      <h1 class="govuk-heading-xl">Allowed costs</h1>
+    
+    {% endif %}
+
+      {% if data['paymentType'] =="Assigned counsel" or data['paymentType'] =="Assigned counsel - amendment" or data['paymentType'] =="Assigned counsel - appeal" %}
+
+        <form class="form" action="check-answers" onsubmit="calCounselPaymentAllowedTotal()" method="post">
+
+          <!-- hidden input-->
+          <input type="hidden" id="paymentAllowedTotal" name="paymentAllowedTotal" value="{{data['paymentAllowedTotal']}}" />
+
+          <!--Counsel net-->
+          {{ govukInput({
+            id: "allowedCounselNet",
+            name: "allowedCounselNet",
+            value: data['allowedCounselNet'] or "",
+            label: {
+              text: "Net counsel fees",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+          }) }}
+
+          <!--Counsel VAT-->
+          {{ govukInput({
+            id: "allowedCounselVAT",
+            name: "allowedCounselVAT",
+            value: data['allowedCounselVAT'] or "",
+            label: {
+              text: "VAT on counsel fees",
+              classes: "govuk-label--s",
+              isPageHeading: false
+            },
+            prefix: {
+              text: "£"
+            },
+            classes: "govuk-input--width-5",
+            spellcheck: false
+          }) }}
+
+          <button class="govuk-button govuk-button--secondary" type="button" onclick="calCounselPaymentAllowedTotal()">Calculate cost</button>
+
+        {% else %}
+
+          <form class="form" action="check-answers" onsubmit="calPaymentAllowedTotal()" method="post">
+
+            <!-- hidden input-->
+            <input type="hidden" id="paymentAllowedTotal" name="paymentAllowedTotal" value="{{data['paymentAllowedTotal']}}" />
+
+            <!--Profit-->
+            {{ govukInput({
+              id: "allowedProfit",
+              name: "allowedProfit",
+              value: data['allowedProfit'] or "",
+              label: {
+                text: "Profit costs",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Disbursements-->
+            {{ govukInput({
+              id: "allowedDisbursement",
+              name: "allowedDisbursement",
+              value: data['allowedDisbursement'] or "",
+              label: {
+                text: "Disbursement costs",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Travel-->
+            {{ govukInput({
+              id: "allowedTravel",
+              name: "allowedTravel",
+              value: data['allowedTravel'] or "",
+              label: {
+                text: "Travel costs",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <!--Waiting-->
+            {{ govukInput({
+              id: "allowedWaiting",
+              name: "allowedWaiting",
+              value: data['allowedWaiting'] or "",
+              label: {
+                text: "Waiting costs",
+                classes: "govuk-label--s",
+                isPageHeading: false
+              },
+              prefix: {
+                text: "£"
+              },
+              classes: "govuk-input--width-5",
+              spellcheck: false
+            }) }}
+
+            <button class="govuk-button govuk-button--secondary" type="button" onclick="calPaymentAllowedTotal()">Calculate cost</button>
+      {% endif %}
+
+        
+        <p class="govuk-heading-l">
+        <span class="govuk-caption-m">Total allowed cost</span> £
+        <span id="showpaymentAllowedTotal">0.00</span>
+        </p>
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}
