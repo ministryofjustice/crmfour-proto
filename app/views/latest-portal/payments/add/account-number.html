@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Solicitor's firm account number – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="account-number-check" method="post">
+          
+            {{ govukInput({
+              label: {
+                text: "What is the solicitor's firm account number?",
+                isPageHeading: true,
+                classes: "govuk-label--xl"
+              },
+              id: "officeAccount",
+              name: "officeAccount",
+              classes: "govuk-input--width-10"
+            }) }}    
+
+        <!--buttons-->
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

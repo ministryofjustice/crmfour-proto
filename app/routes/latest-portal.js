@@ -9,9 +9,22 @@ const version = 'latest-portal'
     var paymentType = request.session.data['paymentType']
 
     if (paymentType == "Non-standard magistrates'" ){
-        response.redirect('/' + version + "/payments/add/claim-details?officeAccount=&claimedProfit=&claimedTravel=&claimedWaiting=&claimedDisbursement=&allowedProfit=&allowedTravel=&allowedWaiting=&allowedDisbursement=")
+        response.redirect('/' + version + "/payments/add/date-claim-received?officeAccount=&claimedProfit=&claimedTravel=&claimedWaiting=&claimedDisbursement=&allowedProfit=&allowedTravel=&allowedWaiting=&allowedDisbursement=")
     }
     else {
         response.redirect('/' + version + "/payments/add/laa-reference")
+    } 
+  })
+
+  //Allow user to continue if office account check is valid
+  router.post('/question-account-number-check', function(request, response) {
+
+    var accountCheck = request.session.data['accountCheck']
+
+    if (accountCheck == "Yes" ){
+        response.redirect('/' + version + "/payments/add/claim-details")
+    }
+    else {
+        response.redirect('/' + version + "/payments/add/account-number")
     } 
   })
