@@ -1,0 +1,113 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Account not found – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<!--Routing to skip claimed costs for Appeals and Amendments, and Pre-populate the costs fields if the payment request has been linked to a claim-->
+
+    {% if data['paymentType'] =="Non-standard magistrates'"%}
+
+      <form class="form" action="costs-claimed" method="post">
+    
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-claimed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=80.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-claimed" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-claimed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-claimed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="Linked AC - No NSM"%}
+        
+      <form class="form" action="costs-allowed?claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed??claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+     {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="Linked AC - No NSM"%}
+        
+      <form class="form" action="costs-allowed??claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="costs-allowed" method="post">
+    
+    {% else%}
+    
+      <form class="form" action="costs-claimed" method="post">
+    
+    {% endif %}
+
+    <h1 class="govuk-heading-xl">Account not found</h1>
+
+    <p>No account found for <strong>{{data['accountNumber'] or "1A3BE4"}}</strong>.</p>
+    
+    <p>Check you've entered the correct number and try again.</p>
+    
+    <p>Check the number with the provider if you are not getting the expected account.</p>
+
+    <p><a href="account-number" class="govuk-link">Go back</a></p>
+    <p><a href="#" class="govuk-link">Cancel payment request</a></p>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

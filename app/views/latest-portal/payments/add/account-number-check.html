@@ -1,0 +1,87 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Check solicitor details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <form class="form" action="/{{version}}/question-account-number-check" method="post">
+
+    <h1 class="govuk-heading-xl">Check solicitor details</h1>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Firm account number
+          </dt>
+            <dd class="govuk-summary-list__value">
+            {{data['officeAccount'] or "1A3BE4"}}
+          </dd>
+        </div>
+         <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Firm name
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Law Lawyers
+          </dd>
+        </div>
+      </dl>
+
+      {{ govukRadios({
+          name: "accountCheck",
+          fieldset: {
+            legend: {
+              text: "Is this the right account?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          items: [
+            {
+              value: "Yes",
+              text: "Yes",
+              checked: checked("accountCheck", "Yes")
+            },
+            {
+              value: "No",
+              text: "No, I need to change the number",
+              checked: checked("accountCheck", "No")
+            }
+          ]
+        }) }}
+
+        <!--buttons-->
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

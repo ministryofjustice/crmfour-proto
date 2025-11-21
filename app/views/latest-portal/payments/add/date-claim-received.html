@@ -1,0 +1,182 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Date claim received – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <!--Routing to skip claimed costs for Appeals and Amendments, and Pre-populate the costs fields if the payment request has been linked to a claim-->
+
+    {% if data['paymentType'] =="Non-standard magistrates'"%}
+
+      <form class="form" action="costs-claimed" method="post">
+    
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-claimed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=80.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="account-number" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="account-number" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedProfit=342.00&claimedTravel=0.00&claimedWaiting=60.00&claimedDisbursement=890.00&allowedProfit=332.00&allowedTravel=50.00&allowedWaiting=0.00&allowedDisbursement=890.00" method="post">
+
+    {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="account-number" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-claimed" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="account-number" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed?claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="Linked AC - No NSM"%}
+        
+      <form class="form" action="costs-allowed?claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - appeal" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="account-number" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="Yes"%}
+        
+      <form class="form" action="costs-allowed??claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+     {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="Linked AC - No NSM"%}
+        
+      <form class="form" action="costs-allowed??claimedCounselNet=1000.00&allowedCounselNet=900.00&claimedCounselVAT=200.00&allowedCounselVAT=180.00" method="post">
+
+    {% elseif data['paymentType'] =="Assigned counsel - amendment" and data['linkedCRM'] =="No"%}
+
+      <form class="form" action="account-number" method="post">
+    
+    {% else%}
+    
+      <form class="form" action="costs-claimed" method="post">
+    
+    {% endif %}
+      
+      {% if data['paymentType'] =="Non-standard magistrates'" or data['paymentType'] =="Assigned counsel"%}                            
+
+        <!--Date claim received-->
+
+        {{ mojDatePicker({
+          id: "dateReceived",
+          name: "dateReceived",
+          value: data['dateReceived'],
+          label: {
+            text: "Date claim received",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example, 17/5/2025."
+          }
+        }) }}
+                      
+      {% elseif data['paymentType'] =="Non-standard magistrates' - supplemental"%}                            
+
+        <!--Date supplemental claim received-->
+
+        {{ mojDatePicker({
+          id: "dateReceived",
+          name: "dateReceived",
+          label: {
+            text: "Date supplemental claim received",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example, 17/5/2025."
+          }
+        }) }}
+
+      {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" or data['paymentType'] =="Assigned counsel - appeal"%}
+
+      <!--Date appeal received-->
+
+        {{ mojDatePicker({
+          id: "dateReceived",
+          name: "dateReceived",
+          label: {
+            text: "Date appeal received",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example, 17/5/2025."
+          }
+        }) }}
+
+
+      {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" or data['paymentType'] =="Assigned counsel - amendment"%}
+
+      <!--Date claim amended-->
+
+        {{ mojDatePicker({
+          id: "dateReceived",
+          name: "dateReceived",
+          label: {
+            text: "Date claim amended",
+            classes: "govuk-label--xl",
+            isPageHeading: true
+          },
+          hint: {
+            text: "For example, 17/5/2025."
+          }
+        }) }}
+
+      {% endif  %}
+
+        <!--buttons-->
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
