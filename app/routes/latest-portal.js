@@ -3,16 +3,29 @@ const router = govukPrototypeKit.requests.setupRouter('/latest-portal')
 
 const version = 'latest-portal'
 
-  //Allow user to search for the original claim for all payment types, except Non-standard Magistrates
+  //Take user to search for the original claim for all payment types, except Non-standard Magistrates
   router.post('/question-payment-type', function(request, response) {
 
     var paymentType = request.session.data['paymentType']
 
     if (paymentType == "Non-standard magistrates'" ){
-        response.redirect('/' + version + "/payments/add/date-claim-received?officeAccount=&claimedProfit=&claimedTravel=&claimedWaiting=&claimedDisbursement=&allowedProfit=&allowedTravel=&allowedWaiting=&allowedDisbursement=")
+        response.redirect('/' + version + "/payments/add/account-number")
     }
     else {
         response.redirect('/' + version + "/payments/add/laa-reference")
+    } 
+  })
+
+  //Take user to office code question if there is no linked claim - skips office code question when there is a linked claim
+  router.post('/question-laa-reference', function(request, response) {
+
+    var linkedCRM = request.session.data['linkedCRM']
+
+    if (linkedCRM == "No" ){
+        response.redirect('/' + version + "/payments/add/account-number")
+    }
+    else {
+        response.redirect('/' + version + "/payments/add/claim-details")
     } 
   })
 
