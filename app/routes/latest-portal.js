@@ -29,6 +29,19 @@ const version = 'latest-portal'
     } 
   })
 
+  //Take user to account not found screen if the office code input is less than 6 characters
+  router.post('/question-account-number', function(request, response) {
+
+    var officeAccount = request.session.data['officeAccount']
+
+    if (officeAccount.length < 6 ){
+        response.redirect('/' + version + "/payments/add/account-number-invalid")
+    }
+    else {
+        response.redirect('/' + version + "/payments/add/account-number-check")
+    } 
+  })
+
   //Allow user to continue if office account check is valid
   router.post('/question-account-number-check', function(request, response) {
 
