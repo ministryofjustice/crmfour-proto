@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% set version = "latest-portal" %}
+{% set activePrimeNav = [true, false] %}
+{% set activeSubNav = [false, true, false] %}
+
+
+{% block header %}
+  {% include version +"/includes/header-portal-payments.njk"%}  
+{% endblock %}
+
+{% block pageTitle %}
+  Cancel payment request – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/latest-portal/payments/payment-requests" method="post">
+          
+      <h1 class="govuk-heading-xl">Are you sure you want to cancel this payment request?</h1>
+
+      <p>If you cancel, any information you've entered will be lost.</p>
+
+        <!--buttons-->
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Yes, cancel",
+            classes: "govuk-button--warning"
+          }) }}
+
+          {{ govukButton({
+            text: "No, back to request",
+            classes: "govuk-button--secondary",
+            href: "account-number-invalid"
+          }) }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
