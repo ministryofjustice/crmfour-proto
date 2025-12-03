@@ -54,8 +54,6 @@
     </div>
   </div>
 
-    <form class="form" action="/{{version}}/question-laa-reference" method="post">
-
       <div id="resultsTable2" style="display:none;">
 
       <h2 class="govuk-heading-m" id="resultsHeading">
@@ -70,14 +68,21 @@
         <p class="govuk-body">If you expected to find a claim, check your search term and try again or search by different criteria (defendant, firm account, UFN or LAA reference).</p>
         <p>If there is no original claim, you can create a new record.</p>
         
+        <form class="form" action="/{{version}}/question-laa-reference" method="post">
         {{ govukButton({
           text: "Create a new record",
           name: "linkedCRM",
           value: "No"
         }) }}
+        </form>
 
       </div>
 
+      <!-- Set the LAA Reference that will be used throughout the journey -->
+      {% set laaRef1 ="LAA-3c8f2a"%}
+      {% set laaRef2 ="LAA-8p6h1d"%}
+      {% set laaRef3 ="LAA-4h8d3b"%}
+      {% set laaRef4 ="LAA-9u7b3d"%}
       <table class="govuk-table generic-filter" id="table-header" data-module="moj-sortable-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
@@ -91,40 +96,50 @@
         </thead>
         <tbody class="govuk-table__body">                
           <tr class="govuk-table__row hideTR">
-           <td class="govuk-table__cell">LAA-5a7d3c</td> 
+           <td class="govuk-table__cell">{{ laaRef1 }}</td> 
             <td class="govuk-table__cell">1A3BE4</td>
             <td class="govuk-table__cell">Legal Aiders Ltd</td>
             <td class="govuk-table__cell">207423/342</td>
             <td class="govuk-table__cell">Blackbeard</td>
             <td class="govuk-table__cell">
+              <form class="form" action="/{{version}}/question-laa-reference" method="post">
+              <input type="hidden" id="laa-ref" name="laa-ref" value="{{ laaRef1 }}"/> <!-- Assigns the set laaRef to the 'laa-ref' variable when 'Select' button is clicked - laa-ref is used on check-answers and submit-confirmation -->                
               {{ govukButton({
                 text: "Select claim",
                 name: "linkedCRM",
                 value: "Yes"
               }) }}
+              </form>
             </td>
           </tr>
           <tr class="govuk-table__row hideTR">
-            <td class="govuk-table__cell">LAA-9p4f0e</td> 
+            <td class="govuk-table__cell">{{ laaRef2 }}</td> 
             <td class="govuk-table__cell">1A3BE4</td>
             <td class="govuk-table__cell">Legal Aiders Ltd</td>
             <td class="govuk-table__cell">100323/234</td>
             <td class="govuk-table__cell">Innes</td>
             <td class="govuk-table__cell">
+              <form class="form" action="/{{version}}/question-laa-reference" method="post">
+              <input type="hidden" id="laa-ref" name="laa-ref" value="{{ laaRef2 }}"/>
               {{ govukButton({
                 text: "Select claim",
                 name: "linkedCRM",
                 value: "Yes"
               }) }}
+              </form>
             </td>
           </tr>
+
           <tr class="govuk-table__row hideTR">
-            <td class="govuk-table__cell">LAA-6p4f0r</td>
+            <td class="govuk-table__cell">{{ laaRef3 }}</td>
             <td class="govuk-table__cell">5T6H7J</td>
             <td class="govuk-table__cell">Counsel 4U</td>
             <td class="govuk-table__cell">100323/234</td>
             <td class="govuk-table__cell">Olu</td>
             <td class="govuk-table__cell">
+              <form class="form" action="/{{version}}/question-laa-reference" method="post">
+              <input type="hidden" id="laa-ref" name="laa-ref" value="{{ laaRef3 }}"/>
+              <input type="hidden" id="laa-ac-ref" name="laa-ac-ref" value="{{ laaRef4 }}"/>
             <!--Scenario for AC Appeals and Amendments only - if no NSM Claim is linked to the AC Claim-->
             {% if data['paymentType'] =="Assigned counsel - appeal" or data['paymentType'] =="Assigned counsel - amendment" %}
               {{ govukButton({
@@ -139,6 +154,7 @@
                 value: "Yes"
               }) }}
             {% endif %}
+            </form>
             </td>
           </tr>
         </body>
@@ -149,7 +165,6 @@
 
     </div>
 
-    </form>   
      
   </div>
 
