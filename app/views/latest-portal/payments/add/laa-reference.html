@@ -42,7 +42,8 @@
             Find a claim
           </label>
           <div id="search-hint" class="govuk-hint moj-search__hint ">
-            You can search by defendant, firm account, UFN or LAA reference
+            Search by defendant, firm account, UFN or LAA reference. Use a<br>
+            comma between search terms.
           </div>
           <input class="govuk-input moj-search__input" id="filterSearch" name="filterSearch" type="search" onkeyup="tablefilterSearch()" aria-description="Enter any combination of client or firm name, UFN or LAA reference">
         </div>
@@ -54,9 +55,22 @@
     </div>
   </div>
 
+    <div id="noClaims">
+        <p>If there is no related claim or payment request, create a record.</p>
+
+        <form class="form" action="/{{version}}/question-laa-reference" method="post">
+        {{ govukButton({
+          text: "Create a new record",
+          classes: "govuk-button--secondary",
+          name: "linkedCRM",
+          value: "No"
+        }) }}
+        </form>
+    </div>
+
       <div id="resultsTable2" style="display:none;">
 
-      <h2 class="govuk-heading-m" id="resultsHeading">
+      <h2 class="govuk-heading-s" id="resultsHeading">
         3 search results
       </h2>
       
@@ -71,6 +85,7 @@
         <form class="form" action="/{{version}}/question-laa-reference" method="post">
         {{ govukButton({
           text: "Create a new record",
+          classes: "govuk-button--secondary",
           name: "linkedCRM",
           value: "No"
         }) }}
@@ -284,6 +299,12 @@
     var noMsg = document.getElementById("noResultsMessage");
     if (noMsg) {
       noMsg.style.display = (visibleCount === 0) ? "block" : "none";
+    }
+
+    // Hide #noClaims message if no results
+    var noClaimsDiv = document.getElementById("noClaims");
+    if (noClaimsDiv) {
+      noClaimsDiv.style.display = (visibleCount === 0) ? "none" : "block";
     }
 
     // Also expose globally if you want to use elsewhere in JS
