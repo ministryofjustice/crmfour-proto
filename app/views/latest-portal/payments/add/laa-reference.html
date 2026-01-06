@@ -120,7 +120,7 @@
               <form class="form" action="/{{version}}/question-laa-reference" method="post">
               <input type="hidden" id="laa-ref" name="laa-ref" value="{{ laaRef1 }}"/> <!-- Assigns the set laaRef to the 'laa-ref' variable when 'Select' button is clicked - laa-ref is used on check-answers and submit-confirmation -->                
               {{ govukButton({
-                text: "Select claim",
+                text: "Select",
                 name: "linkedCRM",
                 value: "Yes"
               }) }}
@@ -137,7 +137,7 @@
               <form class="form" action="/{{version}}/question-laa-reference" method="post">
               <input type="hidden" id="laa-ref" name="laa-ref" value="{{ laaRef2 }}"/>
               {{ govukButton({
-                text: "Select claim",
+                text: "Select",
                 name: "linkedCRM",
                 value: "Yes"
               }) }}
@@ -158,13 +158,13 @@
             <!--Scenario for AC Appeals and Amendments only - if no NSM Claim is linked to the AC Claim-->
             {% if data['paymentType'] =="Assigned counsel - appeal" or data['paymentType'] =="Assigned counsel - amendment" %}
               {{ govukButton({
-                text: "Select claim",
+                text: "Select",
                 name: "linkedCRM",
                 value: "Linked AC - No NSM"
               }) }}
             {% else %}
               {{ govukButton({
-                text: "Select claim",
+                text: "Select",
                 name: "linkedCRM",
                 value: "Yes"
               }) }}
