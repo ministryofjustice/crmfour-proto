@@ -29,12 +29,18 @@
     <div class="govuk-grid-column-two-thirds">
         
       {% if data['paymentType'] == "Assigned counsel"%}
-        <h1 class="govuk-heading-xl">Search for the linked non-standard magistrates claim</h1>
+        <h1 class="govuk-heading-xl">Search for the non-standard magistrates claim</h1>
       {% elseif data['paymentType'] == "Assigned counsel - appeal" or data['paymentType'] == "Assigned counsel - amendment"%}
-        <h1 class="govuk-heading-xl">Search for the original assigned counsel claim</h1>
+        <h1 class="govuk-heading-xl">Search for the assigned counsel claim</h1>
       {% else %}
-        <h1 class="govuk-heading-xl">Search for the original claim</h1>
+        <h1 class="govuk-heading-xl">Search for the non-standard magistrates claim</h1>
       {% endif %}
+
+      <p>Search to link this payment to a digital record.</p>
+
+      <p>If there is no related claim or payment request, create a new record.</p>
+
+      <p>If you expect to find a record but can't, try a different search.</p>
 
       <div class="moj-search" style="margin-bottom: 20px;">
         <div class="govuk-form-group" role="search">
@@ -56,8 +62,6 @@
   </div>
 
     <div id="noClaims">
-        <p>If there is no related claim or payment request, create a record.</p>
-
         <form class="form" action="/{{version}}/question-laa-reference" method="post">
         {{ govukButton({
           text: "Create a new record",
@@ -79,8 +83,6 @@
 
       <!-- Optional: message that shows when there are zero results -->
       <div id="noResultsMessage" class="govuk-body" style="display:none;">
-        <p class="govuk-body">If you expected to find a claim, check your search term and try again or search by different criteria (defendant, firm account, UFN or LAA reference).</p>
-        <p>If there is no original claim, you can create a new record.</p>
         
         <form class="form" action="/{{version}}/question-laa-reference" method="post">
         {{ govukButton({
@@ -90,6 +92,9 @@
           value: "No"
         }) }}
         </form>
+
+        <h4>No results</h4>
+        
 
       </div>
 
@@ -175,8 +180,10 @@
         </body>
       </table>
 
-      {% set pageNo ="0" %}
+      <div id="paginationContainer">
+      {% set pageNo ="1" %}
       {% include "includes/pagination-search.html"%}
+      </div>
 
     </div>
 
@@ -281,11 +288,23 @@
       if (display !== "none") visibleCount++;
     });
 
+    // Hide table header if no results
+    var tableHeader = document.getElementById("table-header").querySelector("thead");
+    if (tableHeader) {
+      tableHeader.style.display = (visibleCount === 0) ? "none" : "table-header-group";
+    }
+
+    // Hide pagination if no results
+    var pagination = document.getElementById("paginationContainer");
+    if (pagination) { 
+      pagination.style.display = (visibleCount === 0) ? "none" : "block"; 
+    }
+
     // Update heading text
     var resultHeading = document.getElementById("resultsHeading");
     if (resultHeading) {
       resultHeading.textContent = (visibleCount === 0)
-        ? "There are no results that match the search criteria"
+        ? ""
         : visibleCount + " search results";
     }
 
