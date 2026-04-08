@@ -1,0 +1,159 @@
+{% extends "layouts/main.html" %}
+{% set version = "pa-1-3" %}
+{% set activePrimeNav = [true, false, false, false] %}
+
+
+{% block header %}
+  {% include version + "/includes/header-cw.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Application details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds"> 
+
+        {% if data['cwAppStatus'] =="In progress" and data['statusComment'] =="Hold" %}
+          <form class="form" action="send-confirmation?cwAppStatus=Referred&statusComment=Referred&icaDecision=Yes" method="post">
+
+            <h1 class="govuk-heading-xl">Which ICA was it sent to?</h1>
+
+              {{ govukInput({
+                label: {
+                  text: "First name",
+                  classes: "govuk-label--s"
+                },
+                classes: "govuk-input--width-20",
+                id: "ICA-first-name",
+                name: "ICA-first-name",
+                value: data['ICA-first-name']
+              }) }}
+
+              {{ govukInput({
+                label: {
+                  text: "Last name",
+                  classes: "govuk-label--s"
+                },
+                classes: "govuk-input--width-20",
+                id: "ICA-last-name",
+                name: "ICA-last-name",
+                value: data['ICA-last-name']
+              }) }}
+
+              {{ mojDatePicker({
+                id: "dateSentICA",
+                name: "dateSentICA",
+                label: {
+                  text: "Date sent",
+                  classes: "govuk-label--s"
+                },
+                hint: {
+                  text: "For example, 17/5/2025"
+                }
+              }) }}   
+
+            {% elseif data['cwAppStatus'] =="In progress" and data['statusComment'] =="Returned" and data['icaDecision'] =="Yes"%}
+              <form class="form" action="send-confirmation?cwAppStatus=Referred&statusComment=ReturnedICA&icaDecision=Yes" method="post">
+                
+                <h1 class="govuk-heading-xl">Which ICA was it sent to?</h1>
+
+                {{ govukInput({
+                  label: {
+                    text: "First name",
+                    classes: "govuk-label--s"
+                  },
+                  classes: "govuk-input--width-20",
+                  id: "ICA-first-name",
+                  name: "ICA-first-name",
+                  value: data['ICA-first-name']
+                }) }}
+
+                {{ govukInput({
+                  label: {
+                    text: "Last name",
+                    classes: "govuk-label--s"
+                  },
+                  classes: "govuk-input--width-20",
+                  id: "ICA-last-name",
+                  name: "ICA-last-name",
+                  value: data['ICA-last-name']
+                }) }}
+
+                {{ mojDatePicker({
+                  id: "dateSentICA",
+                  name: "dateSentICA",
+                  label: {
+                    text: "Date sent",
+                    classes: "govuk-label--s"
+                  },
+                  hint: {
+                    text: "For example, 17/5/2025"
+                  }
+                }) }}   
+
+            {% elseif data['cwAppStatus'] =="In progress"%}
+              <form class="form" action="send-confirmation?cwAppStatus=Hold&statusComment=Hold&icaDecision=Yes" method="post">
+                <h1 class="govuk-heading-xl">Prepare ICA referral</h1>
+                
+                <p>Download the supporting information needed for the ICA from the application and add it to the relevant folder.</p>
+                <p>Another caseworker will email this information to the ICA with the referral message.</p>
+                
+                {{ govukTextarea({
+                  name: "icaReferredReasonCW",
+                  id: "icaReferredReasonCW",
+                  label: {
+                    text: "Referral message for ICA",
+                    isPageHeading: false,
+                    classes: "govuk-label--s"
+                  },
+                  hint: {
+                  text: "This message will not be shared with the provider"
+                  }
+                }) }}  
+
+                {{ govukTextarea({
+                  name: "icaReferredReasonProvider",
+                  id: "icaReferredReasonProvider",
+                  value: data['icaReferredReasonProvider'] or "Your application for Prior Authority will be referred this following Monday to an Independent Cost Assessor who will make a decision. Once the ICA has made a decision we will confirm their decision via the online portal.",
+                  label: {
+                    text: "Message for provider",
+                    isPageHeading: false,
+                    classes: "govuk-label--s"
+                  },
+                  hint: {
+                  text: "You can change this message if you think more detail is needed. It will go to the provider when you submit this hold for referral."
+                  }
+                }) }}  
+        {% endif %}
+      
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Submit"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and come back later",
+            classes: "govuk-button--secondary",
+            href: "application-details"
+          }) }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

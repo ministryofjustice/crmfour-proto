@@ -1,0 +1,132 @@
+{% extends "layouts/main.html" %}
+{% set version = "pa-1-3" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false, false] %}
+  {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" or data['cwAppStatus'] == "Auto granted" %}
+    {% set activePrimeNav = [false, false, false, true, false] %}
+  {% elseif data['Appeal'] == "Yes" %}
+    {% set activePrimeNav = [false, false, true, false, false] %}
+  {% else %}
+    {% set activePrimeNav = [false, true, false, false, false] %}
+{% endif %}
+
+{% set activeAppNav = [false, false, false, true, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Related applications – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      {% include version + "/includes/app-status-cw.html"%}
+      {% include version + "/includes/nav-app-cw.njk"%}
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h2 class="govuk-heading-l">Related applications</h2>
+      <p>All related applications open in a new tab or window.</p>
+
+      <table class="govuk-table" data-module="moj-sortable-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header" aria-sort="none">Reference</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Client</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Caseworker</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Service</th>
+            <th scope="col" class="govuk-table__header" aria-sort="descending">Last updated</th>
+            <th scope="col" class="govuk-table__header" aria-sort="none">Status</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">                
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-1z5f7w&cwAppStatus=Granted&Appeal=No" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="1z5f7w">LAA-1z5f7w</a></td>
+            <td class="govuk-table__cell">Roger Blackbeard</td>
+            <td class="govuk-table__cell">{{data['caseworker3']}}</td>
+            <td class="govuk-table__cell">Translation</td>
+            <td class="govuk-table__cell" data-sort-value="230901">1st Sept 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-9p4f0e&cwAppStatus=Rejected&Appeal=No" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="9p4f0e">LAA-9p4f0e</a></td>
+            <td class="govuk-table__cell">Roger Blackbeard</td>
+            <td class="govuk-table__cell">{{data['caseworker3']}}</td>
+            <td class="govuk-table__cell">Translation</td>
+            <td class="govuk-table__cell" data-sort-value="230821">21st Aug 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Rejected</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-6p4f0r&cwAppStatus=Part granted&Appeal=No" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="6p4f0r">LAA-6p4f0r</a></td>
+            <td class="govuk-table__cell">Roger Blackbeard</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell">Doctor (GP)</td>
+            <td class="govuk-table__cell" data-sort-value="231013">13th Oct 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-8p3h0e&cwAppStatus=Rejected&Appeal=No" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="8p3h0e">LAA-8p3h0e</a></td>
+            <td class="govuk-table__cell">Roger Blackbeard</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell">Translation</td>
+            <td class="govuk-table__cell" data-sort-value="230803">3rd Aug 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">Rejected</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-1z5f76&cwAppStatus=Part granted&Appeal=No" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="1z5f76">LAA-1z5f76</a></td>
+            <td class="govuk-table__cell">Roger Blackbeard</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell">Photocopying</td>
+            <td class="govuk-table__cell" data-sort-value="230901">1st Sept 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Part granted</strong></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><a href="application-details?laa-ref=LAA-2d9t4j&cwAppStatus=Granted&Appeal=No" class="govuk-link--no-visited-state" target=”_blank” data-sort-value="2d9t4j">LAA-2d9t4j</a></td>          
+            <td class="govuk-table__cell">Arnie Swartz</td>
+            <td class="govuk-table__cell">{{data['caseworker1']}}</td>
+            <td class="govuk-table__cell">DNA Report</td>
+            <td class="govuk-table__cell" data-sort-value="230914">14th Sept 2023</td>
+            <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Granted</strong></td>
+          </tr>
+        </body>
+      </table>   
+
+      {% include version + "/includes/application-buttons.html"%}
+
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    var rate1GeneralTotal = parseInt(document.getElementById("rate1GeneralTotal").value) | 0
+    var rate2GeneralTotal = parseInt(document.getElementById("rate2GeneralTotal").value) | 0
+    var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
+    var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
+    var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
+    var allowedTotalCost = parseInt(document.getElementById("allowedTotalCost").value) | 0
+
+    window.onload = function(){  
+      allowedTotalCost = actualTravelTotal + actualAdd1Total + rate1GeneralTotal + rate2GeneralTotal;
+      document.getElementById("showallowedTotalCost").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost2").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost3").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("allowedTotalCost").value = Number(allowedTotalCost).toFixed(2);
+    }
+  </script>
+{% endblock %}

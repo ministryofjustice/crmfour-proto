@@ -1,0 +1,130 @@
+<input type="hidden" id="actualTravelTotal" name="actualTravelTotal" value="{{data['actualTravelTotal'] or "120.00"}}" />
+<input type="hidden" id="actualAdd1Total" name="actualAdd1Total" value="{{data['actualAdd1Total'] or "120.00"}}" />
+<input type="hidden" id="actualGeneralTotal" name="actualGeneralTotal" value="{{data['actualGeneralTotal'] or "400.00"}}" />
+<input type="hidden" id="rate1GeneralTotal" name="rate1GeneralTotal" value="{{data['rate1GeneralTotal'] or "200.00"}}" />
+<input type="hidden" id="rate2GeneralTotal" name="rate2GeneralTotal" value="{{data['rate2GeneralTotal'] or "200.00"}}" />
+<input type="hidden" id="allowedTotalCost" name="allowedTotalCost" value="{{data['allowedTotalCost'] or "640.00"}}" />   
+    
+<!--   
+{{data['cwAppStatus']}} 
+{{data['icaDecision']}} 
+{{data['statusComment']}} 
+--> 
+<span class="govuk-caption-xl">Crime Busters Legal</span>
+<h1 class="govuk-heading-xl">{{data['laa-ref'] or "LAA-5a7d3c"}}</h1>
+
+{% if data['Appeal'] == "No" or data['Appeal'] == null %}
+  <p>
+    {% if data['cwAppStatus'] == "Granted" %}
+      <strong class="govuk-tag govuk-tag--green">Granted</strong>
+      {% elseif data['cwAppStatus'] == "Rejected" %}
+        <strong class="govuk-tag govuk-tag--red">Rejected</strong>
+      {% elseif data['cwAppStatus'] == "Part granted" %}
+        <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
+      {% elseif data['cwAppStatus'] == "Auto granted" %}
+        <strong class="govuk-tag govuk-tag--green">Auto granted</strong>
+      {% elseif data['cwAppStatus'] == "Expired" %}
+        <strong class="govuk-tag govuk-tag--red">Expired</strong>
+      {% elseif data['cwAppStatus'] == "New" or data['cwAppStatus'] == null %}
+      <strong class="govuk-tag govuk-tag--grey">Not assigned</strong>
+      {% elseif data['cwAppStatus'] == "In progress" %}
+      <strong class="govuk-tag govuk-tag--purple">In progress</strong>
+      {% elseif data['cwAppStatus'] == "Review" %}
+      <strong class="govuk-tag govuk-tag--yellow">Sent back</strong>
+        {% elseif data['cwAppStatus'] == "Returned" %}
+      <strong class="govuk-tag govuk-tag--grey">Provider updated</strong>
+      {% elseif data['cwAppStatus'] == "Referred" %}
+      <strong class="govuk-tag govuk-tag--yellow">Sent to ICA</strong>
+    {% endif %}
+  </p>
+ 
+    {% elseif data['Appeal'] == "Yes" %}
+     <p>
+      <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
+      {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "" %}
+          <strong class="govuk-tag govuk-tag--grey">Appeal</strong>
+        {% elseif data['cwAppStatus'] == "In progress" %}
+          <strong class="govuk-tag govuk-tag--purple">Appeal: In progress</strong>
+        {% elseif data['cwAppStatus'] == "Review" %}
+          <strong class="govuk-tag govuk-tag--yellow">Appeal: Sent back</strong>
+        {% elseif data['cwAppStatus'] == "Returned" %}
+          <strong class="govuk-tag govuk-tag--grey">Appeal: Updated</strong>
+        {% elseif data['cwAppStatus'] == "Hold" %}
+          <strong class="govuk-tag govuk-tag--grey">Appeal: ICA Hold</strong>
+          {% elseif data['cwAppStatus'] == "Referred" %}
+          <strong class="govuk-tag govuk-tag--yellow">Appeal: Sent to ICA</strong>
+      {% endif %}
+      </p>
+      {% else %}
+      <p>
+        {% if data['cwAppStatus'] == "Granted" %}
+          <strong class="govuk-tag govuk-tag--green">Granted</strong>
+          {% elseif data['cwAppStatus'] == "Rejected" %}
+            <strong class="govuk-tag govuk-tag--red">Rejected</strong>
+          {% else %}
+            <strong class="govuk-tag govuk-tag--blue">Part granted</strong>
+        {% endif %}
+      </p>
+   
+{% endif %}
+
+
+  <p class="govuk-body-l"><strong>Requested:</strong> £640.00<br>
+    {% if data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}<strong>Allowed:</strong> £0.00
+      {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}<strong>Allowed:</strong> £640.00     
+      {% elseif data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+      {% else %} <strong>Allowed:</strong> £<span id="showallowedTotalCost">520.00</span>
+    {% endif %}
+
+  <p class="govuk-body-m">
+    {% if data['Appeal'] =="Yes"%}
+    <strong>Appeal received:</strong> 18 May 2025<br>
+    {% else %}
+    <strong>Date received:</strong> 17 May 2025<br>
+  {% endif %}
+  {% if data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data ['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Auto granted" %}
+    <strong>Decision:</strong> 21 May 2025
+    {% elseif data['cwAppStatus'] == "Hold" %}
+      <strong>ICA Hold:</strong> 21 May 2025
+      {% elseif data['cwAppStatus'] == "Referred" %}
+      <strong>Sent to ICA:</strong> 21 May 2025
+    {% elseif data['cwAppStatus'] == "Review" or data['cwAppStatus'] == "ICAReview" %}
+     <strong>Sent back:</strong> 21 May 2025
+    {% elseif data['cwAppStatus'] == "Returned" %}
+     <strong>Updated:</strong> 21 May 2025
+    {% elseif data['cwAppStatus'] == "Expired" %}
+      <strong>Expired</strong> 31 May 2025
+  {% endif %}
+  </p>
+
+  <p class="govuk-body-m"><strong>Service: </strong>
+  {% if data['serviceType'] == "Pathologist's report" and data['postMortem'] == "Yes" %}
+    Pathologist's report - post-mortem
+    {% else %}
+    {{data['serviceType'] or "Interpreter"}}
+  {% endif %}
+  <br>
+  <strong>Representation order date:</strong> 19 April 2023</span>
+</p>
+
+  <p class="govuk-body-m">
+    {% if data['cwAppStatus'] == "In progress" %}
+    <strong>Caseworker</strong> {{data['caseworker1']}}
+    {% endif %}
+  </p>
+
+<div class="govuk-button-group">
+  {% if data['cwAppStatus'] == "In progress"  %}
+    {{ govukButton({
+      text: "Remove from list",
+      href: "user-unassign",
+      classes: "govuk-button--secondary"
+    }) }}
+    {% elseif data['cwAppStatus'] == "New" or data ['cwAppStatus'] == "Referred"  or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Hold" %}
+      {{ govukButton({
+        text: "Add to my list",
+        href: "user-assign",
+        classes: "govuk-button--secondary"
+      }) }}
+  {% endif %}
+</div>

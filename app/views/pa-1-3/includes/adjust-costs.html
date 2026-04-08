@@ -1,0 +1,373 @@
+<ul class="govuk-list">
+  <li>Requested: £640.00</li>
+  <li> 
+    {% if data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}Allowed: £0.00
+      {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}Allowed: £640.00  
+      {% elseif data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+      {% else %} 
+      Allowed: £<span id="showallowedTotalCost2">480.00</span>
+    {% endif %}
+  </li>
+</ul>
+     
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Cost summary
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <table class="govuk-table">
+      <caption class="govuk-visually-hidden">Requested and allowed costs</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Cost type</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Requested</th>
+          <th scope="col" class="govuk-table__header govuk-table__header--numeric">Allowed</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Service - rate 1</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            {% if data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+              {% else %}
+              £{{data['rate1GeneralTotal'] or "200.00"}}
+            {% endif %}
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Service - rate 2</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£200.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            {% if data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+              {% else %}
+              £{{data['rate2GeneralTotal'] or "200.00"}}
+            {% endif %}
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Travel</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            {% if data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+              {% else %}£{{data['actualTravelTotal'] or "120.00"}}
+            {% endif %}
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Waiting time</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            {% if data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+              {% else %}
+              £{{data['actualAdd1Total'] or "120.00"}}
+            {% endif %}
+          </td>
+          </td>
+        </tr>
+          <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" colspan="1">Total</th>
+          <td class="govuk-table__cell govuk-table__cell--numeric"><span class="govuk-visually-hidden">Sum of total requested: </span><strong>£640.00</strong></td>
+          <td class="govuk-table__cell govuk-table__cell--numeric">
+            <span class="govuk-visually-hidden">Sum of total allowed: </span>
+            <strong>
+              {% if data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}£0.00
+                {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}£640.00     
+                {% elseif data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+                {% else %}
+                £<span id="showallowedTotalCost3">480.00</span>
+              {% endif %}
+            </strong>
+          </td>
+        </tr>
+      </tbody>
+    </table> 
+  </div>
+</details>
+      
+<!--Service -->
+{% if data['Appeal'] =="Yes" %}  
+  <h4 class="govuk-heading-s" id="serviceID">Service cost</h4>
+  {% else %}
+  <h3 class="govuk-heading-m" id="serviceID">Service cost</h3>
+{% endif %}
+
+<p>Service: {{data['serviceType'] or "Interpreter"}}</p>
+
+{% if data['serviceAdjust'] == "Yes" %}
+  <div class="govuk-inset-text">
+    {{data['serviceAdjustField'] or "Adjusted the allowed hours" }}
+  </div>
+{% endif %}
+
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" rowspan="2" class="govuk-table__header">Details</th>
+      <th scope="col" colspan="2" class="govuk-table__header">Requested</th>
+      <th scope="col" colspan="2" class="govuk-table__header">Allowed</th>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Rate 1</th>
+      <th scope="col" class="govuk-table__header">Rate 2</th>
+      <th scope="col" class="govuk-table__header">Rate 1</th>
+      <th scope="col" class="govuk-table__header">Rate 2</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">          
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__cell">Amount</th>
+      <td class="govuk-table__cell">1 hour 0 minutes</td>
+      <td class="govuk-table__cell">2 hour 0 minutes</td>
+      <td class="govuk-table__cell">
+        {% if data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" %}
+          {% else %}
+          {{data['generalNoHours-hours'] or "1"}} hours {{data['generalNoHours-mins'] or "0"}} minutes
+        {% endif %}
+      </td>
+      <td class="govuk-table__cell">
+        {% if data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" %}
+          {% else %}
+          {{data['general2NoHours-hours'] or "2"}} hours {{data['general2NoHours-mins'] or "0"}} minutes
+        {% endif %}
+      </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__cell">Rate</th>
+      <td class="govuk-table__cell">£100 per hour</td>
+      <td class="govuk-table__cell">£200 per hour</td>
+       <td class="govuk-table__cell">
+        {% if data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" %}
+          {% else %}
+          £{{data['generalCost'] or "100.00"}} per hour
+        {% endif %}
+      </td>
+      <td class="govuk-table__cell">
+        {% if data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" %}
+          {% else %}
+          £{{data['general2Cost'] or "200.00"}} per hour
+        {% endif %}
+      </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__cell">Total</th>
+      <td class="govuk-table__cell">£200.00</td>
+      <td class="govuk-table__cell">£200.00</td>
+      <td class="govuk-table__cell">
+        {% if data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" %}
+          {% else %}
+          £{{data['rate1GeneralTotal'] or "200.00"}}
+        {% endif %}
+      </td>
+      <td class="govuk-table__cell">
+        {% if data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" %}
+          {% else %}
+          £{{data['rate2GeneralTotal'] or "200.00"}}
+        {% endif %}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+{% if data['serviceAdjust'] == "Yes" %}
+  <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Adjust service cost",
+      href: "change-service-rate",
+      classes: "govuk-button--secondary"
+    }) }}
+
+    <a class="govuk-link govuk-link--no-visited-state" href="delete-adjustment?deleteAdjust=service">Delete service cost adjustment</a>
+  </div>
+  {% else %}
+  {{ govukButton({
+    text: "Adjust service cost",
+    href: "change-service-rate",
+    classes: "govuk-button--secondary"
+  }) }}
+{% endif %}
+
+          
+<!--Travel -->
+{% if data['Appeal'] =="Yes" %}  
+  <h4 class="govuk-heading-s" id="travelID">Travel cost</h4>
+  {% else %}
+  <h3 class="govuk-heading-m" id="travelID">Travel cost</h3>
+{% endif %}
+
+{% if data['addTravel'] =="No" and data['primaryTravel'] =="No" and data['travelRemove'] == "No" and data['travelAdjust'] == "No" %}
+  <p>No travel costs were added</p>
+  <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Adjust travel cost",
+      href: "change-travel",
+      classes: "govuk-button--secondary"
+    }) }}
+  </div>
+  {% else %}
+
+  {% if data['travelAdjust'] == 'Yes' or data['travelRemove'] == "Yes" %}
+    <div class="govuk-inset-text">
+      {{data['travelAdjustField'] or "Travel costs not allowed for this service"}}
+    </div>
+  {% endif %}
+
+  {% if data['primaryTravel'] == "No"%}
+    {% else %}
+    <p>Reason for travel cost: "{{data['whyTravel'] or "The expert lives in Ireland"}}"</p>
+  {% endif %}  
+  
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Details</th>
+        <th scope="col" class="govuk-table__header">Requested</th>
+        <th scope="col" class="govuk-table__header">Allowed</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__cell">Amount</th>
+        {% if data['primaryTravel'] == "No"%}
+          <td class="govuk-table__cell"></td>
+          {% else %}    
+          <td class="govuk-table__cell">3 hours 0 minutes</td> 
+        {% endif %}  
+        <td class="govuk-table__cell">
+          {% if data['Appeal'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+            {% else %}
+            {{data['travelTime-hours'] or "3"}} hours {{data['travelTime-mins'] or "0"}} minutes
+          {% endif %}
+        </td>
+      </tr>
+        <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__cell">Rate</th>  
+        {% if data['primaryTravel'] == "No"%}
+          <td class="govuk-table__cell"></td>
+          {% else %}    
+          <td class="govuk-table__cell">£40.00</td> 
+        {% endif %}
+        <td class="govuk-table__cell">
+          {% if data['Appeal'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+            {% else %}
+            £{{data['travelCostTime'] or "40.00"}} per hour
+          {% endif %}
+        </td>  
+      </tr>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__cell">Total</th>   
+        {% if data['primaryTravel'] == "No"%}
+          <td class="govuk-table__cell"></td>
+          {% else %}    
+          <td class="govuk-table__cell">£120.00</td> 
+        {% endif %} 
+        <td class="govuk-table__cell">
+          {% if data['Appeal'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+            {% else %}
+            £{{data['actualTravelTotal'] or "120.00"}}
+          {% endif %}
+        </td> 
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="govuk-button-group">
+    {{ govukButton({
+      text: "Adjust travel cost",
+      href: "change-travel",
+      classes: "govuk-button--secondary"
+    }) }}
+      
+    {% if data['travelAdjust'] == "Yes" %}
+      <a class="govuk-link govuk-link--no-visited-state" href="delete-adjustment?deleteAdjust=travel">Delete travel cost adjustment</a>
+      {% elseif data['travelRemove'] == "Yes" %}
+      <!--Can't be undone-->
+      {% else %}
+      <a class="govuk-link govuk-link--no-visited-state" href="delete-cost?removeCost=travel">Remove requested travel cost</a>
+    {% endif %}  
+  </div>       
+
+{% endif %}
+
+<!--Additional-->
+{% if data['addAdd'] =="0" %}
+  {% if data['Appeal'] =="Yes" %}  
+    <h4 class="govuk-heading-s" id="add1ID">Additional cost</h4>
+    {% else %}
+    <h3 class="govuk-heading-m" id="add1ID">Additional cost</h3>
+  {% endif %}
+  
+  <p>No additional costs added</p>
+  {% else %}
+
+  {% if data['Appeal'] =="Yes" %}  
+    <h4 class="govuk-heading-s" id="add1ID">Additional costs 1</h4>
+    {% else %}
+    <h3 class="govuk-heading-m" id="add1ID">Additional costs 1</h3>
+  {% endif %}
+
+
+  {% if data['add1Adjust'] == "Yes" or data['add1Remove'] == "Yes" %}
+    <div class="govuk-inset-text">
+      {{data['addCost1Adjust'] or "Waiting rate reduced accordingly."}}
+    </div>
+  {% endif %}
+  
+  <p>Cost description: "{{data['addCost1'] or "Waiting time"}} - {{data['whyAdd1'] or "Waited at police station for client to be interviewed"}}"</p>
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Details</th>
+        <th scope="col" class="govuk-table__header">Requested</th>
+        <th scope="col" class="govuk-table__header">Allowed</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__cell">Amount</th>
+        <td class="govuk-table__cell">3 hours 0 minutes</td>
+        <td class="govuk-table__cell">
+          {% if data['Appeal'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+            {% else %}
+            {{data['addTime1-hours'] or "3"}} hours {{data['addTime1-mins'] or "0"}} minutes
+          {% endif %}
+        </td> 
+      </tr>
+        <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__cell">Rate</th>
+        <td class="govuk-table__cell">£40.00 per hour</td>
+        <td class="govuk-table__cell">
+          {% if data['Appeal'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+            {% else %}
+            £{{data['addCostTime1'] or "40.00"}} per hour
+          {% endif %}
+        </td> 
+      </tr>
+        <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__cell">Total</th>
+        <td class="govuk-table__cell">£120.00</td>
+        <td class="govuk-table__cell">
+          {% if data['Appeal'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
+            {% else %}
+            £{{data['actualAdd1Total'] or "120.00"}}
+          {% endif %}
+        </td> 
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="govuk-button-group">
+    {{ govukButton({
+    text: "Adjust additional cost 1",
+    href: "change-additionalCost1",
+      classes: "govuk-button--secondary"
+    }) }}
+
+    {% if data['add1Adjust'] == "Yes" %}
+      <a class="govuk-link govuk-link--no-visited-state" href="delete-adjustment?deleteAdjust=add1">Delete additional cost 1 adjustment</a>
+    {% endif %}
+  </div>
+  {% endif %}

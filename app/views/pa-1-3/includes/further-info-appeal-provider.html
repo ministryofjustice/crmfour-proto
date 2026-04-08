@@ -1,0 +1,63 @@
+<!---Further info for appeals -->
+{% if data['app-task'] == "Review" %} 
+  <h3 class="govuk-heading-m" id="review-further-info2">Requested appeal updates</h3>
+  <div class="govuk-summary-card">
+    <div class="govuk-summary-card__title-wrapper">
+      <h4 class="govuk-summary-card__title" id="review-further-info">
+        {% if data['icaDecision']== "Yes"%}
+          ICA information request 15 August 2025
+          {% else %}
+          Further information request 15 August 2025
+        {% endif %}
+      </h3>
+    </div>
+    <div class="govuk-summary-card__content">
+      <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Further information request
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+          </dd>
+        </div>
+      </dl>       
+    </div>
+  </div>
+
+ {% elseif data['app-task'] == "Returned" %} 
+    <h3 class="govuk-heading-m" id="review-further-info2">Requested appeal updates</h3>
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h4 class="govuk-summary-card__title" id="review-further-info">
+          {% if data['icaDecision']== "Yes"%}
+            ICA Update requested 15 August 2025
+            {% else %}
+            Update requested 15 August 2025
+          {% endif %}
+        </h4>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Further information request
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Your response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['providerFurtherInfo'] or "Relevant documents attached as requested" }}<br>
+              <a href="">AnotherCaourtDocs1.pdf</a><br>
+            </dd>
+          </div>
+        </dl>       
+      </div>
+    </div>
+  
+{% endif %}

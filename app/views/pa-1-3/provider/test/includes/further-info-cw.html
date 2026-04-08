@@ -1,0 +1,119 @@
+ <!---Further info -->
+ {% if data['cwAppStatus'] == "Auto granted" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Granted" %}
+  {% elseif data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Returned" %}
+
+    <h2 class="govuk-heading-m">Provider updates</h2>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="review-further-info">Further information request 21 May 2025</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Caseworker
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['caseworker1']}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Information request
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Provider response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['providerFurtherInfo'] or "Please see the attached documetents that show my client was not in the in UK" }}<br>
+              <a href="">courtDocs1.pdf</a><br>
+              <a href="">courtDocs2.pdf</a>
+            </dd>
+          </div>
+        </dl>       
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="review-incorrect-info">Amendment request 21 May 2025</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Caseworker
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['caseworker1']}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Information request
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['fieldIncorrectInfo'] or "The postcode of the service provider does not match the one partially supplied on the CRM4. Please clarify and provide the correct address which is where they are based/located and not the correspondence or organisation address."}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Provider response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <ul class="govuk-list">
+                <li><a href="#review-client" class="govuk-link--no-visited-state">Client details amended</a></li>
+                <li><a href="#review-altquote1" class="govuk-link--no-visited-state">Alternative quote 1 amended</a><br>
+                Document changed from: 'MyOtherquote1.pdf' to 'Adifferentquote.pdf' </li>
+                <li><a href="#review-quote" class="govuk-link--no-visited-state">Primary quote amended</a><br>
+                Document changed from: 'MyMainquote1.pdf' to 'Betterquote'pdf' </li>
+              </ul>
+            </dd>
+          </div>
+        </dl>       
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title" id="review-further-info2">Further information request 19 May 2025</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Caseworker
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['caseworker1']}}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Information request
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Please provide counsel's advice, providing information as to why further funding is necessary & ATTACH IT ELECTRONICALLY. CBAM 7.2.6a
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Provider response
+            </dt>
+            <dd class="govuk-summary-list__value">
+              {{data['providerFurtherInfo'] or "Relevant documents attached as requested" }}<br>
+              <a href="">courtDocs1.pdf</a><br>
+              <a href="">courtDocs2.pdf</a>
+            </dd>
+          </div>
+        </dl>       
+      </div>
+    </div>
+
+{% endif %}
