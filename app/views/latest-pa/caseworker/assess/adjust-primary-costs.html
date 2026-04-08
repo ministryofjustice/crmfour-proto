@@ -1,0 +1,364 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false] %}
+  {% else %}
+  {% if data['cwAppStatus'] == "New" or data['cwAppStatus'] == "Returned" or data['cwAppStatus'] == "Review" %}
+    {% set activePrimeNav = [false, true, false, false] %}
+    {% else %}
+    {% set activePrimeNav = [false, false, true, false] %}
+  {% endif %}
+{% endif %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Adjust service cost – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+  <style>
+    .time-inputs {
+      display: flex;
+      gap: 10px; /* 10px space between the two wrappers */
+      align-items: center;
+    }
+  </style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Adjust costs</h1>
+
+      <div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">
+      Key information
+    </h2>
+  </div>
+  <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Main offence
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Conspire to steal from another
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Existing prior authority granted
+        </dt>
+        <dd class="govuk-summary-list__value">
+          No
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Service required
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Benefit expert
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Representation order date
+        </dt>
+        <dd class="govuk-summary-list__value">
+          2 February 2026
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+ <div class="govuk-summary-card">
+  <div class="govuk-summary-card__title-wrapper">
+    <h2 class="govuk-summary-card__title">
+      Primary quote
+    </h2>
+  </div>
+  <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Service provider details
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Joanna White<br>
+          DNA Plc, Stepney, E2
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Quote upload
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <a href="#">myquote1.pdf</a>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<!--
+<h2 class="govuk-heading-l">Primary quote</h2>
+
+<dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Service provider details
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Joanna White<br>
+      DNA Plc, Stepney, E2
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Quote upload
+    </dt>
+    <dd class="govuk-summary-list__value">
+      <a href="#">myquote1.pdf</a>
+    </dd>
+  </div>
+</dl>
+-->
+
+<form class="form" onsubmit="calMultiRateCost()" action="application-details-adjust?costsAdjusted=Yes" method="post">
+
+<!--Service cost-->
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Service cost</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Details</th>
+      <th scope="col" class="govuk-table__header">Requested</th>
+      <th scope="col" class="govuk-table__header">Adjusted</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Amount</th>
+      <td class="govuk-table__cell">2 hours 30 minutes</td>
+      <td class="govuk-table__cell">
+        <div class="time-inputs">
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-2" id="serviceHours-adjusted" name="serviceHours-adjusted" type="text" inputmode="numeric" value="{{data['serviceHours-adjusted'] or "2"}}">
+            <div class="govuk-input__suffix" aria-hidden="true">hours</div>
+          </div>
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-2" id="serviceMinutes-adjusted" name="serviceMinutes-adjusted" type="text" inputmode="numeric" value="{{data['serviceMinutes-adjusted'] or "30"}}">
+            <div class="govuk-input__suffix" aria-hidden="true">minutes</div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Rate</th>
+      <td class="govuk-table__cell">£300.00 per hour</td>
+      <td class="govuk-table__cell">
+        
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-3" id="serviceRate-adjusted" name="serviceRate-adjusted" type="text" inputmode="numeric" value="{{data['serviceRate-adjusted'] or "300"}}">
+          <div class="govuk-input__suffix" aria-hidden="true">per hour</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Total</th>
+      <td class="govuk-table__cell"><strong>£750.00</strong></td>
+      <td class="govuk-table__cell"><strong>£750.00</strong></td>
+    </tr>
+    </tbody>
+  </table>
+
+<!--Travel cost-->
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Travel cost</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Details</th>
+      <th scope="col" class="govuk-table__header">Requested</th>
+      <th scope="col" class="govuk-table__header">Adjusted</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Amount</th>
+      <td class="govuk-table__cell">1 hours 0 minutes</td>
+      <td class="govuk-table__cell">
+        <div class="time-inputs">
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-2" id="travelHours-adjusted" name="travelHours-adjusted" type="text" inputmode="numeric" value="{{data['travelHours-adjusted'] or "1"}}">
+            <div class="govuk-input__suffix" aria-hidden="true">hours</div>
+          </div>
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-2" id="travelMinutes-adjusted" name="travelMinutes-adjusted" type="text" inputmode="numeric" value="{{data['travelMinutes-adjusted'] or "0"}}">
+            <div class="govuk-input__suffix" aria-hidden="true">minutes</div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Rate</th>
+      <td class="govuk-table__cell">£50.00 per hour</td>
+      <td class="govuk-table__cell">
+        
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-3" id="travelRate-adjusted" name="travelRate-adjusted" type="text" inputmode="numeric" value="{{data['travelRate-adjusted'] or "50"}}">
+          <div class="govuk-input__suffix" aria-hidden="true">per hour</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Total</th>
+      <td class="govuk-table__cell"><strong>£50.00</strong></td>
+      <td class="govuk-table__cell"><strong>£50.00</strong></td>
+    </tr>
+    </tbody>
+  </table>
+
+<!--Additional cost 1-->
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Additional cost 1<br>
+    <span class="govuk-hint">Junior staff rate</span>
+  </caption>
+  
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Details</th>
+      <th scope="col" class="govuk-table__header">Requested</th>
+      <th scope="col" class="govuk-table__header">Adjusted</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Amount</th>
+      <td class="govuk-table__cell">2 hours 30 minutes</td>
+      <td class="govuk-table__cell">
+        <div class="time-inputs">
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-2" id="additional1Hours-adjusted" name="additional1Hours-adjusted" type="text" inputmode="numeric" value="{{data['additional1Hours-adjusted'] or "2"}}">
+            <div class="govuk-input__suffix" aria-hidden="true">hours</div>
+          </div>
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-2" id="additional1Minutes-adjusted" name="additional1Minutes-adjusted" type="text" inputmode="numeric" value="{{data['additional1Minutes-adjusted'] or "30"}}">
+            <div class="govuk-input__suffix" aria-hidden="true">minutes</div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Rate</th>
+      <td class="govuk-table__cell">£100.00 per hour</td>
+      <td class="govuk-table__cell">
+        
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-3" id="additional1Rate-adjusted" name="additional1Rate-adjusted" type="text" inputmode="numeric" value="{{data['additional1Rate-adjusted'] or "100"}}">
+          <div class="govuk-input__suffix" aria-hidden="true">per hour</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Total</th>
+      <td class="govuk-table__cell"><strong>£250.00</strong></td>
+      <td class="govuk-table__cell"><strong>£250.00</strong></td>
+    </tr>
+    </tbody>
+  </table>
+
+<!--Additional cost 2-->
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Additional cost 2<br>
+    <span class="govuk-hint">Administration charge</span>
+  </caption>
+  
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Details</th>
+      <th scope="col" class="govuk-table__header">Requested</th>
+      <th scope="col" class="govuk-table__header">Adjusted</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Quantity</th>
+      <td class="govuk-table__cell">5 items</td>
+      <td class="govuk-table__cell">
+        <div class="time-inputs">
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input govuk-input--width-2" id="additional2Quantity-adjusted" name="additional2Quantity-adjusted" type="text" inputmode="numeric" value="{{data['additional2Quantity-adjusted'] or "5"}}">
+            <div class="govuk-input__suffix" aria-hidden="true">items</div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Rate</th>
+      <td class="govuk-table__cell">£50.00 per item</td>
+      <td class="govuk-table__cell">
+        
+        <div class="govuk-input__wrapper">
+          <div class="govuk-input__prefix" aria-hidden="true">£</div>
+          <input class="govuk-input govuk-input--width-3" id="additional2Rate-adjusted" name="additional2Rate-adjusted" type="text" inputmode="numeric" value="{{data['additional2Rate-adjusted'] or "50"}}">
+          <div class="govuk-input__suffix" aria-hidden="true">per item</div>
+        </div>
+      </td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Total</th>
+      <td class="govuk-table__cell"><strong>£250.00</strong></td>
+      <td class="govuk-table__cell"><strong>£250.00</strong></td>
+    </tr>
+    </tbody>
+  </table>
+
+        {{ govukTextarea({
+          name: "serviceAdjustField",
+          id: "serviceAdjustField",
+          value: data['serviceAdjustField'],
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "For example, why you made adjustments to the cost or time. We'll share this explanation with the provider."
+          }
+        }) }}
+
+        
+        <div class="govuk-button-group">
+          {{ govukButton({
+            name: "costsAdjusted",
+            id: "costsAdjusted",
+            value: "Yes",
+            text: "Save adjustments"
+          }) }}
+          <a class="govuk-link govuk-link--no-visited-state" href="application-details-adjust">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/calculate.js"></script>
+{% endblock %}

@@ -15,13 +15,36 @@
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Service provider location
+          Existing prior authority granted
         </dt>
         <dd class="govuk-summary-list__value">
-          {{data['expert-town'] or "Stepney"}},
-                  {{data['expert-postcode'] or "E2"}}
+          {{data['existingAuth'] or "No"}}
         </dd>
       </div>
+
+      {% if data['serviceType'] == "Psychiatric report (Prison Law)" or data['serviceType'] == "Psychological report (Prison Law)" or data['serviceType'] == "Interpreter" or  data['serviceType'] == null %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Ordered by court
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['courtOrdered'] or "Yes" }}
+                </dd>
+              </div>
+             {% else %}
+      {% endif %}
+
+            {% if data['serviceType'] == "Pathologist's report" %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Post-mortem
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['postMortem'] or "Yes"}}
+                </dd>
+              </div>
+            {% endif %}
+
     </dl>
   </div>
 </div>
