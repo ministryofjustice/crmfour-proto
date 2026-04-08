@@ -1,0 +1,58 @@
+ <!--Only show the navigation if it is a) either an appeal or a part granted app-->
+ {% if data['Appeal'] == "Yes" or data['Appeal'] == "Yes2" %}
+  {{ mojSubNavigation({
+    label: 'Sub navigation',
+    items: [
+    {
+      text: 'Overview',
+      href: 'application-details#nav',
+      active: + activeAppNav[0] | default('true')
+    }, 
+    {
+      text: 'Appeal',
+      href: 'application-details-appeals#nav',
+      active: + activeAppNav[1]
+    },
+    {
+      text: 'Allowed costs',
+      href: 'application-details-costs#nav',
+      active: + activeAppNav[2]
+    }
+    ]
+  }) }}
+
+  {% elseif data['app-task'] == "Part granted" %}
+    {{ mojSubNavigation({
+      label: 'Sub navigation',
+      items: [
+      {
+        text: 'Overview',
+        href: 'application-details#nav',
+        active: + activeAppNav[0] | default('true')
+      }, 
+      {
+        text: 'Allowed costs',
+        href: 'application-details-costs#nav',
+        active: + activeAppNav[2]
+      }
+      ]
+    }) }}
+
+{% endif %}
+
+<!-- Application history nav
+{{ mojSubNavigation({
+  label: 'Sub navigation',
+  items: [
+  {
+    text: 'Overview',
+    href: 'application-details2#nav',
+    active: true
+  }, 
+  {
+    text: 'Application history',
+    href: 'application-details-history#nav',
+    active: false
+  }
+  ]
+}) }}-->

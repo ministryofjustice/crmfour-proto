@@ -1,0 +1,14 @@
+<div class="govuk-form-group">
+  <label class="govuk-heading-s" for="main-offence">
+    What was the main offence?
+  </label>
+  <div id="offence-hint" class="govuk-hint">
+    Enter the name of an offence, or select one from the suggestions that appear when you start to enter the name.
+  </div>
+  <select class="govuk-select autocomplete-select" id="main-offence" name="main-offence" aria-describedby="offence-hint">
+    <option {{ "selected" if data["main-offence"] == "0" }} value=""></option>
+    <option {{ "selected" if data["main-offence"] == "Possess with intent to supply a controlled drug of Class A - Other"}} value="Possess with intent to supply a controlled drug of Class A - Other">Possess with intent to supply a controlled drug of Class A - Other</option>
+    <option {{ "selected" if data["main-offence"] == "Conspire to supply a class A controlled drug - cocaine" }} value="Conspire to supply a class A controlled drug - cocaine">Conspire to supply a class A controlled drug - cocaine</option>
+    <option {{ "selected" if data["main-offence"] == "Supply a controlled drug of Class A - Heroin" }} value="Supply a controlled drug of Class A - Heroin">Supply a controlled drug of Class A - Heroin</option>
+  </select>
+</div>

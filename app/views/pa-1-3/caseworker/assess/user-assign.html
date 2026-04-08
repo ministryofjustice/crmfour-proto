@@ -1,0 +1,77 @@
+{% extends "layouts/main.html" %}
+{% set version = "pa-1-3" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false, false] %}
+  {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" or data['cwAppStatus'] == "Auto granted" %}
+    {% set activePrimeNav = [false, false, false, true, false] %}
+  {% elseif data['Appeal'] == "Yes" %}
+    {% set activePrimeNav = [false, false, true, false, false] %}
+  {% else %}
+    {% set activePrimeNav = [false, true, false, false, false] %}
+{% endif %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Are you sure you want assign this application to yourself? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress" method="post">
+      
+      
+        <h1 class="govuk-heading-xl">Are you sure you want to add this application to your list?</h1>
+
+        {{ govukTextarea({
+          name: "assignConfirm",
+          id: "assignConfirm",
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: false
+          },
+          hint: {
+            text: "This information will be shared internally. This information will not be shared with the provider."
+          }
+        }) }} 
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Yes, add to my list"
+          }) }}
+
+        <a class="govuk-link govuk-link--no-visited-state" href="application-details">Cancel</a>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+<!---If the CW is adding the app to their queue, it still sometimes needs to show comment from the previous status-->
+
+      {% if data['cwAppStatus'] =="Referred" and data['statusComment'] =="ReturnedICA"  %}
+        <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress" method="post">
+        {% elseif data['cwAppStatus'] =="Referred" %}
+          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Referred" method="post">{% elseif data['cwAppStatus'] =="Hold" %}
+          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Hold" method="post">
+        {% elseif data['Appeal'] =="Yes" and data['cwAppStatus'] =="New" %}
+          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=None" method="post">
+        {% elseif data['cwAppStatus'] =="Returned" and data['icaDecision'] == "No" %}
+          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Returned" method="post">
+        {% elseif data['cwAppStatus'] =="Returned" and data['icaDecision'] == "Yes" %}
+          <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress&statusComment=Returned" method="post">
+        {% else %}
+        <form class="form" action="application-details?appAssigned=yes&cwAppStatus=In progress" method="post">
+      {% endif %}

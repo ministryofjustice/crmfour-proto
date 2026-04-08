@@ -1,0 +1,291 @@
+{% extends "layouts/main.html" %}
+{% set version = "pa-1-3" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false, false] %}
+  {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
+    {% set activePrimeNav = [false, false, false, true, false] %}
+  {% elseif data['Appeal'] == "Yes" %}
+    {% set activePrimeNav = [false, false, true, false, false] %}
+  {% else %}
+    {% set activePrimeNav = [false, true, false, false, false] %}
+{% endif %}
+
+
+{% block header %}
+  {% include version + "/includes/header-cw.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Decision sent to provider – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <!--If it was 'Send back to Provider' request--->
+      {% if data['cwAppStatus'] =="Review" %}
+        <div class="govuk-panel govuk-panel--confirmation">
+          <h1 class="govuk-panel__title">
+            Request sent
+          </h1>
+        </div>
+        <p>Your request has been sent to the provider.</p>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Application reference 
+            </dt>
+              <dd class="govuk-summary-list__value">
+              {{data['laa-ref'] or "LAA-5a7d3c"}}
+            </dd>
+          </div>
+          {% if data['reviewApp'] == "further" or data['Appeal'] =="Yes" %}
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                {% if data['icaDecision'] =="Yes"%}
+                  ICA information request
+                  {% else %}
+                  Further information request
+                {% endif %}
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <p>{{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+                </p>
+              </dd>
+            </div>
+            {% elseif data['reviewApp'] == "incorrect" %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Amendment request
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
+                </dd>
+              </div>
+            {% else %}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Further information request
+                </dt>
+                  <dd class="govuk-summary-list__value">
+                  {{data['fieldFurtherInfo'] or "There is little justification within the application regarding the amount of preparation requested, as this much higher than we would expect for a report from this type of expert. Please provide detailed justification why this work requires such a lengthy amount of time. "}}
+                </dd>
+              </div>
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  Amendment request
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['fieldIncorrectInfo'] or "Please review and amend the client details as they are incorrect"}}
+                </dd>
+              </div>
+          {% endif %}
+        </dl>
+        <div class="govuk-button-group">
+          {% if data['Appeal'] =="No" %}
+            {{ govukButton({
+              text: "Assess next application",
+              href: "application-details?cwAppStatus=In progress&Appeal=No&reviewPrimary=&reviewAltQuote1=&reviewWhyPA"
+            }) }}
+          {% endif %}
+          <a class="govuk-link" href="application-details">Return to the application</a>
+        </div>
+
+
+        <!--If it is an appeal 'Refer Hold'--->
+        {% elseif data['cwAppStatus'] =="Hold" %}
+          <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+              Held for referral to ICA
+            </h1>
+          </div>
+          <p>Your message has been sent to the provider.</p>
+          <p>A caseworker will email the ICA the referral message and supporting information.</p>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Application reference
+              </dt>
+                <dd class="govuk-summary-list__value">
+                {{data['laa-ref'] or "LAA-5a7d3c"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                  Message for ICA
+              </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['icaReferredReasonCW'] or "High rates"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                  Message for provider
+              </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['icaReferredReasonProvider']}}
+              </dd>
+            </div>
+          </dl>
+          
+          <div class="govuk-button-group">
+            <a class="govuk-link" href="application-details">Return to the application</a>
+          </div>
+
+        {% elseif data['cwAppStatus'] =="Referred" %}
+          <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+              Application marked as sent to ICA
+            </h1>
+          </div>
+          <p>You confirmed that you have sent this appeal to the ICA.</p>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Application reference
+              </dt>
+                <dd class="govuk-summary-list__value">
+                {{data['laa-ref'] or "LAA-5a7d3c"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                ICA sent to
+              </dt>
+                <dd class="govuk-summary-list__value">
+                {{data['ICA-first-name'] or "John"}} {{data['ICA-last-name'] or "Smith"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                  Date sent
+              </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['dateSentICA'] or "13/06/2025"}}
+              </dd>
+            </div>
+          </dl>
+
+          <div class="govuk-button-group">
+            <a class="govuk-link" href="application-details">Return to the application</a>
+          </div>
+
+        <!--If it is an appeal 'Make a decision'--->
+        {% elseif data['Appeal'] =="Yes" %}
+          <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+              Decision sent
+            </h1>
+          </div>
+          <p>The decision has been sent to the provider. </p>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Application reference
+              </dt>
+                <dd class="govuk-summary-list__value">
+                {{data['laa-ref'] or "LAA-5a7d3c"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Application status
+              </dt>
+                <dd class="govuk-summary-list__value">
+                  {{data['cwAppStatus']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                {% if data['icaDecision']== "Yes"%}
+                  ICA comments
+                  {% else %}
+                  Comments
+                {% endif %}
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {% if data['cwAppStatus']== "Granted"%}
+                  {{data['grantedConfirm'] or "We have upheld your appeal due to supporting evidence and full reisntate your travel costs. Your applciation is fully grastned."}}
+                  {% elseif data['cwAppStatus']== "Part granted"%}
+                    {{data['partConfirm'] or "Your application remains part granted as travel costs are now allowable for this type of service as stated in the policy guidance"}}
+                  {% elseif data['cwAppStatus']== "Rejected"%}
+                    {{data['rejectedConfirm'] or "We are unable to change the decisions made due to clear policy guidance nad your application remains rejected."}}
+                {% endif %}
+              </dd>
+            </div>
+          </dl>
+            <a class="govuk-link" href="application-details">Return to the application</a>
+          </div>
+        
+        
+        <!--If it is as normal'Make a decision'--->
+        {% else %}
+          <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+              Decision sent
+            </h1>
+          </div>
+          <p>Your decision has been sent to the provider. </p>
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Application reference
+              </dt>
+                <dd class="govuk-summary-list__value">
+                {{data['laa-ref'] or "LAA-5a7d3c"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                LAA decision
+              </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['Appeal'] == "Yes" %}
+                    Appeal: {{data['cwAppStatus'] or "Referred"}}
+                    {% else %}
+                    {{data['cwAppStatus'] or "Granted"}}
+                  {% endif %}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Comments
+              </dt>
+                <dd class="govuk-summary-list__value">
+                  {% if data['cwAppStatus'] == "Granted" %}
+                    {{data['grantedConfirm'] or "No comments"}}
+                    {% elseif data['cwAppStatus'] == "Part granted" %}
+                      {{data['partConfirm'] or "Travel costs not allowed"}}
+                    {% elseif data['cwAppStatus'] == "Rejected" %}
+                      {{data['rejectedConfirm'] or "Please use a CRM5 form"}}
+                    {% elseif data['cwAppStatus'] == "Referred" %}
+                      {{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}
+                  {% endif %}
+              </dd>
+            </div>
+          </dl>
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Assess next application",
+              href: "application-details?cwAppStatus=In progress&Appeal=No&reviewPrimary=&reviewAltQuote1=&reviewWhyPA"
+            }) }}
+            <a class="govuk-link" href="application-details">Return to the application</a>
+          </div>
+
+      {% endif %}
+
+      
+    </div>
+  </div>
+
+{% endblock %}

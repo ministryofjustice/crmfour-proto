@@ -1,0 +1,276 @@
+{% extends "layouts/main.html" %}
+{% set version = "pa-1-3" %}
+{% if data['cwAppStatus'] == "In progress"%}
+  {% set activePrimeNav = [true, false, false, false, false] %}
+  {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Part granted" or data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}
+    {% set activePrimeNav = [false, false, false, true, false] %}
+  {% elseif data['Appeal'] == "Yes" %}
+    {% set activePrimeNav = [false, false, true, false, false] %}
+  {% else %}
+    {% set activePrimeNav = [false, true, false, false, false] %}
+{% endif %}
+{% set activeAppNav = [false, false, true, false, false] %}
+
+{% block header %}
+  {% include version + "/includes/header-cw.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Appeal – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "/includes/banner.html"%}
+  
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% include version + "/includes/app-status-cw.html"%}
+    {% include version + "/includes/nav-app-cw.njk"%}
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <h2 class="govuk-heading-l" id="appeal-details">Appeal</h2>
+
+    {% if data['cwAppStatus'] == "Part granted" %}
+      {% set appealLabel %}
+        Appeal 18 May 2025
+      {% endset%}
+      {% else %}
+      {% set appealLabel %}
+        Appeal in progress
+      {% endset%}
+    {% endif %}    
+
+
+    {% set appealCurrentHtml %}
+
+      <h3 class="govuk-heading-m" id="appeal-details">{{appealLabel}}</h3>
+
+      <dl class="govuk-summary-list">
+        {% if data['cwAppStatus'] == "Part granted" %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              {% if data['icaDecision']== "Yes"%}
+                ICA decision
+                {% else %}
+                Decision
+              {% endif %}
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p>{{data['cwAppStatus']}} 21 May 2025</p>
+              <p>
+                {% if data['cwAppStatus']== "Granted"%}
+                  {{data['grantedConfirm'] or "We have upheld your appeal due to supporting evidence and full reisntate your travel costs. Your applciation is fully grastned."}}
+                  {% elseif data['cwAppStatus']== "Part granted"%}
+                    {{data['partConfirm'] or "Your application remains part granted as travel costs are now allowable for this type of service as stated in the policy guidance"}}
+                  {% elseif data['cwAppStatus']== "Rejected"%}
+                    {{data['rejectedConfirm'] or "We are unable to change the decisions made due to clear policy guidance nad your application remains rejected."}}
+                {% endif %}
+              </p>
+              <ul class="govuk-list">
+                <li>Requested: £640.00</li>
+                <li>Allowed: £480.00</li>
+                <li>Caseworker: {{data['caseworker2']}}</li>
+              </ul>
+            </dd>
+          </div>
+        {% endif %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reason for appeal
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Appealed 18 May 2025</p>
+            <p>I still disagree with the part grant of my application and have provided further evidence to prove the need for travel cost. Please refer to the ICA.
+            </p>
+            <ul class="govuk-list">
+              <li><a href="">even-more-evidence.pdf</a></li>
+            </ul>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision being appealed
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Part granted 7 May 2025</p>
+            <p>Your new evidence does not allow us to approve the travel costs. Your application remains part granted.</p>
+            <ul class="govuk-list">
+              <li>Requested: £640.00</li>
+              <li>Allowed: £480.00</li>
+              <li>Caseworker: {{data['caseworker2']}}</li>
+            </ul>
+          </dd>
+        </div>
+      </dl>       
+
+      {% include version + "/includes/further-info-appeal-cw.html"%}
+    {% endset %}
+
+    {% set appealMayHtml %}
+      <h3 class="govuk-heading-m" id="appeal-details">Appeal 2 May 2025</h3>
+      
+      <dl class="govuk-summary-list ">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Part granted 7 May 2025</p>
+            <p>Your new evidence does not allow us to approve the travel costs. Your application remains part granted.</p>
+            <ul class="govuk-list">
+              <li>Requested: £{{data['actualdistTotalCost'] or "640"}}.00</li>
+              <li>Allowed: £480.00</li>
+              <li>Caseworker: {{data['caseworker2']}}</li>
+            </ul>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Reason for appeal
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Appealed 2 May 2025</p>
+            <p>I have provided further evidence to prove the need for travel cost. 
+            </p>
+            <ul class="govuk-list">
+              <li><a href="">more-evidence.pdf</a></li>
+            </ul>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision being appealed
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Part granted 14 April 2025</p>
+            <p>This application was part granted due to disallowed travel costs</p>
+            <ul class="govuk-list">
+              <li>Requested: £640.00</li>
+              <li>Allowed: £480.00</li>
+              <li>Caseworker: {{data['caseworker2']}}</li>
+            </ul>
+          </dd>
+        </div>
+      </dl>       
+
+      <h3 class="govuk-heading-m">Updates</h3>
+
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h4 class="govuk-summary-card__title" id="review-further-info2">Further information request 4 May 2025</h4>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list ">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Caseworker
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['caseworker1']}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Information request
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Please provide counsel's advice, providing information as to why further funding is necessary & ATTACH IT ELECTRONICALLY. CBAM 7.2.6a
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Provider response
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Relevant documents attached as requested<br>
+                <a href="">courtDocs1.pdf</a><br>
+                <a href="">courtDocs2.pdf</a>
+              </dd>
+            </div>
+          </dl>       
+        </div>
+      </div>
+    {% endset %}
+
+    {% set appealAprilHtml %}
+      <h3 class="govuk-heading-m" id="appeal-details">Application 10 April 2025</h3>
+
+      <dl class="govuk-summary-list ">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Decision
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p>Part granted 14 April 2025</p>
+            <p>This application was part granted due to disallowed travel costs</p>
+            <ul class="govuk-list">
+              <li>Requested: £640.00</li>
+              <li>Allowed: £480.00</li>
+              <li>Caseworker: {{data['caseworker2']}}</li>
+            </ul>
+          </dd>
+        </div>
+      </dl>     
+
+    {% endset %}
+    
+    {{ govukTabs({
+      items: [
+        {
+          label: appealLabel,
+          id: "appealCurrent",
+          panel: {
+            html: appealCurrentHtml
+          }
+        },
+        {
+          label: "Appeal 2 May 2025",
+          id: "MayAppeal",
+          panel: {
+            html: appealMayHtml
+          }
+        },
+        {
+          label: "Application 10 April 2025",
+          id: "AprilAppeal",
+          panel: {
+            html: appealAprilHtml
+          }
+        }
+      ]
+    }) }} 
+    {% include version + "/includes/application-buttons.html"%}
+
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script>
+    var rate1GeneralTotal = parseInt(document.getElementById("rate1GeneralTotal").value) | 0
+    var rate2GeneralTotal = parseInt(document.getElementById("rate2GeneralTotal").value) | 0
+    var actualTravelTotal = parseInt(document.getElementById("actualTravelTotal").value) | 0
+    var actualAdd1Total = parseInt(document.getElementById("actualAdd1Total").value) | 0
+    var actualGeneralTotal = parseInt(document.getElementById("actualGeneralTotal").value) | 0
+    var allowedTotalCost = parseInt(document.getElementById("allowedTotalCost").value) | 0
+
+    window.onload = function(){  
+      allowedTotalCost = actualTravelTotal + actualAdd1Total + rate1GeneralTotal + rate2GeneralTotal;
+      document.getElementById("showallowedTotalCost").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost2").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("showallowedTotalCost3").innerHTML = Number(allowedTotalCost).toFixed(2);
+      document.getElementById("allowedTotalCost").value = Number(allowedTotalCost).toFixed(2);
+    }
+  </script>
+{% endblock %}
