@@ -1,0 +1,184 @@
+{% extends "layouts/main.html" %}
+{% set version = "latest-pa" %}
+{% set activePrimeNav = [true, false, false, false] %}
+
+
+{% block header %}
+  {% include version + "/includes/header-cw.html" %}
+{% endblock %}
+
+{% block pageTitle %}
+  {{data['laa-ref'] or "LAA-5a7d3c"}} - Application details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {% include "includes/banner.html"%}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="application-details-adjust" method="post">
+
+        {% set grantedHtml %}
+          {{ govukTextarea({
+            name: "grantedConfirm",
+            id: "grantedConfirm",
+            label: {
+              text: "Enter additional comments (optional)",
+              isPageHeading: false
+            },
+            hint: {
+            text: "We'll share this information with the provider"
+            }
+          }) }}    
+        {% endset %}
+        
+        {% set partGrantedHtml %}
+          {{ govukTextarea({
+            name: "partConfirm",
+            id: "partConfirm",
+            label: {
+              text: "Explain your decision",
+              isPageHeading: false
+            },
+            hint: {
+            text: "We'll share this information with the provider"
+            }
+          }) }}    
+        {% endset %}
+
+        {% set rejectedHtml %}
+          {{ govukTextarea({
+            name: "rejectedConfirm",
+            id: "rejectedConfirm",
+            label: {
+              text: "Explain your decision",
+              isPageHeading: false
+            },
+            hint: {
+            text: "We'll share this information with the provider"
+            }
+          }) }}    
+        {% endset %}
+
+<!--//////////////////////////////////////-->
+
+        {{ govukRadios({
+          name: "cwAppStatus",
+          fieldset: {
+            legend: {
+              text: "Make a decision",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--xl"
+            }
+          },
+          items: [
+            {
+              value: "Granted",
+              text: "Grant",
+              checked: checked("cwAppStatus", "Granted"),
+              conditional: {
+                html: grantedHtml
+              }
+            },
+            {
+              value: "Part granted",
+              text: "Part grant",
+              checked: checked("cwAppStatus", "Part granted"),
+              conditional: {
+                html: partGrantedHtml
+              }
+            },
+            {
+              value: "Rejected",
+              text: "Reject",
+              checked: checked("cwAppStatus", "Rejected"),
+              conditional: {
+                html: rejectedHtml
+              }
+            }
+          ]
+        }) }}
+
+        <h1 class="govuk-heading-xl">Reason for decision</h1>
+
+        <h2 class="govuk-heading-m">Primary quote</h2>
+
+        <dl class="govuk-summary-list govuk-summary-list--no-border">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              LAA decision
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Granted
+            </dd>
+          </div>   
+        </dl>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Cost type</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Requested</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Allowed</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Service</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£750.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Travel</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£50.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Additional cost 1</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£250.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£250.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Additional cost 2</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£250.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£250.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Total cost</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£1300.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£1300.00</td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <div class="govuk-button-group">
+          {{ govukButton({
+            name: "quoteGranted",
+            id: "quoteGranted",
+            value: "Yes",
+            text: "Save and continue"
+          }) }}
+
+          {{ govukButton({
+            text: "Save and come back later",
+              classes: "govuk-button--secondary",
+            href: ""
+          }) }}
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
