@@ -27,92 +27,10 @@
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="application-details-adjust" method="post">
-
-        {% set grantedHtml %}
-          {{ govukTextarea({
-            name: "grantedConfirm",
-            id: "grantedConfirm",
-            label: {
-              text: "Enter additional comments (optional)",
-              isPageHeading: false
-            },
-            hint: {
-            text: "We'll share this information with the provider"
-            }
-          }) }}    
-        {% endset %}
-        
-        {% set partGrantedHtml %}
-          {{ govukTextarea({
-            name: "partConfirm",
-            id: "partConfirm",
-            label: {
-              text: "Explain your decision",
-              isPageHeading: false
-            },
-            hint: {
-            text: "We'll share this information with the provider"
-            }
-          }) }}    
-        {% endset %}
-
-        {% set rejectedHtml %}
-          {{ govukTextarea({
-            name: "rejectedConfirm",
-            id: "rejectedConfirm",
-            label: {
-              text: "Explain your decision",
-              isPageHeading: false
-            },
-            hint: {
-            text: "We'll share this information with the provider"
-            }
-          }) }}    
-        {% endset %}
-
-<!--//////////////////////////////////////-->
-
-        {{ govukRadios({
-          name: "cwAppStatus",
-          fieldset: {
-            legend: {
-              text: "Make a decision",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--xl"
-            }
-          },
-          items: [
-            {
-              value: "Granted",
-              text: "Grant",
-              checked: checked("cwAppStatus", "Granted"),
-              conditional: {
-                html: grantedHtml
-              }
-            },
-            {
-              value: "Part granted",
-              text: "Part grant",
-              checked: checked("cwAppStatus", "Part granted"),
-              conditional: {
-                html: partGrantedHtml
-              }
-            },
-            {
-              value: "Rejected",
-              text: "Reject",
-              checked: checked("cwAppStatus", "Rejected"),
-              conditional: {
-                html: rejectedHtml
-              }
-            }
-          ]
-        }) }}
+      {% if data ['quoteGranted'] == "Yes" and data ['alternativeQuote'] == "No" %}
+        <form class="form" action="application-details-adjust?quoteGranted=Yes" method="post">
 
         <h1 class="govuk-heading-xl">Reason for decision</h1>
-
-        <h2 class="govuk-heading-m">Primary quote</h2>
 
         <dl class="govuk-summary-list govuk-summary-list--no-border">
           <div class="govuk-summary-list__row">
@@ -124,7 +42,10 @@
             </dd>
           </div>   
         </dl>
+        
+        <h2 class="govuk-heading-m">Primary quote</h2>
 
+        <!--Primary quote costs-->
         <table class="govuk-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
@@ -156,28 +77,167 @@
             </tr>
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">Total cost</th>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£1300.00</td>
-              <td class="govuk-table__cell govuk-table__cell--numeric">£1300.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1300.00</strong></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£1300.00</strong></td>
             </tr>
           </tbody>
         </table>
-      
-        <div class="govuk-button-group">
+
+        {{ govukTextarea({
+          name: "moreDetail",
+          id: "more-detail",
+          label: {
+            text: "Enter additional comments (optional)",
+            classes: "govuk-label--s",
+            isPageHeading: true
+          },
+          hint: {
+            text: "We'll share this information with the provider"
+          }
+        }) }}
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              name: "quoteGranted",
+              id: "quoteGranted",
+              value: "Yes",
+              text: "Save and continue"
+            }) }}
+            
           {{ govukButton({
-            name: "quoteGranted",
-            id: "quoteGranted",
-            value: "Yes",
-            text: "Save and continue"
+              text: "Save and come back later",
+                classes: "govuk-button--secondary",
+              href: ""
+            }) }}
+          </div>
+        </form>
+
+        <!--If alt quote granted -->
+        {% elseif data ['quoteGranted'] == "Yes" and data ['alternativeQuote'] == "Yes" %}
+        <form class="form" action="application-details-adjust?quoteGranted=Yes&alternativeQuote=Yes" method="post">
+
+        <h1 class="govuk-heading-xl">Reason for decision</h1>
+
+        <dl class="govuk-summary-list govuk-summary-list--no-border">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              LAA decision
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Part granted
+            </dd>
+          </div>   
+        </dl>
+        
+        <h2 class="govuk-heading-m">Alternative quote 1</h2>
+
+        <!--Primary quote costs-->
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Cost type</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Requested</th>
+              <th scope="col" class="govuk-table__header govuk-table__header--numeric">Allowed</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Service</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£500.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£500.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Travel</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£120.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Additional cost 1</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£30.00</td>
+              <td class="govuk-table__cell govuk-table__cell--numeric">£30.00</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Total cost</th>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£650.00</strong></td>
+              <td class="govuk-table__cell govuk-table__cell--numeric"><strong>£650.00</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        {{ govukTextarea({
+          name: "moreDetail",
+          id: "more-detail",
+          label: {
+            text: "Explain your decision",
+            classes: "govuk-label--s",
+            isPageHeading: true
+          },
+          hint: {
+            text: "We'll share this information with the provider"
+          }
+        }) }}
+
+          <div class="govuk-button-group">
+            {{ govukButton({
+              name: "quoteGranted",
+              id: "quoteGranted",
+              value: "Yes",
+              text: "Save and continue"
+            }) }}
+            
+          {{ govukButton({
+              text: "Save and come back later",
+                classes: "govuk-button--secondary",
+              href: ""
+            }) }}
+          </div>
+        </form>
+
+        <!--If rejected-->
+        {% elseif data['quoteGranted'] == "Rejected" %}
+          <form class="form" action="application-details-adjust?quoteGranted=Rejected" method="post">
+
+          <h1 class="govuk-heading-xl">Reason for decision</h1>
+          
+          <dl class="govuk-summary-list govuk-summary-list--no-border">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                LAA decision
+              </dt>
+              <dd class="govuk-summary-list__value">
+                Rejected
+              </dd>
+            </div>   
+          </dl>
+
+          {{ govukTextarea({
+            name: "moreDetail",
+            id: "more-detail",
+            label: {
+              text: "Explain your decision",
+              classes: "govuk-label--s",
+              isPageHeading: true
+            },
+            hint: {
+              text: "We'll share this information with the provider"
+            }
           }) }}
 
+          <div class="govuk-button-group">
+            {{ govukButton({
+              text: "Save and continue"
+            }) }}
+            
           {{ govukButton({
-            text: "Save and come back later",
-              classes: "govuk-button--secondary",
-            href: ""
-          }) }}
-        </div>
+              text: "Save and come back later",
+                classes: "govuk-button--secondary",
+              href: ""
+            }) }}
+          </div>
+          </form>
 
-      </form>
+        {% endif %}
+
     </div>
   </div>
 

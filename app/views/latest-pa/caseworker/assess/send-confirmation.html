@@ -258,15 +258,23 @@
             </div>
             <div class="govuk-summary-list__row">
               <dt class="govuk-summary-list__key">
-                Comments
+                  {% if data['cwAppStatus'] == "Granted" %}
+                    Additional comments
+                  {% elseif data['cwAppStatus'] == "Part granted" %}
+                    Reason for decision
+                  {% elseif data['cwAppStatus'] == "Rejected" %}
+                    Reason for decision
+                  {% elseif data['cwAppStatus'] == "Referred" %}
+                    Comments
+                  {% endif %}
               </dt>
                 <dd class="govuk-summary-list__value">
                   {% if data['cwAppStatus'] == "Granted" %}
-                    {{data['grantedConfirm'] or "No comments"}}
+                    {{data['moreDetail'] or "No comments"}}
                     {% elseif data['cwAppStatus'] == "Part granted" %}
-                      {{data['partConfirm'] or "Travel costs not allowed"}}
+                      {{data['serviceAdjustField'] or "Travel costs not allowed"}}
                     {% elseif data['cwAppStatus'] == "Rejected" %}
-                      {{data['rejectedConfirm'] or "Please use a CRM5 form"}}
+                      {{data['moreDetail'] or "Please use a CRM5 form"}}
                     {% elseif data['cwAppStatus'] == "Referred" %}
                       {{data['icaReferredReason'] or "Your appeal has been sent to the ICA for a final decision."}}
                   {% endif %}
@@ -277,7 +285,7 @@
           <div class="govuk-button-group">
             {{ govukButton({
               text: "Assess next application",
-              href: "application-details?cwAppStatus=In progress&Appeal=No&reviewPrimary=&reviewAltQuote1=&reviewWhyPA"
+              href: "application-details?laa-ref=LAA-1z5f7w&cwAppStatus=In%20progress&Appeal=No&quoteGranted=No&costsAdjusted=No"
             }) }}
             <a class="govuk-link" href="application-details">Return to the application</a>
           </div>
