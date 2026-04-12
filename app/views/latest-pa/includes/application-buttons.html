@@ -36,8 +36,9 @@
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
   <div class="govuk-button-group">
       {{ govukButton({
-        text: "Make a decision",
-        href: "send-decision"
+        text: "Reject application",
+        classes: "govuk-button--secondary",
+        href: "reason-for-decision?quoteGranted=Rejected&Appeal=No"
       }) }}
       
       {{ govukButton({
@@ -46,11 +47,8 @@
         href: "send-further-info"
       }) }}
 
-    {{ govukButton({
-      text: "Back to your applications",
-      classes: "govuk-button--secondary",
-      href: "../crm-assess?cwAppState=all"
-    }) }}
+    <a href="../crm-assess?cwAppState=all" class="govuk-link">Back to your applications</a>
+
   </div>
 {% endif %}
 
