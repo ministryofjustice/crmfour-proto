@@ -71,9 +71,28 @@
 
   <p class="govuk-body-l"><strong>Requested:</strong> £640.00<br>
     {% if data['cwAppStatus'] == "Rejected" or data['cwAppStatus'] == "Expired" %}<strong>Allowed:</strong> £0.00
-      {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}<strong>Allowed:</strong> £640.00     
+      {% elseif data['cwAppStatus'] == "Granted" or data['cwAppStatus'] == "Auto granted" %}<strong>Allowed:</strong> £640.00
+      {% elseif data['cwAppStatus'] == "Part granted" %}<strong>Allowed:</strong> £640.00     
       {% elseif data['Appeal'] !== "Yes" and data['serviceAdjust'] !== "Yes" and data['travelAdjust'] !== "Yes" and data['add1Adjust'] !== "Yes" and data['travelRemove'] !== "Yes" %}
       {% else %} <strong>Allowed:</strong> £<span id="showallowedTotalCost">520.00</span>
+    {% endif %}
+
+    <!--Granting a quote but haven't submitted the decision yet-->
+    {% if data['quoteGranted'] == "Yes" and data['cwAppStatus'] == "In progress"%}
+      <strong>Allowed:</strong> £<span id="showallowedTotalCost">640.00</span>
+      {% else %}
+    {% endif %}
+
+    <!--Part granting a quote but haven't submitted the decision yet-->
+    {% if data['costsAdjusted'] == "Yes" and data['cwAppStatus'] == "In progress"%}
+      <strong>Allowed:</strong> £<span id="showallowedTotalCost">640.00</span>
+      {% else %}
+    {% endif %}
+
+    <!--Rejecting the application but haven't submitted the decision yet-->
+    {% if data['quoteGranted'] == "Rejected" and data['cwAppStatus'] == "In progress"%}
+      <strong>Allowed:</strong> £0.00</span>
+      {% else %}
     {% endif %}
 
   <p class="govuk-body-m">
