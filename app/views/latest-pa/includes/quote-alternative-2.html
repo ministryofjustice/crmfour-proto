@@ -1,0 +1,123 @@
+<!--Alternative quote 2-->
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title" id="review-quote">Alternative quote 2</h3>
+          {% if data['costsAdjusted'] == "Yes" or data['quoteGranted'] == "Yes" or data['quoteGranted'] == "Rejected" %}
+          {% else %}
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="#">Adjust costs<span class="govuk-visually-hidden"> alternative quote 2</span></a>
+            </li>
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="#">Grant quote<span class="govuk-visually-hidden">alternative quote 2</span></a>
+            </li>
+          </ul>
+          {% endif %}
+        </div>
+        <div class="govuk-summary-card__content">
+          
+          <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Service provider details
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{data['expert-first-name'] or "Joanna" }} {{data['expert-last-name'] or "White" }}<br>
+                {{data['expert-org-name'] or "DNA Plc" }}, 
+                {{data['expert-town'] or "Stepney"}},
+                {{data['expert-postcode'] or "E2"}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Quote upload
+              </dt>
+              <dd class="govuk-summary-list__value">
+                None
+              </dd>
+            </div>
+
+            {% if data['detained'] == "Yes" or data['prisonLaw'] == "Yes" %}
+              {% else %}
+            {% endif %}
+          </dl>
+
+<!--Alt quote 2 - Service cost-->
+          <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Service cost</caption>
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header govuk-!-width-one-third">Details</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-one-third">Requested</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-one-third"></th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Amount</td>
+                {% if data['serviceType'] == "Transcription" %}
+                  <td class="govuk-table__cell">10 minutes</td>
+                  {% elseif data['serviceType'] == "Translation and transcription"%}
+                  <td class="govuk-table__cell">10 minutes</td>
+                  {% elseif data['serviceType'] == "Translation"%}
+                  <td class="govuk-table__cell">10000 words</td>
+                  {% elseif data['serviceType'] == "Photocopying"%}
+                  <td class="govuk-table__cell">100 pages</td>
+                  {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%}
+                  <td class="govuk-table__cell">1 hour 0 minutes</td>
+                  {% elseif data['serviceType'] == "Other" %}
+                  <td class="govuk-table__cell">1 items</td>
+                  {% elseif data['serviceType'] == "DNA report" %}
+                  <td class="govuk-table__cell">1 reports</td>
+                  {% else %}
+                  <td class="govuk-table__cell">3 hours 0 minutes</td>
+                  <td class="govuk-table__cell"></td>
+                {% endif%}
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Rate</td>
+                {% if data['serviceType'] == "Transcription" %}
+                  <td class="govuk-table__cell">20 minutes</td>
+                  {% elseif data['serviceType'] == "Translation and transcription"%}
+                  <td class="govuk-table__cell">20 minutes</td>
+                  {% elseif data['serviceType'] == "Translation"%}
+                  <td class="govuk-table__cell">20000 words</td>
+                  {% elseif data['serviceType'] == "Photocopying"%}
+                  <td class="govuk-table__cell">200 pages</td>
+                  {% elseif data['serviceType'] == "Other" and data['otherChargeType'] =="Charged by the hour"%}
+                  <td class="govuk-table__cell">2 hours 0 minutes</td>
+                  {% elseif data['serviceType'] == "Other" %}
+                  <td class="govuk-table__cell">2 items</td>
+                  {% elseif data['serviceType'] == "DNA report" %}
+                  <td class="govuk-table__cell">2 reports</td>
+                  {% else %}
+                  <td class="govuk-table__cell">£250.00 per hour</td>
+                  <td class="govuk-table__cell"></td>
+                {% endif%}
+              </tr>
+              <tr class="govuk-table__row">
+                <td class="govuk-table__cell">Total</td>
+                {% if data['primaryTravel'] == "No" %}
+                  <td class="govuk-table__cell">£750.00</td>
+                  <td class="govuk-table__cell"></td>
+                  {% else %}
+                  <td class="govuk-table__cell">£750.00</td>
+                  <td class="govuk-table__cell"></td>
+                {% endif %}
+              </tr>
+            </tbody>
+          </table> 
+
+<!--Alt quote 2 - Total cost-->
+          <table class="govuk-table">
+            <tbody class="govuk-table__body">
+              <tr class="govuk-table__row">
+                <th scope="row" class="govuk-table__header govuk-!-width-one-third">Total cost</th>
+                <td class="govuk-table__cell"><strong>£750.00</strong></td>
+                <td class="govuk-table__cell"><strong></strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
