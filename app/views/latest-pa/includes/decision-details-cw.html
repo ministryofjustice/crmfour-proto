@@ -215,10 +215,11 @@
 
   {% elseif data['cwAppStatus'] == "Part granted"%}
 
+  <!--Read only version because decision has been submitted-->
     {% call govukInsetText({ classes: "govuk-!-margin-20 guidance-panel" }) %}
       <h4 class="govuk-heading-s govuk-!-margin-0">LAA decision: Part granted</h4><br>
       <h5 class="govuk-heading-s govuk-!-margin-0">Reason</h5>
-      <p>{{data['serviceAdjustField'] or "Adjusted to London rates. I adjusted the service cost to match the current London rates. The additional cost was adjusted to London rates." }}</p>
+      <p>{{data['serviceAdjustField'] or data['moreDetail'] or "Adjusted to London rates. I adjusted the service cost to match the current London rates. The additional cost was adjusted to London rates." }}</p>
       <p class="govuk-body">
         <a href="application-details-adjust?cwAppStatus=Part%20granted&Appeal=No" class="govuk-link govuk-link--no-visited-state">Review quote adjustments</a>
       </p>

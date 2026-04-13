@@ -271,8 +271,8 @@
                 <dd class="govuk-summary-list__value">
                   {% if data['cwAppStatus'] == "Granted" %}
                     {{data['moreDetail'] or "No comments"}}
-                    {% elseif data['cwAppStatus'] == "Part granted" %}
-                      {{data['serviceAdjustField'] or "Travel costs not allowed"}}
+                    {% elseif data['cwAppStatus'] == "Part granted" %}<!--Could be an adjusted primary quote or a fully granted alt quote-->
+                      {{data['serviceAdjustField'] or data['moreDetail'] or "Travel costs not allowed"}}
                     {% elseif data['cwAppStatus'] == "Rejected" %}
                       {{data['moreDetail'] or "Please use a CRM5 form"}}
                     {% elseif data['cwAppStatus'] == "Referred" %}
