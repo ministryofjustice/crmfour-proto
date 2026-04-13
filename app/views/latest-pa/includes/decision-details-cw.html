@@ -136,8 +136,11 @@
 
     {% call govukInsetText({ classes: "govuk-!-margin-20 guidance-panel" }) %}
       <h4 class="govuk-heading-s govuk-!-margin-0">LAA decision: Granted</h4><br>
+    {% if data.moreDetail %}
       <h5 class="govuk-heading-s govuk-!-margin-0">Reason</h5>
-      <p>{{data['moreDetail'] or "Primary quote was the best overall value for LAA." }}</p>
+      <p>{{data['moreDetail'] }}</p>
+    {% else %}<!--Hides 'reason' if no reason entered-->
+    {% endif %}
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Submit decision
       </button>
@@ -180,11 +183,14 @@
     {% endcall %}
 
   {% elseif data['cwAppStatus'] == "Granted" %}
-
+    <!--Read only version because decision has been submitted-->
     {% call govukInsetText({ classes: "govuk-!-margin-20 guidance-panel" }) %}
       <h4 class="govuk-heading-s govuk-!-margin-0">LAA decision: Granted</h4><br>
+    {% if data.moreDetail %}
       <h5 class="govuk-heading-s govuk-!-margin-0">Reason</h5>
-      <p>{{data['moreDetail'] or "Primary quote was the best overall value for LAA." }}</p>
+      <p>{{data['moreDetail'] }}</p>
+    {% else %}<!--Hides 'reason' if no reason entered-->
+    {% endif %}
       <p class="govuk-body">
         <a href="application-details-adjust" class="govuk-link govuk-link--no-visited-state">Review quotes</a>
       </p>

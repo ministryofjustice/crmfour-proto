@@ -97,8 +97,11 @@
 
       {% call govukInsetText({ classes: "govuk-!-margin-20 guidance-panel" }) %}
         <h4 class="govuk-heading-s govuk-!-margin-0">LAA decision: Granted</h4><br>
+      {% if data.moreDetail %}
         <h5 class="govuk-heading-s govuk-!-margin-0">Reason</h5>
-        <p>{{data['moreDetail'] or "Primary quote was the best overall value for LAA." }}</p>
+        <p>{{data['moreDetail'] }}</p>
+      {% else %}<!--Hides 'reason' if no reason entered-->
+      {% endif %}
         {% if data['cwAppStatus'] == "In progress"%}
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Submit decision
