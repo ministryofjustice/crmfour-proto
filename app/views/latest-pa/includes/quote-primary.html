@@ -62,6 +62,8 @@
                 <th scope="col" class="govuk-table__header govuk-!-width-one-third">Requested</th>
                 {% if data['costsAdjusted'] == "Yes" %}
                   <th scope="col" class="govuk-table__header govuk-!-width-one-third">Allowed</th>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-third">Allowed</th>
                 {% else %}
                   <th scope="col" class="govuk-table__header govuk-!-width-one-third"></th>
                 {% endif%}
@@ -92,6 +94,10 @@
                   <td class="govuk-table__cell">
                     {{data['serviceHours-adjusted'] or "2"}} hours {{data['serviceMinutes-adjusted'] or "30"}} minutes
                   </td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">
+                    2 hours 30 minutes
+                  </td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif%}
@@ -119,6 +125,10 @@
 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">£{{data['serviceRate-adjusted'] or "300.00"}} per hour</td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">
+                    £300.00 per hour
+                  </td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif%}
@@ -146,6 +156,10 @@
 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">£{{ allowedTotalService | round(2) }}</td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">
+                    £750.00
+                  </td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif %}
@@ -173,6 +187,8 @@
                 <th scope="col" class="govuk-table__header govuk-!-width-one-third">Requested</th>
                 {% if data['costsAdjusted'] == "Yes" %}
                   <th scope="col" class="govuk-table__header govuk-!-width-one-third">Allowed</th>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}   
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-third">Allowed</th>           
                 {% else %}
                   <th scope="col" class="govuk-table__header govuk-!-width-one-third"></th>
                 {% endif%}
@@ -185,6 +201,8 @@
                 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">{{data['travelHours-adjusted'] or "1"}} hours {{data['travelMinutes-adjusted'] or "0"}} minutes</td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">1 hours 0 minutes</td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif %}
@@ -195,6 +213,8 @@
 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">£{{data['travelRate-adjusted'] or "50.00"}} per hour</td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">£50.00 per hour</td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif %}
@@ -217,6 +237,8 @@
 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">£{{ allowedTotalTravel | round(2) }}</td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">£50.00</td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif %}
@@ -249,6 +271,8 @@
                 <th scope="col" class="govuk-table__header govuk-!-width-one-third">Requested</th>
                 {% if data['costsAdjusted'] == "Yes" %}
                   <th scope="col" class="govuk-table__header govuk-!-width-one-third">Allowed</th>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-third">Allowed</th>
                 {% else %}
                   <th scope="col" class="govuk-table__header govuk-!-width-one-third"></th>
                 {% endif%}
@@ -261,6 +285,8 @@
 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">{{data['additional1Hours-adjusted'] or "2"}} hours {{data['additional1Minutes-adjusted'] or "30"}} minutes</td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">2 hours 30 minutes</td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif %}
@@ -271,6 +297,8 @@
 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">£{{data['additional1Rate-adjusted'] or "100.00"}} per hour</td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">£100.00 per hour</td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif %}
@@ -293,7 +321,8 @@
 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">£{{ allowedTotalAdditional1 | round(2) }}</td>
-
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">£250.00</td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif %}
@@ -324,6 +353,8 @@
                 <th scope="col" class="govuk-table__header govuk-!-width-one-third">Requested</th>
                 {% if data['costsAdjusted'] == "Yes" %}
                   <th scope="col" class="govuk-table__header govuk-!-width-one-third">Allowed</th>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-third">Allowed</th>
                 {% else %}
                   <th scope="col" class="govuk-table__header govuk-!-width-one-third"></th>
                 {% endif%}
@@ -336,6 +367,8 @@
                 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">{{data['additional2Quantity-adjusted'] or "5"}} items</td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">5 items</td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif %}
@@ -346,6 +379,8 @@
 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">£{{data['additional2Rate-adjusted'] or "50.00"}} per item</td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">£50.00 per item</td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif %}
@@ -363,7 +398,8 @@
 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell">£{{ allowedTotalAdditional2 | round(2) }}</td>
-
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell">£250.00</td>
                 {% else %}
                   <td class="govuk-table__cell"></td>
                 {% endif %}
@@ -382,6 +418,8 @@
 
                 {% if data['costsAdjusted'] == "Yes" %}
                   <td class="govuk-table__cell govuk-!-width-one-third"><strong>£{{ allowedTotalAdjusted | round(2) }}</strong></td>
+                {% elseif data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "No" %}
+                  <td class="govuk-table__cell govuk-!-width-one-third"><strong>£1300.00</strong></td>
                 {% else %}
                   <td class="govuk-table__cell govuk-!-width-one-third"><strong></strong></td>
                 {% endif%}
