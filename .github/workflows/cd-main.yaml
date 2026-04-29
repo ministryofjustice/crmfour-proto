@@ -35,6 +35,13 @@ jobs:
           REPOSITORY: ${{ vars.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ github.sha }}
           BRANCH: ${{ github.ref_name }}
+      - name: Mask sensitive inputs
+        run: |
+          echo "::add-mask::$KUBE_TOKEN"
+          echo "::add-mask::$KUBE_CERT"
+        env:
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+          KUBE_CERT: ${{ secrets.KUBE_CERT }}
       - run: |
           echo "${KUBE_CERT}" > ca.crt
           kubectl config set-cluster ${KUBE_CLUSTER} --certificate-authority=./ca.crt --server=https://${KUBE_CLUSTER}
