@@ -37,3 +37,16 @@ For further information on the Cloud Platform see the [Cloud Platform User Guide
 [Gov.UK Prototype Kit]: https://govuk-prototype-kit.herokuapp.com/docs
 [MoJ Cloud Platform]: https://user-guide.cloud-platform.service.justice.gov.uk/documentation/concepts/about-the-cloud-platform.html
 [github actions secrets]: https://docs.github.com/en/actions/reference/encrypted-secrets
+
+
+### Making updates
+
+A pre-commit hook has been added to the repository to ensure it is kept inline with the Github Security Baselines.
+Before you commit any changes, you will need to run the following command to install prek:
+
+`prek install`
+
+Docker will also need to be installed and running on your machine for the pre-commit hook to work, as it uses a containerised version of the security baselines to run the checks.
+The very first time you run the pre-commit hook there may be a delay as it needs to download the security baseline image.
+
+
