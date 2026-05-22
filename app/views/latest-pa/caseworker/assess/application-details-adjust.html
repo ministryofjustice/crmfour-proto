@@ -148,6 +148,12 @@
       {% else %}
     {% endif %}
 
+  <!--If no alternative quotes are provided-->
+  {% if data['altQuoteProvided'] == "No" %}
+    {% include version + "/includes/no-alternative-quote.html"%}
+  <!--Otherwise display alternative quotes-->
+  {% else %}
+
     <!--Display primary quote under Other quotes header if alternative quote is granted-->
     {% if data['quoteGranted'] == "Yes" and data['alternativeQuote'] == "Yes" %}
       {% include version + "/includes/quote-primary.html"%}
@@ -158,6 +164,8 @@
 
     <!--Alternative quote 2-->
     {% include version + "/includes/quote-alternative-2.html"%}
+
+  {% endif %}
 
     <!--Application buttons-->
     {% include version + "/includes/application-buttons.html"%}
