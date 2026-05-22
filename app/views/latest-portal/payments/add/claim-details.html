@@ -108,7 +108,7 @@
               name: "dateReceived",
               value: data['dateReceived'],
               label: {
-                text: "Date appeal received",
+                text: "Date appeal assessed",
                 classes: "govuk-label--xl",
                 isPageHeading: true
               },
@@ -127,7 +127,7 @@
               id: "dateReceived",
               name: "dateReceived",
               label: {
-                text: "Date appeal received",
+                text: "Date appeal assessed",
                 classes: "govuk-label--s"
               },
               hint: {
@@ -440,7 +440,7 @@
               id: "dateReceived",
               name: "dateReceived",
               label: {
-                text: "Date supplemental claim received",
+                text: "Date supplemental claim assessed",
                 classes: "govuk-label--xl",
                 isPageHeading: true
               },
@@ -454,13 +454,13 @@
 <!--Does not have an LAA ref for original reference-->
           {% if data['linkedCRM'] == "No" %}
 
-            <h1 class="govuk-heading-xl">Claim details</h1>  
+            <h1 class="govuk-heading-xl">Claim details</h1>
 
             {{ mojDatePicker({
               id: "dateReceived",
               name: "dateReceived",
               label: {
-                text: "Date supplemental claim received",
+                text: "Date supplemental claim assessed",
                 classes: "govuk-label--s"
               },
               hint: {
@@ -596,6 +596,29 @@
 
 <!--Payment type = Assigned counsel-->
           {% elseif data['paymentType'] =="Assigned counsel"%}
+
+            <!--Has an LAA ref for original claim-->
+            {% if data['linkedCRM'] == "Yes" %}
+
+              <!--Date received-->
+              {{ mojDatePicker({
+                id: "dateReceived",
+                name: "dateReceived",
+                label: {
+                  text: "Date claim assessed",
+                  classes: "govuk-label--xl",
+                  isPageHeading: true
+                },
+                hint: {
+                  text: "For example, 17/5/2025."
+                }
+              }) }}
+              
+            {% endif  %}
+
+
+            {% if data['linkedCRM'] == "No" %}
+
             <h1 class="govuk-heading-xl">Claim details</h1>  
 
             <!--Date received-->
@@ -603,16 +626,13 @@
                 id: "dateReceived",
                 name: "dateReceived",
                 label: {
-                  text: "Date claim received",
+                  text: "Date claim assessed",
                   classes: "govuk-label--s"
                 },
                 hint: {
                   text: "For example, 17/5/2025."
                 }
               }) }}
-
-
-            {% if data['linkedCRM'] == "No" %}
 
               <!--UFN-->
               {{ govukInput({
@@ -648,7 +668,7 @@
             <!--Counsel acc with suggestions
             {% include version +"/includes/list-office-counsel.njk"%}-->
 
-            <!--Counsel office account number-->
+            <!--Counsel office account number
               {{ govukInput({
                 label: {
                   text: "Counsel office account number",
@@ -657,9 +677,9 @@
                 id: "officeAccount",
                 name: "officeAccount",
                 classes: "govuk-input--width-20"
-              }) }} 
+              }) }} -->
 
-            <!--Counsel name-->
+            <!--Counsel name
               {{ govukInput({
                 label: {
                   text: "Counsel name",
@@ -669,7 +689,7 @@
                 name: "counselName",
                 classes: "govuk-input--width-20",
                 value: data['counselName']
-              }) }} 
+              }) }} -->
 
 <!--Payment type = Assigned counsel - Appeal-->
           {% elseif data['paymentType'] =="Assigned counsel - appeal"%}
@@ -682,7 +702,7 @@
               id: "dateReceived",
               name: "dateReceived",
               label: {
-                text: "Date appeal received",
+                text: "Date appeal assessed",
                 classes: "govuk-label--xl",
                 isPageHeading: true
               },
@@ -702,7 +722,7 @@
                 id: "dateReceived",
                 name: "dateReceived",
                 label: {
-                  text: "Date appeal received",
+                  text: "Date appeal assessed",
                   classes: "govuk-label--s"
                 },
                 hint: {
@@ -743,7 +763,7 @@
             <!--Counsel acc with suggestions
             {% include version +"/includes/list-office-counsel.njk"%}-->
 
-            <!--Counsel office account number-->
+            <!--Counsel office account number
               {{ govukInput({
                 label: {
                   text: "Counsel office account number",
@@ -752,9 +772,9 @@
                 id: "officeAccount",
                 name: "officeAccount",
                 classes: "govuk-input--width-20"
-              }) }} 
+              }) }} -->
 
-            <!--Counsel name-->
+            <!--Counsel name
               {{ govukInput({
                 label: {
                   text: "Counsel name",
@@ -764,7 +784,7 @@
                 name: "counselName",
                 classes: "govuk-input--width-20",
                 value: data['counselName']
-              }) }}
+              }) }}-->
           {% endif %}
 
 <!--Payment type = Assigned counsel - Amendment-->
@@ -839,7 +859,7 @@
             <!--Counsel acc with suggestions
             {% include version +"/includes/list-office-counsel.njk"%}-->
 
-            <!--Counsel office account number-->
+            <!--Counsel office account number
               {{ govukInput({
                 label: {
                   text: "Counsel office account number",
@@ -848,9 +868,9 @@
                 id: "officeAccount",
                 name: "officeAccount",
                 classes: "govuk-input--width-20"
-              }) }} 
+              }) }} -->
 
-            <!--Counsel name-->
+            <!--Counsel name
               {{ govukInput({
                 label: {
                   text: "Counsel name",
@@ -860,7 +880,7 @@
                 name: "counselName",
                 classes: "govuk-input--width-20",
                 value: data['counselName']
-              }) }}
+              }) }} -->
           {% endif %}
 
 <!--Payment type = Non-standard magistrates-->
@@ -871,7 +891,7 @@
               id: "dateReceived",
               name: "dateReceived",
               label: {
-                text: "Date claim received",
+                text: "Date claim assessed",
                 classes: "govuk-label--s"
               },
               hint: {
