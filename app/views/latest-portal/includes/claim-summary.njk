@@ -36,20 +36,6 @@
     {% endif %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          {% if data['paymentType'] =="Assigned counsel" %}
-            Date claim assessed
-          {% elseif data['paymentType'] =="Assigned counsel - appeal" %}
-            Date appeal assessed
-          {% elseif data['paymentType'] =="Assigned counsel - amendment" %}
-            Date claim amended
-          {% endif %}
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{data['dateReceived'] or "24 July 2025"}}
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
           Firm account number
         </dt>
         <dd class="govuk-summary-list__value">
@@ -78,6 +64,20 @@
         </dt>
         <dd class="govuk-summary-list__value">
           {{data['counselName'] or "Judge Judy" }}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          {% if data['paymentType'] =="Assigned counsel" %}
+            Date claim assessed
+          {% elseif data['paymentType'] =="Assigned counsel - appeal" %}
+            Date appeal assessed
+          {% elseif data['paymentType'] =="Assigned counsel - amendment" %}
+            Date claim amended
+          {% endif %}
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{data['dateReceived'] or "24 July 2025"}}
         </dd>
       </div>
       <div class="govuk-summary-list__row">
@@ -120,20 +120,6 @@
         </div>
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            {% if data['paymentType'] =="Non-standard magistrates' - supplemental" %}
-            Date supplemental claim assessed
-            {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" %}
-            Date appeal assessed
-            {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" %}
-            Date claim amended
-            {% endif %}
-          </dt>
-          <dd class="govuk-summary-list__value">
-            {{data['dateReceived'] or "20 June 2025"}}
-          </dd>
-        </div>      
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">
             Firm account number
           </dt>
           <dd class="govuk-summary-list__value">
@@ -146,6 +132,28 @@
           </dt>
           <dd class="govuk-summary-list__value">
             {{data['firmName'] or "Law Lawyers" }}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Month original claim submitted
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['dateReceived'] or "June 2025"}}
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            {% if data['paymentType'] =="Non-standard magistrates' - supplemental" %}
+            Date supplemental claim assessed
+            {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" %}
+            Date appeal assessed
+            {% elseif data['paymentType'] =="Non-standard magistrates' - amendment" %}
+            Date claim amended
+            {% endif %}
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['dateReceived'] or "20 June 2025"}}
           </dd>
         </div>
         <div class="govuk-summary-list__row">
