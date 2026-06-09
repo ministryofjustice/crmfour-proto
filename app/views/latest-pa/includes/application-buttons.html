@@ -31,7 +31,22 @@
   </div>
 {% endif %}
 
-{% if data['Appeal'] == "No" and data['cwAppStatus'] == "In progress" %}
+  {% if data['cwAppStatus'] == "In progress" and data['Appeal'] == "No" and data['quoteGranted'] == "Rejected"%}
+  <!--Remove reject button for applications already in reject process-->
+
+  <br>
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  <div class="govuk-button-group">
+      
+      {{ govukButton({
+        text: "Send back to provider",
+        classes: "govuk-button--secondary",
+        href: "send-further-info"
+      }) }}
+
+    <a href="../crm-assess?cwAppState=all" class="govuk-link">Back to your applications</a>
+
+{% elseif data['cwAppStatus'] == "In progress" and data['Appeal'] == "No"%}
   <br>
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
   <div class="govuk-button-group">
@@ -50,6 +65,10 @@
     <a href="../crm-assess?cwAppState=all" class="govuk-link">Back to your applications</a>
 
   </div>
+
+  {% else %}
+
+
 {% endif %}
 
       
