@@ -91,7 +91,7 @@
         <div class="govuk-summary-card__content">
           {% if data['paymentType'] =="Non-standard magistrates' - supplemental" and data['linkedCRM'] =="Yes"%}
             <table class="govuk-table">
-              <caption class="govuk-table__caption govuk-table__caption--s">Amended claimed and allowed costs</caption>
+              <caption class="govuk-table__caption govuk-table__caption--s"><span class="govuk-visually-hidden">Amended costs</span></caption>
               <thead class="govuk-table__head">
                 <th scope="col" class="govuk-table__header">Cost type</th>
                 <th scope="col" class="govuk-table__header govuk-table__header--numeric">Previously claimed</th>
@@ -175,11 +175,11 @@
             </table>
             {% elseif data['paymentType'] =="Non-standard magistrates'" %}
               <table class="govuk-table">
-                <caption class="govuk-table__caption govuk-table__caption--s">Claimed and allowed costs</caption>
+                <caption class="govuk-table__caption govuk-table__caption--s"><span class="govuk-visually-hidden">Claimed and allowed costs</span></caption>
                 <thead class="govuk-table__head">
                   <th scope="col" class="govuk-table__header">Cost type</th>
-                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total claimed</th>
-                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Claimed</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Allowed</th>
                 </thead>
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
@@ -238,7 +238,7 @@
             {% elseif data['paymentType'] =="Non-standard magistrates' - appeal" or data['paymentType'] =="Non-standard magistrates' - amendment" %}
               <table class="govuk-table">
                 {% if data['linkedCRM'] =="Yes"%}
-                <caption class="govuk-table__caption govuk-table__caption--s">Amended allowed costs</caption>
+                <caption class="govuk-table__caption govuk-table__caption--s"><span class="govuk-visually-hidden">Amended costs</span></caption>
                 {% else %}
                 <caption class="govuk-table__caption govuk-table__caption--s"><span class="govuk-visually-hidden">Costs to be paid</span></caption>
                 {% endif %}
@@ -246,7 +246,7 @@
                   <th scope="col" class="govuk-table__header">Cost type</th>
                   {% if data['linkedCRM'] =="Yes"%}
                   <th scope="col" class="govuk-table__header govuk-table__header--numeric">Previously allowed</th>
-                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Total allowed</th>
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Allowed</th>
                   {% else %}
                   <th scope="col" class="govuk-table__header govuk-table__header--numeric">Amount</th>
                   {% endif %}
@@ -292,7 +292,7 @@
             {% elseif data['paymentType'] =="Assigned counsel - appeal" or data['paymentType'] =="Assigned counsel - amendment" %}
               <table class="govuk-table">
                 {% if data['linkedCRM'] =="Yes"%}
-                <caption class="govuk-table__caption govuk-table__caption--s">Amended allowed costs</caption>
+                <caption class="govuk-table__caption govuk-table__caption--s"><span class="govuk-visually-hidden">Amended costs</span></caption>
                 {% elseif data['linkedCRM'] =="No"%}
                 <caption class="govuk-table__caption govuk-table__caption--s"><span class="govuk-visually-hidden">Costs to be paid</span></caption>
                 {% endif %}
@@ -301,8 +301,10 @@
                   <th scope="col" class="govuk-table__header">Cost type</th>
                   {% if data['linkedCRM'] =="Yes"%}
                   <th scope="col" class="govuk-table__header govuk-table__header--numeric">Previously allowed</th>
-                  {% endif %}
+                  <th scope="col" class="govuk-table__header govuk-table__header--numeric">Allowed</th>
+                  {% else %}
                   <th scope="col" class="govuk-table__header govuk-table__header--numeric">Amount</th>
+                  {% endif %}
                 </thead>
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
