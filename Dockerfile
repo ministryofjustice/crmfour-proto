@@ -1,4 +1,4 @@
-FROM node:24-bullseye-slim
+FROM node:24.22.1-bookworm-slim
 
 # Normal upstream repo is currently down
 RUN rm -f /etc/apt/sources.list.d/debian.sources \
