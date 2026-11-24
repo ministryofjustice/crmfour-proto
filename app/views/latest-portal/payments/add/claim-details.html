@@ -745,6 +745,17 @@
               <!--Firm acc
               {% include version +"/includes/list-office-provider.njk"%}-->
 
+              <!--Defendant first name-->
+              {{ govukInput({
+                label: {
+                  text: "Defendant first name",
+                  classes: "govuk-label--s"
+                },
+                id: "defendantFirstName",
+                name: "defendantFirstName",
+                classes: "govuk-input--width-20"
+              }) }} 
+              
               <!--Defendant last name-->
               {{ govukInput({
                 label: {
@@ -755,7 +766,7 @@
                 name: "defendantLastName",
                 classes: "govuk-input--width-20",
                 value: data['defendantLastName']
-              }) }} 
+              }) }}
             {% endif %}
 
             <!--Counsel acc with suggestions
